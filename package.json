@@ -2,5 +2,9 @@
   "name": "harmony-agent-reports",
   "version": "1.0.0",
   "type": "module",
-  "private": true
+  "private": true,
+  "scripts": {
+    "report": "node scripts/batch-test/analyze-agent-traces.mjs --latest-only",
+    "report:pages": "node scripts/batch-test/analyze-agent-traces.mjs --latest-only --github-pages"
+  }
 }

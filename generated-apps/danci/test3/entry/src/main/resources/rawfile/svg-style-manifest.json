@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-06-20T03:38:41.753Z",
+  "icons": [
+    {
+      "file_name": "icon_将当前单词放回队列底部稍后复习.svg",
+      "title": "将当前单词放回队列底部稍后复习",
+      "source_html": "page-review-page.html",
+      "hash": "938a7c599d974db523d7d39d962a91a976d5955f",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "action-btn",
+        "unknown-btn",
+        "action-bar",
+        "card-scene"
+      ]
+    },
+    {
+      "file_name": "icon_本轮复习完成.svg",
+      "title": "本轮复习完成",
+      "source_html": "page-review-page.html",
+      "hash": "18d9563fc0bb8155b675518649aed6f41a5f33b3",
+      "width": 40,
+      "height": 40,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "completion-badge",
+        "completion-card",
+        "completion-overlay"
+      ]
+    },
+    {
+      "file_name": "icon_标记当前单词为已认识并移出卡片堆.svg",
+      "title": "标记当前单词为已认识并移出卡片堆",
+      "source_html": "page-review-page.html",
+      "hash": "73a80791984ee13e0959cdfb11b480281444fb4c",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "action-btn",
+        "known-btn",
+        "action-bar",
+        "card-scene"
+      ]
+    },
+    {
+      "file_name": "icon_翻转卡片查看释义.svg",
+      "title": "翻转卡片查看释义",
+      "source_html": "page-review-page.html",
+      "hash": "6e1bb3b3105f3ce56e634158451d7e24168bc72f",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0EA5E9",
+      "fill_color": "",
+      "stroke_color": "#0EA5E9",
+      "opacity": "1",
+      "context_classes": [
+        "flip-hint",
+        "card-face",
+        "card-front",
+        "flashcard"
+      ]
+    },
+    {
+      "file_name": "icon_还没有可复习的单词.svg",
+      "title": "还没有可复习的单词",
+      "source_html": "page-review-page.html",
+      "hash": "c64c778c51c4e73594136023dbeed8dc80b2847b",
+      "width": 56,
+      "height": 56,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#8B5CF6",
+      "fill_color": "",
+      "stroke_color": "#8B5CF6",
+      "opacity": "1",
+      "context_classes": [
+        "empty-icon-wrap",
+        "empty-state",
+        "card-scene"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340">
+          <title>随机转盘候选菜品</title>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B35"/><stop offset="100%" stop-color="#FF8A5B"/></linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFC93D"/><stop offset="100%" stop-color="#FFE082"/></linearGradient>
+            <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3DD9C0"/><stop offset="100%" stop-color="#7EE8D8"/></linearGradient>
+            <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF4D6D"/><stop offset="100%" stop-color="#FF7A8F"/></linearGradient>
+            <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9B7EDE"/><stop offset="100%" stop-color="#BBA3E8"/></linearGradient>
+            <linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4ECDC4"/><stop offset="100%" stop-color="#88E0D9"/></linearGradient>
+            <linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F7DC6F"/><stop offset="100%" stop-color="#FBE9A0"/></linearGradient>
+            <linearGradient id="g8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#BB8FCE"/><stop offset="100%" stop-color="#D5B5E4"/></linearGradient>
+          </defs>
+          <g transform="translate(170,170)">
+            <path d="M0 0 L170 0 A170 170 0 0 1 120.2 120.2 Z" fill="url(#g1)"/>
+            <path d="M0 0 L120.2 120.2 A170 170 0 0 1 0 170 Z" fill="url(#g2)"/>
+            <path d="M0 0 L0 170 A170 170 0 0 1 -120.2 120.2 Z" fill="url(#g3)"/>
+            <path d="M0 0 L-120.2 120.2 A170 170 0 0 1 -170 0 Z" fill="url(#g4)"/>
+            <path d="M0 0 L-170 0 A170 170 0 0 1 -120.2 -120.2 Z" fill="url(#g5)"/>
+            <path d="M0 0 L-120.2 -120.2 A170 170 0 0 1 0 -170 Z" fill="url(#g6)"/>
+            <path d="M0 0 L0 -170 A170 170 0 0 1 120.2 -120.2 Z" fill="url(#g7)"/>
+            <path d="M0 0 L120.2 -120.2 A170 170 0 0 1 170 0 Z" fill="url(#g8)"/>
+          </g>
+          <text x="250" y="50" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(22.5,250,50)">番茄炒蛋</text>
+          <text x="305" y="115" fill="#1A1A1A" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(67.5,305,115)">红烧肉</text>
+          <text x="305" y="235" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(112.5,305,235)">清蒸鱼</text>
+          <text x="250" y="300" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(157.5,250,300)">麻婆豆腐</text>
+          <text x="130" y="300" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(202.5,130,300)">饺子</text>
+          <text x="75" y="235" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(247.5,75,235)">意面</text>
+          <text x="75" y="115" fill="#1A1A1A" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(292.5,75,115)">沙拉</text>
+          <text x="130" y="50" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(337.5,130,50)">咖喱饭</text>
+        </svg>

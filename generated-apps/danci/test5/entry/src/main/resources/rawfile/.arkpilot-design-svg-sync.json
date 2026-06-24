@@ -1,0 +1,14 @@
+{
+  "synced_at": "2026-06-20T03:41:24.080Z",
+  "rawfile_manifest": ".arkpilot/design_exports/svg/rawfile-manifest.json",
+  "files": [
+    "icon_App-logo-showing-an-open-book.svg",
+    "icon_Checkmark-indicating-I-know-this-word.svg",
+    "icon_Medal-awarded-for-completing-all-review-words.svg",
+    "icon_Rotate-arrow-indicating-put-this-word-back-for-review.svg",
+    "icon_Sparkle-decoration-on-flashcard-front.svg",
+    "icon_Trophy-icon-showing-words-learned-this-session.svg"
+  ],
+  "style_manifest": "svg-style-manifest.json",
+  "svg_style_map": "entry/src/main/ets/common/svg/SvgStyleMap.ets"
+}

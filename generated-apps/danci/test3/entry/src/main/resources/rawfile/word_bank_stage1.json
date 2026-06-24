@@ -1,0 +1,18 @@
+{
+  "stageId": "stage1",
+  "stageName": "第一阶",
+  "words": [
+    { "id": "w01", "english": "apple", "meaning": "苹果", "phonetic": "/ˈæpl/" },
+    { "id": "w02", "english": "banana", "meaning": "香蕉", "phonetic": "/bəˈnɑːnə/" },
+    { "id": "w03", "english": "cat", "meaning": "猫", "phonetic": "/kæt/" },
+    { "id": "w04", "english": "dog", "meaning": "狗", "phonetic": "/dɒɡ/" },
+    { "id": "w05", "english": "egg", "meaning": "鸡蛋", "phonetic": "/eɡ/" },
+    { "id": "w06", "english": "fish", "meaning": "鱼", "phonetic": "/fɪʃ/" },
+    { "id": "w07", "english": "green", "meaning": "绿色的", "phonetic": "/ɡriːn/" },
+    { "id": "w08", "english": "happy", "meaning": "开心的", "phonetic": "/ˈhæpi/" },
+    { "id": "w09", "english": "juice", "meaning": "果汁", "phonetic": "/dʒuːs/" },
+    { "id": "w10", "english": "king", "meaning": "国王", "phonetic": "/kɪŋ/" },
+    { "id": "w11", "english": "milk", "meaning": "牛奶", "phonetic": "/mɪlk/" },
+    { "id": "w12", "english": "nose", "meaning": "鼻子", "phonetic": "/nəʊz/" }
+  ]
+}

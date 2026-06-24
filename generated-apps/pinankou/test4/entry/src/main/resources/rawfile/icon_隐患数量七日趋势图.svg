@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="chart-svg" viewBox="0 0 320 140" preserveAspectRatio="none">
+        <title>隐患数量七日趋势图</title>
+        <defs>
+          <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0D9488" stop-opacity="0.35" />
+            <stop offset="100%" stop-color="#0D9488" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M0,100 L50,90 L100,70 L150,80 L200,50 L250,60 L300,30 L320,40 L320,140 L0,140 Z" fill="url(#trendFill)" />
+        <path d="M0,100 L50,90 L100,70 L150,80 L200,50 L250,60 L300,30 L320,40" fill="none" stroke="#0D9488" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="300" cy="30" r="5" fill="#5EEAD4" stroke="#0D9488" stroke-width="2" />
+      </svg>

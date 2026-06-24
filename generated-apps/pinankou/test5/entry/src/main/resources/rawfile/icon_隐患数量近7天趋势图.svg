@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="chart-svg" viewBox="0 0 360 160" preserveAspectRatio="none">
+          <title>隐患数量近7天趋势图</title>
+          <defs>
+            <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0D9488" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#0D9488" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,130 L50,110 L100,120 L150,90 L200,80 L250,60 L300,40 L360,50" fill="none" stroke="#0D9488" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M0,130 L50,110 L100,120 L150,90 L200,80 L250,60 L300,40 L360,50 L360,160 L0,160 Z" fill="url(#trendFill)"/>
+          <circle cx="50" cy="110" r="4" fill="#0D9488"/>
+          <circle cx="100" cy="120" r="4" fill="#0D9488"/>
+          <circle cx="150" cy="90" r="4" fill="#0D9488"/>
+          <circle cx="200" cy="80" r="4" fill="#0D9488"/>
+          <circle cx="250" cy="60" r="4" fill="#0D9488"/>
+          <circle cx="300" cy="40" r="4" fill="#0D9488"/>
+          <line x1="0" y1="140" x2="360" y2="140" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4"/>
+        </svg>

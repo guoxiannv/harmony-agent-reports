@@ -1,0 +1,165 @@
+{
+  "generated_at": "2026-06-20T03:39:29.961Z",
+  "icons": [
+    {
+      "file_name": "icon_不认识当前单词，放回队列底部复习.svg",
+      "title": "不认识当前单词，放回队列底部复习",
+      "source_html": "page-review-page.html",
+      "hash": "b866e7ed8d962a885d90c53b56975e8d36a2a1af",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn",
+        "btn-unknown",
+        "action-bar",
+        "main"
+      ]
+    },
+    {
+      "file_name": "icon_当前单词库为空.svg",
+      "title": "当前单词库为空",
+      "source_html": "page-review-page.html",
+      "hash": "3446c48297d45341ee2564580e52391075bc5edf",
+      "width": 100,
+      "height": 100,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2D2D2D",
+      "fill_color": "",
+      "stroke_color": "#2D2D2D",
+      "opacity": "1",
+      "context_classes": [
+        "empty-icon",
+        "empty-state",
+        "is-hidden",
+        "main"
+      ]
+    },
+    {
+      "file_name": "icon_本轮复习完成奖励星.svg",
+      "title": "本轮复习完成奖励星",
+      "source_html": "page-review-page.html",
+      "hash": "41346cf58cbdf58d164906042670a367f93152af",
+      "width": 100,
+      "height": 100,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#2D2D2D",
+      "fill_color": "#2D2D2D",
+      "stroke_color": "#2D2D2D",
+      "opacity": "1",
+      "context_classes": [
+        "completion-icon",
+        "completion-panel",
+        "is-hidden",
+        "main"
+      ]
+    },
+    {
+      "file_name": "icon_点击卡片翻开释义.svg",
+      "title": "点击卡片翻开释义",
+      "source_html": "page-review-page.html",
+      "hash": "b1994321b15b4a826371fd27914a5c8a58af6504",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A1A1A1",
+      "fill_color": "",
+      "stroke_color": "#A1A1A1",
+      "opacity": "1",
+      "context_classes": [
+        "flip-hint",
+        "card-face",
+        "card-front",
+        "flip-card"
+      ]
+    },
+    {
+      "file_name": "icon_装饰星.svg",
+      "title": "装饰星",
+      "source_html": "page-review-page.html",
+      "hash": "006fb8a9975f15b11c086562e94c0873476ed2c6",
+      "width": 36,
+      "height": 36,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#2D2D2D",
+      "fill_color": "#2D2D2D",
+      "stroke_color": "#2D2D2D",
+      "opacity": "1",
+      "context_classes": [
+        "empty-icon",
+        "empty-state",
+        "is-hidden",
+        "main"
+      ]
+    },
+    {
+      "file_name": "icon_装饰星星.svg",
+      "title": "装饰星星",
+      "source_html": "page-review-page.html",
+      "hash": "1e946c2a277f977a894f36ea54d23f9fc26e4cdb",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#2D2D2D",
+      "fill_color": "#2D2D2D",
+      "stroke_color": "#2D2D2D",
+      "opacity": "1",
+      "context_classes": [
+        "back-decoration",
+        "card-face",
+        "card-back",
+        "flip-card"
+      ]
+    },
+    {
+      "file_name": "icon_认识当前单词并移出卡片堆.svg",
+      "title": "认识当前单词并移出卡片堆",
+      "source_html": "page-review-page.html",
+      "hash": "b241541d5603540026ba76206b6ddcfa75e2c185",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn",
+        "btn-known",
+        "action-bar",
+        "main"
+      ]
+    },
+    {
+      "file_name": "icon_重新加载单词开始新一轮复习.svg",
+      "title": "重新加载单词开始新一轮复习",
+      "source_html": "page-review-page.html",
+      "hash": "ffb8ee9802543189f7e9dead6f39c83fe8b002cd",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-restart",
+        "completion-panel",
+        "is-hidden",
+        "main"
+      ]
+    }
+  ]
+}

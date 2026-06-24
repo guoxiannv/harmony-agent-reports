@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-06-24T03:45:51.542Z",
+  "generatedAt": "2026-06-24T08:13:23.820Z",
   "appsDir": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps",
   "latestOnly": true,
   "includeOpenNow": false,
   "summary": {
-    "runs": 19,
-    "complete": 19,
-    "open": 0,
+    "runs": 18,
+    "complete": 16,
+    "open": 2,
     "failed": 0,
-    "avgChainMs": 2259730.3684210526,
-    "p50ChainMs": 2003059,
-    "p90ChainMs": 3500020.9999999995,
-    "maxChainMs": 4233044,
-    "totalPauseMs": 2004161,
+    "avgChainMs": 2109755.4444444445,
+    "p50ChainMs": 2002543.5,
+    "p90ChainMs": 3259130.4,
+    "maxChainMs": 3538506,
+    "totalPauseMs": 2082398,
     "totalTokens": {
-      "inputTokens": 17137136,
-      "outputTokens": 5245678,
-      "cacheReadTokens": 517826896,
+      "inputTokens": 16211357,
+      "outputTokens": 5207351,
+      "cacheReadTokens": 516027618,
       "cacheCreationTokens": 0,
-      "totalTokens": 540209710
+      "totalTokens": 537446326
     },
     "appSummaries": [
       {
@@ -41,20 +41,20 @@
       },
       {
         "app": "diy",
-        "runs": 4,
+        "runs": 5,
         "complete": 4,
-        "open": 0,
+        "open": 1,
         "failed": 0,
-        "avgChainMs": 2190902.75,
+        "avgChainMs": 2460423.4,
         "minChainMs": 1416032,
-        "maxChainMs": 3342492,
-        "pauseMs": 447960,
+        "maxChainMs": 3538506,
+        "pauseMs": 620732,
         "tokens": {
-          "inputTokens": 3233136,
-          "outputTokens": 1006588,
-          "cacheReadTokens": 92790016,
+          "inputTokens": 4117607,
+          "outputTokens": 1318626,
+          "cacheReadTokens": 121082624,
           "cacheCreationTokens": 0,
-          "totalTokens": 97029740
+          "totalTokens": 126518857
         }
       },
       {
@@ -78,37 +78,37 @@
       {
         "app": "paw-log",
         "runs": 2,
-        "complete": 2,
-        "open": 0,
+        "complete": 1,
+        "open": 1,
         "failed": 0,
-        "avgChainMs": 2308616.5,
-        "minChainMs": 1896101,
+        "avgChainMs": 2241314.5,
+        "minChainMs": 1761497,
         "maxChainMs": 2721132,
-        "pauseMs": 361046,
+        "pauseMs": 452677,
         "tokens": {
-          "inputTokens": 1492785,
-          "outputTokens": 481669,
-          "cacheReadTokens": 57706880,
+          "inputTokens": 1692455,
+          "outputTokens": 534428,
+          "cacheReadTokens": 61593088,
           "cacheCreationTokens": 0,
-          "totalTokens": 59681334
+          "totalTokens": 63819971
         }
       },
       {
         "app": "pinankou",
-        "runs": 5,
-        "complete": 5,
+        "runs": 3,
+        "complete": 3,
         "open": 0,
         "failed": 0,
-        "avgChainMs": 2859540.6,
+        "avgChainMs": 1978174,
         "minChainMs": 1707679,
-        "maxChainMs": 4233044,
-        "pauseMs": 571891,
+        "maxChainMs": 2179945,
+        "pauseMs": 385725,
         "tokens": {
-          "inputTokens": 4488774,
-          "outputTokens": 1284766,
-          "cacheReadTokens": 135926446,
+          "inputTokens": 2478854,
+          "outputTokens": 881642,
+          "cacheReadTokens": 101948352,
           "cacheCreationTokens": 0,
-          "totalTokens": 141699986
+          "totalTokens": 105308848
         }
       }
     ]
@@ -220,6 +220,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 69107078
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/danci/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "planning",
@@ -415,6 +417,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 10151265
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/danci/test3/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "planning",
@@ -631,6 +635,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 15851383
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/danci/test5/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "planning",
@@ -826,6 +832,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 17427108
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test1/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -1021,6 +1029,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 14397631
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -1216,6 +1226,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 25809215
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test3/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "planning",
@@ -1309,6 +1321,234 @@
           "markerDurationMs": 296425,
           "error": "",
           "handoffSourceSessionId": "6f190bd0-5495-48d3-a33b-f02870c87cbf"
+        }
+      ]
+    },
+    {
+      "app": "diy",
+      "test": "test4",
+      "relDir": "diy/test4",
+      "cwd": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test4",
+      "runFile": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test4/.arkpilot/state/tmux-runs/diy-test4-20260622-164932-run.json",
+      "runName": "diy-test4-20260622-164932-run",
+      "status": "active",
+      "currentStage": "qa",
+      "activeLane": "ui-qa",
+      "createdAt": "2026-06-22T08:49:32.698Z",
+      "updatedAt": "2026-06-22T09:51:25.107Z",
+      "originalTask": "为这个 HarmonyOS 工程实现一个“手作·印记”App。功能：会员档案（含擅长工艺与作品图）、消费/签到积分体系、课程预约与日历管理、沉睡会员自动提醒、库存关联扣减。视觉：陶土色+手写感，温润手作风，并完成构建和运行验证",
+      "workflowVariant": "autopilot-html-tmux-uitree-team-split",
+      "planSkill": "autopilot-html-tmux-design-uitree-pro",
+      "planningLane": {
+        "laneName": "design",
+        "status": "active",
+        "stage": "plan",
+        "model": "sonnet",
+        "effort": "low",
+        "runtime": "claude",
+        "sessionId": "0aa2499f-d27c-4aab-b9e6-5c217aec661c",
+        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-diy-test4/0aa2499f-d27c-4aab-b9e6-5c217aec661c.jsonl",
+        "transcriptExists": true,
+        "transcriptLineCount": 254,
+        "tokens": {
+          "inputTokens": 115148,
+          "outputTokens": 75224,
+          "cacheReadTokens": 2358528,
+          "cacheCreationTokens": 0,
+          "totalTokens": 2548900
+        },
+        "launchedAt": "2026-06-22T08:49:32.717Z",
+        "startedAt": "2026-06-22T08:49:33.572Z",
+        "promptSentAt": "2026-06-22T08:49:34.057Z",
+        "idleAt": "",
+        "failedAt": "",
+        "endAt": "2026-06-22T09:17:19.478Z",
+        "endSource": "transcript",
+        "launchedDurationMs": 1666761,
+        "promptDurationMs": 1665421,
+        "markerDurationMs": 1665906,
+        "error": "",
+        "handoffSourceSessionId": ""
+      },
+      "executionLane": {
+        "laneName": "implementation",
+        "status": "active",
+        "stage": "execution",
+        "model": "sonnet",
+        "effort": "medium",
+        "runtime": "claude",
+        "sessionId": "4c960e37-f499-4948-ae72-bf97591db73f",
+        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-diy-test4/4c960e37-f499-4948-ae72-bf97591db73f.jsonl",
+        "transcriptExists": true,
+        "transcriptLineCount": 993,
+        "tokens": {
+          "inputTokens": 322609,
+          "outputTokens": 130260,
+          "cacheReadTokens": 21955840,
+          "cacheCreationTokens": 0,
+          "totalTokens": 22408709
+        },
+        "launchedAt": "2026-06-22T08:49:34.064Z",
+        "startedAt": "2026-06-22T08:49:34.941Z",
+        "promptSentAt": "2026-06-22T08:53:26.283Z",
+        "idleAt": "2026-06-22T08:50:33.257Z",
+        "failedAt": "",
+        "endAt": "2026-06-22T09:34:41.423Z",
+        "endSource": "transcript",
+        "launchedDurationMs": 2707359,
+        "promptDurationMs": 2475140,
+        "markerDurationMs": 2706482,
+        "error": "",
+        "handoffSourceSessionId": "0aa2499f-d27c-4aab-b9e6-5c217aec661c"
+      },
+      "chainStartAt": "2026-06-22T08:49:33.572Z",
+      "chainEndAt": "2026-06-22T09:51:24.850Z",
+      "chainEndSource": "ui-qa",
+      "rawChainDurationMs": 3711278,
+      "pauseDurationMs": 172772,
+      "netChainDurationMs": 3538506,
+      "pauseIntervals": [
+        {
+          "sessionId": "4c960e37-f499-4948-ae72-bf97591db73f",
+          "startAt": "2026-06-22T08:50:33.190Z",
+          "endAt": "2026-06-22T08:53:25.962Z",
+          "durationMs": 172772,
+          "source": "autopilot-state.resumed_at"
+        }
+      ],
+      "tokenUsage": {
+        "inputTokens": 884471,
+        "outputTokens": 312038,
+        "cacheReadTokens": 28292608,
+        "cacheCreationTokens": 0,
+        "totalTokens": 29489117
+      },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test4/entry/build/default/outputs/default/entry-default-unsigned.hap",
+      "lanes": [
+        {
+          "laneName": "design",
+          "status": "active",
+          "stage": "plan",
+          "model": "sonnet",
+          "effort": "low",
+          "runtime": "claude",
+          "sessionId": "0aa2499f-d27c-4aab-b9e6-5c217aec661c",
+          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-diy-test4/0aa2499f-d27c-4aab-b9e6-5c217aec661c.jsonl",
+          "transcriptExists": true,
+          "transcriptLineCount": 254,
+          "tokens": {
+            "inputTokens": 115148,
+            "outputTokens": 75224,
+            "cacheReadTokens": 2358528,
+            "cacheCreationTokens": 0,
+            "totalTokens": 2548900
+          },
+          "launchedAt": "2026-06-22T08:49:32.717Z",
+          "startedAt": "2026-06-22T08:49:33.572Z",
+          "promptSentAt": "2026-06-22T08:49:34.057Z",
+          "idleAt": "",
+          "failedAt": "",
+          "endAt": "2026-06-22T09:17:19.478Z",
+          "endSource": "transcript",
+          "launchedDurationMs": 1666761,
+          "promptDurationMs": 1665421,
+          "markerDurationMs": 1665906,
+          "error": "",
+          "handoffSourceSessionId": ""
+        },
+        {
+          "laneName": "implementation",
+          "status": "active",
+          "stage": "execution",
+          "model": "sonnet",
+          "effort": "medium",
+          "runtime": "claude",
+          "sessionId": "4c960e37-f499-4948-ae72-bf97591db73f",
+          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-diy-test4/4c960e37-f499-4948-ae72-bf97591db73f.jsonl",
+          "transcriptExists": true,
+          "transcriptLineCount": 993,
+          "tokens": {
+            "inputTokens": 322609,
+            "outputTokens": 130260,
+            "cacheReadTokens": 21955840,
+            "cacheCreationTokens": 0,
+            "totalTokens": 22408709
+          },
+          "launchedAt": "2026-06-22T08:49:34.064Z",
+          "startedAt": "2026-06-22T08:49:34.941Z",
+          "promptSentAt": "2026-06-22T08:53:26.283Z",
+          "idleAt": "2026-06-22T08:50:33.257Z",
+          "failedAt": "",
+          "endAt": "2026-06-22T09:34:41.423Z",
+          "endSource": "transcript",
+          "launchedDurationMs": 2707359,
+          "promptDurationMs": 2475140,
+          "markerDurationMs": 2706482,
+          "error": "",
+          "handoffSourceSessionId": "0aa2499f-d27c-4aab-b9e6-5c217aec661c"
+        },
+        {
+          "laneName": "api_reference",
+          "status": "idle",
+          "stage": "api-reference",
+          "model": "haiku",
+          "effort": "low",
+          "runtime": "claude",
+          "sessionId": "b46834e7-a8c8-45ae-b8b0-9659afe31306",
+          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-diy-test4/b46834e7-a8c8-45ae-b8b0-9659afe31306.jsonl",
+          "transcriptExists": true,
+          "transcriptLineCount": 180,
+          "tokens": {
+            "inputTokens": 139490,
+            "outputTokens": 30588,
+            "cacheReadTokens": 1991424,
+            "cacheCreationTokens": 0,
+            "totalTokens": 2161502
+          },
+          "launchedAt": "2026-06-22T08:51:47.545Z",
+          "startedAt": "2026-06-22T08:51:47.995Z",
+          "promptSentAt": "2026-06-22T08:51:49.873Z",
+          "idleAt": "2026-06-22T08:55:18.171Z",
+          "failedAt": "",
+          "endAt": "2026-06-22T08:55:18.179Z",
+          "endSource": "transcript",
+          "launchedDurationMs": 210634,
+          "promptDurationMs": 208306,
+          "markerDurationMs": 210184,
+          "error": "",
+          "handoffSourceSessionId": "0aa2499f-d27c-4aab-b9e6-5c217aec661c"
+        },
+        {
+          "laneName": "ui-qa",
+          "status": "idle",
+          "stage": "qa",
+          "model": "sonnet",
+          "effort": "medium",
+          "runtime": "claude",
+          "sessionId": "919fa543-e572-4ad6-84ec-76d5c766e54f",
+          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-diy-test4/919fa543-e572-4ad6-84ec-76d5c766e54f.jsonl",
+          "transcriptExists": true,
+          "transcriptLineCount": 172,
+          "tokens": {
+            "inputTokens": 307224,
+            "outputTokens": 75966,
+            "cacheReadTokens": 1986816,
+            "cacheCreationTokens": 0,
+            "totalTokens": 2370006
+          },
+          "launchedAt": "2026-06-22T09:34:43.207Z",
+          "startedAt": "2026-06-22T09:34:43.645Z",
+          "promptSentAt": "2026-06-22T09:34:44.135Z",
+          "idleAt": "2026-06-22T09:51:24.842Z",
+          "failedAt": "",
+          "endAt": "2026-06-22T09:51:24.850Z",
+          "endSource": "transcript",
+          "launchedDurationMs": 1001643,
+          "promptDurationMs": 1000715,
+          "markerDurationMs": 1001205,
+          "error": "",
+          "handoffSourceSessionId": "4c960e37-f499-4948-ae72-bf97591db73f"
         }
       ]
     },
@@ -1460,6 +1700,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 39395786
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test6/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "planning",
@@ -1662,6 +1904,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 33946532
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test1/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -1888,6 +2132,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 31404017
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "planning",
@@ -2090,6 +2336,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 24366349
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test3/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -2327,6 +2575,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 21726696
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test4/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "planning",
@@ -2522,6 +2772,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 35245330
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test5/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -2717,6 +2969,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 39163271
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/paw-log/test1/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -2815,16 +3069,16 @@
     },
     {
       "app": "paw-log",
-      "test": "test5",
-      "relDir": "paw-log/test5",
-      "cwd": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/paw-log/test5",
-      "runFile": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/paw-log/test5/.arkpilot/state/tmux-runs/paw-log-test5-20260622-192006-run.json",
-      "runName": "paw-log-test5-20260622-192006-run",
-      "status": "complete",
+      "test": "test2",
+      "relDir": "paw-log/test2",
+      "cwd": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/paw-log/test2",
+      "runFile": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/paw-log/test2/.arkpilot/state/tmux-runs/paw-log-test2-20260622-192006-run.json",
+      "runName": "paw-log-test2-20260622-192006-run",
+      "status": "active",
       "currentStage": "qa",
-      "activeLane": "implementation",
-      "createdAt": "2026-06-22T11:20:06.658Z",
-      "updatedAt": "2026-06-22T11:54:49.741Z",
+      "activeLane": "ui-qa",
+      "createdAt": "2026-06-22T11:20:06.581Z",
+      "updatedAt": "2026-06-22T11:54:06.665Z",
       "originalTask": "为这个 HarmonyOS 工程实现一个“宠迹·PawLog”App。功能：多宠档案、一键记录饮食/排泄/体重/用药、健康趋势图表、疫苗驱虫提醒、就医病历归档、家庭成员共享。视觉：薄荷绿+肉垫粉，圆润治愈风，并完成构建和运行验证",
       "workflowVariant": "autopilot-html-tmux-uitree-team-split",
       "planSkill": "autopilot-html-tmux-design-uitree-pro",
@@ -2835,27 +3089,27 @@
         "model": "sonnet",
         "effort": "low",
         "runtime": "claude",
-        "sessionId": "3ad35ca1-c301-49e2-8599-31acada9c771",
-        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test5/3ad35ca1-c301-49e2-8599-31acada9c771.jsonl",
+        "sessionId": "3dbc25da-1b5a-42c6-b9ab-0680f25e4339",
+        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test2/3dbc25da-1b5a-42c6-b9ab-0680f25e4339.jsonl",
         "transcriptExists": true,
-        "transcriptLineCount": 287,
+        "transcriptLineCount": 357,
         "tokens": {
-          "inputTokens": 179216,
-          "outputTokens": 80028,
-          "cacheReadTokens": 2833408,
+          "inputTokens": 202880,
+          "outputTokens": 111418,
+          "cacheReadTokens": 4016640,
           "cacheCreationTokens": 0,
-          "totalTokens": 3092652
+          "totalTokens": 4330938
         },
-        "launchedAt": "2026-06-22T11:20:06.682Z",
-        "startedAt": "2026-06-22T11:20:08.004Z",
-        "promptSentAt": "2026-06-22T11:20:08.454Z",
+        "launchedAt": "2026-06-22T11:20:06.597Z",
+        "startedAt": "2026-06-22T11:20:07.632Z",
+        "promptSentAt": "2026-06-22T11:20:08.163Z",
         "idleAt": "",
         "failedAt": "",
-        "endAt": "2026-06-22T11:47:47.896Z",
+        "endAt": "2026-06-22T11:54:00.235Z",
         "endSource": "transcript",
-        "launchedDurationMs": 1661214,
-        "promptDurationMs": 1659442,
-        "markerDurationMs": 1659892,
+        "launchedDurationMs": 2033638,
+        "promptDurationMs": 2032072,
+        "markerDurationMs": 2032603,
         "error": "",
         "handoffSourceSessionId": ""
       },
@@ -2866,52 +3120,54 @@
         "model": "sonnet",
         "effort": "medium",
         "runtime": "claude",
-        "sessionId": "fc0e48e2-9dbc-48a5-8643-9c66981fde6f",
-        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test5/fc0e48e2-9dbc-48a5-8643-9c66981fde6f.jsonl",
+        "sessionId": "c0b44cc9-4e36-465d-8ede-0bd11c44876b",
+        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test2/c0b44cc9-4e36-465d-8ede-0bd11c44876b.jsonl",
         "transcriptExists": true,
-        "transcriptLineCount": 859,
+        "transcriptLineCount": 896,
         "tokens": {
-          "inputTokens": 336943,
-          "outputTokens": 91546,
-          "cacheReadTokens": 15836160,
+          "inputTokens": 346472,
+          "outputTokens": 57865,
+          "cacheReadTokens": 16412160,
           "cacheCreationTokens": 0,
-          "totalTokens": 16264649
+          "totalTokens": 16816497
         },
-        "launchedAt": "2026-06-22T11:20:08.475Z",
-        "startedAt": "2026-06-22T11:20:10.324Z",
-        "promptSentAt": "2026-06-22T11:24:07.799Z",
-        "idleAt": "2026-06-22T11:21:02.586Z",
+        "launchedAt": "2026-06-22T11:20:08.173Z",
+        "startedAt": "2026-06-22T11:20:09.927Z",
+        "promptSentAt": "2026-06-22T11:25:57.448Z",
+        "idleAt": "2026-06-22T11:21:20.601Z",
         "failedAt": "",
-        "endAt": "2026-06-22T11:54:49.058Z",
+        "endAt": "2026-06-22T11:52:48.840Z",
         "endSource": "transcript",
-        "launchedDurationMs": 2080583,
-        "promptDurationMs": 1841259,
-        "markerDurationMs": 2078734,
+        "launchedDurationMs": 1960667,
+        "promptDurationMs": 1611392,
+        "markerDurationMs": 1958913,
         "error": "",
-        "handoffSourceSessionId": "3ad35ca1-c301-49e2-8599-31acada9c771"
+        "handoffSourceSessionId": "3dbc25da-1b5a-42c6-b9ab-0680f25e4339"
       },
-      "chainStartAt": "2026-06-22T11:20:08.004Z",
-      "chainEndAt": "2026-06-22T11:54:49.058Z",
-      "chainEndSource": "implementation",
-      "rawChainDurationMs": 2081054,
-      "pauseDurationMs": 184953,
-      "netChainDurationMs": 1896101,
+      "chainStartAt": "2026-06-22T11:20:07.632Z",
+      "chainEndAt": "2026-06-22T11:54:05.713Z",
+      "chainEndSource": "ui-qa",
+      "rawChainDurationMs": 2038081,
+      "pauseDurationMs": 276584,
+      "netChainDurationMs": 1761497,
       "pauseIntervals": [
         {
-          "sessionId": "fc0e48e2-9dbc-48a5-8643-9c66981fde6f",
-          "startAt": "2026-06-22T11:21:02.525Z",
-          "endAt": "2026-06-22T11:24:07.478Z",
-          "durationMs": 184953,
+          "sessionId": "c0b44cc9-4e36-465d-8ede-0bd11c44876b",
+          "startAt": "2026-06-22T11:21:20.543Z",
+          "endAt": "2026-06-22T11:25:57.127Z",
+          "durationMs": 276584,
           "source": "autopilot-state.resumed_at"
         }
       ],
       "tokenUsage": {
-        "inputTokens": 631821,
-        "outputTokens": 191010,
-        "cacheReadTokens": 19695232,
+        "inputTokens": 831491,
+        "outputTokens": 243769,
+        "cacheReadTokens": 23581440,
         "cacheCreationTokens": 0,
-        "totalTokens": 20518063
+        "totalTokens": 24656700
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/paw-log/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -2920,27 +3176,27 @@
           "model": "sonnet",
           "effort": "low",
           "runtime": "claude",
-          "sessionId": "3ad35ca1-c301-49e2-8599-31acada9c771",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test5/3ad35ca1-c301-49e2-8599-31acada9c771.jsonl",
+          "sessionId": "3dbc25da-1b5a-42c6-b9ab-0680f25e4339",
+          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test2/3dbc25da-1b5a-42c6-b9ab-0680f25e4339.jsonl",
           "transcriptExists": true,
-          "transcriptLineCount": 287,
+          "transcriptLineCount": 357,
           "tokens": {
-            "inputTokens": 179216,
-            "outputTokens": 80028,
-            "cacheReadTokens": 2833408,
+            "inputTokens": 202880,
+            "outputTokens": 111418,
+            "cacheReadTokens": 4016640,
             "cacheCreationTokens": 0,
-            "totalTokens": 3092652
+            "totalTokens": 4330938
           },
-          "launchedAt": "2026-06-22T11:20:06.682Z",
-          "startedAt": "2026-06-22T11:20:08.004Z",
-          "promptSentAt": "2026-06-22T11:20:08.454Z",
+          "launchedAt": "2026-06-22T11:20:06.597Z",
+          "startedAt": "2026-06-22T11:20:07.632Z",
+          "promptSentAt": "2026-06-22T11:20:08.163Z",
           "idleAt": "",
           "failedAt": "",
-          "endAt": "2026-06-22T11:47:47.896Z",
+          "endAt": "2026-06-22T11:54:00.235Z",
           "endSource": "transcript",
-          "launchedDurationMs": 1661214,
-          "promptDurationMs": 1659442,
-          "markerDurationMs": 1659892,
+          "launchedDurationMs": 2033638,
+          "promptDurationMs": 2032072,
+          "markerDurationMs": 2032603,
           "error": "",
           "handoffSourceSessionId": ""
         },
@@ -2951,29 +3207,29 @@
           "model": "sonnet",
           "effort": "medium",
           "runtime": "claude",
-          "sessionId": "fc0e48e2-9dbc-48a5-8643-9c66981fde6f",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test5/fc0e48e2-9dbc-48a5-8643-9c66981fde6f.jsonl",
+          "sessionId": "c0b44cc9-4e36-465d-8ede-0bd11c44876b",
+          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test2/c0b44cc9-4e36-465d-8ede-0bd11c44876b.jsonl",
           "transcriptExists": true,
-          "transcriptLineCount": 859,
+          "transcriptLineCount": 896,
           "tokens": {
-            "inputTokens": 336943,
-            "outputTokens": 91546,
-            "cacheReadTokens": 15836160,
+            "inputTokens": 346472,
+            "outputTokens": 57865,
+            "cacheReadTokens": 16412160,
             "cacheCreationTokens": 0,
-            "totalTokens": 16264649
+            "totalTokens": 16816497
           },
-          "launchedAt": "2026-06-22T11:20:08.475Z",
-          "startedAt": "2026-06-22T11:20:10.324Z",
-          "promptSentAt": "2026-06-22T11:24:07.799Z",
-          "idleAt": "2026-06-22T11:21:02.586Z",
+          "launchedAt": "2026-06-22T11:20:08.173Z",
+          "startedAt": "2026-06-22T11:20:09.927Z",
+          "promptSentAt": "2026-06-22T11:25:57.448Z",
+          "idleAt": "2026-06-22T11:21:20.601Z",
           "failedAt": "",
-          "endAt": "2026-06-22T11:54:49.058Z",
+          "endAt": "2026-06-22T11:52:48.840Z",
           "endSource": "transcript",
-          "launchedDurationMs": 2080583,
-          "promptDurationMs": 1841259,
-          "markerDurationMs": 2078734,
+          "launchedDurationMs": 1960667,
+          "promptDurationMs": 1611392,
+          "markerDurationMs": 1958913,
           "error": "",
-          "handoffSourceSessionId": "3ad35ca1-c301-49e2-8599-31acada9c771"
+          "handoffSourceSessionId": "3dbc25da-1b5a-42c6-b9ab-0680f25e4339"
         },
         {
           "laneName": "api_reference",
@@ -2982,224 +3238,60 @@
           "model": "haiku",
           "effort": "low",
           "runtime": "claude",
-          "sessionId": "98e534d0-8bf6-473c-9f49-fddebe7f154d",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test5/98e534d0-8bf6-473c-9f49-fddebe7f154d.jsonl",
+          "sessionId": "c98a5ea7-a7ee-4b55-8a56-88aaa9730d84",
+          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test2/c98a5ea7-a7ee-4b55-8a56-88aaa9730d84.jsonl",
           "transcriptExists": true,
-          "transcriptLineCount": 106,
+          "transcriptLineCount": 245,
           "tokens": {
-            "inputTokens": 115662,
-            "outputTokens": 19436,
-            "cacheReadTokens": 1025664,
+            "inputTokens": 260556,
+            "outputTokens": 67616,
+            "cacheReadTokens": 2897408,
             "cacheCreationTokens": 0,
-            "totalTokens": 1160762
+            "totalTokens": 3225580
           },
-          "launchedAt": "2026-06-22T11:21:56.983Z",
-          "startedAt": "2026-06-22T11:21:57.508Z",
-          "promptSentAt": "2026-06-22T11:21:59.315Z",
-          "idleAt": "2026-06-22T11:24:35.116Z",
+          "launchedAt": "2026-06-22T11:23:40.597Z",
+          "startedAt": "2026-06-22T11:23:41.277Z",
+          "promptSentAt": "2026-06-22T11:23:42.923Z",
+          "idleAt": "2026-06-22T11:27:41.371Z",
           "failedAt": "",
-          "endAt": "2026-06-22T11:24:35.132Z",
+          "endAt": "2026-06-22T11:27:41.379Z",
           "endSource": "transcript",
-          "launchedDurationMs": 158149,
-          "promptDurationMs": 155817,
-          "markerDurationMs": 157624,
+          "launchedDurationMs": 240782,
+          "promptDurationMs": 238456,
+          "markerDurationMs": 240102,
           "error": "",
-          "handoffSourceSessionId": "3ad35ca1-c301-49e2-8599-31acada9c771"
-        }
-      ]
-    },
-    {
-      "app": "pinankou",
-      "test": "test1",
-      "relDir": "pinankou/test1",
-      "cwd": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test1",
-      "runFile": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test1/.arkpilot/state/tmux-runs/pinankou-test1-20260619-202105-run.json",
-      "runName": "pinankou-test1-20260619-202105-run",
-      "status": "complete",
-      "currentStage": "qa",
-      "activeLane": "execution",
-      "createdAt": "2026-06-19T12:21:05.806Z",
-      "updatedAt": "2026-06-19T13:31:42.415Z",
-      "originalTask": "为这个 HarmonyOS 工程实现一个“平安扣 Pinankou”App。功能：安全事项记录、风险隐患上报、巡检打卡、应急联系人、整改进度跟踪和统计看板。视觉：蓝绿色安全感配色，信息层级清晰，适合日常批量验证，并完成构建和运行验证",
-      "workflowVariant": "autopilot-html-tmux-team-split",
-      "planSkill": "autopilot-html-tmux-design-a2ui-pro",
-      "planningLane": {
-        "laneName": "planning",
-        "status": "active",
-        "stage": "plan",
-        "model": "sonnet",
-        "effort": "medium",
-        "runtime": "claude",
-        "sessionId": "4f9eaef6-2375-44af-97dc-3c2d95270c3f",
-        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test1/4f9eaef6-2375-44af-97dc-3c2d95270c3f.jsonl",
-        "transcriptExists": true,
-        "transcriptLineCount": 517,
-        "tokens": {
-          "inputTokens": 339763,
-          "outputTokens": 82865,
-          "cacheReadTokens": 5977856,
-          "cacheCreationTokens": 0,
-          "totalTokens": 6400484
+          "handoffSourceSessionId": "3dbc25da-1b5a-42c6-b9ab-0680f25e4339"
         },
-        "launchedAt": "2026-06-19T12:21:05.829Z",
-        "startedAt": "2026-06-19T12:21:06.810Z",
-        "promptSentAt": "2026-06-19T12:21:07.184Z",
-        "idleAt": "",
-        "failedAt": "",
-        "endAt": "2026-06-19T12:46:39.933Z",
-        "endSource": "transcript",
-        "launchedDurationMs": 1534104,
-        "promptDurationMs": 1532749,
-        "markerDurationMs": 1533123,
-        "error": "",
-        "handoffSourceSessionId": ""
-      },
-      "executionLane": {
-        "laneName": "execution",
-        "status": "active",
-        "stage": "execution",
-        "model": "opus",
-        "effort": "medium",
-        "runtime": "claude",
-        "sessionId": "03b72d6e-1c05-46e8-9d7f-f0cf2b254f3e",
-        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test1/03b72d6e-1c05-46e8-9d7f-f0cf2b254f3e.jsonl",
-        "transcriptExists": true,
-        "transcriptLineCount": 173,
-        "tokens": {
-          "inputTokens": 291296,
-          "outputTokens": 21553,
-          "cacheReadTokens": 1789184,
-          "cacheCreationTokens": 0,
-          "totalTokens": 2102033
-        },
-        "launchedAt": "2026-06-19T12:21:07.205Z",
-        "startedAt": "2026-06-19T12:21:08.752Z",
-        "promptSentAt": "2026-06-19T12:24:42.151Z",
-        "idleAt": "2026-06-19T12:24:40.148Z",
-        "failedAt": "",
-        "endAt": "2026-06-19T13:31:41.590Z",
-        "endSource": "transcript",
-        "launchedDurationMs": 4234385,
-        "promptDurationMs": 4019439,
-        "markerDurationMs": 4232838,
-        "error": "",
-        "handoffSourceSessionId": "4f9eaef6-2375-44af-97dc-3c2d95270c3f"
-      },
-      "chainStartAt": "2026-06-19T12:21:06.810Z",
-      "chainEndAt": "2026-06-19T13:31:41.590Z",
-      "chainEndSource": "execution",
-      "rawChainDurationMs": 4234780,
-      "pauseDurationMs": 1736,
-      "netChainDurationMs": 4233044,
-      "pauseIntervals": [
         {
-          "sessionId": "03b72d6e-1c05-46e8-9d7f-f0cf2b254f3e",
-          "startAt": "2026-06-19T12:24:40.085Z",
-          "endAt": "2026-06-19T12:24:41.821Z",
-          "durationMs": 1736,
-          "source": "autopilot-state.resumed_at"
-        }
-      ],
-      "tokenUsage": {
-        "inputTokens": 931347,
-        "outputTokens": 180374,
-        "cacheReadTokens": 10375808,
-        "cacheCreationTokens": 0,
-        "totalTokens": 11487529
-      },
-      "lanes": [
-        {
-          "laneName": "planning",
-          "status": "active",
-          "stage": "plan",
+          "laneName": "ui-qa",
+          "status": "idle",
+          "stage": "qa",
           "model": "sonnet",
           "effort": "medium",
           "runtime": "claude",
-          "sessionId": "4f9eaef6-2375-44af-97dc-3c2d95270c3f",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test1/4f9eaef6-2375-44af-97dc-3c2d95270c3f.jsonl",
+          "sessionId": "c8b52b97-d60c-4cac-8707-b44cc7d3df27",
+          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test2/c8b52b97-d60c-4cac-8707-b44cc7d3df27.jsonl",
           "transcriptExists": true,
-          "transcriptLineCount": 517,
+          "transcriptLineCount": 54,
           "tokens": {
-            "inputTokens": 339763,
-            "outputTokens": 82865,
-            "cacheReadTokens": 5977856,
+            "inputTokens": 21583,
+            "outputTokens": 6870,
+            "cacheReadTokens": 255232,
             "cacheCreationTokens": 0,
-            "totalTokens": 6400484
+            "totalTokens": 283685
           },
-          "launchedAt": "2026-06-19T12:21:05.829Z",
-          "startedAt": "2026-06-19T12:21:06.810Z",
-          "promptSentAt": "2026-06-19T12:21:07.184Z",
-          "idleAt": "",
+          "launchedAt": "2026-06-22T11:52:49.440Z",
+          "startedAt": "2026-06-22T11:52:50.086Z",
+          "promptSentAt": "2026-06-22T11:52:50.566Z",
+          "idleAt": "2026-06-22T11:54:05.706Z",
           "failedAt": "",
-          "endAt": "2026-06-19T12:46:39.933Z",
+          "endAt": "2026-06-22T11:54:05.713Z",
           "endSource": "transcript",
-          "launchedDurationMs": 1534104,
-          "promptDurationMs": 1532749,
-          "markerDurationMs": 1533123,
+          "launchedDurationMs": 76273,
+          "promptDurationMs": 75147,
+          "markerDurationMs": 75627,
           "error": "",
-          "handoffSourceSessionId": ""
-        },
-        {
-          "laneName": "execution",
-          "status": "active",
-          "stage": "execution",
-          "model": "opus",
-          "effort": "medium",
-          "runtime": "claude",
-          "sessionId": "03b72d6e-1c05-46e8-9d7f-f0cf2b254f3e",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test1/03b72d6e-1c05-46e8-9d7f-f0cf2b254f3e.jsonl",
-          "transcriptExists": true,
-          "transcriptLineCount": 173,
-          "tokens": {
-            "inputTokens": 291296,
-            "outputTokens": 21553,
-            "cacheReadTokens": 1789184,
-            "cacheCreationTokens": 0,
-            "totalTokens": 2102033
-          },
-          "launchedAt": "2026-06-19T12:21:07.205Z",
-          "startedAt": "2026-06-19T12:21:08.752Z",
-          "promptSentAt": "2026-06-19T12:24:42.151Z",
-          "idleAt": "2026-06-19T12:24:40.148Z",
-          "failedAt": "",
-          "endAt": "2026-06-19T13:31:41.590Z",
-          "endSource": "transcript",
-          "launchedDurationMs": 4234385,
-          "promptDurationMs": 4019439,
-          "markerDurationMs": 4232838,
-          "error": "",
-          "handoffSourceSessionId": "4f9eaef6-2375-44af-97dc-3c2d95270c3f"
-        },
-        {
-          "laneName": "api_reference",
-          "status": "idle",
-          "stage": "api-reference",
-          "model": "haiku",
-          "effort": "medium",
-          "runtime": "claude",
-          "sessionId": "e028eaae-537e-4cad-91ed-8ddd1890bd14",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test1/e028eaae-537e-4cad-91ed-8ddd1890bd14.jsonl",
-          "transcriptExists": true,
-          "transcriptLineCount": 249,
-          "tokens": {
-            "inputTokens": 300288,
-            "outputTokens": 75956,
-            "cacheReadTokens": 2608768,
-            "cacheCreationTokens": 0,
-            "totalTokens": 2985012
-          },
-          "launchedAt": "2026-06-19T12:22:55.249Z",
-          "startedAt": "2026-06-19T12:22:55.866Z",
-          "promptSentAt": "2026-06-19T12:22:57.583Z",
-          "idleAt": "2026-06-19T12:27:40.488Z",
-          "failedAt": "",
-          "endAt": "2026-06-19T12:27:40.497Z",
-          "endSource": "transcript",
-          "launchedDurationMs": 285248,
-          "promptDurationMs": 282914,
-          "markerDurationMs": 284631,
-          "error": "",
-          "handoffSourceSessionId": "4f9eaef6-2375-44af-97dc-3c2d95270c3f"
+          "handoffSourceSessionId": "c0b44cc9-4e36-465d-8ede-0bd11c44876b"
         }
       ]
     },
@@ -3302,6 +3394,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 34575153
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "planning",
@@ -3395,251 +3489,6 @@
           "markerDurationMs": 253542,
           "error": "",
           "handoffSourceSessionId": "e0d46d63-fa88-4a69-b461-f57fcd9d23cf"
-        }
-      ]
-    },
-    {
-      "app": "pinankou",
-      "test": "test3",
-      "relDir": "pinankou/test3",
-      "cwd": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test3",
-      "runFile": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test3/.arkpilot/state/tmux-runs/pinankou-test3-20260622-153435-run.json",
-      "runName": "pinankou-test3-20260622-153435-run",
-      "status": "complete",
-      "currentStage": "qa",
-      "activeLane": "implementation",
-      "createdAt": "2026-06-22T07:34:39.326Z",
-      "updatedAt": "2026-06-22T08:46:34.949Z",
-      "originalTask": "为这个 HarmonyOS 工程实现一个“平安扣 Pinankou”App。功能：安全事项记录、风险隐患上报、巡检打卡、应急联系人、整改进度跟踪和统计看板。视觉：蓝绿色安全感配色，信息层级清晰，适合日常批量验证，并完成构建和运行验证",
-      "workflowVariant": "autopilot-html-tmux-uitree-team-split",
-      "planSkill": "autopilot-html-tmux-design-uitree-pro",
-      "planningLane": {
-        "laneName": "design",
-        "status": "active",
-        "stage": "plan",
-        "model": "sonnet",
-        "effort": "low",
-        "runtime": "claude",
-        "sessionId": "276d47ab-d602-46ac-80d8-48f7a13e7b5b",
-        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test3/276d47ab-d602-46ac-80d8-48f7a13e7b5b.jsonl",
-        "transcriptExists": true,
-        "transcriptLineCount": 264,
-        "tokens": {
-          "inputTokens": 195198,
-          "outputTokens": 74717,
-          "cacheReadTokens": 2364928,
-          "cacheCreationTokens": 0,
-          "totalTokens": 2634843
-        },
-        "launchedAt": "2026-06-22T07:34:39.344Z",
-        "startedAt": "2026-06-22T07:34:39.925Z",
-        "promptSentAt": "2026-06-22T07:34:40.277Z",
-        "idleAt": "",
-        "failedAt": "",
-        "endAt": "2026-06-22T07:59:19.296Z",
-        "endSource": "transcript",
-        "launchedDurationMs": 1479952,
-        "promptDurationMs": 1479019,
-        "markerDurationMs": 1479371,
-        "error": "",
-        "handoffSourceSessionId": ""
-      },
-      "executionLane": {
-        "laneName": "implementation",
-        "status": "active",
-        "stage": "execution",
-        "model": "sonnet",
-        "effort": "medium",
-        "runtime": "claude",
-        "sessionId": "a58e3611-3e09-4cf4-ab1e-367af5d8922e",
-        "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test3/a58e3611-3e09-4cf4-ab1e-367af5d8922e.jsonl",
-        "transcriptExists": true,
-        "transcriptLineCount": 934,
-        "tokens": {
-          "inputTokens": 527224,
-          "outputTokens": 81038,
-          "cacheReadTokens": 17878254,
-          "cacheCreationTokens": 0,
-          "totalTokens": 18486516
-        },
-        "launchedAt": "2026-06-22T07:34:40.284Z",
-        "startedAt": "2026-06-22T07:34:40.956Z",
-        "promptSentAt": "2026-06-22T07:38:08.320Z",
-        "idleAt": "2026-06-22T07:35:48.804Z",
-        "failedAt": "",
-        "endAt": "2026-06-22T08:46:34.492Z",
-        "endSource": "transcript",
-        "launchedDurationMs": 4314208,
-        "promptDurationMs": 4106172,
-        "markerDurationMs": 4313536,
-        "error": "",
-        "handoffSourceSessionId": "276d47ab-d602-46ac-80d8-48f7a13e7b5b"
-      },
-      "chainStartAt": "2026-06-22T07:34:39.925Z",
-      "chainEndAt": "2026-06-22T08:46:34.492Z",
-      "chainEndSource": "implementation",
-      "rawChainDurationMs": 4314567,
-      "pauseDurationMs": 184430,
-      "netChainDurationMs": 4130137,
-      "pauseIntervals": [
-        {
-          "sessionId": "a58e3611-3e09-4cf4-ab1e-367af5d8922e,9e200ab2-be1c-4adb-9e26-f388b0de073d",
-          "startAt": "2026-06-22T07:35:48.747Z",
-          "endAt": "2026-06-22T07:38:08.000Z",
-          "durationMs": 139253,
-          "source": "autopilot-state.resumed_at,next-PostToolUse",
-          "sources": [
-            "autopilot-state.resumed_at",
-            "next-PostToolUse"
-          ],
-          "sessionIds": [
-            "a58e3611-3e09-4cf4-ab1e-367af5d8922e",
-            "9e200ab2-be1c-4adb-9e26-f388b0de073d"
-          ]
-        },
-        {
-          "sessionId": "9e200ab2-be1c-4adb-9e26-f388b0de073d",
-          "startAt": "2026-06-22T07:38:29.366Z",
-          "endAt": "2026-06-22T07:38:29.380Z",
-          "durationMs": 14,
-          "source": "next-PreToolUse"
-        },
-        {
-          "sessionId": "9e200ab2-be1c-4adb-9e26-f388b0de073d",
-          "startAt": "2026-06-22T07:38:32.065Z",
-          "endAt": "2026-06-22T07:38:32.685Z",
-          "durationMs": 620,
-          "source": "next-PreToolUse"
-        },
-        {
-          "sessionId": "9e200ab2-be1c-4adb-9e26-f388b0de073d",
-          "startAt": "2026-06-22T07:38:47.837Z",
-          "endAt": "2026-06-22T07:38:51.908Z",
-          "durationMs": 4071,
-          "source": "next-PreToolUse"
-        },
-        {
-          "sessionId": "9e200ab2-be1c-4adb-9e26-f388b0de073d",
-          "startAt": "2026-06-22T07:38:52.263Z",
-          "endAt": "2026-06-22T07:38:52.525Z",
-          "durationMs": 262,
-          "source": "next-PreToolUse"
-        },
-        {
-          "sessionId": "9e200ab2-be1c-4adb-9e26-f388b0de073d",
-          "startAt": "2026-06-22T07:39:11.544Z",
-          "endAt": "2026-06-22T07:39:12.412Z",
-          "durationMs": 868,
-          "source": "next-PreToolUse"
-        },
-        {
-          "sessionId": "9e200ab2-be1c-4adb-9e26-f388b0de073d",
-          "startAt": "2026-06-22T07:39:22.164Z",
-          "endAt": "2026-06-22T07:40:01.506Z",
-          "durationMs": 39342,
-          "source": "next-PreToolUse"
-        }
-      ],
-      "tokenUsage": {
-        "inputTokens": 1078573,
-        "outputTokens": 222750,
-        "cacheReadTokens": 23602286,
-        "cacheCreationTokens": 0,
-        "totalTokens": 24903609
-      },
-      "lanes": [
-        {
-          "laneName": "design",
-          "status": "active",
-          "stage": "plan",
-          "model": "sonnet",
-          "effort": "low",
-          "runtime": "claude",
-          "sessionId": "276d47ab-d602-46ac-80d8-48f7a13e7b5b",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test3/276d47ab-d602-46ac-80d8-48f7a13e7b5b.jsonl",
-          "transcriptExists": true,
-          "transcriptLineCount": 264,
-          "tokens": {
-            "inputTokens": 195198,
-            "outputTokens": 74717,
-            "cacheReadTokens": 2364928,
-            "cacheCreationTokens": 0,
-            "totalTokens": 2634843
-          },
-          "launchedAt": "2026-06-22T07:34:39.344Z",
-          "startedAt": "2026-06-22T07:34:39.925Z",
-          "promptSentAt": "2026-06-22T07:34:40.277Z",
-          "idleAt": "",
-          "failedAt": "",
-          "endAt": "2026-06-22T07:59:19.296Z",
-          "endSource": "transcript",
-          "launchedDurationMs": 1479952,
-          "promptDurationMs": 1479019,
-          "markerDurationMs": 1479371,
-          "error": "",
-          "handoffSourceSessionId": ""
-        },
-        {
-          "laneName": "implementation",
-          "status": "active",
-          "stage": "execution",
-          "model": "sonnet",
-          "effort": "medium",
-          "runtime": "claude",
-          "sessionId": "a58e3611-3e09-4cf4-ab1e-367af5d8922e",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test3/a58e3611-3e09-4cf4-ab1e-367af5d8922e.jsonl",
-          "transcriptExists": true,
-          "transcriptLineCount": 934,
-          "tokens": {
-            "inputTokens": 527224,
-            "outputTokens": 81038,
-            "cacheReadTokens": 17878254,
-            "cacheCreationTokens": 0,
-            "totalTokens": 18486516
-          },
-          "launchedAt": "2026-06-22T07:34:40.284Z",
-          "startedAt": "2026-06-22T07:34:40.956Z",
-          "promptSentAt": "2026-06-22T07:38:08.320Z",
-          "idleAt": "2026-06-22T07:35:48.804Z",
-          "failedAt": "",
-          "endAt": "2026-06-22T08:46:34.492Z",
-          "endSource": "transcript",
-          "launchedDurationMs": 4314208,
-          "promptDurationMs": 4106172,
-          "markerDurationMs": 4313536,
-          "error": "",
-          "handoffSourceSessionId": "276d47ab-d602-46ac-80d8-48f7a13e7b5b"
-        },
-        {
-          "laneName": "api_reference",
-          "status": "idle",
-          "stage": "api-reference",
-          "model": "haiku",
-          "effort": "low",
-          "runtime": "claude",
-          "sessionId": "9e200ab2-be1c-4adb-9e26-f388b0de073d",
-          "transcriptPath": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test3/9e200ab2-be1c-4adb-9e26-f388b0de073d.jsonl",
-          "transcriptExists": true,
-          "transcriptLineCount": 275,
-          "tokens": {
-            "inputTokens": 356151,
-            "outputTokens": 66995,
-            "cacheReadTokens": 3359104,
-            "cacheCreationTokens": 0,
-            "totalTokens": 3782250
-          },
-          "launchedAt": "2026-06-22T07:36:11.525Z",
-          "startedAt": "2026-06-22T07:36:11.952Z",
-          "promptSentAt": "2026-06-22T07:36:13.873Z",
-          "idleAt": "2026-06-22T07:37:50.265Z",
-          "failedAt": "",
-          "endAt": "2026-06-22T07:41:12.849Z",
-          "endSource": "transcript",
-          "launchedDurationMs": 301324,
-          "promptDurationMs": 298976,
-          "markerDurationMs": 300897,
-          "error": "",
-          "handoffSourceSessionId": "276d47ab-d602-46ac-80d8-48f7a13e7b5b"
         }
       ]
     },
@@ -3750,6 +3599,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 30639683
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test4/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -3945,6 +3796,8 @@
         "cacheCreationTokens": 0,
         "totalTokens": 40094012
       },
+      "hapExists": true,
+      "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test5/entry/build/default/outputs/default/entry-default-unsigned.hap",
       "lanes": [
         {
           "laneName": "design",
@@ -4228,6 +4081,28 @@
       }
     },
     {
+      "label": "diy-test4",
+      "folder": "diy-test4",
+      "designImages": [],
+      "actualImages": [
+        "screenshot_20260624_154956_com.shouzuoyinji.app.jpg",
+        "screenshot_20260624_155001_com.shouzuoyinji.app.jpg",
+        "screenshot_20260624_155007_com.shouzuoyinji.app.jpg",
+        "screenshot_20260624_155011_com.shouzuoyinji.app.jpg"
+      ],
+      "prompt": "为这个 HarmonyOS 工程实现**一个**“手作·印记”App。功能：会员档案（含擅长工艺与作品图）、消费/签到积分体系、课程预约与日历管理、沉睡会员自动提醒、库存关联扣减。视觉：陶土色+手写感，温润手作风，并完成构建和运行验证",
+      "problems": [
+        "icon不对",
+        "保存按钮不可用"
+      ],
+      "ratings": {
+        "featureSuccess": 90,
+        "aesthetic": 90,
+        "designCompletion": 90,
+        "hapAvailable": "yes"
+      }
+    },
+    {
       "label": "diy-test6",
       "folder": "diy-test6",
       "designImages": [],
@@ -4387,8 +4262,8 @@
       }
     },
     {
-      "label": "paw-log-test5",
-      "folder": "paw-log-test5",
+      "label": "paw-log-test2",
+      "folder": "paw-log-test2",
       "designImages": [],
       "actualImages": [],
       "prompt": "",
@@ -4398,22 +4273,6 @@
         "aesthetic": 0,
         "designCompletion": 0,
         "hapAvailable": ""
-      }
-    },
-    {
-      "label": "pinankou-test1",
-      "folder": "pinankou-test1",
-      "designImages": [],
-      "actualImages": [],
-      "prompt": "prompt:为这个 HarmonyOS 工程实现一款平安扣的适老化App\n为独居人群设计的安全工具。每日签到，若连续多日未操作，系统会自动邮件通知紧急联系人，用极低成本提供“安全感”，除此之外还需要有AI伴聊一键求助，和AI伴聊的功能",
-      "problems": [
-        "没找到hap包"
-      ],
-      "ratings": {
-        "featureSuccess": 0,
-        "aesthetic": 0,
-        "designCompletion": 0,
-        "hapAvailable": "no"
       }
     },
     {
@@ -4454,22 +4313,6 @@
         "aesthetic": 70,
         "designCompletion": 90,
         "hapAvailable": "yes"
-      }
-    },
-    {
-      "label": "pinankou-test3",
-      "folder": "pinankou-test3",
-      "designImages": [],
-      "actualImages": [],
-      "prompt": "prompt:为这个 HarmonyOS 工程实现一款平安扣的适老化App\n为独居人群设计的安全工具。每日签到，若连续多日未操作，系统会自动邮件通知紧急联系人，用极低成本提供“安全感”，除此之外还需要有AI伴聊一键求助，和AI伴聊的功能",
-      "problems": [
-        "没找到hap包"
-      ],
-      "ratings": {
-        "featureSuccess": 0,
-        "aesthetic": 0,
-        "designCompletion": 0,
-        "hapAvailable": "no"
       }
     },
     {

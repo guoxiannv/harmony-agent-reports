@@ -1,0 +1,16 @@
+{
+  "synced_at": "2026-06-20T03:39:29.963Z",
+  "rawfile_manifest": ".arkpilot/design_exports/svg/rawfile-manifest.json",
+  "files": [
+    "icon_不认识当前单词，放回队列底部复习.svg",
+    "icon_当前单词库为空.svg",
+    "icon_本轮复习完成奖励星.svg",
+    "icon_点击卡片翻开释义.svg",
+    "icon_装饰星.svg",
+    "icon_装饰星星.svg",
+    "icon_认识当前单词并移出卡片堆.svg",
+    "icon_重新加载单词开始新一轮复习.svg"
+  ],
+  "style_manifest": "svg-style-manifest.json",
+  "svg_style_map": "entry/src/main/ets/common/svg/SvgStyleMap.ets"
+}

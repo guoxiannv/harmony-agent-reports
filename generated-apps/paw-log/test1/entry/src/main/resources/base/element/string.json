@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "PawLog entry module"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "PawLog entry ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "PawLog"
+    }
+  ]
+}

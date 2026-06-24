@@ -1,0 +1,1600 @@
+=== svg-style-manifest.json ===
+{
+  "generated_at": "2026-06-20T07:39:42.871Z",
+  "icons": [
+    {
+      "file_name": "icon_上个月.svg",
+      "title": "上个月",
+      "source_html": "page-classes-page.html",
+      "hash": "8618948bf7d49850b66020e08d3ea7a8648d8175",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "nav",
+        "calendar-header"
+      ]
+    },
+    {
+      "file_name": "icon_上传新作品图.svg",
+      "title": "上传新作品图",
+      "source_html": "page-profile-edit-page.html",
+      "hash": "d1137cc57cfd519ac79c199b8311221c06022137",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "work",
+        "add",
+        "gallery-edit",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_下个月.svg",
+      "title": "下个月",
+      "source_html": "page-classes-page.html",
+      "hash": "0194e0fe5b7fcd3fb484e27a2ecd54ff354577cb",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "nav",
+        "calendar-header"
+      ]
+    },
+    {
+      "file_name": "icon_今日签到.svg",
+      "title": "今日签到",
+      "source_html": "page-home-page.html",
+      "hash": "fc09c5196c94cd2c16f3a1556b1fa827268489ab",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFBF6",
+      "fill_color": "",
+      "stroke_color": "#FFFBF6",
+      "opacity": "1",
+      "context_classes": [
+        "checkin-btn",
+        "checkin-section",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_会员头像-1.svg",
+      "title": "会员头像",
+      "source_html": "page-dormant-page.html",
+      "hash": "ef5ea17d754b6a8866bd22dab9b75d32c4834ec2",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "avatar",
+        "row",
+        "member-card"
+      ]
+    },
+    {
+      "file_name": "icon_会员头像-2.svg",
+      "title": "会员头像",
+      "source_html": "page-profile-page.html",
+      "hash": "ff149a06468aaabbee7a8bd6d6d1892950f8e1c0",
+      "width": 44,
+      "height": 44,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "avatar",
+        "profile-card",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_作品图1.svg",
+      "title": "作品图1",
+      "source_html": "page-profile-edit-page.html",
+      "hash": "a8f02a3fd82c99f1fd851d49a0be4d003c1fd87b",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "work",
+        "gallery-edit",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_作品图2.svg",
+      "title": "作品图2",
+      "source_html": "page-profile-edit-page.html",
+      "hash": "d1445a6d6b092036392e49c4ae7800be76577282",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "work",
+        "gallery-edit",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_兑换积分.svg",
+      "title": "兑换积分",
+      "source_html": "page-points-page.html",
+      "hash": "c807eaa1c63ffbbd5c086e5f8d80f2fc6dfe475e",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#B84A3D",
+      "fill_color": "",
+      "stroke_color": "#B84A3D",
+      "opacity": "1",
+      "context_classes": [
+        "icon",
+        "red",
+        "list-item",
+        "list-card"
+      ]
+    },
+    {
+      "file_name": "icon_库存不足.svg",
+      "title": "库存不足",
+      "source_html": "page-classes-page.html",
+      "hash": "2bd08cbfc96f7a433b466f6fd7be2085e6f8dba4",
+      "width": 12,
+      "height": 12,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#B84A3D",
+      "fill_color": "",
+      "stroke_color": "#B84A3D",
+      "opacity": "1",
+      "context_classes": [
+        "tag",
+        "stock",
+        "slot-tags",
+        "slot-body"
+      ]
+    },
+    {
+      "file_name": "icon_库存物品图标.svg",
+      "title": "库存物品图标",
+      "source_html": "page-inventory-page.html",
+      "hash": "3c1ed0fcc9f040f19d42e2b1f6aa2fb57b10070b",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "icon",
+        "row",
+        "item-card"
+      ]
+    },
+    {
+      "file_name": "icon_库存管理入口.svg",
+      "title": "库存管理入口",
+      "source_html": "page-profile-page.html",
+      "hash": "ea4bac152177d3b1c6062a9e47ac656f368e02b4",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "icon",
+        "menu-item",
+        "menu-card"
+      ]
+    },
+    {
+      "file_name": "icon_库存预警.svg",
+      "title": "库存预警",
+      "source_html": "page-inventory-page.html",
+      "hash": "59c9bc7bdbe75811ade6cc2c37aa0a0ff6011c2f",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#B84A3D",
+      "fill_color": "",
+      "stroke_color": "#B84A3D",
+      "opacity": "1",
+      "context_classes": [
+        "alert",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_库存预警提示.svg",
+      "title": "库存预警提示",
+      "source_html": "page-class-detail-page.html",
+      "hash": "a4a14d28a8703bffb826ca54a2459f7d0f6212ff",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#B84A3D",
+      "fill_color": "",
+      "stroke_color": "#B84A3D",
+      "opacity": "1",
+      "context_classes": [
+        "alert",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_我的-1.svg",
+      "title": "我的",
+      "source_html": "page-classes-page.html",
+      "hash": "2f19eced60b34294e63c31d298149b29fb9836a7",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_我的-2.svg",
+      "title": "我的",
+      "source_html": "page-profile-page.html",
+      "hash": "2f19eced60b34294e63c31d298149b29fb9836a7",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_打开沉睡会员提醒.svg",
+      "title": "打开沉睡会员提醒",
+      "source_html": "page-home-page.html",
+      "hash": "d223066c961d086389af92945cff8284b029587b",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_无课程.svg",
+      "title": "无课程",
+      "source_html": "page-classes-page.html",
+      "hash": "ca561235c945b46deb9d3bad82cf7145c092eb54",
+      "width": 64,
+      "height": 64,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_暂无作品.svg",
+      "title": "暂无作品",
+      "source_html": "page-profile-page.html",
+      "hash": "ff51f140798586deca4ec5a0d8764b58ba49a76f",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_暂无动态.svg",
+      "title": "暂无动态",
+      "source_html": "page-home-page.html",
+      "hash": "ffe60fa3cd6f867390a8792dd8b57d8a18972c35",
+      "width": 64,
+      "height": 64,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_暂无工艺标签.svg",
+      "title": "暂无工艺标签",
+      "source_html": "page-profile-page.html",
+      "hash": "1a07a2fb3322071614c8440c26a9c06853d953ea",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_暂无库存.svg",
+      "title": "暂无库存",
+      "source_html": "page-inventory-page.html",
+      "hash": "bab7501f721399df8df94847ddee15052930853c",
+      "width": 64,
+      "height": 64,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_暂无沉睡会员.svg",
+      "title": "暂无沉睡会员",
+      "source_html": "page-dormant-page.html",
+      "hash": "d360cb9355355ce1b82640342de4ffb2b7bf4f17",
+      "width": 64,
+      "height": 64,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_暂无消费记录.svg",
+      "title": "暂无消费记录",
+      "source_html": "page-points-page.html",
+      "hash": "f77d63846ce65f2a0b6eb553d970fec486320d71",
+      "width": 64,
+      "height": 64,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_暂无积分明细.svg",
+      "title": "暂无积分明细",
+      "source_html": "page-points-page.html",
+      "hash": "5cf2920f3ec9e50804a06de00c49419e183f60f2",
+      "width": 64,
+      "height": 64,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_暂无耗材.svg",
+      "title": "暂无耗材",
+      "source_html": "page-class-detail-page.html",
+      "hash": "b47c1774483658a9a18caec65f0a4ba6a270d40d",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#DCC8B0",
+      "fill_color": "",
+      "stroke_color": "#DCC8B0",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_添加作品图.svg",
+      "title": "添加作品图",
+      "source_html": "page-profile-page.html",
+      "hash": "8ef772a0cc13db901689aaa3a65d3df78e180456",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "work",
+        "add",
+        "gallery",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_添加工艺标签.svg",
+      "title": "添加工艺标签",
+      "source_html": "page-profile-edit-page.html",
+      "hash": "8b57f8743b502745ef6a7eb485f7fb5ad9d330b6",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFBF6",
+      "fill_color": "",
+      "stroke_color": "#FFFBF6",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "add-row",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_积分-1.svg",
+      "title": "积分",
+      "source_html": "page-classes-page.html",
+      "hash": "3cd20bf6b4db2b83974cbdfd1980b825b0e20abd",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_积分-2.svg",
+      "title": "积分",
+      "source_html": "page-points-page.html",
+      "hash": "3cd20bf6b4db2b83974cbdfd1980b825b0e20abd",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_积分明细.svg",
+      "title": "积分明细",
+      "source_html": "page-home-page.html",
+      "hash": "2763a460cc55c3794a67ddb5e5de573f3de27870",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "icon",
+        "action-tile",
+        "quick-actions"
+      ]
+    },
+    {
+      "file_name": "icon_签到积分.svg",
+      "title": "签到积分",
+      "source_html": "page-points-page.html",
+      "hash": "1827527f17be0074777384cf5dc48ed66a80789b",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4D8A72",
+      "fill_color": "",
+      "stroke_color": "#4D8A72",
+      "opacity": "1",
+      "context_classes": [
+        "icon",
+        "green",
+        "list-item",
+        "list-card"
+      ]
+    },
+    {
+      "file_name": "icon_编辑会员档案.svg",
+      "title": "编辑会员档案",
+      "source_html": "page-profile-page.html",
+      "hash": "c5b7a4c5b5959d80b920bed9f4130620ac89d599",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_耗材图标.svg",
+      "title": "耗材图标",
+      "source_html": "page-class-detail-page.html",
+      "hash": "d745e18cef78a94b7a2d33224dfcd5f6fdfcbaeb",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "icon",
+        "material-item",
+        "material-list"
+      ]
+    },
+    {
+      "file_name": "icon_课程-1.svg",
+      "title": "课程",
+      "source_html": "page-classes-page.html",
+      "hash": "e5fea943f3535c537605ec117c451a5899b8c3d3",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_课程-2.svg",
+      "title": "课程",
+      "source_html": "page-home-page.html",
+      "hash": "e5fea943f3535c537605ec117c451a5899b8c3d3",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_课程积分.svg",
+      "title": "课程积分",
+      "source_html": "page-points-page.html",
+      "hash": "07b2d12dd8e197defcb15bb2d466dbd38fece16c",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C99E3A",
+      "fill_color": "",
+      "stroke_color": "#C99E3A",
+      "opacity": "1",
+      "context_classes": [
+        "icon",
+        "yellow",
+        "list-item",
+        "list-card"
+      ]
+    },
+    {
+      "file_name": "icon_返回.svg",
+      "title": "返回",
+      "source_html": "page-class-detail-page.html",
+      "hash": "7cf3f075049f318155e541ef8bedabd94f88c0da",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "header",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_进入库存管理.svg",
+      "title": "进入库存管理",
+      "source_html": "page-profile-page.html",
+      "hash": "340f203c352c704acf6143621eb816b0f586f1ec",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "arrow",
+        "menu-item",
+        "menu-card"
+      ]
+    },
+    {
+      "file_name": "icon_预约课程.svg",
+      "title": "预约课程",
+      "source_html": "page-home-page.html",
+      "hash": "c28b1e134f861c14f1630d92da8a02c3578a0d91",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "icon",
+        "action-tile",
+        "quick-actions"
+      ]
+    },
+    {
+      "file_name": "icon_首页-1.svg",
+      "title": "首页",
+      "source_html": "page-classes-page.html",
+      "hash": "92ef022f50f2a64d440c8297dcf800d6f207ecb3",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A89A8E",
+      "fill_color": "",
+      "stroke_color": "#A89A8E",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_首页-2.svg",
+      "title": "首页",
+      "source_html": "page-home-page.html",
+      "hash": "92ef022f50f2a64d440c8297dcf800d6f207ecb3",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A65D48",
+      "fill_color": "",
+      "stroke_color": "#A65D48",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar"
+      ]
+    }
+  ]
+}
+=== SvgStyleMap.ets ===
+export interface SvgStyleSpec {
+  fileName: string;
+  title: string;
+  sourceHtml: string;
+  width: number;
+  height: number;
+  viewBox: string;
+  paintMode: string;
+  defaultColor: string;
+  fillColor: string;
+  strokeColor: string;
+  opacity: string;
+  contextClasses: string[];
+}
+
+export const SVG_STYLE_MAP: Record<string, SvgStyleSpec> = {
+  "icon_上个月.svg": {
+    "fileName": "icon_上个月.svg",
+    "title": "上个月",
+    "sourceHtml": "page-classes-page.html",
+    "width": 16,
+    "height": 16,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "nav",
+      "calendar-header"
+    ]
+  },
+  "icon_上传新作品图.svg": {
+    "fileName": "icon_上传新作品图.svg",
+    "title": "上传新作品图",
+    "sourceHtml": "page-profile-edit-page.html",
+    "width": 28,
+    "height": 28,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "work",
+      "add",
+      "gallery-edit",
+      "page"
+    ]
+  },
+  "icon_下个月.svg": {
+    "fileName": "icon_下个月.svg",
+    "title": "下个月",
+    "sourceHtml": "page-classes-page.html",
+    "width": 16,
+    "height": 16,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "nav",
+      "calendar-header"
+    ]
+  },
+  "icon_今日签到.svg": {
+    "fileName": "icon_今日签到.svg",
+    "title": "今日签到",
+    "sourceHtml": "page-home-page.html",
+    "width": 28,
+    "height": 28,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#FFFBF6",
+    "fillColor": "",
+    "strokeColor": "#FFFBF6",
+    "opacity": "1",
+    "contextClasses": [
+      "checkin-btn",
+      "checkin-section",
+      "page"
+    ]
+  },
+  "icon_会员头像-1.svg": {
+    "fileName": "icon_会员头像-1.svg",
+    "title": "会员头像",
+    "sourceHtml": "page-dormant-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "avatar",
+      "row",
+      "member-card"
+    ]
+  },
+  "icon_会员头像-2.svg": {
+    "fileName": "icon_会员头像-2.svg",
+    "title": "会员头像",
+    "sourceHtml": "page-profile-page.html",
+    "width": 44,
+    "height": 44,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "avatar",
+      "profile-card",
+      "page"
+    ]
+  },
+  "icon_作品图1.svg": {
+    "fileName": "icon_作品图1.svg",
+    "title": "作品图1",
+    "sourceHtml": "page-profile-edit-page.html",
+    "width": 28,
+    "height": 28,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "work",
+      "gallery-edit",
+      "page"
+    ]
+  },
+  "icon_作品图2.svg": {
+    "fileName": "icon_作品图2.svg",
+    "title": "作品图2",
+    "sourceHtml": "page-profile-edit-page.html",
+    "width": 28,
+    "height": 28,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "work",
+      "gallery-edit",
+      "page"
+    ]
+  },
+  "icon_兑换积分.svg": {
+    "fileName": "icon_兑换积分.svg",
+    "title": "兑换积分",
+    "sourceHtml": "page-points-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#B84A3D",
+    "fillColor": "",
+    "strokeColor": "#B84A3D",
+    "opacity": "1",
+    "contextClasses": [
+      "icon",
+      "red",
+      "list-item",
+      "list-card"
+    ]
+  },
+  "icon_库存不足.svg": {
+    "fileName": "icon_库存不足.svg",
+    "title": "库存不足",
+    "sourceHtml": "page-classes-page.html",
+    "width": 12,
+    "height": 12,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#B84A3D",
+    "fillColor": "",
+    "strokeColor": "#B84A3D",
+    "opacity": "1",
+    "contextClasses": [
+      "tag",
+      "stock",
+      "slot-tags",
+      "slot-body"
+    ]
+  },
+  "icon_库存物品图标.svg": {
+    "fileName": "icon_库存物品图标.svg",
+    "title": "库存物品图标",
+    "sourceHtml": "page-inventory-page.html",
+    "width": 22,
+    "height": 22,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "icon",
+      "row",
+      "item-card"
+    ]
+  },
+  "icon_库存管理入口.svg": {
+    "fileName": "icon_库存管理入口.svg",
+    "title": "库存管理入口",
+    "sourceHtml": "page-profile-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "icon",
+      "menu-item",
+      "menu-card"
+    ]
+  },
+  "icon_库存预警.svg": {
+    "fileName": "icon_库存预警.svg",
+    "title": "库存预警",
+    "sourceHtml": "page-inventory-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#B84A3D",
+    "fillColor": "",
+    "strokeColor": "#B84A3D",
+    "opacity": "1",
+    "contextClasses": [
+      "alert",
+      "page"
+    ]
+  },
+  "icon_库存预警提示.svg": {
+    "fileName": "icon_库存预警提示.svg",
+    "title": "库存预警提示",
+    "sourceHtml": "page-class-detail-page.html",
+    "width": 18,
+    "height": 18,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#B84A3D",
+    "fillColor": "",
+    "strokeColor": "#B84A3D",
+    "opacity": "1",
+    "contextClasses": [
+      "alert",
+      "page"
+    ]
+  },
+  "icon_我的-1.svg": {
+    "fileName": "icon_我的-1.svg",
+    "title": "我的",
+    "sourceHtml": "page-classes-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "tab",
+      "tabbar"
+    ]
+  },
+  "icon_我的-2.svg": {
+    "fileName": "icon_我的-2.svg",
+    "title": "我的",
+    "sourceHtml": "page-profile-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "tab",
+      "active",
+      "tabbar"
+    ]
+  },
+  "icon_打开沉睡会员提醒.svg": {
+    "fileName": "icon_打开沉睡会员提醒.svg",
+    "title": "打开沉睡会员提醒",
+    "sourceHtml": "page-home-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "icon-btn",
+      "header",
+      "page"
+    ]
+  },
+  "icon_无课程.svg": {
+    "fileName": "icon_无课程.svg",
+    "title": "无课程",
+    "sourceHtml": "page-classes-page.html",
+    "width": 64,
+    "height": 64,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_暂无作品.svg": {
+    "fileName": "icon_暂无作品.svg",
+    "title": "暂无作品",
+    "sourceHtml": "page-profile-page.html",
+    "width": 48,
+    "height": 48,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_暂无动态.svg": {
+    "fileName": "icon_暂无动态.svg",
+    "title": "暂无动态",
+    "sourceHtml": "page-home-page.html",
+    "width": 64,
+    "height": 64,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_暂无工艺标签.svg": {
+    "fileName": "icon_暂无工艺标签.svg",
+    "title": "暂无工艺标签",
+    "sourceHtml": "page-profile-page.html",
+    "width": 48,
+    "height": 48,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_暂无库存.svg": {
+    "fileName": "icon_暂无库存.svg",
+    "title": "暂无库存",
+    "sourceHtml": "page-inventory-page.html",
+    "width": 64,
+    "height": 64,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_暂无沉睡会员.svg": {
+    "fileName": "icon_暂无沉睡会员.svg",
+    "title": "暂无沉睡会员",
+    "sourceHtml": "page-dormant-page.html",
+    "width": 64,
+    "height": 64,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_暂无消费记录.svg": {
+    "fileName": "icon_暂无消费记录.svg",
+    "title": "暂无消费记录",
+    "sourceHtml": "page-points-page.html",
+    "width": 64,
+    "height": 64,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_暂无积分明细.svg": {
+    "fileName": "icon_暂无积分明细.svg",
+    "title": "暂无积分明细",
+    "sourceHtml": "page-points-page.html",
+    "width": 64,
+    "height": 64,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_暂无耗材.svg": {
+    "fileName": "icon_暂无耗材.svg",
+    "title": "暂无耗材",
+    "sourceHtml": "page-class-detail-page.html",
+    "width": 48,
+    "height": 48,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#DCC8B0",
+    "fillColor": "",
+    "strokeColor": "#DCC8B0",
+    "opacity": "1",
+    "contextClasses": [
+      "empty-state",
+      "page"
+    ]
+  },
+  "icon_添加作品图.svg": {
+    "fileName": "icon_添加作品图.svg",
+    "title": "添加作品图",
+    "sourceHtml": "page-profile-page.html",
+    "width": 28,
+    "height": 28,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "work",
+      "add",
+      "gallery",
+      "page"
+    ]
+  },
+  "icon_添加工艺标签.svg": {
+    "fileName": "icon_添加工艺标签.svg",
+    "title": "添加工艺标签",
+    "sourceHtml": "page-profile-edit-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#FFFBF6",
+    "fillColor": "",
+    "strokeColor": "#FFFBF6",
+    "opacity": "1",
+    "contextClasses": [
+      "add-btn",
+      "add-row",
+      "page"
+    ]
+  },
+  "icon_积分-1.svg": {
+    "fileName": "icon_积分-1.svg",
+    "title": "积分",
+    "sourceHtml": "page-classes-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "tab",
+      "tabbar"
+    ]
+  },
+  "icon_积分-2.svg": {
+    "fileName": "icon_积分-2.svg",
+    "title": "积分",
+    "sourceHtml": "page-points-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "tab",
+      "active",
+      "tabbar"
+    ]
+  },
+  "icon_积分明细.svg": {
+    "fileName": "icon_积分明细.svg",
+    "title": "积分明细",
+    "sourceHtml": "page-home-page.html",
+    "width": 22,
+    "height": 22,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "icon",
+      "action-tile",
+      "quick-actions"
+    ]
+  },
+  "icon_签到积分.svg": {
+    "fileName": "icon_签到积分.svg",
+    "title": "签到积分",
+    "sourceHtml": "page-points-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#4D8A72",
+    "fillColor": "",
+    "strokeColor": "#4D8A72",
+    "opacity": "1",
+    "contextClasses": [
+      "icon",
+      "green",
+      "list-item",
+      "list-card"
+    ]
+  },
+  "icon_编辑会员档案.svg": {
+    "fileName": "icon_编辑会员档案.svg",
+    "title": "编辑会员档案",
+    "sourceHtml": "page-profile-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "icon-btn",
+      "header",
+      "page"
+    ]
+  },
+  "icon_耗材图标.svg": {
+    "fileName": "icon_耗材图标.svg",
+    "title": "耗材图标",
+    "sourceHtml": "page-class-detail-page.html",
+    "width": 18,
+    "height": 18,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "icon",
+      "material-item",
+      "material-list"
+    ]
+  },
+  "icon_课程-1.svg": {
+    "fileName": "icon_课程-1.svg",
+    "title": "课程",
+    "sourceHtml": "page-classes-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "tab",
+      "active",
+      "tabbar"
+    ]
+  },
+  "icon_课程-2.svg": {
+    "fileName": "icon_课程-2.svg",
+    "title": "课程",
+    "sourceHtml": "page-home-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "tab",
+      "tabbar"
+    ]
+  },
+  "icon_课程积分.svg": {
+    "fileName": "icon_课程积分.svg",
+    "title": "课程积分",
+    "sourceHtml": "page-points-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#C99E3A",
+    "fillColor": "",
+    "strokeColor": "#C99E3A",
+    "opacity": "1",
+    "contextClasses": [
+      "icon",
+      "yellow",
+      "list-item",
+      "list-card"
+    ]
+  },
+  "icon_返回.svg": {
+    "fileName": "icon_返回.svg",
+    "title": "返回",
+    "sourceHtml": "page-class-detail-page.html",
+    "width": 20,
+    "height": 20,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "back-btn",
+      "header",
+      "page"
+    ]
+  },
+  "icon_进入库存管理.svg": {
+    "fileName": "icon_进入库存管理.svg",
+    "title": "进入库存管理",
+    "sourceHtml": "page-profile-page.html",
+    "width": 18,
+    "height": 18,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "arrow",
+      "menu-item",
+      "menu-card"
+    ]
+  },
+  "icon_预约课程.svg": {
+    "fileName": "icon_预约课程.svg",
+    "title": "预约课程",
+    "sourceHtml": "page-home-page.html",
+    "width": 22,
+    "height": 22,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "icon",
+      "action-tile",
+      "quick-actions"
+    ]
+  },
+  "icon_首页-1.svg": {
+    "fileName": "icon_首页-1.svg",
+    "title": "首页",
+    "sourceHtml": "page-classes-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A89A8E",
+    "fillColor": "",
+    "strokeColor": "#A89A8E",
+    "opacity": "1",
+    "contextClasses": [
+      "tab",
+      "tabbar"
+    ]
+  },
+  "icon_首页-2.svg": {
+    "fileName": "icon_首页-2.svg",
+    "title": "首页",
+    "sourceHtml": "page-home-page.html",
+    "width": 24,
+    "height": 24,
+    "viewBox": "0 0 24 24",
+    "paintMode": "stroke",
+    "defaultColor": "#A65D48",
+    "fillColor": "",
+    "strokeColor": "#A65D48",
+    "opacity": "1",
+    "contextClasses": [
+      "tab",
+      "active",
+      "tabbar"
+    ]
+  }
+};
+=== all rawfiles ===
+icon_上个月.svg
+icon_上传新作品图.svg
+icon_下个月.svg
+icon_今日签到.svg
+icon_会员头像-1.svg
+icon_会员头像-2.svg
+icon_作品图1.svg
+icon_作品图2.svg
+icon_兑换积分.svg
+icon_库存不足.svg
+icon_库存物品图标.svg
+icon_库存管理入口.svg
+icon_库存预警.svg
+icon_库存预警提示.svg
+icon_我的-1.svg
+icon_我的-2.svg
+icon_打开沉睡会员提醒.svg
+icon_无课程.svg
+icon_暂无作品.svg
+icon_暂无动态.svg
+icon_暂无工艺标签.svg
+icon_暂无库存.svg
+icon_暂无沉睡会员.svg
+icon_暂无消费记录.svg
+icon_暂无积分明细.svg
+icon_暂无耗材.svg
+icon_添加作品图.svg
+icon_添加工艺标签.svg
+icon_积分-1.svg
+icon_积分-2.svg
+icon_积分明细.svg
+icon_签到积分.svg
+icon_编辑会员档案.svg
+icon_耗材图标.svg
+icon_课程-1.svg
+icon_课程-2.svg
+icon_课程积分.svg
+icon_返回.svg
+icon_进入库存管理.svg
+icon_预约课程.svg
+icon_首页-1.svg
+icon_首页-2.svg
+svg-style-manifest.json

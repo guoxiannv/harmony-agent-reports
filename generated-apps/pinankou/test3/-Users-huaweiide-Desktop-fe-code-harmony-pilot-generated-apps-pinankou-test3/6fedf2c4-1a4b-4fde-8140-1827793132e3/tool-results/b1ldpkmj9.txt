@@ -1,0 +1,304 @@
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/02_Toggle.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/04_CheckboxGroup.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/11_Rating.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/01_Button.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/05_UIPickerComponent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/13_Slider.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/12_Select.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/10_Radio.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/07_DatePicker.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/08_TextPicker.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/09_TimePicker.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_按钮与选择/03_Checkbox.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/04_行列与堆叠/02_Column.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/04_行列与堆叠/03_Row.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/04_行列与堆叠/01_Flex.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/07_滚动与滑动/08_Scroll.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_渲染绘制/02_Component3D.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/07_滚动与滑动/06_Grid.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/07_滚动与滑动/01_List.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/07_滚动与滑动/03_ListItemGroup.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_图形绘制/07_Rect.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_图形绘制/08_Shape.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_图形绘制/01_Circle.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_图形绘制/05_Polygon.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_图形绘制/02_Ellipse.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_图形绘制/03_Line.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_图形绘制/04_Polyline.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/12_信息展示/06_Gauge.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_图形绘制/06_Path.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/12_信息展示/11_QRCode.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/12_信息展示/01_AlphabetIndexer.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/08_ExceptionPrompt.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/12_信息展示/03_Badge.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/26_TabTitleBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/23_SubHeader.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/04_ComposeTitleBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/05_栅格与分栏/05_SideBarContainer.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/02_ChipGroup.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/19_SegmentButtonV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/06_DialogV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/20_SelectTitleBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/18_SegmentButton.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/12_FormMenu.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/28_ToolBarV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/16_ProgressButton.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/07_EditableTitleBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/13_FullScreenLaunchComponent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/01_Chip.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/15_Popup.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/14_GridObjectSortComponent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/29_TreeView.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/24_SubHeaderV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/03_ComposeListItem.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/21_SelectionMenu.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/17_ProgressButtonV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/22_SplitLayout.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/26_系统预置UI组件库/27_ToolBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_图形绘制/02_Ellipse.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_图形绘制/07_Rect.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_图形绘制/04_Polyline.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_图形绘制/08_Shape.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_图形绘制/01_Circle.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_图形绘制/05_Polygon.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_图形绘制/03_Line.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/15_图形绘制/06_Path.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/01_通用事件/02_交互响应事件/02_拖拽事件.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/23_AtomicService/04_AtomicServiceWeb.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/23_AtomicService/03_AtomicServiceTabs.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/23_AtomicService/06_HalfScreenLaunchComponent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_画布绘制/05_DrawingRenderingContext.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/23_AtomicService/02_AtomicServiceSearch.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/23_AtomicService/01_AtomicServiceNavigation.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/23_AtomicService/05_InterstitialDialogAction.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_画布绘制/10_OffscreenCanvasRenderingContext2D.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_画布绘制/09_OffscreenCanvas.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/02_Toggle.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/05_UIPickerComponent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/14_画布绘制/04_CanvasRenderingContext2D.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/11_Rating.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/12_Select.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/01_Button.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/08_TextPicker.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/04_CheckboxGroup.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/07_DatePicker.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/13_Slider.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/13_画布绘制/05_DrawingRenderingContext.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/03_Checkbox.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/10_Radio.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_按钮与选择/09_TimePicker.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/13_画布绘制/09_OffscreenCanvas.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/13_画布绘制/10_OffscreenCanvasRenderingContext2D.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/13_画布绘制/06_ImageBitmap.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/06_滚动与滑动/06_Grid.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/13_画布绘制/04_CanvasRenderingContext2D.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/08_ExceptionPrompt.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/06_滚动与滑动/01_List.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/06_滚动与滑动/08_Scroll.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/23_SubHeader.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/18_SegmentButton.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/04_ComposeTitleBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/02_ChipGroup.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/20_SelectTitleBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/07_EditableTitleBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/06_滚动与滑动/03_ListItemGroup.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/06_DialogV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/13_FullScreenLaunchComponent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/16_ProgressButton.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/14_GridObjectSortComponent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/26_TabTitleBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/28_ToolBarV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/19_SegmentButtonV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/01_Chip.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/03_ComposeListItem.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/12_FormMenu.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/15_Popup.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/24_SubHeaderV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/21_SelectionMenu.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/22_SplitLayout.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/29_TreeView.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/17_ProgressButtonV2.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/27_系统预置UI组件库/27_ToolBar.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/03_手势处理/02_基础手势/04_PinchGesture.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/03_手势处理/04_手势控制/01_自定义手势判定.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/30_公共定义/01_基础类型定义.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/30_已停止维护的组件与接口/07_Stepper.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_导航与切换/03_NavDestination.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_导航与切换/05_Tabs.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_导航与切换/06_TabContent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/08_导航与切换/02_Navigation.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/21_主题/01_WithTheme.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/17_动画/07_组件内隐式共享元素转场 (geometryTransition).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/17_动画/06_共享元素转场 (sharedTransition).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/17_动画/09_粒子动画 (Particle).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/17_动画/05_组件内转场 (transition).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/29_公共定义/01_基础类型定义.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/22_主题/01_WithTheme.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/17_动画/04_页面间转场 (pageTransition).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_图片与视频/01_Image.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_图片与视频/06_SVG标签解析能力增强.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_图片与视频/05_SVG标签说明.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_图片与视频/03_Video.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_图片与视频/02_ImageAnimator.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/07_导航与切换/03_NavDestination.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/07_导航与切换/05_Tabs.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/20_安全/01_安全控件通用属性.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/07_导航与切换/06_TabContent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/24_自定义组件/01_自定义组件的生命周期.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/19_弹窗/08_弹出框 (Dialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/19_弹窗/01_警告弹窗 (AlertDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/19_弹窗/02_列表选择弹窗 (ActionSheet).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/20_安全/03_SaveButton.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/07_导航与切换/02_Navigation.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/19_弹窗/03_自定义弹窗 (CustomDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/19_弹窗/06_时间滑动选择器弹窗 (TimePickerDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/16_菜单/01_Menu.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/22_AtomicService/03_AtomicServiceTabs.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/22_AtomicService/04_AtomicServiceWeb.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/22_AtomicService/02_AtomicServiceSearch.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/19_弹窗/07_文本滑动选择器弹窗 (TextPickerDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/19_弹窗/04_日历选择器弹窗 (CalendarPickerDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/19_弹窗/05_日期滑动选择器弹窗 (DatePickerDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_动画/07_组件内隐式共享元素转场 (geometryTransition).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_动画/09_粒子动画 (Particle).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_动画/06_共享元素转场 (sharedTransition).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/31_已停止维护的组件与接口/07_Stepper.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_动画/05_组件内转场 (transition).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_信息展示/06_Gauge.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/22_AtomicService/06_HalfScreenLaunchComponent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/22_AtomicService/01_AtomicServiceNavigation.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/22_AtomicService/05_InterstitialDialogAction.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_信息展示/01_AlphabetIndexer.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_动画/04_页面间转场 (pageTransition).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_信息展示/11_QRCode.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/17_菜单/01_Menu.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_信息展示/03_Badge.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/21_安全/01_安全控件通用属性.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/07_ImageSpan.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/08_ContainerSpan.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/25_自定义组件/01_自定义组件的生命周期.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/06_Span.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/03_TextInput.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/11_Hyperlink.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/10_SymbolGlyph.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/21_安全/03_SaveButton.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/13_属性字符串.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/01_Text.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/12_RichText.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/09_SymbolSpan.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/04_RichEditor.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/05_Search.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/10_文本与输入/02_TextArea.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/13_属性字符串.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_图片与视频/01_Image.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_图片与视频/05_SVG标签说明.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/09_SymbolSpan.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_图片与视频/03_Video.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_图片与视频/06_SVG标签解析能力增强.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/11_图片与视频/02_ImageAnimator.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/04_RichEditor.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/11_Hyperlink.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/16_渲染绘制/02_Component3D.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/10_SymbolGlyph.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/12_RichText.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_弹窗/01_警告弹窗 (AlertDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/01_Text.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/07_ImageSpan.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/02_TextArea.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/08_ContainerSpan.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/05_Search.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/02_布局与边框/09_图片边框设置.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/06_Span.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_弹窗/06_时间滑动选择器弹窗 (TimePickerDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_弹窗/08_弹出框 (Dialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/01_基础属性/07_隐私遮罩.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_弹窗/07_文本滑动选择器弹窗 (TextPickerDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/09_文本与输入/03_TextInput.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_弹窗/02_列表选择弹窗 (ActionSheet).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_弹窗/03_自定义弹窗 (CustomDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/06_弹窗控制/01_Popup控制.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_弹窗/04_日历选择器弹窗 (CalendarPickerDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/07_无障碍属性.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/18_弹窗/05_日期滑动选择器弹窗 (DatePickerDialog).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/06_弹窗控制/02_Tips控制.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/02_布局与边框/08_边框设置.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/01_基础属性/05_浮层.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/02_布局与边框/05_安全区域.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/01_基础属性/01_组件标识.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/04_交互属性/03_拖拽控制.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/01_基础属性/04_背景设置.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/03_视效与模糊/07_前景属性设置.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/09_动态属性与自定义/01_动态属性设置.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/03_视效与模糊/09_视效设置.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/03_视效与模糊/10_组件内容模糊.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/06_弹窗控制/03_菜单控制.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/03_视效与模糊/02_图形变换.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/03_视效与模糊/03_图像效果.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/09_动态属性与自定义/06_动态SymbolGlyphModifier属性设置.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/05_错误码/03_UI编译/01_编译错误码.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/10_其他/03_工具栏设置.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/08_模态转场设置/02_半模态转场.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/03_视效与模糊/04_形状裁剪.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/03_视效与模糊/11_运动模糊.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/10_ohos.arkui.shape (形状).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/17_ohos.matrix4 (矩阵变换).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/03_ohos.arkui.componentUtils (componentUtils).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/16_ohos.font (注册自定义字体).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/18_ohos.matrix4 (矩阵变换).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/02_ohos.arkui.componentSnapshot (组件截图).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/12_ohos.arkui.UIContext (UIContext)/02_Class (ComponentSnapshot).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/05_ohos.arkui.drawableDescriptor (DrawableDescriptor).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/12_ohos.arkui.UIContext (UIContext)/03_Class (ComponentUtils).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/12_ohos.arkui.UIContext (UIContext)/11_Class (Magnifier).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/17_ohos.font (注册自定义字体).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/04_ohos.arkui.dragController (DragController).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/12_ohos.arkui.UIContext (UIContext)/16_Class (PromptAction).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/14_ohos.arkui.uiMaterial (系统材质).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/12_ohos.arkui.UIContext (UIContext)/20_Class (UIContext).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/12_ohos.arkui.UIContext (UIContext)/09_Class (Font).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/26_arkui/04_Graphics.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/06_ohos.arkui.inspector (布局回调).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/26_arkui/01_BuilderNode.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/27_arkui/02_ComponentContent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/27_arkui/11_Resource.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/12_ohos.arkui.UIContext (UIContext)/06_Class (DragController).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/26_arkui/02_ComponentContent.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/26_arkui/11_Resource.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/27_arkui/03_FrameNode.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/27_arkui/01_BuilderNode.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/26_arkui/03_FrameNode.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/02_窗口管理/04_ohos.window (窗口)/04_Interface (WindowStage).md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/01_ArkTS API/01_UI界面/27_arkui/04_Graphics.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/03_JS服务卡片UI组件/02_组件通用信息/01_通用属性.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/03_基础组件/02_chart.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/03_基础组件/05_image-animator.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/05_画布组件/05_ImageData对象.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/05_画布组件/01_canvas组件.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/05_画布组件/04_CanvasGradient对象.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/05_画布组件/08_OffscreenCanvas对象.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/05_画布组件/06_Path2D对象.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/03_容器组件/01_div.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/05_画布组件/02_CanvasRenderingContext2D对象.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/05_画布组件/09_OffscreenCanvasRenderingContext2D对象.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/05_画布组件/03_Image对象.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/01_chart.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/03_容器组件/05_swiper.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/03_容器组件/03_list-item.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/01_兼容JS的类Web开发范式（ArkUI.Full）/01_组件通用信息/01_通用属性.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/10_switch.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/04_input.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/02_image.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/07_progress.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/05_marquee.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/09_slider.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/03_image-animator.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/02_组件通用信息/02_通用属性.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/03_容器组件/04_stack.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/03_容器组件/02_list.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/08_qrcode.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/05_画布组件/02_CanvasRenderingContext2D对象.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/11_text.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/04_基础组件/06_picker-view.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/06_全局接口/01_旋转表冠事件监听.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/05_画布组件/01_canvas组件.md
+/Users/huaweiide/Desktop/fe/code/harmony-pilot/vendor/harmony-knowledge-base/data/harmonyos_docs/cn/harmonyos-references/02_应用框架/05_ArkUI（方舟UI框架）/03_JS组件/02_兼容JS的类Web开发范式（ArkUI.Lite）/01_框架说明/06_语法/03_JS语法参考.md

@@ -1,0 +1,26 @@
+{
+  "synced_at": "2026-06-20T02:29:44.545Z",
+  "rawfile_manifest": ".arkpilot/design_exports/svg/rawfile-manifest.json",
+  "files": [
+    "icon_Add-Ingredient-Button-Icon.svg",
+    "icon_Close-Share-Card-Sheet.svg",
+    "icon_Export-Share-Card-Image.svg",
+    "icon_Fridge-Tab-Icon-1.svg",
+    "icon_Fridge-Tab-Icon-2.svg",
+    "icon_Home-Tab-Icon-1.svg",
+    "icon_Home-Tab-Icon-2.svg",
+    "icon_Log-Tab-Icon-1.svg",
+    "icon_Log-Tab-Icon-2.svg",
+    "icon_Mood-Tab-Icon-1.svg",
+    "icon_Mood-Tab-Icon-2.svg",
+    "icon_Open-Share-Card-for-This-Entry.svg",
+    "icon_Remove-Egg-Ingredient.svg",
+    "icon_Remove-Scallion-Ingredient.svg",
+    "icon_Remove-Tomato-Ingredient.svg",
+    "icon_Share-Card-Decorative-Sparkle.svg",
+    "icon_Spin-Wheel-Center-Decoration.svg",
+    "icon_Start-Wheel-Spin-Icon.svg"
+  ],
+  "style_manifest": "svg-style-manifest.json",
+  "svg_style_map": "entry/src/main/ets/common/svg/SvgStyleMap.ets"
+}

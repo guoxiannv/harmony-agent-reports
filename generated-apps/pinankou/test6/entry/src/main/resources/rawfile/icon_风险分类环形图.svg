@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="130" viewBox="0 0 130 130"><title>风险分类环形图</title>
+            <circle cx="65" cy="65" r="50" fill="none" stroke="#EDF4F5" stroke-width="18"/>
+            <circle cx="65" cy="65" r="50" fill="none" stroke="#096B70" stroke-width="18" stroke-dasharray="157 157" stroke-linecap="round" transform="rotate(-90 65 65)"/>
+            <circle cx="65" cy="65" r="50" fill="none" stroke="#14A3A0" stroke-width="18" stroke-dasharray="94 220" stroke-dashoffset="-157" stroke-linecap="round" transform="rotate(-90 65 65)"/>
+          </svg>

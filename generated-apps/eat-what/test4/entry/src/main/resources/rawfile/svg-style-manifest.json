@@ -1,0 +1,348 @@
+{
+  "generated_at": "2026-06-20T02:29:44.541Z",
+  "icons": [
+    {
+      "file_name": "icon_Add-Ingredient-Button-Icon.svg",
+      "title": "Add Ingredient Button Icon",
+      "source_html": "page-fridge-page.html",
+      "hash": "40629f50798a7e941a06c0ef62c4b5ee394a6067",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "add-button",
+        "input-row",
+        "input-card"
+      ]
+    },
+    {
+      "file_name": "icon_Close-Share-Card-Sheet.svg",
+      "title": "Close Share Card Sheet",
+      "source_html": "page-share-card-sheet.html",
+      "hash": "5ef88f91c7b6a452abe4f079d2b5fe4ea052b0b7",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6B5E52",
+      "fill_color": "",
+      "stroke_color": "#6B5E52",
+      "opacity": "1",
+      "context_classes": [
+        "close-button",
+        "sheet-header",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_Export-Share-Card-Image.svg",
+      "title": "Export Share Card Image",
+      "source_html": "page-share-card-sheet.html",
+      "hash": "389bf77fe2fd5481b690c067770fc01ef1973a7a",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "export-button",
+        "sheet",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Fridge-Tab-Icon-1.svg",
+      "title": "Fridge Tab Icon",
+      "source_html": "page-fridge-page.html",
+      "hash": "3b4e686896200177bdcf5ef85526662df7f1d057",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B4A",
+      "fill_color": "",
+      "stroke_color": "#FF6B4A",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Fridge-Tab-Icon-2.svg",
+      "title": "Fridge Tab Icon",
+      "source_html": "page-home-page.html",
+      "hash": "3b4e686896200177bdcf5ef85526662df7f1d057",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E9185",
+      "fill_color": "",
+      "stroke_color": "#9E9185",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Home-Tab-Icon-1.svg",
+      "title": "Home Tab Icon",
+      "source_html": "page-fridge-page.html",
+      "hash": "7e61076bcc7c0af9f0a64ad6278797573aab1214",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E9185",
+      "fill_color": "",
+      "stroke_color": "#9E9185",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Home-Tab-Icon-2.svg",
+      "title": "Home Tab Icon",
+      "source_html": "page-home-page.html",
+      "hash": "7e61076bcc7c0af9f0a64ad6278797573aab1214",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B4A",
+      "fill_color": "",
+      "stroke_color": "#FF6B4A",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Log-Tab-Icon-1.svg",
+      "title": "Log Tab Icon",
+      "source_html": "page-fridge-page.html",
+      "hash": "cd45f79c77aa1dfb1b442cd21782c7e4b48e03ef",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E9185",
+      "fill_color": "",
+      "stroke_color": "#9E9185",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Log-Tab-Icon-2.svg",
+      "title": "Log Tab Icon",
+      "source_html": "page-log-page.html",
+      "hash": "cd45f79c77aa1dfb1b442cd21782c7e4b48e03ef",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B4A",
+      "fill_color": "",
+      "stroke_color": "#FF6B4A",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Mood-Tab-Icon-1.svg",
+      "title": "Mood Tab Icon",
+      "source_html": "page-fridge-page.html",
+      "hash": "314de5a1b5faccb84e035cb34772884edaf93dc8",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E9185",
+      "fill_color": "",
+      "stroke_color": "#9E9185",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Mood-Tab-Icon-2.svg",
+      "title": "Mood Tab Icon",
+      "source_html": "page-mood-page.html",
+      "hash": "314de5a1b5faccb84e035cb34772884edaf93dc8",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B4A",
+      "fill_color": "",
+      "stroke_color": "#FF6B4A",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_Open-Share-Card-for-This-Entry.svg",
+      "title": "Open Share Card for This Entry",
+      "source_html": "page-log-page.html",
+      "hash": "d737a7dc143ff3d9d70a31a3cf9cf6c4a33dc327",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B4A",
+      "fill_color": "",
+      "stroke_color": "#FF6B4A",
+      "opacity": "1",
+      "context_classes": [
+        "share-button",
+        "entry-card",
+        "entry-list"
+      ]
+    },
+    {
+      "file_name": "icon_Remove-Egg-Ingredient.svg",
+      "title": "Remove Egg Ingredient",
+      "source_html": "page-fridge-page.html",
+      "hash": "54741a79951e2a6ed55f7d0a660764ffb7890840",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1F7A71",
+      "fill_color": "",
+      "stroke_color": "#1F7A71",
+      "opacity": "1",
+      "context_classes": [
+        "ingredient-chip",
+        "chip-row"
+      ]
+    },
+    {
+      "file_name": "icon_Remove-Scallion-Ingredient.svg",
+      "title": "Remove Scallion Ingredient",
+      "source_html": "page-fridge-page.html",
+      "hash": "5fce411312759402aab7e67147a66bd66c42846c",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1F7A71",
+      "fill_color": "",
+      "stroke_color": "#1F7A71",
+      "opacity": "1",
+      "context_classes": [
+        "ingredient-chip",
+        "chip-row"
+      ]
+    },
+    {
+      "file_name": "icon_Remove-Tomato-Ingredient.svg",
+      "title": "Remove Tomato Ingredient",
+      "source_html": "page-fridge-page.html",
+      "hash": "01cedc5513ea8ddf9001e2574de2bcec429773de",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1F7A71",
+      "fill_color": "",
+      "stroke_color": "#1F7A71",
+      "opacity": "1",
+      "context_classes": [
+        "ingredient-chip",
+        "chip-row"
+      ]
+    },
+    {
+      "file_name": "icon_Share-Card-Decorative-Sparkle.svg",
+      "title": "Share Card Decorative Sparkle",
+      "source_html": "page-share-card-sheet.html",
+      "hash": "68760411fd71f001f46eafc36c0579835a8b234c",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "share-card-top",
+        "share-card",
+        "preview-area"
+      ]
+    },
+    {
+      "file_name": "icon_Spin-Wheel-Center-Decoration.svg",
+      "title": "Spin Wheel Center Decoration",
+      "source_html": "page-home-page.html",
+      "hash": "f49db7766c8b59db339bf5fe513405dfe881701a",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3D2B1F",
+      "fill_color": "",
+      "stroke_color": "#FF6B4A",
+      "opacity": "1",
+      "context_classes": [
+        "wheel-center",
+        "wheel-plate",
+        "wheel-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Start-Wheel-Spin-Icon.svg",
+      "title": "Start Wheel Spin Icon",
+      "source_html": "page-home-page.html",
+      "hash": "a25da991aebc1081585bfc226cd967c0ee9f7f89",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "spin-button",
+        "wheel-card",
+        "page"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "synced_at": "2026-06-20T03:40:10.798Z",
+  "rawfile_manifest": ".arkpilot/design_exports/svg/rawfile-manifest.json",
+  "files": [
+    "icon_复习进度环.svg",
+    "icon_将当前单词移到队尾稍后复习.svg",
+    "icon_本轮复习完成星星.svg",
+    "icon_标记当前单词已认识并移除.svg",
+    "icon_没有待复习单词的占位图标.svg",
+    "icon_重新加载当前阶段单词.svg"
+  ],
+  "style_manifest": "svg-style-manifest.json",
+  "svg_style_map": "entry/src/main/ets/common/svg/SvgStyleMap.ets"
+}

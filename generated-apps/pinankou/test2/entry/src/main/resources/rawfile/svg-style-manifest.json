@@ -1,0 +1,771 @@
+{
+  "generated_at": "2026-06-20T04:59:21.215Z",
+  "icons": [
+    {
+      "file_name": "icon_一键呼叫应急联系人.svg",
+      "title": "一键呼叫应急联系人",
+      "source_html": "page-home-page.html",
+      "hash": "ba039e54407c9801e29c0adec43306de1c1aea9a",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "danger",
+        "quick-item",
+        "quick-grid"
+      ]
+    },
+    {
+      "file_name": "icon_今日待办图标.svg",
+      "title": "今日待办图标",
+      "source_html": "page-home-page.html",
+      "hash": "f94f9caa98d3ea16a67188fb76e573644b10516c",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0F172A",
+      "fill_color": "",
+      "stroke_color": "#0F172A",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "section",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_区域排名图标.svg",
+      "title": "区域排名图标",
+      "source_html": "page-stats-page.html",
+      "hash": "d3f4f0f4cf6617fcfe441d061e338eda2bb2b130",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0F172A",
+      "fill_color": "",
+      "stroke_color": "#0F172A",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "section",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_同步本地数据到云端.svg",
+      "title": "同步本地数据到云端",
+      "source_html": "page-profile-page.html",
+      "hash": "7de018f42f9200fc53a47426d6ea92b1f5b20d85",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_呼叫医务室值班.svg",
+      "title": "呼叫医务室值班",
+      "source_html": "page-contacts-page.html",
+      "hash": "74a28471db9b2a1a4f04d7a7251046923287e970",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "call-btn",
+        "contact-card",
+        "contact-list"
+      ]
+    },
+    {
+      "file_name": "icon_呼叫张工.svg",
+      "title": "呼叫张工",
+      "source_html": "page-contacts-page.html",
+      "hash": "6e7baeca51e76b136e738a96cf8b3fce38ca86e7",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "call-btn",
+        "contact-card",
+        "contact-list"
+      ]
+    },
+    {
+      "file_name": "icon_呼叫李安全.svg",
+      "title": "呼叫李安全",
+      "source_html": "page-contacts-page.html",
+      "hash": "30489734b031d4aa073fd43a3510539c5d765976",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "call-btn",
+        "contact-card",
+        "contact-list"
+      ]
+    },
+    {
+      "file_name": "icon_工作台标签-1.svg",
+      "title": "工作台标签",
+      "source_html": "page-contacts-page.html",
+      "hash": "e01db884d5bd1e2b005d90adbe2ad104e2acc78f",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_工作台标签-2.svg",
+      "title": "工作台标签",
+      "source_html": "page-home-page.html",
+      "hash": "e01db884d5bd1e2b005d90adbe2ad104e2acc78f",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_应急联系人标签-1.svg",
+      "title": "应急联系人标签",
+      "source_html": "page-contacts-page.html",
+      "hash": "40c742210da0590dc095df84b0c75ef4231ee88c",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_应急联系人标签-2.svg",
+      "title": "应急联系人标签",
+      "source_html": "page-hazard-page.html",
+      "hash": "40c742210da0590dc095df84b0c75ef4231ee88c",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_开始同步.svg",
+      "title": "开始同步",
+      "source_html": "page-profile-page.html",
+      "hash": "2be7d28262df1e870259447397e36eaa5fda9cdd",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "menu-arrow",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_开始巡检打卡.svg",
+      "title": "开始巡检打卡",
+      "source_html": "page-home-page.html",
+      "hash": "aa7b5b46e05b0f91f15da2f4075c54955503982d",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "quick-item",
+        "quick-grid"
+      ]
+    },
+    {
+      "file_name": "icon_快捷操作图标.svg",
+      "title": "快捷操作图标",
+      "source_html": "page-home-page.html",
+      "hash": "78e5e75ff3734da855989af45500eeb1cda9f126",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0F172A",
+      "fill_color": "",
+      "stroke_color": "#0F172A",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "section",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签-1.svg",
+      "title": "我的标签",
+      "source_html": "page-contacts-page.html",
+      "hash": "d3055d5df7c1d669406db50133222095553f741d",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签-2.svg",
+      "title": "我的标签",
+      "source_html": "page-profile-page.html",
+      "hash": "d3055d5df7c1d669406db50133222095553f741d",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_打开应用设置.svg",
+      "title": "打开应用设置",
+      "source_html": "page-profile-page.html",
+      "hash": "13f34312dbcfe62d33282837d58cb9a18f7d774d",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_打开通知中心.svg",
+      "title": "打开通知中心",
+      "source_html": "page-home-page.html",
+      "hash": "b6549147acdf4705fe1b6ce8b7a580e5317a7aa4",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header-top",
+        "header-banner"
+      ]
+    },
+    {
+      "file_name": "icon_拍摄现场照片.svg",
+      "title": "拍摄现场照片",
+      "source_html": "page-hazard-edit-page.html",
+      "hash": "f241a3a18699cd1b157c0ea69674ef838a029e0c",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#64748B",
+      "fill_color": "",
+      "stroke_color": "#64748B",
+      "opacity": "1",
+      "context_classes": [
+        "photo-upload",
+        "section",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_搜索联系人图标.svg",
+      "title": "搜索联系人图标",
+      "source_html": "page-contacts-page.html",
+      "hash": "fa497f0543cde7653a87d378b71e8569773a0931",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#334155",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "search-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_搜索隐患图标.svg",
+      "title": "搜索隐患图标",
+      "source_html": "page-hazard-page.html",
+      "hash": "42e75fbd64a0975e1cc5dd3bf735b76776b3f178",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#334155",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "search-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_新建隐患上报.svg",
+      "title": "新建隐患上报",
+      "source_html": "page-home-page.html",
+      "hash": "78d8ee229f9ee1ef1976e3318e116d03f8327012",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "quick-item",
+        "quick-grid"
+      ]
+    },
+    {
+      "file_name": "icon_新建隐患浮动按钮.svg",
+      "title": "新建隐患浮动按钮",
+      "source_html": "page-hazard-page.html",
+      "hash": "8b3eddb5499261181a06910170b1773a1a42ded2",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "fab",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_新建隐患记录.svg",
+      "title": "新建隐患记录",
+      "source_html": "page-hazard-page.html",
+      "hash": "97916aec041a19d4a56003e052c5b98580b0ad6d",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "page-header",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_查看关于应用信息.svg",
+      "title": "查看关于应用信息",
+      "source_html": "page-profile-page.html",
+      "hash": "52ace8aac4164dc02228c84fde4c48f9d4e254c9",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_查看更多快捷功能.svg",
+      "title": "查看更多快捷功能",
+      "source_html": "page-home-page.html",
+      "hash": "1c904e827cac35eeed1ad9da4233563ef78af314",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "secondary",
+        "quick-item",
+        "quick-grid"
+      ]
+    },
+    {
+      "file_name": "icon_添加应急联系人.svg",
+      "title": "添加应急联系人",
+      "source_html": "page-contacts-page.html",
+      "hash": "0aab2d4f3f5eab4449a88ec459d40780ceb5f0fd",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "page-header",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_点位已打卡.svg",
+      "title": "点位已打卡",
+      "source_html": "page-patrol-page.html",
+      "hash": "04e96b02dd13b8111c812f346c827b1e17c0678f",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#10B981",
+      "fill_color": "",
+      "stroke_color": "#10B981",
+      "opacity": "1",
+      "context_classes": [
+        "checkpoint-status",
+        "done",
+        "checkpoint-item",
+        "checkpoint-list"
+      ]
+    },
+    {
+      "file_name": "icon_点位未打卡.svg",
+      "title": "点位未打卡",
+      "source_html": "page-patrol-page.html",
+      "hash": "be161409591006c8fa04f9b22518d556953eba29",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "checkpoint-status",
+        "todo",
+        "checkpoint-item",
+        "checkpoint-list"
+      ]
+    },
+    {
+      "file_name": "icon_统计看板标签-1.svg",
+      "title": "统计看板标签",
+      "source_html": "page-contacts-page.html",
+      "hash": "052fbc764da142cd04b2b0df6d5f2dc2d0c7fa14",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_统计看板标签-2.svg",
+      "title": "统计看板标签",
+      "source_html": "page-stats-page.html",
+      "hash": "052fbc764da142cd04b2b0df6d5f2dc2d0c7fa14",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_编辑当前隐患.svg",
+      "title": "编辑当前隐患",
+      "source_html": "page-hazard-detail-page.html",
+      "hash": "29b0585c4b3b7994c844a5af9b10e563ac71245f",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0F172A",
+      "fill_color": "",
+      "stroke_color": "#0F172A",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "nav-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_巡检打卡标签.svg",
+      "title": "巡检打卡标签",
+      "source_html": "page-contacts-page.html",
+      "hash": "f867c904e0dd7ac647c75673f832c02b7f2d0597",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_巡检点位图标.svg",
+      "title": "巡检点位图标",
+      "source_html": "page-patrol-page.html",
+      "hash": "62fe508affed599b69406c76c7c1cafe60f9a9a2",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0F172A",
+      "fill_color": "",
+      "stroke_color": "#0F172A",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "section",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_返回上一页.svg",
+      "title": "返回上一页",
+      "source_html": "page-hazard-detail-page.html",
+      "hash": "a343492e295f09db5dc9eab2183201b37af39dfb",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0F172A",
+      "fill_color": "",
+      "stroke_color": "#0F172A",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "nav-bar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_进入关于页面.svg",
+      "title": "进入关于页面",
+      "source_html": "page-profile-page.html",
+      "hash": "60716c9a76d871159d4b006a4250a8cf81fdc73c",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "menu-arrow",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_进入设置.svg",
+      "title": "进入设置",
+      "source_html": "page-profile-page.html",
+      "hash": "33860fb7300fef27fab1160762563d1066b04359",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "menu-arrow",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_隐患管理标签-1.svg",
+      "title": "隐患管理标签",
+      "source_html": "page-contacts-page.html",
+      "hash": "49c2e68fd0b62a6fd1c1c444cff1fe7a449b3add",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#94A3B8",
+      "fill_color": "",
+      "stroke_color": "#94A3B8",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_隐患管理标签-2.svg",
+      "title": "隐患管理标签",
+      "source_html": "page-hazard-page.html",
+      "hash": "49c2e68fd0b62a6fd1c1c444cff1fe7a449b3add",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0D9488",
+      "fill_color": "",
+      "stroke_color": "#0D9488",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar",
+        "app-shell"
+      ]
+    },
+    {
+      "file_name": "icon_隐患趋势图标.svg",
+      "title": "隐患趋势图标",
+      "source_html": "page-stats-page.html",
+      "hash": "e8bca6747062ccf6c425b9609c5e7ed4f6ed3dff",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#0F172A",
+      "fill_color": "",
+      "stroke_color": "#0F172A",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "section",
+        "app-shell"
+      ]
+    }
+  ]
+}

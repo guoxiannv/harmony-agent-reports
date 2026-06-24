@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-06-20T03:41:24.079Z",
+  "icons": [
+    {
+      "file_name": "icon_App-logo-showing-an-open-book.svg",
+      "title": "App logo showing an open book",
+      "source_html": "page-review-page.html",
+      "hash": "f37e4a9a980fcbd5a7259b55755e8cd3bdf5d477",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1F2937",
+      "fill_color": "",
+      "stroke_color": "#1F2937",
+      "opacity": "1",
+      "context_classes": [
+        "brand-icon",
+        "brand",
+        "progress-header"
+      ]
+    },
+    {
+      "file_name": "icon_Checkmark-indicating-I-know-this-word.svg",
+      "title": "Checkmark indicating I know this word",
+      "source_html": "page-review-page.html",
+      "hash": "05028e0ef77c667e0212b2e0107114a820368286",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1F2937",
+      "fill_color": "",
+      "stroke_color": "#1F2937",
+      "opacity": "1",
+      "context_classes": [
+        "action-btn",
+        "btn-known",
+        "action-row",
+        "main-stage"
+      ]
+    },
+    {
+      "file_name": "icon_Medal-awarded-for-completing-all-review-words.svg",
+      "title": "Medal awarded for completing all review words",
+      "source_html": "page-review-page.html",
+      "hash": "a9620bd48dc3611326fb6e3cdbf4cd7bdfcd149c",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1F2937",
+      "fill_color": "",
+      "stroke_color": "#1F2937",
+      "opacity": "1",
+      "context_classes": [
+        "completion-icon",
+        "completion-panel",
+        "page-root"
+      ]
+    },
+    {
+      "file_name": "icon_Rotate-arrow-indicating-put-this-word-back-for-review.svg",
+      "title": "Rotate arrow indicating put this word back for review",
+      "source_html": "page-review-page.html",
+      "hash": "62a77e2440b5fd84d19b1d7bf6384ca0fa7fd4de",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "action-btn",
+        "btn-unknown",
+        "action-row",
+        "main-stage"
+      ]
+    },
+    {
+      "file_name": "icon_Sparkle-decoration-on-flashcard-front.svg",
+      "title": "Sparkle decoration on flashcard front",
+      "source_html": "page-review-page.html",
+      "hash": "bb9a5deaaf70e639d73b34091fd62305a2f3871e",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FBBF24",
+      "fill_color": "",
+      "stroke_color": "#FBBF24",
+      "opacity": "1",
+      "context_classes": [
+        "card-face",
+        "card-face-front",
+        "flashcard",
+        "scene"
+      ]
+    },
+    {
+      "file_name": "icon_Trophy-icon-showing-words-learned-this-session.svg",
+      "title": "Trophy icon showing words learned this session",
+      "source_html": "page-review-page.html",
+      "hash": "e5772f54e577ba54454471cb479f4b4cadbe0bd7",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1F2937",
+      "fill_color": "",
+      "stroke_color": "#1F2937",
+      "opacity": "1",
+      "context_classes": [
+        "known-badge",
+        "progress-cluster",
+        "progress-header"
+      ]
+    }
+  ]
+}

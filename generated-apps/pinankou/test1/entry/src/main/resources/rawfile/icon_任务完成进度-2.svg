@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ring" viewBox="0 0 44 44">
+          <title>任务完成进度</title>
+          <circle cx="22" cy="22" r="18"/>
+          <circle class="progress" cx="22" cy="22" r="18" stroke-dashoffset="0"/>
+          <text x="22" y="25" text-anchor="middle" class="ring-text">100%</text>
+        </svg>

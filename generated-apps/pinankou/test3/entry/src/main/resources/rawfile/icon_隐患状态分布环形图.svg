@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="donut" viewBox="0 0 100 100">
+          <title>隐患状态分布环形图</title>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#E2E8F0" stroke-width="16"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#0D9488" stroke-width="16" stroke-dasharray="75 251" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#F59E0B" stroke-width="16" stroke-dasharray="50 251" stroke-dashoffset="-75" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#EF4444" stroke-width="16" stroke-dasharray="25 251" stroke-dashoffset="-125" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#0EA5E9" stroke-width="16" stroke-dasharray="25 251" stroke-dashoffset="-150" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="25" fill="#fff"/>
+          <text x="50" y="52" text-anchor="middle" font-size="10" fill="#0F172A" font-weight="700">12</text>
+        </svg>

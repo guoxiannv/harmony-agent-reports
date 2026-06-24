@@ -1,0 +1,701 @@
+{
+  "generated_at": "2026-06-20T08:40:23.338Z",
+  "icons": [
+    {
+      "file_name": "icon_Add-New-Item-1.svg",
+      "title": "Add New Item",
+      "source_html": "page-course-detail-page.html",
+      "hash": "cc8d143df93378fe4fd826539922d0b5fe4b8d46",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Add-New-Item-2.svg",
+      "title": "Add New Item",
+      "source_html": "page-courses-page.html",
+      "hash": "811776839c03666be5783380cba103eedfd25d67",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "btn-ghost",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Add-New-Item-3.svg",
+      "title": "Add New Item",
+      "source_html": "page-courses-page.html",
+      "hash": "b9b117f12e5095b49f6ee54548cec1fa42b6295d",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "fab",
+        "page-content",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Course-Location.svg",
+      "title": "Course Location",
+      "source_html": "page-course-detail-page.html",
+      "hash": "407c20afdee0c4fd61aa428541ac9fa42244c6f8",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "rgba(255,255,255,0.9)",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "card",
+        "card-gradient"
+      ]
+    },
+    {
+      "file_name": "icon_Decrease-Value.svg",
+      "title": "Decrease Value",
+      "source_html": "page-points-page.html",
+      "hash": "2d1a345741329eb79aa57c17aeca9713d34e9c6d",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6E5D53",
+      "fill_color": "",
+      "stroke_color": "#B85448",
+      "opacity": "1",
+      "context_classes": [
+        "list-item",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_Delete-Item.svg",
+      "title": "Delete Item",
+      "source_html": "page-member-detail-page.html",
+      "hash": "8746e7aefc952a2a8ceff4342913aabde92afb4b",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#B85448",
+      "fill_color": "",
+      "stroke_color": "#B85448",
+      "opacity": "1",
+      "context_classes": [
+        "btn-ghost",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Edit-Item-1.svg",
+      "title": "Edit Item",
+      "source_html": "page-course-detail-page.html",
+      "hash": "34cc73eafda949276ea22e7e6b88a54bbf342b2c",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Edit-Item-2.svg",
+      "title": "Edit Item",
+      "source_html": "page-inventory-edit-page.html",
+      "hash": "4ee54347de285ba6ef03a84968a6fec00ddfee4c",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3B2820",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "handwritten",
+        "page-title",
+        "page-content",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Empty-Members-Pottery-Wheel.svg",
+      "title": "Empty Members Pottery Wheel",
+      "source_html": "page-members-page.html",
+      "hash": "5473c89bfb7b65ef1b603d3ca6918dac9f302115",
+      "width": 120,
+      "height": 120,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6E5D53",
+      "fill_color": "",
+      "stroke_color": "#C98B6C",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "page-content",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Expand-Options.svg",
+      "title": "Expand Options",
+      "source_html": "page-course-booking-page.html",
+      "hash": "7717587e5c9de1161ceda86484b5c0d6dfb8a3f6",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E8E84",
+      "fill_color": "",
+      "stroke_color": "#9E8E84",
+      "opacity": "1",
+      "context_classes": [
+        "input-field",
+        "card",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Filter-List-1.svg",
+      "title": "Filter List",
+      "source_html": "page-inventory-page.html",
+      "hash": "e5a9a9319e6c7ed3ad09f5f1ef32ec2c1d146cb7",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Filter-List-2.svg",
+      "title": "Filter List",
+      "source_html": "page-inventory-transaction-page.html",
+      "hash": "4ab0ec2aa1518a9f9e2ea20131d441c68b2965d7",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3B2820",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "handwritten",
+        "page-title",
+        "page-content",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Filter-List-3.svg",
+      "title": "Filter List",
+      "source_html": "page-members-page.html",
+      "hash": "0bcf67438642ef5f418f3cf9a30e1642452a1f8d",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E8E84",
+      "fill_color": "",
+      "stroke_color": "#9E8E84",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Go-Back.svg",
+      "title": "Go Back",
+      "source_html": "page-course-booking-page.html",
+      "hash": "ff6b2958dc24562338908fa7863d3262769c0374",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "top-nav",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Member-Check-in-1.svg",
+      "title": "Member Check-in",
+      "source_html": "page-home-page.html",
+      "hash": "d1c6c0f3640c3f0db7c8da9ccf319193df4504d6",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "fab",
+        "page-content",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Member-Check-in-2.svg",
+      "title": "Member Check-in",
+      "source_html": "page-member-detail-page.html",
+      "hash": "71fb6bc678fca2a6a38372d31510b99d069e9042",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Member-Check-in-3.svg",
+      "title": "Member Check-in",
+      "source_html": "page-points-page.html",
+      "hash": "41378e4ebcd569acfc489ec3069878d90b1e6f43",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "card",
+        "card-gradient"
+      ]
+    },
+    {
+      "file_name": "icon_Member-Check-in-4.svg",
+      "title": "Member Check-in",
+      "source_html": "page-points-page.html",
+      "hash": "6eed7611451995b2b5728ad0a612d0b253217f81",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6E5D53",
+      "fill_color": "",
+      "stroke_color": "#4F6644",
+      "opacity": "1",
+      "context_classes": [
+        "list-item",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Courses-Calendar-1.svg",
+      "title": "Navigate to Courses Calendar",
+      "source_html": "page-courses-page.html",
+      "hash": "686d5d10b53534900f4a91ca41395721bc1507c3",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Courses-Calendar-2.svg",
+      "title": "Navigate to Courses Calendar",
+      "source_html": "page-home-page.html",
+      "hash": "d25f5c6f651ed31db18c025de84e725d7c12c52c",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3B2820",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "page-content",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Courses-Calendar-3.svg",
+      "title": "Navigate to Courses Calendar",
+      "source_html": "page-home-page.html",
+      "hash": "8aba79edd98e29750af0c1e7aab5930339217cfe",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E8E84",
+      "fill_color": "",
+      "stroke_color": "#9E8E84",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Home-Overview-1.svg",
+      "title": "Navigate to Home Overview",
+      "source_html": "page-courses-page.html",
+      "hash": "78b7a998920f12c4336e06f2f36628869bd757d6",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E8E84",
+      "fill_color": "",
+      "stroke_color": "#9E8E84",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Home-Overview-2.svg",
+      "title": "Navigate to Home Overview",
+      "source_html": "page-home-page.html",
+      "hash": "4f7503fd4d9519b1e0d90d33bc16b5289604135a",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Inventory-1.svg",
+      "title": "Navigate to Inventory",
+      "source_html": "page-courses-page.html",
+      "hash": "50fc4a5568ac32c8ff98ccdd4c7359530b7a9eb2",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E8E84",
+      "fill_color": "",
+      "stroke_color": "#9E8E84",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Inventory-2.svg",
+      "title": "Navigate to Inventory",
+      "source_html": "page-inventory-page.html",
+      "hash": "665a2d43787a2c2e3143d8fa70e4de570572db02",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Members-List-1.svg",
+      "title": "Navigate to Members List",
+      "source_html": "page-course-detail-page.html",
+      "hash": "1738ab9f635e203825e0d897514c17d4b1cf30f3",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "rgba(255,255,255,0.9)",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "card",
+        "card-gradient"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Members-List-2.svg",
+      "title": "Navigate to Members List",
+      "source_html": "page-courses-page.html",
+      "hash": "f7ba92525b251eac4420f937bc7e2f4970560c68",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E8E84",
+      "fill_color": "",
+      "stroke_color": "#9E8E84",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Members-List-3.svg",
+      "title": "Navigate to Members List",
+      "source_html": "page-members-page.html",
+      "hash": "10229b10e9e7a92b09a112ed879d73f1f036e1ed",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Points-Center-1.svg",
+      "title": "Navigate to Points Center",
+      "source_html": "page-courses-page.html",
+      "hash": "473fe1b54731aa58e3c977587b2f29a9eeb51ac4",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E8E84",
+      "fill_color": "",
+      "stroke_color": "#9E8E84",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Points-Center-2.svg",
+      "title": "Navigate to Points Center",
+      "source_html": "page-home-page.html",
+      "hash": "a29f08b21b430238892ab5cb5603264388a658ee",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3B2820",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "page-content",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Points-Center-3.svg",
+      "title": "Navigate to Points Center",
+      "source_html": "page-point-record-page.html",
+      "hash": "33418a652f496bf603a161b19f38947b506e20f2",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3B2820",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "handwritten",
+        "page-title",
+        "page-content",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Points-Center-4.svg",
+      "title": "Navigate to Points Center",
+      "source_html": "page-points-page.html",
+      "hash": "509ba07d70eb84067d34ae613f2c1f8c60ee1509",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6E5D53",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "list-item",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-to-Points-Center-5.svg",
+      "title": "Navigate to Points Center",
+      "source_html": "page-points-page.html",
+      "hash": "894abe08c4f9b3d45099fff8d880b6e24c9c7b74",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9E4F2C",
+      "fill_color": "",
+      "stroke_color": "#9E4F2C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "bottom-tab-bar",
+        "app-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Open-Detail.svg",
+      "title": "Open Detail",
+      "source_html": "page-members-page.html",
+      "hash": "84901aff4da7c95068992a3d3897bb80d2f20c06",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6E5D53",
+      "fill_color": "",
+      "stroke_color": "#C98B6C",
+      "opacity": "1",
+      "context_classes": [
+        "list-item",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_Search-Members.svg",
+      "title": "Search Members",
+      "source_html": "page-members-page.html",
+      "hash": "ab9ea798486086b78c5713868afea544e8b9e4fb",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6E5D53",
+      "fill_color": "",
+      "stroke_color": "#9E8E84",
+      "opacity": "1",
+      "context_classes": [
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Upload-Work-Image.svg",
+      "title": "Upload Work Image",
+      "source_html": "page-member-detail-page.html",
+      "hash": "b85cf8b6335d8971d9423adf1e924c666522c866",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C98B6C",
+      "fill_color": "",
+      "stroke_color": "#C98B6C",
+      "opacity": "1",
+      "context_classes": [
+        "image-slot",
+        "image-grid",
+        "page-content"
+      ]
+    },
+    {
+      "file_name": "icon_Warning-Alert.svg",
+      "title": "Warning Alert",
+      "source_html": "page-inventory-page.html",
+      "hash": "490f4f441873a0a169904f418ebc272d49e1d429",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "card",
+        "card-gradient-alert",
+        "page-content"
+      ]
+    }
+  ]
+}

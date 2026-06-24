@@ -589,6 +589,9 @@ function analyzeRun(file, options) {
     return acc;
   }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0 });
 
+  const hapPath = join(cwd, "entry", "build", "default", "outputs", "default", "entry-default-unsigned.hap");
+  const hapExists = existsSync(hapPath);
+
   return {
     app: parts.app,
     test: parts.test,
@@ -614,6 +617,8 @@ function analyzeRun(file, options) {
     netChainDurationMs,
     pauseIntervals,
     tokenUsage,
+    hapExists,
+    hapPath,
     lanes,
   };
 }
@@ -850,10 +855,39 @@ function renderHtml(report) {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 12px 16px;
       margin-bottom: 14px;
     }
-    .comparison-app h3 { margin: 0 0 8px; font-size: 16px; }
+    .comparison-app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .comparison-app-header:hover {
+      background: #f3f5f8;
+    }
+    .comparison-app-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .comparison-app-toggle {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform 0.15s ease;
+    }
+    .comparison-app.collapsed .comparison-app-toggle {
+      transform: rotate(90deg);
+    }
+    .comparison-app-content {
+      padding: 0 16px 16px;
+      display: block;
+    }
+    .comparison-app.collapsed .comparison-app-content {
+      display: none;
+    }
     .prompt-display {
       background: #f9fafb;
       border: 1px solid var(--line);
@@ -961,7 +995,7 @@ function renderHtml(report) {
 <body>
   <header>
     <h1>Agent Trace Chain Time Report</h1>
-    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = sum of transcript usage · 生成时间：${htmlEscape(shortIso(report.generatedAt))} · 扫描目录：<code>${htmlEscape(report.appsDir)}</code></div>
+    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = sum of transcript usage · 仅显示含 HAP 产物的 run · 生成时间：${htmlEscape(shortIso(report.generatedAt))} · 扫描目录：<code>${htmlEscape(report.appsDir)}</code></div>
   </header>
   <main>
     <section class="metrics">
@@ -1080,39 +1114,44 @@ function renderHtml(report) {
     <h2>设计图与实际实现对比</h2>
     <p class="comparison-hint">每个工程目录下 <code>design/</code> 放设计稿截图，<code>actual/</code> 放实际实现截图，<code>problems.md</code> 维护 Prompt 和问题汇总。</p>
     ${(report.comparison || []).map((item) => `
-      <div class="comparison-app">
-        <h3>${htmlEscape(item.label)}</h3>
-        <div class="prompt-display">${htmlEscape(item.prompt || "")}</div>
-        <p class="sub-section-title">设计稿</p>
-        <div class="comparison-grid">
-          ${item.designImages.length > 0
-            ? item.designImages.map((img) => `
-              <div class="img-slot">
-                <img src="comparison-images/${encodeURIComponent(item.folder)}/design/${encodeURIComponent(img)}" alt="${htmlEscape(img)}" loading="lazy" />
-              </div>
-            `).join("")
-            : `<div class="img-slot empty">将设计稿放入 <code>comparison-images/${htmlEscape(item.folder)}/design/</code></div>`
-          }
+      <div class="comparison-app" data-folder="${htmlEscape(item.folder)}">
+        <div class="comparison-app-header">
+          <h3 class="comparison-app-title">${htmlEscape(item.label)}</h3>
+          <span class="comparison-app-toggle">▶</span>
         </div>
-        <p class="sub-section-title">实际实现</p>
-        <div class="comparison-grid">
-          ${item.actualImages.length > 0
-            ? item.actualImages.map((img) => `
-              <div class="img-slot">
-                <img src="comparison-images/${encodeURIComponent(item.folder)}/actual/${encodeURIComponent(img)}" alt="${htmlEscape(img)}" loading="lazy" />
+        <div class="comparison-app-content">
+          <div class="prompt-display">${htmlEscape(item.prompt || "")}</div>
+          <p class="sub-section-title">设计稿</p>
+          <div class="comparison-grid">
+            ${item.designImages.length > 0
+              ? item.designImages.map((img) => `
+                <div class="img-slot">
+                  <img src="comparison-images/${encodeURIComponent(item.folder)}/design/${encodeURIComponent(img)}" alt="${htmlEscape(img)}" loading="lazy" />
+                </div>
+              `).join("")
+              : `<div class="img-slot empty">将设计稿放入 <code>comparison-images/${htmlEscape(item.folder)}/design/</code></div>`
+            }
+          </div>
+          <p class="sub-section-title">实际实现</p>
+          <div class="comparison-grid">
+            ${item.actualImages.length > 0
+              ? item.actualImages.map((img) => `
+                <div class="img-slot">
+                  <img src="comparison-images/${encodeURIComponent(item.folder)}/actual/${encodeURIComponent(img)}" alt="${htmlEscape(img)}" loading="lazy" />
+                </div>
+              `).join("")
+              : `<div class="img-slot empty">将实现截图放入 <code>comparison-images/${htmlEscape(item.folder)}/actual/</code></div>`
+            }
+          </div>
+          <div class="problems-section">
+            <p class="sub-section-title">问题汇总</p>
+            ${(item.problems || []).map((problem, i) => `
+              <div class="problem-item">
+                <label>问题 ${i + 1}</label>
+                <div class="problem-text">${htmlEscape(problem)}</div>
               </div>
-            `).join("")
-            : `<div class="img-slot empty">将实现截图放入 <code>comparison-images/${htmlEscape(item.folder)}/actual/</code></div>`
-          }
-        </div>
-        <div class="problems-section">
-          <p class="sub-section-title">问题汇总</p>
-          ${(item.problems || []).map((problem, i) => `
-            <div class="problem-item">
-              <label>问题 ${i + 1}</label>
-              <div class="problem-text">${htmlEscape(problem)}</div>
-            </div>
-          `).join("")}
+            `).join("")}
+          </div>
         </div>
       </div>
     `).join("")}
@@ -1143,6 +1182,11 @@ function renderHtml(report) {
           });
         });
       });
+      document.querySelectorAll('.comparison-app-header').forEach(function (header) {
+        header.addEventListener('click', function () {
+          header.parentElement.classList.toggle('collapsed');
+        });
+      });
     })();
   </script>
 </body>
@@ -1163,7 +1207,7 @@ function main() {
   const runFiles = options.latestOnly ? latestRunFiles(allRunFiles).sort() : allRunFiles;
   const allRuns = runFiles.map((file) => analyzeRun(file, options))
     .sort((a, b) => `${a.app}/${a.test}/${a.runName}`.localeCompare(`${b.app}/${b.test}/${b.runName}`));
-  const runs = allRuns.filter((run) => run.status === "complete");
+  const runs = allRuns.filter((run) => run.hapExists);
   const skipped = allRuns.length - runs.length;
   const report = {
     generatedAt: new Date().toISOString(),
@@ -1184,7 +1228,7 @@ function main() {
   writeFileSync(htmlPath, renderHtml(report), "utf8");
 
   const imageDirs = report.comparison.filter((item) => item.designImages.length > 0 || item.actualImages.length > 0).length;
-  console.log(`Scanned ${allRuns.length} tmux run file(s), ${runs.length} complete${skipped ? `, ${skipped} skipped (non-complete)` : ""}.`);
+  console.log(`Scanned ${allRuns.length} tmux run file(s), ${runs.length} with HAP${skipped ? `, ${skipped} skipped (no HAP)` : ""}.`);
   console.log(`Comparison images: ${imageDirs}/${report.comparison.length} item(s) have images.`);
   console.log(`JSON: ${jsonPath}`);
   console.log(`HTML: ${htmlPath}`);

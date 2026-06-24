@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "ShouZuoYinJi entry module"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "ShouZuoYinJi entry ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ShouZuoYinJi"
+    }
+  ]
+}
