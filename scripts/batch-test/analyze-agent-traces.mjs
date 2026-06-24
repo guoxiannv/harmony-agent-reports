@@ -1037,7 +1037,7 @@ function renderHtml(report) {
 <body>
   <header>
     <h1>Agent Trace Chain Time Report</h1>
-    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = input + output（实际消耗）· Cost = input×$3/M + output×$15/M（Claude Sonnet定价）· 仅显示含 HAP 产物的 run · 生成时间：${htmlEscape(shortIso(report.generatedAt))} · 扫描目录：<code>${htmlEscape(report.appsDir)}</code></div>
+    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = input + output（实际消耗）· Cost = input×$3/M + output×$15/M（Claude Sonnet定价）· 仅显示含 HAP 产物的 run · 生成时间：${htmlEscape(shortIso(report.generatedAt))}</div>
   </header>
   <main>
     <section class="metrics">
