@@ -4,3 +4,6 @@ node_modules/
 .bitfun/
 oh_modules/
 .hvigor/
+# 允许跟踪 hap 包（即使内部 .gitignore 排除了 build 目录）
+!**/entry-default-unsigned.hap
+!**/entry-default.hap
