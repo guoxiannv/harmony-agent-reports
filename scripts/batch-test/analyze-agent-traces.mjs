@@ -1037,7 +1037,7 @@ function renderHtml(report) {
 <body>
   <header>
     <h1>Agent Trace Chain Time Report</h1>
-    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = sum of transcript usage · 仅显示含 HAP 产物的 run · 生成时间：${htmlEscape(shortIso(report.generatedAt))} · 扫描目录：<code>${htmlEscape(report.appsDir)}</code></div>
+    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = input + output（实际消耗）· Cost = input×$3/M + output×$15/M（Claude Sonnet定价）· 仅显示含 HAP 产物的 run · 生成时间：${htmlEscape(shortIso(report.generatedAt))} · 扫描目录：<code>${htmlEscape(report.appsDir)}</code></div>
   </header>
   <main>
     <section class="metrics">
@@ -1069,11 +1069,11 @@ function renderHtml(report) {
           <tr>
             <th>App / Test</th>
             <th>Runs</th>
-            <th>Cost</th>
             <th>Chain Avg</th>
             <th>Total Tokens</th>
             <th>Input</th>
             <th>Output</th>
+            <th>Cost</th>
             <th>Feature Success</th>
             <th>HAP Available</th>
             <th>Aesthetic</th>
@@ -1101,11 +1101,11 @@ function renderHtml(report) {
                 <tr class="tree-parent" data-app="${safeApp}">
                   <td><span class="tree-toggle">▶</span> <strong>${safeApp}</strong></td>
                   <td>${item.runs}</td>
-                  <td>${htmlEscape(formatCost(item.tokens?.cost || 0))}</td>
                   <td class="nowrap">${htmlEscape(formatDuration(item.avgChainMs) || "n/a")}</td>
                   <td>${htmlEscape(formatTokens(item.tokens?.totalTokens || 0))}</td>
                   <td>${htmlEscape(formatTokens(item.tokens?.inputTokens || 0))}</td>
                   <td>${htmlEscape(formatTokens(item.tokens?.outputTokens || 0))}</td>
+                  <td>${htmlEscape(formatCost(item.tokens?.cost || 0))}</td>
                   <td>${fmtRate(agg.featureSuccess)}</td>
                   <td>${fmtRate(agg.hapAvailableRate)}</td>
                   <td>${fmtRate(agg.aesthetic)}</td>
@@ -1128,11 +1128,11 @@ function renderHtml(report) {
                   <tr class="tree-child" data-parent="${safeApp}">
                     <td>${htmlEscape(run.test)} <span class="muted">${htmlEscape(run.runName)}</span></td>
                     <td>1</td>
-                    <td>${htmlEscape(formatCost(t.cost || 0))}</td>
                     <td class="nowrap">${htmlEscape(formatDuration(run.netChainDurationMs) || "n/a")}</td>
                     <td>${htmlEscape(formatTokens(t.totalTokens || 0))}</td>
                     <td>${htmlEscape(formatTokens(t.inputTokens || 0))}</td>
                     <td>${htmlEscape(formatTokens(t.outputTokens || 0))}</td>
+                    <td>${htmlEscape(formatCost(t.cost || 0))}</td>
                     <td>${fmtRate(r.featureSuccess)}</td>
                     <td>${fmtHap(r.hapAvailable)}</td>
                     <td>${fmtRate(r.aesthetic)}</td>
