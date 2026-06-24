@@ -1,0 +1,311 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Member",
+        "fields": [
+          "id: string (uuid)",
+          "name: string",
+          "phone: string",
+          "birthday?: string (YYYY-MM-DD)",
+          "craftTags: string[]",
+          "interestTags: string[]",
+          "notes?: string",
+          "gallery: string[] (local uri/photo paths)",
+          "points: number",
+          "lastVisitAt?: number (timestamp)",
+          "createdAt: number"
+        ]
+      },
+      {
+        "name": "Course",
+        "fields": [
+          "id: string (uuid)",
+          "title: string",
+          "startTime: number",
+          "endTime?: number",
+          "capacity: number",
+          "price: number",
+          "rewardPoints: number",
+          "materials: CourseMaterial[]",
+          "status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled'"
+        ]
+      },
+      {
+        "name": "CourseMaterial",
+        "fields": [
+          "materialId: string",
+          "quantity: number"
+        ]
+      },
+      {
+        "name": "Reservation",
+        "fields": [
+          "id: string (uuid)",
+          "courseId: string",
+          "memberId: string",
+          "status: 'booked' | 'cancelled' | 'completed'",
+          "createdAt: number",
+          "cancelledAt?: number"
+        ]
+      },
+      {
+        "name": "Material",
+        "fields": [
+          "id: string (uuid)",
+          "name: string",
+          "spec?: string",
+          "unit: string",
+          "stock: number",
+          "safetyStock: number",
+          "craftTags: string[]"
+        ]
+      },
+      {
+        "name": "PointsRecord",
+        "fields": [
+          "id: string (uuid)",
+          "memberId?: string",
+          "type: 'check-in' | 'spend' | 'course' | 'redeem' | 'manual' | 'wake'",
+          "value: number (positive earn, negative use)",
+          "balanceAfter: number",
+          "description?: string",
+          "relatedCourseId?: string",
+          "relatedMaterialId?: string",
+          "createdAt: number"
+        ]
+      },
+      {
+        "name": "Settings",
+        "fields": [
+          "checkInPoints: number",
+          "spendRatio: number",
+          "sleepThresholdDays: number",
+          "notificationsEnabled: boolean"
+        ]
+      }
+    ],
+    "formState": [
+      "CheckInForm: selectedMemberId, type, amount, points, selectedCourseId",
+      "MemberFilter: query, selectedCraftTag",
+      "CourseCalendar: selectedDate"
+    ],
+    "computedState": [
+      "todayClassesCount: number of courses on selected/today date",
+      "todayReservationsCount: number of reservations on selected/today date",
+      "sleepingMembers: members whose lastVisitAt is older than sleepThresholdDays",
+      "lowStockCount: materials with stock <= safetyStock",
+      "inventory after reservation/cancellation"
+    ]
+  },
+  "services": {
+    "MemberService": "CRUD, search, filter, tag management, gallery persistence",
+    "CourseService": "CRUD, date query, capacity/reservation aggregation",
+    "ReservationService": "book, cancel, status lifecycle, rollback inventory/points",
+    "MaterialService": "CRUD, stock adjust, low-stock query, consume/rollback",
+    "PointsService": "earn/use, rules, history, balance, rollback",
+    "SettingsService": "load/save app settings",
+    "StorageService": "Preferences-backed JSON persistence layer"
+  },
+  "stateMachine": {
+    "reservation": {
+      "states": ["booked", "completed", "cancelled"],
+      "transitions": {
+        "book": "null -> booked, with capacity & stock validation",
+        "complete": "booked -> completed",
+        "cancel": "booked -> cancelled, rollback stock/points"
+      }
+    },
+    "course": {
+      "states": ["upcoming", "ongoing", "completed", "cancelled"],
+      "transitions": {
+        "start": "upcoming -> ongoing",
+        "complete": "upcoming/ongoing -> completed",
+        "cancel": "upcoming -> cancelled"
+      }
+    },
+    "memberLifecycle": {
+      "states": ["active", "sleeping"],
+      "transitions": {
+        "visit": "sleeping -> active (reset lastVisitAt)",
+        "timeout": "active -> sleeping when now - lastVisitAt > threshold"
+      }
+    }
+  },
+  "interactionFlows": [
+    {
+      "name": "home-dashboard",
+      "triggers": ["app launch", "tab switch to home"],
+      "steps": [
+        "load settings",
+        "load today's courses and reservations",
+        "load recent points records",
+        "compute sleeping count",
+        "render summary cards"
+      ],
+      "sideEffects": [],
+      "errors": ["storage read failure"]
+    },
+    {
+      "name": "member-search-and-filter",
+      "triggers": ["input query", "tap filter tag"],
+      "steps": [
+        "debounce query if needed",
+        "filter members by name/phone and craftTags",
+        "update list binding"
+      ],
+      "sideEffects": [],
+      "errors": []
+    },
+    {
+      "name": "add-member",
+      "triggers": ["tap members-add-button"],
+      "steps": [
+        "open member editor form",
+        "validate required fields",
+        "save to MemberService",
+        "return to members list"
+      ],
+      "sideEffects": ["persist member"],
+      "errors": ["duplicate phone", "validation failure"]
+    },
+    {
+      "name": "check-in-or-spend",
+      "triggers": ["tap check-in-submit-button"],
+      "steps": [
+        "select member",
+        "toggle type (check-in | spend)",
+        "if spend, enter amount -> compute points via spendRatio",
+        "if course selected, link course",
+        "record points transaction",
+        "update member lastVisitAt",
+        "update member points balance"
+      ],
+      "sideEffects": ["persist points record", "persist member"],
+      "errors": ["no member selected", "already checked in today"]
+    },
+    {
+      "name": "book-course",
+      "triggers": ["tap course-detail-book-button"],
+      "steps": [
+        "select member",
+        "validate course capacity",
+        "validate material stock",
+        "consume material stock",
+        "create reservation",
+        "grant rewardPoints to member",
+        "record points transaction"
+      ],
+      "sideEffects": ["persist reservation", "persist material", "persist points", "persist member"],
+      "errors": ["course full", "insufficient stock"]
+    },
+    {
+      "name": "cancel-booking",
+      "triggers": ["tap course-detail-cancel-booking-button"],
+      "steps": [
+        "confirm cancellation",
+        "restore material stock",
+        "revoke rewardPoints if already granted",
+        "mark reservation cancelled"
+      ],
+      "sideEffects": ["persist reservation", "persist material", "persist points", "persist member"],
+      "errors": ["already cancelled"]
+    },
+    {
+      "name": "wake-sleeping-members",
+      "triggers": ["tap sleeping-members-wake-button"],
+      "steps": [
+        "select one or more sleeping members",
+        "optionally send message/share",
+        "grant coupon/points bonus",
+        "record points transaction",
+        "update lastVisitAt? no, only after actual visit"
+      ],
+      "sideEffects": ["persist points record", "persist member"],
+      "errors": []
+    },
+    {
+      "name": "inventory-restock",
+      "triggers": ["tap restock action"],
+      "steps": [
+        "input delta",
+        "update material stock",
+        "record change log (optional)"
+      ],
+      "sideEffects": ["persist material"],
+      "errors": ["negative stock if forbidden"]
+    },
+    {
+      "name": "settings-update",
+      "triggers": ["change profile-*-setting"],
+      "steps": [
+        "validate numeric values",
+        "save settings",
+        "recompute derived state"
+      ],
+      "sideEffects": ["persist settings"],
+      "errors": ["invalid value"]
+    }
+  ],
+  "testTargets": [
+    "home-quick-check-in-button",
+    "home-today-classes-count",
+    "home-today-reservations-count",
+    "home-points-activity-list",
+    "home-sleeping-reminder-card",
+    "home-sleeping-count",
+    "members-search-input",
+    "members-filter-button",
+    "members-add-button",
+    "members-list",
+    "member-detail-back-button",
+    "member-detail-edit-button",
+    "member-detail-name",
+    "member-detail-points",
+    "member-detail-craft-tags",
+    "member-detail-gallery-list",
+    "member-detail-points-history-list",
+    "member-detail-sleeping-badge",
+    "points-back-button",
+    "points-balance",
+    "points-rule-check-in",
+    "points-rule-spend-ratio",
+    "points-history-list",
+    "points-redeem-button",
+    "courses-date-picker",
+    "courses-add-button",
+    "courses-list",
+    "course-detail-back-button",
+    "course-detail-title",
+    "course-detail-time",
+    "course-detail-capacity",
+    "course-detail-material-list",
+    "course-detail-reservations-list",
+    "course-detail-book-button",
+    "course-detail-cancel-booking-button",
+    "inventory-add-button",
+    "inventory-search-input",
+    "inventory-list",
+    "inventory-low-stock-badge",
+    "sleeping-members-back-button",
+    "sleeping-members-threshold",
+    "sleeping-members-list",
+    "sleeping-members-select-all-button",
+    "sleeping-members-wake-button",
+    "check-in-back-button",
+    "check-in-member-picker",
+    "check-in-type-toggle",
+    "check-in-amount-input",
+    "check-in-points-input",
+    "check-in-course-picker",
+    "check-in-submit-button",
+    "profile-avatar",
+    "profile-name",
+    "profile-check-in-points-setting",
+    "profile-spend-ratio-setting",
+    "profile-sleeping-threshold-setting",
+    "profile-notification-toggle"
+  ],
+  "changeRequests": []
+}

@@ -1,0 +1,138 @@
+{
+  "module": "03-media-file.md",
+  "group": "03 — 媒体文件与图片处理 (Media File & Image)",
+  "apiCount": 15,
+  "apis": [
+    {
+      "name": "photoAccessHelper.getPhotoAccessHelper",
+      "purpose": "获取相册管理模块实例，用于访问和修改相册中的媒体文件",
+      "anchor": "ohosfilephotoaccesshelper-相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "PhotoAccessHelper.getAssets",
+      "purpose": "查询图片和视频资源，支持FetchOptions筛选",
+      "anchor": "ohosfilephotoaccesshelper-相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "PhotoViewPicker.select",
+      "purpose": "拉起系统图库选择界面，用户选择图片/视频后返回URI结果集",
+      "anchor": "ohosfilephotoaccesshelper-相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "PhotoAsset",
+      "purpose": "封装媒体文件属性，提供uri、photoType、displayName及get方法",
+      "anchor": "ohosfilephotoaccesshelper-相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "DocumentViewPicker.select",
+      "purpose": "拉起文档选择器，用户选择文件后返回URI数组",
+      "anchor": "ohosfilepicker-选择器",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper.PhotoViewPicker (deprecated in picker)",
+      "purpose": "图库选择器(已废弃)，建议使用photoAccessHelper.PhotoViewPicker替代",
+      "anchor": "ohosfilepicker-选择器",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.open",
+      "purpose": "打开文件或目录，支持读写模式",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.close",
+      "purpose": "关闭已打开的文件或目录",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.write",
+      "purpose": "将数据写入已打开的文件",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.read",
+      "purpose": "从已打开的文件读取数据到缓冲区",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.mkdir",
+      "purpose": "创建目录，支持递归创建",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.access",
+      "purpose": "检查文件或目录是否存在，或校验操作权限",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.listFile",
+      "purpose": "列出目录下所有文件名和目录名，支持过滤和递归",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "image.createImageSource",
+      "purpose": "通过URI或fd创建ImageSource实例用于图片解码",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "image.createImagePacker",
+      "purpose": "创建ImagePacker实例用于图片编码",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "ImagePacker.packToData",
+      "purpose": "图片压缩或重新编码为ArrayBuffer",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "image.createPixelMap",
+      "purpose": "通过像素数据和图像属性创建PixelMap位图对象",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "ImageSource.getImageInfo",
+      "purpose": "获取指定序号的图片信息",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "fileUri.getUriFromPath",
+      "purpose": "通过路径生成应用文件URI",
+      "anchor": "ohosfilefileuri-文件URI",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.image — unpackImage",
+      "purpose": "图片解码API（未找到，使用ImageSource.createPixelMap替代）",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "photoAccessHelper 仅支持 Stage 模型，使用 getPhotoAccessHelper(context) 获取实例",
+    "@ohos.file.picker 中 PhotoViewPicker 从 API 12 废弃，迁移到 photoAccessHelper.PhotoViewPicker",
+    "@ohos.multimedia.image 中未找到 unpackImage API，图片解码应使用 ImageSource.createPixelMap()",
+    "ImagePacker 和 ImageSource 使用完毕后需调用 release() 释放内存",
+    "fileIo 操作基于应用沙箱路径，通过 context.filesDir 获取",
+    "Picker 类的 select 返回的 URI 具有永久授权（photoAccessHelper 场景下可以反复使用）"
+  ],
+  "missingApis": [
+    "@ohos.multimedia.image — unpackImage（未找到此API，图片解码使用ImageSource.createPixelMap()替代）"
+  ]
+}

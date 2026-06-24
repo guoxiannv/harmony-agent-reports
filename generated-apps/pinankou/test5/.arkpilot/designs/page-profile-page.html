@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>平安扣 - 我的</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #F3F6F8; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif; color: #0F172A; }
+    body { max-width: 420px; margin: 0 auto; position: relative; }
+    .page { min-height: 100%; padding: 24px 16px 120px; }
+
+    .profile-header { background: linear-gradient(135deg, #0D9488 0%, #2DD4BF 100%); border-radius: 20px; padding: 24px; color: #fff; box-shadow: 0 18px 48px rgba(13,148,136,0.20); margin-bottom: 24px; display: flex; align-items: center; gap: 16px; }
+    .avatar { width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; border: 2px solid rgba(255,255,255,0.4); }
+    .profile-info { flex: 1; }
+    .profile-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .profile-role { font-size: 14px; opacity: 0.92; }
+
+    .menu-card { background: #fff; border-radius: 16px; padding: 8px 16px; box-shadow: 0 4px 16px rgba(15,23,42,0.05); margin-bottom: 16px; }
+    .menu-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #F1F5F9; }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .menu-icon.primary { background: #CCFBF1; color: #0F766E; }
+    .menu-icon.secondary { background: #E0F2FE; color: #0EA5E9; }
+    .menu-icon.warning { background: #FFEDD5; color: #D97706; }
+    .menu-icon.neutral { background: #F1F5F9; color: #64748B; }
+    .menu-text { flex: 1; font-size: 15px; font-weight: 500; }
+    .menu-arrow { color: #94A3B8; }
+
+    .version { text-align: center; font-size: 12px; color: #94A3B8; margin-top: 24px; }
+
+    .tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 68px; background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.76) 100%); backdrop-filter: blur(24px); border-top: 1px solid rgba(226,232,240,0.6); box-shadow: 0 -4px 16px rgba(15,23,42,0.05); display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; z-index: 100; }
+    .tab-item { flex: 1; text-align: center; padding-top: 4px; }
+    .tab-icon { width: 24px; height: 24px; margin: 0 auto 3px; color: #94A3B8; }
+    .tab-item.active .tab-icon { color: #0D9488; }
+    .tab-label { font-size: 11px; font-weight: 500; color: #94A3B8; }
+    .tab-item.active .tab-label { color: #0D9488; }
+    .tab-fab { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #0D9488, #2DD4BF); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 36px rgba(13,148,136,0.32); border: 3px solid #F3F6F8; }
+
+    svg { display: block; }
+  </style>
+</head>
+<body data-page-id="profile-page" data-tab-id="tab-profile">
+  <div class="page">
+    <div class="profile-header">
+      <div class="avatar" data-ui-id="profile-avatar">安</div>
+      <div class="profile-info">
+        <div class="profile-name" data-ui-id="profile-name">安管员</div>
+        <div class="profile-role" data-ui-id="profile-role">安全主管 · 工程一部</div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-item" data-ui-id="profile-setting-export">
+        <div class="menu-icon primary">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>导出本地数据</title>
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </div>
+        <div class="menu-text">导出数据</div>
+        <div class="menu-arrow">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>进入导出数据页面</title>
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-icon secondary">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>打开通知设置</title>
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <div class="menu-text">消息通知</div>
+        <div class="menu-arrow">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>进入消息通知设置</title>
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-icon warning">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>打开隐私与安全设置</title>
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <div class="menu-text">隐私与安全</div>
+        <div class="menu-arrow">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>进入隐私与安全设置</title>
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-item" data-ui-id="profile-setting-about">
+        <div class="menu-icon neutral">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>查看关于平安扣</title>
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+        </div>
+        <div class="menu-text">关于平安扣</div>
+        <div class="menu-arrow">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>进入关于页面</title>
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-icon neutral">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>查看帮助与反馈</title>
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <div class="menu-text">帮助与反馈</div>
+        <div class="menu-arrow">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>进入帮助与反馈页面</title>
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="version">平安扣 Pinankou v1.0.0</div>
+  </div>
+
+  <nav class="tabbar">
+    <div class="tab-item" data-tab-id="tab-home">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开首页统计看板</title>
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="tab-label">首页</div>
+    </div>
+    <div class="tab-item" data-tab-id="tab-inspection">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开巡检任务页面</title>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div class="tab-label">巡检</div>
+    </div>
+    <div class="tab-fab" data-ui-id="risk-add-button">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <title>快速上报隐患</title>
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </div>
+    <div class="tab-item" data-tab-id="tab-risk" style="margin-left:48px;">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开隐患列表页面</title>
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="tab-label">隐患</div>
+    </div>
+    <div class="tab-item" data-tab-id="tab-emergency">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开应急联系人页面</title>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <div class="tab-label">应急</div>
+    </div>
+    <div class="tab-item active" data-tab-id="tab-profile">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开个人中心页面</title>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="tab-label">我的</div>
+    </div>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{
+  "module": "02-controls-text.md",
+  "group": "02 — Controls & Text",
+  "apiCount": 9,
+  "apis": [
+    {
+      "name": "Button",
+      "purpose": "按钮组件，可快速创建不同样式的按钮",
+      "anchor": "button",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "显示一段文本的组件",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Image",
+      "purpose": "图片组件，常用于在应用中显示图片",
+      "anchor": "image",
+      "status": "found"
+    },
+    {
+      "name": "onClick",
+      "purpose": "组件被点击时触发的事件回调",
+      "anchor": "onclick",
+      "status": "found"
+    },
+    {
+      "name": "Gesture",
+      "purpose": "手势类型联合定义(GestureType)，用于绑定到组件的手势对象类型",
+      "anchor": "gesture",
+      "status": "found"
+    },
+    {
+      "name": "GestureEvent",
+      "purpose": "手势事件信息对象，包含手势触发时的偏移量、速度、手指列表等数据",
+      "anchor": "gestureevent",
+      "status": "found"
+    },
+    {
+      "name": "gesture",
+      "purpose": "为组件绑定手势识别的方法，支持gesture/priorityGesture/parallelGesture",
+      "anchor": "gesture-1",
+      "status": "found"
+    },
+    {
+      "name": "HitTestBehavior",
+      "purpose": "设置组件的触摸测试类型(hitTestBehavior属性)，影响事件分发",
+      "anchor": "hittestbehavior",
+      "status": "found"
+    },
+    {
+      "name": "TextAlign",
+      "purpose": "文本段落在水平方向的对齐方式枚举",
+      "anchor": "textalign",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Gesture(GestureType) is a union type alias of TapGesture, LongPressGesture, PanGesture, PinchGesture, SwipeGesture, RotationGesture, and GestureGroup — not a standalone component or class",
+    "HitTestBehavior refers to the hitTestBehavior attribute + HitTestMode enum; the property name is camelCase not PascalCase",
+    "onClick is a universal event available on all ArkUI components (API 7+), and API 12+ adds distanceThreshold overload"
+  ],
+  "missingApis": []
+}

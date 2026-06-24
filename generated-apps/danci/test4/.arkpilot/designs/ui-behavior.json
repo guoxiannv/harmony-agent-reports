@@ -1,0 +1,129 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "version": "arkpilot-a2ui/v2",
+  "appTitle": "小词卡",
+  "navigationModel": "single-page, no bottom tabs, no sidebar (per spec §5). review-page is the only surface; completion/empty are conditional renders within it.",
+  "scaffoldShellNote": "Template ships a fixed bottom-tab shell, but the product spec explicitly requires a single-page no-tab app. The bottom-tab shell will be replaced at visual-integration time by a single ReviewPage entry; recorded as an intended navigation rewrite driven by the product spec, not a silent change.",
+  "dataModel": {
+    "entities": {
+      "WordCard": {
+        "fields": {
+          "id": "string (stable, used for list itemIdPattern review-card-{index})",
+          "word": "string (English front)",
+          "phonetic": "string (back, e.g. /həˈloʊ/)",
+          "meaning": "string (Chinese back)",
+          "stage": "string (stage/level id the word belongs to)"
+        }
+      },
+      "ReviewRound": {
+        "fields": {
+          "queue": "WordCard[] (ordered review queue; index 0 = current card)",
+          "total": "number (initial deck size for this round)",
+          "knownCount": "number (words removed via 认识)",
+          "reviewAgainCount": "number (words pushed to tail via 不认识 at least once)"
+        }
+      }
+    },
+    "settingsAndFormState": {
+      "currentStage": "string (selected learning stage; default 'stage-1')",
+      "isFlipped": "boolean (card front=false / back=true)"
+    },
+    "computedState": {
+      "currentWord": "/review/currentWord — queue[0] or null",
+      "progress": "/review/progress — string like '剩余 {remaining} / {total}'",
+      "knownCount": "/review/knownCount",
+      "remainingCount": "/review/remainingCount = queue.length",
+      "isComplete": "/review/isComplete = queue empty AND round started",
+      "finalKnownCount": "/review/finalKnownCount = knownCount at completion",
+      "finalReviewCount": "/review/finalReviewCount = total - knownCount",
+      "empty": "/review/empty = stage has zero words (no deck to load)"
+    },
+    "persistenceRelevant": [
+      "currentStage is the only durable setting (persisted via preferences when wired; headless falls back to default 'stage-1').",
+      "Per-round state is in-memory only (spec §6: only this-round known/unknown counts, no cross-round history)."
+    ]
+  },
+  "services": {
+    "WordLibrary": {
+      "role": "local word library data source. Returns WordCard[] for a given stage. Built-in local dataset (no network). Spec §6 prefers local persistence; built-in resource data is the source of truth for available words.",
+      "methods": ["getWordsByStage(stage: string): WordCard[]", "hasStage(stage): boolean", "listStages(): string[]"]
+    },
+    "PreferencesStore": {
+      "role": "durable store for currentStage. Uses HarmonyOS preferences when available; headless logic uses an in-memory fallback with the same interface. Deferred-to-wiring stub at headless stage.",
+      "methods": ["getCurrentStage(): string", "setCurrentStage(stage: string): void"]
+    },
+    "ReviewController": {
+      "role": "@Observed view-model / state machine. Owns the round queue + counts + flip state. Exposes event methods mapping 1:1 to ui-tree events."
+    }
+  },
+  "stateMachine": {
+    "states": ["empty", "active", "complete"],
+    "initial": "empty (no round loaded) -> transitions to 'active' on load-words/restart-round when stage has words; transitions to 'complete' when queue drains; 'complete' -> 'active' on restart-round",
+    "transitions": [
+      { "from": "empty", "event": "load-words", "to": "active", "guard": "stage has words", "effect": "build queue, reset counts, currentWord = queue[0]" },
+      { "from": "empty", "event": "load-words", "to": "empty", "guard": "stage empty", "effect": "stay empty (review-empty-state stays visible)" },
+      { "from": "active", "event": "flip-card", "to": "active", "effect": "toggle isFlipped" },
+      { "from": "active", "event": "mark-known", "to": "active|complete", "effect": "remove queue[0], knownCount++, reset isFlipped=false, advance to next; if queue empty -> complete" },
+      { "from": "active", "event": "mark-unknown", "to": "active", "effect": "move queue[0] to tail, reset isFlipped=false, advance (queue length unchanged)" },
+      { "from": "complete", "event": "restart-round", "to": "active", "effect": "rebuild queue from library for current stage, reset counts" },
+      { "from": "active", "event": "restart-round", "to": "active", "effect": "rebuild + reset (manual restart mid-round allowed)" }
+    ]
+  },
+  "interactionFlows": [
+    {
+      "name": "flip-card",
+      "trigger": "tap review-flip-card",
+      "steps": ["toggle isFlipped", "no queue/count change"],
+      "expectedState": "currentWord unchanged, isFlipped toggled",
+      "errorPaths": ["no-op when queue empty / complete"]
+    },
+    {
+      "name": "mark-known",
+      "trigger": "tap review-known-button",
+      "steps": ["remove front card", "knownCount++", "isFlipped=false", "if queue now empty set isComplete + snapshot finalKnownCount"],
+      "expectedState": "remainingCount decreased by 1, knownCount +1, next card front shown",
+      "errorPaths": ["no-op when complete/empty"]
+    },
+    {
+      "name": "mark-unknown",
+      "trigger": "tap review-unknown-button",
+      "steps": ["move front card to tail (preserve relative order, do NOT shuffle)", "isFlipped=false", "next card becomes front"],
+      "expectedState": "remainingCount unchanged, front advances",
+      "errorPaths": ["no-op when complete/empty; single-card case: card stays front (moved to its own tail)"]
+    },
+    {
+      "name": "restart-round",
+      "trigger": "tap review-restart-button",
+      "steps": ["rebuild queue from WordLibrary for current stage", "reset knownCount=0, isFlipped=false, isComplete=false"],
+      "expectedState": "active, queue full, currentWord front"
+    },
+    {
+      "name": "load-words",
+      "trigger": "tap review-empty-load-button (when empty state)",
+      "steps": ["load stage words via WordLibrary", "if non-empty -> active; else stay empty"],
+      "expectedState": "active with deck, or remains empty"
+    }
+  ],
+  "testTargets": [
+    { "id": "review-app-title", "binding": "/app/title", "kind": "assertion" },
+    { "id": "review-progress-text", "binding": "/review/progress", "kind": "assertion" },
+    { "id": "review-flip-card", "event": "flip-card", "kind": "action" },
+    { "id": "review-word-front", "binding": "/review/currentWord/word", "kind": "assertion" },
+    { "id": "review-phonetic-back", "binding": "/review/currentWord/phonetic", "kind": "assertion" },
+    { "id": "review-meaning-back", "binding": "/review/currentWord/meaning", "kind": "assertion" },
+    { "id": "review-known-button", "event": "mark-known", "kind": "action" },
+    { "id": "review-unknown-button", "event": "mark-unknown", "kind": "action" },
+    { "id": "review-known-count", "binding": "/review/knownCount", "kind": "assertion" },
+    { "id": "review-remaining-count", "binding": "/review/remainingCount", "kind": "assertion" },
+    { "id": "review-completion-panel", "binding": "/review/isComplete", "kind": "assertion" },
+    { "id": "review-final-known-count", "binding": "/review/finalKnownCount", "kind": "assertion" },
+    { "id": "review-final-review-count", "binding": "/review/finalReviewCount", "kind": "assertion" },
+    { "id": "review-restart-button", "event": "restart-round", "kind": "action" },
+    { "id": "review-empty-state", "binding": "/review/empty", "kind": "assertion" },
+    { "id": "review-empty-load-button", "event": "load-words", "kind": "action" }
+  ],
+  "changeRequests": [
+    "Template Index.ets is a bottom-tab shell importing 7 nonexistent placeholder pages (HomePage, ExplorePage, ...). Per spec §5 the app is single-page no-tab; visual integration must replace Index entry content with a single ReviewPage and remove the BottomTabBar usage. This is a spec-driven navigation rewrite, flagged here (not silent).",
+    "route in ui-tree is 'pages/ReviewPage'; this page is visual-integration work (not yet implemented in headless pass)."
+  ]
+}

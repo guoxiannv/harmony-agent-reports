@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 — 首页</title>
+<style>
+:root {
+  --bg: #FAF6F1;
+  --card: #EDE6DC;
+  --card-light: #FAF6F1;
+  --text: #3A2E29;
+  --text-secondary: #6B5A4F;
+  --text-tertiary: #A89A8E;
+  --clay: #A65D48;
+  --fire: #E57A39;
+  --green: #4D8A72;
+  --yellow: #C99E3A;
+  --red: #B84A3D;
+  --sand: #EBDBC2;
+  --border: #DCC8B0;
+  --shadow: rgba(111, 69, 59, 0.10);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", "Noto Sans SC", sans-serif; }
+body { max-width: 420px; margin: 0 auto; min-height: 100vh; padding-bottom: 92px; }
+.page { padding: 20px; }
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.brand { font-family: "Ma Shan Zheng", "ZCOOL XiaoWei", cursive; font-size: 34px; color: var(--clay); letter-spacing: 1px; transform: rotate(-1deg); }
+.icon-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--card-light); border: 1px solid var(--border); display: inline-flex; align-items: center; justify-content: center; color: var(--clay); }
+.hero-card { background: linear-gradient(135deg, var(--clay) 0%, #C06B50 100%); border-radius: 24px; padding: 24px; color: #FFFBF6; box-shadow: 0 10px 28px rgba(166,93,72,0.28); margin-bottom: 20px; }
+.hero-card .greeting { font-size: 15px; opacity: 0.92; margin-bottom: 4px; }
+.hero-card .name { font-family: "Ma Shan Zheng", cursive; font-size: 28px; margin-bottom: 20px; }
+.hero-stats { display: flex; gap: 16px; }
+.stat { flex: 1; background: rgba(255,255,255,0.16); border-radius: 18px; padding: 16px; text-align: center; }
+.stat .value { font-size: 32px; font-weight: 700; line-height: 1.1; }
+.stat .label { font-size: 12px; opacity: 0.85; margin-top: 6px; }
+.checkin-section { text-align: center; margin: 24px 0; }
+.checkin-btn { width: 120px; height: 120px; border-radius: 50%; border: none; background: linear-gradient(145deg, var(--fire), #D06A2E); color: #FFFBF6; font-size: 18px; font-weight: 700; box-shadow: 0 8px 24px rgba(229,122,57,0.36); display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.checkin-btn svg { width: 28px; height: 28px; }
+.checkin-hint { font-size: 13px; color: var(--text-secondary); margin-top: 12px; }
+.section-title { font-family: "Ma Shan Zheng", cursive; font-size: 24px; color: var(--clay); margin: 28px 0 14px; display: flex; align-items: center; gap: 8px; }
+.quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+.action-tile { background: var(--card-light); border: 1px solid var(--border); border-radius: 20px; padding: 18px; text-align: center; }
+.action-tile .icon { width: 44px; height: 44px; border-radius: 14px; background: var(--sand); color: var(--clay); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+.action-tile .title { font-size: 15px; font-weight: 600; color: var(--text); }
+.action-tile .desc { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; }
+.list-card { background: var(--card-light); border-radius: 22px; padding: 4px 18px; box-shadow: 0 8px 24px var(--shadow); }
+.list-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(111,69,59,0.08); }
+.list-item:last-child { border-bottom: none; }
+.list-item .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.list-item .dot.yellow { background: var(--yellow); }
+.list-item .dot.red { background: var(--red); }
+.list-item .text { flex: 1; font-size: 15px; }
+.list-item .time { font-size: 12px; color: var(--text-tertiary); }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text-tertiary); }
+.empty-state svg { width: 64px; height: 64px; color: var(--border); margin-bottom: 12px; }
+.tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 76px; background: rgba(250,246,241,0.92); backdrop-filter: blur(18px); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding-bottom: env(safe-area-inset-bottom); }
+.tab { flex: 1; text-align: center; color: var(--text-tertiary); font-size: 11px; padding-top: 8px; }
+.tab.active { color: var(--clay); }
+.tab svg { width: 24px; height: 24px; margin-bottom: 4px; }
+</style>
+</head>
+<body data-page-id="home-page" data-tab-id="tab-home">
+<div class="page">
+  <div class="header">
+    <div class="brand">手作·印记</div>
+    <button class="icon-btn" data-ui-id="home-dormant-alert" aria-label="沉睡会员提醒">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>打开沉睡会员提醒</title><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+    </button>
+  </div>
+
+  <div class="hero-card">
+    <div class="greeting">下午好，欢迎来到工坊</div>
+    <div class="name" data-ui-id="profile-name">林小陶</div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="value" data-ui-id="home-points-balance">1,280</div>
+        <div class="label">积分余额</div>
+      </div>
+      <div class="stat">
+        <div class="value" data-ui-id="home-streak-days">12</div>
+        <div class="label">连续签到</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkin-section">
+    <button class="checkin-btn" data-ui-id="home-checkin-button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>今日签到</title><path d="M20 6 9 17l-5-5"/></svg>
+      <span>签到</span>
+    </button>
+    <div class="checkin-hint">连续签到 7 天可获得双倍积分</div>
+  </div>
+
+  <div class="section-title">快捷入口</div>
+  <div class="quick-actions">
+    <div class="action-tile" data-ui-id="tab-classes">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>预约课程</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></div>
+      <div class="title">预约课程</div>
+      <div class="desc">查看本周可约</div>
+    </div>
+    <div class="action-tile" data-ui-id="tab-points">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>积分明细</title><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 0 1-5.66-5.66"/></svg></div>
+      <div class="title">积分明细</div>
+      <div class="desc">消费与签到</div>
+    </div>
+  </div>
+
+  <div class="section-title">最近动态</div>
+  <div class="list-card">
+    <div class="list-item" data-ui-id="home-recent-list" data-ui-id-item="home-activity-1">
+      <div class="dot"></div>
+      <div class="text">成功预约「釉下彩绘制入门」</div>
+      <div class="time">今天</div>
+    </div>
+    <div class="list-item" data-ui-id-item="home-activity-2">
+      <div class="dot yellow"></div>
+      <div class="text">签到获得 10 积分</div>
+      <div class="time">昨天</div>
+    </div>
+    <div class="list-item" data-ui-id-item="home-activity-3">
+      <div class="dot red"></div>
+      <div class="text">陶泥库存不足预警</div>
+      <div class="time">2天前</div>
+    </div>
+  </div>
+
+  <div class="empty-state" id="home-empty-state" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><title>暂无动态</title><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
+    <div>还没有动态，去签个到吧～</div>
+  </div>
+</div>
+
+<div class="tabbar">
+  <div class="tab active" data-ui-id="tab-home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    <div>首页</div>
+  </div>
+  <div class="tab" data-ui-id="tab-classes">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>课程</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+    <div>课程</div>
+  </div>
+  <div class="tab" data-ui-id="tab-points">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>积分</title><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 0 1-5.66-5.66"/></svg>
+    <div>积分</div>
+  </div>
+  <div class="tab" data-ui-id="tab-profile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div>我的</div>
+  </div>
+</div>
+</body>
+</html>

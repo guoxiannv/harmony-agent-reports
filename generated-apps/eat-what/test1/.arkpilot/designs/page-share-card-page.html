@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>今天吃什么 - 分享卡片</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #FDF8F3;
+      color: #1A1A1A;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+    .container { max-width: 390px; margin: 0 auto; padding: 0 20px; }
+    header {
+      padding-top: 56px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .back-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: #FFFFFF;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      color: #1A1A1A;
+      cursor: pointer;
+    }
+    .page-title { font-size: 24px; font-weight: 800; }
+    .card-stage {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+    }
+    .share-card {
+      width: 300px;
+      height: 420px;
+      border-radius: 28px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.14);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #F2A864 0%, #D97736 100%);
+      color: #FFFFFF;
+    }
+    .share-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+    }
+    .share-card::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -40px;
+      width: 220px;
+      height: 220px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .card-header { position: relative; z-index: 1; }
+    .card-date { font-size: 13px; opacity: 0.85; letter-spacing: 0.5px; }
+    .card-title { font-size: 15px; font-weight: 600; margin-top: 6px; opacity: 0.95; }
+    .card-body { position: relative; z-index: 1; text-align: center; }
+    .card-dish {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .card-quote { font-size: 15px; opacity: 0.92; font-weight: 500; }
+    .card-footer { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; }
+    .card-streak { display: flex; flex-direction: column; }
+    .streak-count { font-size: 28px; font-weight: 800; line-height: 1; }
+    .streak-label { font-size: 12px; opacity: 0.85; margin-top: 4px; }
+    .card-logo { font-size: 13px; font-weight: 700; opacity: 0.9; }
+    .template-list {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 14px 0;
+      margin-bottom: 16px;
+    }
+    .template-thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      flex-shrink: 0;
+      border: 3px solid transparent;
+      cursor: pointer;
+    }
+    .template-thumb.active { border-color: #D97736; }
+    .template-thumb.orange { background: linear-gradient(145deg, #F2A864, #D97736); }
+    .template-thumb.green { background: linear-gradient(145deg, #5EB69D, #4A9B8E); }
+    .template-thumb.purple { background: linear-gradient(145deg, #A89BD8, #8B7EC8); }
+    .template-thumb.yellow { background: linear-gradient(145deg, #E4B84A, #C99A2E); }
+    .action-row {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-primary {
+      flex: 1;
+      background: linear-gradient(145deg, #F2A864 0%, #D97736 100%);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(217, 119, 54, 0.32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-secondary {
+      flex: 1;
+      background: #FFFFFF;
+      color: #D97736;
+      border: 1.5px solid #D97736;
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body data-page-id="share-card-page">
+  <div class="container">
+    <header>
+      <button class="back-btn" aria-label="返回">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>返回上一页</title>
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+      <h1 class="page-title">分享卡片</h1>
+    </header>
+
+    <section class="card-stage">
+      <div class="share-card" data-ui-id="share-card-preview">
+        <div class="card-header">
+          <div class="card-date">2026.06.23</div>
+          <div class="card-title">今天吃什么</div>
+        </div>
+        <div class="card-body">
+          <div class="card-dish">番茄鸡蛋面</div>
+          <div class="card-quote">"简单的一碗，治愈一整天"</div>
+        </div>
+        <div class="card-footer">
+          <div class="card-streak">
+            <span class="streak-count">7</span>
+            <span class="streak-label">连续打卡天</span>
+          </div>
+          <div class="card-logo">今天吃什么</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="template-list" data-ui-id="share-template-selector">
+      <button class="template-thumb orange active" aria-label="焦糖橙模板"></button>
+      <button class="template-thumb green" aria-label="薄荷绿模板"></button>
+      <button class="template-thumb purple" aria-label="雾紫模板"></button>
+      <button class="template-thumb yellow" aria-label="蜂蜜黄模板"></button>
+    </section>
+
+    <section class="action-row">
+      <button class="btn-secondary" data-ui-id="share-save-button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>保存卡片到相册</title>
+          <path d="M12 15V3"/>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <path d="m7 10 5 5 5-5"/>
+        </svg>
+        保存到相册
+      </button>
+      <button class="btn-primary" data-ui-id="share-share-button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>调用系统分享</title>
+          <path d="M12 2v13"/>
+          <path d="m16 6-4-4-4 4"/>
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+        </svg>
+        分享卡片
+      </button>
+    </section>
+  </div>
+</body>
+</html>

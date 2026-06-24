@@ -1,0 +1,55 @@
+{
+  "module": "03-animation.md",
+  "group": "03 — 3D Flip Animation",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "animateTo",
+      "purpose": "显式动画，通过闭包改变状态变量产生过渡动效",
+      "anchor": "animateto",
+      "status": "found"
+    },
+    {
+      "name": "animation属性",
+      "purpose": "组件通用属性变化时通过属性动画实现渐变过渡效果",
+      "anchor": "animation",
+      "status": "found"
+    },
+    {
+      "name": "transition",
+      "purpose": "组件插入和删除时显示过渡动效，支持组合多种转场效果",
+      "anchor": "transition",
+      "status": "found"
+    },
+    {
+      "name": "rotate变换",
+      "purpose": "设置组件在3D坐标系中绕指定轴旋转",
+      "anchor": "rotate",
+      "status": "found"
+    },
+    {
+      "name": "opacity变换",
+      "purpose": "设置组件的透明不透明度，子组件继承父组件透明度",
+      "anchor": "opacity",
+      "status": "found"
+    },
+    {
+      "name": "scale变换",
+      "purpose": "设置组件在X/Y/Z轴上的缩放比例，支持自定义缩放中心点",
+      "anchor": "scale",
+      "status": "found"
+    },
+    {
+      "name": "transform",
+      "purpose": "通过Matrix4Transit矩阵对象对组件进行二维变换矩阵操作",
+      "anchor": "transform",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "animateTo从API 18废弃，推荐使用getUIContext().animateTo()",
+    "transform仅限二维矩阵变换，三维带透视效果应使用transform3D(API 20+)",
+    "transition从API 10起推荐TransitionEffect链式接口替代旧版TransitionOptions"
+  ],
+  "missingApis": []
+}

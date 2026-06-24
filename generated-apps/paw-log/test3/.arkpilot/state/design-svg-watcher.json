@@ -1,0 +1,67 @@
+{
+  "pid": 67687,
+  "status": "controller-tick",
+  "launched_by_session_id": "915635a0-975b-41b3-a0e0-ad4ca0538ae5",
+  "started_at": "2026-06-22T11:20:10.863Z",
+  "last_scan_at": "2026-06-23T06:13:07.130Z",
+  "last_change_at": "2026-06-22T11:46:49.080Z",
+  "html_signature": "[{\"name\":\"page-family-page.html\",\"mtime_ms\":1782128305511,\"size\":11738},{\"name\":\"page-health-page.html\",\"mtime_ms\":1782128184283,\"size\":15960},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782127905896,\"size\":16385},{\"name\":\"page-medical-record-editor-page.html\",\"mtime_ms\":1782128736840,\"size\":6955},{\"name\":\"page-member-invite-page.html\",\"mtime_ms\":1782128808659,\"size\":6668},{\"name\":\"page-pet-editor-page.html\",\"mtime_ms\":1782128568960,\"size\":8741},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1782128479531,\"size\":14816},{\"name\":\"page-record-editor-page.html\",\"mtime_ms\":1782128657348,\"size\":8475},{\"name\":\"page-records-page.html\",\"mtime_ms\":1782128029976,\"size\":13147}]",
+  "html_files": [
+    {
+      "name": "page-family-page.html",
+      "mtime_ms": 1782128305511,
+      "size": 11738
+    },
+    {
+      "name": "page-health-page.html",
+      "mtime_ms": 1782128184283,
+      "size": 15960
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782127905896,
+      "size": 16385
+    },
+    {
+      "name": "page-medical-record-editor-page.html",
+      "mtime_ms": 1782128736840,
+      "size": 6955
+    },
+    {
+      "name": "page-member-invite-page.html",
+      "mtime_ms": 1782128808659,
+      "size": 6668
+    },
+    {
+      "name": "page-pet-editor-page.html",
+      "mtime_ms": 1782128568960,
+      "size": 8741
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1782128479531,
+      "size": 14816
+    },
+    {
+      "name": "page-record-editor-page.html",
+      "mtime_ms": 1782128657348,
+      "size": 8475
+    },
+    {
+      "name": "page-records-page.html",
+      "mtime_ms": 1782128029976,
+      "size": 13147
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 55,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 55,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-23T06:13:07.130Z"
+}

@@ -1,0 +1,47 @@
+{
+  "pid": 12307,
+  "status": "controller-tick",
+  "launched_by_session_id": "4d4892e7-3745-4f16-a544-adc8e630ed0b",
+  "started_at": "2026-06-20T02:21:55.014Z",
+  "last_scan_at": "2026-06-20T02:44:16.203Z",
+  "last_change_at": "2026-06-20T02:29:44.545Z",
+  "html_signature": "[{\"name\":\"page-fridge-page.html\",\"mtime_ms\":1781922450227,\"size\":9782},{\"name\":\"page-home-page.html\",\"mtime_ms\":1781922389692,\"size\":9195},{\"name\":\"page-log-page.html\",\"mtime_ms\":1781922552412,\"size\":7341},{\"name\":\"page-mood-page.html\",\"mtime_ms\":1781922506928,\"size\":8420},{\"name\":\"page-share-card-sheet.html\",\"mtime_ms\":1781922583006,\"size\":4975}]",
+  "html_files": [
+    {
+      "name": "page-fridge-page.html",
+      "mtime_ms": 1781922450227,
+      "size": 9782
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1781922389692,
+      "size": 9195
+    },
+    {
+      "name": "page-log-page.html",
+      "mtime_ms": 1781922552412,
+      "size": 7341
+    },
+    {
+      "name": "page-mood-page.html",
+      "mtime_ms": 1781922506928,
+      "size": 8420
+    },
+    {
+      "name": "page-share-card-sheet.html",
+      "mtime_ms": 1781922583006,
+      "size": 4975
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 18,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 18,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-20T02:44:16.203Z"
+}

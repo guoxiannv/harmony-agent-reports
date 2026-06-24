@@ -1,0 +1,82 @@
+{
+  "module": "02-state.md",
+  "group": "02 — State Management & Rendering Control",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "@State",
+      "purpose": "组件内状态声明装饰器，状态变化自动触发 UI 刷新",
+      "anchor": "state",
+      "status": "found"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "父组件向子组件单向数据传递装饰器",
+      "anchor": "prop",
+      "status": "found"
+    },
+    {
+      "name": "@Link",
+      "purpose": "父组件与子组件双向数据同步装饰器",
+      "anchor": "link",
+      "status": "found"
+    },
+    {
+      "name": "@Builder/@BuilderParam",
+      "purpose": "全局/组件内自定义构建函数装饰器，支持通过 wrapBuilder/mutableBuilder 封装和传递",
+      "anchor": "builder-builderparam",
+      "status": "found"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "状态变量变化时触发指定回调函数",
+      "anchor": "watch",
+      "status": "found"
+    },
+    {
+      "name": "ForEach",
+      "purpose": "基于数组数据进行循环渲染的渲染控制组件",
+      "anchor": "foreach",
+      "status": "found"
+    },
+    {
+      "name": "条件渲染（if/else）",
+      "purpose": "ArkTS 内置条件渲染语法，根据布尔表达式控制是否渲染组件",
+      "anchor": "条件渲染（ifelse）",
+      "status": "found"
+    },
+    {
+      "name": "@Extend",
+      "purpose": "扩展已有组件能力，添加自定义属性方法的装饰器",
+      "anchor": "extend",
+      "status": "found"
+    },
+    {
+      "name": "@Styles",
+      "purpose": "定义组件内可复用样式方法的装饰器",
+      "anchor": "styles",
+      "status": "found"
+    },
+    {
+      "name": "AppStorage",
+      "purpose": "应用全局 UI 状态存储，支持跨组件/跨页面的状态共享和持久化",
+      "anchor": "appstorage",
+      "status": "found"
+    },
+    {
+      "name": "@Provide/@Consume",
+      "purpose": "祖先组件向后代组件跨层级数据传递装饰器，支持 allowOverride 配置",
+      "anchor": "provide-consume",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@State, @Prop, @Link, @Builder, @BuilderParam 装饰器在 references 目录中没有独立签名文档页，详细用法需查阅开发者指南",
+    "@Extend 和 @Styles 在 references 中没有独立文档页，仅在其他组件文档示例中出现",
+    "AppStorage 有完整 API 参考（ref/setAndRef/link/prop/setOrCreate/get/set/delete/keys/size/clear），涵盖 v10+ 新接口",
+    "LocalStorage 和 PersistentStorage 的 API 也包含在 01_应用级变量的状态管理.md 中",
+    "ProvideOptions 是 references 中 @Provide 的唯一参数类型文档，签名包含 allowOverride 字段",
+    "条件渲染（if/else）没有单独文档页，仅在 ForEach 文档中提到可以与 ForEach 嵌套使用"
+  ],
+  "missingApis": []
+}

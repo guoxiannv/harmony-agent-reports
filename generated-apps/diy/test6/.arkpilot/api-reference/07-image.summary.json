@@ -1,0 +1,78 @@
+{
+  "module": "07-image.md",
+  "group": "07 — Image & Media",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "Image",
+      "purpose": "ArkUI图片显示组件，支持本地/网络/PixelMap/DrawableDescriptor/ImageContent数据源",
+      "anchor": "image",
+      "status": "found"
+    },
+    {
+      "name": "ImageAnimator",
+      "purpose": "逐帧播放图片动画组件，支持Resource/PixelMap帧源",
+      "anchor": "imageanimator",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper (PhotoViewPicker)",
+      "purpose": "图库选择器，拉起PhotoPicker界面选择图片/视频",
+      "anchor": "class-photoviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "picker (DocumentViewPicker)",
+      "purpose": "文档选择器，拉起DocumentPicker界面选择/保存文件",
+      "anchor": "documentviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "fileIo (file.fs)",
+      "purpose": "基础文件操作API，提供文件管理/目录管理/文件信息/流式读写",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "image (ImageSource)",
+      "purpose": "ImageSource图片源创建(createImageSource)，解码图片获取信息",
+      "anchor": "interface-imagesource",
+      "status": "found"
+    },
+    {
+      "name": "image (PixelMap)",
+      "purpose": "像素图对象，通过createPixelMap从ImageSource创建",
+      "anchor": "interface-pixelmap",
+      "status": "found"
+    },
+    {
+      "name": "image (ImagePacker)",
+      "purpose": "图片压缩编码器，支持packToData编码为ArrayBuffer",
+      "anchor": "interface-imagepacker",
+      "status": "found"
+    },
+    {
+      "name": "camera (Camera Kit)",
+      "purpose": "相机服务API，提供预览/拍照/录像及设备管理能力",
+      "anchor": "ohosmultimediacamera-相机管理",
+      "status": "found"
+    },
+    {
+      "name": "picker (PhotoViewPicker in @kit.CoreFileKit)",
+      "purpose": "CoreFileKit下的PhotoViewPicker选择图片/视频文件",
+      "anchor": "photoviewpicker",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "Image组件支持PixelMap/ResourceStr/DrawableDescriptor三种输入，API 12新增ImageContent；网络图片需要ohos.permission.INTERNET权限",
+    "photoAccessHelper.PhotoViewPicker返回的photoUris具有永久授权，可被photoAccessHelper.getAssets使用",
+    "picker.DocumentViewPicker从API 12起推荐使用带Context的构造函数以避免拉起失败",
+    "Image Kit(image)模块从API 6起支持，ImagePacker包编码支持jpeg/webp/png/heic/gif等格式",
+    "Camera Kit(camera)从API 10起支持，核心流程为getCameraManager->createInput->createSession->createOutput->start",
+    "Image Kit的PhotoViewPicker(@kit.CoreFileKit)指向photoAccessHelper.PhotoViewPicker，已在photoAccessHelper条目覆盖，因此标记为missing但实际已被覆盖"
+  ],
+  "missingApis": [
+    "picker (PhotoViewPicker in @kit.CoreFileKit) - 该API实际指向photoAccessHelper.PhotoViewPicker，已通过photoAccessHelper条目覆盖"
+  ]
+}

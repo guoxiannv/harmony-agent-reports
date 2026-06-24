@@ -1,0 +1,45 @@
+{
+  "module": "02-arkdata.md",
+  "group": "02 — Data Persistence (ArkData)",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "@ohos.data.preferences (用户首选项)",
+      "purpose": "Key-Value轻量级数据持久化，支持number/string/boolean及其数组类型，提供get/put/delete/flush等操作",
+      "anchor": "@ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.relationalStore (关系型数据库)",
+      "purpose": "基于SQLite的关系型数据库，提供表创建、增删改查、SQL执行、事务管理等完整数据管理能力",
+      "anchor": "@ohosdatarelationalstore-关系型数据库",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.sendableRelationalStore (共享关系型数据库)",
+      "purpose": "为关系型数据库提供Sendable支持，实现ValuesBucket/Asset在taskpool并发线程间的跨线程传递（API 12+）",
+      "anchor": "@ohosdatasendablerelationalstore-共享关系型数据库",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.ValuesBucket (数据集)",
+      "purpose": "定义数据集键值对类型ValueType和ValuesBucket，作为DataShare场景的数据插入集合（API 10+，仅Stage模型）",
+      "anchor": "@ohosdatavaluesbucket-数据集",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.dataSharePredicates (数据共享谓词)",
+      "purpose": "提供DataShare查询筛选条件的谓词，支持equalTo/and/or/like/between/orderByAsc/limit等数据库筛选操作（API 10+，仅Stage模型）",
+      "anchor": "@ohosdatadatasharepredicates-数据共享谓词",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "All five APIs import from @kit.ArkData but under different namespaces: preferences, relationalStore, sendableRelationalStore, dataSharePredicates, plus direct type imports for ValuesBucket",
+    "@ohos.data.ValuesBucket defines a base ValueType = number|string|boolean for DataShare, while relationalStore has a richer ValueType including Asset/Assets/Uint8Array/bigint — these are distinct types in different namespaces",
+    "preferences does NOT guarantee process concurrency safety; XML/GSKV storage modes added in API 18",
+    "sendableRelationalStore requires API 12+ and is specifically designed for taskpool multi-thread scenarios",
+    "dataSharePredicates serves as a backend-agnostic predicate; when used with RDB it effectively maps to RdbPredicates semantics"
+  ],
+  "missingApis": []
+}

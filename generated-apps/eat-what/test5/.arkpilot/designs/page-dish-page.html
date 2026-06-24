@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今天吃什么 - 菜品管理</title>
+  <style>
+    :root {
+      --paper: #FFFCFA; --cream: #FFF5ED; --dark: #2E2A25; --warm-gray: #7A746E; --light-gray: #F5F0EB; --border: #E9E3DD;
+      --orange: #FF8C42; --orange-deep: #FF7043; --orange-dark: #E86A2E; --green: #4ECB9C; --olive: #5A6B58; --sage: #8FA897;
+      --shadow-card: 0 2px 10px rgba(46, 42, 37, 0.05), 0 6px 20px rgba(46, 42, 37, 0.04);
+      --shadow-button: 0 6px 20px rgba(255, 140, 66, 0.28);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; background: var(--paper); color: var(--dark); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    body { max-width: 420px; margin: 0 auto; min-height: 100vh; padding-bottom: 90px; }
+    .page { padding: 20px 22px; }
+    .header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .back-btn { width: 44px; height: 44px; border-radius: 14px; background: var(--light-gray); display: flex; align-items: center; justify-content: center; border: none; color: var(--dark); }
+    .page-title { font-size: 30px; font-weight: 700; line-height: 1.18; }
+    .search-row { display: flex; gap: 10px; margin-bottom: 20px; }
+    .search-input-wrap { flex: 1; position: relative; }
+    .search-input { width: 100%; background: var(--light-gray); border: none; border-radius: 16px; padding: 14px 16px 14px 44px; font-size: 15px; outline: none; }
+    .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--warm-gray); }
+    .fab-add { width: 48px; height: 48px; border-radius: 16px; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%); border: none; color: white; display: flex; align-items: center; justify-content: center; }
+    .dish-list { display: flex; flex-direction: column; gap: 12px; }
+    .dish-item { background: var(--paper); border-radius: 20px; padding: 16px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 14px; }
+    .dish-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: white; flex-shrink: 0; }
+    .dish-avatar.orange { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%); }
+    .dish-avatar.green { background: linear-gradient(135deg, var(--green) 0%, var(--olive) 100%); }
+    .dish-avatar.sage { background: linear-gradient(135deg, var(--sage) 0%, #6B8E7B 100%); }
+    .dish-avatar.olive { background: linear-gradient(135deg, var(--olive) 0%, #3D4A3C 100%); }
+    .dish-info { flex: 1; }
+    .dish-name { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .dish-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .dish-tag { background: var(--light-gray); color: var(--warm-gray); border-radius: 10px; padding: 3px 8px; font-size: 11px; }
+    .dish-edit { width: 36px; height: 36px; border-radius: 10px; background: var(--light-gray); display: flex; align-items: center; justify-content: center; color: var(--warm-gray); border: none; }
+    .empty-state { text-align: center; padding: 60px 20px; }
+    .empty-icon { width: 88px; height: 88px; border-radius: 50%; background: var(--light-gray); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--sage); }
+    .empty-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+    .empty-desc { font-size: 14px; color: var(--warm-gray); margin-bottom: 18px; }
+    .empty-btn { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%); color: white; border: none; border-radius: 18px; padding: 14px 28px; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-button); }
+    .tab-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 420px; margin: 0 auto; height: 68px;
+      background: rgba(255, 252, 250, 0.92); backdrop-filter: blur(24px) saturate(160%); border-top: 1px solid rgba(233,227,221,0.6);
+      display: flex; justify-content: space-around; align-items: center;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #A8A29C; font-size: 11px; font-weight: 500; }
+    .tab-item.active { color: var(--orange); }
+    .tab-item svg { width: 24px; height: 24px; }
+    .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--orange); margin-top: 2px; }
+  </style>
+</head>
+<body data-page-id="dish-page">
+  <div class="page">
+    <header class="header">
+      <button class="back-btn" aria-label="返回">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>Go Back</title>
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="page-title">菜品管理</div>
+    </header>
+
+    <div class="search-row">
+      <div class="search-input-wrap">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>Search Dishes</title>
+          <path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/>
+        </svg>
+        <input class="search-input" type="text" placeholder="搜索菜品" data-ui-id="dish-search-input" />
+      </div>
+      <button class="fab-add" data-ui-id="dish-add-button">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>Add New Dish</title>
+          <path d="M5 12h14"/><path d="M12 5v14"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="dish-list" data-ui-id="dish-list">
+      <div class="dish-item" data-ui-id="dish-item-1">
+        <div class="dish-avatar orange">番</div>
+        <div class="dish-info">
+          <div class="dish-name">番茄炒蛋</div>
+          <div class="dish-tags">
+            <span class="dish-tag">家常</span>
+            <span class="dish-tag">快手</span>
+            <span class="dish-tag">午餐</span>
+          </div>
+        </div>
+        <button class="dish-edit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>Edit Dish</title>
+            <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="dish-item" data-ui-id="dish-item-2">
+        <div class="dish-avatar green">牛</div>
+        <div class="dish-info">
+          <div class="dish-name">番茄牛腩</div>
+          <div class="dish-tags">
+            <span class="dish-tag">晚餐</span>
+            <span class="dish-tag">治愈</span>
+          </div>
+        </div>
+        <button class="dish-edit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>Edit Dish</title>
+            <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="dish-item" data-ui-id="dish-item-3">
+        <div class="dish-avatar sage">西</div>
+        <div class="dish-info">
+          <div class="dish-name">蒜蓉西兰花</div>
+          <div class="dish-tags">
+            <span class="dish-tag">清淡</span>
+            <span class="dish-tag">午餐</span>
+          </div>
+        </div>
+        <button class="dish-edit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>Edit Dish</title>
+            <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="dish-item" data-ui-id="dish-item-4">
+        <div class="dish-avatar olive">酸</div>
+        <div class="dish-info">
+          <div class="dish-name">酸菜鱼</div>
+          <div class="dish-tags">
+            <span class="dish-tag">想吃辣</span>
+            <span class="dish-tag">晚餐</span>
+          </div>
+        </div>
+        <button class="dish-edit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>Edit Dish</title>
+            <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="tab-bar">
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Home Tab</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>首页</span></div>
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Recommend Tab</title><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg><span>推荐</span></div>
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Check-in Tab</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span>打卡</span></div>
+    <div class="tab-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Profile Tab</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>我的</span><div class="tab-dot"></div></div>
+  </nav>
+</body>
+</html>

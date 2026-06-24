@@ -1,0 +1,31 @@
+{
+  "module": "03-controls.md",
+  "group": "Controls & Display",
+  "apiCount": 3,
+  "apis": [
+    {
+      "name": "Text",
+      "purpose": "显示一段文本的组件，支持富文本样式和子组件",
+      "anchor": "Text",
+      "status": "found"
+    },
+    {
+      "name": "Button",
+      "purpose": "按钮组件，可快速创建不同样式的按钮",
+      "anchor": "Button",
+      "status": "found"
+    },
+    {
+      "name": "Progress",
+      "purpose": "进度条组件，用于显示内容加载或操作处理等进度",
+      "anchor": "Progress",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "三个组件均为 ArkUI 内置组件，无需导入声明，直接在 .ets 文件中使用",
+    "Progress 的 style 参数已废弃，建议使用 type 替代",
+    "Button 默认 type 在 API 18 后变更为 ROUNDED_RECTANGLE"
+  ],
+  "missingApis": []
+}

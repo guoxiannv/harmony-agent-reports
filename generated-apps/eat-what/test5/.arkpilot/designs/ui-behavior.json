@@ -1,0 +1,210 @@
+{
+  "version": "arkpilot-behavior/v1",
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "appName": "今天吃什么",
+  "notes": "Self-contained local app. No network/backend. All data persists locally via Preferences. No seed data on first launch.",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Dish",
+        "fields": {
+          "id": "string (uuid-ish)",
+          "name": "string",
+          "tags": "string[] (free-form cuisine/category tags, e.g. 川菜/家常/轻食)",
+          "ingredients": "string[] (known main ingredients, used for ingredient matching)",
+          "moods": "Mood[] (mood tags this dish suits)",
+          "times": "TimeSlot[] (meal times this dish suits)",
+          "createdAt": "number (ms)"
+        },
+        "persistence": "Preferences key 'dishes' (JSON array)"
+      },
+      {
+        "name": "Checkin",
+        "fields": {
+          "id": "string",
+          "dateKey": "string YYYY-MM-DD (local)",
+          "meal": "MealType breakfast|lunch|dinner",
+          "dishName": "string",
+          "note": "string",
+          "createdAt": "number (ms)"
+        },
+        "persistence": "Preferences key 'checkins' (JSON array)"
+      },
+      {
+        "name": "Ingredient",
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "createdAt": "number (ms)"
+        },
+        "persistence": "Preferences key 'ingredients' (JSON array)"
+      },
+      {
+        "name": "WheelCandidate",
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "createdAt": "number (ms)"
+        },
+        "persistence": "Preferences key 'wheelCandidates' (JSON array)"
+      }
+    ],
+    "formState": {
+      "checkinDraft": "{ dateKey, meal, dishName, note } — edited in CheckinPage",
+      "dishFormDraft": "{ id?, name, tagsText, ingredientsText, moods[], times[] } — edited in DishForm sheet",
+      "shareCaption": "string — caption edited in SharePage",
+      "wheelCandidateInput": "string — text in wheel add input",
+      "ingredientInput": "string — text in ingredient add input"
+    },
+    "computedState": {
+      "todayStatus": "{ hasBreakfast, hasLunch, hasDinner, count } derived from checkins for today's dateKey",
+      "checkinStreak": "number of consecutive days (ending today or yesterday) with >=1 checkin",
+      "checkinTotal": "count of distinct dateKeys with >=1 checkin",
+      "recentCheckins": "last N checkins desc by createdAt",
+      "checkinCalendar": "set of dateKeys that have >=1 checkin for current month",
+      "ingredientRecommendations": "dishes whose ingredients intersect user ingredients, ranked by match count desc",
+      "filterResults": "dishes matching selected moods AND/OR selected timeSlots",
+      "shareCard": "{ title, subtitle, caption, source } composed from current checkin / wheel result"
+    }
+  },
+  "services": [
+    {
+      "name": "StorageService",
+      "role": "Preferences wrapper: getPreferences, load JSON arrays into memory on init, persist on mutation.",
+      "api": ["init(context)", "getString(key)", "putString(key,value)"],
+      "errors": "If Preferences unavailable, app runs in-memory only (non-fatal); surfaces empty states."
+    },
+    {
+      "name": "DishService",
+      "role": "CRUD over dish library.",
+      "api": ["list()", "search(keyword)", "add(draft)", "update(dish)", "remove(id)"]
+    },
+    {
+      "name": "IngredientService",
+      "role": "CRUD over fridge ingredient list.",
+      "api": ["list()", "add(name)", "remove(id)", "clear()"]
+    },
+    {
+      "name": "CheckinService",
+      "role": "CRUD over checkins + derived stats (streak, total, calendar, recent, todayStatus).",
+      "api": ["list()", "recent(n)", "add(draft)", "remove(id)", "byDate(dateKey)", "streak()", "total()", "calendarMonth(year,month)", "todayStatus()"]
+    },
+    {
+      "name": "WheelService",
+      "role": "Candidate pool CRUD + random pick.",
+      "api": ["candidates()", "addCandidate(name)", "clear()", "pick()"]
+    },
+    {
+      "name": "RecommendService",
+      "role": "Local rule-based recommendation. No network.",
+      "api": ["byIngredients(ingredients, dishes) -> ranked", "byFilter(moods, times, dishes) -> filtered"]
+    },
+    {
+      "name": "ShareService",
+      "role": "Compose share card data; capture preview node to image via componentSnapshot and save to app files dir. Album-save best-effort.",
+      "api": ["buildCard(source)", "captureAndSave(frameNode)"]
+    }
+  ],
+  "stateMachine": {
+    "wheelState": {
+      "states": ["idle", "spinning", "finished"],
+      "transitions": [
+        { "from": "idle", "event": "spin-wheel", "to": "spinning", "guard": "candidates.length >= 2", "else": "toast '至少添加 2 个候选'" },
+        { "from": "spinning", "event": "animation-end", "to": "finished", "effect": "set result = pick()" },
+        { "from": "finished", "event": "spin-wheel", "to": "spinning" }
+      ]
+    },
+    "recommendSegment": {
+      "states": ["wheel", "ingredient", "filter"],
+      "transitions": [
+        { "event": "switch-to-wheel", "to": "wheel" },
+        { "event": "switch-to-ingredient", "to": "ingredient" },
+        { "event": "switch-to-filter", "to": "filter" }
+      ]
+    },
+    "appSurface": {
+      "tabStates": ["home", "recommend", "checkin", "profile"],
+      "pushedStates": ["share", "dish"],
+      "transitions": [
+        { "event": "navigate-to-wheel", "effect": "tab=recommend, segment=wheel" },
+        { "event": "navigate-to-ingredient", "effect": "tab=recommend, segment=ingredient" },
+        { "event": "navigate-to-filter", "effect": "tab=recommend, segment=filter" },
+        { "event": "navigate-to-checkin", "effect": "tab=checkin" },
+        { "event": "navigate-to-checkin-with-result", "effect": "tab=checkin, prefill dishName=wheelResult" },
+        { "event": "navigate-to-share", "to": "share", "effect": "shareSource=checkin" },
+        { "event": "navigate-to-dish-library", "to": "dish" }
+      ]
+    }
+  },
+  "interactionFlows": [
+    {
+      "name": "spin-wheel",
+      "trigger": "click wheel-spin-button",
+      "guard": "candidates >= 2",
+      "steps": ["wheelState=spinning", "animate rotation +360*5 + targetAngle", "on end: result = WheelService.pick()", "wheelState=finished", "show wheel-result-panel with result name + go-checkin button"]
+    },
+    {
+      "name": "add-wheel-candidate",
+      "trigger": "wheel-add-candidate-button or enter in wheel-add-candidate-input",
+      "steps": ["trim input", "if empty -> ignore", "WheelService.addCandidate(name)", "clear input", "refresh candidate list"]
+    },
+    {
+      "name": "clear-wheel-candidates",
+      "trigger": "wheel-clear-candidates-button",
+      "steps": ["WheelService.clear()", "refresh", "if wheelState=finished reset to idle"]
+    },
+    {
+      "name": "recommend-by-ingredients",
+      "trigger": "ingredient-recommend-button",
+      "steps": ["require ingredients >= 1 else toast", "compute RecommendService.byIngredients", "render ingredient-result-list (empty state if none)"]
+    },
+    {
+      "name": "apply-filter",
+      "trigger": "filter-apply-button",
+      "steps": ["compute RecommendService.byFilter(selectedMoods, selectedTimes)", "render filter-result-list (empty state if none)"]
+    },
+    {
+      "name": "save-checkin",
+      "trigger": "checkin-save-button",
+      "validate": "dishName non-empty (note optional)",
+      "steps": ["CheckinService.add(draft)", "clear draft dishName/note", "refresh history/calendar/stats", "toast '打卡成功'"]
+    },
+    {
+      "name": "navigate-to-checkin-with-result",
+      "trigger": "wheel-go-checkin-button",
+      "steps": ["prefill checkinDraft.dishName = wheelResult", "switch to checkin tab"]
+    },
+    {
+      "name": "save-share-card",
+      "trigger": "share-save-button",
+      "steps": ["ShareService.captureAndSave(previewNode)", "toast '已保存到本地' on success / error toast"]
+    },
+    {
+      "name": "save-dish",
+      "trigger": "dish-form-save-button",
+      "validate": "name non-empty",
+      "steps": ["parse tags/ingredients by comma", "add or update", "refresh dish-list", "close form"]
+    },
+    {
+      "name": "delete-dish",
+      "trigger": "dish-form-delete-button (edit mode) or swipe",
+      "steps": ["DishService.remove(id)", "refresh dish-list", "close form"]
+    }
+  ],
+  "testTargets": [
+    { "id": "home-spin-wheel-button", "action": "click", "expect": "navigate-to-wheel" },
+    { "id": "wheel-spin-button", "action": "click", "expect": "wheel-result-panel visible" },
+    { "id": "ingredient-recommend-button", "action": "click", "expect": "ingredient-result-list populated" },
+    { "id": "filter-apply-button", "action": "click", "expect": "filter-result-list populated" },
+    { "id": "checkin-save-button", "action": "click", "expect": "checkin-history-list updated" },
+    { "id": "share-save-button", "action": "click", "expect": "save-share-card feedback" },
+    { "id": "dish-form-save-button", "action": "click", "expect": "dish-list updated" }
+  ],
+  "constants": {
+    "moods": ["开心", "放松", "疲惫", "馋辣", "想清淡", "赶时间"],
+    "timeSlots": ["早餐", "午餐", "晚餐", "夜宵"],
+    "mealTypes": ["breakfast", "lunch", "dinner"],
+    "shareTemplates": ["今日打卡", "转盘结果", "连续打卡"]
+  },
+  "changeRequests": []
+}

@@ -1,0 +1,95 @@
+{
+  "module": "05-notification.md",
+  "group": "05 -- 本地通知 (Notification)",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "notificationManager.publish",
+      "purpose": "发布或更新通知（支持 callback 和 Promise）",
+      "anchor": "notificationmanagerpublish",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.cancel",
+      "purpose": "根据通知ID和标签取消已发布的通知",
+      "anchor": "notificationmanagercancel",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.cancelAll",
+      "purpose": "取消当前应用所有已发布的通知",
+      "anchor": "notificationmanagercancelall",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.requestEnableNotification",
+      "purpose": "拉起通知授权弹窗以获取用户通知许可（API 10+，需 UIAbilityContext）",
+      "anchor": "notificationmanagerrequestenablenotification10",
+      "status": "found"
+    },
+    {
+      "name": "NotificationRequest",
+      "purpose": "通知请求对象，包含内容、ID、渠道类型等完整配置",
+      "anchor": "notificationrequest",
+      "status": "found"
+    },
+    {
+      "name": "NotificationContent",
+      "purpose": "通知内容容器，按 contentType 选择不同的内容子类型",
+      "anchor": "notificationcontent",
+      "status": "found"
+    },
+    {
+      "name": "NotificationBasicContent",
+      "purpose": "普通文本通知内容，含标题、正文、附加文本",
+      "anchor": "notificationbasiccontent",
+      "status": "found"
+    },
+    {
+      "name": "NotificationActionButton",
+      "purpose": "通知中显示的操作按钮，含标题、点击 WantAgent 和可选用户输入",
+      "anchor": "notificationactionbutton",
+      "status": "found"
+    },
+    {
+      "name": "NotificationSlot",
+      "purpose": "通知渠道定义，配置通知的级别、振动、声音、角标等行为",
+      "anchor": "notificationslot",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.enableNotificationSlot",
+      "purpose": "在当前文档版本中未找到该 API",
+      "anchor": "notificationmanagerenablenotificationslot",
+      "status": "missing"
+    },
+    {
+      "name": "NotificationUserInput",
+      "purpose": "保存用户输入通知消息的 key 标识，配合 ActionButton 实现快捷回复",
+      "anchor": "notificationuserinput",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.notification",
+      "purpose": "已停止维护的旧通知模块（API 7-11），被 @ohos.notificationManager 替代",
+      "anchor": "ohosnotification",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.notificationManager",
+      "purpose": "通知管理模块（API 9+），提供发布/取消/查询/授权等完整能力",
+      "anchor": "ohosnotificationmanager",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "enableNotificationSlot API 未在当前文档版本中找到；通知渠道启用状态通过 NotificationSlot.enabled 只读字段反映",
+    "@ohos.notification 模块已废弃（API 11+），统一迁移至 @ohos.notificationManager",
+    "requestEnableNotification API 10+ 版本需传入 UIAbilityContext，旧的免 context 版本已从 API 12 废弃",
+    "NotificationRequest.actionButtons 最多支持 2 个按钮（wearable 3 个），title/text 长度超限会被截断",
+    "所有通知操作依赖 SystemCapability.Notification.Notification 系统能力"
+  ],
+  "missingApis": [
+    "notificationManager.enableNotificationSlot"
+  ]
+}

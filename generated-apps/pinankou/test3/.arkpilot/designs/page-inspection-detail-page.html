@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>平安扣 - 巡检详情</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: #F0FDFA; color: #0F172A; max-width: 390px; margin: 0 auto;
+      min-height: 100vh; padding-bottom: 100px;
+    }
+    .header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(24px) saturate(180%);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 52px 16px 12px;
+      border-bottom: 1px solid rgba(226,232,240,0.6);
+    }
+    .header-left, .header-right { width: 40px; }
+    .header-back {
+      width: 40px; height: 40px; border-radius: 12px; background: #F1F5F9;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .header-back svg { width: 20px; height: 20px; stroke: #334155; }
+    .header-title { font-size: 18px; font-weight: 600; }
+    .save-btn {
+      padding: 8px 14px; border-radius: 12px; background: linear-gradient(135deg, #0D9488, #14B8A6);
+      color: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(13,148,136,0.28);
+      cursor: pointer;
+    }
+
+    .section { padding: 16px; }
+    .section-title { font-size: 14px; font-weight: 600; color: #334155; margin-bottom: 10px; }
+    .card {
+      background: #fff; border-radius: 18px; padding: 16px;
+      box-shadow: 0 6px 24px rgba(13, 148, 136, 0.10);
+    }
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .field-label { font-size: 12px; color: #64748B; margin-bottom: 6px; }
+    .field-input {
+      width: 100%; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid #E2E8F0; background: #F8FAFC; font-size: 14px; color: #0F172A;
+    }
+    .field-input::placeholder { color: #94A3B8; }
+
+    .checklist { display: flex; flex-direction: column; gap: 10px; }
+    .check-item {
+      background: #fff; border-radius: 16px; padding: 14px;
+      box-shadow: 0 4px 16px rgba(13, 148, 136, 0.08);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .check-item.abnormal { background: #FEF2F2; }
+    .check-num {
+      width: 32px; height: 32px; border-radius: 10px;
+      background: linear-gradient(135deg, #0D9488, #14B8A6);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600; flex-shrink: 0;
+    }
+    .check-text { flex: 1; font-size: 14px; color: #334155; }
+    .check-actions { display: flex; gap: 8px; }
+    .check-btn {
+      padding: 6px 12px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer;
+    }
+    .check-btn.normal { background: #ECFDF5; color: #10B981; }
+    .check-btn.abnormal { background: #FEF2F2; color: #EF4444; }
+    .check-btn.selected { box-shadow: inset 0 0 0 1.5px currentColor; }
+    .convert-link { font-size: 12px; color: #EF4444; margin-top: 6px; cursor: pointer; }
+
+    .fab {
+      position: fixed; bottom: 24px; left: 16px; right: 16px; max-width: 358px; margin: 0 auto;
+      padding: 14px; border-radius: 14px;
+      background: linear-gradient(135deg, #0D9488, #14B8A6);
+      color: #fff; font-size: 16px; font-weight: 600; text-align: center;
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.32); cursor: pointer;
+    }
+    .fab:active { transform: scale(0.98); }
+  </style>
+</head>
+<body data-page-id="inspection-detail-page">
+  <header class="header">
+    <div class="header-left">
+      <div class="header-back" data-ui-id="inspection-detail-back-button">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>返回上一页</title>
+          <path d="M19 12H5"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+      </div>
+    </div>
+    <div class="header-title">巡检详情</div>
+    <div class="header-right" style="display:flex;justify-content:flex-end;">
+      <div class="save-btn" data-ui-id="inspection-detail-submit-button">提交</div>
+    </div>
+  </header>
+
+  <div class="section">
+    <div class="section-title">基本信息</div>
+    <div class="card">
+      <div class="field">
+        <div class="field-label">巡检标题</div>
+        <input class="field-input" type="text" placeholder="请输入巡检标题" value="仓库北区日常巡检" data-ui-id="inspection-detail-title-input" />
+      </div>
+      <div class="field">
+        <div class="field-label">巡检地点</div>
+        <input class="field-input" type="text" placeholder="请输入地点" value="仓库北区" data-ui-id="inspection-detail-location-input" />
+      </div>
+      <div class="field">
+        <div class="field-label">计划日期</div>
+        <input class="field-input" type="date" value="2026-06-22" data-ui-id="inspection-detail-date-picker" />
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-title">检查项</div>
+    <div class="checklist" data-ui-id="inspection-detail-checklist">
+      <div class="check-item" data-ui-id="inspection-check-1">
+        <div class="check-num">1</div>
+        <div class="check-text">消防通道是否畅通</div>
+        <div class="check-actions">
+          <div class="check-btn normal selected" data-ui-id="inspection-detail-check-normal-button">正常</div>
+          <div class="check-btn abnormal" data-ui-id="inspection-detail-check-abnormal-button">异常</div>
+        </div>
+      </div>
+
+      <div class="check-item abnormal" data-ui-id="inspection-check-2">
+        <div class="check-num">2</div>
+        <div class="check-text">叉车通道标识是否清晰</div>
+        <div class="check-actions">
+          <div class="check-btn normal">正常</div>
+          <div class="check-btn abnormal selected">异常</div>
+        </div>
+        <div class="convert-link" data-ui-id="inspection-detail-convert-hazard-button">转为隐患上报 →</div>
+      </div>
+
+      <div class="check-item" data-ui-id="inspection-check-3">
+        <div class="check-num">3</div>
+        <div class="check-text">应急照明是否正常</div>
+        <div class="check-actions">
+          <div class="check-btn normal">正常</div>
+          <div class="check-btn abnormal">异常</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fab" data-ui-id="inspection-detail-submit-button">提交巡检结果</div>
+</body>
+</html>

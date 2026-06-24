@@ -1,0 +1,75 @@
+{
+  "module": "01-layout.md",
+  "group": "01 — Layout & Navigation",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "Flex",
+      "purpose": "弹性布局容器，高效排列对齐子元素并分配剩余空间",
+      "anchor": "flex",
+      "status": "found"
+    },
+    {
+      "name": "Column",
+      "purpose": "沿垂直方向布局的容器，可设置子组件间距",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "沿水平方向布局的容器，可设置子组件间距",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，子组件按顺序依次入栈，后一个覆盖前一个",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Tabs",
+      "purpose": "通过页签进行内容视图切换的容器组件",
+      "anchor": "tabs",
+      "status": "found"
+    },
+    {
+      "name": "TabContent",
+      "purpose": "仅在Tabs中使用，对应一个切换页签的内容视图",
+      "anchor": "tabcontent",
+      "status": "found"
+    },
+    {
+      "name": "Navigation",
+      "purpose": "路由导航的根视图容器，作为Page页面的根容器使用",
+      "anchor": "navigation",
+      "status": "found"
+    },
+    {
+      "name": "NavRouter",
+      "purpose": "导航组件，默认提供点击响应处理（已停止维护）",
+      "anchor": "navrouter",
+      "status": "found"
+    },
+    {
+      "name": "Blank",
+      "purpose": "空白填充组件，在容器主轴方向上自动填充容器空余部分",
+      "anchor": "blank",
+      "status": "found"
+    },
+    {
+      "name": "Divider",
+      "purpose": "提供分割线组件，分割不同内容块/内容元素",
+      "anchor": "divider",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "NavRouter 从 API version 13 开始已停止维护，推荐使用 NavPathStack 配合 navDestination 属性进行页面路由",
+    "Flex 组件在渲染时存在二次布局过程，性能敏感场景建议使用 Column/Row 替代",
+    "Blank 仅在父容器为 Row/Column/Flex 且父容器设置了主轴大小时才会自动拉伸填充",
+    "Tabs 仅支持 TabContent 作为直接子组件（if/else 和 ForEach 渲染控制下的 TabContent 也支持）",
+    "所有组件均为 ArkUI 系统内置组件，无需额外 import 语句"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,238 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "RiskItem",
+        "fields": [
+          "id: string",
+          "title: string",
+          "type: RiskType",
+          "level: RiskLevel",
+          "location: string",
+          "description: string",
+          "photos: string[]",
+          "deadline: string (YYYY-MM-DD)",
+          "handler: string",
+          "reporter: string",
+          "status: RiskStatus",
+          "createdAt: number",
+          "updatedAt: number",
+          "timeline: RiskTimelineEvent[]"
+        ]
+      },
+      {
+        "name": "InspectionTask",
+        "fields": [
+          "id: string",
+          "title: string",
+          "area: string",
+          "planDate: string (YYYY-MM-DD)",
+          "status: InspectionStatus",
+          "checkItems: CheckItem[]",
+          "inspector: string",
+          "startedAt: number | null",
+          "completedAt: number | null",
+          "note: string"
+        ]
+      },
+      {
+        "name": "CheckItem",
+        "fields": [
+          "id: string",
+          "label: string",
+          "result: 'pass' | 'fail' | 'unchecked'",
+          "note: string",
+          "photo: string | null"
+        ]
+      },
+      {
+        "name": "EmergencyContact",
+        "fields": [
+          "id: string",
+          "name: string",
+          "role: string",
+          "duty: string",
+          "phone: string"
+        ]
+      },
+      {
+        "name": "Activity",
+        "fields": [
+          "id: string",
+          "type: 'risk' | 'inspection' | 'fix' | 'review'",
+          "title: string",
+          "timestamp: number",
+          "status: string"
+        ]
+      },
+      {
+        "name": "Profile",
+        "fields": [
+          "name: string",
+          "role: string",
+          "avatar: string"
+        ]
+      }
+    ],
+    "enums": [
+      { "name": "RiskType", "values": ["fire", "electrical", "mechanical", "environment", "personnel", "other"] },
+      { "name": "RiskLevel", "values": ["low", "medium", "high", "critical"] },
+      { "name": "RiskStatus", "values": ["pending", "inprogress", "review", "closed", "rejected"] },
+      { "name": "InspectionStatus", "values": ["planned", "ongoing", "done"] }
+    ],
+    "computed": [
+      { "name": "stats", "fields": ["todayInspectionCount", "pendingRiskCount", "overdueRiskCount", "closedRate", "riskDistribution"] },
+      { "name": "filteredRisks", "dependsOn": ["/risks", "/risks/searchQuery", "activeFilter"] },
+      { "name": "filteredInspectionTasks", "dependsOn": ["/inspectionTasks", "activeSegment"] }
+    ]
+  },
+  "services": {
+    "RiskRepository": {
+      "responsibility": "CRUD for RiskItem, status transitions, timeline append, search/filter helpers",
+      "persistence": "in-memory + JSON PreferenceStore (optional async flush)"
+    },
+    "InspectionRepository": {
+      "responsibility": "CRUD for InspectionTask and CheckItem results",
+      "persistence": "in-memory + JSON PreferenceStore"
+    },
+    "EmergencyContactRepository": {
+      "responsibility": "CRUD, search, phone normalization",
+      "persistence": "in-memory + JSON PreferenceStore"
+    },
+    "StatsService": {
+      "responsibility": "derive home stats and risk distribution from repositories"
+    },
+    "DialService": {
+      "responsibility": "call.makeCall(phoneNumber) via @kit.TelephonyKit",
+      "note": "no permission needed for makeCall"
+    },
+    "AppServices": {
+      "responsibility": "singleton dependency graph instantiated in Index.ets"
+    }
+  },
+  "stateMachine": {
+    "risk": {
+      "states": ["pending", "inprogress", "review", "closed", "rejected"],
+      "transitions": [
+        { "from": "pending", "event": "assign-risk-handler", "to": "inprogress", "guard": "handler not empty" },
+        { "from": "inprogress", "event": "submit-risk-fix", "to": "review" },
+        { "from": "review", "event": "review-risk-pass", "to": "closed" },
+        { "from": "review", "event": "review-risk-reject", "to": "rejected" },
+        { "from": "rejected", "event": "submit-risk-fix", "to": "review" },
+        { "from": "any", "event": "remind-risk-handler", "to": "self", "effect": "append timeline reminder" }
+      ]
+    },
+    "inspection": {
+      "states": ["planned", "ongoing", "done"],
+      "transitions": [
+        { "from": "planned", "event": "start-inspection", "to": "ongoing" },
+        { "from": "ongoing", "event": "submit-inspection-result", "to": "done", "guard": "all items checked" }
+      ]
+    },
+    "checkItem": {
+      "states": ["unchecked", "pass", "fail"],
+      "transitions": [
+        { "from": "unchecked", "event": "mark-checkitem-pass", "to": "pass" },
+        { "from": "unchecked", "event": "mark-checkitem-fail", "to": "fail" },
+        { "from": "pass|fail", "event": "opposite mark", "to": "opposite" }
+      ],
+      "effectOnFail": "auto-generate RiskItem draft or add to risk pool"
+    }
+  },
+  "interactionFlows": [
+    {
+      "name": "Report new risk",
+      "trigger": "home-quick-action-report | risk-add-button",
+      "steps": [
+        "Open ReportRisk surface (non-tab full-page)",
+        "User fills title, type, level, location, description, photos, deadline, handler",
+        "Validation: title non-empty, level selected, location non-empty",
+        "submit-report-risk creates RiskItem with status=pending, appends created event to timeline",
+        "Navigate to risk-page; risk list refreshed"
+      ]
+    },
+    {
+      "name": "Inspect and convert failure to risk",
+      "trigger": "start-inspection",
+      "steps": [
+        "Open InspectionDetail surface with taskId",
+        "Mark check items pass/fail; fail auto-generates RiskItem linked to inspection",
+        "Add per-item note if needed",
+        "submit-inspection-result transitions task to done; if any fail, risk items already created"
+      ]
+    },
+    {
+      "name": "Risk整改流转",
+      "trigger": "open-risk-detail",
+      "steps": [
+        "View risk detail + timeline",
+        "assign-risk-handler -> pending -> inprogress",
+        "submit-risk-fix -> review",
+        "review-risk-pass -> closed; review-risk-reject -> rejected"
+      ]
+    },
+    {
+      "name": "Emergency dial",
+      "trigger": "emergency-contact-call-{id}",
+      "steps": ["DialService.makeCall(contact.phone)"]
+    },
+    {
+      "name": "Export data",
+      "trigger": "profile-setting-export",
+      "steps": ["Serialize repositories to JSON; show save/share intent placeholder"]
+    }
+  ],
+  "testTargets": [
+    "home-stat-today-inspection",
+    "home-stat-pending-risk",
+    "home-stat-overdue-risk",
+    "home-stat-closed-rate",
+    "home-quick-action-report",
+    "home-quick-action-inspection",
+    "home-quick-action-contact",
+    "home-recent-activity-list",
+    "home-empty-activity",
+    "inspection-segment-today",
+    "inspection-segment-pending",
+    "inspection-segment-history",
+    "inspection-task-list",
+    "inspection-empty-task",
+    "inspection-add-task",
+    "inspection-detail-title",
+    "inspection-detail-checklist",
+    "inspection-submit-result",
+    "risk-filter-all",
+    "risk-filter-pending",
+    "risk-filter-inprogress",
+    "risk-filter-review",
+    "risk-filter-closed",
+    "risk-add-button",
+    "risk-search-input",
+    "risk-list",
+    "risk-empty-list",
+    "risk-detail-title",
+    "risk-detail-status",
+    "risk-detail-level",
+    "risk-detail-progress-timeline",
+    "risk-action-assign",
+    "risk-action-submit-fix",
+    "risk-action-review-pass",
+    "risk-action-review-reject",
+    "report-risk-title-input",
+    "report-risk-level-picker",
+    "report-risk-submit",
+    "emergency-search-input",
+    "emergency-add-contact",
+    "emergency-contact-list",
+    "emergency-empty-contact",
+    "profile-name",
+    "profile-setting-export",
+    "profile-setting-about"
+  ],
+  "changeRequests": [
+    "ui-tree route field 'pages/Home' does not match scaffold Index.ets surface model; implementation will use surface IDs and map to components, not router pages.",
+    "Bottom-tab scaffold has 4 tabs; product needs 5 tabs. Update TabTypes/BottomTabBar/Index.ets to 5 tabs.",
+    "Tab route surface model replaces direct page routing for primary tabs."
+  ]
+}

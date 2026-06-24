@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#3A3630">
+            <title>Current Pet Avatar Placeholder</title>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6zm4 4h-2v-2h2v2zm0-4h-2V7h2v6z" opacity="0"/>
+            <circle cx="9" cy="10" r="2.5" fill="#4CB5A0"/>
+            <circle cx="15" cy="10" r="2.5" fill="#4CB5A0"/>
+            <ellipse cx="12" cy="16.5" rx="4" ry="2.5" fill="#FFB8C9"/>
+          </svg>

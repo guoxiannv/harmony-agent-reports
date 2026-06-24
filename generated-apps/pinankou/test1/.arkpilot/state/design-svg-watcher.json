@@ -1,0 +1,72 @@
+{
+  "pid": 63887,
+  "status": "controller-tick",
+  "launched_by_session_id": "03b72d6e-1c05-46e8-9d7f-f0cf2b254f3e",
+  "started_at": "2026-06-19T12:21:09.154Z",
+  "last_scan_at": "2026-06-19T13:31:40.396Z",
+  "last_change_at": "2026-06-19T12:45:00.465Z",
+  "html_signature": "[{\"name\":\"page-contact-form-sheet.html\",\"mtime_ms\":1781873098635,\"size\":3698},{\"name\":\"page-emergency-page.html\",\"mtime_ms\":1781872795866,\"size\":10579},{\"name\":\"page-hazard-form-sheet.html\",\"mtime_ms\":1781873062115,\"size\":5588},{\"name\":\"page-hazards-page.html\",\"mtime_ms\":1781872505588,\"size\":10133},{\"name\":\"page-home-page.html\",\"mtime_ms\":1781872300644,\"size\":16939},{\"name\":\"page-inspection-task-page.html\",\"mtime_ms\":1781872687085,\"size\":9510},{\"name\":\"page-inspections-page.html\",\"mtime_ms\":1781872589618,\"size\":7615},{\"name\":\"page-item-form-sheet.html\",\"mtime_ms\":1781873005597,\"size\":5362},{\"name\":\"page-safety-items-page.html\",\"mtime_ms\":1781872404703,\"size\":10677},{\"name\":\"page-stats-page.html\",\"mtime_ms\":1781872906334,\"size\":10487}]",
+  "html_files": [
+    {
+      "name": "page-contact-form-sheet.html",
+      "mtime_ms": 1781873098635,
+      "size": 3698
+    },
+    {
+      "name": "page-emergency-page.html",
+      "mtime_ms": 1781872795866,
+      "size": 10579
+    },
+    {
+      "name": "page-hazard-form-sheet.html",
+      "mtime_ms": 1781873062115,
+      "size": 5588
+    },
+    {
+      "name": "page-hazards-page.html",
+      "mtime_ms": 1781872505588,
+      "size": 10133
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1781872300644,
+      "size": 16939
+    },
+    {
+      "name": "page-inspection-task-page.html",
+      "mtime_ms": 1781872687085,
+      "size": 9510
+    },
+    {
+      "name": "page-inspections-page.html",
+      "mtime_ms": 1781872589618,
+      "size": 7615
+    },
+    {
+      "name": "page-item-form-sheet.html",
+      "mtime_ms": 1781873005597,
+      "size": 5362
+    },
+    {
+      "name": "page-safety-items-page.html",
+      "mtime_ms": 1781872404703,
+      "size": 10677
+    },
+    {
+      "name": "page-stats-page.html",
+      "mtime_ms": 1781872906334,
+      "size": 10487
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 63,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 63,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-19T13:31:40.396Z"
+}

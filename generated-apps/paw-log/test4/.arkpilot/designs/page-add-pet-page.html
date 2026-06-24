@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PawLog 新增宠物</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #FFFBF7;
+  color: #2E2B29;
+  min-height: 100vh;
+}
+.app-shell { max-width: 390px; margin: 0 auto; position: relative; min-height: 100vh; padding-bottom: 110px; }
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 50px 16px 14px;
+}
+.back-btn {
+  width: 36px; height: 36px; border-radius: 12px; background: #fff;
+  border: none; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(46,43,41,0.05); cursor: pointer;
+}
+.back-btn svg { width: 20px; height: 20px; color: #5C5856; }
+.page-title { font-size: 24px; font-weight: 800; letter-spacing: -0.01em; }
+.save-btn {
+  background: linear-gradient(135deg, #9BE8CA 0%, #7FDEB8 100%);
+  color: #fff; border: none; border-radius: 18px; padding: 9px 18px;
+  font-size: 14px; font-weight: 700; box-shadow: 0 4px 12px rgba(127,222,184,0.28); cursor: pointer;
+}
+.content { padding: 0 16px; }
+.avatar-upload {
+  width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 24px;
+}
+.avatar-wrap {
+  width: 96px; height: 96px; border-radius: 50%; background: #EEFCF6;
+  display: grid; place-items: center; position: relative;
+  box-shadow: 0 6px 18px rgba(127,222,184,0.25);
+}
+.avatar-wrap svg { width: 48px; height: 48px; color: #4BBF9A; }
+.camera-badge {
+  width: 28px; height: 28px; border-radius: 50%; background: #7FDEB8;
+  display: grid; place-items: center; position: absolute; right: 0; bottom: 0;
+  border: 3px solid #FFFBF7;
+}
+.camera-badge svg { width: 14px; height: 14px; color: #fff; }
+.avatar-upload p { font-size: 13px; color: #8C8682; margin-top: 10px; }
+.form-group { margin-bottom: 18px; }
+.form-label { font-size: 13px; font-weight: 700; color: #5C5856; margin-bottom: 8px; display: block; }
+.input-field {
+  width: 100%; background: #F7F5F3; border: 1.5px solid #EDE9E5; border-radius: 16px;
+  padding: 15px 17px; font-size: 15px; color: #2E2B29; outline: none;
+}
+.input-field:focus { border-color: #7FDEB8; box-shadow: 0 0 0 4px rgba(127,222,184,0.28); }
+.input-field::placeholder { color: #A8A29C; }
+.row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.chip-group { display: flex; gap: 10px; }
+.chip {
+  flex: 1; text-align: center; padding: 12px 0; border-radius: 16px;
+  background: #F7F5F3; border: 1.5px solid transparent; font-size: 14px; font-weight: 600; color: #5C5856; cursor: pointer;
+}
+.chip.active { background: #EEFCF6; border-color: #7FDEB8; color: #4BBF9A; }
+.button-row { display: flex; gap: 12px; margin-top: 8px; }
+.btn-secondary {
+  flex: 1; background: #fff; border: 2px solid #EDE9E5; color: #5C5856;
+  border-radius: 26px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer;
+}
+.btn-primary {
+  flex: 2; background: linear-gradient(135deg, #9BE8CA 0%, #7FDEB8 50%, #5DD3A8 100%);
+  color: #fff; border: none; border-radius: 26px; padding: 14px; font-size: 15px; font-weight: 700;
+  box-shadow: 0 8px 22px rgba(75,191,154,0.38); cursor: pointer;
+}
+</style>
+</head>
+<body data-page-id="add-pet-page">
+<div class="app-shell">
+  <header class="header">
+    <button class="back-btn" data-ui-id="add-pet-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一页</title><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h1 class="page-title">新增宠物</h1>
+    <button class="save-btn" data-ui-id="add-pet-save">保存</button>
+  </header>
+
+  <div class="content">
+    <div class="avatar-upload" data-ui-id="add-pet-avatar">
+      <div class="avatar-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>宠物默认头像占位</title><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V10h4c2.2 0 4 1.8 4 4v2a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-2c0-2.2 1.8-4 4-4h4V9.4A4 4 0 0 1 8 6a4 4 0 0 1 4-4z"/></svg>
+        <div class="camera-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>上传宠物头像</title><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+      </div>
+      <p>点击上传宠物头像</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">昵称</label>
+      <input type="text" class="input-field" placeholder="给它起个名字" data-ui-id="add-pet-name" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">品种</label>
+      <input type="text" class="input-field" placeholder="例如：英国短毛猫" data-ui-id="add-pet-breed" />
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label class="form-label">生日</label>
+        <input type="text" class="input-field" placeholder="2024-03-15" data-ui-id="add-pet-birthday" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">当前体重</label>
+        <input type="text" class="input-field" placeholder="kg" data-ui-id="add-pet-weight" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">性别</label>
+      <div class="chip-group" data-ui-id="add-pet-gender">
+        <div class="chip active">弟弟</div>
+        <div class="chip">妹妹</div>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="btn-secondary" data-ui-id="add-pet-cancel">取消</button>
+      <button class="btn-primary" data-ui-id="add-pet-save">保存</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

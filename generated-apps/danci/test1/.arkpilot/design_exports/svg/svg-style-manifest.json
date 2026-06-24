@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-06-20T03:40:10.797Z",
+  "icons": [
+    {
+      "file_name": "icon_复习进度环.svg",
+      "title": "复习进度环",
+      "source_html": "page-review.html",
+      "hash": "e5cbe42455910dfa2fd0136274ccd091318495a3",
+      "width": 100,
+      "height": 100,
+      "view_box": "0 0 56 56",
+      "paint_mode": "stroke",
+      "default_color": "#2D2A26",
+      "fill_color": "",
+      "stroke_color": "#EDE8DD",
+      "opacity": "1",
+      "context_classes": [
+        "progress-ring-wrap",
+        "header",
+        "app-root"
+      ]
+    },
+    {
+      "file_name": "icon_将当前单词移到队尾稍后复习.svg",
+      "title": "将当前单词移到队尾稍后复习",
+      "source_html": "page-review.html",
+      "hash": "24bca769da0e98b5bda8057e784c14b59a1e8509",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "action-btn",
+        "unknown-btn",
+        "action-bar",
+        "review-stage"
+      ]
+    },
+    {
+      "file_name": "icon_本轮复习完成星星.svg",
+      "title": "本轮复习完成星星",
+      "source_html": "page-review.html",
+      "hash": "63dc5cf9ff1abd49d505ec64e21ea09d603636f4",
+      "width": 64,
+      "height": 64,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#FFD93D",
+      "fill_color": "#FFD93D",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "completion-panel",
+        "app-root"
+      ]
+    },
+    {
+      "file_name": "icon_标记当前单词已认识并移除.svg",
+      "title": "标记当前单词已认识并移除",
+      "source_html": "page-review.html",
+      "hash": "6d6308b61101b8f42335b509ce11b519c66cef15",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "action-btn",
+        "known-btn",
+        "action-bar",
+        "review-stage"
+      ]
+    },
+    {
+      "file_name": "icon_没有待复习单词的占位图标.svg",
+      "title": "没有待复习单词的占位图标",
+      "source_html": "page-review.html",
+      "hash": "5e3cea8dad6e672df36e1e70af3eb3f55b168b6d",
+      "width": 80,
+      "height": 80,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D6CFC2",
+      "fill_color": "",
+      "stroke_color": "#D6CFC2",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "app-root"
+      ]
+    },
+    {
+      "file_name": "icon_重新加载当前阶段单词.svg",
+      "title": "重新加载当前阶段单词",
+      "source_html": "page-review.html",
+      "hash": "e5a0d3ca6827441d04fc9a5d35a2906af7ca3fdc",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "restart-btn",
+        "completion-panel",
+        "app-root"
+      ]
+    }
+  ]
+}

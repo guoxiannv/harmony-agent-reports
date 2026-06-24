@@ -1,0 +1,479 @@
+{
+  "version": "arkpilot-uitree/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "手作·印记",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home",
+      "name": "首页",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        {
+          "id": "home-quick-check-in-button",
+          "role": "action",
+          "event": "open-check-in"
+        },
+        {
+          "id": "home-today-classes-count",
+          "role": "assertion",
+          "binding": "/today/classes/count"
+        },
+        {
+          "id": "home-today-reservations-count",
+          "role": "assertion",
+          "binding": "/today/reservations/count"
+        },
+        {
+          "id": "home-points-activity-list",
+          "role": "list",
+          "binding": "/points/activity",
+          "itemIdPattern": "home-points-item-{id}",
+          "emptyStateId": "home-points-empty"
+        },
+        {
+          "id": "home-sleeping-reminder-card",
+          "role": "action",
+          "event": "open-sleeping-members"
+        },
+        {
+          "id": "home-sleeping-count",
+          "role": "assertion",
+          "binding": "/sleeping/count"
+        }
+      ]
+    },
+    {
+      "id": "members-page",
+      "surfaceId": "members",
+      "pageId": "members",
+      "name": "会员列表",
+      "route": "pages/Members",
+      "tabId": "tab-members",
+      "semanticTargets": [
+        {
+          "id": "members-search-input",
+          "role": "input",
+          "binding": "/members/search/query"
+        },
+        {
+          "id": "members-filter-button",
+          "role": "action",
+          "event": "open-filter-sheet"
+        },
+        {
+          "id": "members-add-button",
+          "role": "action",
+          "event": "open-add-member"
+        },
+        {
+          "id": "members-list",
+          "role": "list",
+          "binding": "/members",
+          "itemIdPattern": "member-card-{id}",
+          "emptyStateId": "members-empty-state"
+        }
+      ]
+    },
+    {
+      "id": "member-detail-page",
+      "surfaceId": "member-detail",
+      "pageId": "member-detail",
+      "name": "会员详情",
+      "route": "pages/MemberDetail",
+      "semanticTargets": [
+        {
+          "id": "member-detail-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "member-detail-edit-button",
+          "role": "action",
+          "event": "open-edit-member"
+        },
+        {
+          "id": "member-detail-name",
+          "role": "assertion",
+          "binding": "/member/name"
+        },
+        {
+          "id": "member-detail-points",
+          "role": "assertion",
+          "binding": "/member/points"
+        },
+        {
+          "id": "member-detail-craft-tags",
+          "role": "assertion",
+          "binding": "/member/craft-tags"
+        },
+        {
+          "id": "member-detail-gallery-list",
+          "role": "list",
+          "binding": "/member/gallery",
+          "itemIdPattern": "member-gallery-{id}",
+          "emptyStateId": "member-gallery-empty"
+        },
+        {
+          "id": "member-detail-points-history-list",
+          "role": "list",
+          "binding": "/member/points-history",
+          "itemIdPattern": "member-points-item-{id}",
+          "emptyStateId": "member-points-empty"
+        },
+        {
+          "id": "member-detail-sleeping-badge",
+          "role": "assertion",
+          "binding": "/member/is-sleeping"
+        }
+      ]
+    },
+    {
+      "id": "points-page",
+      "surfaceId": "points",
+      "pageId": "points",
+      "name": "积分中心",
+      "route": "pages/Points",
+      "semanticTargets": [
+        {
+          "id": "points-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "points-balance",
+          "role": "assertion",
+          "binding": "/points/balance"
+        },
+        {
+          "id": "points-rule-check-in",
+          "role": "assertion",
+          "binding": "/points/rules/check-in"
+        },
+        {
+          "id": "points-rule-spend-ratio",
+          "role": "assertion",
+          "binding": "/points/rules/spend-ratio"
+        },
+        {
+          "id": "points-history-list",
+          "role": "list",
+          "binding": "/points/history",
+          "itemIdPattern": "points-history-{id}",
+          "emptyStateId": "points-history-empty"
+        },
+        {
+          "id": "points-redeem-button",
+          "role": "action",
+          "event": "open-redeem-sheet"
+        }
+      ]
+    },
+    {
+      "id": "courses-page",
+      "surfaceId": "courses",
+      "pageId": "courses",
+      "name": "课程日历",
+      "route": "pages/Courses",
+      "tabId": "tab-courses",
+      "semanticTargets": [
+        {
+          "id": "courses-date-picker",
+          "role": "input",
+          "binding": "/courses/selected-date"
+        },
+        {
+          "id": "courses-add-button",
+          "role": "action",
+          "event": "open-add-course"
+        },
+        {
+          "id": "courses-list",
+          "role": "list",
+          "binding": "/courses",
+          "itemIdPattern": "course-card-{id}",
+          "emptyStateId": "courses-empty-state"
+        }
+      ]
+    },
+    {
+      "id": "course-detail-page",
+      "surfaceId": "course-detail",
+      "pageId": "course-detail",
+      "name": "课程详情",
+      "route": "pages/CourseDetail",
+      "semanticTargets": [
+        {
+          "id": "course-detail-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "course-detail-title",
+          "role": "assertion",
+          "binding": "/course/title"
+        },
+        {
+          "id": "course-detail-time",
+          "role": "assertion",
+          "binding": "/course/time"
+        },
+        {
+          "id": "course-detail-capacity",
+          "role": "assertion",
+          "binding": "/course/capacity"
+        },
+        {
+          "id": "course-detail-material-list",
+          "role": "list",
+          "binding": "/course/materials",
+          "itemIdPattern": "course-material-{id}",
+          "emptyStateId": "course-materials-empty"
+        },
+        {
+          "id": "course-detail-reservations-list",
+          "role": "list",
+          "binding": "/course/reservations",
+          "itemIdPattern": "course-reservation-{id}",
+          "emptyStateId": "course-reservations-empty"
+        },
+        {
+          "id": "course-detail-book-button",
+          "role": "action",
+          "event": "open-book-course"
+        },
+        {
+          "id": "course-detail-cancel-booking-button",
+          "role": "action",
+          "event": "cancel-course-booking"
+        }
+      ]
+    },
+    {
+      "id": "inventory-page",
+      "surfaceId": "inventory",
+      "pageId": "inventory",
+      "name": "库存管理",
+      "route": "pages/Inventory",
+      "tabId": "tab-inventory",
+      "semanticTargets": [
+        {
+          "id": "inventory-add-button",
+          "role": "action",
+          "event": "open-add-material"
+        },
+        {
+          "id": "inventory-search-input",
+          "role": "input",
+          "binding": "/inventory/search/query"
+        },
+        {
+          "id": "inventory-list",
+          "role": "list",
+          "binding": "/inventory",
+          "itemIdPattern": "inventory-item-{id}",
+          "emptyStateId": "inventory-empty-state"
+        },
+        {
+          "id": "inventory-low-stock-badge",
+          "role": "assertion",
+          "binding": "/inventory/low-stock-count"
+        }
+      ]
+    },
+    {
+      "id": "sleeping-members-page",
+      "surfaceId": "sleeping-members",
+      "pageId": "sleeping-members",
+      "name": "沉睡会员",
+      "route": "pages/SleepingMembers",
+      "semanticTargets": [
+        {
+          "id": "sleeping-members-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "sleeping-members-threshold",
+          "role": "assertion",
+          "binding": "/sleeping/threshold-days"
+        },
+        {
+          "id": "sleeping-members-list",
+          "role": "list",
+          "binding": "/sleeping-members",
+          "itemIdPattern": "sleeping-member-{id}",
+          "emptyStateId": "sleeping-members-empty"
+        },
+        {
+          "id": "sleeping-members-select-all-button",
+          "role": "action",
+          "event": "select-all-sleeping"
+        },
+        {
+          "id": "sleeping-members-wake-button",
+          "role": "action",
+          "event": "wake-selected-members"
+        }
+      ]
+    },
+    {
+      "id": "check-in-page",
+      "surfaceId": "check-in",
+      "pageId": "check-in",
+      "name": "签到/消费",
+      "route": "pages/CheckIn",
+      "semanticTargets": [
+        {
+          "id": "check-in-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "check-in-member-picker",
+          "role": "input",
+          "binding": "/check-in/selected-member"
+        },
+        {
+          "id": "check-in-type-toggle",
+          "role": "input",
+          "binding": "/check-in/type"
+        },
+        {
+          "id": "check-in-amount-input",
+          "role": "input",
+          "binding": "/check-in/amount"
+        },
+        {
+          "id": "check-in-points-input",
+          "role": "input",
+          "binding": "/check-in/points"
+        },
+        {
+          "id": "check-in-course-picker",
+          "role": "input",
+          "binding": "/check-in/selected-course"
+        },
+        {
+          "id": "check-in-submit-button",
+          "role": "action",
+          "event": "submit-check-in"
+        }
+      ]
+    },
+    {
+      "id": "profile-page",
+      "surfaceId": "profile",
+      "pageId": "profile",
+      "name": "我的",
+      "route": "pages/Profile",
+      "tabId": "tab-profile",
+      "semanticTargets": [
+        {
+          "id": "profile-avatar",
+          "role": "assertion",
+          "binding": "/profile/avatar"
+        },
+        {
+          "id": "profile-name",
+          "role": "assertion",
+          "binding": "/profile/name"
+        },
+        {
+          "id": "profile-check-in-points-setting",
+          "role": "input",
+          "binding": "/settings/check-in-points"
+        },
+        {
+          "id": "profile-spend-ratio-setting",
+          "role": "input",
+          "binding": "/settings/spend-ratio"
+        },
+        {
+          "id": "profile-sleeping-threshold-setting",
+          "role": "input",
+          "binding": "/settings/sleeping-threshold"
+        },
+        {
+          "id": "profile-notification-toggle",
+          "role": "input",
+          "binding": "/settings/notifications-enabled"
+        }
+      ]
+    }
+  ],
+  "events": [
+    { "name": "open-check-in", "context": { "from": "home" } },
+    { "name": "open-sleeping-members", "context": {} },
+    { "name": "open-filter-sheet", "context": {} },
+    { "name": "open-add-member", "context": {} },
+    { "name": "navigate-back", "context": {} },
+    { "name": "open-edit-member", "context": { "memberId": "string" } },
+    { "name": "open-redeem-sheet", "context": {} },
+    { "name": "open-add-course", "context": {} },
+    { "name": "open-book-course", "context": { "courseId": "string" } },
+    { "name": "cancel-course-booking", "context": { "reservationId": "string" } },
+    { "name": "open-add-material", "context": {} },
+    { "name": "select-all-sleeping", "context": {} },
+    { "name": "wake-selected-members", "context": { "memberIds": "string[]" } },
+    { "name": "submit-check-in", "context": {} }
+  ],
+  "bindings": [
+    { "path": "/today/classes/count", "type": "number" },
+    { "path": "/today/reservations/count", "type": "number" },
+    { "path": "/points/activity", "type": "list" },
+    { "path": "/sleeping/count", "type": "number" },
+    { "path": "/members/search/query", "type": "string" },
+    { "path": "/members", "type": "list" },
+    { "path": "/member/name", "type": "string" },
+    { "path": "/member/points", "type": "number" },
+    { "path": "/member/craft-tags", "type": "list" },
+    { "path": "/member/gallery", "type": "list" },
+    { "path": "/member/points-history", "type": "list" },
+    { "path": "/member/is-sleeping", "type": "boolean" },
+    { "path": "/points/balance", "type": "number" },
+    { "path": "/points/rules/check-in", "type": "number" },
+    { "path": "/points/rules/spend-ratio", "type": "number" },
+    { "path": "/points/history", "type": "list" },
+    { "path": "/courses/selected-date", "type": "date" },
+    { "path": "/courses", "type": "list" },
+    { "path": "/course/title", "type": "string" },
+    { "path": "/course/time", "type": "string" },
+    { "path": "/course/capacity", "type": "string" },
+    { "path": "/course/materials", "type": "list" },
+    { "path": "/course/reservations", "type": "list" },
+    { "path": "/inventory/search/query", "type": "string" },
+    { "path": "/inventory", "type": "list" },
+    { "path": "/inventory/low-stock-count", "type": "number" },
+    { "path": "/sleeping/threshold-days", "type": "number" },
+    { "path": "/sleeping-members", "type": "list" },
+    { "path": "/check-in/selected-member", "type": "object" },
+    { "path": "/check-in/type", "type": "string" },
+    { "path": "/check-in/amount", "type": "number" },
+    { "path": "/check-in/points", "type": "number" },
+    { "path": "/check-in/selected-course", "type": "object" },
+    { "path": "/profile/avatar", "type": "string" },
+    { "path": "/profile/name", "type": "string" },
+    { "path": "/settings/check-in-points", "type": "number" },
+    { "path": "/settings/spend-ratio", "type": "number" },
+    { "path": "/settings/sleeping-threshold", "type": "number" },
+    { "path": "/settings/notifications-enabled", "type": "boolean" }
+  ],
+  "testTargets": [
+    { "id": "home-quick-check-in-button", "action": "tap" },
+    { "id": "members-add-button", "action": "tap" },
+    { "id": "members-search-input", "action": "input" },
+    { "id": "member-card-{id}", "action": "tap" },
+    { "id": "course-detail-book-button", "action": "tap" },
+    { "id": "check-in-submit-button", "action": "tap" },
+    { "id": "sleeping-members-wake-button", "action": "tap" },
+    { "id": "inventory-item-{id}", "action": "tap" }
+  ]
+}

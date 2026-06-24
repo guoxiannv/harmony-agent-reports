@@ -1,0 +1,70 @@
+{
+  "module": "02-component-snapshot.md",
+  "group": "02 — 组件截图",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "componentSnapshot.getSync",
+      "purpose": "通过组件 ID 同步获取已加载组件的 PixelMap 截图",
+      "anchor": "componentsnapshotgetsync12",
+      "status": "found"
+    },
+    {
+      "name": "ComponentSnapshot.get (callback)",
+      "purpose": "通过 UIContext 实例 callback 方式异步获取已加载组件截图",
+      "anchor": "get12",
+      "status": "found"
+    },
+    {
+      "name": "ComponentSnapshot.get (Promise)",
+      "purpose": "通过 UIContext 实例 Promise 方式异步获取已加载组件截图",
+      "anchor": "get12-1",
+      "status": "found"
+    },
+    {
+      "name": "ComponentSnapshot.createFromBuilder",
+      "purpose": "离屏构建 CustomBuilder 并获取截图",
+      "anchor": "createfrombuilder12",
+      "status": "found"
+    },
+    {
+      "name": "ComponentSnapshot.getWithUniqueId",
+      "purpose": "通过 FrameNode uniqueId 异步截图",
+      "anchor": "getwithuniqueid15",
+      "status": "found"
+    },
+    {
+      "name": "ComponentSnapshot.createFromComponent",
+      "purpose": "将 ComponentContent 对象截图（API 18+）",
+      "anchor": "createfromcomponent18",
+      "status": "found"
+    },
+    {
+      "name": "SnapshotOptions",
+      "purpose": "截图自定义参数配置（缩放、渲染等待、区域、色彩空间、动态范围）",
+      "anchor": "snapshotoptions12",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "componentSnapshot 静态 get() 和 createFromBuilder() 从 API 18 起废弃，推荐通过 UIContext.getComponentSnapshot() 获取 ComponentSnapshot 实例后调用同名方法",
+    "getSync 系列方法会阻塞主线程，最大等待 3s，超时抛出 errorCode 160002",
+    "离屏截图（createFromBuilder/createFromComponent）不支持 isAuto(true) 色彩空间/动态范围模式，否则返回 errorCode 160004",
+    "builder 根组件宽高为 0 时截图失败，会抛出 100001 错误码",
+    "截图仅截取组件自身区域，兄弟节点堆叠不会显示在截图中",
+    "XComponent 场景（Video/相机流媒体）不适用此模块，应使用 createPixelMapFromSurface"
+  ],
+  "missingApis": [
+    "componentSnapshot.get (deprecated)",
+    "componentSnapshot.createFromBuilder (deprecated)",
+    "ComponentSnapshot.getSync (实例方法)",
+    "ComponentSnapshot.getSyncWithUniqueId",
+    "ComponentSnapshot.getSizeLimitation",
+    "SnapshotSizeLimitation",
+    "ColorModeOptions",
+    "DynamicRangeModeOptions",
+    "SnapshotRegionType",
+    "SnapshotRegion",
+    "LocalizedSnapshotRegion"
+  ]
+}

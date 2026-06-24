@@ -1,0 +1,101 @@
+=== Build Output ===
+> /Applications/DevEco-Studio.app/contents/tools/node/bin/node /Applications/DevEco-Studio.app/contents/tools/hvigor/bin/hvigorw.js --mode project -p product=default assembleApp -p buildMode=debug --daemon
+
+> hvigor hvigor client: Starting hvigor daemon.
+> hvigor Hvigor Daemon started in 187 ms
+> hvigor Finished ::PreBuildApp... after 1 ms 
+> hvigor Finished :entry:default@PreBuild... after 58 ms 
+> hvigor Finished ::DuplicateDependencyCheck... after 1 ms 
+> hvigor Finished :entry:default@CreateModuleInfo... after 1 ms 
+> hvigor Finished :entry:default@GenerateMetadata... after 2 ms 
+> hvigor Finished :entry:default@ConfigureCmake... after 1 ms 
+> hvigor Finished :entry:default@MergeProfile... after 2 ms 
+> hvigor Finished :entry:default@CreateBuildProfile... after 1 ms 
+> hvigor Finished :entry:default@PreCheckSyscap... after 1 ms 
+> hvigor Finished :entry:default@GeneratePkgContextInfo... after 2 ms 
+> hvigor Finished :entry:default@GeneratePkgSdkInfo... after 1 ms 
+> hvigor Finished :entry:default@ProcessIntegratedHsp... after 1 ms 
+> hvigor Finished :entry:default@BuildNativeWithCmake... after 1 ms 
+> hvigor Finished :entry:default@MakePackInfo... after 2 ms 
+> hvigor Finished :entry:default@SyscapTransform... after 1 ms 
+> hvigor Finished :entry:default@ProcessProfile... after 43 ms 
+> hvigor Finished :entry:default@ProcessRouterMap... after 3 ms 
+> hvigor Finished :entry:default@ProcessShareConfig... after 1 ms 
+> hvigor Finished :entry:default@ProcessStartupConfig... after 1 ms 
+> hvigor Finished :entry:default@BuildNativeWithNinja... after 1 ms 
+> hvigor Finished :entry:default@ProcessResource... after 1 ms 
+> hvigor Finished :entry:default@GenerateLoaderJson... after 2 ms 
+> hvigor Finished :entry:default@ProcessLibs... after 2 ms 
+> hvigor Finished :entry:default@CompileResource... after 166 ms 
+> hvigor Finished :entry:default@DoNativeStrip... after 1 ms 
+> hvigor Finished :entry:default@BuildJS... after 1 ms 
+> hvigor Finished :entry:default@CacheNativeLibs... after 3 ms 
+> hvigor ERROR: Failed :entry:default@CompileArkTS... 
+> hvigor ERROR: ArkTS Compiler Error
+1 ERROR: 10905402 ArkTS Compiler Error
+Error Message: A page configured in 'main_pages.json or build-profile.json5' must have one and only one '@Entry' decorator. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test3/entry/src/main/ets/pages/HomePage.ets
+
+* Try the following:
+  > Please make sure that the splash page has one and only one '@Entry' decorator.
+
+
+2 ERROR: 10905402 ArkTS Compiler Error
+Error Message: A page configured in 'main_pages.json or build-profile.json5' must have one and only one '@Entry' decorator. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test3/entry/src/main/ets/pages/ClassDetailPage.ets
+
+* Try the following:
+  > Please make sure that the splash page has one and only one '@Entry' decorator.
+
+
+3 ERROR: 10905402 ArkTS Compiler Error
+Error Message: A page configured in 'main_pages.json or build-profile.json5' must have one and only one '@Entry' decorator. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test3/entry/src/main/ets/pages/ClassesPage.ets
+
+* Try the following:
+  > Please make sure that the splash page has one and only one '@Entry' decorator.
+
+
+4 ERROR: 10905402 ArkTS Compiler Error
+Error Message: A page configured in 'main_pages.json or build-profile.json5' must have one and only one '@Entry' decorator. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test3/entry/src/main/ets/pages/PointsPage.ets
+
+* Try the following:
+  > Please make sure that the splash page has one and only one '@Entry' decorator.
+
+
+5 ERROR: 10905402 ArkTS Compiler Error
+Error Message: A page configured in 'main_pages.json or build-profile.json5' must have one and only one '@Entry' decorator. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test3/entry/src/main/ets/pages/ProfilePage.ets
+
+* Try the following:
+  > Please make sure that the splash page has one and only one '@Entry' decorator.
+
+
+6 ERROR: 10905402 ArkTS Compiler Error
+Error Message: A page configured in 'main_pages.json or build-profile.json5' must have one and only one '@Entry' decorator. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test3/entry/src/main/ets/pages/ProfileEditPage.ets
+
+* Try the following:
+  > Please make sure that the splash page has one and only one '@Entry' decorator.
+
+
+7 ERROR: 10905402 ArkTS Compiler Error
+Error Message: A page configured in 'main_pages.json or build-profile.json5' must have one and only one '@Entry' decorator. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test3/entry/src/main/ets/pages/DormantPage.ets
+
+* Try the following:
+  > Please make sure that the splash page has one and only one '@Entry' decorator.
+
+
+8 ERROR: 10905402 ArkTS Compiler Error
+Error Message: A page configured in 'main_pages.json or build-profile.json5' must have one and only one '@Entry' decorator. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test3/entry/src/main/ets/pages/InventoryPage.ets
+
+* Try the following:
+  > Please make sure that the splash page has one and only one '@Entry' decorator.
+
+
+COMPILE RESULT:FAIL {ERROR:9}
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+
+> hvigor ERROR: BUILD FAILED in 4 s 66 ms 
+
+
+Process finished with exit code 255
+

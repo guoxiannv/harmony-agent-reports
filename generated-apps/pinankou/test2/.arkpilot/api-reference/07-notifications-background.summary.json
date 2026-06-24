@@ -1,0 +1,70 @@
+{
+  "module": "07-notifications-background.md",
+  "group": "07 — 通知与后台任务 Notifications Background",
+  "apiCount": 9,
+  "apis": [
+    {
+      "name": "notificationManager",
+      "purpose": "通知管理，包括发布、更新、取消通知，创建通知渠道，获取通知权限等",
+      "anchor": "notificationmanager",
+      "status": "found"
+    },
+    {
+      "name": "notificationWantAgent",
+      "purpose": "WantAgent 在通知中的使用，用于点击通知时触发跳转（实质为 @ohos.app.ability.wantAgent 模块）",
+      "anchor": "notificationwantagent",
+      "status": "found"
+    },
+    {
+      "name": "notificationContent",
+      "purpose": "通知内容类型定义，包括普通文本、长文本、多行文本、图片、实况窗等",
+      "anchor": "notificationcontent",
+      "status": "found"
+    },
+    {
+      "name": "notificationSlot",
+      "purpose": "通知渠道定义，描述通知类型、级别、振动、声音、角标等属性",
+      "anchor": "notificationslot",
+      "status": "found"
+    },
+    {
+      "name": "workScheduler",
+      "purpose": "延迟任务调度，注册、取消、查询延迟任务，在系统空闲时执行",
+      "anchor": "workscheduler",
+      "status": "found"
+    },
+    {
+      "name": "workScheduler (WorkInfo)",
+      "purpose": "延迟任务配置信息，设置任务ID、触发条件（网络/充电/电量/存储等）、循环策略",
+      "anchor": "workscheduler-workinfo",
+      "status": "found"
+    },
+    {
+      "name": "backgroundTaskManager",
+      "purpose": "后台任务管理，申请短时任务和长时任务，避免应用进程被终止",
+      "anchor": "backgroundtaskmanager",
+      "status": "found"
+    },
+    {
+      "name": "delaySuspend",
+      "purpose": "短时任务的延迟挂起信息，requestSuspendDelay 的返回值类型 (DelaySuspendInfo)",
+      "anchor": "delaysuspend",
+      "status": "found"
+    },
+    {
+      "name": "reminderAgent (reminder)",
+      "purpose": "后台代理提醒，应用被冻结或退出时由系统服务代理执行定时提醒（倒计时/日历/闹钟）",
+      "anchor": "reminderagent-reminder",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "notificationWantAgent 并非独立模块，实质是 @ohos.app.ability.wantAgent 在 NotificationRequest 中的使用",
+    "delaySuspend 并非独立 API，而是 backgroundTaskManager.requestSuspendDelay 返回的 DelaySuspendInfo 类型",
+    "reminderAgent 的文档中实际模块名为 reminderAgentManager（@ohos.reminderAgentManager）",
+    "短时任务 requestSuspendDelay 最长 3 分钟，低电量时最长 1 分钟",
+    "workScheduler.startWork 必须至少设置一个触发条件，循环任务执行间隔至少 2 小时",
+    "通知场景中 WantAgent 仅支持发布公共事件（actionType=4），不支持直接跳转 UIAbility"
+  ],
+  "missingApis": []
+}

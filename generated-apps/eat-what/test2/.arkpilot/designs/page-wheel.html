@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今天吃什么 - 随机转盘</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      background: #0F0F0F;
+      color: #fff;
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 48px 20px 16px;
+    }
+    .back-btn {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+    .page-title { font-size: 18px; font-weight: 600; }
+    .share-btn {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .wheel-area {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 0 20px;
+      position: relative;
+    }
+    .wheel-container {
+      position: relative;
+      width: 340px; height: 340px;
+    }
+    .wheel {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), inset 0 0 0 12px rgba(255,255,255,0.04);
+    }
+    .wheel svg { width: 100%; height: 100%; transform: rotate(0deg); }
+    .pointer {
+      position: absolute;
+      top: -18px; left: 50%;
+      transform: translateX(-50%);
+      width: 28px; height: 36px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      z-index: 10;
+    }
+    .wheel-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A5B 100%);
+      border: 4px solid #0F0F0F;
+      color: #fff;
+      font-size: 16px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 16px rgba(255,107,53,0.16), 0 8px 24px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 20;
+    }
+    .hint {
+      margin-top: 32px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.56);
+      text-align: center;
+    }
+    .result-sheet {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: #1C1C1E;
+      border-radius: 28px 28px 0 0;
+      padding: 24px 24px 32px;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.24);
+      transform: translateY(0);
+      transition: transform .3s ease;
+    }
+    .result-sheet.hidden { transform: translateY(110%); }
+    .result-thumb {
+      width: 80px; height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A5B 100%);
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .result-thumb svg { width: 40px; height: 40px; color: #fff; }
+    .result-name {
+      font-size: 28px; font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .result-desc {
+      font-size: 14px; color: rgba(255,255,255,0.6);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .result-actions {
+      display: flex; gap: 12px;
+    }
+    .result-actions button { flex: 1; padding: 14px 0; border-radius: 24px; font-size: 15px; font-weight: 600; border: none; cursor: pointer; }
+    .btn-accept { background: linear-gradient(135deg, #FF6B35 0%, #FF8A5B 100%); color: #fff; }
+    .btn-secondary-dark { background: rgba(255,255,255,0.10); color: #fff; border: 1px solid rgba(255,255,255,0.14) !important; }
+  </style>
+</head>
+<body data-page-id="wheel">
+  <header class="top-bar">
+    <button class="back-btn" data-ui-id="wheel-back-button" aria-label="返回上一页">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>返回上一页</title>
+        <path d="m12 19-7-7 7-7"/>
+        <path d="M19 12H5"/>
+      </svg>
+    </button>
+    <div class="page-title" data-ui-id="wheel-title">今天吃什么</div>
+    <button class="share-btn" data-ui-id="wheel-share-button" aria-label="生成分享卡片">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>打开分享卡片页面</title>
+        <path d="M12 2v13"/>
+        <path d="m16 6-4-4-4 4"/>
+        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+      </svg>
+    </button>
+  </header>
+
+  <main class="wheel-area">
+    <div class="wheel-container">
+      <svg class="pointer" viewBox="0 0 28 36" fill="none">
+        <title>转盘结果指针</title>
+        <path d="M14 36L0 0h28L14 36z" fill="#fff"/>
+      </svg>
+      <div class="wheel" data-ui-id="wheel-canvas">
+        <svg viewBox="0 0 340 340">
+          <title>随机转盘候选菜品</title>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B35"/><stop offset="100%" stop-color="#FF8A5B"/></linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFC93D"/><stop offset="100%" stop-color="#FFE082"/></linearGradient>
+            <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3DD9C0"/><stop offset="100%" stop-color="#7EE8D8"/></linearGradient>
+            <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF4D6D"/><stop offset="100%" stop-color="#FF7A8F"/></linearGradient>
+            <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9B7EDE"/><stop offset="100%" stop-color="#BBA3E8"/></linearGradient>
+            <linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4ECDC4"/><stop offset="100%" stop-color="#88E0D9"/></linearGradient>
+            <linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F7DC6F"/><stop offset="100%" stop-color="#FBE9A0"/></linearGradient>
+            <linearGradient id="g8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#BB8FCE"/><stop offset="100%" stop-color="#D5B5E4"/></linearGradient>
+          </defs>
+          <g transform="translate(170,170)">
+            <path d="M0 0 L170 0 A170 170 0 0 1 120.2 120.2 Z" fill="url(#g1)"/>
+            <path d="M0 0 L120.2 120.2 A170 170 0 0 1 0 170 Z" fill="url(#g2)"/>
+            <path d="M0 0 L0 170 A170 170 0 0 1 -120.2 120.2 Z" fill="url(#g3)"/>
+            <path d="M0 0 L-120.2 120.2 A170 170 0 0 1 -170 0 Z" fill="url(#g4)"/>
+            <path d="M0 0 L-170 0 A170 170 0 0 1 -120.2 -120.2 Z" fill="url(#g5)"/>
+            <path d="M0 0 L-120.2 -120.2 A170 170 0 0 1 0 -170 Z" fill="url(#g6)"/>
+            <path d="M0 0 L0 -170 A170 170 0 0 1 120.2 -120.2 Z" fill="url(#g7)"/>
+            <path d="M0 0 L120.2 -120.2 A170 170 0 0 1 170 0 Z" fill="url(#g8)"/>
+          </g>
+          <text x="250" y="50" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(22.5,250,50)">番茄炒蛋</text>
+          <text x="305" y="115" fill="#1A1A1A" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(67.5,305,115)">红烧肉</text>
+          <text x="305" y="235" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(112.5,305,235)">清蒸鱼</text>
+          <text x="250" y="300" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(157.5,250,300)">麻婆豆腐</text>
+          <text x="130" y="300" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(202.5,130,300)">饺子</text>
+          <text x="75" y="235" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(247.5,75,235)">意面</text>
+          <text x="75" y="115" fill="#1A1A1A" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(292.5,75,115)">沙拉</text>
+          <text x="130" y="50" fill="#fff" font-size="14" font-weight="600" text-anchor="middle" transform="rotate(337.5,130,50)">咖喱饭</text>
+        </svg>
+      </div>
+      <button class="wheel-center" data-ui-id="wheel-spin-button" aria-label="启动转盘抽取">开始</button>
+    </div>
+    <p class="hint">点击「开始」让命运决定今晚的菜单</p>
+
+    <div class="result-sheet" data-ui-id="wheel-result-sheet">
+      <div class="result-thumb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>抽中菜品图标</title>
+          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+          <path d="M7 2v20"/>
+          <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+        </svg>
+      </div>
+      <div class="result-name" data-ui-id="wheel-result-name">番茄炒蛋</div>
+      <div class="result-desc">家常快手菜 · 15 分钟 · 营养均衡</div>
+      <div class="result-actions">
+        <button class="btn-accept" data-ui-id="wheel-result-accept-button">就吃这个</button>
+        <button class="btn-secondary-dark" data-ui-id="wheel-result-reshuffle-button">再转一次</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

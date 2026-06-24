@@ -1,0 +1,51 @@
+{
+  "module": "06-image-share.md",
+  "group": "06 — Image Capture & Share",
+  "apiCount": 6,
+  "apis": [
+    {
+      "name": "@ohos.arkui.componentSnapshot",
+      "purpose": "获取组件截图，支持已加载组件截图和离屏CustomBuilder截图，返回PixelMap",
+      "anchor": "ohosarkuicomponentsnapshot-组件截图",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.image (imagePacker)",
+      "purpose": "图片压缩和编码，支持将PixelMap/ImageSource编码为jpeg/webp/png/heic/gif格式的ArrayBuffer或写入文件",
+      "anchor": "interface-imagepacker",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.image (PixelMap)",
+      "purpose": "图像像素类，用于读取/写入图像像素数据，支持裁剪、缩放等操作，可直接用于Image组件显示",
+      "anchor": "interface-pixelmap",
+      "status": "found"
+    },
+    {
+      "name": "systemShare",
+      "purpose": "提供分享数据创建、分享面板拉起功能，支持文本、链接、文件等多种数据类型分享",
+      "anchor": "systemshare分享",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper",
+      "purpose": "相册管理模块，提供访问和修改媒体库中照片/视频的能力，包括创建相册和媒体文件",
+      "anchor": "函数",
+      "status": "found"
+    },
+    {
+      "name": "SaveButton",
+      "purpose": "安全控件中的保存控件，点击后获取临时媒体库写入授权，常与photoAccessHelper配合保存图片到图库",
+      "anchor": "savebutton",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@ohos.arkui.componentSnapshot.get/createFromBuilder 从API 18起废弃，建议通过UIContext.getComponentSnapshot()替代",
+    "systemShare.SharedRecord的thumbnail字段限制32KB以内，过大的缩略图可通过ImagePacker.packToData压缩",
+    "SaveButton作为安全控件，API 20起授权持续60秒（此前为10秒），可避免用户重复授权",
+    "componentSnapshot返回PixelMap -> ImagePacker.packToData编码 -> systemShare.ShareController分享，构成完整截取-编码-分享流程",
+    "SaveButton与photoAccessHelper.createAsset配合使用是推荐的保存图片到图库路径"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 - 会员档案</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; background:#F8F3EE; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; color:#3D2E26; }
+  .app-shell { width:100%; max-width:390px; margin:0 auto; min-height:100%; position:relative; padding-bottom:24px; }
+  .header { height:56px; background:linear-gradient(180deg, #C17A53 0%, #A85D3C 100%); border-radius:0 0 28px 28px; display:flex; align-items:center; padding:0 16px; position:relative; }
+  .back-btn { width:40px; height:40px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.16); cursor:pointer; }
+  .header-title { position:absolute; left:50%; transform:translateX(-50%); font-size:18px; font-weight:700; color:#F8F3EE; }
+  .edit-btn { position:absolute; right:16px; height:36px; border-radius:14px; background:rgba(255,255,255,0.20); color:#FFFFFF; border:none; padding:0 16px; font-size:14px; font-weight:700; cursor:pointer; }
+  .content { padding:16px; display:flex; flex-direction:column; gap:16px; }
+  .profile-hero { background:linear-gradient(135deg, #C17A53 0%, #A85D3C 100%); border-radius:24px; padding:24px 20px; color:#FFFFFF; box-shadow:0px 12px 32px rgba(193,122,83,0.28); text-align:center; }
+  .avatar-large { width:88px; height:88px; border-radius:32px; background:#FFFFFF; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:700; color:#C17A53; overflow:hidden; }
+  .profile-name { font-size:22px; font-weight:700; margin-bottom:6px; }
+  .profile-level { display:inline-block; background:rgba(255,255,255,0.22); color:#FFFFFF; font-size:12px; font-weight:700; padding:4px 12px; border-radius:12px; }
+  .card { background:#FFFFFF; border-radius:24px; padding:20px; box-shadow:0px 10px 28px rgba(61,46,38,0.08); }
+  .section-title { font-size:18px; font-weight:700; color:#3D2E26; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .bio-text { font-size:14px; line-height:1.65; color:#7A665B; }
+  .tags { display:flex; flex-wrap:wrap; gap:8px; }
+  .tag { height:32px; border-radius:16px; background:#F0E8E0; color:#7A665B; padding:0 14px; font-size:13px; font-weight:600; display:flex; align-items:center; }
+  .gallery { display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; }
+  .work-item { aspect-ratio:1; border-radius:18px; background:linear-gradient(135deg, #E6D5C7 0%, #F0E8E0 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .work-item svg { width:40%; height:40%; opacity:0.5; }
+  .add-work { border:2px dashed #C17A53; background:transparent; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
+  .add-work span { font-size:13px; color:#C17A53; font-weight:700; }
+  .stat-row { display:flex; gap:12px; }
+  .stat-box { flex:1; background:#F8F3EE; border-radius:18px; padding:16px; text-align:center; }
+  .stat-value { font-size:24px; font-weight:700; color:#C17A53; font-variant-numeric:tabular-nums; }
+  .stat-label { font-size:12px; color:#7A665B; margin-top:4px; }
+  .empty-state { text-align:center; padding:32px 20px; }
+  .empty-state svg { margin-bottom:12px; }
+  .empty-state h3 { font-size:16px; font-weight:700; margin-bottom:6px; }
+  .empty-state p { font-size:13px; color:#7A665B; }
+</style>
+</head>
+<body>
+<div class="app-shell" data-page-id="profile-page">
+  <header class="header">
+    <div class="back-btn" data-ui-id="back-button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><title>返回上一页</title><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <h1 class="header-title">会员档案</h1>
+    <button class="edit-btn" data-ui-id="profile-edit-button">编辑</button>
+  </header>
+  <main class="content">
+    <section class="profile-hero">
+      <div class="avatar-large" data-ui-id="profile-avatar">林</div>
+      <div class="profile-name" data-ui-id="profile-name">林小陶</div>
+      <div class="profile-level" data-ui-id="profile-points-level">陶匠 Lv.3</div>
+    </section>
+
+    <section class="stat-row">
+      <div class="stat-box">
+        <div class="stat-value">1,280</div>
+        <div class="stat-label">积分</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">12</div>
+        <div class="stat-label">作品</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">8</div>
+        <div class="stat-label">课程</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>擅长工艺</title><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        擅长工艺
+      </div>
+      <div class="tags" data-ui-id="profile-craft-tags">
+        <span class="tag">陶艺</span>
+        <span class="tag">木雕</span>
+        <span class="tag">釉下彩</span>
+      </div>
+      <div class="empty-state" data-ui-id="profile-craft-empty" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#E6D5C7" stroke-width="1.5"><title>暂无擅长工艺</title><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <h3>还没有标签</h3>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>个人简介</title><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        个人简介
+      </div>
+      <p class="bio-text" data-ui-id="profile-bio">喜欢陶土在指尖旋转的感觉，从拉坯到上釉，每一次不确定的窑变都是惊喜。最近在学习木雕，想把两种材质结合做成摆件。</p>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>作品图集</title><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        作品图集
+      </div>
+      <div class="gallery" data-ui-id="profile-works-gallery">
+        <div class="work-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#A85D3C" stroke-width="1.5"><title>作品图片占位 1</title><path d="M12 21c4.97 0 9-4.03 9-9-2.5 0-3-1.5-3-3 0-2-1.5-3-3-3s-3 1-3 3c0 1.5-.5 3-3 3 0 4.97 4.03 9 9 9z"/></svg>
+        </div>
+        <div class="work-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#A85D3C" stroke-width="1.5"><title>作品图片占位 2</title><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M12 9v8M8 13h8"/></svg>
+        </div>
+        <div class="work-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#A85D3C" stroke-width="1.5"><title>作品图片占位 3</title><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <button class="work-item add-work" data-ui-id="profile-add-work-button">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>添加作品照片</title><path d="M12 5v14M5 12h14"/></svg>
+          <span>添加</span>
+        </button>
+      </div>
+      <div class="empty-state" data-ui-id="profile-works-empty" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#E6D5C7" stroke-width="1.5"><title>暂无作品插画</title><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <h3>还没有作品</h3>
+        <p>点击“添加”记录第一件作品</p>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

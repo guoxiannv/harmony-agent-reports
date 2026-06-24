@@ -1,0 +1,39 @@
+{
+  "module": "03-data-persistence.md",
+  "group": "03 — 数据持久化 Data Persistence",
+  "apiCount": 4,
+  "apis": [
+    {
+      "name": "dataPreferences",
+      "purpose": "轻量级 Key-Value 键值型本地数据持久化（数字、字符串、布尔及其数组）",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore",
+      "purpose": "基于 SQLite 的关系型数据库本地持久化，支持完整 SQL 增删改查",
+      "anchor": "模块描述",
+      "status": "found"
+    },
+    {
+      "name": "distributedKVStore",
+      "purpose": "分布式键值数据库，支持多设备间数据端端同步（SingleKVStore / DeviceKVStore）",
+      "anchor": "ohosdatadistributedkvstore-分布式键值数据库",
+      "status": "found"
+    },
+    {
+      "name": "distributedObject",
+      "purpose": "分布式数据对象，支持多设备间对象级自动协同同步",
+      "anchor": "ohosdatadistributeddataobject-分布式数据对象",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "dataPreferences 不支持多进程并发安全，有文件损坏和数据丢失风险",
+    "distributedObject 的 createDistributedObject (API 8) 已废弃，应使用 create (API 9+)",
+    "distributedKVStore 设备协同场景需要 ohos.permission.DISTRIBUTED_DATASYNC 权限",
+    "relationalStore 单条数据建议不超过 2MB，单次查询不超过 5000 条",
+    "所有四个数据持久化模块均从 @kit.ArkData 导入，但导入的子模块名不同"
+  ],
+  "missingApis": []
+}

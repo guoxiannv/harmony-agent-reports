@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 — 积分与消费</title>
+<style>
+:root {
+  --bg: #FAF6F1;
+  --card: #EDE6DC;
+  --card-light: #FAF6F1;
+  --text: #3A2E29;
+  --text-secondary: #6B5A4F;
+  --text-tertiary: #A89A8E;
+  --clay: #A65D48;
+  --fire: #E57A39;
+  --green: #4D8A72;
+  --yellow: #C99E3A;
+  --red: #B84A3D;
+  --sand: #EBDBC2;
+  --border: #DCC8B0;
+  --shadow: rgba(111, 69, 59, 0.10);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", sans-serif; }
+body { max-width: 420px; margin: 0 auto; min-height: 100vh; padding-bottom: 92px; }
+.page { padding: 20px; }
+.header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.back-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--card-light); border: 1px solid var(--border); display: inline-flex; align-items: center; justify-content: center; color: var(--clay); }
+.page-title { font-family: "Ma Shan Zheng", cursive; font-size: 30px; color: var(--clay); flex: 1; }
+.points-hero { background: linear-gradient(135deg, var(--sand) 0%, #F5E9D8 100%); border-radius: 24px; padding: 24px; box-shadow: 0 8px 24px var(--shadow); margin-bottom: 20px; text-align: center; }
+.points-hero .label { font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; }
+.points-hero .value { font-size: 48px; font-weight: 700; color: var(--clay); line-height: 1; }
+.points-hero .lifetime { font-size: 13px; color: var(--text-tertiary); margin-top: 8px; }
+.segment { display: flex; background: var(--card-light); border-radius: 999px; padding: 4px; margin-bottom: 20px; border: 1px solid var(--border); }
+.segment button { flex: 1; border: none; background: transparent; padding: 10px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+.segment button.active { background: var(--clay); color: #FFFBF6; }
+.section-title { font-family: "Ma Shan Zheng", cursive; font-size: 24px; color: var(--clay); margin: 24px 0 14px; }
+.list-card { background: var(--card-light); border-radius: 22px; padding: 4px 18px; box-shadow: 0 8px 24px var(--shadow); }
+.list-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(111,69,59,0.08); }
+.list-item:last-child { border-bottom: none; }
+.list-item .icon { width: 40px; height: 40px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.list-item .icon.green { background: #E2F0EA; color: var(--green); }
+.list-item .icon.red { background: #F4E4E2; color: var(--red); }
+.list-item .icon.yellow { background: #F8F0DB; color: var(--yellow); }
+.list-item .body { flex: 1; }
+.list-item .title { font-size: 15px; font-weight: 600; }
+.list-item .desc { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+.list-item .amount { font-size: 16px; font-weight: 700; }
+.list-item .amount.plus { color: var(--green); }
+.list-item .amount.minus { color: var(--red); }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text-tertiary); }
+.empty-state svg { width: 64px; height: 64px; color: var(--border); margin-bottom: 12px; }
+.tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 76px; background: rgba(250,246,241,0.92); backdrop-filter: blur(18px); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding-bottom: env(safe-area-inset-bottom); }
+.tab { flex: 1; text-align: center; color: var(--text-tertiary); font-size: 11px; padding-top: 8px; }
+.tab.active { color: var(--clay); }
+.tab svg { width: 24px; height: 24px; margin-bottom: 4px; }
+</style>
+</head>
+<body data-page-id="points-page" data-tab-id="tab-points">
+<div class="page">
+  <div class="header">
+    <button class="back-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回</title><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <div class="page-title">积分与消费</div>
+  </div>
+
+  <div class="points-hero">
+    <div class="label">当前积分</div>
+    <div class="value" data-ui-id="points-balance">1,280</div>
+    <div class="lifetime">累计获得 <span data-ui-id="points-lifetime">3,420</span> 积分 · 相当于 ¥34.20</div>
+  </div>
+
+  <div class="segment" data-ui-id="points-segment">
+    <button class="active">积分明细</button>
+    <button>消费记录</button>
+  </div>
+
+  <div class="section-title">积分明细</div>
+  <div class="list-card">
+    <div class="list-item" data-ui-id="points-history-list" data-ui-id-item="points-history-1">
+      <div class="icon green">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>签到积分</title><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <div class="body">
+        <div class="title">每日签到</div>
+        <div class="desc">2026-06-19 · 连续 12 天</div>
+      </div>
+      <div class="amount plus">+10</div>
+    </div>
+    <div class="list-item" data-ui-id-item="points-history-2">
+      <div class="icon yellow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>课程积分</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+      </div>
+      <div class="body">
+        <div class="title">完成课程「皮具手缝基础」</div>
+        <div class="desc">2026-06-15 · 课后评价奖励</div>
+      </div>
+      <div class="amount plus">+50</div>
+    </div>
+    <div class="list-item" data-ui-id-item="points-history-3">
+      <div class="icon red">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>兑换积分</title><path d="M12 2v20"/><path d="m17 7-5-5-5 5"/></svg>
+      </div>
+      <div class="body">
+        <div class="title">兑换釉料套装</div>
+        <div class="desc">2026-06-10 · 积分商城</div>
+      </div>
+      <div class="amount minus">-200</div>
+    </div>
+  </div>
+
+  <div class="empty-state" id="points-history-empty" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><title>暂无积分明细</title><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 0 1-5.66-5.66"/></svg>
+    <div>暂无积分明细</div>
+  </div>
+
+  <div class="empty-state" id="points-consumption-empty" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><title>暂无消费记录</title><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+    <div>暂无消费记录</div>
+  </div>
+</div>
+
+<div class="tabbar">
+  <div class="tab" data-ui-id="tab-home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    <div>首页</div>
+  </div>
+  <div class="tab" data-ui-id="tab-classes">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>课程</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+    <div>课程</div>
+  </div>
+  <div class="tab active" data-ui-id="tab-points">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>积分</title><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 0 1-5.66-5.66"/></svg>
+    <div>积分</div>
+  </div>
+  <div class="tab" data-ui-id="tab-profile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div>我的</div>
+  </div>
+</div>
+</body>
+</html>

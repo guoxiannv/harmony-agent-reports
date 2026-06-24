@@ -1,0 +1,141 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "version": "arkpilot-a2ui/v2",
+  "appName": "WordFlip Kids",
+  "route": "pages/Review",
+  "summary": "Single-surface word-review flashcard flow. App boots directly into the review page (no bottom tab). A central flashcard shows the English word; tapping flips it 3D to reveal Chinese meaning + phonetic. 「认识」 dequeues the card and increments correctCount; 「不认识」 moves the card to the queue tail. When the queue drains, a completion overlay shows the round's correct count and a restart entry. When the current stage has no words, an empty state is shown.",
+
+  "dataModel": {
+    "entities": {
+      "Word": {
+        "description": "A learned word from the current stage's word bank.",
+        "fields": {
+          "id": "string — stable unique id (used for queue identity / dedup)",
+          "english": "string — front face text",
+          "meaning": "string — back face Chinese meaning",
+          "phonetic": "string — back face phonetic (e.g. /wɜːd/)"
+        }
+      }
+    },
+    "settingsFormState": {},
+    "computedState": {
+      "currentWord": "Word | null — the card currently on top of the queue (ui-tree binding currentWord)",
+      "remainingCount": "number — number of cards still in the queue (binding remainingCount)",
+      "correctCount": "number — cards marked 认识 this round (binding correctCount)",
+      "totalCount": "number — cards in the round when it started",
+      "isFlipped": "boolean — whether the current card shows its back face (ui-tree state 'flipped')",
+      "isQueueEmpty": "boolean — current stage word bank produced no cards (binding isQueueEmpty)",
+      "isComplete": "boolean — round finished (queue drained AND round had at least one card) (binding isComplete)"
+    },
+    "persistenceRelevant": {
+      "note": "MVP round state is in-memory. The word bank is read from a local rawfile JSON resource. No cross-round progress persistence is required for this version (spec section 7 & 9)."
+    }
+  },
+
+  "services": {
+    "WordBankService": {
+      "purpose": "Loads the current stage's learned words from local storage (rawfile JSON word bank).",
+      "interface": {
+        "loadStage(stageId: string): Word[]": "Returns the word list for the given stage; returns [] when the stage has no words (drives empty state).",
+        "defaultStageId(): string": "Returns the current/active stage id used by the review flow."
+      },
+      "dataStrategy": "Local JSON resource under rawfile. This is the product's word library (the data source named by spec section 7), NOT HTML demo data. The empty-state path is real and exercised when the bank yields zero words.",
+      "fallback": "If the resource cannot be parsed, return [] so the empty state renders instead of crashing."
+    }
+  },
+
+  "stateMachine": {
+    "initial": "loading",
+    "states": {
+      "loading": "Reading the word bank for the current stage.",
+      "empty": "isQueueEmpty === true: no words to review. Shows EmptyState.",
+      "review": "Active review. A current card is shown; isFlipped toggles face. 认识/不认识 advance the queue.",
+      "complete": "isComplete === true: queue drained after a non-empty round. Shows CompletionOverlay."
+    },
+    "transitions": [
+      { "from": "loading", "event": "load-done-empty", "to": "empty", "guard": "stage word list is empty" },
+      { "from": "loading", "event": "load-done", "to": "review", "guard": "stage word list has >= 1 word" },
+      { "from": "review", "event": "toggle-flip", "to": "review", "effect": "isFlipped := !isFlipped" },
+      { "from": "review", "event": "mark-known", "to": "review|complete", "effect": "dequeue current card; correctCount++; advance; if queue now empty -> complete" },
+      { "from": "review", "event": "mark-unknown", "to": "review", "effect": "move current card to queue tail; do NOT change correctCount or remainingCount; reset isFlipped=false; advance to next top card" },
+      { "from": "complete", "event": "restart-review", "to": "loading|review|empty", "effect": "reload stage queue; reset correctCount/isFlipped" },
+      { "from": "empty", "event": "restart-review", "to": "loading", "effect": "reload stage queue" }
+    ]
+  },
+
+  "interactionFlows": [
+    {
+      "name": "flip-card",
+      "trigger": "tap review-flashcard (event toggle-flip)",
+      "steps": [
+        "Controller flips isFlipped.",
+        "Card plays 3D flip animation; back face shows review-word-back-meaning + review-word-back-phonetic.",
+        "Tapping again flips back to front."
+      ],
+      "expectedState": "isFlipped toggled; currentWord unchanged; counts unchanged.",
+      "errorPath": "If currentWord is null (no card), toggle-flip is a no-op."
+    },
+    {
+      "name": "mark-known",
+      "trigger": "tap review-known-button (event mark-known)",
+      "steps": [
+        "Dequeue (remove) the current card from the queue.",
+        "correctCount += 1.",
+        "Reset isFlipped = false for the next card.",
+        "If queue is now empty AND totalCount >= 1 -> isComplete = true (complete state).",
+        "Otherwise advance to the new top card."
+      ],
+      "expectedState": "remainingCount decreased by 1; correctCount increased by 1; new currentWord is next card or null(complete).",
+      "errorPath": "If queue already empty, no-op."
+    },
+    {
+      "name": "mark-unknown",
+      "trigger": "tap review-unknown-button (event mark-unknown)",
+      "steps": [
+        "Move the current card to the tail of the queue (FIFO requeue).",
+        "Do NOT change correctCount.",
+        "Do NOT change remainingCount (card stays in the round).",
+        "Reset isFlipped = false.",
+        "Advance to the next top card (the card that was second)."
+      ],
+      "expectedState": "Queue rotated; remainingCount unchanged; correctCount unchanged; currentWord is the next card.",
+      "errorPath": "If only one card remains, mark-unknown requeues it to itself (top stays same card); UI should still reset flip and is safe."
+    },
+    {
+      "name": "complete-and-restart",
+      "trigger": "tap review-restart-button (event restart-review) on CompletionOverlay",
+      "steps": [
+        "Reload the stage word list via WordBankService.",
+        "Reset correctCount = 0, isFlipped = false.",
+        "If empty -> empty state; else -> review with fresh queue."
+      ],
+      "expectedState": "Fresh round; counts reset."
+    }
+  ],
+
+  "testTargets": {
+    "assertVisible": [
+      "review-title",
+      "review-remaining-count",
+      "review-correct-count",
+      "review-flashcard",
+      "review-word-front"
+    ],
+    "assertState": [
+      { "id": "review-flashcard", "state": "flipped", "description": "Card back face visible after toggle-flip" }
+    ],
+    "actions": [
+      "review-flashcard",
+      "review-known-button",
+      "review-unknown-button",
+      "review-restart-button"
+    ]
+  },
+
+  "changeRequests": [
+    {
+      "topic": "Shell vs single-page navigation",
+      "note": "Spec section 6 explicitly requires NO bottom tab and direct boot into the review page. The scaffold ships a fixed multi-tab BottomTabBar shell. Per spec, visual integration must collapse the shell to a single review surface (route pages/Review) rather than preserving the multi-tab BottomTabBar. Flagged here per contract; resolve during visual integration."
+    }
+  ]
+}

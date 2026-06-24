@@ -1,0 +1,209 @@
+{
+  "version": "arkpilot-uitree/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "手作·印记",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home-page",
+      "name": "首页",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        { "id": "home-header-title", "role": "assertion", "binding": "appName" },
+        { "id": "home-checkin-button", "role": "action", "event": "member-checkin" },
+        { "id": "home-points-card", "role": "assertion", "binding": "/points/balance" },
+        { "id": "home-points-detail-link", "role": "action", "event": "navigate-to-points" },
+        { "id": "home-upcoming-lesson-card", "role": "assertion", "binding": "/lessons/upcoming" },
+        { "id": "home-book-lesson-button", "role": "action", "event": "open-booking" },
+        { "id": "home-dormant-alert-card", "role": "assertion", "binding": "/dormant/count" },
+        { "id": "home-dormant-link", "role": "action", "event": "navigate-to-dormant" },
+        { "id": "home-inventory-link", "role": "action", "event": "navigate-to-inventory" },
+        { "id": "home-empty-state", "role": "assertion", "binding": "/home/empty" }
+      ]
+    },
+    {
+      "id": "points-page",
+      "surfaceId": "points",
+      "pageId": "points-page",
+      "name": "积分明细",
+      "route": "pages/Points",
+      "semanticTargets": [
+        { "id": "points-balance", "role": "assertion", "binding": "/points/balance" },
+        { "id": "points-checkin-button", "role": "action", "event": "member-checkin" },
+        { "id": "points-list", "role": "list", "binding": "/points/transactions", "itemIdPattern": "points-item-{id}", "emptyStateId": "points-empty-state" },
+        { "id": "points-filter-all", "role": "action", "event": "filter-points-all" },
+        { "id": "points-filter-income", "role": "action", "event": "filter-points-income" },
+        { "id": "points-filter-expense", "role": "action", "event": "filter-points-expense" }
+      ]
+    },
+    {
+      "id": "members-page",
+      "surfaceId": "members",
+      "pageId": "members-page",
+      "name": "会员列表",
+      "route": "pages/Members",
+      "tabId": "tab-members",
+      "semanticTargets": [
+        { "id": "members-search-input", "role": "input", "binding": "/members/searchQuery" },
+        { "id": "members-add-button", "role": "action", "event": "open-add-member" },
+        { "id": "members-list", "role": "list", "binding": "/members", "itemIdPattern": "member-item-{id}", "emptyStateId": "members-empty-state" },
+        { "id": "members-filter-all", "role": "action", "event": "filter-members-all" },
+        { "id": "members-filter-dormant", "role": "action", "event": "filter-members-dormant" }
+      ]
+    },
+    {
+      "id": "profile-page",
+      "surfaceId": "profile",
+      "pageId": "profile-page",
+      "name": "会员档案",
+      "route": "pages/Profile",
+      "semanticTargets": [
+        { "id": "profile-avatar", "role": "assertion", "binding": "/profile/avatar" },
+        { "id": "profile-name", "role": "assertion", "binding": "/profile/name" },
+        { "id": "profile-craft-tags", "role": "list", "binding": "/profile/crafts", "itemIdPattern": "profile-craft-{id}", "emptyStateId": "profile-craft-empty" },
+        { "id": "profile-bio", "role": "assertion", "binding": "/profile/bio" },
+        { "id": "profile-works-gallery", "role": "list", "binding": "/profile/works", "itemIdPattern": "profile-work-{id}", "emptyStateId": "profile-works-empty" },
+        { "id": "profile-add-work-button", "role": "action", "event": "add-work-photo" },
+        { "id": "profile-edit-button", "role": "action", "event": "edit-profile" },
+        { "id": "profile-points-level", "role": "assertion", "binding": "/profile/level" }
+      ]
+    },
+    {
+      "id": "calendar-page",
+      "surfaceId": "calendar",
+      "pageId": "calendar-page",
+      "name": "课程日历",
+      "route": "pages/Calendar",
+      "tabId": "tab-calendar",
+      "semanticTargets": [
+        { "id": "calendar-month-title", "role": "assertion", "binding": "/calendar/monthLabel" },
+        { "id": "calendar-prev-month", "role": "action", "event": "calendar-prev-month" },
+        { "id": "calendar-next-month", "role": "action", "event": "calendar-next-month" },
+        { "id": "calendar-grid", "role": "list", "binding": "/calendar/days", "itemIdPattern": "calendar-day-{date}", "emptyStateId": "calendar-empty-state" },
+        { "id": "calendar-book-button", "role": "action", "event": "open-booking" },
+        { "id": "calendar-selected-day-lessons", "role": "list", "binding": "/calendar/selectedDayLessons", "itemIdPattern": "calendar-lesson-{id}", "emptyStateId": "calendar-day-empty" }
+      ]
+    },
+    {
+      "id": "booking-page",
+      "surfaceId": "booking",
+      "pageId": "booking-page",
+      "name": "课程预约",
+      "route": "pages/Booking",
+      "semanticTargets": [
+        { "id": "booking-course-picker", "role": "input", "binding": "/booking/selectedCourse" },
+        { "id": "booking-date-picker", "role": "input", "binding": "/booking/selectedDate" },
+        { "id": "booking-time-picker", "role": "input", "binding": "/booking/selectedTime" },
+        { "id": "booking-member-picker", "role": "input", "binding": "/booking/selectedMember" },
+        { "id": "booking-submit-button", "role": "action", "event": "submit-booking" },
+        { "id": "booking-stock-warning", "role": "assertion", "binding": "/booking/stockWarning" },
+        { "id": "booking-error-message", "role": "assertion", "binding": "/booking/error" }
+      ]
+    },
+    {
+      "id": "inventory-page",
+      "surfaceId": "inventory",
+      "pageId": "inventory-page",
+      "name": "库存管理",
+      "route": "pages/Inventory",
+      "semanticTargets": [
+        { "id": "inventory-list", "role": "list", "binding": "/inventory/items", "itemIdPattern": "inventory-item-{id}", "emptyStateId": "inventory-empty-state" },
+        { "id": "inventory-add-button", "role": "action", "event": "open-add-material" },
+        { "id": "inventory-low-stock-alert", "role": "assertion", "binding": "/inventory/lowStockCount" },
+        { "id": "inventory-deduction-log", "role": "list", "binding": "/inventory/deductions", "itemIdPattern": "inventory-deduction-{id}", "emptyStateId": "inventory-deductions-empty" }
+      ]
+    },
+    {
+      "id": "dormant-page",
+      "surfaceId": "dormant",
+      "pageId": "dormant-page",
+      "name": "沉睡提醒",
+      "route": "pages/Dormant",
+      "semanticTargets": [
+        { "id": "dormant-count", "role": "assertion", "binding": "/dormant/count" },
+        { "id": "dormant-threshold-input", "role": "input", "binding": "/dormant/thresholdDays" },
+        { "id": "dormant-list", "role": "list", "binding": "/dormant/members", "itemIdPattern": "dormant-item-{id}", "emptyStateId": "dormant-empty-state" },
+        { "id": "dormant-wake-button", "role": "action", "event": "wake-member" },
+        { "id": "dormant-wake-all-button", "role": "action", "event": "wake-all-members" }
+      ]
+    },
+    {
+      "id": "my-page",
+      "surfaceId": "my",
+      "pageId": "my-page",
+      "name": "我的",
+      "route": "pages/My",
+      "tabId": "tab-my",
+      "semanticTargets": [
+        { "id": "my-avatar", "role": "assertion", "binding": "/my/avatar" },
+        { "id": "my-name", "role": "assertion", "binding": "/my/name" },
+        { "id": "my-settings-button", "role": "action", "event": "open-settings" },
+        { "id": "my-about-button", "role": "action", "event": "open-about" },
+        { "id": "my-logout-button", "role": "action", "event": "logout" }
+      ]
+    }
+  ],
+  "sharedComponents": [
+    {
+      "id": "bottom-tab-bar",
+      "semanticTargets": [
+        { "id": "tab-home", "role": "action", "event": "navigate-home" },
+        { "id": "tab-calendar", "role": "action", "event": "navigate-calendar" },
+        { "id": "tab-members", "role": "action", "event": "navigate-members" },
+        { "id": "tab-my", "role": "action", "event": "navigate-my" }
+      ]
+    },
+    {
+      "id": "top-back-button",
+      "semanticTargets": [
+        { "id": "back-button", "role": "action", "event": "navigate-back" }
+      ]
+    }
+  ],
+  "events": [
+    { "name": "member-checkin", "description": "会员签到并发放积分" },
+    { "name": "navigate-to-points", "description": "跳转到积分明细" },
+    { "name": "open-booking", "description": "打开课程预约" },
+    { "name": "navigate-to-dormant", "description": "跳转到沉睡提醒" },
+    { "name": "navigate-to-inventory", "description": "跳转到库存管理" },
+    { "name": "filter-points-all", "description": "筛选全部积分记录" },
+    { "name": "filter-points-income", "description": "筛选积分收入" },
+    { "name": "filter-points-expense", "description": "筛选积分支出" },
+    { "name": "open-add-member", "description": "打开新增会员" },
+    { "name": "filter-members-all", "description": "筛选全部会员" },
+    { "name": "filter-members-dormant", "description": "筛选沉睡会员" },
+    { "name": "add-work-photo", "description": "添加作品照片" },
+    { "name": "edit-profile", "description": "编辑会员档案" },
+    { "name": "calendar-prev-month", "description": "日历上月" },
+    { "name": "calendar-next-month", "description": "日历下月" },
+    { "name": "submit-booking", "description": "提交课程预约" },
+    { "name": "open-add-material", "description": "打开新增物料" },
+    { "name": "wake-member", "description": "唤醒单个会员" },
+    { "name": "wake-all-members", "description": "批量唤醒会员" },
+    { "name": "open-settings", "description": "打开设置" },
+    { "name": "open-about", "description": "打开关于" },
+    { "name": "logout", "description": "退出登录" },
+    { "name": "navigate-home", "description": "切换到首页" },
+    { "name": "navigate-calendar", "description": "切换到课程日历" },
+    { "name": "navigate-members", "description": "切换到会员列表" },
+    { "name": "navigate-my", "description": "切换到我的" },
+    { "name": "navigate-back", "description": "返回上一级" }
+  ],
+  "bindings": [
+    { "path": "/points/balance", "type": "number", "description": "当前积分余额" },
+    { "path": "/lessons/upcoming", "type": "object", "description": "最近一节待上课程" },
+    { "path": "/dormant/count", "type": "number", "description": "沉睡会员数量" },
+    { "path": "/members", "type": "array", "description": "会员列表" },
+    { "path": "/profile/works", "type": "array", "description": "作品图集" },
+    { "path": "/calendar/days", "type": "array", "description": "日历单元格" },
+    { "path": "/inventory/items", "type": "array", "description": "库存物料列表" },
+    { "path": "/booking/stockWarning", "type": "string", "description": "库存不足警告文案" }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "module": "04-persistence.md",
+  "group": "04 — Data Persistence & Resource Loading",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "AppStorage",
+      "purpose": "应用全局内存键值存储，与UI双向/单向绑定，支持V1(内置)和V2(AppStorageV2 from @kit.ArkUI)",
+      "anchor": "appstorage-应用全局的ui状态存储",
+      "status": "found"
+    },
+    {
+      "name": "PersistentStorage",
+      "purpose": "持久化存储UI状态到磁盘，与AppStorage协同工作；V2对应PersistenceV2(@kit.ArkUI)",
+      "anchor": "persistentstorage-持久化存储ui状态",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.preferences (Preferences/PreferencesKit)",
+      "purpose": "轻量级键值持久化存储，不与UI绑定，需手动flush()，导入@kit.ArkData",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "resourceManager (getContext().resourceManager)",
+      "purpose": "通过Context获取资源管理对象，读取字符串、颜色等资源及rawfile文件",
+      "anchor": "resourcemanager-资源管理",
+      "status": "found"
+    },
+    {
+      "name": "rawfile (rawfile目录资源读取)",
+      "purpose": "通过resourceManager.getRawFileContent(Sync)读取resources/rawfile中的文件内容",
+      "anchor": "rawfile-rawfile目录资源读取",
+      "status": "found"
+    },
+    {
+      "name": "Environment (环境变量)",
+      "purpose": "系统环境变量查询：V1的Environment.envProp存入AppStorage；V2的@Env装饰器直接读取系统属性(API22+)",
+      "anchor": "environment-设备环境查询",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.resourceManager",
+      "purpose": "资源管理模块，提供字符串、rawfile等资源的读取能力，导入@kit.LocalizationKit",
+      "anchor": "ohosresourcemanager-资源管理",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "getContext() 从 API 18 起废弃，建议使用 this.getUIContext().getHostContext()",
+    "AppStorage/PersistentStorage（V1状态管理）在API 10起推荐小写新接口（link→link, PersistProp→persistProp）",
+    "AppStorageV2 + PersistenceV2（@kit.ArkUI）从API 12引入，使用class + @ObservedV2/@Trace体系，取代V1的字符串键方式",
+    "@Env装饰器（API 22+）基于SystemProperties枚举，用于获取窗口断点、尺寸等系统环境变量",
+    "Preferences不支持进程并发安全，不能在多进程场景使用"
+  ],
+  "missingApis": []
+}

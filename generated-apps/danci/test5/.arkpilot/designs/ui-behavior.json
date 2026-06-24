@@ -1,0 +1,121 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "appName": "单词翻翻乐",
+  "version": "arkpilot-a2ui/v2",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Word",
+        "fields": [
+          { "name": "id", "type": "string", "description": "Stable identifier for the word entry." },
+          { "name": "word", "type": "string", "description": "English word shown on the card front." },
+          { "name": "meaning", "type": "string", "description": "Chinese meaning shown on the card back." },
+          { "name": "phonetic", "type": "string", "description": "Phonetic symbol shown on the card back." }
+        ]
+      }
+    ],
+    "settingsFormState": [],
+    "computedState": [
+      { "path": "/session/totalCount", "type": "number", "description": "Size of the original loaded word set; constant for the session." },
+      { "path": "/session/remainingCount", "type": "number", "description": "Length of the working review queue." },
+      { "path": "/session/knownCount", "type": "number", "description": "Number of words marked 认识 this session." },
+      { "path": "/session/isComplete", "type": "boolean", "description": "True when remainingCount === 0." },
+      { "path": "/card/isFlipped", "type": "boolean", "description": "Whether the back face is currently shown." }
+    ],
+    "persistenceRelevant": [
+      "No persistence is required by the spec. All session state (queue order, known count, flip state) is in-memory and resets on app restart."
+    ]
+  },
+  "services": [
+    {
+      "name": "WordBankService",
+      "responsibility": "Loads the current-stage word set. Implemented as an in-code ArkTS array (decision: hard-coded over rawfile JSON, per spec Open Question). Returns Word[] for the active learning stage.",
+      "persistence": "none"
+    },
+    {
+      "name": "ReviewController",
+      "responsibility": "Owns the in-memory review session: working queue, known count, flip state. Exposes totalCount, remainingCount, knownCount, currentWord, isComplete, isFlipped plus markKnown, markUnknown, flipCard, restartSession.",
+      "persistence": "none (in-memory only)"
+    }
+  ],
+  "stateMachine": {
+    "states": [
+      { "name": "reviewing", "description": "Queue non-empty; one card is shown. Sub-state per flip: front / back." },
+      { "name": "complete", "description": "Queue empty; completion state shown with restart action." }
+    ],
+    "transitions": [
+      { "from": "reviewing", "event": "flip-card", "to": "reviewing", "effect": "Toggle /card/isFlipped (front<->back)." },
+      { "from": "reviewing", "event": "mark-known", "to": "reviewing|complete", "effect": "Remove current word from queue; knownCount++; advance to next word; reset flip to front. -> complete when queue empties." },
+      { "from": "reviewing", "event": "mark-unknown", "to": "reviewing", "effect": "Move current word to bottom of queue; advance to next word; reset flip to front." },
+      { "from": "complete", "event": "restart-session", "to": "reviewing", "effect": "Reload word bank, rebuild queue, reset knownCount to 0, flip to front." }
+    ]
+  },
+  "interactionFlows": [
+    {
+      "name": "reveal-answer",
+      "trigger": "tap review-flashcard",
+      "inputs": [],
+      "steps": [
+        "Controller.flipCard() toggles isFlipped.",
+        "Flashcard plays 3D rotateY animation (0<->180).",
+        "Front shows /currentWord/word; back shows /currentWord/meaning + /currentWord/phonetic."
+      ],
+      "expectedState": "/card/isFlipped toggled; no queue/score change.",
+      "errorPath": "none"
+    },
+    {
+      "name": "mark-known-flow",
+      "trigger": "tap review-known-button",
+      "inputs": [],
+      "steps": [
+        "Controller.markKnown(): dequeue head, knownCount++.",
+        "Reset flip to front for next card.",
+        "If queue empty -> isComplete true, show review-empty-state."
+      ],
+      "expectedState": "remainingCount decreased by 1; knownCount increased by 1.",
+      "errorPath": "If already complete, button is hidden (completion surface shown instead)."
+    },
+    {
+      "name": "mark-unknown-flow",
+      "trigger": "tap review-unknown-button",
+      "inputs": [],
+      "steps": [
+        "Controller.markUnknown(): move head to tail of queue.",
+        "Reset flip to front.",
+        "Advance to next card (new head)."
+      ],
+      "expectedState": "remainingCount unchanged; knownCount unchanged; queue reordered.",
+      "errorPath": "none"
+    },
+    {
+      "name": "restart-flow",
+      "trigger": "tap review-restart-button",
+      "inputs": [],
+      "steps": [
+        "Controller.restartSession(): reload WordBank, rebuild queue, reset knownCount.",
+        "Flip reset to front; return to reviewing state."
+      ],
+      "expectedState": "totalCount restored; knownCount 0; remainingCount = totalCount.",
+      "errorPath": "none"
+    }
+  ],
+  "testTargets": [
+    { "id": "review-progress-total", "role": "assertion", "binding": "/session/totalCount" },
+    { "id": "review-progress-remaining", "role": "assertion", "binding": "/session/remainingCount" },
+    { "id": "review-progress-known", "role": "assertion", "binding": "/session/knownCount" },
+    { "id": "review-flashcard", "role": "action", "event": "flip-card" },
+    { "id": "review-card-front-word", "role": "assertion", "binding": "/currentWord/word" },
+    { "id": "review-card-back-meaning", "role": "assertion", "binding": "/currentWord/meaning" },
+    { "id": "review-card-back-phonetic", "role": "assertion", "binding": "/currentWord/phonetic" },
+    { "id": "review-known-button", "role": "action", "event": "mark-known" },
+    { "id": "review-unknown-button", "role": "action", "event": "mark-unknown" },
+    { "id": "review-empty-state", "role": "assertion", "binding": "/session/isComplete" },
+    { "id": "review-restart-button", "role": "action", "event": "restart-session" }
+  ],
+  "notes": [
+    "Single-page app, no tabs (spec Non-Goals / Navigation Model). Index.ets is adapted to host ReviewPage only; the scaffold BottomTabBar/TabTypes/SvgIcon files are retained but unused.",
+    "Open Question resolution: word bank hard-coded in ArkTS (WordBankService) rather than rawfile JSON.",
+    "Open Question resolution: after mark-known / mark-unknown, the card auto-resets to the front face for the next word.",
+    "Persistence out of scope per spec; session is in-memory."
+  ]
+}

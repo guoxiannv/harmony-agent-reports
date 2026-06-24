@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>平安扣 - 统计看板</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #F0F9FF 0%, #F0FDFA 50%, #F0F4F8 100%);
+      color: #334155;
+      padding-bottom: 84px;
+    }
+    .app-shell { max-width: 420px; margin: 0 auto; position: relative; }
+    .page-header { padding: 56px 16px 12px; }
+    .page-title { font-size: 22px; font-weight: 700; color: #0F172A; }
+    .time-filter {
+      display: flex; gap: 8px; padding: 0 16px 16px;
+    }
+    .time-tab {
+      flex: 1; text-align: center; padding: 8px 0; border-radius: 12px; font-size: 13px; font-weight: 500;
+      background: #fff; border: 1px solid #E2E8F0; color: #64748B;
+    }
+    .time-tab.active { background: #0D9488; color: #fff; border-color: #0D9488; }
+    .metrics { display: flex; gap: 10px; padding: 0 16px; overflow-x: auto; }
+    .metric-card {
+      min-width: 120px; flex: 1; background: linear-gradient(135deg, #0F766E 0%, #134E4A 100%);
+      border-radius: 20px; padding: 18px 14px; border: 1px solid rgba(45,212,191,0.28);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .metric-card::after {
+      content: ""; position: absolute; top: -20px; right: -20px; width: 80px; height: 80px;
+      background: radial-gradient(circle, rgba(45,212,191,0.2) 0%, transparent 70%);
+    }
+    .metric-value { font-size: 28px; font-weight: 700; position: relative; z-index: 1; }
+    .metric-label { font-size: 12px; opacity: 0.74; margin-top: 6px; position: relative; z-index: 1; }
+    .metric-change { font-size: 11px; margin-top: 8px; color: #2DD4BF; position: relative; z-index: 1; }
+    .section { padding: 0 16px; margin-top: 20px; }
+    .section-title { font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .chart-card {
+      background: #fff; border-radius: 20px; padding: 16px;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.04); border: 1px solid #E2E8F0;
+    }
+    .chart-placeholder {
+      height: 160px; background: linear-gradient(180deg, rgba(20,184,166,0.12) 0%, rgba(14,165,233,0.08) 100%);
+      border-radius: 14px; position: relative; overflow: hidden;
+    }
+    .chart-line {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 70%;
+      background: linear-gradient(180deg, rgba(20,184,166,0.35) 0%, rgba(20,184,166,0.05) 100%);
+      clip-path: polygon(0% 60%, 15% 45%, 30% 55%, 45% 30%, 60% 40%, 75% 20%, 90% 35%, 100% 10%, 100% 100%, 0% 100%);
+    }
+    .rank-list { display: flex; flex-direction: column; gap: 10px; }
+    .rank-item {
+      background: #fff; border-radius: 16px; padding: 14px 16px;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.04); border: 1px solid #E2E8F0;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .rank-num {
+      width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; background: #F1F5F9; color: #64748B; flex-shrink: 0;
+    }
+    .rank-num.top1 { background: #FEF3C7; color: #D97706; }
+    .rank-num.top2 { background: #E2E8F0; color: #475569; }
+    .rank-num.top3 { background: #FFEDD5; color: #C2410C; }
+    .rank-info { flex: 1; }
+    .rank-name { font-size: 15px; font-weight: 600; color: #0F172A; }
+    .rank-count { font-size: 12px; color: #64748B; margin-top: 2px; }
+    .rank-bar { width: 80px; height: 6px; background: #E2E8F0; border-radius: 999px; overflow: hidden; }
+    .rank-bar-fill { height: 100%; background: linear-gradient(90deg, #14B8A6 0%, #0D9488 100%); border-radius: 999px; }
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      width: 100%; max-width: 420px; margin: 0 auto;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(24px) saturate(170%);
+      border-top: 0.5px solid rgba(226,232,240,0.9);
+      display: flex; justify-content: space-around; padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #94A3B8; font-size: 11px; font-weight: 500; }
+    .tab-item.active { color: #0D9488; }
+    .tab-item svg { width: 24px; height: 24px; stroke-width: 2; }
+    .tab-item.active svg { stroke: #0D9488; }
+    .title-svg { width: 20px; height: 20px; stroke: #0D9488; }
+  </style>
+</head>
+<body>
+  <div class="app-shell" data-page-id="stats-page" data-tab-id="tab-stats">
+    <header class="page-header">
+      <h1 class="page-title">统计看板</h1>
+    </header>
+
+    <div class="time-filter" data-ui-id="stats-time-filter">
+      <div class="time-tab">本周</div>
+      <div class="time-tab active">本月</div>
+      <div class="time-tab">本年</div>
+    </div>
+
+    <section class="metrics" aria-label="核心指标">
+      <div class="metric-card">
+        <div class="metric-value" data-ui-id="stats-hazard-total">42</div>
+        <div class="metric-label">隐患总数</div>
+        <div class="metric-change">+5 较上月</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" data-ui-id="stats-completion-rate">72%</div>
+        <div class="metric-label">整改完成率</div>
+        <div class="metric-change">+8% 较上月</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" data-ui-id="stats-patrol-coverage">86%</div>
+        <div class="metric-label">巡检覆盖率</div>
+        <div class="metric-change">+3% 较上月</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <svg class="title-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>隐患趋势图标</title><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        隐患趋势
+      </div>
+      <div class="chart-card">
+        <div class="chart-placeholder" data-ui-id="stats-trend-chart">
+          <div class="chart-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <svg class="title-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>区域排名图标</title><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        隐患区域排名
+      </div>
+      <div class="rank-list" data-ui-id="stats-rank-list">
+        <div class="rank-item" data-ui-id="stats-rank-1">
+          <div class="rank-num top1">1</div>
+          <div class="rank-info">
+            <div class="rank-name">B区仓库</div>
+            <div class="rank-count">12 项隐患</div>
+          </div>
+          <div class="rank-bar"><div class="rank-bar-fill" style="width: 90%;"></div></div>
+        </div>
+        <div class="rank-item" data-ui-id="stats-rank-2">
+          <div class="rank-num top2">2</div>
+          <div class="rank-info">
+            <div class="rank-name">A区配电房</div>
+            <div class="rank-count">9 项隐患</div>
+          </div>
+          <div class="rank-bar"><div class="rank-bar-fill" style="width: 68%;"></div></div>
+        </div>
+        <div class="rank-item" data-ui-id="stats-rank-3">
+          <div class="rank-num top3">3</div>
+          <div class="rank-info">
+            <div class="rank-name">C区车间</div>
+            <div class="rank-count">6 项隐患</div>
+          </div>
+          <div class="rank-bar"><div class="rank-bar-fill" style="width: 45%;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabbar" aria-label="底部导航">
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>工作台标签</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>工作台</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>隐患管理标签</title><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        <span>隐患</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>巡检打卡标签</title><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+        <span>巡检</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>应急联系人标签</title><path d="M13 2a9 9 0 0 1 9 9"/><path d="M13 6a5 5 0 0 1 5 5"/><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+        <span>联系人</span>
+      </div>
+      <div class="tab-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>统计看板标签</title><path d="M5 21v-6"/><path d="M12 21V9"/><path d="M19 21V3"/></svg>
+        <span>统计</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的标签</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>我的</span>
+      </div>
+    </nav>
+  </div>
+</body>
+</html>

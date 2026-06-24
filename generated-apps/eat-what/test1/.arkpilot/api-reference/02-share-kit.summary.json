@@ -1,0 +1,105 @@
+{
+  "module": "02-share-kit.md",
+  "group": "02 — Share Kit (系统分享)",
+  "apiCount": 15,
+  "apis": [
+    {
+      "name": "systemShare.SharedData",
+      "purpose": "创建分享数据对象，封装分享内容记录",
+      "anchor": "systemshare分享",
+      "status": "found"
+    },
+    {
+      "name": "sharedData.addRecord",
+      "purpose": "向分享数据对象中追加一条分享记录",
+      "anchor": "shareddataaddrecord",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.ShareController",
+      "purpose": "创建分享面板控制器，管理分享面板的生命周期",
+      "anchor": "systemshare-sharecontroller",
+      "status": "found"
+    },
+    {
+      "name": "controller.show",
+      "purpose": "显示系统分享面板，拉起分享UI供用户选择目标应用",
+      "anchor": "controllershow",
+      "status": "found"
+    },
+    {
+      "name": "controller.on('dismiss')",
+      "purpose": "监听分享面板关闭事件",
+      "anchor": "controllerondismiss",
+      "status": "found"
+    },
+    {
+      "name": "controller.on('shareCompleted')",
+      "purpose": "监听用户完成分享事件，获取分享渠道信息",
+      "anchor": "controlleronsharecompleted",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.getSharedData",
+      "purpose": "从Want信息中解析接收到的分享数据（接收端使用）",
+      "anchor": "systemshare-getshareddata",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.getContactInfo",
+      "purpose": "从Want信息中解析联系人信息",
+      "anchor": "systemshare-getcontactinfo",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.getWant",
+      "purpose": "基于SharedData和预览模式构造Want数据",
+      "anchor": "systemshare-getwant",
+      "status": "found"
+    },
+    {
+      "name": "harmonyShare.on('knockShare')",
+      "purpose": "注册华为设备间轻贴分享事件监听",
+      "anchor": "harmonyshareonknockshare",
+      "status": "found"
+    },
+    {
+      "name": "harmonyShare.on('gesturesShare')",
+      "purpose": "注册隔空传送事件监听",
+      "anchor": "harmonyshareongesturesshare",
+      "status": "found"
+    },
+    {
+      "name": "harmonyShare.on('dataReceive')",
+      "purpose": "注册沙箱接收事件监听，处理接收到的文件数据",
+      "anchor": "harmonyshareondatareceive",
+      "status": "found"
+    },
+    {
+      "name": "sharableTarget.share",
+      "purpose": "跨端分享数据到其他华为设备",
+      "anchor": "sharabletargetshare",
+      "status": "found"
+    },
+    {
+      "name": "sharableTarget.reject",
+      "purpose": "拒绝本次跨端分享并给出原因",
+      "anchor": "sharabletargetreject",
+      "status": "found"
+    },
+    {
+      "name": "sharableTarget.updateShareData",
+      "purpose": "在分享数据未发送前更新预览图",
+      "anchor": "sharabletargetupdatesharedata",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "systemShare（从 @kit.ShareKit 导入）是今天吃什么 app 分享打卡卡片的核心API，@ohos.share.harmonyShare 是华为设备间近场分享，当前场景不需要",
+    "图片分享推荐使用 DETAIL 预览模式，utd 建议通过 utd.getUniformDataTypeByFilenameExtension() 获取",
+    "thumbnail 限制 32KB 以下，超限需用 ImagePacker.packToData() 压缩",
+    "SharedData 最多 500 条记录且总大小不超过 IPC 200KB",
+    "api_list 中的 @ohos.share.systemShare（系统分享）名称应为 systemShare（无 ohos.share 前缀），文档中没有 @ohos.share.harmonyShare（应为 harmonyShare）"
+  ],
+  "missingApis": []
+}

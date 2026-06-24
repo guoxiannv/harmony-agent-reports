@@ -1,0 +1,44 @@
+{
+  "module": "04-animation.md",
+  "group": "04 — Animation & 3D Flip",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "animateTo",
+      "purpose": "Explicit animation through state changes in a closure function",
+      "anchor": "animateto",
+      "status": "found"
+    },
+    {
+      "name": "animation",
+      "purpose": "Property animation — automatic transition when component attributes change",
+      "anchor": "animation",
+      "status": "found"
+    },
+    {
+      "name": "rotate",
+      "purpose": "Component rotation transform with 3D axis and perspective support",
+      "anchor": "rotate",
+      "status": "found"
+    },
+    {
+      "name": "transition",
+      "purpose": "Component entry/exit transition animation with TransitionEffect API",
+      "anchor": "transition",
+      "status": "found"
+    },
+    {
+      "name": "opacity",
+      "purpose": "Set component opacity / transparency, inherited by child components",
+      "anchor": "opacity",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "animateTo global version deprecated from API 18; use getUIContext().animateTo() instead",
+    "rotate supports RotateAngleOptions (per-axis angles) from API 20+ for 3D flip effects",
+    "rotate RotateOptions.perspective (API 10+) is key for 3D card flip visual depth",
+    "opacity is both a universal attribute (driven by animation/animateTo) and TransitionEffect.OPACITY for transitions"
+  ],
+  "missingApis": []
+}

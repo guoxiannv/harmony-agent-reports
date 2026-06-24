@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>添加记录</title>
+  <style>
+    :root {
+      --mint-600: #3FC0A0; --mint-500: #5ED7B6; --mint-300: #9CEBD4; --mint-100: #E5FAF4; --mint-50: #F4FDFA;
+      --pink-600: #FF9AAE; --pink-500: #FFB3C1; --pink-100: #FFF0F3;
+      --yellow-500: #FFD166; --yellow-100: #FFF9E6;
+      --blue-500: #87CEEB; --blue-100: #E6F5FB;
+      --lavender-500: #B8B8E0; --lavender-100: #F2F1FA;
+      --apricot-500: #F4D0A4; --apricot-100: #FDF5EA;
+      --forest-900: #163832; --forest-700: #3D5A52; --forest-500: #6F8983; --forest-200: #C9D8D4; --forest-100: #E3EDEA;
+      --white: #FFFFFF; --page-bg: #FAFDFC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: rgba(22,56,50,0.35); max-width: 390px; margin: 0 auto;
+      min-height: 100vh; display: flex; align-items: flex-end;
+    }
+    .sheet {
+      width: 100%; background: var(--white); border-radius: 28px 28px 0 0;
+      padding: 20px 16px 32px;
+      box-shadow: 0 -8px 32px rgba(22,56,50,0.2);
+    }
+    .sheet-handle {
+      width: 40px; height: 4px; border-radius: 2px; background: var(--forest-200);
+      margin: 0 auto 16px;
+    }
+    .sheet-title { font-size: 20px; font-weight: 800; margin-bottom: 20px; text-align: center; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .option {
+      padding: 18px; border-radius: 22px; border: 1px solid var(--forest-100);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      transition: transform .15s; cursor: pointer;
+    }
+    .option:active { transform: scale(0.97); }
+    .option.diet { background: var(--apricot-100); }
+    .option.stool { background: var(--mint-100); }
+    .option.weight { background: var(--blue-100); }
+    .option.meds { background: var(--lavender-100); }
+    .option-icon {
+      width: 52px; height: 52px; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .option.diet .option-icon { background: linear-gradient(135deg, #FFD8A8, #F4C288); }
+    .option.stool .option-icon { background: linear-gradient(135deg, var(--mint-300), var(--mint-500)); }
+    .option.weight .option-icon { background: linear-gradient(135deg, #B2E3F5, var(--blue-500)); }
+    .option.meds .option-icon { background: linear-gradient(135deg, #D4D4F0, var(--lavender-500)); }
+    .option-icon svg { width: 26px; height: 26px; stroke: var(--white); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .option-label { font-size: 16px; font-weight: 700; color: var(--forest-900); }
+    .close-btn {
+      margin-top: 16px; width: 100%; padding: 14px; border-radius: 24px;
+      background: var(--mint-100); color: var(--mint-600); border: none;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+    }
+  </style>
+</head>
+<body data-page-id="add-record-sheet">
+
+  <div class="sheet">
+    <div class="sheet-handle" data-ui-id="add-record-close"></div>
+    <div class="sheet-title">选择记录类型</div>
+    <div class="grid">
+      <div class="option diet" data-ui-id="add-record-diet">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" role="img"><title>添加饮食记录</title><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="8"/><line x1="10" y1="2" x2="10" y2="8"/><line x1="14" y1="2" x2="14" y2="8"/></svg>
+        </div>
+        <span class="option-label">饮食</span>
+      </div>
+      <div class="option stool" data-ui-id="add-record-stool">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" role="img"><title>添加排泄记录</title><path d="M12 22c4.97 0 9-3.58 9-8s-4.03-8-9-8-9 3.58-9 8 4.03 8 9 8z"/><circle cx="9" cy="13" r="1.5" fill="currentColor"/><circle cx="15" cy="13" r="1.5" fill="currentColor"/><path d="M9 17c1.5 1.5 4.5 1.5 6 0"/></svg>
+        </div>
+        <span class="option-label">排泄</span>
+      </div>
+      <div class="option weight" data-ui-id="add-record-weight">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" role="img"><title>添加体重记录</title><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V9h4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h4v-.6c-1.2-.6-2-1.9-2-3.4a4 4 0 0 1 4-4z"/></svg>
+        </div>
+        <span class="option-label">体重</span>
+      </div>
+      <div class="option meds" data-ui-id="add-record-meds">
+        <div class="option-icon">
+          <svg viewBox="0 0 24 24" role="img"><title>添加用药记录</title><path d="M10 2h4a2 2 0 0 1 2 2v3H8V4a2 2 0 0 1 2-2z"/><rect x="6" y="7" width="12" height="15" rx="2"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/></svg>
+        </div>
+        <span class="option-label">用药</span>
+      </div>
+    </div>
+    <button class="close-btn" data-ui-id="add-record-close">取消</button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>平安扣 - 应急</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #F3F6F8; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif; color: #0F172A; }
+    body { max-width: 420px; margin: 0 auto; position: relative; }
+    .page { min-height: 100%; padding: 24px 16px 120px; }
+    .appbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .appbar-title { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+    .appbar-action { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(15,23,42,0.06); }
+
+    .emergency-banner { background: linear-gradient(135deg, #0D9488 0%, #2DD4BF 100%); border-radius: 20px; padding: 20px; color: #fff; box-shadow: 0 18px 48px rgba(13,148,136,0.20); margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+    .emergency-banner-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .emergency-banner-subtitle { font-size: 13px; opacity: 0.92; }
+    .emergency-banner-icon { width: 44px; height: 44px; }
+
+    .search-box { display: flex; align-items: center; background: #fff; border-radius: 999px; padding: 10px 16px; box-shadow: 0 4px 16px rgba(15,23,42,0.05); margin-bottom: 16px; }
+    .search-box svg { color: #94A3B8; margin-right: 10px; flex-shrink: 0; }
+    .search-box input { border: none; outline: none; flex: 1; font-size: 14px; color: #334155; background: transparent; }
+
+    .contact-group { margin-bottom: 20px; }
+    .group-title { font-size: 14px; font-weight: 600; color: #64748B; margin-bottom: 10px; padding-left: 4px; }
+    .contact-list { display: flex; flex-direction: column; gap: 10px; }
+    .contact-card { background: #fff; border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 16px rgba(15,23,42,0.05); display: flex; align-items: center; gap: 12px; }
+    .contact-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #0D9488, #2DD4BF); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+    .contact-info { flex: 1; min-width: 0; }
+    .contact-name { font-size: 15px; font-weight: 600; color: #0F172A; margin-bottom: 2px; }
+    .contact-role { font-size: 12px; color: #64748B; }
+    .contact-call { width: 40px; height: 40px; border-radius: 50%; background: #CCFBF1; color: #0F766E; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    .empty-state { text-align: center; padding: 60px 16px; }
+    .empty-icon { width: 120px; height: 120px; margin: 0 auto 16px; }
+    .empty-title { font-size: 16px; font-weight: 600; color: #0F172A; margin-bottom: 6px; }
+    .empty-desc { font-size: 14px; color: #64748B; margin-bottom: 20px; }
+    .btn-secondary-empty { display: inline-block; background: #CCFBF1; color: #0F766E; padding: 12px 24px; border-radius: 14px; font-size: 15px; font-weight: 600; }
+
+    .tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 68px; background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.76) 100%); backdrop-filter: blur(24px); border-top: 1px solid rgba(226,232,240,0.6); box-shadow: 0 -4px 16px rgba(15,23,42,0.05); display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; z-index: 100; }
+    .tab-item { flex: 1; text-align: center; padding-top: 4px; }
+    .tab-icon { width: 24px; height: 24px; margin: 0 auto 3px; color: #94A3B8; }
+    .tab-item.active .tab-icon { color: #0D9488; }
+    .tab-label { font-size: 11px; font-weight: 500; color: #94A3B8; }
+    .tab-item.active .tab-label { color: #0D9488; }
+    .tab-fab { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #0D9488, #2DD4BF); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 36px rgba(13,148,136,0.32); border: 3px solid #F3F6F8; }
+
+    svg { display: block; }
+  </style>
+</head>
+<body data-page-id="emergency-page" data-tab-id="tab-emergency">
+  <div class="page">
+    <header class="appbar">
+      <h1 class="appbar-title">应急联系</h1>
+      <div class="appbar-action" data-ui-id="emergency-add-contact">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>添加应急联系人</title>
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </div>
+    </header>
+
+    <div class="emergency-banner">
+      <div>
+        <div class="emergency-banner-title">紧急情况下，快速触达</div>
+        <div class="emergency-banner-subtitle">一键拨打，3 秒内响应</div>
+      </div>
+      <div class="emergency-banner-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>应急电话图标</title>
+          <path d="M40 34.64A34.65 34.65 0 0 1 13.36 8 2.82 2.82 0 0 1 16 5.18h6.6a2 2 0 0 1 1.87 1.3c.58 1.45 1.16 3.44 1.16 3.44a2 2 0 0 1-.53 1.72l-3.38 3.38a27.5 27.5 0 0 0 11.8 11.8l3.38-3.38a2 2 0 0 1 1.72-.53s1.99.58 3.44 1.16a2 2 0 0 1 1.3 1.87V40a2.82 2.82 0 0 1-2.82 2.82z"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>搜索应急联系人</title>
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" placeholder="搜索姓名或职责" data-ui-id="emergency-search-input" />
+    </div>
+
+    <div class="contact-list" data-ui-id="emergency-contact-list">
+      <div class="contact-group">
+        <div class="group-title">安全负责人</div>
+        <div class="contact-card" id="emergency-contact-1">
+          <div class="contact-avatar">李</div>
+          <div class="contact-info">
+            <div class="contact-name">李安全</div>
+            <div class="contact-role">安全主管 · 138-0000-1001</div>
+          </div>
+          <div class="contact-call" data-ui-id="emergency-contact-call-1">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>拨打该应急联系人电话</title>
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-group">
+        <div class="group-title">消防与设备</div>
+        <div class="contact-card" id="emergency-contact-2">
+          <div class="contact-avatar">张</div>
+          <div class="contact-info">
+            <div class="contact-name">张师傅</div>
+            <div class="contact-role">电工班长 · 138-0000-1002</div>
+          </div>
+          <div class="contact-call" data-ui-id="emergency-contact-call-2">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>拨打该应急联系人电话</title>
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="contact-card" id="emergency-contact-3">
+          <div class="contact-avatar">王</div>
+          <div class="contact-info">
+            <div class="contact-name">王班长</div>
+            <div class="contact-role">消防专员 · 138-0000-1003</div>
+          </div>
+          <div class="contact-call" data-ui-id="emergency-contact-call-3">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>拨打该应急联系人电话</title>
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" id="emergency-empty-contact" style="display:none;">
+      <div class="empty-icon">
+        <svg viewBox="0 0 120 120" fill="none" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>暂无应急联系人图标</title>
+          <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D9488"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient></defs>
+          <circle cx="60" cy="40" r="22"/>
+          <path d="M30 100c0-22 13.43-40 30-40s30 18 30 40"/>
+          <circle cx="90" cy="34" r="14"/>
+          <path d="M82 70c8 0 14 6 14 14"/>
+        </svg>
+      </div>
+      <div class="empty-title">暂无应急联系人</div>
+      <div class="empty-desc">添加后可在紧急情况下一键拨打</div>
+      <div class="btn-secondary-empty">添加联系人</div>
+    </div>
+  </div>
+
+  <nav class="tabbar">
+    <div class="tab-item" data-tab-id="tab-home">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开首页统计看板</title>
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="tab-label">首页</div>
+    </div>
+    <div class="tab-item" data-tab-id="tab-inspection">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开巡检任务页面</title>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div class="tab-label">巡检</div>
+    </div>
+    <div class="tab-fab" data-ui-id="risk-add-button">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <title>快速上报隐患</title>
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </div>
+    <div class="tab-item" data-tab-id="tab-risk" style="margin-left:48px;">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开隐患列表页面</title>
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="tab-label">隐患</div>
+    </div>
+    <div class="tab-item active" data-tab-id="tab-emergency">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开应急联系人页面</title>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <div class="tab-label">应急</div>
+    </div>
+    <div class="tab-item" data-tab-id="tab-profile">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开个人中心页面</title>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="tab-label">我的</div>
+    </div>
+  </nav>
+</body>
+</html>

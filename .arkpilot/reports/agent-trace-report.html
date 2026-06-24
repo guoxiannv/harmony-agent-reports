@@ -1,0 +1,1820 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Trace Chain Time Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --text: #17202a;
+      --muted: #617083;
+      --line: #dbe1e8;
+      --accent: #1b7f79;
+      --accent-2: #c86536;
+      --good: #147a41;
+      --open: #9a6500;
+      --bad: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    header {
+      padding: 28px 32px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    h1 { margin: 0; font-size: 28px; letter-spacing: 0; }
+    h2 { margin: 28px 0 12px; font-size: 18px; }
+    .subtle { color: var(--muted); margin-top: 8px; font-size: 14px; }
+    main { padding: 24px 32px 40px; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .metric-label { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+    .metric-value { font-size: 22px; font-weight: 700; margin-top: 4px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 18px;
+      overflow-x: auto;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 980px; }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 9px 10px;
+      vertical-align: top;
+      text-align: left;
+      font-size: 13px;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 700;
+      background: #fbfcfd;
+      position: sticky;
+      top: 0;
+    }
+    tr:last-child td { border-bottom: 0; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      color: #26313f;
+    }
+    .status {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .status.good { color: var(--good); background: #e8f5ee; }
+    .status.open { color: var(--open); background: #fff3d6; }
+    .status.bad { color: var(--bad); background: #fdecea; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: minmax(180px, 260px) 1fr 92px;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .bar-row:last-child { border-bottom: 0; }
+    .bar-track {
+      height: 12px;
+      background: #e8edf2;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: inherit;
+    }
+    .muted { color: var(--muted); }
+    .nowrap { white-space: nowrap; }
+    .task {
+      max-width: 420px;
+      color: var(--muted);
+    }
+    .tree-toggle {
+      display: inline-block;
+      width: 16px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 11px;
+      color: var(--muted);
+      transition: transform 0.15s ease;
+    }
+    .tree-parent.expanded .tree-toggle { transform: rotate(90deg); }
+    .tree-child { display: none; }
+    .tree-child.visible { display: table-row; }
+    .tree-child td:first-child { padding-left: 36px; }
+    .tree-parent { cursor: pointer; }
+    .tree-parent:hover { background: #f3f5f8; }
+    .comparison-app {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+    .comparison-app h3 { margin: 0 0 8px; font-size: 16px; }
+    .prompt-display {
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #3a4858;
+      min-height: 24px;
+    }
+    .prompt-display:empty::before {
+      content: "（请在 problems.md 中填写 Prompt）";
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .sub-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .comparison-grid .img-slot {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 4px;
+      text-align: center;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .comparison-grid .img-slot img {
+      max-width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      border-radius: 2px;
+      cursor: zoom-in;
+    }
+    .comparison-grid .img-slot.empty {
+      color: var(--muted);
+      font-size: 12px;
+      grid-column: span 3;
+      border-style: dashed;
+    }
+    .problems-section { margin-top: 6px; }
+    .problem-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 8px;
+      align-items: start;
+      margin-bottom: 4px;
+    }
+    .problem-item label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+    .problem-item .problem-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 20px;
+    }
+    .problem-item .problem-text:empty::before {
+      content: "—";
+      color: var(--muted);
+    }
+    .comparison-hint {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .comparison-hint code { font-size: 12px; }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.85);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 4px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Agent Trace Chain Time Report</h1>
+    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = sum of transcript usage · 生成时间：2026-06-24 03:41:48Z · 扫描目录：<code>/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps</code></div>
+  </header>
+  <main>
+    <section class="metrics">
+      <div class="metric"><div class="metric-label">Run 数</div><div class="metric-value">19</div></div>
+      <div class="metric"><div class="metric-label">Complete</div><div class="metric-value">19</div></div>
+      <div class="metric"><div class="metric-label">Chain 平均</div><div class="metric-value">37m 40s</div></div>
+      <div class="metric"><div class="metric-label">Total Tokens</div><div class="metric-value">540.2M</div></div>
+      <div class="metric"><div class="metric-label">Avg Tokens/App</div><div class="metric-value">28.4M</div></div>
+      <div class="metric"><div class="metric-label">Input Tokens</div><div class="metric-value">17.1M</div></div>
+      <div class="metric"><div class="metric-label">Output Tokens</div><div class="metric-value">5.2M</div></div>
+      <div class="metric"><div class="metric-label">Cache Read</div><div class="metric-value">517.8M</div></div>
+    </section>
+
+    <h2>最长 Chain Time</h2>
+    <section class="panel">
+      
+        <div class="bar-row">
+          <div><strong>pinankou/test1</strong><div class="muted">pinankou-test1-20260619-202105-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 100.00%"></div></div>
+          <div class="nowrap">1h 10m 33s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>pinankou/test3</strong><div class="muted">pinankou-test3-20260622-153435-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 97.57%"></div></div>
+          <div class="nowrap">1h 8m 50s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>diy/test2</strong><div class="muted">diy-test2-20260622-164932-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 78.96%"></div></div>
+          <div class="nowrap">55m 42s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>eat-what/test1</strong><div class="muted">eat-what-test1-20260623-141316-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 76.15%"></div></div>
+          <div class="nowrap">53m 43s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>eat-what/test5</strong><div class="muted">eat-what-test5-20260623-141316-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 67.52%"></div></div>
+          <div class="nowrap">47m 38s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>paw-log/test1</strong><div class="muted">paw-log-test1-20260622-192006-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 64.28%"></div></div>
+          <div class="nowrap">45m 21s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>danci/test2</strong><div class="muted">danci-test2-20260620-113433-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 62.01%"></div></div>
+          <div class="nowrap">43m 45s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>pinankou/test5</strong><div class="muted">pinankou-test5-20260622-153435-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 51.50%"></div></div>
+          <div class="nowrap">36m 20s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>pinankou/test4</strong><div class="muted">pinankou-test4-20260622-153435-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 48.36%"></div></div>
+          <div class="nowrap">34m 7s</div>
+        </div>
+      
+        <div class="bar-row">
+          <div><strong>diy/test6</strong><div class="muted">diy-test6-20260620-163155-run</div></div>
+          <div class="bar-track"><div class="bar" style="width: 47.32%"></div></div>
+          <div class="nowrap">33m 23s</div>
+        </div>
+      
+    </section>
+
+    <h2>按 App 汇总</h2>
+    <section class="panel">
+      <table>
+        <thead>
+          <tr>
+            <th>App / Test</th>
+            <th>Runs</th>
+            <th>Chain Avg</th>
+            <th>Chain Min</th>
+            <th>Chain Max</th>
+            <th>Pause</th>
+            <th>Total Tokens</th>
+            <th>Input</th>
+            <th>Output</th>
+            <th>Feature Success</th>
+            <th>HAP Available</th>
+            <th>Aesthetic</th>
+            <th>Design Completion</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+                <tr class="tree-parent" data-app="danci">
+                  <td><span class="tree-toggle">▶</span> <strong>danci</strong></td>
+                  <td>3</td>
+                  <td class="nowrap">22m 51s</td>
+                  <td class="nowrap">12m 7s</td>
+                  <td class="nowrap">43m 45s</td>
+                  <td class="nowrap">1m 48s</td>
+                  <td>95.1M</td>
+                  <td>2.3M</td>
+                  <td>713.6K</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>87%</td>
+                  <td>93%</td>
+                </tr>
+              
+                  <tr class="tree-child" data-parent="danci">
+                    <td>test2 <span class="muted">danci-test2-20260620-113433-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">43m 45s</td>
+                    <td class="nowrap">43m 45s</td>
+                    <td class="nowrap">43m 45s</td>
+                    <td class="nowrap">0s</td>
+                    <td>69.1M</td>
+                    <td>1.3M</td>
+                    <td>374.3K</td>
+                    <td>100%</td>
+                    <td>是</td>
+                    <td>80%</td>
+                    <td>90%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="danci">
+                    <td>test3 <span class="muted">danci-test3-20260620-113433-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">12m 7s</td>
+                    <td class="nowrap">12m 7s</td>
+                    <td class="nowrap">12m 7s</td>
+                    <td class="nowrap">1s</td>
+                    <td>10.2M</td>
+                    <td>458.4K</td>
+                    <td>149.5K</td>
+                    <td>100%</td>
+                    <td>是</td>
+                    <td>100%</td>
+                    <td>100%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="danci">
+                    <td>test5 <span class="muted">danci-test5-20260620-113433-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">12m 41s</td>
+                    <td class="nowrap">12m 41s</td>
+                    <td class="nowrap">12m 41s</td>
+                    <td class="nowrap">1m 46s</td>
+                    <td>15.9M</td>
+                    <td>555.9K</td>
+                    <td>189.7K</td>
+                    <td>100%</td>
+                    <td>是</td>
+                    <td>80%</td>
+                    <td>90%</td>
+                  </tr>
+                
+                <tr class="tree-parent" data-app="diy">
+                  <td><span class="tree-toggle">▶</span> <strong>diy</strong></td>
+                  <td>4</td>
+                  <td class="nowrap">36m 31s</td>
+                  <td class="nowrap">23m 36s</td>
+                  <td class="nowrap">55m 42s</td>
+                  <td class="nowrap">7m 28s</td>
+                  <td>97.0M</td>
+                  <td>3.2M</td>
+                  <td>1.0M</td>
+                  <td>68%</td>
+                  <td>100%</td>
+                  <td>68%</td>
+                  <td>65%</td>
+                </tr>
+              
+                  <tr class="tree-child" data-parent="diy">
+                    <td>test1 <span class="muted">diy-test1-20260622-164932-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">33m 22s</td>
+                    <td class="nowrap">33m 22s</td>
+                    <td class="nowrap">33m 22s</td>
+                    <td class="nowrap">2m 37s</td>
+                    <td>17.4M</td>
+                    <td>726.7K</td>
+                    <td>180.9K</td>
+                    <td>80%</td>
+                    <td>是</td>
+                    <td>80%</td>
+                    <td>70%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="diy">
+                    <td>test2 <span class="muted">diy-test2-20260622-164932-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">55m 42s</td>
+                    <td class="nowrap">55m 42s</td>
+                    <td class="nowrap">55m 42s</td>
+                    <td class="nowrap">3m 46s</td>
+                    <td>14.4M</td>
+                    <td>1.0M</td>
+                    <td>193.9K</td>
+                    <td>100%</td>
+                    <td>是</td>
+                    <td>95%</td>
+                    <td>100%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="diy">
+                    <td>test3 <span class="muted">diy-test3-20260620-152912-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">23m 36s</td>
+                    <td class="nowrap">23m 36s</td>
+                    <td class="nowrap">23m 36s</td>
+                    <td class="nowrap">25s</td>
+                    <td>25.8M</td>
+                    <td>574.3K</td>
+                    <td>270.6K</td>
+                    <td>90%</td>
+                    <td>是</td>
+                    <td>95%</td>
+                    <td>90%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="diy">
+                    <td>test6 <span class="muted">diy-test6-20260620-163155-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">33m 23s</td>
+                    <td class="nowrap">33m 23s</td>
+                    <td class="nowrap">33m 23s</td>
+                    <td class="nowrap">39s</td>
+                    <td>39.4M</td>
+                    <td>924.2K</td>
+                    <td>361.3K</td>
+                    <td>0%</td>
+                    <td>—</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                  </tr>
+                
+                <tr class="tree-parent" data-app="eat-what">
+                  <td><span class="tree-toggle">▶</span> <strong>eat-what</strong></td>
+                  <td>5</td>
+                  <td class="nowrap">37m 9s</td>
+                  <td class="nowrap">21m 49s</td>
+                  <td class="nowrap">53m 43s</td>
+                  <td class="nowrap">8m 35s</td>
+                  <td>146.7M</td>
+                  <td>5.6M</td>
+                  <td>1.8M</td>
+                  <td>38%</td>
+                  <td>100%</td>
+                  <td>35%</td>
+                  <td>37%</td>
+                </tr>
+              
+                  <tr class="tree-child" data-parent="eat-what">
+                    <td>test1 <span class="muted">eat-what-test1-20260623-141316-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">53m 43s</td>
+                    <td class="nowrap">53m 43s</td>
+                    <td class="nowrap">53m 43s</td>
+                    <td class="nowrap">3m 29s</td>
+                    <td>33.9M</td>
+                    <td>1.7M</td>
+                    <td>382.7K</td>
+                    <td>100%</td>
+                    <td>是</td>
+                    <td>80%</td>
+                    <td>90%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="eat-what">
+                    <td>test2 <span class="muted">eat-what-test2-20260620-102151-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">30m 1s</td>
+                    <td class="nowrap">30m 1s</td>
+                    <td class="nowrap">30m 1s</td>
+                    <td class="nowrap">56s</td>
+                    <td>31.4M</td>
+                    <td>888.5K</td>
+                    <td>387.2K</td>
+                    <td>90%</td>
+                    <td>是</td>
+                    <td>95%</td>
+                    <td>95%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="eat-what">
+                    <td>test3 <span class="muted">eat-what-test3-20260623-141316-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">32m 32s</td>
+                    <td class="nowrap">32m 32s</td>
+                    <td class="nowrap">32m 32s</td>
+                    <td class="nowrap">2m 12s</td>
+                    <td>24.4M</td>
+                    <td>1.2M</td>
+                    <td>364.1K</td>
+                    <td>0%</td>
+                    <td>—</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="eat-what">
+                    <td>test4 <span class="muted">eat-what-test4-20260620-102151-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">21m 49s</td>
+                    <td class="nowrap">21m 49s</td>
+                    <td class="nowrap">21m 49s</td>
+                    <td class="nowrap">37s</td>
+                    <td>21.7M</td>
+                    <td>704.7K</td>
+                    <td>255.9K</td>
+                    <td>0%</td>
+                    <td>—</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="eat-what">
+                    <td>test5 <span class="muted">eat-what-test5-20260623-141316-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">47m 38s</td>
+                    <td class="nowrap">47m 38s</td>
+                    <td class="nowrap">47m 38s</td>
+                    <td class="nowrap">1m 21s</td>
+                    <td>35.2M</td>
+                    <td>1.1M</td>
+                    <td>369.2K</td>
+                    <td>0%</td>
+                    <td>—</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                  </tr>
+                
+                <tr class="tree-parent" data-app="paw-log">
+                  <td><span class="tree-toggle">▶</span> <strong>paw-log</strong></td>
+                  <td>2</td>
+                  <td class="nowrap">38m 29s</td>
+                  <td class="nowrap">31m 36s</td>
+                  <td class="nowrap">45m 21s</td>
+                  <td class="nowrap">6m 1s</td>
+                  <td>59.7M</td>
+                  <td>1.5M</td>
+                  <td>481.7K</td>
+                  <td>35%</td>
+                  <td>100%</td>
+                  <td>35%</td>
+                  <td>4%</td>
+                </tr>
+              
+                  <tr class="tree-child" data-parent="paw-log">
+                    <td>test1 <span class="muted">paw-log-test1-20260622-192006-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">45m 21s</td>
+                    <td class="nowrap">45m 21s</td>
+                    <td class="nowrap">45m 21s</td>
+                    <td class="nowrap">2m 56s</td>
+                    <td>39.2M</td>
+                    <td>861.0K</td>
+                    <td>290.7K</td>
+                    <td>70%</td>
+                    <td>是</td>
+                    <td>70%</td>
+                    <td>8%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="paw-log">
+                    <td>test5 <span class="muted">paw-log-test5-20260622-192006-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">31m 36s</td>
+                    <td class="nowrap">31m 36s</td>
+                    <td class="nowrap">31m 36s</td>
+                    <td class="nowrap">3m 5s</td>
+                    <td>20.5M</td>
+                    <td>631.8K</td>
+                    <td>191.0K</td>
+                    <td>0%</td>
+                    <td>—</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                  </tr>
+                
+                <tr class="tree-parent" data-app="pinankou">
+                  <td><span class="tree-toggle">▶</span> <strong>pinankou</strong></td>
+                  <td>5</td>
+                  <td class="nowrap">47m 40s</td>
+                  <td class="nowrap">28m 28s</td>
+                  <td class="nowrap">1h 10m 33s</td>
+                  <td class="nowrap">9m 32s</td>
+                  <td>141.7M</td>
+                  <td>4.5M</td>
+                  <td>1.3M</td>
+                  <td>23%</td>
+                  <td>40%</td>
+                  <td>18%</td>
+                  <td>23%</td>
+                </tr>
+              
+                  <tr class="tree-child" data-parent="pinankou">
+                    <td>test1 <span class="muted">pinankou-test1-20260619-202105-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">1h 10m 33s</td>
+                    <td class="nowrap">1h 10m 33s</td>
+                    <td class="nowrap">1h 10m 33s</td>
+                    <td class="nowrap">2s</td>
+                    <td>11.5M</td>
+                    <td>931.3K</td>
+                    <td>180.4K</td>
+                    <td>0%</td>
+                    <td>否</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="pinankou">
+                    <td>test2 <span class="muted">pinankou-test2-20260620-124501-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">28m 28s</td>
+                    <td class="nowrap">28m 28s</td>
+                    <td class="nowrap">28m 28s</td>
+                    <td class="nowrap">1m 25s</td>
+                    <td>34.6M</td>
+                    <td>794.2K</td>
+                    <td>403.6K</td>
+                    <td>90%</td>
+                    <td>是</td>
+                    <td>70%</td>
+                    <td>90%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="pinankou">
+                    <td>test3 <span class="muted">pinankou-test3-20260622-153435-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">1h 8m 50s</td>
+                    <td class="nowrap">1h 8m 50s</td>
+                    <td class="nowrap">1h 8m 50s</td>
+                    <td class="nowrap">3m 4s</td>
+                    <td>24.9M</td>
+                    <td>1.1M</td>
+                    <td>222.8K</td>
+                    <td>0%</td>
+                    <td>否</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="pinankou">
+                    <td>test4 <span class="muted">pinankou-test4-20260622-153435-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">34m 7s</td>
+                    <td class="nowrap">34m 7s</td>
+                    <td class="nowrap">34m 7s</td>
+                    <td class="nowrap">2m 25s</td>
+                    <td>30.6M</td>
+                    <td>774.5K</td>
+                    <td>194.2K</td>
+                    <td>0%</td>
+                    <td>否</td>
+                    <td>0%</td>
+                    <td>0%</td>
+                  </tr>
+                
+                  <tr class="tree-child" data-parent="pinankou">
+                    <td>test5 <span class="muted">pinankou-test5-20260622-153435-run</span></td>
+                    <td>1</td>
+                    <td class="nowrap">36m 20s</td>
+                    <td class="nowrap">36m 20s</td>
+                    <td class="nowrap">36m 20s</td>
+                    <td class="nowrap">2m 36s</td>
+                    <td>40.1M</td>
+                    <td>910.2K</td>
+                    <td>283.8K</td>
+                    <td>—</td>
+                    <td>是</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                
+        </tbody>
+      </table>
+    </section>
+
+    <h2>设计图与实际实现对比</h2>
+    <p class="comparison-hint">每个工程目录下 <code>design/</code> 放设计稿截图，<code>actual/</code> 放实际实现截图，<code>problems.md</code> 维护 Prompt 和问题汇总。</p>
+    
+      <div class="comparison-app">
+        <h3>danci-test2</h3>
+        <div class="prompt-display">Prompt ：为这个 HarmonyOS 工程实现一款孩子定制化记单词的app
+首先这个app可以从单词库中加载学过的单词，供孩子复习当前阶段的单词。界面中央显示一张卡片，正面是英文单词，背面是中文释义和音标。点击卡片触发3D翻转动画。卡片下方有“认识”和“不认识”两个按钮。点击“认识”单词移出卡片堆并记录正确数；点击“不认识”将卡片放回队列底部以便复习，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/danci-test2/design/ScreenShot_2026-06-22_150025_270.png" alt="ScreenShot_2026-06-22_150025_270.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test2/design/ScreenShot_2026-06-22_150046_986.png" alt="ScreenShot_2026-06-22_150046_986.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test2/design/ScreenShot_2026-06-22_150056_179.png" alt="ScreenShot_2026-06-22_150056_179.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/danci-test2/actual/screenshot_20260622_141344_com.example.myapplication.jpg" alt="screenshot_20260622_141344_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test2/actual/screenshot_20260622_141357_com.example.myapplication.jpg" alt="screenshot_20260622_141357_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test2/actual/screenshot_20260622_141529_com.example.myapplication.jpg" alt="screenshot_20260622_141529_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">部分文字UI位置错乱，组件间距有误</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">学习进度进度条有误，从中间向两侧增加</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">结算画面的动画效果消失，变静态</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>danci-test3</h3>
+        <div class="prompt-display">Prompt ：为这个 HarmonyOS 工程实现一款孩子定制化记单词的app
+首先这个app可以从单词库中加载学过的单词，供孩子复习当前阶段的单词。界面中央显示一张卡片，正面是英文单词，背面是中文释义和音标。点击卡片触发3D翻转动画。卡片下方有“认识”和“不认识”两个按钮。点击“认识”单词移出卡片堆并记录正确数；点击“不认识”将卡片放回队列底部以便复习，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/danci-test3/design/ScreenShot_2026-06-22_171320_257.png" alt="ScreenShot_2026-06-22_171320_257.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test3/design/ScreenShot_2026-06-22_171643_298.png" alt="ScreenShot_2026-06-22_171643_298.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/danci-test3/actual/screenshot_20260622_170733_com.example.myapplication.jpg" alt="screenshot_20260622_170733_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test3/actual/screenshot_20260622_170738_com.example.myapplication.jpg" alt="screenshot_20260622_170738_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test3/actual/screenshot_20260622_170745_com.example.myapplication.jpg" alt="screenshot_20260622_170745_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">生成的比较简单，功能无问题</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>danci-test5</h3>
+        <div class="prompt-display">Prompt ：为这个 HarmonyOS 工程实现一款孩子定制化记单词的app
+首先这个app可以从单词库中加载学过的单词，供孩子复习当前阶段的单词。界面中央显示一张卡片，正面是英文单词，背面是中文释义和音标。点击卡片触发3D翻转动画。卡片下方有“认识”和“不认识”两个按钮。点击“认识”单词移出卡片堆并记录正确数；点击“不认识”将卡片放回队列底部以便复习，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/danci-test5/design/ScreenShot_2026-06-22_150843_237.png" alt="ScreenShot_2026-06-22_150843_237.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test5/design/ScreenShot_2026-06-22_150908_331.png" alt="ScreenShot_2026-06-22_150908_331.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test5/design/ScreenShot_2026-06-22_150916_767.png" alt="ScreenShot_2026-06-22_150916_767.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/danci-test5/actual/screenshot_20260622_142214_com.example.myapplication.jpg" alt="screenshot_20260622_142214_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test5/actual/screenshot_20260622_142440_com.example.myapplication.jpg" alt="screenshot_20260622_142440_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/danci-test5/actual/screenshot_20260622_142459_com.example.myapplication.jpg" alt="screenshot_20260622_142459_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">UI样式背景色出错</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">主背景图透明度不对</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">组件宽度不够情况下没有正确换行，或没有展示出固定宽度</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>diy-test1</h3>
+        <div class="prompt-display">Prompt：为这个 HarmonyOS 工程实现一个“手作·印记”App。功能：会员档案（含擅长工艺与作品图）、消费/签到积分体系、课程预约与日历管理、沉睡会员自动提醒、库存关联扣减。视觉：陶土色+手写感，温润手作风，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/design/ScreenShot_2026-06-23_173911_575.png" alt="ScreenShot_2026-06-23_173911_575.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/design/ScreenShot_2026-06-23_173930_260.png" alt="ScreenShot_2026-06-23_173930_260.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/design/ScreenShot_2026-06-23_173939_240.png" alt="ScreenShot_2026-06-23_173939_240.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/design/ScreenShot_2026-06-23_173947_832.png" alt="ScreenShot_2026-06-23_173947_832.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/design/ScreenShot_2026-06-23_173955_600.png" alt="ScreenShot_2026-06-23_173955_600.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/design/ScreenShot_2026-06-23_174008_011.png" alt="ScreenShot_2026-06-23_174008_011.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/design/ScreenShot_2026-06-23_174018_344.png" alt="ScreenShot_2026-06-23_174018_344.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/actual/screenshot_20260623_173334_com.example.myapplication.jpg" alt="screenshot_20260623_173334_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/actual/screenshot_20260623_173339_com.example.myapplication.jpg" alt="screenshot_20260623_173339_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/actual/screenshot_20260623_173344_com.example.myapplication.jpg" alt="screenshot_20260623_173344_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/actual/screenshot_20260623_173358_com.example.myapplication.jpg" alt="screenshot_20260623_173358_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/actual/screenshot_20260623_173411_com.example.myapplication.jpg" alt="screenshot_20260623_173411_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/actual/screenshot_20260623_173417_com.example.myapplication.jpg" alt="screenshot_20260623_173417_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test1/actual/screenshot_20260623_173625_com.example.myapplication.jpg" alt="screenshot_20260623_173625_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">icon有问题</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">返回按钮缺失,有些按钮点击无响应</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">选择材料弹窗打开空白</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>diy-test2</h3>
+        <div class="prompt-display">Prompt：为这个 HarmonyOS 工程实现一个“手作·印记”App。功能：会员档案（含擅长工艺与作品图）、消费/签到积分体系、课程预约与日历管理、沉睡会员自动提醒、库存关联扣减。视觉：陶土色+手写感，温润手作风，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/design/ScreenShot_2026-06-23_195322_544.png" alt="ScreenShot_2026-06-23_195322_544.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/design/ScreenShot_2026-06-23_195343_601.png" alt="ScreenShot_2026-06-23_195343_601.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/design/ScreenShot_2026-06-23_195352_975.png" alt="ScreenShot_2026-06-23_195352_975.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/design/ScreenShot_2026-06-23_195404_195.png" alt="ScreenShot_2026-06-23_195404_195.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/design/ScreenShot_2026-06-23_195413_045.png" alt="ScreenShot_2026-06-23_195413_045.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/design/ScreenShot_2026-06-23_195420_466.png" alt="ScreenShot_2026-06-23_195420_466.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/design/ScreenShot_2026-06-23_195428_941.png" alt="ScreenShot_2026-06-23_195428_941.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/design/ScreenShot_2026-06-23_195436_449.png" alt="ScreenShot_2026-06-23_195436_449.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/actual/screenshot_20260623_174619_com.example.myapplication.jpg" alt="screenshot_20260623_174619_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/actual/screenshot_20260623_174657_com.example.myapplication.jpg" alt="screenshot_20260623_174657_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/actual/screenshot_20260623_174707_com.example.myapplication.jpg" alt="screenshot_20260623_174707_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/actual/screenshot_20260623_174713_com.example.myapplication.jpg" alt="screenshot_20260623_174713_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/actual/screenshot_20260623_174722_com.example.myapplication.jpg" alt="screenshot_20260623_174722_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/actual/screenshot_20260623_174755_com.example.myapplication.jpg" alt="screenshot_20260623_174755_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test2/actual/screenshot_20260623_174818_com.example.myapplication.jpg" alt="screenshot_20260623_174818_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">上传头像不可用</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">icon有问题</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">整体比较完整</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>diy-test3</h3>
+        <div class="prompt-display">prompt:为这个 HarmonyOS 工程实现一个“手作·印记”App。功能：会员档案（含擅长工艺与作品图）、消费/签到积分体系、课程预约与日历管理、沉睡会员自动提醒、库存关联扣减。视觉：陶土色+手写感，温润手作风，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190013_804.png" alt="ScreenShot_2026-06-22_190013_804.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190029_214.png" alt="ScreenShot_2026-06-22_190029_214.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190043_824.png" alt="ScreenShot_2026-06-22_190043_824.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190053_032.png" alt="ScreenShot_2026-06-22_190053_032.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190103_152.png" alt="ScreenShot_2026-06-22_190103_152.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190111_268.png" alt="ScreenShot_2026-06-22_190111_268.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190120_493.png" alt="ScreenShot_2026-06-22_190120_493.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190129_579.png" alt="ScreenShot_2026-06-22_190129_579.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/design/ScreenShot_2026-06-22_190136_237.png" alt="ScreenShot_2026-06-22_190136_237.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/actual/screenshot_20260622_172833_com.example.myapplication.jpg" alt="screenshot_20260622_172833_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/actual/screenshot_20260622_172854_com.example.myapplication.jpg" alt="screenshot_20260622_172854_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/actual/screenshot_20260622_173347_com.example.myapplication.jpg" alt="screenshot_20260622_173347_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/actual/screenshot_20260622_173353_com.example.myapplication.jpg" alt="screenshot_20260622_173353_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/actual/screenshot_20260622_173604_com.example.myapplication.jpg" alt="screenshot_20260622_173604_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/actual/screenshot_20260622_174233_com.example.myapplication.jpg" alt="screenshot_20260622_174233_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/diy-test3/actual/screenshot_20260622_174300_com.example.myapplication.jpg" alt="screenshot_20260622_174300_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">首页的【最近动态】布局有问题</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">【课程预约】日历没有显示年月，且下方的预约和取消预约按钮应该根据状态显示/隐藏，不应共存</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">【课程详情】按钮没有显示文本</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 4</label>
+              <div class="problem-text">整体的字体和设计稿有差异</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 5</label>
+              <div class="problem-text">【积分与消费】icon丢失</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 6</label>
+              <div class="problem-text">上传图片不可用 ，添加按钮样式有问题</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 7</label>
+              <div class="problem-text">【库存管理】里面按钮不可用</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>diy-test6</h3>
+        <div class="prompt-display">Prompt：为这个 HarmonyOS 工程实现一个“手作·印记”App。功能：会员档案（含擅长工艺与作品图）、消费/签到积分体系、课程预约与日历管理、沉睡会员自动提醒、库存关联扣减。视觉：陶土色+手写感，温润手作风，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将设计稿放入 <code>comparison-images/diy-test6/design/</code></div>
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将实现截图放入 <code>comparison-images/diy-test6/actual/</code></div>
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>eat-what-test1</h3>
+        <div class="prompt-display">Prompt：为这个 HarmonyOS 工程实现一个‘今天吃什么’决策App，包含随机转盘抽菜、按冰箱食材推荐、按心情/时间筛选，以及每日饮食打卡记录和分享卡片功能，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/design/ScreenShot_2026-06-23_163439_663.png" alt="ScreenShot_2026-06-23_163439_663.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/design/ScreenShot_2026-06-23_163531_043.png" alt="ScreenShot_2026-06-23_163531_043.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/design/ScreenShot_2026-06-23_163541_665.png" alt="ScreenShot_2026-06-23_163541_665.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/design/ScreenShot_2026-06-23_163552_350.png" alt="ScreenShot_2026-06-23_163552_350.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/design/ScreenShot_2026-06-23_163600_378.png" alt="ScreenShot_2026-06-23_163600_378.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/actual/screenshot_20260623_163031_com.example.myapplication.jpg" alt="screenshot_20260623_163031_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/actual/screenshot_20260623_163042_com.example.myapplication.jpg" alt="screenshot_20260623_163042_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/actual/screenshot_20260623_163047_com.example.myapplication.jpg" alt="screenshot_20260623_163047_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/actual/screenshot_20260623_163052_com.example.myapplication.jpg" alt="screenshot_20260623_163052_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test1/actual/screenshot_20260623_163057_com.example.myapplication.jpg" alt="screenshot_20260623_163057_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">生成的icon依然有问题</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>eat-what-test2</h3>
+        <div class="prompt-display">prompt:为这个 HarmonyOS 工程实现一个‘今天吃什么’决策App，包含随机转盘抽菜、按冰箱食材推荐、按心情/时间筛选，以及每日饮食打卡记录和分享卡片功能，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/design/ScreenShot_2026-06-22_154831_120.png" alt="ScreenShot_2026-06-22_154831_120.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/design/ScreenShot_2026-06-22_154953_216.png" alt="ScreenShot_2026-06-22_154953_216.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/design/ScreenShot_2026-06-22_155005_414.png" alt="ScreenShot_2026-06-22_155005_414.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/design/ScreenShot_2026-06-22_155016_578.png" alt="ScreenShot_2026-06-22_155016_578.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/design/ScreenShot_2026-06-22_155024_751.png" alt="ScreenShot_2026-06-22_155024_751.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/design/ScreenShot_2026-06-22_155035_804.png" alt="ScreenShot_2026-06-22_155035_804.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/design/ScreenShot_2026-06-22_155044_941.png" alt="ScreenShot_2026-06-22_155044_941.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/actual/1.jpg" alt="1.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/actual/2.jpg" alt="2.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/actual/3.jpg" alt="3.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/actual/4.jpg" alt="4.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/actual/5.jpg" alt="5.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/actual/6.jpg" alt="6.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/eat-what-test2/actual/7.jpg" alt="7.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">分享的保存到相册，显示已保存，实际未保存</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">筛选条件，选中的UI样式不对</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">主界面貌似没有拿到现在的时间应该是对应什么餐，所以没有晚上好的问候语，也没有菜品晚餐标识</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 4</label>
+              <div class="problem-text">新增打卡“+”和满意度的icon未显示</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 5</label>
+              <div class="problem-text">食材里面，当我的食材完全匹配能做的菜品，还是会显示缺3样，不会动态变化页签</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 6</label>
+              <div class="problem-text">打卡页签里面保存、取消按钮位置样式不对</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 7</label>
+              <div class="problem-text">转盘里面的文字大小不对</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>eat-what-test3</h3>
+        <div class="prompt-display">Prompt：为这个 HarmonyOS 工程实现一个‘今天吃什么’决策App，包含随机转盘抽菜、按冰箱食材推荐、按心情/时间筛选，以及每日饮食打卡记录和分享卡片功能，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将设计稿放入 <code>comparison-images/eat-what-test3/design/</code></div>
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将实现截图放入 <code>comparison-images/eat-what-test3/actual/</code></div>
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>eat-what-test4</h3>
+        <div class="prompt-display">Prompt：为这个 HarmonyOS 工程实现一个‘今天吃什么’决策App，包含随机转盘抽菜、按冰箱食材推荐、按心情/时间筛选，以及每日饮食打卡记录和分享卡片功能，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将设计稿放入 <code>comparison-images/eat-what-test4/design/</code></div>
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将实现截图放入 <code>comparison-images/eat-what-test4/actual/</code></div>
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>eat-what-test5</h3>
+        <div class="prompt-display">Prompt：为这个 HarmonyOS 工程实现一个‘今天吃什么’决策App，包含随机转盘抽菜、按冰箱食材推荐、按心情/时间筛选，以及每日饮食打卡记录和分享卡片功能，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将设计稿放入 <code>comparison-images/eat-what-test5/design/</code></div>
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将实现截图放入 <code>comparison-images/eat-what-test5/actual/</code></div>
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>paw-log-test1</h3>
+        <div class="prompt-display">prompt:为这个 HarmonyOS 工程实现**一个**“宠迹·PawLog”App。功能：多宠档案、一键记录饮食/排泄/体重/用药、健康趋势图表、疫苗驱虫提醒、就医病历归档、家庭成员共享。视觉：薄荷绿+肉垫粉，圆润治愈风，并完成构建和运行验证</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/design/ScreenShot_2026-06-23_155515_982.png" alt="ScreenShot_2026-06-23_155515_982.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/design/ScreenShot_2026-06-23_155606_480.png" alt="ScreenShot_2026-06-23_155606_480.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/design/ScreenShot_2026-06-23_155633_515.png" alt="ScreenShot_2026-06-23_155633_515.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/design/ScreenShot_2026-06-23_155659_617.png" alt="ScreenShot_2026-06-23_155659_617.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155000_com.pawlog.app.jpg" alt="screenshot_20260623_155000_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155006_com.pawlog.app.jpg" alt="screenshot_20260623_155006_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155014_com.pawlog.app.jpg" alt="screenshot_20260623_155014_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155020_com.pawlog.app.jpg" alt="screenshot_20260623_155020_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155025_com.pawlog.app.jpg" alt="screenshot_20260623_155025_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155034_com.pawlog.app.jpg" alt="screenshot_20260623_155034_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155040_com.pawlog.app.jpg" alt="screenshot_20260623_155040_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155046_com.pawlog.app.jpg" alt="screenshot_20260623_155046_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/paw-log-test1/actual/screenshot_20260623_155054_com.pawlog.app.jpg" alt="screenshot_20260623_155054_com.pawlog.app.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">下拉组件样式有问题</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">icon有问题</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">分享不可用</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 4</label>
+              <div class="problem-text">复制邀请码不可用</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 5</label>
+              <div class="problem-text">上传图片不可用</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 6</label>
+              <div class="problem-text">提醒功能日期时间组件有问题，也没有看到提醒的方式</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 7</label>
+              <div class="problem-text">趋势界面整体不可点击页签按钮</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>paw-log-test5</h3>
+        <div class="prompt-display"></div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将设计稿放入 <code>comparison-images/paw-log-test5/design/</code></div>
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将实现截图放入 <code>comparison-images/paw-log-test5/actual/</code></div>
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>pinankou-test1</h3>
+        <div class="prompt-display">prompt:为这个 HarmonyOS 工程实现一款平安扣的适老化App
+为独居人群设计的安全工具。每日签到，若连续多日未操作，系统会自动邮件通知紧急联系人，用极低成本提供“安全感”，除此之外还需要有AI伴聊一键求助，和AI伴聊的功能</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将设计稿放入 <code>comparison-images/pinankou-test1/design/</code></div>
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将实现截图放入 <code>comparison-images/pinankou-test1/actual/</code></div>
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">没找到hap包</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>pinankou-test2</h3>
+        <div class="prompt-display">prompt:为这个 HarmonyOS 工程实现一款平安扣的适老化App
+为独居人群设计的安全工具。每日签到，若连续多日未操作，系统会自动邮件通知紧急联系人，用极低成本提供“安全感”，除此之外还需要有AI伴聊一键求助，和AI伴聊的功能</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/design/ScreenShot_2026-06-22_193613_456.png" alt="ScreenShot_2026-06-22_193613_456.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/design/ScreenShot_2026-06-22_193636_743.png" alt="ScreenShot_2026-06-22_193636_743.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/design/ScreenShot_2026-06-22_193721_804.png" alt="ScreenShot_2026-06-22_193721_804.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/design/ScreenShot_2026-06-22_193731_881.png" alt="ScreenShot_2026-06-22_193731_881.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/design/ScreenShot_2026-06-22_193741_380.png" alt="ScreenShot_2026-06-22_193741_380.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/design/ScreenShot_2026-06-22_193749_762.png" alt="ScreenShot_2026-06-22_193749_762.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/design/ScreenShot_2026-06-22_193757_731.png" alt="ScreenShot_2026-06-22_193757_731.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/design/ScreenShot_2026-06-22_193806_604.png" alt="ScreenShot_2026-06-22_193806_604.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193400_com.example.myapplication.jpg" alt="screenshot_20260622_193400_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193407_com.ohos.contacts.jpg" alt="screenshot_20260622_193407_com.ohos.contacts.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193413_com.example.myapplication.jpg" alt="screenshot_20260622_193413_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193419_com.example.myapplication.jpg" alt="screenshot_20260622_193419_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193427_com.example.myapplication.jpg" alt="screenshot_20260622_193427_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193436_com.example.myapplication.jpg" alt="screenshot_20260622_193436_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193442_com.example.myapplication.jpg" alt="screenshot_20260622_193442_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193451_com.example.myapplication.jpg" alt="screenshot_20260622_193451_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test2/actual/screenshot_20260622_193456_com.example.myapplication.jpg" alt="screenshot_20260622_193456_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">出来的app和prompt预期完全不符</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">icon显示几乎都不对</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">【新建隐患】-现场照片 无法拍照和选择图库</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 4</label>
+              <div class="problem-text">【新建应急联系人】新增弹窗布局错乱</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 5</label>
+              <div class="problem-text">卡片类的样式都生成错位，比如首页和统计页面上方的统计卡片</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 6</label>
+              <div class="problem-text">优点：急救可以直接拨打120 图表界面生成比较完整</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>pinankou-test3</h3>
+        <div class="prompt-display">prompt:为这个 HarmonyOS 工程实现一款平安扣的适老化App
+为独居人群设计的安全工具。每日签到，若连续多日未操作，系统会自动邮件通知紧急联系人，用极低成本提供“安全感”，除此之外还需要有AI伴聊一键求助，和AI伴聊的功能</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将设计稿放入 <code>comparison-images/pinankou-test3/design/</code></div>
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将实现截图放入 <code>comparison-images/pinankou-test3/actual/</code></div>
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">没找到hap包</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>pinankou-test4</h3>
+        <div class="prompt-display">Prompt：为这个 HarmonyOS 工程实现一款平安扣的适老化App
+为独居人群设计的安全工具。每日签到，若连续多日未操作，系统会自动邮件通知紧急联系人，用极低成本提供“安全感”，除此之外还需要有AI伴聊一键求助，和AI伴聊的功能</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将设计稿放入 <code>comparison-images/pinankou-test4/design/</code></div>
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          <div class="img-slot empty">将实现截图放入 <code>comparison-images/pinankou-test4/actual/</code></div>
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">生成hap包安装后打开应用白屏</div>
+            </div>
+          
+        </div>
+      </div>
+    
+      <div class="comparison-app">
+        <h3>pinankou-test5</h3>
+        <div class="prompt-display">prompt:为这个 HarmonyOS 工程实现一款平安扣的适老化App
+为独居人群设计的安全工具。每日签到，若连续多日未操作，系统会自动邮件通知紧急联系人，用极低成本提供“安全感”，除此之外还需要有AI伴聊一键求助，和AI伴聊的功能</div>
+        <p class="sub-section-title">设计稿</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test5/design/ScreenShot_2026-06-22_195232_857.png" alt="ScreenShot_2026-06-22_195232_857.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test5/design/ScreenShot_2026-06-22_195507_283.png" alt="ScreenShot_2026-06-22_195507_283.png" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test5/design/ScreenShot_2026-06-22_195515_808.png" alt="ScreenShot_2026-06-22_195515_808.png" loading="lazy" />
+              </div>
+            
+        </div>
+        <p class="sub-section-title">实际实现</p>
+        <div class="comparison-grid">
+          
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test5/actual/screenshot_20260622_194753_com.example.myapplication.jpg" alt="screenshot_20260622_194753_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+              <div class="img-slot">
+                <img src="comparison-images/pinankou-test5/actual/screenshot_20260622_194803_com.example.myapplication.jpg" alt="screenshot_20260622_194803_com.example.myapplication.jpg" loading="lazy" />
+              </div>
+            
+        </div>
+        <div class="problems-section">
+          <p class="sub-section-title">问题汇总</p>
+          
+            <div class="problem-item">
+              <label>问题 1</label>
+              <div class="problem-text">日期组件未正确渲染，报表按钮点击无响应</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 2</label>
+              <div class="problem-text">icon 布局错乱</div>
+            </div>
+          
+            <div class="problem-item">
+              <label>问题 3</label>
+              <div class="problem-text">导出无反应，未找到导出文件</div>
+            </div>
+          
+        </div>
+      </div>
+    
+  </main>
+  <div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="" /></div>
+  <script>
+    (function () {
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightbox-img');
+      document.querySelectorAll('.comparison-grid .img-slot img').forEach(function (img) {
+        img.addEventListener('click', function (e) {
+          e.stopPropagation();
+          lbImg.src = img.src;
+          lb.classList.add('open');
+        });
+      });
+      lb.addEventListener('click', function () { lb.classList.remove('open'); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') lb.classList.remove('open');
+      });
+      document.querySelectorAll('.tree-parent').forEach(function (row) {
+        row.addEventListener('click', function () {
+          var app = row.dataset.app;
+          var expanded = row.classList.toggle('expanded');
+          document.querySelectorAll('.tree-child[data-parent="' + CSS.escape(app) + '"]').forEach(function (child) {
+            if (expanded) child.classList.add('visible');
+            else child.classList.remove('visible');
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

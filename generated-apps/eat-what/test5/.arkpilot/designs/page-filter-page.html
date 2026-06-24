@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今天吃什么 - 筛选</title>
+  <style>
+    :root {
+      --paper: #FFFCFA; --cream: #FFF5ED; --dark: #2E2A25; --warm-gray: #7A746E; --light-gray: #F5F0EB; --border: #E9E3DD;
+      --orange: #FF8C42; --orange-deep: #FF7043; --orange-dark: #E86A2E; --green: #4ECB9C; --olive: #5A6B58; --sage: #8FA897;
+      --shadow-card: 0 2px 10px rgba(46, 42, 37, 0.05), 0 6px 20px rgba(46, 42, 37, 0.04);
+      --shadow-button: 0 6px 20px rgba(255, 140, 66, 0.28);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; background: var(--paper); color: var(--dark); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    body { max-width: 420px; margin: 0 auto; min-height: 100vh; padding-bottom: 90px; }
+    .page { padding: 20px 22px; }
+    .header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .back-btn { width: 44px; height: 44px; border-radius: 14px; background: var(--light-gray); display: flex; align-items: center; justify-content: center; border: none; color: var(--dark); }
+    .page-title { font-size: 30px; font-weight: 700; line-height: 1.18; }
+    .section-title { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+    .filter-card { background: var(--paper); border-radius: 22px; padding: 20px; box-shadow: var(--shadow-card); margin-bottom: 20px; }
+    .chip-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { background: var(--light-gray); color: var(--warm-gray); border-radius: 20px; padding: 10px 16px; font-size: 14px; display: flex; align-items: center; gap: 6px; border: none; }
+    .chip.active { background: var(--dark); color: white; box-shadow: 0 4px 12px rgba(46,42,37,0.14); }
+    .chip svg { width: 18px; height: 18px; }
+    .action-row { display: flex; gap: 12px; margin-bottom: 28px; }
+    .btn-primary { flex: 1; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 55%, var(--orange-dark) 100%); color: white; border: none; border-radius: 18px; padding: 16px; font-size: 16px; font-weight: 600; box-shadow: var(--shadow-button); }
+    .btn-secondary { flex: 0 0 90px; background: var(--paper); border: 1.5px solid var(--border); border-radius: 18px; padding: 16px; font-size: 15px; font-weight: 500; }
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .result-card { background: var(--paper); border-radius: 20px; padding: 16px; box-shadow: var(--shadow-card); }
+    .result-color { height: 64px; border-radius: 14px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; color: white; }
+    .result-color.orange { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%); }
+    .result-color.green { background: linear-gradient(135deg, var(--green) 0%, var(--olive) 100%); }
+    .result-color.sage { background: linear-gradient(135deg, var(--sage) 0%, #6B8E7B 100%); }
+    .result-color.cream { background: linear-gradient(135deg, #FFE8D6 0%, #FFD0B0 100%); color: var(--dark); }
+    .result-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .result-tags { font-size: 12px; color: var(--warm-gray); }
+    .tab-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 420px; margin: 0 auto; height: 68px;
+      background: rgba(255, 252, 250, 0.92); backdrop-filter: blur(24px) saturate(160%); border-top: 1px solid rgba(233,227,221,0.6);
+      display: flex; justify-content: space-around; align-items: center;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #A8A29C; font-size: 11px; font-weight: 500; }
+    .tab-item.active { color: var(--orange); }
+    .tab-item svg { width: 24px; height: 24px; }
+    .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--orange); margin-top: 2px; }
+  </style>
+</head>
+<body data-page-id="filter-page">
+  <div class="page">
+    <header class="header">
+      <button class="back-btn" aria-label="返回">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>Go Back</title>
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="page-title">筛选</div>
+    </header>
+
+    <div class="filter-card">
+      <div class="section-title">现在的心情</div>
+      <div class="chip-list" data-ui-id="filter-mood-list">
+        <button class="chip active" data-ui-id="filter-mood-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Happy Mood</title><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
+          开心
+        </button>
+        <button class="chip" data-ui-id="filter-mood-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Spicy Mood</title><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+          想吃辣
+        </button>
+        <button class="chip" data-ui-id="filter-mood-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Light Mood</title><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 21h10"/><path d="M19.5 12 22 6"/></svg>
+          清淡
+        </button>
+        <button class="chip" data-ui-id="filter-mood-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Comfort Mood</title><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+          治愈
+        </button>
+        <button class="chip" data-ui-id="filter-mood-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Indulgent Mood</title><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
+          放纵
+        </button>
+        <button class="chip" data-ui-id="filter-mood-6">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Whatever Mood</title><rect width="12" height="12" x="2" y="10" rx="2" ry="2"/><path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6"/></svg>
+          随便
+        </button>
+      </div>
+    </div>
+
+    <div class="filter-card">
+      <div class="section-title">用餐时段</div>
+      <div class="chip-list" data-ui-id="filter-time-list">
+        <button class="chip active" data-ui-id="filter-time-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Breakfast Time</title><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
+          早餐
+        </button>
+        <button class="chip" data-ui-id="filter-time-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Lunch Time</title><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+          午餐
+        </button>
+        <button class="chip" data-ui-id="filter-time-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Dinner Time</title><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+          晚餐
+        </button>
+        <button class="chip" data-ui-id="filter-time-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Late Night Time</title><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+          夜宵
+        </button>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-secondary" data-ui-id="filter-reset-button">重置</button>
+      <button class="btn-primary" data-ui-id="filter-apply-button">应用筛选</button>
+    </div>
+
+    <div class="section-title">筛选结果</div>
+    <div class="result-grid" data-ui-id="filter-result-list">
+      <div class="result-card" data-ui-id="filter-result-1">
+        <div class="result-color orange">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>Filtered Dish</title><circle cx="11.5" cy="12.5" r="3.5"/><path d="M3 8c0-3.5 2.5-6 6.5-6 5 0 4.83 3 7.5 5s5 2 5 6c0 4.5-2.5 6.5-7 6.5-2.5 0-2.5 2.5-6 2.5s-7-2-7-5.5c0-3 1.5-3 1.5-5C3.5 10 3 9 3 8Z"/></svg>
+        </div>
+        <div class="result-name">牛油果吐司</div>
+        <div class="result-tags">早餐 · 清淡</div>
+      </div>
+      <div class="result-card" data-ui-id="filter-result-2">
+        <div class="result-color green">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>Filtered Dish</title><path d="M2.27 21.7s9.87-3.5 12.73-6.36a4.5 4.5 0 0 0-6.36-6.37C5.77 11.84 2.27 21.7 2.27 21.7z"/></svg>
+        </div>
+        <div class="result-name">蔬菜沙拉</div>
+        <div class="result-tags">早餐 · 开心</div>
+      </div>
+      <div class="result-card" data-ui-id="filter-result-3">
+        <div class="result-color sage">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>Filtered Dish</title><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 21h10"/></svg>
+        </div>
+        <div class="result-name">小米粥</div>
+        <div class="result-tags">早餐 · 治愈</div>
+      </div>
+      <div class="result-card" data-ui-id="filter-result-4">
+        <div class="result-color cream">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>Filtered Dish</title><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg>
+        </div>
+        <div class="result-name">燕麦拿铁</div>
+        <div class="result-tags">早餐 · 放纵</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="tab-bar">
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Home Tab</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>首页</span></div>
+    <div class="tab-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Recommend Tab</title><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg><span>推荐</span><div class="tab-dot"></div></div>
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Check-in Tab</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span>打卡</span></div>
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Profile Tab</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>我的</span></div>
+  </nav>
+</body>
+</html>

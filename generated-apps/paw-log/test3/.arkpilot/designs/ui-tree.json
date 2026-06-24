@@ -1,0 +1,319 @@
+{
+  "version": "arkpilot-uitree/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "宠迹 · PawLog",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home-page",
+      "name": "首页",
+      "route": "pages/HomePage",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        { "id": "home-pet-switcher", "role": "action", "event": "open-pet-picker" },
+        { "id": "home-current-pet-avatar", "role": "assertion", "binding": "/pets/selected/avatarUrl" },
+        { "id": "home-current-pet-name", "role": "assertion", "binding": "/pets/selected/name" },
+        { "id": "home-add-pet-button", "role": "action", "event": "open-pet-editor" },
+        { "id": "home-notification-button", "role": "action", "event": "open-reminders" },
+        { "id": "home-quick-log-button", "role": "action", "event": "open-record-type-sheet" },
+        { "id": "home-reminder-list", "role": "list", "binding": "/reminders/today", "itemIdPattern": "home-reminder-{id}", "emptyStateId": "home-reminder-empty" },
+        { "id": "home-recent-record-list", "role": "list", "binding": "/records/recent", "itemIdPattern": "home-recent-record-{id}", "emptyStateId": "home-recent-empty" },
+        { "id": "home-see-all-records-link", "role": "action", "event": "go-to-records" },
+        { "id": "home-health-summary-card", "role": "action", "event": "go-to-health" }
+      ]
+    },
+    {
+      "id": "records-page",
+      "surfaceId": "records",
+      "pageId": "records-page",
+      "name": "记录",
+      "route": "pages/RecordsPage",
+      "tabId": "tab-records",
+      "semanticTargets": [
+        { "id": "records-add-button", "role": "action", "event": "open-record-editor" },
+        { "id": "records-search-input", "role": "input", "event": "search-records" },
+        { "id": "records-pet-filter", "role": "input", "event": "filter-by-pet" },
+        { "id": "records-type-filter", "role": "input", "event": "filter-by-type" },
+        { "id": "records-date-filter", "role": "input", "event": "filter-by-date" },
+        { "id": "records-timeline-list", "role": "list", "binding": "/records/filtered", "itemIdPattern": "records-timeline-item-{id}", "emptyStateId": "records-empty-state" },
+        { "id": "records-timeline-item-{id}", "role": "action", "event": "open-record-detail" }
+      ]
+    },
+    {
+      "id": "health-page",
+      "surfaceId": "health",
+      "pageId": "health-page",
+      "name": "健康",
+      "route": "pages/HealthPage",
+      "tabId": "tab-health",
+      "semanticTargets": [
+        { "id": "health-pet-switcher", "role": "action", "event": "open-pet-picker" },
+        { "id": "health-period-7d", "role": "action", "event": "set-chart-period" },
+        { "id": "health-period-30d", "role": "action", "event": "set-chart-period" },
+        { "id": "health-period-90d", "role": "action", "event": "set-chart-period" },
+        { "id": "health-weight-chart-card", "role": "action", "event": "open-chart-detail" },
+        { "id": "health-water-chart-card", "role": "action", "event": "open-chart-detail" },
+        { "id": "health-toilet-chart-card", "role": "action", "event": "open-chart-detail" },
+        { "id": "health-reminder-list", "role": "list", "binding": "/reminders/byPet", "itemIdPattern": "health-reminder-{id}", "emptyStateId": "health-reminder-empty" },
+        { "id": "health-add-reminder-button", "role": "action", "event": "open-reminder-editor" },
+        { "id": "health-medical-record-list", "role": "list", "binding": "/medicalRecords/byPet", "itemIdPattern": "health-medical-record-{id}", "emptyStateId": "health-medical-empty" },
+        { "id": "health-add-medical-record-button", "role": "action", "event": "open-medical-record-editor" }
+      ]
+    },
+    {
+      "id": "family-page",
+      "surfaceId": "family",
+      "pageId": "family-page",
+      "name": "家庭",
+      "route": "pages/FamilyPage",
+      "tabId": "tab-family",
+      "semanticTargets": [
+        { "id": "family-invite-button", "role": "action", "event": "open-member-invite" },
+        { "id": "family-member-list", "role": "list", "binding": "/family/members", "itemIdPattern": "family-member-{id}", "emptyStateId": "family-member-empty" },
+        { "id": "family-shared-pet-list", "role": "list", "binding": "/family/sharedPets", "itemIdPattern": "family-shared-pet-{id}", "emptyStateId": "family-shared-pet-empty" }
+      ]
+    },
+    {
+      "id": "profile-page",
+      "surfaceId": "profile",
+      "pageId": "profile-page",
+      "name": "我的",
+      "route": "pages/ProfilePage",
+      "tabId": "tab-profile",
+      "semanticTargets": [
+        { "id": "profile-user-avatar", "role": "assertion", "binding": "/user/avatarUrl" },
+        { "id": "profile-user-name", "role": "assertion", "binding": "/user/displayName" },
+        { "id": "profile-manage-pets-button", "role": "action", "event": "go-to-pet-list" },
+        { "id": "profile-export-data-button", "role": "action", "event": "export-data" },
+        { "id": "profile-settings-button", "role": "action", "event": "open-settings" },
+        { "id": "profile-about-button", "role": "action", "event": "open-about" }
+      ]
+    },
+    {
+      "id": "pet-editor-page",
+      "surfaceId": "pet-editor",
+      "pageId": "pet-editor-page",
+      "name": "宠物档案编辑",
+      "route": "pages/PetEditorPage",
+      "semanticTargets": [
+        { "id": "pet-editor-avatar-picker", "role": "input", "event": "pick-avatar" },
+        { "id": "pet-editor-name-input", "role": "input", "event": "update-name" },
+        { "id": "pet-editor-species-picker", "role": "input", "event": "update-species" },
+        { "id": "pet-editor-breed-input", "role": "input", "event": "update-breed" },
+        { "id": "pet-editor-gender-picker", "role": "input", "event": "update-gender" },
+        { "id": "pet-editor-birthdate-picker", "role": "input", "event": "update-birthdate" },
+        { "id": "pet-editor-weight-input", "role": "input", "event": "update-weight" },
+        { "id": "pet-editor-tags-input", "role": "input", "event": "update-tags" },
+        { "id": "pet-editor-notes-input", "role": "input", "event": "update-notes" },
+        { "id": "pet-editor-save-button", "role": "action", "event": "save-pet" },
+        { "id": "pet-editor-delete-button", "role": "action", "event": "delete-pet" }
+      ]
+    },
+    {
+      "id": "record-editor-page",
+      "surfaceId": "record-editor",
+      "pageId": "record-editor-page",
+      "name": "记录编辑",
+      "route": "pages/RecordEditorPage",
+      "semanticTargets": [
+        { "id": "record-editor-pet-picker", "role": "input", "event": "select-pet" },
+        { "id": "record-editor-type-picker", "role": "input", "event": "select-record-type" },
+        { "id": "record-editor-datetime-picker", "role": "input", "event": "select-datetime" },
+        { "id": "record-editor-food-name-input", "role": "input", "event": "update-food-name" },
+        { "id": "record-editor-amount-input", "role": "input", "event": "update-amount" },
+        { "id": "record-editor-unit-input", "role": "input", "event": "update-unit" },
+        { "id": "record-editor-toilet-type-picker", "role": "input", "event": "update-toilet-type" },
+        { "id": "record-editor-condition-picker", "role": "input", "event": "update-condition" },
+        { "id": "record-editor-medicine-name-input", "role": "input", "event": "update-medicine-name" },
+        { "id": "record-editor-dose-input", "role": "input", "event": "update-dose" },
+        { "id": "record-editor-taken-toggle", "role": "input", "event": "toggle-taken" },
+        { "id": "record-editor-notes-input", "role": "input", "event": "update-notes" },
+        { "id": "record-editor-save-button", "role": "action", "event": "save-record" },
+        { "id": "record-editor-delete-button", "role": "action", "event": "delete-record" }
+      ]
+    },
+    {
+      "id": "record-detail-page",
+      "surfaceId": "record-detail",
+      "pageId": "record-detail-page",
+      "name": "记录详情",
+      "route": "pages/RecordDetailPage",
+      "semanticTargets": [
+        { "id": "record-detail-edit-button", "role": "action", "event": "edit-record" },
+        { "id": "record-detail-delete-button", "role": "action", "event": "delete-record" },
+        { "id": "record-detail-back-button", "role": "action", "event": "go-back" }
+      ]
+    },
+    {
+      "id": "chart-detail-page",
+      "surfaceId": "chart-detail",
+      "pageId": "chart-detail-page",
+      "name": "图表详情",
+      "route": "pages/ChartDetailPage",
+      "semanticTargets": [
+        { "id": "chart-detail-period-7d", "role": "action", "event": "set-chart-period" },
+        { "id": "chart-detail-period-30d", "role": "action", "event": "set-chart-period" },
+        { "id": "chart-detail-period-90d", "role": "action", "event": "set-chart-period" },
+        { "id": "chart-detail-data-list", "role": "list", "binding": "/chart/dataPoints", "itemIdPattern": "chart-data-point-{id}", "emptyStateId": "chart-data-empty" },
+        { "id": "chart-detail-add-button", "role": "action", "event": "open-record-editor" },
+        { "id": "chart-detail-back-button", "role": "action", "event": "go-back" }
+      ]
+    },
+    {
+      "id": "reminder-editor-page",
+      "surfaceId": "reminder-editor",
+      "pageId": "reminder-editor-page",
+      "name": "提醒编辑",
+      "route": "pages/ReminderEditorPage",
+      "semanticTargets": [
+        { "id": "reminder-editor-pet-picker", "role": "input", "event": "select-pet" },
+        { "id": "reminder-editor-type-picker", "role": "input", "event": "select-reminder-type" },
+        { "id": "reminder-editor-title-input", "role": "input", "event": "update-title" },
+        { "id": "reminder-editor-date-picker", "role": "input", "event": "update-date" },
+        { "id": "reminder-editor-repeat-picker", "role": "input", "event": "update-repeat" },
+        { "id": "reminder-editor-save-button", "role": "action", "event": "save-reminder" },
+        { "id": "reminder-editor-delete-button", "role": "action", "event": "delete-reminder" }
+      ]
+    },
+    {
+      "id": "medical-record-editor-page",
+      "surfaceId": "medical-record-editor",
+      "pageId": "medical-record-editor-page",
+      "name": "病历编辑",
+      "route": "pages/MedicalRecordEditorPage",
+      "semanticTargets": [
+        { "id": "medical-editor-pet-picker", "role": "input", "event": "select-pet" },
+        { "id": "medical-editor-date-picker", "role": "input", "event": "update-date" },
+        { "id": "medical-editor-clinic-input", "role": "input", "event": "update-clinic" },
+        { "id": "medical-editor-doctor-input", "role": "input", "event": "update-doctor" },
+        { "id": "medical-editor-complaint-input", "role": "input", "event": "update-complaint" },
+        { "id": "medical-editor-diagnosis-input", "role": "input", "event": "update-diagnosis" },
+        { "id": "medical-editor-treatment-input", "role": "input", "event": "update-treatment" },
+        { "id": "medical-editor-cost-input", "role": "input", "event": "update-cost" },
+        { "id": "medical-editor-photo-grid", "role": "input", "event": "add-photo" },
+        { "id": "medical-editor-save-button", "role": "action", "event": "save-medical-record" },
+        { "id": "medical-editor-delete-button", "role": "action", "event": "delete-medical-record" }
+      ]
+    },
+    {
+      "id": "medical-record-detail-page",
+      "surfaceId": "medical-record-detail",
+      "pageId": "medical-record-detail-page",
+      "name": "病历详情",
+      "route": "pages/MedicalRecordDetailPage",
+      "semanticTargets": [
+        { "id": "medical-detail-edit-button", "role": "action", "event": "edit-medical-record" },
+        { "id": "medical-detail-delete-button", "role": "action", "event": "delete-medical-record" },
+        { "id": "medical-detail-photo-grid", "role": "list", "binding": "/medicalRecord/photos", "itemIdPattern": "medical-detail-photo-{index}", "emptyStateId": "medical-detail-photo-empty" },
+        { "id": "medical-detail-back-button", "role": "action", "event": "go-back" }
+      ]
+    },
+    {
+      "id": "member-invite-page",
+      "surfaceId": "member-invite",
+      "pageId": "member-invite-page",
+      "name": "成员邀请",
+      "route": "pages/MemberInvitePage",
+      "semanticTargets": [
+        { "id": "member-invite-code-display", "role": "assertion", "binding": "/invite/code" },
+        { "id": "member-invite-copy-button", "role": "action", "event": "copy-invite-code" },
+        { "id": "member-invite-share-button", "role": "action", "event": "share-invite-code" },
+        { "id": "member-invite-back-button", "role": "action", "event": "go-back" }
+      ]
+    },
+    {
+      "id": "pet-picker-sheet",
+      "surfaceId": "pet-picker",
+      "pageId": "pet-picker-sheet",
+      "name": "宠物选择器",
+      "semanticTargets": [
+        { "id": "pet-picker-list", "role": "list", "binding": "/pets/all", "itemIdPattern": "pet-picker-item-{id}", "emptyStateId": "pet-picker-empty" },
+        { "id": "pet-picker-add-button", "role": "action", "event": "open-pet-editor" },
+        { "id": "pet-picker-close-button", "role": "action", "event": "close-sheet" }
+      ]
+    },
+    {
+      "id": "record-type-sheet",
+      "surfaceId": "record-type-picker",
+      "pageId": "record-type-sheet",
+      "name": "记录类型选择器",
+      "semanticTargets": [
+        { "id": "record-type-food", "role": "action", "event": "select-food" },
+        { "id": "record-type-toilet", "role": "action", "event": "select-toilet" },
+        { "id": "record-type-weight", "role": "action", "event": "select-weight" },
+        { "id": "record-type-medicine", "role": "action", "event": "select-medicine" },
+        { "id": "record-type-close-button", "role": "action", "event": "close-sheet" }
+      ]
+    },
+    {
+      "id": "confirm-delete-dialog",
+      "surfaceId": "confirm-delete",
+      "pageId": "confirm-delete-dialog",
+      "name": "确认删除弹窗",
+      "semanticTargets": [
+        { "id": "confirm-delete-title", "role": "assertion", "binding": "/dialog/title" },
+        { "id": "confirm-delete-message", "role": "assertion", "binding": "/dialog/message" },
+        { "id": "confirm-delete-confirm-button", "role": "action", "event": "confirm-delete" },
+        { "id": "confirm-delete-cancel-button", "role": "action", "event": "cancel-delete" }
+      ]
+    }
+  ],
+  "events": [
+    { "name": "open-pet-picker", "context": "fromSurface" },
+    { "name": "open-record-type-sheet", "context": "fromSurface" },
+    { "name": "open-record-editor", "context": "optionalType" },
+    { "name": "open-reminder-editor", "context": "optionalId" },
+    { "name": "open-medical-record-editor", "context": "optionalId" },
+    { "name": "open-member-invite", "context": "none" },
+    { "name": "save-pet", "context": "petForm" },
+    { "name": "delete-pet", "context": "petId" },
+    { "name": "save-record", "context": "recordForm" },
+    { "name": "delete-record", "context": "recordId" },
+    { "name": "save-reminder", "context": "reminderForm" },
+    { "name": "delete-reminder", "context": "reminderId" },
+    { "name": "save-medical-record", "context": "medicalRecordForm" },
+    { "name": "delete-medical-record", "context": "medicalRecordId" },
+    { "name": "set-chart-period", "context": "period" },
+    { "name": "copy-invite-code", "context": "code" },
+    { "name": "share-invite-code", "context": "code" },
+    { "name": "close-sheet", "context": "none" },
+    { "name": "confirm-delete", "context": "targetId" },
+    { "name": "cancel-delete", "context": "none" },
+    { "name": "go-back", "context": "none" }
+  ],
+  "bindings": [
+    { "path": "/pets/selected/avatarUrl", "type": "image-url" },
+    { "path": "/pets/selected/name", "type": "string" },
+    { "path": "/pets/all", "type": "array" },
+    { "path": "/records/recent", "type": "array" },
+    { "path": "/records/filtered", "type": "array" },
+    { "path": "/reminders/today", "type": "array" },
+    { "path": "/reminders/byPet", "type": "array" },
+    { "path": "/chart/dataPoints", "type": "array" },
+    { "path": "/medicalRecords/byPet", "type": "array" },
+    { "path": "/medicalRecord/photos", "type": "array" },
+    { "path": "/family/members", "type": "array" },
+    { "path": "/family/sharedPets", "type": "array" },
+    { "path": "/user/avatarUrl", "type": "image-url" },
+    { "path": "/user/displayName", "type": "string" },
+    { "path": "/invite/code", "type": "string" },
+    { "path": "/dialog/title", "type": "string" },
+    { "path": "/dialog/message", "type": "string" }
+  ],
+  "testTargets": [
+    { "id": "home-quick-log-button", "action": "tap", "expected": "record-type-sheet opens" },
+    { "id": "records-add-button", "action": "tap", "expected": "record-editor-page opens" },
+    { "id": "health-add-reminder-button", "action": "tap", "expected": "reminder-editor-page opens" },
+    { "id": "health-add-medical-record-button", "action": "tap", "expected": "medical-record-editor-page opens" },
+    { "id": "family-invite-button", "action": "tap", "expected": "member-invite-page opens" },
+    { "id": "profile-manage-pets-button", "action": "tap", "expected": "pet-list or pet-editor opens" },
+    { "id": "pet-editor-save-button", "action": "tap", "expected": "pet saved and returns" },
+    { "id": "confirm-delete-confirm-button", "action": "tap", "expected": "item deleted" }
+  ]
+}

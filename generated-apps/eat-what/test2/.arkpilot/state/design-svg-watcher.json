@@ -1,0 +1,57 @@
+{
+  "pid": 12301,
+  "status": "controller-tick",
+  "launched_by_session_id": "5825f202-7f02-4de3-8568-b4005125c8f3",
+  "started_at": "2026-06-20T02:21:54.820Z",
+  "last_scan_at": "2026-06-20T02:52:47.162Z",
+  "last_change_at": "2026-06-20T02:34:50.861Z",
+  "html_signature": "[{\"name\":\"page-filter.html\",\"mtime_ms\":1781922701511,\"size\":5511},{\"name\":\"page-home.html\",\"mtime_ms\":1781922538802,\"size\":12164},{\"name\":\"page-ingredients.html\",\"mtime_ms\":1781922668103,\"size\":11810},{\"name\":\"page-record-form.html\",\"mtime_ms\":1781922845925,\"size\":8796},{\"name\":\"page-records.html\",\"mtime_ms\":1781922788422,\"size\":13687},{\"name\":\"page-share-card.html\",\"mtime_ms\":1781922886044,\"size\":6376},{\"name\":\"page-wheel.html\",\"mtime_ms\":1781922596601,\"size\":9932}]",
+  "html_files": [
+    {
+      "name": "page-filter.html",
+      "mtime_ms": 1781922701511,
+      "size": 5511
+    },
+    {
+      "name": "page-home.html",
+      "mtime_ms": 1781922538802,
+      "size": 12164
+    },
+    {
+      "name": "page-ingredients.html",
+      "mtime_ms": 1781922668103,
+      "size": 11810
+    },
+    {
+      "name": "page-record-form.html",
+      "mtime_ms": 1781922845925,
+      "size": 8796
+    },
+    {
+      "name": "page-records.html",
+      "mtime_ms": 1781922788422,
+      "size": 13687
+    },
+    {
+      "name": "page-share-card.html",
+      "mtime_ms": 1781922886044,
+      "size": 6376
+    },
+    {
+      "name": "page-wheel.html",
+      "mtime_ms": 1781922596601,
+      "size": 9932
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 42,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 42,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-20T02:52:47.162Z"
+}

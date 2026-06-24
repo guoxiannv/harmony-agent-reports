@@ -1,0 +1,116 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "specPath": ".arkpilot/autopilot/spec.md",
+  "dataModel": {
+    "enums": {
+      "MoodTag": ["放纵", "健康", "快手", "治愈", "解馋"],
+      "MealType": ["早餐", "午餐", "晚餐", "夜宵", "加餐"]
+    },
+    "entities": [
+      { "name": "Dish", "fields": { "id": "string", "name": "string", "ingredients": "string[]", "moods": "MoodTag[]", "timeScenes": "MealType[]", "recommend": "string", "difficulty": "string", "estimatedMinutes": "number" }, "source": "local constant DISH_BANK" },
+      { "name": "PantryItem", "fields": { "id": "string", "name": "string" }, "source": "user, persisted" },
+      { "name": "CheckInRecord", "fields": { "id": "string", "date": "string(YYYY-MM-DD)", "meal": "MealType", "dishName": "string", "moods": "MoodTag[]", "note": "string", "createdAt": "number" }, "source": "user, persisted" },
+      { "name": "ShareCardModel", "fields": { "date": "string", "meal": "MealType", "dishName": "string", "moods": "MoodTag[]", "recommend": "string" }, "source": "derived in-memory" }
+    ],
+    "formState": {
+      "editor": { "date": "/checkIn/editor/date", "meal": "/checkIn/editor/meal", "dishName": "/checkIn/editor/dishName", "mood": "/checkIn/editor/mood", "note": "/checkIn/editor/note", "editingId": "''=new" }
+    },
+    "persistence": {
+      "store": "@kit.ArkData preferences('eatwhat_store')",
+      "keys": { "pantry_items": "PantryItem[]", "checkin_records": "CheckInRecord[]" },
+      "reactiveBridge": "AppStorage keys: pantryItems, checkInRecords, homeMoods, homeTime, wheelResult, pantryMoods, pantryResults, pantryInput, editor*, resultDish, shareCard"
+    },
+    "computed": {
+      "/wheel/candidatesEmpty": "RecommendService.filterCandidates(DISH_BANK, homeMoods, homeTime).length===0",
+      "/profile/streak": "CheckInService.streak(records, now)",
+      "/profile/totalCheckIns": "records.length",
+      "/pantry/results": "RecommendService.recommendByPantry(DISH_BANK, pantryItems, pantryMoods, '')"
+    }
+  },
+  "services": [
+    { "name": "StorageService", "file": "services/StorageService.ets", "duty": "preferences load/save for pantry + check-ins" },
+    { "name": "RecommendService", "file": "services/RecommendService.ets", "duty": "filterCandidates / recommendByPantry (sorted by ingredient match) / spinPick (random)" },
+    { "name": "PantryService", "file": "services/PantryService.ets", "duty": "add/remove pantry items (dedupe + trim)" },
+    { "name": "CheckInService", "file": "services/CheckInService.ets", "duty": "add/update/remove/getById/groupByDate/total/streak" },
+    { "name": "ShareCardService", "file": "services/ShareCardService.ets", "duty": "build ShareCardModel from CheckInRecord or Dish" }
+  ],
+  "stateMachine": {
+    "controller": "controller/AppController.ets (singleton)",
+    "init": "EntryAbility.onCreate -> AppController.init(context): load persisted data into AppStorage",
+    "surfaces": {
+      "tab": ["home", "pantry", "check-in", "profile"],
+      "nonTab": ["result", "check-in-editor", "share-card"]
+    },
+    "navigation": "Index.ets owns surface + activeTab; non-tab pushes remember lastTabBeforePush and return on back"
+  },
+  "interactionFlows": [
+    {
+      "flow": "FR-1 转盘抽菜",
+      "trigger": "home-spin-button (event spin-wheel)",
+      "steps": [
+        "candidates = filterCandidates(DISH_BANK, /filters/mood, /filters/time)",
+        "if candidates empty -> /wheel/candidatesEmpty=true (UI shows empty state, spin disabled or no-op)",
+        "result = spinPick(candidates) -> /wheel/result",
+        "result page (event open-result-detail) shows /result/dishName + /result/dishTags"
+      ],
+      "errorPath": "candidatesEmpty -> home-empty-candidates assertion; no crash, no result set"
+    },
+    {
+      "flow": "FR-2 冰箱食材推荐",
+      "trigger": "pantry-add-button (add-pantry-item) / pantry-recommend-button (recommend-by-pantry)",
+      "steps": [
+        "add: PantryService.addItem(pantryInput) -> persist + clear input",
+        "remove: PantryService.removeItem(id) -> persist",
+        "recommend: RecommendService.recommendByPantry -> /pantry/results sorted by ingredient hits",
+        "optional pantry-mood-filter further narrows results"
+      ],
+      "errorPath": "empty pantry or no match -> pantry-no-result-state"
+    },
+    {
+      "flow": "FR-3 心情/时间筛选",
+      "trigger": "home-mood-filter (mood-filter-change, multi) / home-time-filter (time-filter-change, single)",
+      "steps": ["update AppStorage filters", "filterCandidates re-derived on next spin / candidatesEmpty check", "pantry-mood-filter narrows pantry results"]
+    },
+    {
+      "flow": "FR-4 每日打卡",
+      "trigger": "check-in-add-button (open-check-in-editor) / result-check-in-button (check-in-from-result) / editor-save-button (save-check-in) / check-in-delete-button (delete-check-in)",
+      "steps": [
+        "open editor new/edit -> set editor fields",
+        "save: validate dishName non-empty; CheckInService.add or update; persist",
+        "delete: CheckInService.remove; persist",
+        "list grouped by date desc via groupByDate"
+      ],
+      "errorPath": "empty dishName -> save is a no-op"
+    },
+    {
+      "flow": "FR-5 分享卡片",
+      "trigger": "check-in-share-button (open-share-card) / result-share-button (share-from-result)",
+      "steps": ["build ShareCardModel from record or result dish -> /share/cardPreview", "save/system share buttons (UI entry; system capability validated in QA)"]
+    }
+  ],
+  "testTargets": {
+    "tabIds": ["tab-home", "tab-pantry", "tab-check-in", "tab-profile"],
+    "assertionIds": ["home-wheel-result", "home-empty-candidates", "pantry-item-list", "pantry-result-list", "check-in-list", "profile-streak-count", "profile-total-check-ins", "result-dish-name", "share-card-preview"],
+    "actionIds": ["home-spin-button", "home-result-detail-button", "home-quick-pantry-button", "pantry-add-button", "pantry-recommend-button", "pantry-dish-card", "check-in-add-button", "check-in-share-button", "check-in-delete-button", "result-check-in-button", "result-share-button", "result-back-button", "editor-save-button", "editor-back-button", "share-save-button", "share-system-button", "share-back-button"]
+  },
+  "changeRequests": [],
+  "headlessScope": {
+    "implemented": [
+      "model/Types.ets",
+      "data/DishBank.ets",
+      "services/StorageService.ets",
+      "services/RecommendService.ets",
+      "services/PantryService.ets",
+      "services/CheckInService.ets",
+      "services/ShareCardService.ets",
+      "controller/AppController.ets"
+    ],
+    "shellContractUpdated": ["common/TabTypes.ets", "common/SvgIcon.ets", "components/BottomTabBar.ets", "pages/Index.ets"],
+    "deferredToVisual": [
+      "pages/HomePage.ets", "pages/PantryPage.ets", "pages/CheckInPage.ets", "pages/ProfilePage.ets",
+      "pages/ResultPage.ets", "pages/CheckInEditorPage.ets", "pages/ShareCardPage.ets",
+      "SVG/rawfile icon assets", "final build"
+    ],
+    "note": "Index.ets references real page structs from ui-tree.json; pages do not exist yet so full build is deferred to visual integration. Logic modules are CheckArktsFiles-valid on their own."
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "dataModel": {
+    "entities": {
+      "Issue": {
+        "id": "string",
+        "title": "string",
+        "type": "hazard | routine | rectification",
+        "riskLevel": "low | medium | high | critical",
+        "status": "pending | processing | awaiting-review | completed | closed",
+        "reporterId": "string",
+        "assignee": "string",
+        "location": "string",
+        "photos": "string[]",
+        "description": "string",
+        "createdAt": "number (timestamp)",
+        "dueDate": "number (timestamp)",
+        "updatedAt": "number (timestamp)",
+        "timeline": "TimelineEvent[]"
+      },
+      "TimelineEvent": {
+        "id": "string",
+        "issueId": "string",
+        "timestamp": "number",
+        "status": "pending | processing | awaiting-review | completed | closed",
+        "note": "string",
+        "actorId": "string"
+      },
+      "PatrolPoint": {
+        "id": "string",
+        "name": "string",
+        "area": "string",
+        "sequence": "number",
+        "status": "pending | done | abnormal",
+        "lastCheckAt": "number | null",
+        "lat": "number | null",
+        "lng": "number | null"
+      },
+      "PatrolRecord": {
+        "id": "string",
+        "pointId": "string",
+        "checkedAt": "number",
+        "photos": "string[]",
+        "notes": "string",
+        "abnormal": "boolean",
+        "relatedIssueId": "string | null"
+      },
+      "Contact": {
+        "id": "string",
+        "name": "string",
+        "role": "string",
+        "group": "fire | security | medical | manager | other",
+        "phone": "string",
+        "priority": "boolean"
+      },
+      "StatsSnapshot": {
+        "period": "day | week | month",
+        "issueCount": "number",
+        "resolvedCount": "number",
+        "completionRate": "number (0-1)",
+        "patrolCompletionRate": "number (0-1)",
+        "riskDistribution": "Record<riskLevel, number>",
+        "avgResolutionHours": "number",
+        "trend": "TrendPoint[]"
+      },
+      "TrendPoint": {
+        "label": "string",
+        "created": "number",
+        "resolved": "number"
+      }
+    },
+    "uiState": {
+      "issueForm": {
+        "title": "string",
+        "type": "hazard | routine | rectification",
+        "riskLevel": "low | medium | high | critical",
+        "location": "string",
+        "assignee": "string",
+        "dueDate": "number | null",
+        "description": "string",
+        "photos": "string[]",
+        "linkedPointId": "string | null"
+      },
+      "contactForm": {
+        "id": "string | null",
+        "name": "string",
+        "role": "string",
+        "group": "fire | security | medical | manager | other",
+        "phone": "string",
+        "priority": "boolean"
+      },
+      "issuesFilter": {
+        "query": "string",
+        "status": "all | pending | processing | awaiting-review | completed | closed",
+        "risk": "all | low | medium | high | critical"
+      },
+      "contactsQuery": "string",
+      "statsPeriod": "day | week | month",
+      "patrolCheckin": {
+        "pointId": "string",
+        "notes": "string",
+        "isAbnormal": "boolean",
+        "photos": "string[]"
+      }
+    },
+    "computedState": {
+      "today": {
+        "date": "string",
+        "patrolProgress": "number (0-1)",
+        "pendingIssues": "number",
+        "resolvedThisWeek": "number"
+      },
+      "filteredIssues": "Issue[]",
+      "filteredContacts": "Contact[]",
+      "contactsByGroup": "Record<group, Contact[]>"
+    }
+  },
+  "services": {
+    "SafetyStore": {
+      "role": "local persistence boundary",
+      "storage": "AppStorage/PersistentStorage via preferences wrapper",
+      "methods": [
+        "getIssues(): Issue[]",
+        "saveIssues(issues: Issue[]): void",
+        "getPatrolPoints(): PatrolPoint[]",
+        "savePatrolPoints(points: PatrolPoint[]): void",
+        "getPatrolRecords(): PatrolRecord[]",
+        "savePatrolRecords(records: PatrolRecord[]): void",
+        "getContacts(): Contact[]",
+        "saveContacts(contacts: Contact[]): void",
+        "getStatsPeriod(): 'day' | 'week' | 'month'",
+        "saveStatsPeriod(period): void"
+      ]
+    },
+    "SafetyService": {
+      "role": "domain orchestrator",
+      "methods": [
+        "createIssue(draft): Issue",
+        "updateIssue(id, patch): Issue",
+        "closeIssue(id): Issue",
+        "addTimelineEvent(issueId, status, note): TimelineEvent",
+        "checkinPatrolPoint(pointId, record): { point: PatrolPoint, record: PatrolRecord, issue?: Issue }",
+        "saveContact(contact): Contact",
+        "deleteContact(id): void",
+        "computeStats(period): StatsSnapshot"
+      ]
+    },
+    "PhotoService": {
+      "role": "camera/photo abstraction",
+      "note": "Stub implementation. Real implementation requires camera picker/permission. Returns placeholder URI list for headless logic phase.",
+      "methods": [
+        "capture(): Promise<string>"
+      ]
+    },
+    "CallService": {
+      "role": "phone call abstraction",
+      "note": "Stub implementation. Real implementation requires call permission/ability. Logs intent for headless logic phase.",
+      "methods": [
+        "call(phone: string): void"
+      ]
+    },
+    "NotificationService": {
+      "role": "notification abstraction",
+      "note": "Stub implementation.",
+      "methods": [
+        "show(title: string, body: string): void"
+      ]
+    }
+  },
+  "stateMachine": {
+    "surfaces": {
+      "tabSurfaces": ["home", "patrol", "issues", "contacts", "stats"],
+      "nonTabSurfaces": ["issue-form", "issue-detail", "contact-form"]
+    },
+    "tabToSurface": {
+      "tab-home": "home",
+      "tab-patrol": "patrol",
+      "tab-issues": "issues",
+      "tab-contacts": "contacts",
+      "tab-stats": "stats"
+    },
+    "navigation": {
+      "openIssueForm": "push non-tab issue-form; optional pointId prefill",
+      "openIssueDetail": "push non-tab issue-detail; pass issueId",
+      "openContactForm": "push non-tab contact-form; optional contactId",
+      "returnToTab": "pop to previous tab surface"
+    },
+    "issueForm": {
+      "states": ["editing", "submitting", "success", "error"],
+      "transitions": {
+        "submit": "editing -> submitting -> success | error",
+        "validationError": "editing -> error (with field messages)",
+        "cancel": "editing -> discard -> return"
+      }
+    },
+    "patrolCheckin": {
+      "states": ["idle", "capturing", "ready", "submitting", "done"],
+      "transitions": {
+        "open": "idle -> ready",
+        "takePhoto": "ready -> capturing -> ready",
+        "toggleAbnormal": "ready -> ready",
+        "submit": "ready -> submitting -> done",
+        "cancel": "* -> idle"
+      }
+    },
+    "issueDetail": {
+      "states": ["viewing", "updating", "closed"],
+      "transitions": {
+        "updateProgress": "viewing -> updating -> viewing",
+        "closeIssue": "viewing -> closed -> return"
+      }
+    }
+  },
+  "interactionFlows": [
+    {
+      "name": "report-issue",
+      "trigger": "navigate-issue-form",
+      "steps": [
+        "Initialize empty issueForm; prefill linkedPointId if provided",
+        "User edits title, type, riskLevel, location, assignee, dueDate, description",
+        "User taps take-photo; PhotoService.capture appends URI",
+        "User taps submit-issue; validate title non-empty and riskLevel selected",
+        "SafetyService.createIssue(draft) persists and appends timeline event",
+        "SafetyStore.saveIssues updates storage",
+        "NotificationService.show confirms success",
+        "Return to previous surface"
+      ],
+      "errorPaths": [
+        "Validation failure: inline field feedback, no persistence",
+        "Storage failure: error state, retry/cancel"
+      ]
+    },
+    {
+      "name": "checkin-patrol-point",
+      "trigger": "open-checkin",
+      "steps": [
+        "Set patrolCheckin.pointId; show dialog",
+        "Optionally take photo; append to checkin photos",
+        "Enter notes; toggle isAbnormal",
+        "Submit: SafetyService.checkinPatrolPoint updates point status, records PatrolRecord",
+        "If abnormal, offer navigate-issue-form-with-point",
+        "Close dialog, refresh patrol list"
+      ]
+    },
+    {
+      "name": "update-issue-progress",
+      "trigger": "update-progress",
+      "steps": [
+        "Load issue by id",
+        "Prompt next status and note",
+        "SafetyService.addTimelineEvent appends event",
+        "If status reaches completed/closed, update issue.status",
+        "Refresh issue detail and lists"
+      ]
+    },
+    {
+      "name": "call-contact",
+      "trigger": "call-contact",
+      "steps": [
+        "Load contact by id",
+        "CallService.call(phone) logs/places call"
+      ]
+    },
+    {
+      "name": "save-contact",
+      "trigger": "save-contact",
+      "steps": [
+        "Validate name and phone non-empty",
+        "SafetyService.saveContact persists Contact",
+        "Refresh contacts list",
+        "Return to contacts surface"
+      ]
+    },
+    {
+      "name": "switch-stats-period",
+      "trigger": "stats-period-picker",
+      "steps": [
+        "Update statsPeriod",
+        "SafetyService.computeStats(period) recomputes snapshot",
+        "Bind computed values to stats surface"
+      ]
+    }
+  ],
+  "testTargets": {
+    "home": ["home-header-title", "home-today-patrol-progress", "home-pending-issues-count", "home-resolved-this-week-count", "home-quick-report-button", "home-quick-patrol-button", "home-recent-issues-list"],
+    "patrol": ["patrol-point-list", "patrol-point-{id}-checkin-button"],
+    "issues": ["issues-search-input", "issues-filter-status", "issues-filter-risk", "issues-list", "issues-add-button"],
+    "issueForm": ["issue-form-title-input", "issue-form-risk-picker", "issue-form-submit-button"],
+    "issueDetail": ["issue-detail-title", "issue-detail-status-badge", "issue-detail-timeline-list", "issue-detail-progress-action-button"],
+    "contacts": ["contacts-list", "contacts-item-{id}-call-button", "contacts-add-button"],
+    "contactForm": ["contact-form-name-input", "contact-form-phone-input", "contact-form-save-button"],
+    "stats": ["stats-period-picker", "stats-kpi-issues", "stats-kpi-resolved", "stats-kpi-completion", "stats-kpi-patrol", "stats-trend-chart", "stats-risk-chart"]
+  },
+  "changeRequests": [
+    "ui-tree currently routes page surfaces to pages/Home, pages/Patrol, etc. The existing scaffold uses inline tab surfaces in Index.ets rather than separate @Entry pages. Implementation will keep tab surfaces inline and add secondary pages as full @Entry routes (IssueForm, IssueDetail, PatrolCheckin modal inline, ContactForm).",
+    "No SVG style manifest or prepared rawfile assets detected at scaffold time; visual integration phase will create a minimal icon strategy or rely on Text/Symbol fallback if assets remain absent."
+  ]
+}

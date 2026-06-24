@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>平安扣 - 隐患详情</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: #F0FDFA; color: #0F172A; max-width: 390px; margin: 0 auto;
+      min-height: 100vh; padding-bottom: 120px;
+    }
+    .header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(24px) saturate(180%);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 52px 16px 12px; border-bottom: 1px solid rgba(226,232,240,0.6);
+    }
+    .header-left, .header-right { width: 40px; }
+    .header-back {
+      width: 40px; height: 40px; border-radius: 12px; background: #F1F5F9;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .header-back svg { width: 20px; height: 20px; stroke: #334155; }
+    .header-title { font-size: 18px; font-weight: 600; }
+    .save-btn {
+      padding: 8px 14px; border-radius: 12px; background: linear-gradient(135deg, #0D9488, #14B8A6);
+      color: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(13,148,136,0.28); cursor: pointer;
+    }
+
+    .section { padding: 16px; }
+    .section-title { font-size: 14px; font-weight: 600; color: #334155; margin-bottom: 10px; }
+    .card {
+      background: #fff; border-radius: 18px; padding: 16px;
+      box-shadow: 0 6px 24px rgba(13, 148, 136, 0.10);
+    }
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .field-label { font-size: 12px; color: #64748B; margin-bottom: 6px; }
+    .field-input, .field-textarea {
+      width: 100%; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid #E2E8F0; background: #F8FAFC; font-size: 14px; color: #0F172A;
+    }
+    .field-textarea { min-height: 80px; resize: none; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .photo-add {
+      aspect-ratio: 1; border-radius: 12px; border: 1px dashed #CBD5E1;
+      display: flex; align-items: center; justify-content: center; background: #F8FAFC; cursor: pointer;
+    }
+    .photo-add svg { width: 20px; height: 20px; stroke: #94A3B8; }
+    .photo-thumb { aspect-ratio: 1; border-radius: 12px; background: #E2E8F0; }
+
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px;
+      width: 2px; background: #E2E8F0;
+    }
+    .timeline-item { position: relative; margin-bottom: 18px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -24px; top: 2px; width: 12px; height: 12px; border-radius: 50%;
+    }
+    .timeline-dot.done { background: #0D9488; }
+    .timeline-dot.current { background: #0D9488; box-shadow: 0 0 0 4px rgba(13,148,136,0.15); }
+    .timeline-dot.pending { background: #fff; border: 2px solid #CBD5E1; }
+    .timeline-title { font-size: 14px; font-weight: 600; color: #334155; }
+    .timeline-time { font-size: 11px; color: #94A3B8; margin-top: 2px; }
+
+    .comment-list { display: flex; flex-direction: column; gap: 12px; }
+    .comment-item { display: flex; gap: 10px; }
+    .comment-avatar {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #0D9488, #14B8A6); display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 12px; font-weight: 600;
+    }
+    .comment-body { flex: 1; }
+    .comment-author { font-size: 13px; font-weight: 600; }
+    .comment-text { font-size: 13px; color: #334155; margin-top: 2px; line-height: 1.5; }
+    .comment-time { font-size: 11px; color: #94A3B8; margin-top: 2px; }
+
+    .comment-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 390px; margin: 0 auto;
+      background: #fff; padding: 12px 16px 24px; display: flex; gap: 10px;
+      box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.06);
+    }
+    .comment-input {
+      flex: 1; padding: 10px 14px; border-radius: 12px; border: 1px solid #E2E8F0;
+      background: #F8FAFC; font-size: 14px;
+    }
+    .comment-send {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: linear-gradient(135deg, #0D9488, #14B8A6);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer;
+    }
+    .comment-send svg { width: 18px; height: 18px; stroke: #fff; }
+
+    .danger-btn {
+      margin-top: 12px; width: 100%; padding: 12px; border-radius: 12px;
+      background: #FEF2F2; color: #EF4444; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer;
+    }
+  </style>
+</head>
+<body data-page-id="hazard-detail-page">
+  <header class="header">
+    <div class="header-left">
+      <div class="header-back" data-ui-id="hazard-detail-back-button">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>返回上一页</title>
+          <path d="M19 12H5"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+      </div>
+    </div>
+    <div class="header-title">隐患详情</div>
+    <div class="header-right" style="display:flex;justify-content:flex-end;">
+      <div class="save-btn" data-ui-id="hazard-detail-save-button">保存</div>
+    </div>
+  </header>
+
+  <div class="section">
+    <div class="section-title">隐患信息</div>
+    <div class="card">
+      <div class="field">
+        <div class="field-label">隐患标题</div>
+        <input class="field-input" type="text" value="叉车通道标识模糊" data-ui-id="hazard-detail-title-input" />
+      </div>
+      <div class="field">
+        <div class="field-label">发生位置</div>
+        <input class="field-input" type="text" value="仓库北区" data-ui-id="hazard-detail-location-input" />
+      </div>
+      <div class="field">
+        <div class="field-label">隐患描述</div>
+        <textarea class="field-textarea" data-ui-id="hazard-detail-description-input">叉车通道地面标线磨损严重，夜间作业时辨识度低，存在碰撞风险。</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="card">
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">风险等级</div>
+          <select class="field-input" data-ui-id="hazard-detail-level-picker">
+            <option>低</option>
+            <option>中</option>
+            <option selected>高</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label">当前状态</div>
+          <select class="field-input" data-ui-id="hazard-detail-status-picker">
+            <option>待处理</option>
+            <option selected>整改中</option>
+            <option>待验收</option>
+            <option>已关闭</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">责任人</div>
+          <input class="field-input" type="text" value="张工" data-ui-id="hazard-detail-assignee-input" />
+        </div>
+        <div class="field">
+          <div class="field-label">整改期限</div>
+          <input class="field-input" type="date" value="2026-06-21" data-ui-id="hazard-detail-deadline-picker" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-title">现场照片</div>
+    <div class="card">
+      <div class="photo-grid" data-ui-id="hazard-detail-photo-uploader">
+        <div class="photo-thumb"></div>
+        <div class="photo-thumb"></div>
+        <div class="photo-add">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>添加现场照片</title>
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-title">整改进度</div>
+    <div class="card" data-ui-id="hazard-detail-progress-tracker">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot done"></div>
+          <div class="timeline-title">隐患上报</div>
+          <div class="timeline-time">06-18 16:45</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot done"></div>
+          <div class="timeline-title">任务指派</div>
+          <div class="timeline-time">06-18 17:10</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot current"></div>
+          <div class="timeline-title">整改中</div>
+          <div class="timeline-time">当前阶段</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot pending"></div>
+          <div class="timeline-title">待验收</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot pending"></div>
+          <div class="timeline-title">已关闭</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-title">评论记录</div>
+    <div class="card">
+      <div class="comment-list" data-ui-id="hazard-detail-comment-list">
+        <div class="comment-item" data-ui-id="hazard-comment-1">
+          <div class="comment-avatar">李</div>
+          <div class="comment-body">
+            <div class="comment-author">李主管</div>
+            <div class="comment-text">请优先处理，涉及夜班叉车通行。</div>
+            <div class="comment-time">06-18 17:12</div>
+          </div>
+        </div>
+        <div class="comment-item" data-ui-id="hazard-comment-2">
+          <div class="comment-avatar">张</div>
+          <div class="comment-body">
+            <div class="comment-author">张工</div>
+            <div class="comment-text">已订购地面标线涂料，预计明天施工。</div>
+            <div class="comment-time">06-19 09:30</div>
+          </div>
+        </div>
+      </div>
+      <div class="danger-btn" data-ui-id="hazard-detail-delete-button">删除隐患</div>
+    </div>
+  </div>
+
+  <div class="comment-bar">
+    <input class="comment-input" type="text" placeholder="输入评论..." data-ui-id="hazard-detail-comment-input" />
+    <div class="comment-send" data-ui-id="hazard-detail-submit-comment-button">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>发送评论</title>
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

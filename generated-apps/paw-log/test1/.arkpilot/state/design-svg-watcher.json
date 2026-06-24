@@ -1,0 +1,92 @@
+{
+  "pid": 67680,
+  "status": "controller-tick",
+  "launched_by_session_id": "76d6981a-9398-407e-8f18-b429497727e9",
+  "started_at": "2026-06-22T11:20:10.723Z",
+  "last_scan_at": "2026-06-22T12:08:21.473Z",
+  "last_change_at": "2026-06-22T11:46:43.087Z",
+  "html_signature": "[{\"name\":\"page-charts-page.html\",\"mtime_ms\":1782128097713,\"size\":11226},{\"name\":\"page-family-invite-sheet.html\",\"mtime_ms\":1782128789638,\"size\":4346},{\"name\":\"page-family-page.html\",\"mtime_ms\":1782128530391,\"size\":5742},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782127865340,\"size\":17540},{\"name\":\"page-medical-editor-sheet.html\",\"mtime_ms\":1782128742825,\"size\":5711},{\"name\":\"page-medical-page.html\",\"mtime_ms\":1782128466536,\"size\":4666},{\"name\":\"page-pet-detail-page.html\",\"mtime_ms\":1782128354689,\"size\":6913},{\"name\":\"page-pet-editor-sheet.html\",\"mtime_ms\":1782128636269,\"size\":5381},{\"name\":\"page-pets-page.html\",\"mtime_ms\":1782128284969,\"size\":4860},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1782128230022,\"size\":12421},{\"name\":\"page-record-editor-sheet.html\",\"mtime_ms\":1782128579755,\"size\":4715},{\"name\":\"page-records-page.html\",\"mtime_ms\":1782127987164,\"size\":12102},{\"name\":\"page-reminder-editor-sheet.html\",\"mtime_ms\":1782128683269,\"size\":4367},{\"name\":\"page-reminders-page.html\",\"mtime_ms\":1782128418369,\"size\":6280}]",
+  "html_files": [
+    {
+      "name": "page-charts-page.html",
+      "mtime_ms": 1782128097713,
+      "size": 11226
+    },
+    {
+      "name": "page-family-invite-sheet.html",
+      "mtime_ms": 1782128789638,
+      "size": 4346
+    },
+    {
+      "name": "page-family-page.html",
+      "mtime_ms": 1782128530391,
+      "size": 5742
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782127865340,
+      "size": 17540
+    },
+    {
+      "name": "page-medical-editor-sheet.html",
+      "mtime_ms": 1782128742825,
+      "size": 5711
+    },
+    {
+      "name": "page-medical-page.html",
+      "mtime_ms": 1782128466536,
+      "size": 4666
+    },
+    {
+      "name": "page-pet-detail-page.html",
+      "mtime_ms": 1782128354689,
+      "size": 6913
+    },
+    {
+      "name": "page-pet-editor-sheet.html",
+      "mtime_ms": 1782128636269,
+      "size": 5381
+    },
+    {
+      "name": "page-pets-page.html",
+      "mtime_ms": 1782128284969,
+      "size": 4860
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1782128230022,
+      "size": 12421
+    },
+    {
+      "name": "page-record-editor-sheet.html",
+      "mtime_ms": 1782128579755,
+      "size": 4715
+    },
+    {
+      "name": "page-records-page.html",
+      "mtime_ms": 1782127987164,
+      "size": 12102
+    },
+    {
+      "name": "page-reminder-editor-sheet.html",
+      "mtime_ms": 1782128683269,
+      "size": 4367
+    },
+    {
+      "name": "page-reminders-page.html",
+      "mtime_ms": 1782128418369,
+      "size": 6280
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 60,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 60,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-22T12:08:21.473Z"
+}

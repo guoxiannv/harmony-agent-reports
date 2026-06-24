@@ -1,0 +1,165 @@
+{
+  "module": "04-persistence.md",
+  "group": "Data Persistence & File Access",
+  "apiCount": 25,
+  "apis": [
+    {
+      "name": "preferences.getPreferences",
+      "purpose": "获取Preferences实例（Key-Value轻量持久化）",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "preferences.getPreferencesSync",
+      "purpose": "同步获取Preferences实例",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "Preferences.get",
+      "purpose": "从Preferences实例中读取键对应值",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "Preferences.put",
+      "purpose": "写入键值到Preferences实例中",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "Preferences.flush",
+      "purpose": "将Preferences缓存数据持久化到文件",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "Preferences.delete",
+      "purpose": "从Preferences实例中删除指定键",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "Preferences.has",
+      "purpose": "检查Preferences实例中是否存在指定键",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "preferences.deletePreferences",
+      "purpose": "删除整个Preferences实例及其持久化文件",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore.getRdbStore",
+      "purpose": "创建或打开RDB关系型数据库",
+      "anchor": "ohosdatarelationalstore",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore.deleteRdbStore",
+      "purpose": "删除RDB数据库文件",
+      "anchor": "ohosdatarelationalstore",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore.isVectorSupported",
+      "purpose": "判断系统是否支持向量数据库",
+      "anchor": "ohosdatarelationalstore",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.open",
+      "purpose": "打开文件或目录进行读写操作",
+      "anchor": "ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.read",
+      "purpose": "读取文件内容到缓冲区",
+      "anchor": "ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.write",
+      "purpose": "将缓冲区数据写入文件",
+      "anchor": "ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.close",
+      "purpose": "关闭已打开的文件",
+      "anchor": "ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.stat",
+      "purpose": "获取文件或目录的详细信息",
+      "anchor": "ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.access",
+      "purpose": "检查文件或目录是否存在或校验权限",
+      "anchor": "ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.mkdir",
+      "purpose": "创建目录",
+      "anchor": "ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "resourceManager",
+      "purpose": "获取应用资源管理对象（字符串/图片等）",
+      "anchor": "ohosresourcemanager",
+      "status": "found"
+    },
+    {
+      "name": "JSON.parse",
+      "purpose": "将JSON字符串解析为ArkTS对象",
+      "anchor": "ohosutiljson",
+      "status": "found"
+    },
+    {
+      "name": "JSON.stringify",
+      "purpose": "将ArkTS对象序列化为JSON字符串",
+      "anchor": "ohosutiljson",
+      "status": "found"
+    },
+    {
+      "name": "AppStorage.setOrCreate",
+      "purpose": "创建或设置AppStorage中的全局状态属性",
+      "anchor": "应用级变量的状态管理",
+      "status": "found"
+    },
+    {
+      "name": "AppStorage.link",
+      "purpose": "与AppStorage建立双向数据绑定",
+      "anchor": "应用级变量的状态管理",
+      "status": "found"
+    },
+    {
+      "name": "PersistentStorage.persistProp",
+      "purpose": "将AppStorage属性持久化到磁盘文件",
+      "anchor": "应用级变量的状态管理",
+      "status": "found"
+    },
+    {
+      "name": "PersistenceV2.globalConnect",
+      "purpose": "API 12+ 持久化存储UI状态到磁盘（支持对象 Observe）",
+      "anchor": "ohosarkuistatemanagement",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "AppStorage V1（API 7+）与 AppStorageV2（API 12+）是两套状态管理API，分别通过内置全局对象和 @kit.ArkUI 导入，不可混用key",
+    "preferences XML模式需调flush()落盘，GSKV模式（API 18+）实时落盘无需flush()",
+    "relationalStore API 18+支持向量数据库，通过 isVectorSupported() 检测",
+    "JSON模块 from @kit.ArkTS 从API 12开始支持BigInt模式解析",
+    "Stage模型下resourceManager通过 context.resourceManager 直接获取，无需额外导入"
+  ],
+  "missingApis": []
+}

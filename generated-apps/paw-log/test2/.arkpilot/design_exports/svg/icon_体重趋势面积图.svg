@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="chart-svg" viewBox="0 0 320 220" preserveAspectRatio="none" role="img">
+        <title>体重趋势面积图</title>
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5ED7B6" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#5ED7B6" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="#E3EDEA" stroke-width="1" stroke-dasharray="4 4">
+          <line x1="0" y1="44" x2="320" y2="44"/>
+          <line x1="0" y1="88" x2="320" y2="88"/>
+          <line x1="0" y1="132" x2="320" y2="132"/>
+          <line x1="0" y1="176" x2="320" y2="176"/>
+        </g>
+        <path d="M0 154 L53 140 L107 128 L160 132 L213 118 L267 108 L320 100 L320 220 L0 220 Z" fill="url(#areaFill)" stroke="none"/>
+        <path d="M0 154 L53 140 L107 128 L160 132 L213 118 L267 108 L320 100" fill="none" stroke="#3FC0A0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="#3FC0A0" stroke="#FFFFFF" stroke-width="2">
+          <circle cx="0" cy="154" r="5"/>
+          <circle cx="53" cy="140" r="5"/>
+          <circle cx="107" cy="128" r="5"/>
+          <circle cx="160" cy="132" r="5"/>
+          <circle cx="213" cy="118" r="5"/>
+          <circle cx="267" cy="108" r="5"/>
+          <circle cx="320" cy="100" r="5"/>
+        </g>
+        <g font-size="10" fill="#6F8983" text-anchor="middle">
+          <text x="0" y="210">6.16</text>
+          <text x="53" y="210">6.17</text>
+          <text x="107" y="210">6.18</text>
+          <text x="160" y="210">6.19</text>
+          <text x="213" y="210">6.20</text>
+          <text x="267" y="210">6.21</text>
+          <text x="320" y="210">今天</text>
+        </g>
+      </svg>

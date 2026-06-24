@@ -1,0 +1,86 @@
+{
+  "module": "06-permissions.md",
+  "group": "06 — Permissions 权限声明与申请",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "abilityAccessCtrl",
+      "purpose": "程序访问控制管理模块，提供权限校验和管理能力",
+      "anchor": "abilityaccessctrl",
+      "status": "found"
+    },
+    {
+      "name": "ATManager",
+      "purpose": "访问控制管理实例，用于校验和申请权限",
+      "anchor": "atmanager",
+      "status": "found"
+    },
+    {
+      "name": "requestPermissionsFromUser",
+      "purpose": "拉起弹框请求用户授权（Stage 模型 AtManager 方法）",
+      "anchor": "requestpermissionsfromuser9",
+      "status": "found"
+    },
+    {
+      "name": "PERMISSION_GRANTED",
+      "purpose": "授权状态枚举值 0，表示已授权",
+      "anchor": "grantstatus",
+      "status": "found"
+    },
+    {
+      "name": "Context.requestPermissionsFromUser",
+      "purpose": "FA 模型 Context 请求用户授权方法",
+      "anchor": "contextrequestpermissionsfromuser7",
+      "status": "found"
+    },
+    {
+      "name": "common.UIAbilityContext",
+      "purpose": "UIAbility 上下文类型定义，继承自 Context",
+      "anchor": "uiabilitycontext",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.READ_IMAGEVIDEO",
+      "purpose": "读取用户媒体文件中的图片和视频权限",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "ohos.permission.WRITE_IMAGEVIDEO",
+      "purpose": "写入用户媒体文件中的图片和视频权限",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "ohos.permission.MICROPHONE",
+      "purpose": "麦克风权限，用于录音和语音识别",
+      "anchor": "",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.MEDIA_LOCATION",
+      "purpose": "访问媒体文件中地理位置信息的权限",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "bundleManager.getPermissionDef",
+      "purpose": "通过 bundleManager 获取权限定义信息",
+      "anchor": "",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO、ohos.permission.MEDIA_LOCATION 在本地 API 参考中未找到独立文档，属于 HarmonyOS 应用权限列表（app-permissions guide）内容，不在 API reference 内",
+    "bundleManager.getPermissionDef 在本地 API 参考文档中未找到，可能不存在于该版本或需通过其他方式获取权限定义信息",
+    "Stage 模型推荐使用 AtManager.requestPermissionsFromUser(context, permissionList) 而非 Context.requestPermissionsFromUser（FA 模型专用）",
+    "推荐使用 AtManager.checkAccessTokenSync (API 10+) 替代已废弃的 verifyAccessTokenSync 查询权限状态",
+    "AtManager 的 getSelfPermissionStatus (API 20+) 可同步查询本应用权限状态，返回 PermissionStatus 枚举（含 DENIED/GRANTED/NOT_DETERMINED/INVALID/RESTRICTED）"
+  ],
+  "missingApis": [
+    "ohos.permission.READ_IMAGEVIDEO",
+    "ohos.permission.WRITE_IMAGEVIDEO",
+    "ohos.permission.MEDIA_LOCATION",
+    "bundleManager.getPermissionDef"
+  ]
+}

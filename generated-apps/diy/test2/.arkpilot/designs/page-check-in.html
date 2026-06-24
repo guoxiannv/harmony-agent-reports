@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 - 签到/消费</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Noto+Sans+SC:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  background: linear-gradient(180deg, #FBF8F5 0%, #F0EBE5 55%, #E9E3DA 100%);
+  color: #3A2D28;
+  max-width: 390px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+.page { padding: 0 16px; }
+.header {
+  padding-top: 48px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.back-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: #FFFDFA;
+  border: 1px solid rgba(195, 170, 150, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3A2D28;
+}
+.page-title { font-size: 22px; font-weight: 700; flex: 1; }
+.form-card {
+  background: #FFFDFA;
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 10px 28px rgba(58, 45, 40, 0.08);
+}
+.form-group { margin-bottom: 18px; }
+.form-label { font-size: 14px; font-weight: 600; color: #3A2D28; margin-bottom: 8px; display: block; }
+.form-input, .form-select {
+  width: 100%;
+  background: #FFFDFA;
+  border: 1.5px solid rgba(195, 170, 150, 0.25);
+  border-radius: 14px;
+  padding: 13px 15px;
+  font-size: 14px;
+  color: #3A2D28;
+  outline: none;
+}
+.form-input::placeholder { color: #C8BBAF; }
+.type-toggle {
+  display: flex;
+  background: #F0EBE5;
+  border-radius: 14px;
+  padding: 4px;
+}
+.type-option {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9B9189;
+}
+.type-option.active {
+  background: #FFFDFA;
+  color: #3A2D28;
+  box-shadow: 0 2px 8px rgba(58,45,40,0.08);
+}
+.points-preview {
+  background: rgba(217, 169, 109, 0.15);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+.points-preview-label { font-size: 14px; color: #8F6A3A; }
+.points-preview-value { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: #8F6A3A; }
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 12px 16px 24px;
+  background: rgba(251, 248, 245, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(195, 170, 150, 0.15);
+}
+.submit-btn {
+  width: 100%;
+  background: #B88363;
+  color: #FBF8F5;
+  border: none;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(184, 131, 99, 0.32);
+}
+</style>
+</head>
+<body data-page-id="check-in">
+<div class="page">
+  <header class="header">
+    <button class="back-btn" data-ui-id="check-in-back-button" aria-label="返回">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一页</title><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h1 class="page-title">签到 / 消费</h1>
+  </header>
+
+  <div class="form-card">
+    <div class="form-group">
+      <label class="form-label">选择会员</label>
+      <select class="form-select" data-ui-id="check-in-member-picker">
+        <option>请选择会员</option>
+        <option>林小陶</option>
+        <option>陈木</option>
+        <option>周皮</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">类型</label>
+      <div class="type-toggle" data-ui-id="check-in-type-toggle">
+        <div class="type-option active">签到</div>
+        <div class="type-option">消费</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">消费金额（元）</label>
+      <input class="form-input" data-ui-id="check-in-amount-input" type="number" placeholder="输入金额，自动换算积分" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">积分变动</label>
+      <input class="form-input" data-ui-id="check-in-points-input" type="number" placeholder="可手动调整积分" value="5" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">关联课程（可选）</label>
+      <select class="form-select" data-ui-id="check-in-course-picker">
+        <option>不关联课程</option>
+        <option>陶艺拉坯入门 06-21</option>
+        <option>木作小 Spoon 06-21</option>
+      </select>
+    </div>
+
+    <div class="points-preview">
+      <span class="points-preview-label">预计积分变动</span>
+      <span class="points-preview-value">+5</span>
+    </div>
+  </div>
+</div>
+
+<div class="action-bar">
+  <button class="submit-btn" data-ui-id="check-in-submit-button">确认提交</button>
+</div>
+</body>
+</html>

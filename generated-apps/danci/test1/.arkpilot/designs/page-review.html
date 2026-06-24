@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>小小单词卡 - 复习页</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: #FFFBF2;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #2D2A26;
+      overflow-x: hidden;
+    }
+    .app-root {
+      width: 100%;
+      max-width: 390px;
+      margin: 0 auto;
+      padding: 0 24px 40px;
+      position: relative;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      margin-bottom: 28px;
+    }
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.5px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #7A746B;
+      line-height: 1.4;
+      letter-spacing: 0.2px;
+    }
+    .progress-ring-wrap {
+      width: 56px;
+      height: 56px;
+      position: relative;
+    }
+    .progress-ring-wrap svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    .progress-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Nunito", "Varela Round", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2D2A26;
+    }
+
+    /* 3D Card */
+    .flashcard-scene {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto 32px;
+      aspect-ratio: 4 / 5;
+      perspective: 1200px;
+    }
+    .flashcard {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+    .flashcard.is-flipped {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 32px;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      border: 1px solid rgba(47, 43, 35, 0.06);
+      box-shadow: 0px 16px 48px rgba(45, 42, 38, 0.10);
+    }
+    .card-face-front {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F9F7F2 100%);
+    }
+    .card-face-back {
+      background: linear-gradient(180deg, #FFF9ED 0%, #F5F0E4 100%);
+      transform: rotateY(180deg);
+    }
+    .card-corner-deco {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 217, 61, 0.18);
+    }
+    .deco-tl { top: 16px; left: 16px; }
+    .deco-tr { top: 16px; right: 16px; }
+    .deco-bl { bottom: 16px; left: 16px; }
+    .deco-br { bottom: 16px; right: 16px; }
+    .word-english {
+      font-family: "Nunito", "Varela Round", "SF Pro Rounded", sans-serif;
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      color: #2D2A26;
+      text-align: center;
+      word-break: break-word;
+    }
+    .flip-hint {
+      position: absolute;
+      bottom: 28px;
+      font-size: 14px;
+      color: #7A746B;
+      letter-spacing: 0.2px;
+    }
+    .word-chinese {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: 0.5px;
+      color: #2D2A26;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .word-phonetic {
+      font-family: "Nunito", "Varela Round", sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.5px;
+      color: #7A746B;
+      text-align: center;
+    }
+
+    /* Buttons */
+    .action-bar {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto 16px;
+    }
+    .action-btn {
+      flex: 1;
+      height: 60px;
+      border: none;
+      border-radius: 20px;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .action-btn:active { transform: scale(0.97); }
+    .known-btn {
+      background: #5EE68C;
+      box-shadow: 0px 6px 16px rgba(94, 230, 140, 0.35);
+    }
+    .known-btn:active { background: #3CCB72; }
+    .unknown-btn {
+      background: #FF8E9A;
+      box-shadow: 0px 6px 16px rgba(255, 142, 154, 0.35);
+    }
+    .unknown-btn:active { background: #E86B7A; }
+    .helper-text {
+      text-align: center;
+      font-size: 13px;
+      color: #7A746B;
+      letter-spacing: 0.2px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 0;
+      text-align: center;
+    }
+    .empty-state.is-visible { display: flex; }
+    .empty-icon {
+      width: 80px;
+      height: 80px;
+      color: #D6CFC2;
+      margin-bottom: 24px;
+    }
+    .empty-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2D2A26;
+      margin-bottom: 8px;
+      letter-spacing: 0.2px;
+    }
+    .empty-subtitle {
+      font-size: 14px;
+      color: #7A746B;
+      letter-spacing: 0.2px;
+    }
+
+    /* Completion State */
+    .completion-panel {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 0;
+      text-align: center;
+    }
+    .completion-panel.is-visible { display: flex; }
+    .completion-star {
+      width: 64px;
+      height: 64px;
+      color: #FFD93D;
+      margin-bottom: 24px;
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .completion-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2D2A26;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    .completion-score {
+      font-family: "Nunito", "Varela Round", sans-serif;
+      font-size: 80px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -2px;
+      color: #2D2A26;
+      margin-bottom: 12px;
+    }
+    .completion-subtitle {
+      font-size: 16px;
+      color: #7A746B;
+      margin-bottom: 40px;
+      letter-spacing: 0.2px;
+    }
+    .restart-btn {
+      width: 220px;
+      height: 56px;
+      border: none;
+      border-radius: 20px;
+      background: #5EE68C;
+      color: #FFFFFF;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0px 6px 16px rgba(94, 230, 140, 0.35);
+      transition: transform 0.12s ease, background 0.12s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .restart-btn:active { transform: scale(0.97); background: #3CCB72; }
+  </style>
+</head>
+<body data-page-id="review-page">
+  <div class="app-root">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-text">
+        <h1 class="page-title" data-ui-id="review-header-title">今日复习</h1>
+        <span class="subtitle">今天也要加油哦</span>
+      </div>
+      <div class="progress-ring-wrap" data-ui-id="review-progress-ring">
+        <svg viewBox="0 0 56 56" aria-hidden="true">
+          <title>复习进度环</title>
+          <circle cx="28" cy="28" r="25" fill="none" stroke="#EDE8DD" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="28" cy="28" r="25" fill="none" stroke="url(#progressGradient)" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="157" stroke-dashoffset="109.9"/>
+          <defs>
+            <linearGradient id="progressGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFD93D"/>
+              <stop offset="100%" stop-color="#F5C116"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="progress-text" data-ui-id="review-progress-text">3/10</span>
+      </div>
+    </header>
+
+    <!-- Review Stage -->
+    <main class="review-stage">
+      <div class="flashcard-scene">
+        <div class="flashcard" data-ui-id="review-flashcard" onclick="this.classList.toggle('is-flipped')">
+          <div class="card-face card-face-front" data-ui-id="review-flashcard-front">
+            <span class="card-corner-deco deco-tl" data-decoration="corner-dot"></span>
+            <span class="card-corner-deco deco-tr" data-decoration="corner-dot"></span>
+            <span class="card-corner-deco deco-bl" data-decoration="corner-dot"></span>
+            <span class="card-corner-deco deco-br" data-decoration="corner-dot"></span>
+            <span class="word-english" data-ui-id="review-word-english">apple</span>
+            <span class="flip-hint">点我翻面</span>
+          </div>
+          <div class="card-face card-face-back" data-ui-id="review-flashcard-back">
+            <span class="card-corner-deco deco-tl" data-decoration="corner-dot"></span>
+            <span class="card-corner-deco deco-tr" data-decoration="corner-dot"></span>
+            <span class="card-corner-deco deco-bl" data-decoration="corner-dot"></span>
+            <span class="card-corner-deco deco-br" data-decoration="corner-dot"></span>
+            <span class="word-chinese" data-ui-id="review-word-chinese">苹果</span>
+            <span class="word-phonetic" data-ui-id="review-word-phonetic">/ˈæp.əl/</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <button class="action-btn unknown-btn" data-ui-id="review-unknown-button" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <title>将当前单词移到队尾稍后复习</title>
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M8 16H3v5"/>
+          </svg>
+          不认识
+        </button>
+        <button class="action-btn known-btn" data-ui-id="review-known-button" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <title>标记当前单词已认识并移除</title>
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          认识
+        </button>
+      </div>
+      <p class="helper-text">卡片可以点一下翻面看看释义</p>
+    </main>
+
+    <!-- Empty State -->
+    <section class="empty-state" data-ui-id="review-empty-state">
+      <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <title>没有待复习单词的占位图标</title>
+        <path d="M12 7v14"/>
+        <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>
+      </svg>
+      <p class="empty-title" data-ui-id="review-empty-message">还没有要复习的单词哦</p>
+      <p class="empty-subtitle">去添加一些单词再来吧</p>
+    </section>
+
+    <!-- Completion State -->
+    <section class="completion-panel" data-ui-id="review-completion-panel">
+      <svg class="completion-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+        <title>本轮复习完成星星</title>
+        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>
+      </svg>
+      <h2 class="completion-title">太棒了！</h2>
+      <p class="completion-score" data-ui-id="review-completion-score">8/10</p>
+      <p class="completion-subtitle">再学一次会记得更牢哦</p>
+      <button class="restart-btn" data-ui-id="review-restart-button" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>重新加载当前阶段单词</title>
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+          <path d="M8 16H3v5"/>
+        </svg>
+        再学一次
+      </button>
+    </section>
+  </div>
+
+  <script>
+    // Demo interactions for visual reference only
+    document.querySelector('[data-ui-id="review-unknown-button"]').addEventListener('click', function(e) {
+      e.stopPropagation();
+      console.log('mark-unknown');
+    });
+    document.querySelector('[data-ui-id="review-known-button"]').addEventListener('click', function(e) {
+      e.stopPropagation();
+      console.log('mark-known');
+    });
+    document.querySelector('[data-ui-id="review-restart-button"]').addEventListener('click', function(e) {
+      e.stopPropagation();
+      console.log('restart-review');
+    });
+  </script>
+</body>
+</html>

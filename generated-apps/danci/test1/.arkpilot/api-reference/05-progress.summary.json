@@ -1,0 +1,96 @@
+{
+  "module": "05-progress.md",
+  "group": "05 — Progress Indicators & Stats Display",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "Progress",
+      "purpose": "基础进度条组件，显示内容加载或操作处理等进度",
+      "anchor": "progress",
+      "status": "found"
+    },
+    {
+      "name": "ProgressOptions",
+      "purpose": "进度条构造参数，包含 value/total/type/style",
+      "anchor": "progressoptions对象说明",
+      "status": "found"
+    },
+    {
+      "name": "ProgressType",
+      "purpose": "进度条类型枚举：Linear/Ring/Eclipse/ScaleRing/Capsule",
+      "anchor": "progresstype8枚举说明",
+      "status": "found"
+    },
+    {
+      "name": "ProgressStyle",
+      "purpose": "进度条样式枚举（已废弃，推荐使用 type 替代）",
+      "anchor": "progressstyle枚举说明",
+      "status": "found"
+    },
+    {
+      "name": ".style()",
+      "purpose": "设置进度条样式选项，包含 strokeWidth/scaleCount/scaleWidth/shadow 等",
+      "anchor": "style8",
+      "status": "found"
+    },
+    {
+      "name": ".color()",
+      "purpose": "设置进度条前景色，支持 ResourceColor 和 LinearGradient 渐变",
+      "anchor": "color",
+      "status": "found"
+    },
+    {
+      "name": ".value()",
+      "purpose": "动态设置当前进度数值",
+      "anchor": "value",
+      "status": "found"
+    },
+    {
+      "name": "Shape",
+      "purpose": "绘制组件的父容器，类似 SVG 效果，容纳 Rect/Circle/Ellipse/Path 等",
+      "anchor": "shape",
+      "status": "found"
+    },
+    {
+      "name": "Circle",
+      "purpose": "圆形绘制组件，支持 fill/stroke/strokeWidth 等属性",
+      "anchor": "circle",
+      "status": "found"
+    },
+    {
+      "name": "Rect",
+      "purpose": "矩形绘制组件，支持圆角 radius/radiusWidth/radiusHeight",
+      "anchor": "rect",
+      "status": "found"
+    },
+    {
+      "name": ".stroke()",
+      "purpose": "设置图形边框颜色（Shape/Circle/Rect 通用）",
+      "anchor": "stroke",
+      "status": "found"
+    },
+    {
+      "name": ".strokeWidth()",
+      "purpose": "设置图形边框宽度（Shape/Circle/Rect 通用）",
+      "anchor": "strokewidth",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "文本组件，用于进度百分比、状态文字等统计信息展示",
+      "anchor": "text",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Progress.Bar 和 Progress.Circular 不作为独立 API 存在；条形进度条使用 ProgressType.Linear，环形使用 ProgressType.Ring 或 ProgressType.ScaleRing",
+    "ProgressStyle 枚举从 API version 8 起废弃，统一使用 ProgressType 替代",
+    "CapsuleStyleOptions 支持内置文本（content/font/fontColor）和百分比显示（showDefaultPercentage），适合统计展示场景",
+    "所有图形绘制组件（Shape/Circle/Rect）均为内置 ArkUI 组件，无需 import 语句",
+    ".color() 从 API 10 起支持 LinearGradient 设置 Ring 的渐变色，从 API 23 起支持 Linear/Capsule 渐变"
+  ],
+  "missingApis": [
+    "Progress.Bar",
+    "Progress.Circular"
+  ]
+}

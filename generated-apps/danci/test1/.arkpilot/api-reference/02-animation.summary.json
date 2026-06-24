@@ -1,0 +1,116 @@
+{
+  "module": "02-animation.md",
+  "group": "02 — 3D Flip Animation & Transitions",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "rotate()",
+      "purpose": "组件绕指定轴旋转，支持3D旋转轴向量和perspective视距",
+      "anchor": "rotate",
+      "status": "found"
+    },
+    {
+      "name": "rotate3d()",
+      "purpose": "3D旋转（无独立API；通过rotate()的(x,y,z)向量实现）",
+      "anchor": "rotate",
+      "status": "missing"
+    },
+    {
+      "name": "perspective()",
+      "purpose": "设置3D视距（无独立API；perspective为RotateOptions的属性字段）",
+      "anchor": "rotateoptions对象说明",
+      "status": "missing"
+    },
+    {
+      "name": ".animation()",
+      "purpose": "组件属性变化时自动产生渐变过渡动画",
+      "anchor": "animation",
+      "status": "found"
+    },
+    {
+      "name": "animateTo()",
+      "purpose": "全局显式动画接口，闭包内状态变更自动产生过渡动效",
+      "anchor": "animateto",
+      "status": "found"
+    },
+    {
+      "name": "transition()",
+      "purpose": "组件插入/删除时配置转场过渡动画效果",
+      "anchor": "transition",
+      "status": "found"
+    },
+    {
+      "name": "Animation",
+      "purpose": "动画类（HarmonyOS中无独立Animation类；使用animation/animateTo接口）",
+      "anchor": "属性动画-animation",
+      "status": "missing"
+    },
+    {
+      "name": "AnimationOptions",
+      "purpose": "动画参数配置（HarmonyOS中使用AnimateParam对象替代）",
+      "anchor": "animateparam对象说明",
+      "status": "missing"
+    },
+    {
+      "name": ".onClick() gesture",
+      "purpose": "组件点击事件回调，支持触发动画",
+      "anchor": "onclick",
+      "status": "found"
+    },
+    {
+      "name": "Curve",
+      "purpose": "内置动画插值曲线枚举，包含Linear/Ease/EaseInOut/Friction等13种",
+      "anchor": "curve",
+      "status": "found"
+    },
+    {
+      "name": "ease",
+      "purpose": "Curve.Ease预定义贝塞尔曲线，动画开始和结束时速度较慢",
+      "anchor": "curve",
+      "status": "found"
+    },
+    {
+      "name": "easeInOut",
+      "purpose": "Curve.EaseInOut预定义贝塞尔曲线，动画先加速后减速",
+      "anchor": "curve",
+      "status": "found"
+    },
+    {
+      "name": "springCurve",
+      "purpose": "构造弹簧曲线对象，通过velocity/mass/stiffness/damping参数控制弹性动画",
+      "anchor": "curvesspringcurve9",
+      "status": "found"
+    },
+    {
+      "name": ".opacity()",
+      "purpose": "设置组件不透明度，支持动画渐变",
+      "anchor": "opacity",
+      "status": "found"
+    },
+    {
+      "name": ".scale()",
+      "purpose": "设置组件X/Y/Z轴缩放倍数及缩放中心点",
+      "anchor": "scale",
+      "status": "found"
+    },
+    {
+      "name": ".translate()",
+      "purpose": "设置组件X/Y/Z轴平移距离，z轴移动产生近大远小效果",
+      "anchor": "translate",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "rotate3d()和perspective()无独立API；rotate()通过(x,y,z)向量实现3D旋转，perspective为RotateOptions的属性字段",
+    "Animation类和AnimationOptions非独立类型；HarmonyOS统一使用AnimateParam对象配置动画参数",
+    ".animation()可动画属性必须写在调用之前；animateTo()支持闭包内批量状态变更且建议通过getUIContext()调用",
+    "transition()推荐使用TransitionEffect（API 10+），已取代废弃的TransitionOptions",
+    "springCurve的duration受animation/animateTo控制；springMotion/responsiveSpringMotion为物理曲线不受duration控制"
+  ],
+  "missingApis": [
+    "rotate3d()",
+    "perspective()",
+    "Animation",
+    "AnimationOptions"
+  ]
+}

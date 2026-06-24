@@ -1,0 +1,77 @@
+{
+  "module": "08-animation.md",
+  "group": "08 — Animation",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "animateTo (显式动画)",
+      "purpose": "在状态变化闭包中插入过渡动效",
+      "anchor": "#animateto-显式动画",
+      "status": "found"
+    },
+    {
+      "name": "animation (属性动画)",
+      "purpose": "组件属性变化时自动添加渐变过渡效果",
+      "anchor": "#animation-属性动画",
+      "status": "found"
+    },
+    {
+      "name": "Transition — PageTransition (页面间转场)",
+      "purpose": "页面路由切换时自定义入场/退场动效",
+      "anchor": "#transition--pagetransition-页面间转场",
+      "status": "found"
+    },
+    {
+      "name": "Transition — 组件内转场",
+      "purpose": "组件插入/删除时显示过渡动效",
+      "anchor": "#transition--组件内转场",
+      "status": "found"
+    },
+    {
+      "name": "Curve (动画曲线 — @ohos.curves)",
+      "purpose": "设置动画插值曲线，构造阶梯/贝塞尔/弹簧曲线",
+      "anchor": "#curve-动画曲线--ohoscurves",
+      "status": "found"
+    },
+    {
+      "name": "interpolatingSpring (插值弹簧曲线)",
+      "purpose": "构造从0到1的插值弹簧曲线，动画时长由弹簧参数决定",
+      "anchor": "#interpolatingspring-插值弹簧曲线",
+      "status": "found"
+    },
+    {
+      "name": "springCurve / springMotion (弹簧/弹性动画曲线)",
+      "purpose": "构造弹簧曲线/弹性动画曲线，实现物理弹性动效",
+      "anchor": "#springcurve--springmotion-弹簧弹性动画曲线",
+      "status": "found"
+    },
+    {
+      "name": "scale / opacity animation",
+      "purpose": "通过属性动画实现组件的缩放和透明度渐变",
+      "anchor": "#scale--opacity-animation-属性动画具体属性",
+      "status": "found"
+    },
+    {
+      "name": "gesture animation (手势动画)",
+      "purpose": "手势动画模式，结合animateTo或animation与手势事件回调实现",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "springEffect / SpringProp",
+      "purpose": "弹簧物理效果属性（等效于curves.springMotion/springCurve）",
+      "anchor": "",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "gesture animation (手势动画) 不是独立API，实现模式为 animateTo()/.animation() + 手势事件回调，手势API位于 03_手势处理/ 目录",
+    "springEffect/SpringProp 不是HarmonyOS ArkUI API名称，等效功能由 @ohos.curves 模块的 springCurve()/springMotion()/responsiveSpringMotion()/interpolatingSpring() 提供",
+    "animateTo 从API version 18起推荐使用 this.getUIContext()?.animateTo() 替代全局版本",
+    "弹性物理曲线(springMotion/responsiveSpringMotion/interpolatingSpring)不受 duration 参数控制"
+  ],
+  "missingApis": [
+    "gesture animation (手势动画) — 非独立API，需组合animateTo + 手势事件实现",
+    "springEffect / SpringProp — HarmonyOS中无此API名，等效为curves.springCurve()/curves.springMotion()"
+  ]
+}

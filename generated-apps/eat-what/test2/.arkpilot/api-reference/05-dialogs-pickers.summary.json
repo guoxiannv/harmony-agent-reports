@@ -1,0 +1,95 @@
+{
+  "module": "05-dialogs-pickers.md",
+  "group": "05 — Dialogs, Pickers & Input Controls",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "CustomDialog",
+      "purpose": "自定义弹窗控制器，支持自定义样式与内容的弹窗",
+      "anchor": "customdialog",
+      "status": "found"
+    },
+    {
+      "name": "AlertDialog",
+      "purpose": "警告弹窗组件，可设置文本内容与响应回调",
+      "anchor": "alertdialog",
+      "status": "found"
+    },
+    {
+      "name": "DatePicker",
+      "purpose": "滑动选择日期的内联组件",
+      "anchor": "datepicker",
+      "status": "found"
+    },
+    {
+      "name": "DatePickerDialog",
+      "purpose": "日期滑动选择器弹窗",
+      "anchor": "datepickerdialog",
+      "status": "found"
+    },
+    {
+      "name": "Rating",
+      "purpose": "评分组件，在给定范围内选择评分",
+      "anchor": "rating",
+      "status": "found"
+    },
+    {
+      "name": "Button",
+      "purpose": "按钮组件，可创建不同样式的按钮",
+      "anchor": "button",
+      "status": "found"
+    },
+    {
+      "name": "Slider",
+      "purpose": "滑动条组件，用于快速调节设置值如音量、亮度",
+      "anchor": "slider",
+      "status": "found"
+    },
+    {
+      "name": "Checkbox",
+      "purpose": "多选框组件，用于某选项的打开或关闭",
+      "anchor": "checkbox",
+      "status": "found"
+    },
+    {
+      "name": "TextInput",
+      "purpose": "单行文本输入框组件",
+      "anchor": "textinput",
+      "status": "found"
+    },
+    {
+      "name": "TextArea",
+      "purpose": "多行文本输入框组件，自动换行",
+      "anchor": "textarea",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "文本显示组件，支持富文本样式和图文混排",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Image",
+      "purpose": "图片组件，支持多种图片格式和数据源",
+      "anchor": "image",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.promptAction",
+      "purpose": "弹窗API模块，提供Toast、对话框和操作菜单",
+      "anchor": "ohospromtaction",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "AlertDialog.show() 和 DatePickerDialog.show() 从 API 18 起废弃，应通过 UIContext.showAlertDialog() / UIContext.showDatePickerDialog() 调用",
+    "promptAction.showDialog() 和 promptAction.showActionMenu() 已废弃，推荐使用 UIContext 对应的弹窗方法",
+    "DatePickerDialog 不支持深浅色模式热更新，切换模式需重新打开弹窗",
+    "Checkbox 从 API 11 起默认样式由圆角方形变为圆形",
+    "Button 默认 type 从 API 18 起改为 ROUNDED_RECTANGLE（此前为 Capsule）",
+    "promptAction 导入路径为 'import { promptAction } from '@kit.ArkUI''",
+    "所有 ArkUI 组件（CustomDialog/AlertDialog/Button/Slider 等）为内置组件无需额外 import"
+  ],
+  "missingApis": []
+}

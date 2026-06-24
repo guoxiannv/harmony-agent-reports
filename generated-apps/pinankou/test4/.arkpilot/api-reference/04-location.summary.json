@@ -1,0 +1,33 @@
+{
+  "module": "04-location.md",
+  "group": "04 — Location (位置服务)",
+  "apiCount": 3,
+  "apis": [
+    {
+      "name": "@ohos.geoLocationManager (位置服务)",
+      "purpose": "提供GNSS定位、网络定位、地理编码/逆地理编码、国家码查询和地理围栏等核心位置服务能力",
+      "anchor": "ohosgeolocationmanager-位置服务",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)",
+      "purpose": "为开发者提供地理围栏事件的后台回调扩展能力，继承自ExtensionAbility，可接收围栏状态变化和销毁事件",
+      "anchor": "ohosappabilityfenceextensionability-fenceextensionability",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)",
+      "purpose": "FenceExtensionAbility的上下文环境，继承自ExtensionContext，提供FenceExtensionAbility的相关配置信息",
+      "anchor": "ohosappabilityfenceextensioncontext-fenceextensioncontext",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "All coordinates are in WGS-84 coordinate system only; GCJ-02 is available for geofence coordinate types via CoordinateSystemType enum",
+    "FenceExtensionAbility requires API 14+ and Stage model only, imported from '@kit.LocationKit' not '@kit.AbilityKit'",
+    "GNSS geofence callback can use either in-process callback or FenceExtensionAbility background wakeup via fenceExtensionAbilityName",
+    "Beacon fences (API 20+) are managed separately with a max of 10 per app, while GNSS geofences max at 100 per app",
+    "Bluetooth scan for location (API 16+) requires mail application to locationkit@huawei.com for approval"
+  ],
+  "missingApis": []
+}

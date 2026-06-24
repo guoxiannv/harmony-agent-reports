@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>宠迹 · PawLog — 宠物详情</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at 12% 0%, #F0FDF9 0%, #F8FAFC 40%, #FFF6F7 100%);
+      color: #0F172A;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+    .container { max-width: 390px; margin: 0 auto; padding: 0 20px; position: relative; }
+    header { padding-top: 28px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+    .back-btn { width: 40px; height: 40px; border-radius: 50%; background: #FFFFFF; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(15,23,42,0.06); }
+    .edit-btn { padding: 10px 18px; border-radius: 20px; background: #FFFFFF; border: 1px solid #E2E8F0; color: #334155; font-size: 14px; font-weight: 500; }
+    .hero {
+      text-align: center; margin-bottom: 20px;
+    }
+    .hero-avatar {
+      width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 14px;
+      background: linear-gradient(135deg, #CCFBEF 0%, #FFE4E6 100%);
+      display: flex; align-items: center; justify-content: center;
+      border: 3px solid #FB7185; box-shadow: 0 6px 20px rgba(251,113,133,0.25);
+    }
+    .hero-name { font-size: 24px; font-weight: 700; }
+    .hero-tags { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+    .hero-tag { font-size: 12px; color: #64748B; background: #F8FAFC; padding: 4px 10px; border-radius: 10px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+    .summary-item { background: #FFFFFF; border-radius: 18px; padding: 14px 8px; text-align: center; box-shadow: 0 4px 16px rgba(15,23,42,0.04); }
+    .summary-num { font-size: 18px; font-weight: 700; color: #14B8A6; }
+    .summary-label { font-size: 11px; color: #64748B; margin-top: 4px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; margin-top: 20px; display: flex; align-items: center; justify-content: space-between; }
+    .add-link { font-size: 13px; color: #14B8A6; font-weight: 500; }
+    .card {
+      background: #FFFFFF; border-radius: 22px; padding: 16px;
+      box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+    }
+    .reminder-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #F1F5F9; }
+    .reminder-item:last-child { border-bottom: none; }
+    .reminder-icon { width: 32px; height: 32px; border-radius: 10px; background: #F0FDF9; display: flex; align-items: center; justify-content: center; }
+    .reminder-content { flex: 1; }
+    .reminder-title { font-size: 14px; font-weight: 600; }
+    .reminder-meta { font-size: 12px; color: #64748B; }
+    .reminder-status { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 8px; }
+    .status-overdue { background: #FFF1F2; color: #BE123C; }
+    .medical-item { padding: 10px 0; border-bottom: 1px solid #F1F5F9; }
+    .medical-item:last-child { border-bottom: none; }
+    .medical-title { font-size: 14px; font-weight: 600; }
+    .medical-meta { font-size: 12px; color: #64748B; margin-top: 2px; }
+  </style>
+</head>
+<body data-page-id="pet-detail-page">
+  <div class="container">
+    <header>
+      <button class="back-btn" data-ui-id="pet-detail-back">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>返回上一页</title>
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="edit-btn" data-ui-id="pet-detail-edit">编辑</button>
+    </header>
+
+    <div class="hero">
+      <div class="hero-avatar" data-ui-id="pet-detail-avatar">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#14B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>豆豆头像</title>
+          <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.82-6.42-.42-7 1.39-.58 4.64.26 6.42 2.26.65-.17 1.33-.26 2-.26z"></path>
+        </svg>
+      </div>
+      <div class="hero-name" data-ui-id="pet-detail-name">豆豆</div>
+      <div class="hero-tags" data-ui-id="pet-detail-info">
+        <span class="hero-tag">英国短毛猫</span>
+        <span class="hero-tag">3 岁 2 个月</span>
+        <span class="hero-tag">公</span>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-item" data-ui-id="pet-detail-latest-weight">
+        <div class="summary-num">4.8kg</div>
+        <div class="summary-label">最新体重</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">36</div>
+        <div class="summary-label">本月记录</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">2</div>
+        <div class="summary-label">待办提醒</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      提醒
+      <span class="add-link" data-ui-id="pet-detail-add-reminder">+ 新增</span>
+    </div>
+    <div class="card">
+      <div class="reminder-list" data-ui-id="pet-detail-reminder-list">
+        <div class="reminder-item" data-ui-id="pet-detail-reminder-1">
+          <div class="reminder-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>疫苗提醒</title>
+              <path d="M8 21h8a2 2 0 0 0 2-2v-2H6v2a2 2 0 0 0 2 2z"></path>
+              <path d="M6 13h12v-2a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2z"></path>
+              <path d="M12 2v9"></path>
+            </svg>
+          </div>
+          <div class="reminder-content">
+            <div class="reminder-title">狂犬疫苗加强针</div>
+            <div class="reminder-meta">逾期 2 天</div>
+          </div>
+          <span class="reminder-status status-overdue">逾期</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      病历
+      <span class="add-link" data-ui-id="pet-detail-add-medical">+ 新增</span>
+    </div>
+    <div class="card">
+      <div class="medical-list" data-ui-id="pet-detail-medical-list">
+        <div class="medical-item" data-ui-id="pet-detail-medical-1">
+          <div class="medical-title">宠爱动物医院 · 常规体检</div>
+          <div class="medical-meta">2026-05-10 · 血常规、粪检正常</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

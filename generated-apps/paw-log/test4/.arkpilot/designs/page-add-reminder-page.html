@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PawLog 新增提醒</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #FFFBF7;
+  color: #2E2B29;
+  min-height: 100vh;
+}
+.app-shell { max-width: 390px; margin: 0 auto; position: relative; min-height: 100vh; padding-bottom: 110px; }
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 50px 16px 14px;
+}
+.back-btn {
+  width: 36px; height: 36px; border-radius: 12px; background: #fff;
+  border: none; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(46,43,41,0.05); cursor: pointer;
+}
+.back-btn svg { width: 20px; height: 20px; color: #5C5856; }
+.page-title { font-size: 24px; font-weight: 800; letter-spacing: -0.01em; }
+.save-btn {
+  background: linear-gradient(135deg, #9BE8CA 0%, #7FDEB8 100%);
+  color: #fff; border: none; border-radius: 18px; padding: 9px 18px;
+  font-size: 14px; font-weight: 700; box-shadow: 0 4px 12px rgba(127,222,184,0.28); cursor: pointer;
+}
+.content { padding: 0 16px; }
+.form-group { margin-bottom: 18px; }
+.form-label { font-size: 13px; font-weight: 700; color: #5C5856; margin-bottom: 8px; display: block; }
+.input-field {
+  width: 100%; background: #F7F5F3; border: 1.5px solid #EDE9E5; border-radius: 16px;
+  padding: 15px 17px; font-size: 15px; color: #2E2B29; outline: none;
+}
+.input-field:focus { border-color: #7FDEB8; box-shadow: 0 0 0 4px rgba(127,222,184,0.28); }
+.input-field::placeholder { color: #A8A29C; }
+.pet-selector {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #F7F5F3; border: 1.5px solid #EDE9E5; border-radius: 16px; padding: 12px 14px; cursor: pointer;
+}
+.pet-selector-left { display: flex; align-items: center; gap: 10px; }
+.pet-selector-avatar { width: 34px; height: 34px; border-radius: 50%; background: #EEFCF6; display: grid; place-items: center; }
+.pet-selector-avatar svg { width: 18px; height: 18px; color: #4BBF9A; }
+.pet-selector-name { font-size: 15px; font-weight: 700; color: #2E2B29; }
+.pet-selector svg { width: 16px; height: 16px; color: #A8A29C; }
+.type-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.type-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: #F7F5F3; border-radius: 18px; padding: 13px 0; border: 1.5px solid transparent; cursor: pointer;
+}
+.type-btn svg { width: 20px; height: 20px; }
+.type-btn span { font-size: 14px; font-weight: 600; color: #5C5856; }
+.type-btn.active { background: #EEFCF6; border-color: #7FDEB8; }
+.type-btn.active span { color: #4BBF9A; }
+.type-btn.vaccine svg { color: #E88694; }
+.type-btn.deworm svg { color: #F5C646; }
+.type-btn.vaccine.active svg, .type-btn.deworm.active svg { color: #fff; }
+.type-btn.vaccine.active .icon-wrap { background: #E88694; }
+.type-btn.deworm.active .icon-wrap { background: #F5C646; }
+.icon-wrap { width: 32px; height: 32px; border-radius: 10px; background: #fff; display: grid; place-items: center; }
+.row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.button-row { display: flex; gap: 12px; margin-top: 8px; }
+.btn-secondary {
+  flex: 1; background: #fff; border: 2px solid #EDE9E5; color: #5C5856;
+  border-radius: 26px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer;
+}
+.btn-primary {
+  flex: 2; background: linear-gradient(135deg, #9BE8CA 0%, #7FDEB8 50%, #5DD3A8 100%);
+  color: #fff; border: none; border-radius: 26px; padding: 14px; font-size: 15px; font-weight: 700;
+  box-shadow: 0 8px 22px rgba(75,191,154,0.38); cursor: pointer;
+}
+</style>
+</head>
+<body data-page-id="add-reminder-page">
+<div class="app-shell">
+  <header class="header">
+    <button class="back-btn" data-ui-id="add-reminder-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一页</title><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h1 class="page-title">新增提醒</h1>
+    <button class="save-btn" data-ui-id="add-reminder-save">保存</button>
+  </header>
+
+  <div class="content">
+    <div class="form-group">
+      <label class="form-label">选择宠物</label>
+      <div class="pet-selector" data-ui-id="add-reminder-pet-picker">
+        <div class="pet-selector-left">
+          <div class="pet-selector-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>已选宠物头像</title><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V10h4c2.2 0 4 1.8 4 4v2a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-2c0-2.2 1.8-4 4-4h4V9.4A4 4 0 0 1 8 6a4 4 0 0 1 4-4z"/></svg>
+          </div>
+          <span class="pet-selector-name">Mochi</span>
+        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>展开宠物选择</title><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">提醒类型</label>
+      <div class="type-grid">
+        <button class="type-btn vaccine active" data-ui-id="add-reminder-type-vaccine">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>选择疫苗提醒</title><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span>疫苗</span>
+        </button>
+        <button class="type-btn deworm" data-ui-id="add-reminder-type-deworm">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>选择驱虫提醒</title><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <span>驱虫</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">提醒名称</label>
+      <input type="text" class="input-field" placeholder="例如：猫三联加强针" data-ui-id="add-reminder-name" />
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label class="form-label">下次日期</label>
+        <input type="text" class="input-field" placeholder="2026-06-25" data-ui-id="add-reminder-date" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">重复周期</label>
+        <input type="text" class="input-field" placeholder="每年" data-ui-id="add-reminder-repeat" />
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="btn-secondary" data-ui-id="add-reminder-cancel">取消</button>
+      <button class="btn-primary" data-ui-id="add-reminder-save">保存提醒</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

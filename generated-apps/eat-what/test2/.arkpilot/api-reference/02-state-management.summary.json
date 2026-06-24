@@ -1,0 +1,120 @@
+{
+  "module": "02-state-management.md",
+  "group": "02 — State Management",
+  "apiCount": 15,
+  "apis": [
+    {
+      "name": "@State",
+      "purpose": "组件内状态装饰器，标记为响应式状态变量",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "父组件单向数据传递装饰器",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Link",
+      "purpose": "父组件双向数据绑定装饰器",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Provide",
+      "purpose": "跨组件状态提供装饰器",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Consume",
+      "purpose": "跨组件状态消费装饰器",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "状态变量变化监听装饰器",
+      "anchor": "@watch",
+      "status": "found"
+    },
+    {
+      "name": "@Builder",
+      "purpose": "自定义构建函数装饰器",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@ObjectLink",
+      "purpose": "子组件中观察@Observed装饰类实例的装饰器",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "AppStorage",
+      "purpose": "应用全局UI状态存储，提供跨页面/组件状态共享",
+      "anchor": "appstorage",
+      "status": "found"
+    },
+    {
+      "name": "LocalStorage",
+      "purpose": "页面级UI状态存储，提供页面内状态共享",
+      "anchor": "localstorage9",
+      "status": "found"
+    },
+    {
+      "name": "PersistentStorage",
+      "purpose": "持久化存储UI状态，数据写入磁盘持久化",
+      "anchor": "persistentstorage",
+      "status": "found"
+    },
+    {
+      "name": "Environment",
+      "purpose": "设备环境查询，获取系统环境变量",
+      "anchor": "environment",
+      "status": "found"
+    },
+    {
+      "name": "@StorageLink",
+      "purpose": "AppStorage双向绑定装饰器",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "ForEach",
+      "purpose": "基于数组的循环渲染接口",
+      "anchor": "接口",
+      "status": "found"
+    },
+    {
+      "name": "Repeat",
+      "purpose": "基于数组的循环渲染（API 12+，支持虚拟滚动）",
+      "anchor": "接口",
+      "status": "found"
+    },
+    {
+      "name": "@Entry",
+      "purpose": "页面入口装饰器，标识自定义组件为UI页面入口",
+      "anchor": "entry",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@State, @Prop, @Link, @Provide, @Consume, @Builder, @ObjectLink, @StorageLink decorators have no standalone API reference doc files in this repository — they are documented in the HarmonyOS developer guides only",
+    "The @ohos.arkui.StateManagement module (import from @kit.ArkUI) provides AppStorageV2, PersistenceV2, and UIUtils for state management V2",
+    "@Env decorator is API 22+ and reads system properties (e.g. BREAK_POINT); the Environment API is the older V1 approach for device environment query",
+    "Repeat (API 12+) is the recommended replacement for ForEach in virtual scrolling scenarios",
+    "ProvideOptions (allowOverride) is the only V1 decorator parameter with a dedicated reference doc"
+  ],
+  "missingApis": [
+    "@State",
+    "@Prop",
+    "@Link",
+    "@Provide",
+    "@Consume",
+    "@Builder",
+    "@ObjectLink",
+    "@StorageLink"
+  ]
+}

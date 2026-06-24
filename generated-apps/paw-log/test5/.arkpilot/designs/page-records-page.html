@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PawLog 宠迹 - 记录</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "PingFang SC", "SF Pro Text", "Helvetica Neue", sans-serif;
+      background: #FFFBF6;
+      color: #3A3630;
+      min-height: 100vh;
+    }
+    .phone-frame {
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      background: #FFFBF6;
+      overflow-x: hidden;
+      padding-bottom: 92px;
+    }
+    .header {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(126,215,194,0.12);
+    }
+    .header-title { font-size: 22px; font-weight: 700; color: #3A3630; }
+    .header-action {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #7ED7C2, #5EC9B3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(76,181,160,0.28);
+      border: none;
+    }
+    .header-action svg { width: 22px; height: 22px; color: white; }
+    .content { padding: 16px; }
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .filter-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 16px;
+      background: white;
+      border: 1px solid rgba(126,215,194,0.18);
+      font-size: 13px;
+      font-weight: 600;
+      color: #3A3630;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(126,215,194,0.08);
+    }
+    .filter-chip.active {
+      background: linear-gradient(135deg, #7ED7C2, #5EC9B3);
+      color: white;
+      border-color: transparent;
+    }
+    .filter-chip svg { width: 14px; height: 14px; }
+    .timeline-date {
+      font-size: 13px;
+      font-weight: 700;
+      color: #5C5750;
+      margin: 20px 0 10px;
+      padding-left: 4px;
+    }
+    .record-card {
+      background: white;
+      border-radius: 20px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 18px rgba(126,215,194,0.10);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .record-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .record-icon svg { width: 22px; height: 22px; }
+    .record-main { flex: 1; }
+    .record-title { font-size: 15px; font-weight: 700; color: #3A3630; }
+    .record-meta { font-size: 12px; color: #5C5750; margin-top: 2px; }
+    .record-tags { display: flex; gap: 6px; margin-top: 6px; }
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 10px;
+      background: #E8FAF5;
+      color: #4CB5A0;
+      font-weight: 600;
+    }
+    .tag.pink { background: #FFF0F3; color: #F48FB1; }
+    .record-menu {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFF8F0;
+    }
+    .record-menu svg { width: 18px; height: 18px; color: #C4BEB4; }
+    .empty-state {
+      text-align: center;
+      padding: 48px 16px;
+      color: #C4BEB4;
+    }
+    .empty-state svg { width: 72px; height: 72px; margin-bottom: 14px; opacity: 0.5; }
+    .empty-state p { font-size: 14px; }
+    .fab {
+      position: fixed;
+      bottom: 92px;
+      left: 50%;
+      transform: translateX(135px);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7ED7C2, #5EC9B3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(76,181,160,0.32);
+      border: none;
+      z-index: 15;
+    }
+    .fab svg { width: 24px; height: 24px; color: white; }
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      max-width: 390px;
+      height: 76px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-radius: 28px 28px 0 0;
+      border-top: 1px solid rgba(126,215,194,0.12);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      padding-top: 10px;
+      z-index: 20;
+      box-shadow: 0 -6px 20px rgba(126,215,194,0.10);
+    }
+    .tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding-top: 4px;
+      flex: 1;
+      position: relative;
+    }
+    .tab svg { width: 24px; height: 24px; color: #C4BEB4; }
+    .tab.active svg { color: #4CB5A0; }
+    .tab-label { font-size: 11px; font-weight: 600; color: #C4BEB4; }
+    .tab.active .tab-label { color: #4CB5A0; }
+    .tab-dot {
+      position: absolute;
+      top: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #4CB5A0;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame" data-page-id="records-page" data-tab-id="tab-records">
+    <header class="header">
+      <span class="header-title">记录</span>
+      <button class="header-action" data-ui-id="records-add-button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Add New Record</title>
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </button>
+    </header>
+
+    <main class="content">
+      <div class="filters">
+        <button class="filter-chip active" data-ui-id="records-filter-pet">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <title>Filter by Pet</title>
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>
+          </svg>
+          全部宠物
+        </button>
+        <button class="filter-chip" data-ui-id="records-filter-category">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <title>Filter by Category</title>
+            <path d="M3 3v18h18"/>
+            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+          </svg>
+          全部类型
+        </button>
+        <button class="filter-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <title>Filter by Time Range</title>
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          最近 7 天
+        </button>
+      </div>
+
+      <div class="records" data-ui-id="records-list">
+        <div class="timeline-date">今天</div>
+        <div class="record-card" id="records-item-101">
+          <div class="record-icon" style="background:#E8FAF5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4CB5A0" stroke-width="2">
+              <title>Food Record</title>
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+            </svg>
+          </div>
+          <div class="record-main">
+            <div class="record-title">早餐 · 猫粮 80g</div>
+            <div class="record-meta">豆包 · 07:30</div>
+            <div class="record-tags"><span class="tag">饮食</span></div>
+          </div>
+          <button class="record-menu" data-ui-id="records-item-menu">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <title>Open Record Options</title>
+              <circle cx="12" cy="5" r="2"/>
+              <circle cx="12" cy="12" r="2"/>
+              <circle cx="12" cy="19" r="2"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="timeline-date">昨天</div>
+        <div class="record-card" id="records-item-102">
+          <div class="record-icon" style="background:#FFF0F3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F48FB1" stroke-width="2">
+              <title>Toilet Record</title>
+              <path d="M12 2a5 5 0 0 0-5 5v2H5v2h14V9h-2V7a5 5 0 0 0-5-5z"/>
+              <path d="M8 13v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-7"/>
+            </svg>
+          </div>
+          <div class="record-main">
+            <div class="record-title">排尿 · 正常</div>
+            <div class="record-meta">豆包 · 22:00</div>
+            <div class="record-tags"><span class="tag pink">排泄</span></div>
+          </div>
+          <button class="record-menu" data-ui-id="records-item-menu">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <title>Open Record Options</title>
+              <circle cx="12" cy="5" r="2"/>
+              <circle cx="12" cy="12" r="2"/>
+              <circle cx="12" cy="19" r="2"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="record-card" id="records-item-103">
+          <div class="record-icon" style="background:#FFF9E6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#D4A843" stroke-width="2">
+              <title>Weight Record</title>
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div class="record-main">
+            <div class="record-title">体重 4.8 kg</div>
+            <div class="record-meta">豆包 · 20:30</div>
+            <div class="record-tags"><span class="tag" style="background:#FFF9E6;color:#D4A843">体重</span></div>
+          </div>
+          <button class="record-menu" data-ui-id="records-item-menu">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <title>Open Record Options</title>
+              <circle cx="12" cy="5" r="2"/>
+              <circle cx="12" cy="12" r="2"/>
+              <circle cx="12" cy="19" r="2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="empty-state" id="records-empty" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C4BEB4" stroke-width="1.5">
+          <title>No Records Placeholder</title>
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <p>暂无记录，点击右上角添加</p>
+      </div>
+    </main>
+
+    <button class="fab" data-ui-id="records-add-button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <title>Quick Add Record</title>
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </button>
+
+    <nav class="tabbar">
+      <button class="tab" data-tab-id="tab-home">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <title>Home Tab</title>
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        <span class="tab-label">首页</span>
+      </button>
+      <button class="tab active" data-tab-id="tab-records">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Records Tab</title>
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <span class="tab-label">记录</span>
+        <span class="tab-dot"></span>
+      </button>
+      <button class="tab" data-tab-id="tab-trends">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Trends Tab</title>
+          <path d="M3 3v18h18"/>
+          <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+        </svg>
+        <span class="tab-label">趋势</span>
+      </button>
+      <button class="tab" data-tab-id="tab-health">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Health Tab</title>
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span class="tab-label">健康</span>
+      </button>
+      <button class="tab" data-tab-id="tab-profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Profile Tab</title>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span class="tab-label">我的</span>
+      </button>
+    </nav>
+  </div>
+</body>
+</html>

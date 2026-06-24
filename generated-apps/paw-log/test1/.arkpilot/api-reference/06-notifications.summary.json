@@ -1,0 +1,100 @@
+{
+  "module": "06-notifications.md",
+  "group": "06 — Notifications (本地通知)",
+  "apiCount": 14,
+  "apis": [
+    {
+      "name": "@ohos.notification (notificationManager)",
+      "purpose": "通知管理模块，提供发布、取消、渠道管理等功能",
+      "anchor": "ohosnotificationmanager-notificationmanager",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.publish()",
+      "purpose": "发布通知，支持 Promise 和 Callback 两种形式",
+      "anchor": "notificationmanagerpublish",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.requestPermission()",
+      "purpose": "该 API 不存在，应使用 notificationManager.requestEnableNotification() 替代",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "notificationManager.cancel()",
+      "purpose": "根据通知ID和标签取消已发布的通知",
+      "anchor": "notificationmanagercancel",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.cancelAll()",
+      "purpose": "取消当前应用所有已发布的通知",
+      "anchor": "notificationmanagercancelall",
+      "status": "found"
+    },
+    {
+      "name": "NotificationRequest",
+      "purpose": "描述通知请求，包含内容、ID、wantAgent、角标等配置",
+      "anchor": "notificationrequest",
+      "status": "found"
+    },
+    {
+      "name": "NotificationBasicContent",
+      "purpose": "普通文本通知内容（title、text、additionalText）",
+      "anchor": "notificationbasiccontent",
+      "status": "found"
+    },
+    {
+      "name": "NotificationContent",
+      "purpose": "通知内容容器，通过 ContentType 区分多种内容类型",
+      "anchor": "notificationcontent",
+      "status": "found"
+    },
+    {
+      "name": "NotificationSlot",
+      "purpose": "通知渠道定义，控制提醒方式（声音、振动、角标等）",
+      "anchor": "notificationslot",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.addSlot()",
+      "purpose": "创建指定类型的通知渠道",
+      "anchor": "notificationmanageraddslot",
+      "status": "found"
+    },
+    {
+      "name": "SlotType",
+      "purpose": "通知渠道类型枚举（社交通信、服务提醒、内容资讯等）",
+      "anchor": "slottype",
+      "status": "found"
+    },
+    {
+      "name": "BundleInfo (notificationEnabled)",
+      "purpose": "notificationEnabled 位于 NotificationSetting 而非 BundleInfo；通过 getNotificationSetting() 获取",
+      "anchor": "notificationsetting20",
+      "status": "found"
+    },
+    {
+      "name": "wantAgent (notification click)",
+      "purpose": "NotificationRequest.wantAgent 字段，点击通知时触发指定操作",
+      "anchor": "wantagent-notification-click",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.wantAgent",
+      "purpose": "WantAgent 创建/触发模块，使用 getWantAgent() 创建用于通知跳转的 WantAgent",
+      "anchor": "ohoswantagent-wantagent",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "notificationManager.requestPermission() does not exist — use requestEnableNotification(context) for permission dialog or check state via isNotificationEnabled()",
+    "notificationEnabled is in NotificationSetting (getNotificationSetting()), not directly on BundleInfo",
+    "Import path for notificationManager is '@kit.NotificationKit'; for wantAgent it is '@kit.AbilityKit'",
+    "NotificationRequest.wantAgent field takes a WantAgent object created via wantAgent.getWantAgent()"
+  ],
+  "missingApis": [
+    "notificationManager.requestPermission()"
+  ]
+}

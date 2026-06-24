@@ -1,0 +1,88 @@
+{
+  "module": "06-stats-charts.md",
+  "group": "06 — 统计图表 Stats Charts",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "Canvas",
+      "purpose": "画布容器组件，用于自定义绘制统计图表",
+      "anchor": "canvas",
+      "status": "found"
+    },
+    {
+      "name": "CanvasRenderingContext2D",
+      "purpose": "画布绘制上下文，提供形状/文本/图片绘制方法，是图表自定义绘制的核心API",
+      "anchor": "canvasrenderingcontext2d",
+      "status": "found"
+    },
+    {
+      "name": "Path",
+      "purpose": "路径绘制组件，通过命令字符串生成封闭自定义形状",
+      "anchor": "path",
+      "status": "found"
+    },
+    {
+      "name": "Shape",
+      "purpose": "绘制组件父容器，类似SVG效果，可嵌套Rect/Circle/Path等子组件",
+      "anchor": "shape",
+      "status": "found"
+    },
+    {
+      "name": "Circle",
+      "purpose": "圆形绘制组件，可用于饼图标记或数据点图形",
+      "anchor": "circle",
+      "status": "found"
+    },
+    {
+      "name": "Rect",
+      "purpose": "矩形绘制组件支持圆角，可用于柱状图/条形图图形元素",
+      "anchor": "rect",
+      "status": "found"
+    },
+    {
+      "name": "ProgressIndicator",
+      "purpose": "进度指示器组件 - 未在本地文档中找到，推荐使用Progress组件替代",
+      "anchor": "progressindicator",
+      "status": "missing"
+    },
+    {
+      "name": "LoadingProgress",
+      "purpose": "加载动效组件，用于图表数据加载中的等待状态提示",
+      "anchor": "loadingprogress",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "文本显示组件，用于图表轴标签/数据标签/标题等文字内容",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Span",
+      "purpose": "Text子组件行内文本片段，用于图表工具提示及数值+单位混排",
+      "anchor": "span",
+      "status": "found"
+    },
+    {
+      "name": "Image",
+      "purpose": "图片组件，支持SVG动态着色，用于图表图例图标和装饰性图标",
+      "anchor": "image",
+      "status": "found"
+    },
+    {
+      "name": "DataPanel",
+      "purpose": "数据占比图组件支持线型和环形两种样式最多9个数据项",
+      "anchor": "datapanel",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "ProgressIndicator 在本地文档中不存在，统计图表中推荐使用 Progress 组件或 DataPanel 替代",
+    "CanvasRenderingContext2D 是自定义图表绘制的核心：柱状图用 fillRect，折线图用 beginPath/moveTo/lineTo/stroke，饼图用 arc/fill",
+    "DataPanel 是 ArkUI 内置占比图组件，Circle 环形和 Line 线型两种样式，无需 Canvas 绘制",
+    "SVG 图标通过 Image+fillColor 可实现图表图例动态着色"
+  ],
+  "missingApis": [
+    "ProgressIndicator"
+  ]
+}

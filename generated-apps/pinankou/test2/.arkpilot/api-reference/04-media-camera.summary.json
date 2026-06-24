@@ -1,0 +1,56 @@
+{
+  "module": "04-media-camera.md",
+  "group": "04 — 相机与媒体 Camera Media",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "CameraManager",
+      "purpose": "相机管理核心类，获取相机列表、创建 Session 和控制相机输出",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "PhotoViewPicker (ImagePicker)",
+      "purpose": "图库选择器，拉起系统相册让用户选择图片/视频",
+      "anchor": "photoviewpicker-imagepicker",
+      "status": "found"
+    },
+    {
+      "name": "ImagePacker",
+      "purpose": "图片压缩和编码，支持 JPEG/WebP/PNG/HEIC/GIF 格式输出",
+      "anchor": "imagepacker",
+      "status": "found"
+    },
+    {
+      "name": "AudioCapturer",
+      "purpose": "音频采集器，获取麦克风原始 PCM 音频数据",
+      "anchor": "audiocapturer",
+      "status": "found"
+    },
+    {
+      "name": "AVRecorder (AudioRecorder 替代)",
+      "purpose": "音视频录制管理类，替代已废弃的 AudioRecorder",
+      "anchor": "avrecorder-audiorecorder-alternative",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper",
+      "purpose": "相册管理模块，获取和操作图库中的图片/视频资源",
+      "anchor": "photoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "cameraPicker",
+      "purpose": "快速拉起系统相机拍照/录制，无需 CAMERA 权限",
+      "anchor": "camerapicker",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "AudioRecorder 已在 API 9 废弃，使用 media.AVRecorder 替代",
+    "PhotoViewPicker 返回的 photoUris 具有永久授权",
+    "cameraPicker 无需 ohos.permission.CAMERA 即可快速拍照/录制",
+    "cameraPicker 和 PhotoViewPicker 是两种不同场景的图片获取方式"
+  ],
+  "missingApis": []
+}

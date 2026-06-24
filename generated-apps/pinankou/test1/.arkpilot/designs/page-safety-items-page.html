@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 安全事项</title>
+  <style>
+    :root { --sky:#38BDF8; --mint:#34D399; --teal:#0F766E; --slate-900:#0F172A; --slate-600:#475569; --slate-400:#94A3B8; --slate-200:#E2E8F0; --card-bg:rgba(255,255,255,0.88); --shadow-card:0 24px 48px -14px rgba(14,165,233,0.14),0 6px 16px -6px rgba(0,0,0,0.05); --shadow-fab:0 18px 44px -10px rgba(14,165,233,0.5); }
+    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html,body { margin:0; padding:0; height:100%; font-family:"PingFang SC","HarmonyOS Sans SC","SF Pro Text",-apple-system,BlinkMacSystemFont,sans-serif; background: linear-gradient(180deg,#E0F2FE 0%,#D1FAE5 32%,#F0FDFA 68%,#F8FAFC 100%); color:var(--slate-900); }
+    #app { max-width:390px; margin:0 auto; min-height:100%; position:relative; padding:16px; padding-bottom:100px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+    .topbar-left { display:flex; align-items:center; gap:10px; }
+    .back-btn { width:36px; height:36px; border-radius:12px; background:rgba(255,255,255,0.72); border:1px solid var(--slate-200); display:grid; place-items:center; color:var(--slate-600); }
+    .page-title { font-size:24px; font-weight:700; color:var(--teal); margin:0; }
+    .icon-btn { width:40px; height:40px; border-radius:14px; background:linear-gradient(135deg,var(--sky) 0%,var(--mint) 100%); border:none; display:grid; place-items:center; color:#fff; box-shadow:0 8px 20px -6px rgba(14,165,233,0.35); }
+    .filter-bar { display:flex; gap:10px; margin-bottom:16px; overflow-x:auto; }
+    .filter-bar::-webkit-scrollbar { display:none; }
+    .filter-pill { padding:8px 14px; border-radius:20px; background:rgba(255,255,255,0.72); border:1px solid var(--slate-200); font-size:13px; color:var(--slate-600); display:flex; align-items:center; gap:6px; white-space:nowrap; }
+    .filter-pill.active { background:linear-gradient(135deg,#E0F2FE 0%,#D1FAE5 100%); border-color:var(--sky); color:var(--teal); font-weight:600; }
+    .search-box { display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:14px; background:#F8FAFC; border:1px solid var(--slate-200); margin-bottom:16px; color:var(--slate-400); }
+    .search-box input { border:none; background:transparent; outline:none; font-size:15px; flex:1; color:var(--slate-900); }
+    .item-card { padding:18px; border-radius:22px; background:var(--card-bg); backdrop-filter:blur(24px); border:1px solid rgba(255,255,255,0.65); box-shadow:var(--shadow-card); margin-bottom:14px; position:relative; overflow:hidden; }
+    .item-card.overdue::before { content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(180deg,#F87171,#DC2626); }
+    .item-card.normal::before { content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--slate-200); }
+    .item-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+    .item-title { font-size:16px; font-weight:600; margin:0; }
+    .item-meta { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
+    .category-tag { padding:4px 10px; border-radius:20px; font-size:12px; background:#F1F5F9; color:#64748B; }
+    .due { font-size:13px; color:var(--slate-400); display:flex; align-items:center; gap:4px; }
+    .due.overdue-text { color:#DC2626; font-weight:500; }
+    .chip { padding:4px 10px; border-radius:20px; font-size:12px; font-weight:500; }
+    .chip.todo { background:linear-gradient(135deg,#F1F5F9,#E2E8F0); color:#64748B; }
+    .chip.done { background:linear-gradient(135deg,#D1FAE5,#A7F3D0); color:#047857; }
+    .chip.high { background:linear-gradient(135deg,#FEE2E2,#FECACA); color:#DC2626; }
+    .chip.medium { background:linear-gradient(135deg,#FEF3C7,#FDE68A); color:#B45309; }
+    .chip.low { background:linear-gradient(135deg,#DBEAFE,#BFDBFE); color:#1E40AF; }
+    .fab { position:fixed; bottom:24px; right:50%; transform:translateX(195px); width:58px; height:58px; border-radius:50%; background:linear-gradient(135deg,var(--sky) 0%,var(--mint) 100%); border:none; display:grid; place-items:center; color:#fff; box-shadow:var(--shadow-fab); }
+    .empty-state { text-align:center; padding:60px 20px; }
+    .empty-icon { width:96px; height:96px; margin:0 auto 18px; border-radius:50%; background:linear-gradient(135deg,#E0F2FE,#D1FAE5); display:grid; place-items:center; }
+    .empty-state h3 { font-size:18px; font-weight:600; margin:0 0 8px; }
+    .empty-state p { font-size:14px; color:var(--slate-400); margin:0 0 20px; }
+    .btn-primary { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:16px; background:linear-gradient(135deg,var(--sky) 0%,var(--mint) 100%); color:#fff; font-size:16px; font-weight:600; border:none; box-shadow:0 10px 24px -6px rgba(14,165,233,0.35); }
+    @media (max-width:390px){ .fab { right:20px; transform:none; } }
+  </style>
+</head>
+<body>
+  <div id="app" data-page-id="safety-items-page">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="back-btn" data-ui-id="items-back-button" aria-label="返回">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一页</title><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <h1 class="page-title">安全事项</h1>
+      </div>
+      <button class="icon-btn" data-ui-id="items-add-button" aria-label="新增事项">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>新增安全事项</title><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      </button>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-pill active" data-ui-id="items-filter-status">全部状态</button>
+      <button class="filter-pill" data-ui-id="items-filter-status">待办</button>
+      <button class="filter-pill" data-ui-id="items-filter-status">已完成</button>
+      <button class="filter-pill" data-ui-id="items-filter-priority">优先级</button>
+    </div>
+
+    <div class="search-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>搜索安全事项</title><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+      <input type="text" data-ui-id="items-search-input" placeholder="搜索事项标题或负责人" />
+    </div>
+
+    <div data-ui-id="items-list">
+      <article class="item-card overdue" data-ui-id="items-item-1">
+        <div class="item-header">
+          <h3 class="item-title">配电箱季度检修</h3>
+          <span class="chip high">高</span>
+        </div>
+        <div class="item-meta">
+          <span class="category-tag">电气安全</span>
+          <span class="due overdue-text">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>已逾期</title><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            逾期 2 天
+          </span>
+        </div>
+        <div class="item-meta">
+          <span class="chip todo">待办</span>
+          <span style="font-size:13px;color:var(--slate-400)">负责人：李工</span>
+        </div>
+      </article>
+
+      <article class="item-card normal" data-ui-id="items-item-2">
+        <div class="item-header">
+          <h3 class="item-title">消防通道巡查</h3>
+          <span class="chip medium">中</span>
+        </div>
+        <div class="item-meta">
+          <span class="category-tag">消防安全</span>
+          <span class="due">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>截止日期</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+            06-21
+          </span>
+        </div>
+        <div class="item-meta">
+          <span class="chip done">已完成</span>
+          <span style="font-size:13px;color:var(--slate-400)">负责人：张队</span>
+        </div>
+      </article>
+
+      <article class="item-card normal" data-ui-id="items-item-3">
+        <div class="item-header">
+          <h3 class="item-title">新员工安全培训签到</h3>
+          <span class="chip low">低</span>
+        </div>
+        <div class="item-meta">
+          <span class="category-tag">其他</span>
+          <span class="due">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>截止日期</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+            06-25
+          </span>
+        </div>
+        <div class="item-meta">
+          <span class="chip todo">待办</span>
+          <span style="font-size:13px;color:var(--slate-400)">负责人：HR</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Empty state example (hidden by default) -->
+    <div class="empty-state hidden" data-ui-id="items-empty-state">
+      <div class="empty-icon">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>暂无安全事项</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+      </div>
+      <h3>暂无安全事项</h3>
+      <p>点击右下角按钮创建第一条安全事项</p>
+      <button class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>创建安全事项</title><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        新建事项
+      </button>
+    </div>
+
+    <button class="fab" data-ui-id="items-add-button" aria-label="新增安全事项">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>新增安全事项</title><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+    </button>
+  </div>
+</body>
+</html>

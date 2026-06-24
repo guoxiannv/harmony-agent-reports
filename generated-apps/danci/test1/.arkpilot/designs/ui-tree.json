@@ -1,0 +1,184 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "小小单词卡",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "review-page",
+      "surfaceId": "review",
+      "pageId": "review-page",
+      "name": "复习页",
+      "route": "pages/Review",
+      "semanticTargets": [
+        {
+          "id": "review-header-title",
+          "role": "assertion",
+          "binding": "/pageTitle"
+        },
+        {
+          "id": "review-progress-text",
+          "role": "assertion",
+          "binding": "/progress/currentAndTotal"
+        },
+        {
+          "id": "review-progress-ring",
+          "role": "assertion",
+          "binding": "/progress/percent"
+        },
+        {
+          "id": "review-flashcard",
+          "role": "action",
+          "event": "flip-card"
+        },
+        {
+          "id": "review-flashcard-front",
+          "role": "assertion",
+          "binding": "/currentWord/english"
+        },
+        {
+          "id": "review-flashcard-back",
+          "role": "assertion",
+          "binding": "/currentWord/translationAndPhonetic"
+        },
+        {
+          "id": "review-word-english",
+          "role": "assertion",
+          "binding": "/currentWord/english"
+        },
+        {
+          "id": "review-word-phonetic",
+          "role": "assertion",
+          "binding": "/currentWord/phonetic"
+        },
+        {
+          "id": "review-word-chinese",
+          "role": "assertion",
+          "binding": "/currentWord/chinese"
+        },
+        {
+          "id": "review-unknown-button",
+          "role": "action",
+          "event": "mark-unknown"
+        },
+        {
+          "id": "review-known-button",
+          "role": "action",
+          "event": "mark-known"
+        },
+        {
+          "id": "review-completion-panel",
+          "role": "assertion",
+          "binding": "/completion/isVisible"
+        },
+        {
+          "id": "review-completion-score",
+          "role": "assertion",
+          "binding": "/completion/correctAndTotal"
+        },
+        {
+          "id": "review-restart-button",
+          "role": "action",
+          "event": "restart-review"
+        },
+        {
+          "id": "review-empty-state",
+          "role": "assertion",
+          "binding": "/empty/isVisible"
+        },
+        {
+          "id": "review-empty-message",
+          "role": "assertion",
+          "binding": "/empty/message"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "flip-card",
+      "description": "点击单词卡片触发 3D 翻转动画，在正面（英文）与背面（中文释义+音标）之间切换。"
+    },
+    {
+      "name": "mark-unknown",
+      "description": "点击「不认识」按钮，将当前单词移到复习队列底部，展示下一张卡片。"
+    },
+    {
+      "name": "mark-known",
+      "description": "点击「认识」按钮，将当前单词从复习队列移除，正确数加 1，展示下一张卡片。"
+    },
+    {
+      "name": "restart-review",
+      "description": "一轮复习完成后点击「再学一次」，从数据源重新加载当前阶段单词队列。"
+    }
+  ],
+  "bindings": [
+    {
+      "path": "/pageTitle",
+      "type": "string",
+      "example": "今日复习"
+    },
+    {
+      "path": "/progress/currentAndTotal",
+      "type": "string",
+      "example": "3 / 10"
+    },
+    {
+      "path": "/progress/percent",
+      "type": "number",
+      "example": 30
+    },
+    {
+      "path": "/currentWord/english",
+      "type": "string",
+      "example": "apple"
+    },
+    {
+      "path": "/currentWord/phonetic",
+      "type": "string",
+      "example": "/ˈæp.əl/"
+    },
+    {
+      "path": "/currentWord/chinese",
+      "type": "string",
+      "example": "苹果"
+    },
+    {
+      "path": "/completion/isVisible",
+      "type": "boolean",
+      "example": false
+    },
+    {
+      "path": "/completion/correctAndTotal",
+      "type": "string",
+      "example": "8 / 10"
+    },
+    {
+      "path": "/empty/isVisible",
+      "type": "boolean",
+      "example": false
+    },
+    {
+      "path": "/empty/message",
+      "type": "string",
+      "example": "还没有要复习的单词哦"
+    }
+  ],
+  "testTargets": [
+    "review-progress-text",
+    "review-progress-ring",
+    "review-flashcard",
+    "review-word-english",
+    "review-word-phonetic",
+    "review-word-chinese",
+    "review-unknown-button",
+    "review-known-button",
+    "review-completion-score",
+    "review-restart-button",
+    "review-empty-message"
+  ]
+}

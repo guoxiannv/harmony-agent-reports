@@ -1,0 +1,57 @@
+{
+  "module": "06-media.md",
+  "group": "06 — Camera & Image",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.camera",
+      "purpose": "Camera Kit相机管理，提供预览、拍照、录像及设备控制（闪光灯、曝光、对焦、变焦等）能力",
+      "anchor": "@ohosmultimediacamera",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.cameraPicker",
+      "purpose": "Camera Kit相机选择器，通过Picker方式直接拉起相机进行拍照或录制",
+      "anchor": "@ohosmultimediacamerapicker",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.image",
+      "purpose": "Image Kit图片处理，提供图片解码(ImageSource)、编码(ImagePacker)、位图操作(PixelMap)和图片接收(ImageReceiver)能力",
+      "anchor": "@ohosmultimediaimage",
+      "status": "found"
+    },
+    {
+      "name": "photoPicker",
+      "purpose": "Media Library Kit的图库选择器(PhotoViewPicker)，支持从图库选择图片/视频并获取永久授权的URI",
+      "anchor": "photopicker-photoviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper",
+      "purpose": "Media Library Kit相册管理模块，提供创建相册、访问和修改相册中媒体数据的能力",
+      "anchor": "photoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.fs",
+      "purpose": "Core File Kit基础文件操作API，提供文件管理、目录管理、文件信息统计、流式读写等常用功能",
+      "anchor": "@ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.picker",
+      "purpose": "Core File Kit选择器模块(DocumentViewPicker/AudioViewPicker/PhotoViewPicker)，用于选择和保存文件",
+      "anchor": "@ohosfilepicker",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "photoPicker 在Media Library Kit中对应 photoAccessHelper.PhotoViewPicker 类，在Core File Kit中对应 picker.PhotoViewPicker 类；推荐使用 photoAccessHelper.PhotoViewPicker 获取永久授权URI",
+    "PhotoViewPicker.select()返回的photoUris具有永久授权，可配合 photoAccessHelper.getAssets() 使用",
+    "PixelMap/ImageSource 等图片对象使用后必须主动调用 release() 释放内存",
+    "@ohos.file.fs 通过 import { fileIo } from '@kit.CoreFileKit' 导入，命名空间为 fileIo",
+    "cameraPicker.pick 从 API 11 开始支持，camera.getCameraManager 从 API 10 开始支持"
+  ],
+  "missingApis": []
+}

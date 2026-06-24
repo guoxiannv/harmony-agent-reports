@@ -1,0 +1,59 @@
+{
+  "module": "06-notification.md",
+  "group": "06 — Notification Kit",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "@ohos.notificationManager (NotificationManager模块)",
+      "purpose": "通知管理器模块，提供发布、更新、取消通知，创建/获取/移除通知渠道，查询通知使能状态等能力",
+      "anchor": "ohosnotificationmanager-notificationmanager模块",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.publish",
+      "purpose": "发布或更新通知，相同ID和标签则替换原有通知",
+      "anchor": "notificationmanagerpublish",
+      "status": "found"
+    },
+    {
+      "name": "NotificationRequest",
+      "purpose": "通知请求对象，包含内容、ID、渠道类型、按钮、角标、自定义铃声等属性",
+      "anchor": "notificationrequest",
+      "status": "found"
+    },
+    {
+      "name": "NotificationSlot",
+      "purpose": "通知渠道，控制通知的提醒方式（级别、振动、铃声、角标等）",
+      "anchor": "notificationslot",
+      "status": "found"
+    },
+    {
+      "name": "NotificationContent",
+      "purpose": "通知内容的联合类型，支持普通文本、长文本、多行文本、图片、系统实况窗",
+      "anchor": "notificationcontent",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.requestEnableNotification",
+      "purpose": "拉起通知授权弹窗获取用户通知授权（Stage模型，需在loadContent成功后调用）",
+      "anchor": "notificationmanagerrequestenablenotification10",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.setSlot",
+      "purpose": "未找到该API——通知渠道管理使用 addSlot/getSlot/removeSlot/removeAllSlots，不支持 setSlot",
+      "anchor": "notificationmanagersetslot",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "setSlot 不是实际存在的API，通知渠道通过 addSlot(type)/getSlot(slotType)/removeSlot(slotType)/removeAllSlots() 管理",
+    "requestEnableNotification 从 API 12 起必须传入 UIAbilityContext 参数；旧版无参重载已废弃",
+    "publish 错误码 1600004=全局禁用，1600005=渠道禁用",
+    "通知去重通过 appMessageId 实现，24小时内生效",
+    "Wearable 不支持 setBadgeNumber（返回801），isDistributedEnabled 在 Wearable/TV 恒为 false"
+  ],
+  "missingApis": [
+    "notificationManager.setSlot"
+  ]
+}

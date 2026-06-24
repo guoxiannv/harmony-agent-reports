@@ -1,0 +1,45 @@
+{
+  "module": "02-photo-picker.md",
+  "group": "02 — 相册选择 (Photo Picker)",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "photoAccessHelper",
+      "purpose": "提供 getPhotoAccessHelper(context) 函数以获取 PhotoAccessHelper 实例，是相册管理模块的入口命名空间",
+      "anchor": "photoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "PhotoViewPicker",
+      "purpose": "拉起系统图库选择器界面，支持图片/视频多选，返回永久授权的 URI",
+      "anchor": "photoviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "PhotoSelectOptions",
+      "purpose": "配置图库选择器的过滤条件，包括 MIME 类型、最大选择数、是否支持原图/编辑等，继承 BaseSelectOptions",
+      "anchor": "photoselectoptions",
+      "status": "found"
+    },
+    {
+      "name": "PhotoSelectResult",
+      "purpose": "图库选择后返回的结果集，包含选中的 photoUris 数组和是否是原图等元信息",
+      "anchor": "photoselectresult",
+      "status": "found"
+    },
+    {
+      "name": "phAccessHelper",
+      "purpose": "photoAccessHelper.getPhotoAccessHelper() 返回的 PhotoAccessHelper 实例变量名，提供 getAssets、createAsset 等相册操作方法",
+      "anchor": "phaccesshelper",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "photoAccessHelper、PhotoViewPicker、PhotoSelectOptions、PhotoSelectResult 均位于 @kit.MediaLibraryKit 包中，导入语句为 import { photoAccessHelper } from '@kit.MediaLibraryKit'",
+    "Picker 返回的 photoUris 具有永久授权，可通过 getAssets 使用，无需额外声明 READ_IMAGEVIDEO 权限",
+    "PhotoSelectOptions 的 mimeTypeFilter 配置时会使 MIMEType 自动失效；combinedMediaTypeFilter 配置时会使 MIMEType 和 mimeTypeFilter 同时失效",
+    "PhotoViewPicker 实例需要跟随 NavDestination 销毁或进程销毁，重复拉起前必须先销毁上一个实例",
+    "phAccessHelper 不是正式 API 名，而是官方示例中对 PhotoAccessHelper 实例的变量命名惯例"
+  ],
+  "missingApis": []
+}

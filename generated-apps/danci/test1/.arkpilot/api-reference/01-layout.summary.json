@@ -1,0 +1,153 @@
+{
+  "module": "01-layout.md",
+  "group": "01 — Layout Components & Basic UI Elements",
+  "apiCount": 23,
+  "apis": [
+    {
+      "name": "Column",
+      "purpose": "沿垂直方向布局的容器组件，可设置子组件间距",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "沿水平方向布局的容器组件，可设置子组件间距",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，子组件按顺序依次入栈，后一个覆盖前一个",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Flex",
+      "purpose": "弹性方式布局子组件的容器组件，可高效排列、对齐子元素并分配剩余空间",
+      "anchor": "flex",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "显示一段文本的组件，支持Span和ImageSpan子组件实现图文混排",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Button",
+      "purpose": "按钮组件，可快速创建不同样式的按钮（Normal/Capsule/Circle/RoundedRectangle）",
+      "anchor": "button",
+      "status": "found"
+    },
+    {
+      "name": "Image",
+      "purpose": "图片组件，支持png/jpg/svg/webp/gif/tiff格式，支持本地/网络/Base64图片源",
+      "anchor": "image",
+      "status": "found"
+    },
+    {
+      "name": "Blank",
+      "purpose": "空白填充组件，在容器主轴方向自动填充空余部分，仅父组件为Row/Column/Flex时生效",
+      "anchor": "blank",
+      "status": "found"
+    },
+    {
+      "name": "Divider",
+      "purpose": "分割线组件，分割不同内容块/内容元素，支持水平和垂直方向",
+      "anchor": "divider",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动的容器组件，当子组件布局尺寸超过父组件尺寸时内容可滚动",
+      "anchor": "scroll",
+      "status": "found"
+    },
+    {
+      "name": ".width()",
+      "purpose": "设置组件自身的宽度，缺省时使用元素自身内容需要的宽度",
+      "anchor": "width",
+      "status": "found"
+    },
+    {
+      "name": ".height()",
+      "purpose": "设置组件自身的高度，缺省时使用元素自身内容需要的高度",
+      "anchor": "height",
+      "status": "found"
+    },
+    {
+      "name": ".padding()",
+      "purpose": "设置组件的内边距属性，支持Padding对象或统一Length",
+      "anchor": "padding",
+      "status": "found"
+    },
+    {
+      "name": ".margin()",
+      "purpose": "设置组件的外边距属性，外边距视为组件大小的一部分影响位置",
+      "anchor": "margin",
+      "status": "found"
+    },
+    {
+      "name": ".backgroundColor()",
+      "purpose": "设置组件背景颜色",
+      "anchor": "backgroundcolor",
+      "status": "found"
+    },
+    {
+      "name": ".borderRadius()",
+      "purpose": "设置边框的圆角半径，支持百分比（依据组件宽度）",
+      "anchor": "borderradius",
+      "status": "found"
+    },
+    {
+      "name": ".fontSize()",
+      "purpose": "设置字体大小，number类型使用fp单位",
+      "anchor": "fontsize",
+      "status": "found"
+    },
+    {
+      "name": ".fontWeight()",
+      "purpose": "设置文本的字体粗细，number类型取值[100,900]，取值越大越粗",
+      "anchor": "fontweight",
+      "status": "found"
+    },
+    {
+      "name": ".textAlign()",
+      "purpose": "设置文本段落在水平方向的对齐方式",
+      "anchor": "textalign",
+      "status": "found"
+    },
+    {
+      "name": ".id()",
+      "purpose": "设置组件的唯一标识，在整个应用内唯一，支持UI自动化测试",
+      "anchor": "id",
+      "status": "found"
+    },
+    {
+      "name": ".alignItems()",
+      "purpose": "Column中设置子组件水平对齐，Row中设置子组件垂直对齐",
+      "anchor": "alignitems",
+      "status": "found"
+    },
+    {
+      "name": ".justifyContent()",
+      "purpose": "Column中设置子组件垂直对齐，Row中设置子组件水平对齐",
+      "anchor": "justifycontent",
+      "status": "found"
+    },
+    {
+      "name": ".onClick()",
+      "purpose": "组件被点击时触发的事件回调，返回ClickEvent包含坐标等信息",
+      "anchor": "onclick",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    ".space() 在Column和Row中仅作为构造参数传入（Column({ space: 5 })），并非链式方法，无单独的.space()属性接口",
+    "Flex的space参数需导入LengthMetrics（import {LengthMetrics} from '@kit.ArkUI'），支持主轴和交叉轴分别设置",
+    "Column、Row、Flex的justifyContent属性从API 8开始支持",
+    "Flex组件渲染时存在二次布局过程，对性能要求严格时应改用Column/Row替代",
+    "Image组件使用网络图片时需要申请ohos.permission.INTERNET权限"
+  ],
+  "missingApis": []
+}

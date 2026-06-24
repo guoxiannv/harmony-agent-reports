@@ -1,0 +1,48 @@
+{
+  "module": "04-image-processing.md",
+  "group": "04 — Image Processing",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.image",
+      "purpose": "Image processing module: decode, encode, edit, metadata, image receiving",
+      "anchor": "ohosmultimediaimage",
+      "status": "found"
+    },
+    {
+      "name": "ImageSource",
+      "purpose": "Image decoding source: create from uri/fd/ArrayBuffer, decode to PixelMap/Picture, get image info",
+      "anchor": "imagesource",
+      "status": "found"
+    },
+    {
+      "name": "PixelMap",
+      "purpose": "Bitmap object with pixel data; supports scale, crop, rotate, flip, translate, and color space operations",
+      "anchor": "pixelmap",
+      "status": "found"
+    },
+    {
+      "name": "createPixelMap",
+      "purpose": "Create PixelMap from pixel data buffer or decode from ImageSource (multiple overloads: async/sync, with/without allocator type)",
+      "anchor": "createpixelmap",
+      "status": "found"
+    },
+    {
+      "name": "getImageInfo",
+      "purpose": "Get ImageInfo (width, height, mimeType) from either ImageSource or PixelMap",
+      "anchor": "getimageinfo",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Import is `import { image } from '@kit.ImageKit';` — not from `@kit.ImageKit` directly, the module is `image` within ImageKit.",
+    "For avatar thumbnails, prefer `ImageSource.createPixelMap({ desiredSize })` to decode at target size directly, and/or use `createThumbnail()` for JPEG/HEIF which prioritizes embedded thumbnails.",
+    "For image resize, decode with desiredSize for memory efficiency, then use `pixelMap.scale()` or `createScaledPixelMap()` for further resizing.",
+    "Always call `.release()` on ImageSource and PixelMap to avoid OOM — images are large native objects.",
+    "PixelMap serialization max 128MB; PixelMap supports Worker cross-thread transfer from API 11.",
+    "`image.createPixelMap()` (old global, API 8) is deprecated from API 26 in favor of `createPixelMapFromPixels()`.",
+    "The old `@ohos.multimedia.image` module name is effectively replaced by the `@kit.ImageKit` kit import, with identical API surface.",
+    "`createThumbnail()` supports JPEG and HEIF only; for other formats, decode with desiredSize directly."
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,83 @@
+{
+  "module": "04-camera.md",
+  "group": "04 -- Camera 拍照/相机",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.camera",
+      "anchor": "@ohosmultimediacamera",
+      "purpose": "相机模块基础入口，提供全部相机 API",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager",
+      "anchor": "cameramanager",
+      "purpose": "相机管理器实例，用于获取设备、创建输入/输出流和会话",
+      "status": "found"
+    },
+    {
+      "name": "CameraInput",
+      "anchor": "camerainput",
+      "purpose": "相机设备输入对象，提供开关相机及监听异常能力",
+      "status": "found"
+    },
+    {
+      "name": "PhotoSession",
+      "anchor": "photosession",
+      "purpose": "普通拍照模式会话类，支持预配置及多种拍照控制",
+      "status": "found"
+    },
+    {
+      "name": "CaptureSession",
+      "anchor": "capturesession-deprecated",
+      "purpose": "废弃的拍照会话类，自 API 11 起被 PhotoSession 替代",
+      "status": "found"
+    },
+    {
+      "name": "ImageReceiver",
+      "anchor": "imagereceiver",
+      "purpose": "图片接收器，提供 surfaceId 给相机预览/拍照输出（Image Kit 模块）",
+      "status": "found"
+    },
+    {
+      "name": "camera.getCameraManager",
+      "anchor": "cameragetcameramanager",
+      "purpose": "获取 CameraManager 实例的入口函数",
+      "status": "found"
+    },
+    {
+      "name": "Profile",
+      "anchor": "profile",
+      "purpose": "相机配置信息项，包含输出格式和分辨率",
+      "status": "found"
+    },
+    {
+      "name": "Size",
+      "anchor": "size",
+      "purpose": "图像尺寸参数，包含宽度和高度",
+      "status": "found"
+    },
+    {
+      "name": "camera.CameraArea",
+      "anchor": "cameracameraarea",
+      "purpose": "相机对焦/测光区域类型（未在本地文档中找到）",
+      "status": "missing"
+    },
+    {
+      "name": "CameraInput.open",
+      "anchor": "camerainputopen",
+      "purpose": "打开相机设备的入口方法",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "CameraArea 类型在本地 HarmonyOS 参考资料中未定义；对焦/测光区域通过 Point 接口配合 setFocusPoint()/setMeteringPoint() 在 0-1 坐标系中实现",
+    "CaptureSession 自 API 11 起废弃，推荐使用 CameraManager.createSession(mode) 创建 PhotoSession",
+    "ImageReceiver 属于 @kit.ImageKit，非 Camera Kit 内置类型",
+    "CameraManager.createCameraInput 需要 ohos.permission.CAMERA 权限",
+    "导入路径统一为 import { camera } from '@kit.CameraKit'"
+  ],
+  "missingApis": [
+    "camera.CameraArea"
+  ]
+}

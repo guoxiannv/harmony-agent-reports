@@ -1,0 +1,45 @@
+{
+  "module": "01-permissions.md",
+  "group": "01 — Permissions & Runtime Authorization",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "@ohos.abilityAccessCtrl",
+      "purpose": "程序访问控制管理，提供权限校验、用户授权请求、权限状态监听等能力",
+      "anchor": "ohosabilityaccessctrl",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.READ_IMAGEVIDEO",
+      "purpose": "读取图片/视频权限声明字符串常量，用于访问相册媒体资源",
+      "anchor": "ohospermissionread_imagevideo",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.WRITE_IMAGEVIDEO",
+      "purpose": "写入图片/视频权限声明字符串常量，用于创建/修改相册媒体资源",
+      "anchor": "ohospermissionwrite_imagevideo",
+      "status": "found"
+    },
+    {
+      "name": "PermissionRequestResult",
+      "purpose": "权限请求结果对象，包含请求的权限列表及各自的授权结果",
+      "anchor": "permissionrequestresult",
+      "status": "found"
+    },
+    {
+      "name": "GrantStatus",
+      "purpose": "授权状态枚举: PERMISSION_DENIED(-1)/PERMISSION_GRANTED(0)",
+      "anchor": "grantstatus",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO属于user_grant类型的敏感权限，需运行时动态申请",
+    "通过Picker方式访问媒体资源可绕过READ_IMAGEVIDEO权限声明",
+    "本应用自身写入的媒体文件无需额外申请读权限即可访问",
+    "Permissions类型是@kit.AbilityKit导出的联合字符串类型，无独立文档文件，有效值由在线权限列表定义",
+    "abilityAccessCtrl.requestPermissionOnSetting可用于用户首次拒绝授权后二次拉起权限设置弹框"
+  ],
+  "missingApis": []
+}

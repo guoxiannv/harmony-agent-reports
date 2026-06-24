@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今天吃什么 - 打卡</title>
+  <style>
+    :root {
+      --paper: #FFFCFA; --cream: #FFF5ED; --dark: #2E2A25; --warm-gray: #7A746E; --light-gray: #F5F0EB; --border: #E9E3DD;
+      --orange: #FF8C42; --orange-deep: #FF7043; --orange-dark: #E86A2E; --green: #4ECB9C; --olive: #5A6B58; --sage: #8FA897;
+      --shadow-card: 0 2px 10px rgba(46, 42, 37, 0.05), 0 6px 20px rgba(46, 42, 37, 0.04);
+      --shadow-button: 0 6px 20px rgba(255, 140, 66, 0.28);
+      --shadow-green: 0 6px 20px rgba(78, 203, 156, 0.28);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; background: var(--paper); color: var(--dark); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    body { max-width: 420px; margin: 0 auto; min-height: 100vh; padding-bottom: 90px; }
+    .page { padding: 20px 22px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .page-title { font-size: 30px; font-weight: 700; line-height: 1.18; }
+    .icon-btn { width: 44px; height: 44px; border-radius: 14px; background: var(--light-gray); display: flex; align-items: center; justify-content: center; border: none; color: var(--dark); }
+    .stats-card { background: linear-gradient(135deg, var(--green) 0%, var(--olive) 100%); border-radius: 26px; padding: 24px; color: white; box-shadow: var(--shadow-green); margin-bottom: 24px; display: flex; justify-content: space-around; }
+    .stat { text-align: center; }
+    .stat-value { font-size: 42px; font-weight: 700; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+    .stat-label { font-size: 13px; opacity: 0.9; }
+    .calendar-card { background: var(--paper); border-radius: 22px; padding: 20px; box-shadow: var(--shadow-card); margin-bottom: 24px; }
+    .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .calendar-month { font-size: 17px; font-weight: 600; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; text-align: center; }
+    .weekday { font-size: 12px; color: var(--warm-gray); margin-bottom: 4px; }
+    .day { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; margin: 0 auto; }
+    .day.today { border: 2px solid var(--green); color: var(--green); font-weight: 600; }
+    .day.checked { background: var(--green); color: white; }
+    .form-card { background: var(--paper); border-radius: 22px; padding: 20px; box-shadow: var(--shadow-card); margin-bottom: 24px; }
+    .section-title { font-size: 18px; font-weight: 600; margin-bottom: 14px; }
+    .meal-selector { display: flex; gap: 10px; margin-bottom: 18px; }
+    .meal-btn { flex: 1; background: var(--light-gray); border: none; border-radius: 16px; padding: 14px; font-size: 14px; font-weight: 500; color: var(--warm-gray); }
+    .meal-btn.active { background: var(--dark); color: white; box-shadow: 0 4px 12px rgba(46,42,37,0.14); }
+    .text-input { width: 100%; background: var(--paper); border: 1.5px solid var(--border); border-radius: 16px; padding: 14px 16px; font-size: 15px; margin-bottom: 14px; outline: none; }
+    .text-input:focus { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(255,140,66,0.12); }
+    .save-btn { width: 100%; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 55%, var(--orange-dark) 100%); color: white; border: none; border-radius: 18px; padding: 16px; font-size: 16px; font-weight: 600; box-shadow: var(--shadow-button); margin-bottom: 12px; }
+    .share-row { display: flex; gap: 12px; }
+    .share-btn { flex: 1; background: var(--paper); border: 1.5px solid var(--border); border-radius: 18px; padding: 14px; font-size: 15px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .history-title { font-size: 18px; font-weight: 600; margin-bottom: 14px; }
+    .history-list { display: flex; flex-direction: column; gap: 12px; }
+    .history-item { background: var(--paper); border-radius: 20px; padding: 16px; box-shadow: var(--shadow-card); display: flex; justify-content: space-between; align-items: center; }
+    .history-info { }
+    .history-dish { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .history-meta { font-size: 13px; color: var(--warm-gray); }
+    .history-note { font-size: 13px; color: var(--sage); margin-top: 4px; }
+    .tab-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 420px; margin: 0 auto; height: 68px;
+      background: rgba(255, 252, 250, 0.92); backdrop-filter: blur(24px) saturate(160%); border-top: 1px solid rgba(233,227,221,0.6);
+      display: flex; justify-content: space-around; align-items: center;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #A8A29C; font-size: 11px; font-weight: 500; }
+    .tab-item.active { color: var(--orange); }
+    .tab-item svg { width: 24px; height: 24px; }
+    .tab-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--orange); margin-top: 2px; }
+  </style>
+</head>
+<body data-page-id="checkin-page" data-tab-id="tab-checkin">
+  <div class="page">
+    <header class="header">
+      <div class="page-title">每日打卡</div>
+      <button class="icon-btn" data-ui-id="checkin-share-button" aria-label="分享">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>Share Check-in</title>
+          <path d="M12 2v13"/><path d="m16 6-4-4-4 4"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="stats-card">
+      <div class="stat">
+        <div class="stat-value" data-ui-id="checkin-streak-count">12</div>
+        <div class="stat-label">连续打卡</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" data-ui-id="checkin-total-count">38</div>
+        <div class="stat-label">累计打卡</div>
+      </div>
+    </div>
+
+    <div class="calendar-card">
+      <div class="calendar-header">
+        <div class="calendar-month">2026年6月</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warm-gray)">
+          <title>Calendar Navigation</title>
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </div>
+      <div class="calendar-grid" data-ui-id="checkin-calendar">
+        <div class="weekday">日</div><div class="weekday">一</div><div class="weekday">二</div><div class="weekday">三</div><div class="weekday">四</div><div class="weekday">五</div><div class="weekday">六</div>
+        <div class="day">1</div><div class="day checked">2</div><div class="day checked">3</div><div class="day">4</div><div class="day checked">5</div><div class="day checked">6</div><div class="day">7</div>
+        <div class="day checked">8</div><div class="day checked">9</div><div class="day">10</div><div class="day checked">11</div><div class="day checked">12</div><div class="day checked">13</div><div class="day">14</div>
+        <div class="day">15</div><div class="day checked">16</div><div class="day checked">17</div><div class="day checked">18</div><div class="day">19</div><div class="day checked">20</div><div class="day checked">21</div>
+        <div class="day">22</div><div class="day today">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">记录这一餐</div>
+      <div class="meal-selector">
+        <button class="meal-btn" data-ui-id="checkin-meal-breakfast">早餐</button>
+        <button class="meal-btn active" data-ui-id="checkin-meal-lunch">午餐</button>
+        <button class="meal-btn" data-ui-id="checkin-meal-dinner">晚餐</button>
+      </div>
+      <input class="text-input" type="text" placeholder="今天吃了什么？" data-ui-id="checkin-dish-input" />
+      <input class="text-input" type="text" placeholder="写点什么..." data-ui-id="checkin-note-input" />
+      <button class="save-btn" data-ui-id="checkin-save-button">保存打卡</button>
+      <div class="share-row">
+        <button class="share-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>Save Image</title><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+          保存图片
+        </button>
+        <button class="share-btn" data-ui-id="checkin-share-button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>Share Card</title><path d="M12 2v13"/><path d="m16 6-4-4-4 4"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></svg>
+          生成卡片
+        </button>
+      </div>
+    </div>
+
+    <div class="history-title">最近记录</div>
+    <div class="history-list" data-ui-id="checkin-history-list">
+      <div class="history-item" data-ui-id="checkin-history-1">
+        <div class="history-info">
+          <div class="history-dish">蒜香虾仁</div>
+          <div class="history-meta">昨天 · 午餐</div>
+          <div class="history-note">配了白米饭，很满足</div>
+        </div>
+      </div>
+      <div class="history-item" data-ui-id="checkin-history-2">
+        <div class="history-info">
+          <div class="history-dish">番茄牛腩</div>
+          <div class="history-meta">昨天 · 晚餐</div>
+        </div>
+      </div>
+      <div class="history-item" data-ui-id="checkin-history-3">
+        <div class="history-info">
+          <div class="history-dish">牛油果吐司</div>
+          <div class="history-meta">今天 · 早餐</div>
+          <div class="history-note">加了黑胡椒</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="tab-bar">
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Home Tab</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>首页</span></div>
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Recommend Tab</title><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg><span>推荐</span></div>
+    <div class="tab-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Check-in Tab</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span>打卡</span><div class="tab-dot"></div></div>
+    <div class="tab-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Profile Tab</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>我的</span></div>
+  </nav>
+</body>
+</html>

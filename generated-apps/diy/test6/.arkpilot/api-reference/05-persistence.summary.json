@@ -1,0 +1,45 @@
+{
+  "module": "05-persistence.md",
+  "group": "05 -- Data Persistence",
+  "apiCount": 25,
+  "apis": [
+    {
+      "name": "preferences (dataPreferences)",
+      "purpose": "Key-Value 轻量级数据持久化，适用于用户偏好设置等小型数据",
+      "anchor": "preferences-datapreferences",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore (RdbStore)",
+      "purpose": "基于 SQLite 的关系型数据库，支持结构化数据的增删改查与原生 SQL",
+      "anchor": "relationalstore-rdbstore",
+      "status": "found"
+    },
+    {
+      "name": "PersistentStorage",
+      "purpose": "将 AppStorage 中的 UI 状态属性持久化到本地文件，实现状态持久化",
+      "anchor": "persistentstorage",
+      "status": "found"
+    },
+    {
+      "name": "Environment",
+      "purpose": "查询系统内置环境变量（如深浅色模式、语言编码等），存入 AppStorage",
+      "anchor": "environment",
+      "status": "found"
+    },
+    {
+      "name": "fileIO (file management)",
+      "purpose": "基础文件操作，包括文件/目录的创建、读写、复制、删除、属性查询与流式读写",
+      "anchor": "fileio-file-management",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "fileIo 的实际导入名称为 fileIo（小写 o），导入路径为 @kit.CoreFileKit，而非 fileIO",
+    "PersistentStorage 和 Environment 是 ArkUI 框架内置 API，无需 import 即可直接使用",
+    "preferences 不支持多进程并发，进程间共享数据需使用其他方案",
+    "relationalStore 单条数据建议不超过 2MB，单次查询建议不超过 5000 条",
+    "PersistentStorage 和 Environment 的旧版 API（大驼峰命名）从 API 10 起废弃"
+  ],
+  "missingApis": []
+}

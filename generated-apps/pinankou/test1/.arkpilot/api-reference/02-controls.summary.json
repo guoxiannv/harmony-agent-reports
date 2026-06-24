@@ -1,0 +1,95 @@
+{
+  "module": "02-controls.md",
+  "group": "02 — Controls, Input & Dialogs",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "Button",
+      "purpose": "按钮组件，可快速创建不同样式的按钮",
+      "anchor": "button",
+      "status": "found"
+    },
+    {
+      "name": "TextInput",
+      "purpose": "单行文本输入框组件",
+      "anchor": "textinput",
+      "status": "found"
+    },
+    {
+      "name": "TextArea",
+      "purpose": "多行文本输入框组件，自动换行显示",
+      "anchor": "textarea",
+      "status": "found"
+    },
+    {
+      "name": "Checkbox",
+      "purpose": "提供多选框组件",
+      "anchor": "checkbox",
+      "status": "found"
+    },
+    {
+      "name": "Select",
+      "purpose": "提供下拉选择菜单，让用户在多个选项间选择",
+      "anchor": "select",
+      "status": "found"
+    },
+    {
+      "name": "DatePicker",
+      "purpose": "滑动选择日期的组件",
+      "anchor": "datepicker",
+      "status": "found"
+    },
+    {
+      "name": "TimePicker",
+      "purpose": "滑动选择时间的组件",
+      "anchor": "timepicker",
+      "status": "found"
+    },
+    {
+      "name": "AlertDialog",
+      "purpose": "显示警告弹窗组件，可设置文本内容与响应回调",
+      "anchor": "alertdialog",
+      "status": "found"
+    },
+    {
+      "name": "CustomDialog",
+      "purpose": "通过CustomDialogController类显示自定义弹窗，支持完全自定义样式与内容",
+      "anchor": "customdialog",
+      "status": "found"
+    },
+    {
+      "name": "ActionSheet",
+      "purpose": "列表弹窗，提供多个选项供用户选择",
+      "anchor": "actionsheet",
+      "status": "found"
+    },
+    {
+      "name": "Menu",
+      "purpose": "以垂直列表形式显示的菜单，需配合bindMenu/bindContextMenu使用",
+      "anchor": "menu",
+      "status": "found"
+    },
+    {
+      "name": "Toggle",
+      "purpose": "提供勾选框样式、状态按钮样式和开关样式",
+      "anchor": "toggle",
+      "status": "found"
+    },
+    {
+      "name": "Radio",
+      "purpose": "单选框，提供相应的用户交互选择项",
+      "anchor": "radio",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Button、TextInput、TextArea、Checkbox、Select、DatePicker、TimePicker、Toggle、Radio 均为 ArkUI 内置组件（ArkTS Component），无需 import 语句，可直接在 build() 中使用",
+    "AlertDialog 和 ActionSheet 推荐通过 getUIContext().showAlertDialog() / getUIContext().showActionSheet() 调用以避免 UI 上下文不明确问题",
+    "CustomDialog 需使用 @CustomDialog 装饰器装饰 struct，并通过 CustomDialogController 管理生命周期",
+    "Menu 组件不能单独使用，必须配合宿主组件的 bindMenu 或 bindContextMenu 属性挂载",
+    "Checkbox 从 API 11 开始默认样式从圆角方形变为圆形",
+    "Radio 从 API 12 开始默认选中样式从 DOT 变为 TICK",
+    "Button API 18 起 ButtonType 默认值从 Capsule 变更为 ROUNDED_RECTANGLE"
+  ],
+  "missingApis": []
+}

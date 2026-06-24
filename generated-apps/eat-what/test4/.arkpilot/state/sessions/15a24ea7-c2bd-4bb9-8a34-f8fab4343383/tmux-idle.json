@@ -1,0 +1,10 @@
+{
+  "idle": true,
+  "idle_at": "2026-06-20T02:30:35.924Z",
+  "session_id": "15a24ea7-c2bd-4bb9-8a34-f8fab4343383",
+  "hook_event_name": "Stop",
+  "stop_reason": "normal",
+  "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/15a24ea7-c2bd-4bb9-8a34-f8fab4343383.jsonl",
+  "codex_session_id": "",
+  "model": ""
+}

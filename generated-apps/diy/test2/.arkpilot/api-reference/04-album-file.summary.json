@@ -1,0 +1,117 @@
+{
+  "module": "04-album-file.md",
+  "group": "04 — Album Access & File Picker",
+  "apiCount": 17,
+  "apis": [
+    {
+      "name": "PhotoViewPicker (photoAccessHelper)",
+      "purpose": "图库选择器，拉起系统界面让用户选取图片/视频，返回具有永久授权的URI",
+      "anchor": "photoviewpicker-photoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "picker.DocumentViewPicker",
+      "purpose": "文档选择器，支持选择和保存任意格式文档",
+      "anchor": "documentviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "picker.AudioViewPicker",
+      "purpose": "音频选择器，支持选择和保存音频文件",
+      "anchor": "audioviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "picker.PhotoViewPicker (deprecated)",
+      "purpose": "已废弃的图库选择器（API 12+），推荐迁移至 photoAccessHelper.PhotoViewPicker",
+      "anchor": "photoviewpickerdeprecated",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.stat",
+      "purpose": "获取文件或目录详细属性信息",
+      "anchor": "fileiostat",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.openSync",
+      "purpose": "同步方法打开文件或目录，支持URI",
+      "anchor": "fileioopensync",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.read",
+      "purpose": "从已打开的文件描述符中读取数据",
+      "anchor": "fileioread",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.write",
+      "purpose": "向已打开的文件描述符写入数据",
+      "anchor": "fileiowrite",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.closeSync",
+      "purpose": "同步关闭文件",
+      "anchor": "fileioclosesync",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.mkdir",
+      "purpose": "创建目录",
+      "anchor": "fileiomkdir",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.unlink",
+      "purpose": "删除文件",
+      "anchor": "fileiounlink",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.copyFile",
+      "purpose": "复制文件",
+      "anchor": "fileiocopyfile",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.readText",
+      "purpose": "以文本形式读取文件内容",
+      "anchor": "fileioreadtext",
+      "status": "found"
+    },
+    {
+      "name": "fileio.stat (deprecated)",
+      "purpose": "已废弃的文件信息获取接口，迁移至 fileIo.stat",
+      "anchor": "fileiostat-deprecated",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper.getPhotoAccessHelper",
+      "purpose": "获取相册管理模块实例，用于访问和修改媒体文件",
+      "anchor": "photoaccesshelpergetphotoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "phAccessHelper.getAssets",
+      "purpose": "获取图片和视频资源，支持通过picker返回的URI查询",
+      "anchor": "getassets",
+      "status": "found"
+    },
+    {
+      "name": "phAccessHelper.createAsset",
+      "purpose": "创建图片或视频资源到媒体库",
+      "anchor": "createasset",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "picker.PhotoViewPicker (from @kit.CoreFileKit) 从 API 12 起废弃，照片/视频选取必须使用 photoAccessHelper.PhotoViewPicker (from @kit.MediaLibraryKit)，且新版返回永久授权URI",
+    "@ohos.fileio 从 API 9 起废弃，所有文件 IO 操作迁移至 @ohos.file.fs（导入名 fileIo，包 @kit.CoreFileKit）",
+    "photoAccessHelper.getAssets 通过 PhotoViewPicker 返回的 URI 调用时无需 ohos.permission.READ_IMAGEVIDEO 权限，直接查询即可",
+    "file.picker 的 DocumentViewPicker 和 AudioViewPicker 推荐使用带 context 的构造函数（API 12+）以避免概率性拉起失败",
+    "file.fs 从 API 22 开始支持直接传入 URI 作为 path 参数，不再需要手动转换沙箱路径"
+  ],
+  "missingApis": []
+}

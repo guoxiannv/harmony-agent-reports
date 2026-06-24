@@ -1,0 +1,63 @@
+{
+  "module": "02-persistence.md",
+  "group": "02 — Data Persistence (数据持久化)",
+  "apiCount": 8,
+  "apis": [
+    {
+      "name": "data.preferences (Preferences)",
+      "purpose": "轻量级Key-Value键值型数据持久化，支持数字/字符串/布尔及其数组",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.preferences",
+      "purpose": "用户首选项模块，提供KV存储的get/set/delete/flush/订阅等接口",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "data.relationalStore (RDB)",
+      "purpose": "关系型数据库（基于SQLite），提供完整的SQL CRUD及事务管理",
+      "anchor": "ohosdatarelationalstore-关系型数据库",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.relationalStore",
+      "purpose": "关系型数据库模块，提供RdbStore/ResultSet/Predicates等接口",
+      "anchor": "ohosdatarelationalstore-关系型数据库",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore",
+      "purpose": "RDB管理接口，提供insert/update/delete/query/querySql/executeSql/事务等方法",
+      "anchor": "interface-rdbstore",
+      "status": "found"
+    },
+    {
+      "name": "ValueType",
+      "purpose": "数据字段允许类型，在不同模块下定义范围不同（preferences版含object/bigint；RDB版含Asset/Assets/Float32Array/bigint）",
+      "anchor": "types",
+      "status": "found"
+    },
+    {
+      "name": "ValuesBucket",
+      "purpose": "插入数据库用的键值对集合类型，以relationalStore.ValuesBucket = Record<string, ValueType>为准",
+      "anchor": "types",
+      "status": "found"
+    },
+    {
+      "name": "resultSet",
+      "purpose": "RDB查询结果集，提供行导航和列数据读取方法（goToNextRow/getString/getLong/close等）",
+      "anchor": "interface-resultset",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "ValueType在preferences和relationalStore下定义不同——preferences不含null但含object|bigint；relationalStore含null|Asset|Assets|Float32Array|bigint",
+    "ValuesBucket有多个重叠定义（relationalStore.Types / @ohos.data.ValuesBucket / commonType），使用时以relationalStore命名空间下的为准",
+    "Preferences不支持进程并发安全，有文件损坏和数据丢失风险",
+    "RDB单条数据建议不超过2MB，大数据量查询建议控制在5000条以内或在TaskPool中执行",
+    "导入路径统一使用@kit.ArkData，如 import { preferences, relationalStore } from '@kit.ArkData'"
+  ],
+  "missingApis": []
+}

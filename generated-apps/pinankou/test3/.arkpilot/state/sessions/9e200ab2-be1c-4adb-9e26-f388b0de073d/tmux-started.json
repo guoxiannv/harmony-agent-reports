@@ -1,0 +1,10 @@
+{
+  "started": true,
+  "started_at": "2026-06-22T07:36:11.952Z",
+  "session_id": "9e200ab2-be1c-4adb-9e26-f388b0de073d",
+  "hook_event_name": "SessionStart",
+  "source": "startup",
+  "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test3/9e200ab2-be1c-4adb-9e26-f388b0de073d.jsonl",
+  "codex_session_id": "",
+  "model": "deepseek-v4-flash"
+}

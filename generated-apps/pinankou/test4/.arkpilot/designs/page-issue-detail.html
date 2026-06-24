@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 隐患详情</title>
+  <style>
+    :root {
+      --brand-deep: #115E59; --brand-primary: #0D9488; --brand-bright: #14B8A6; --brand-light: #5EEAD4; --brand-mint: #CCFBF1; --brand-pale: #F0FDFA;
+      --safe: #059669; --safe-bg: #D1FAE5; --warning: #B45309; --warning-bg: #FEF3C7; --danger: #DC2626; --danger-bg: #FEE2E2; --critical: #991B1B; --critical-bg: #FECACA;
+      --text-primary: #0F172A; --text-secondary: #475569; --text-tertiary: #94A3B8;
+      --surface-primary: #FFFFFF; --surface-secondary: #F8FAFC; --surface-tertiary: #E2E8F0;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04); --shadow-md: 0 4px 14px -3px rgba(13,148,136,0.13); --shadow-lg: 0 12px 32px -10px rgba(13,148,136,0.20); --glow-brand: 0 0 18px rgba(94,234,212,0.48);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--brand-pale); color: var(--text-primary); min-height: 100vh; max-width: 420px; margin: 0 auto; padding-bottom: 110px; }
+    .header { padding: 16px; display: flex; align-items: center; gap: 10px; }
+    .back-btn { width: 36px; height: 36px; border-radius: 10px; background: var(--surface-secondary); display: flex; align-items: center; justify-content: center; border: none; }
+    .header-title { font-size: 18px; font-weight: 600; }
+    .hero { height: 160px; background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright), var(--brand-light)); margin: 0 16px 16px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: var(--shadow-md); }
+    .hero-icon svg { width: 64px; height: 64px; opacity: 0.9; }
+    .content { padding: 0 16px; }
+    .title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .page-title { font-size: 20px; font-weight: 700; color: var(--text-primary); flex: 1; }
+    .badge { padding: 5px 10px; border-radius: 9999px; font-size: 10px; font-weight: 700; }
+    .badge-critical { background: var(--critical-bg); color: var(--critical); }
+    .badge-status { background: var(--danger-bg); color: var(--danger); }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .info-cell { background: var(--surface-primary); border-radius: 14px; padding: 14px; box-shadow: var(--shadow-sm); }
+    .info-label { font-size: 11px; color: var(--text-tertiary); margin-bottom: 4px; }
+    .info-value { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .card { background: var(--surface-primary); border-radius: 16px; padding: 16px; box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+    .card-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .card-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+    .photo { aspect-ratio: 1; background: var(--surface-secondary); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-size: 12px; }
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--surface-tertiary); }
+    .timeline-item { position: relative; margin-bottom: 18px; }
+    .timeline-dot { position: absolute; left: -22px; top: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid var(--brand-primary); }
+    .timeline-item.done .timeline-dot { background: var(--brand-primary); }
+    .timeline-time { font-size: 11px; color: var(--text-tertiary); }
+    .timeline-text { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-top: 2px; }
+    .timeline-desc { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+    .action-bar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; background: var(--surface-primary); border-top: 1px solid rgba(226,232,240,0.6); padding: 12px 16px 24px; display: flex; gap: 10px; box-shadow: var(--shadow-lg); }
+    .btn-primary { flex: 1; height: 46px; border-radius: 9999px; border: none; background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; font-size: 14px; font-weight: 700; box-shadow: var(--shadow-md); }
+    .btn-secondary { flex: 1; height: 46px; border-radius: 9999px; border: none; background: rgba(13,148,136,0.08); color: var(--brand-primary); font-size: 14px; font-weight: 600; }
+    .btn-ghost { width: 46px; height: 46px; border-radius: 9999px; border: 1px solid var(--surface-tertiary); background: #fff; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body data-page-id="issue-detail">
+  <header class="header">
+    <button class="back-btn" aria-label="返回上一级">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一级</title><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <h1 class="header-title">隐患详情</h1>
+  </header>
+
+  <section class="hero">
+    <div class="hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><title>重大风险隐患标识</title><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="title-row">
+      <h2 class="page-title" data-ui-id="issue-detail-title">A栋3层消防通道堆物阻塞</h2>
+      <span class="badge badge-critical" data-ui-id="issue-detail-risk-badge">重大</span>
+      <span class="badge badge-status" data-ui-id="issue-detail-status-badge">待处理</span>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <div class="info-label">位置</div>
+        <div class="info-value" data-ui-id="issue-detail-location">A栋3层东侧通道</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-label">负责人</div>
+        <div class="info-value" data-ui-id="issue-detail-assignee">张主管</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-label">截止日期</div>
+        <div class="info-value" data-ui-id="issue-detail-due-date">2026-06-23</div>
+      </div>
+      <div class="info-cell">
+        <div class="info-label">上报人</div>
+        <div class="info-value">王师傅</div>
+      </div>
+    </div>
+
+    <article class="card">
+      <h3 class="card-title">问题描述</h3>
+      <p class="card-text" data-ui-id="issue-detail-description">消防通道内堆放废旧纸箱及清洁工具，宽度不足1.2米，存在严重消防安全隐患，需立即清理并拍照确认整改前后对比。</p>
+    </article>
+
+    <article class="card">
+      <h3 class="card-title">现场照片</h3>
+      <div class="photo-grid" data-ui-id="issue-detail-photo-list">
+        <div class="photo" data-ui-id="issue-detail-photo-0">照片1</div>
+        <div class="photo" data-ui-id="issue-detail-photo-1">照片2</div>
+        <div class="photo" data-ui-id="issue-detail-photo-2">照片3</div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h3 class="card-title">整改进度</h3>
+      <div class="timeline" data-ui-id="issue-detail-timeline-list">
+        <div class="timeline-item done" data-ui-id="issue-detail-timeline-0">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">今天 08:45</div>
+          <div class="timeline-text">隐患上报</div>
+          <div class="timeline-desc">王师傅在巡检时发现并上报</div>
+        </div>
+        <div class="timeline-item done" data-ui-id="issue-detail-timeline-1">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">今天 09:02</div>
+          <div class="timeline-text">指派整改人</div>
+          <div class="timeline-desc">系统指派张主管负责整改</div>
+        </div>
+        <div class="timeline-item" data-ui-id="issue-detail-timeline-2">
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">待处理</div>
+          <div class="timeline-text">整改中</div>
+          <div class="timeline-desc">等待负责人确认并开始处理</div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <footer class="action-bar">
+    <button class="btn-primary" data-ui-id="issue-detail-progress-action-button">更新进度</button>
+    <button class="btn-secondary" data-ui-id="issue-detail-edit-button">编辑</button>
+    <button class="btn-ghost" data-ui-id="issue-detail-close-button" aria-label="关闭隐患">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>关闭隐患</title><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </footer>
+</body>
+</html>

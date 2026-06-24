@@ -1,0 +1,50 @@
+{
+  "module": "05-gesture-lifecycle.md",
+  "group": "05 -- Gesture & Lifecycle",
+  "apiCount": 6,
+  "apis": [
+    {
+      "name": "onClick",
+      "purpose": "组件被点击时触发的事件回调",
+      "anchor": "onclick",
+      "status": "found"
+    },
+    {
+      "name": "TapGesture",
+      "purpose": "单击、双击和多次点击事件的识别手势",
+      "anchor": "tapgesture",
+      "status": "found"
+    },
+    {
+      "name": "onTouch",
+      "purpose": "手指触摸动作（按下/滑动/抬起）触发事件回调",
+      "anchor": "ontouch",
+      "status": "found"
+    },
+    {
+      "name": "aboutToAppear",
+      "purpose": "自定义组件创建后、build()执行前的初始化生命周期回调",
+      "anchor": "abouttoappear",
+      "status": "found"
+    },
+    {
+      "name": "onPageShow",
+      "purpose": "@Entry页面每次显示时触发的生命周期回调",
+      "anchor": "onpageshow",
+      "status": "found"
+    },
+    {
+      "name": "AlertDialog",
+      "purpose": "显示警告弹窗组件，可设置文本内容与响应回调",
+      "anchor": "alertdialog",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "AlertDialog.show() 从 API 18 开始废弃，建议统一使用 getUIContext().showAlertDialog()",
+    "onClick 和 TapGesture 都可实现点击响应，区别在于 onClick 是通用事件，TapGesture 是手势对象（支持自定义点击次数/手指数），通过 .gesture() 绑定；同时存在时 TapGesture 优先级更高",
+    "onTouch 触摸事件默认冒泡，可通过 event.stopPropagation() 阻止",
+    "aboutToAppear 在组件创建后 build() 前调用（每次创建均触发），onPageShow 仅在 @Entry 页面每次显示时触发"
+  ],
+  "missingApis": []
+}

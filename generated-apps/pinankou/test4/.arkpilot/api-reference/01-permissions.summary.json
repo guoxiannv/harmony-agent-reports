@@ -1,0 +1,74 @@
+{
+  "module": "01-permissions.md",
+  "group": "Permissions (权限声明)",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "@ohos.abilityAccessCtrl (程序访问控制管理)",
+      "purpose": "提供应用程序的权限校验和管理能力，包括创建访问控制管理器、校验权限、请求授权、订阅权限状态变化等",
+      "anchor": "@ohosabilityaccessctrl-程序访问控制管理",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.bundle.bundleManager (应用程序包管理模块)",
+      "purpose": "提供应用信息的查询能力，包括获取当前应用的BundleInfo以提取accessTokenId供权限校验使用",
+      "anchor": "@ohosbundlebundlemanager-应用程序包管理模块",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.CAMERA",
+      "purpose": "允许应用使用相机拍摄照片和视频的用户授权权限字符串常量",
+      "anchor": "ohospermission-权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.APPROXIMATELY_LOCATION",
+      "purpose": "允许应用获取设备模糊位置信息的用户授权权限字符串常量",
+      "anchor": "ohospermission-权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.LOCATION",
+      "purpose": "允许应用获取设备精确位置信息的用户授权权限字符串常量",
+      "anchor": "ohospermission-权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.LOCATION_IN_BACKGROUND",
+      "purpose": "允许应用在后台获取设备位置信息的用户授权权限字符串常量",
+      "anchor": "ohospermission-权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.READ_MEDIA",
+      "purpose": "允许应用读取用户外部存储中的媒体文件的用户授权权限字符串常量",
+      "anchor": "ohospermission-权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.WRITE_MEDIA",
+      "purpose": "允许应用读写用户外部存储中的媒体文件的用户授权权限字符串常量",
+      "anchor": "ohospermission-权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.CALL_PHONE",
+      "purpose": "允许应用拨打电话的用户授权权限字符串常量",
+      "anchor": "ohospermission-权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "PermissionRequestResult",
+      "purpose": "权限请求结果对象，包含permissions、authResults、dialogShownResults、errorReasons四个字段",
+      "anchor": "permissionrequestresult",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "全部 10 个 API/权限均已在指定目标目录中找到，无缺失",
+    "Permissions 类型是 @kit.AbilityKit 导出的字符串字面量联合类型，没有单独的文档文件",
+    "ohos.permission.* 权限字符串常量不是独立 API 文档，而是 Permissions 联合类型的成员，在 abilityAccessCtrl 和 PermissionRequestResult 文档中被引用",
+    "Location 权限需注意精确/模糊/后台三级粒度组合限制"
+  ],
+  "missingApis": []
+}

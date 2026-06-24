@@ -1,0 +1,58 @@
+{
+  "module": "01-layout-containers.md",
+  "group": "01 — Layout & Container Components",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "Column",
+      "purpose": "垂直方向线性布局容器，沿垂直方向排列子组件",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "水平方向线性布局容器，沿水平方向排列子组件",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，子组件按顺序依次入栈覆盖",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Flex",
+      "purpose": "弹性布局容器，高效排列、对齐子元素并分配剩余空间",
+      "anchor": "flex",
+      "status": "found"
+    },
+    {
+      "name": "Blank",
+      "purpose": "空白填充组件，在容器主轴方向自动填充空余空间",
+      "anchor": "blank",
+      "status": "found"
+    },
+    {
+      "name": "Divider",
+      "purpose": "分割线组件，分隔不同内容块或内容元素",
+      "anchor": "divider",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动的容器组件，当子组件尺寸超过父组件时内容可滚动",
+      "anchor": "scroll",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有 7 个 API 均找到，均为内置 ArkUI 组件，无需显式 import",
+    "Flex 有二次布局开销，性能敏感场景建议使用 Column/Row 替代",
+    "Flex 不设主轴长度时默认撑满父容器，而 Column/Row 自适应子组件大小",
+    "Scroll 需要 Scroller 控制器实例绑定来控制滚动",
+    "Blank 仅在父组件为 Row/Column/Flex 时生效",
+    "所有 API 从 API version 7 开始支持，元服务从 API version 11 开始支持"
+  ],
+  "missingApis": []
+}

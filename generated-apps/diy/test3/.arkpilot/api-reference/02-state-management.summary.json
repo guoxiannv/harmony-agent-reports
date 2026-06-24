@@ -1,0 +1,32 @@
+{
+  "module": "02-state-management.md",
+  "group": "02 — State Management",
+  "apiCount": 15,
+  "apis": [
+    { "name": "@State", "purpose": "组件内本地响应式状态（签到状态、表单字段）", "anchor": "state-v1-内置装饰器", "status": "found" },
+    { "name": "@Prop", "purpose": "父→子单向数据绑定", "anchor": "prop-v1-内置装饰器", "status": "found" },
+    { "name": "@Link", "purpose": "父子组件双向数据绑定", "anchor": "link-v1-内置装饰器", "status": "found" },
+    { "name": "@Watch", "purpose": "状态变量变化监听——自动计算积分、检测沉睡条件", "anchor": "watch-api-7", "status": "found" },
+    { "name": "@Monitor", "purpose": "状态变量变化监听（V2），支持多变量、变化前后值", "anchor": "monitor-api-12-v2", "status": "found" },
+    { "name": "@Provide/@Consume", "purpose": "祖先→后代跨层级状态共享", "anchor": "provide--consume-v1-内置装饰器", "status": "found" },
+    { "name": "@StorageProp/@StorageLink", "purpose": "AppStorage 响应式绑定——组件自动同步 AppStorage", "anchor": "storageprop--storagelink", "status": "found" },
+    { "name": "@LocalStorageProp/@LocalStorageLink", "purpose": "LocalStorage 响应式绑定——页面级状态共享", "anchor": "localstorageprop--localstoragelink", "status": "found" },
+    { "name": "@ObjectLink + @Observed", "purpose": "嵌套对象响应式双向绑定（课程对象、库存条目）", "anchor": "objectlink--observed-v1-内置装饰器", "status": "found" },
+    { "name": "@Builder/@BuilderParam", "purpose": "可复用 UI 构建函数（ClayButton、ClayCard 等原子组件）", "anchor": "builder--builderparam-v1-内置装饰器", "status": "found" },
+    { "name": "@Computed", "purpose": "V2 计算属性——派生值（积分等级、连续签到天数）", "anchor": "computed-v2-api-12", "status": "found" },
+    { "name": "@Env", "purpose": "环境变量装饰器——注入系统环境变量到组件", "anchor": "env-api-7", "status": "found" },
+    { "name": "AppStorage", "purpose": "应用级响应式共享状态——会员档案、签到状态全局访问", "anchor": "appstorage-api-10", "status": "found" },
+    { "name": "LocalStorage", "purpose": "页面级响应式状态存储", "anchor": "localstorage-api-9", "status": "found" },
+    { "name": "PersistentStorage", "purpose": "跨会话持久化——签到记录、用户配置持久保存", "anchor": "persistentstorage-api-9", "status": "found" }
+  ],
+  "notableFindings": [
+    "所有 V1 装饰器（@State/@Prop/@Link/@Observed/@ObjectLink/@Provide/@Consume/@Builder/@BuilderParam）是 ArkTS 编译器内置语言特性，无需 import 语句",
+    "@Watch 和 @Monitor 是唯二有独立 API 参考文档文件的状态变化监听装饰器",
+    "@Computed 是 V2 专属（API 12+），需配合 @ObservedV2/@Trace 使用",
+    "AppStorage/LocalStorage/PersistentStorage 是内置运行时对象，同样无需 import",
+    "V2 状态管理（ohos.arkui.StateManagement）需从 @kit.ArkUI 显式 import",
+    "@Watch 用于 V1 状态管理，@Monitor 用于 V2 状态管理，两者不混用",
+    "PersistentStorage 需在 AppStorage 访问前初始化，保证跨会话数据正确桥接"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,37 @@
+{
+  "module": "02-component-snapshot.md",
+  "group": "02 — Component Snapshot (组件截图)",
+  "apiCount": 20,
+  "apis": [
+    { "name": "componentSnapshot.get", "purpose": "Get snapshot of a mounted component by its id (async, callback)", "anchor": "componentsnapshotgetdeprecated", "status": "found" },
+    { "name": "componentSnapshot.get (Promise)", "purpose": "Get snapshot of a mounted component by its id (async, Promise)", "anchor": "componentsnapshotgetdeprecated-1", "status": "found" },
+    { "name": "componentSnapshot.getSync", "purpose": "Get snapshot of a mounted component synchronously by id", "anchor": "componentsnapshotgetsync12", "status": "found" },
+    { "name": "componentSnapshot.createFromBuilder", "purpose": "Render a CustomBuilder offscreen and snapshot it (callback)", "anchor": "componentsnapshotcreatefrombuilderdeprecated", "status": "found" },
+    { "name": "componentSnapshot.createFromBuilder (Promise)", "purpose": "Render a CustomBuilder offscreen and snapshot it (Promise)", "anchor": "componentsnapshotcreatefrombuilderdeprecated-1", "status": "found" },
+    { "name": "ComponentSnapshot.get (UIContext, callback)", "purpose": "Get snapshot of a mounted component via UIContext (async, callback)", "anchor": "get12", "status": "found" },
+    { "name": "ComponentSnapshot.get (UIContext, Promise)", "purpose": "Get snapshot of a mounted component via UIContext (async, Promise)", "anchor": "get12-1", "status": "found" },
+    { "name": "ComponentSnapshot.getSync (UIContext)", "purpose": "Get snapshot of a mounted component synchronously via UIContext", "anchor": "getsync12", "status": "found" },
+    { "name": "ComponentSnapshot.createFromBuilder (UIContext, callback)", "purpose": "Offscreen builder snapshot via UIContext (callback)", "anchor": "createfrombuilder12", "status": "found" },
+    { "name": "ComponentSnapshot.createFromBuilder (UIContext, Promise)", "purpose": "Offscreen builder snapshot via UIContext (Promise)", "anchor": "createfrombuilder12-1", "status": "found" },
+    { "name": "ComponentSnapshot.getWithUniqueId", "purpose": "Get snapshot by FrameNode uniqueId (async, Promise)", "anchor": "getwithuniqueid15", "status": "found" },
+    { "name": "ComponentSnapshot.getSyncWithUniqueId", "purpose": "Get snapshot by FrameNode uniqueId synchronously", "anchor": "getsyncwithuniqueid15", "status": "found" },
+    { "name": "ComponentSnapshot.createFromComponent", "purpose": "Snapshot a ComponentContent object (Promise, API 18+)", "anchor": "createfromcomponent18", "status": "found" },
+    { "name": "ComponentSnapshot.getSizeLimitation", "purpose": "Query max width/height limit for component snapshots", "anchor": "getsizelimitation", "status": "found" },
+    { "name": "SnapshotOptions", "purpose": "Options for snapshot: scale, waitUntilRenderFinished, region, colorMode, dynamicRangeMode", "anchor": "snapshotoptions12", "status": "found" },
+    { "name": "SnapshotSizeLimitation", "purpose": "Max width and height constraints for component snapshots", "anchor": "snapshotsizelimitation", "status": "found" },
+    { "name": "ColorModeOptions", "purpose": "Color space configuration for snapshot (SRGB/DISPLAY_P3/DISPLAY_BT2020_SRGB)", "anchor": "colormodeoptions23", "status": "found" },
+    { "name": "DynamicRangeModeOptions", "purpose": "Dynamic range mode configuration for snapshot (STANDARD/HIGH/CONSTRAINT)", "anchor": "dynamicrangemodeoptions23", "status": "found" },
+    { "name": "SnapshotRegionType", "purpose": "Union type for snapshot region: SnapshotRegion or LocalizedSnapshotRegion", "anchor": "snapshotregiontype15", "status": "found" },
+    { "name": "SnapshotRegion", "purpose": "Rectangular region for partial snapshot (left/top/right/bottom)", "anchor": "snapshotregion15", "status": "found" }
+  ],
+  "notableFindings": [
+    "`componentSnapshot.get()` and `createFromBuilder()` (top-level) are deprecated since API 18; use UIContext.getComponentSnapshot() instance methods instead (API 12+).",
+    "`getSync` blocks the main thread with a 3-second timeout; use async `get` for non-blocking snapshots.",
+    "Offscreen snapshots (createFromBuilder) do not support animation properties and have ~500ms inherent delay.",
+    "XComponent/Video/camera stream components should use `createPixelMapFromSurface` instead of componentSnapshot.",
+    "Snapshot captures only the component's own area — overlapping siblings and out-of-area drawing are not included.",
+    "`LocalizedSnapshotRegion` adapts to RTL layouts by flipping the region horizontally.",
+    "`SnapshotSizeLimitation` is available from API version 26.0.0 only."
+  ],
+  "missingApis": []
+}

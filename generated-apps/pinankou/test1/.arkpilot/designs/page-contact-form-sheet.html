@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 联系人表单</title>
+  <style>
+    :root { --sky:#38BDF8; --mint:#34D399; --teal:#0F766E; --slate-900:#0F172A; --slate-600:#475569; --slate-400:#94A3B8; --slate-200:#E2E8F0; }
+    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html,body { margin:0; padding:0; height:100%; font-family:"PingFang SC","HarmonyOS Sans SC","SF Pro Text",-apple-system,BlinkMacSystemFont,sans-serif; background:rgba(15,23,42,0.5); }
+    #app { max-width:390px; margin:0 auto; min-height:100%; display:flex; align-items:flex-end; }
+    .sheet { width:100%; background:#fff; border-radius:28px 28px 0 0; padding:20px 16px calc(24px + env(safe-area-inset-bottom,0)); }
+    .drag-bar { width:40px; height:5px; border-radius:3px; background:var(--slate-200); margin:0 auto 18px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    .sheet-title { font-size:20px; font-weight:700; color:var(--teal); margin:0; }
+    .close-btn { width:36px; height:36px; border-radius:12px; background:#F1F5F9; border:none; display:grid; place-items:center; color:var(--slate-600); }
+    .form-group { margin-bottom:18px; }
+    .form-label { display:block; font-size:13px; font-weight:600; color:var(--slate-600); margin-bottom:8px; letter-spacing:0.5px; text-transform:uppercase; }
+    .form-input { width:100%; padding:14px 16px; border-radius:14px; background:#F8FAFC; border:1px solid var(--slate-200); font-size:15px; outline:none; color:var(--slate-900); }
+    .form-input:focus { border-color:var(--sky); box-shadow:0 0 0 4px rgba(56,189,248,0.12); }
+    .footer { display:flex; gap:12px; margin-top:8px; }
+    .btn-save { flex:1; padding:14px; border-radius:16px; background:linear-gradient(135deg,var(--sky) 0%,var(--mint) 100%); color:#fff; font-size:16px; font-weight:700; border:none; box-shadow:0 10px 24px -6px rgba(14,165,233,0.35); }
+    .btn-delete { padding:14px 20px; border-radius:16px; background:#FEE2E2; color:#DC2626; font-size:16px; font-weight:600; border:none; }
+  </style>
+</head>
+<body>
+  <div id="app" data-page-id="contact-form-sheet">
+    <div class="sheet">
+      <div class="drag-bar"></div>
+      <div class="topbar">
+        <h1 class="sheet-title">新增应急联系人</h1>
+        <button class="close-btn" data-ui-id="contact-form-close" aria-label="关闭表单">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>关闭联系人表单</title><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">姓名</label>
+        <input type="text" class="form-input" data-ui-id="contact-form-name" placeholder="联系人姓名" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">角色 / 关系</label>
+        <input type="text" class="form-input" data-ui-id="contact-form-role" placeholder="例如：安全主管、物业值班室" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">电话</label>
+        <input type="tel" class="form-input" data-ui-id="contact-form-phone" placeholder="11位手机号或座机" />
+      </div>
+
+      <div class="footer">
+        <button class="btn-delete" data-ui-id="contact-form-delete">删除</button>
+        <button class="btn-save" data-ui-id="contact-form-save">保存</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+{
+  "module": "07-background-tasks.md",
+  "group": "07 — 后台任务 (Background Tasks)",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "workScheduler.startWork",
+      "purpose": "申请延迟任务，添加到执行队列，满足触发条件后由系统调度执行",
+      "anchor": "workschedulerstartwork",
+      "status": "found"
+    },
+    {
+      "name": "workScheduler.stopWork",
+      "purpose": "取消延迟任务，可选是否从执行队列移除",
+      "anchor": "workschedulerstopwork",
+      "status": "found"
+    },
+    {
+      "name": "workScheduler.getWorkStatus",
+      "purpose": "通过 workId 获取延迟任务状态（Callback 和 Promise 两种重载）",
+      "anchor": "workschedulergetworkstatus",
+      "status": "found"
+    },
+    {
+      "name": "WorkInfo",
+      "purpose": "延迟任务信息类型，包含 workId/bundleName/abilityName 及触发条件",
+      "anchor": "workinfo",
+      "status": "found"
+    },
+    {
+      "name": "workScheduler.work",
+      "purpose": "workScheduler 模块命名空间，所有延迟任务 API 和类型挂载于此",
+      "anchor": "workschedulerwork模块命名空间",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.resourceschedule.workScheduler",
+      "purpose": "延迟任务调度模块，提供延迟任务注册/取消/查询能力，Stage 模型专用",
+      "anchor": "ohosresourcescheduleworkscheduler",
+      "status": "found"
+    },
+    {
+      "name": "backgroundTaskManager.startBackgroundRunning",
+      "purpose": "申请长时任务（需 ohos.permission.KEEP_BACKGROUND_RUNNING），支持多类型和多任务",
+      "anchor": "backgroundtaskmanagerstartbackgroundrunning",
+      "status": "found"
+    },
+    {
+      "name": "backgroundTaskManager.requestSuspendDelay",
+      "purpose": "申请短时任务，超时前 6 秒回调通知应用",
+      "anchor": "backgroundtaskmanagerrequestsuspenddelay",
+      "status": "found"
+    },
+    {
+      "name": "backgroundTaskManager.cancelSuspendDelay",
+      "purpose": "取消短时任务",
+      "anchor": "backgroundtaskmanagercancelsuspenddelay",
+      "status": "found"
+    },
+    {
+      "name": "backgroundTaskManager.BackgroundMode",
+      "purpose": "长时任务类型枚举（DATA_TRANSFER/AUDIO_PLAYBACK/LOCATION 等 8 种）",
+      "anchor": "backgroundmode",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.backgroundTaskManager",
+      "purpose": "后台任务管理模块（完整名 @ohos.resourceschedule.backgroundTaskManager），提供长时/短时任务能力",
+      "anchor": "ohosbackgroundtaskmanager",
+      "status": "found"
+    },
+    {
+      "name": "WorkSchedulerInfo",
+      "purpose": "文档中无此类型名；实际延迟任务信息类型为 WorkInfo（workScheduler.WorkInfo）",
+      "anchor": "workschedulerinfo",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "两个模块均从 @kit.BackgroundTasksKit 导入（import { workScheduler } from '@kit.BackgroundTasksKit' / import { backgroundTaskManager } from '@kit.BackgroundTasksKit'），非旧式 @ohos.resourceschedule 路径",
+    "WorkSchedulerInfo 不存在于文档中，实际类型名为 WorkInfo（workScheduler.WorkInfo）",
+    "短时任务最长 3 分钟，低电量时最长 1 分钟",
+    "延迟任务 workScheduler 接口仅可在 Stage 模型下使用",
+    "startBackgroundRunning 需声明 ohos.permission.KEEP_BACKGROUND_RUNNING 权限"
+  ],
+  "missingApis": [
+    "WorkSchedulerInfo"
+  ]
+}

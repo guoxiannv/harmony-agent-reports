@@ -1,0 +1,61 @@
+{
+  "module": "06-phone-sms.md",
+  "group": "06 — Phone & SMS 一键拨号与短信",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "@ohos.telephony.call",
+      "purpose": "拨打电话模块，提供呼叫管理功能包括拨号、通话状态查询、号码格式化等",
+      "anchor": "ohostelegonycall",
+      "status": "found"
+    },
+    {
+      "name": "call.makeCall",
+      "purpose": "跳转到拨号界面并显示待拨号码，无需特殊权限",
+      "anchor": "callmakecall",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.telephony.sms",
+      "purpose": "短信服务模块，提供短信创建、发送、SIM卡槽查询等基础能力",
+      "anchor": "ohostelephonysis",
+      "status": "found"
+    },
+    {
+      "name": "sms.sendSms",
+      "purpose": "发送短信（实际API名为sms.sendShortMessage）",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@ohos.telephony.radio",
+      "purpose": "网络搜索模块，提供无线接入技术查询、网络状态、信号强度等能力",
+      "anchor": "ohostelephonyradio",
+      "status": "found"
+    },
+    {
+      "name": "call.dialCall",
+      "purpose": "拨打电话（实际API名为call.dial，已废弃）",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "call.formatCallNumber",
+      "purpose": "格式化电话号码（实际API名为call.formatPhoneNumber）",
+      "anchor": "",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "sms.sendSms 不存在于文档中；实际接口为 sms.sendShortMessage() (API 10+) 或已废弃的 sms.sendMessage()",
+    "call.dialCall 不存在于文档中；实际为 call.dial() (已废弃于 API 9)，替代接口仅系统应用可用",
+    "call.formatCallNumber 不存在于文档中；实际为 call.formatPhoneNumber() 支持国家码参数 NumberFormatOptions",
+    "call.makeCall 是无权限要求的推荐方案，可从 UIAbility 跳转到拨号界面",
+    "sms.sendShortMessage 需要 ohos.permission.SEND_MESSAGES (仅系统应用可申请)"
+  ],
+  "missingApis": [
+    "sms.sendSms",
+    "call.dialCall",
+    "call.formatCallNumber"
+  ]
+}

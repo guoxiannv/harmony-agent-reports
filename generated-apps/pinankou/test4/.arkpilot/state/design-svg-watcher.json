@@ -1,0 +1,67 @@
+{
+  "pid": 82742,
+  "status": "controller-tick",
+  "launched_by_session_id": "0f2d858a-06b1-43fe-809f-ad45610f39a0",
+  "started_at": "2026-06-22T07:34:41.610Z",
+  "last_scan_at": "2026-06-22T08:11:09.077Z",
+  "last_change_at": "2026-06-22T07:54:31.834Z",
+  "html_signature": "[{\"name\":\"page-contact-form.html\",\"mtime_ms\":1782114871624,\"size\":5117},{\"name\":\"page-contacts.html\",\"mtime_ms\":1782114623644,\"size\":12272},{\"name\":\"page-home.html\",\"mtime_ms\":1782114195021,\"size\":11825},{\"name\":\"page-issue-detail.html\",\"mtime_ms\":1782114490452,\"size\":9512},{\"name\":\"page-issue-form.html\",\"mtime_ms\":1782114780652,\"size\":6147},{\"name\":\"page-issues.html\",\"mtime_ms\":1782114409609,\"size\":11336},{\"name\":\"page-patrol-checkin.html\",\"mtime_ms\":1782114823602,\"size\":5005},{\"name\":\"page-patrol.html\",\"mtime_ms\":1782114298792,\"size\":10758},{\"name\":\"page-stats.html\",\"mtime_ms\":1782114724798,\"size\":10233}]",
+  "html_files": [
+    {
+      "name": "page-contact-form.html",
+      "mtime_ms": 1782114871624,
+      "size": 5117
+    },
+    {
+      "name": "page-contacts.html",
+      "mtime_ms": 1782114623644,
+      "size": 12272
+    },
+    {
+      "name": "page-home.html",
+      "mtime_ms": 1782114195021,
+      "size": 11825
+    },
+    {
+      "name": "page-issue-detail.html",
+      "mtime_ms": 1782114490452,
+      "size": 9512
+    },
+    {
+      "name": "page-issue-form.html",
+      "mtime_ms": 1782114780652,
+      "size": 6147
+    },
+    {
+      "name": "page-issues.html",
+      "mtime_ms": 1782114409609,
+      "size": 11336
+    },
+    {
+      "name": "page-patrol-checkin.html",
+      "mtime_ms": 1782114823602,
+      "size": 5005
+    },
+    {
+      "name": "page-patrol.html",
+      "mtime_ms": 1782114298792,
+      "size": 10758
+    },
+    {
+      "name": "page-stats.html",
+      "mtime_ms": 1782114724798,
+      "size": 10233
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 32,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 32,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-22T08:11:09.077Z"
+}

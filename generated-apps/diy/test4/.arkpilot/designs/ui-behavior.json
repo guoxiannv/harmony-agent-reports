@@ -1,0 +1,238 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "appName": "手作·印记",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Member",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "name", "type": "string" },
+          { "name": "phone", "type": "string" },
+          { "name": "avatar", "type": "string | undefined" },
+          { "name": "crafts", "type": "string[]" },
+          { "name": "bio", "type": "string" },
+          { "name": "points", "type": "number" },
+          { "name": "level", "type": "string" },
+          { "name": "lastActiveAt", "type": "number" },
+          { "name": "createdAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "WorkPhoto",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "memberId", "type": "string" },
+          { "name": "uri", "type": "string" },
+          { "name": "caption", "type": "string" },
+          { "name": "createdAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "PointsTransaction",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "memberId", "type": "string" },
+          { "name": "type", "type": "'income' | 'expense'" },
+          { "name": "amount", "type": "number" },
+          { "name": "source", "type": "string" },
+          { "name": "createdAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "Course",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "title", "type": "string" },
+          { "name": "durationMinutes", "type": "number" },
+          { "name": "recipe", "type": "MaterialRecipe[]" }
+        ]
+      },
+      {
+        "name": "MaterialRecipe",
+        "fields": [
+          { "name": "materialId", "type": "string" },
+          { "name": "amount", "type": "number" }
+        ]
+      },
+      {
+        "name": "Material",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "name", "type": "string" },
+          { "name": "unit", "type": "string" },
+          { "name": "stock", "type": "number" },
+          { "name": "lowStockThreshold", "type": "number" }
+        ]
+      },
+      {
+        "name": "LessonBooking",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "memberId", "type": "string" },
+          { "name": "courseId", "type": "string" },
+          { "name": "date", "type": "string" },
+          { "name": "timeSlot", "type": "string" },
+          { "name": "status", "type": "'confirmed' | 'cancelled'" },
+          { "name": "createdAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "InventoryDeduction",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "materialId", "type": "string" },
+          { "name": "amount", "type": "number" },
+          { "name": "reason", "type": "string" },
+          { "name": "bookingId", "type": "string | undefined" },
+          { "name": "createdAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "AppSettings",
+        "fields": [
+          { "name": "checkinPoints", "type": "number", "default": 5 },
+          { "name": "pointsPerYuan", "type": "number", "default": 1 },
+          { "name": "dormantThresholdDays", "type": "number", "default": 30 },
+          { "name": "currentMemberId", "type": "string | undefined" }
+        ]
+      }
+    ],
+    "computedState": [
+      { "path": "/points/balance", "rule": "sum of income - sum of expense for current member" },
+      { "path": "/profile/level", "rule": "derive from total points: 0-99 陶坯, 100-299 素烧, 300-599 釉色, 600+ 窑变" },
+      { "path": "/dormant/members", "rule": "members where today - lastActiveAt > dormantThresholdDays" },
+      { "path": "/dormant/count", "rule": "length of dormant members" },
+      { "path": "/inventory/lowStockCount", "rule": "count of materials with stock <= lowStockThreshold" },
+      { "path": "/calendar/selectedDayLessons", "rule": "bookings for selected date with status confirmed" },
+      { "path": "/booking/stockWarning", "rule": "if any recipe material stock < amount then show warning" }
+    ],
+    "settingsFormState": [
+      { "name": "bookingForm", "fields": ["selectedCourse", "selectedDate", "selectedTime", "selectedMember"] },
+      { "name": "memberFilter", "fields": ["all", "dormant"] },
+      { "name": "pointsFilter", "fields": ["all", "income", "expense"] }
+    ]
+  },
+  "services": {
+    "storage": {
+      "description": "Local persistence via relational database (RDB) for entities and Preferences for settings.",
+      "tables": ["members", "work_photos", "points_transactions", "courses", "materials", "bookings", "deductions", "settings"],
+      "fallback": "If RDB is unavailable at runtime, keep data in memory and emit warnings."
+    },
+    "notification": {
+      "description": "Local reminder records only; no real push or SMS. A wake action creates a WakeRecord entry.",
+      "stub": false
+    },
+    "permission": {
+      "description": "Photo picker uses system photoPicker, no extra permission needed."
+    },
+    "helpers": [
+      { "name": "DateUtil", "description": "formatting, month grid generation, date string helpers" },
+      { "name": "IdGen", "description": "generates local unique string ids" },
+      { "name": "LevelResolver", "description": "maps points to level name" }
+    ]
+  },
+  "stateMachine": {
+    "states": [
+      "idle",
+      "loading",
+      "saving",
+      "error",
+      "success"
+    ],
+    "transitions": [
+      { "from": "idle", "event": "load", "to": "loading" },
+      { "from": "loading", "event": "success", "to": "idle" },
+      { "from": "loading", "event": "error", "to": "error" },
+      { "from": "idle", "event": "save", "to": "saving" },
+      { "from": "saving", "event": "success", "to": "idle" },
+      { "from": "saving", "event": "error", "to": "error" },
+      { "from": "error", "event": "reset", "to": "idle" }
+    ]
+  },
+  "interactionFlows": [
+    {
+      "name": "member-checkin",
+      "trigger": "home-checkin-button or points-checkin-button",
+      "steps": [
+        "If no current member selected, show error/selection prompt.",
+        "Record checkin points transaction (+5) for current member.",
+        "Update member.lastActiveAt to now.",
+        "Update member.points.",
+        "Emit success feedback; refresh balance."
+      ],
+      "errorPath": "If save fails, surface error message."
+    },
+    {
+      "name": "submit-booking",
+      "trigger": "booking-submit-button",
+      "steps": [
+        "Validate all fields selected.",
+        "Check course recipe against material stock.",
+        "If insufficient stock, set error and block submit.",
+        "Create LessonBooking record.",
+        "Deduct recipe materials and create InventoryDeduction records.",
+        "Update member.lastActiveAt.",
+        "Return to calendar."
+      ],
+      "errorPath": "Validation or stock errors surface in booking-error-message."
+    },
+    {
+      "name": "wake-member",
+      "trigger": "dormant-wake-button",
+      "steps": [
+        "Create wake record (local) for member.",
+        "Update member.lastActiveAt to now.",
+        "Refresh dormant list."
+      ]
+    },
+    {
+      "name": "wake-all-members",
+      "trigger": "dormant-wake-all-button",
+      "steps": [
+        "Create wake records for all dormant members.",
+        "Update all their lastActiveAt to now.",
+        "Refresh dormant list."
+      ]
+    },
+    {
+      "name": "add-work-photo",
+      "trigger": "profile-add-work-button",
+      "steps": [
+        "Open system photo picker.",
+        "Save selected URI as WorkPhoto for current member.",
+        "Refresh gallery."
+      ]
+    },
+    {
+      "name": "edit-profile",
+      "trigger": "profile-edit-button",
+      "steps": [
+        "Open editable profile form (in-place or overlay).",
+        "Save changes to Member record.",
+        "Refresh profile state."
+      ]
+    },
+    {
+      "name": "calendar-navigation",
+      "trigger": "calendar-prev-month / calendar-next-month",
+      "steps": [
+        "Shift displayed month.",
+        "Regenerate calendar/days grid."
+      ]
+    }
+  ],
+  "testTargets": {
+    "home-page": ["home-header-title", "home-checkin-button", "home-points-card", "home-points-detail-link", "home-upcoming-lesson-card", "home-book-lesson-button", "home-dormant-alert-card", "home-dormant-link", "home-inventory-link", "home-empty-state"],
+    "points-page": ["points-balance", "points-checkin-button", "points-list", "points-filter-all", "points-filter-income", "points-filter-expense"],
+    "members-page": ["members-search-input", "members-add-button", "members-list", "members-filter-all", "members-filter-dormant"],
+    "profile-page": ["profile-avatar", "profile-name", "profile-craft-tags", "profile-bio", "profile-works-gallery", "profile-add-work-button", "profile-edit-button", "profile-points-level"],
+    "calendar-page": ["calendar-month-title", "calendar-prev-month", "calendar-next-month", "calendar-grid", "calendar-book-button", "calendar-selected-day-lessons"],
+    "booking-page": ["booking-course-picker", "booking-date-picker", "booking-time-picker", "booking-member-picker", "booking-submit-button", "booking-stock-warning", "booking-error-message"],
+    "inventory-page": ["inventory-list", "inventory-add-button", "inventory-low-stock-alert", "inventory-deduction-log"],
+    "dormant-page": ["dormant-count", "dormant-threshold-input", "dormant-list", "dormant-wake-button", "dormant-wake-all-button"],
+    "my-page": ["my-avatar", "my-name", "my-settings-button", "my-about-button", "my-logout-button"],
+    "shared": ["tab-home", "tab-calendar", "tab-members", "tab-my", "back-button"]
+  },
+  "changeRequests": []
+}

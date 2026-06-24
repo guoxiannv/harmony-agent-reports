@@ -1,0 +1,77 @@
+{
+  "pid": 13921,
+  "status": "controller-tick",
+  "launched_by_session_id": "f1727a04-ed17-4225-b4ee-fec4f00b1345",
+  "started_at": "2026-06-22T08:49:35.204Z",
+  "last_scan_at": "2026-06-22T09:25:32.413Z",
+  "last_change_at": "2026-06-22T09:15:13.729Z",
+  "html_signature": "[{\"name\":\"page-calendar-page.html\",\"mtime_ms\":1782119364390,\"size\":11120},{\"name\":\"page-course-detail-page.html\",\"mtime_ms\":1782119434804,\"size\":6146},{\"name\":\"page-course-form-page.html\",\"mtime_ms\":1782119485158,\"size\":4914},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782118852667,\"size\":12086},{\"name\":\"page-inventory-log-page.html\",\"mtime_ms\":1782119643541,\"size\":4391},{\"name\":\"page-inventory-page.html\",\"mtime_ms\":1782119591992,\"size\":8686},{\"name\":\"page-member-detail-page.html\",\"mtime_ms\":1782119054876,\"size\":8319},{\"name\":\"page-member-form-page.html\",\"mtime_ms\":1782119132266,\"size\":6999},{\"name\":\"page-members-page.html\",\"mtime_ms\":1782118964481,\"size\":10214},{\"name\":\"page-points-page.html\",\"mtime_ms\":1782119235771,\"size\":9005},{\"name\":\"page-settings-page.html\",\"mtime_ms\":1782119708544,\"size\":4991}]",
+  "html_files": [
+    {
+      "name": "page-calendar-page.html",
+      "mtime_ms": 1782119364390,
+      "size": 11120
+    },
+    {
+      "name": "page-course-detail-page.html",
+      "mtime_ms": 1782119434804,
+      "size": 6146
+    },
+    {
+      "name": "page-course-form-page.html",
+      "mtime_ms": 1782119485158,
+      "size": 4914
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782118852667,
+      "size": 12086
+    },
+    {
+      "name": "page-inventory-log-page.html",
+      "mtime_ms": 1782119643541,
+      "size": 4391
+    },
+    {
+      "name": "page-inventory-page.html",
+      "mtime_ms": 1782119591992,
+      "size": 8686
+    },
+    {
+      "name": "page-member-detail-page.html",
+      "mtime_ms": 1782119054876,
+      "size": 8319
+    },
+    {
+      "name": "page-member-form-page.html",
+      "mtime_ms": 1782119132266,
+      "size": 6999
+    },
+    {
+      "name": "page-members-page.html",
+      "mtime_ms": 1782118964481,
+      "size": 10214
+    },
+    {
+      "name": "page-points-page.html",
+      "mtime_ms": 1782119235771,
+      "size": 9005
+    },
+    {
+      "name": "page-settings-page.html",
+      "mtime_ms": 1782119708544,
+      "size": 4991
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 33,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 33,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-22T09:25:32.413Z"
+}

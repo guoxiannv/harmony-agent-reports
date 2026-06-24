@@ -1,0 +1,34 @@
+{
+  "module": "01-data-persistence.md",
+  "group": "01 — Data Persistence (数据持久化)",
+  "apiCount": 3,
+  "apis": [
+    {
+      "name": "@ohos.data.preferences (用户首选项)",
+      "purpose": "轻量级键值对持久化，存储用户偏好如主题、转盘自定义设置",
+      "anchor": "ohosdata-preferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.relationalStore (关系型数据库)",
+      "purpose": "结构化数据持久化，存储签到记录、食材清单、菜品历史等关系型数据",
+      "anchor": "ohosdata-relationalstore-关系型数据库",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.sendablePreferences (共享用户首选项)",
+      "purpose": "可在并发实例间传递的键值对存储，适用于多线程共享首选项场景",
+      "anchor": "ohosdata-sendablepreferences-共享用户首选项",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "preferences 使用 XML 存储模式时需调用 flush() 落盘；GSKV 模式实时落盘（API 18+）",
+    "preferences 不支持进程并发安全，单进程内按需使用即可",
+    "relationalStore 基于 SQLite，单条数据建议不超过 2MB，单次查询建议不超过 5000 行",
+    "sendablePreferences 是 API 12+ 新增，通过 ISendable 实现跨线程引用传递",
+    "sendablePreferences Options 只支持 name + dataGroupId，不支持 storageType 参数",
+    "内置菜品数据集建议在首次启动时通过 executeSql + insert 预填充到 RDB，无需外部文件"
+  ],
+  "missingApis": []
+}

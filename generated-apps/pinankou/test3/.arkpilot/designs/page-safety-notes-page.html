@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>平安扣 - 安全事项</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: #F0FDFA; color: #0F172A; max-width: 390px; margin: 0 auto;
+      min-height: 100vh; padding-bottom: 24px;
+    }
+    .header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 52px 16px 12px;
+    }
+    .header-title { font-size: 22px; font-weight: 700; }
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: linear-gradient(135deg, #0D9488, #14B8A6);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.30); cursor: pointer;
+    }
+    .icon-btn svg { width: 20px; height: 20px; stroke: #fff; }
+
+    .summary-card {
+      background: #fff; border-radius: 18px; padding: 16px; margin: 0 16px 16px;
+      box-shadow: 0 6px 24px rgba(13, 148, 136, 0.10);
+      display: flex; justify-content: space-around; text-align: center;
+    }
+    .summary-number { font-size: 22px; font-weight: 700; color: #0D9488; }
+    .summary-label { font-size: 11px; color: #64748B; margin-top: 4px; }
+
+    .list { display: flex; flex-direction: column; gap: 12px; padding: 0 16px; }
+    .card {
+      background: #fff; border-radius: 18px; padding: 16px;
+      box-shadow: 0 6px 24px rgba(13, 148, 136, 0.10);
+      display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
+    }
+    .card:active { transform: scale(0.99); }
+    .card-body { flex: 1; }
+    .card-title { font-size: 15px; font-weight: 600; }
+    .card-title.done { color: #94A3B8; text-decoration: line-through; }
+    .card-meta { font-size: 12px; color: #64748B; margin-top: 6px; display: flex; gap: 12px; }
+    .tag { padding: 3px 8px; border-radius: 8px; font-size: 11px; font-weight: 600; }
+    .tag.high { background: #FEF2F2; color: #EF4444; }
+    .tag.medium { background: #FFFBEB; color: #F59E0B; }
+    .tag.low { background: #ECFDF5; color: #10B981; }
+    .toggle {
+      width: 46px; height: 26px; border-radius: 13px; background: #E2E8F0; position: relative;
+      flex-shrink: 0; cursor: pointer; transition: background 0.2s;
+    }
+    .toggle.on { background: #0D9488; }
+    .toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px; width: 22px; height: 22px;
+      border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      transition: left 0.2s;
+    }
+    .toggle.on::after { left: 22px; }
+  </style>
+</head>
+<body data-page-id="safety-notes-page">
+  <header class="header">
+    <div class="header-title" data-ui-id="safety-notes-title">安全事项</div>
+    <div class="icon-btn" data-ui-id="safety-notes-add-button">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>新增安全事项</title>
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <div>
+      <div class="summary-number">5</div>
+      <div class="summary-label">待办</div>
+    </div>
+    <div>
+      <div class="summary-number" data-ui-id="safety-notes-completed-count">3</div>
+      <div class="summary-label">已完成</div>
+    </div>
+    <div>
+      <div class="summary-number">8</div>
+      <div class="summary-label">总计</div>
+    </div>
+  </div>
+
+  <div class="list" data-ui-id="safety-notes-list">
+    <div class="card" data-ui-id="safety-note-1">
+      <div class="card-body">
+        <div class="card-title">班前会防护用品检查</div>
+        <div class="card-meta">
+          <span class="tag high">高优先级</span>
+          <span>负责人：王班</span>
+          <span>06-22</span>
+        </div>
+      </div>
+      <div class="toggle"></div>
+    </div>
+
+    <div class="card" data-ui-id="safety-note-2">
+      <div class="card-body">
+        <div class="card-title done">更新消防疏散图</div>
+        <div class="card-meta">
+          <span class="tag medium">中优先级</span>
+          <span>负责人：行政部</span>
+          <span>06-20</span>
+        </div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+  </div>
+</body>
+</html>

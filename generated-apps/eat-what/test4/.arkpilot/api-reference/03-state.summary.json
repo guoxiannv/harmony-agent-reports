@@ -1,0 +1,108 @@
+{
+  "module": "03-state.md",
+  "group": "03 — State Management & Reactivity",
+  "apiCount": 14,
+  "apis": [
+    {
+      "name": "@State",
+      "purpose": "组件内状态变量装饰器，标记变量为响应式状态",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "父向子单向数据传递装饰器，父组件状态变化驱动子组件更新",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "@Link",
+      "purpose": "父向子双向数据同步装饰器",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "状态变量变化监听装饰器，在变量被修改时触发回调函数",
+      "anchor": "watch",
+      "status": "found"
+    },
+    {
+      "name": "@Provide",
+      "purpose": "跨层级祖先组件状态提供装饰器",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "@Consume",
+      "purpose": "跨层级后代组件状态消费装饰器，与@Provide配对使用",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "@Observed",
+      "purpose": "类装饰器，使其成为可观察对象（用于@ObjectLink使用）",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "@ObjectLink",
+      "purpose": "子组件中观察@Observed装饰类实例的装饰器",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "@StorageLink",
+      "purpose": "AppStorage双向绑定装饰器，与AppStorage中属性建立双向同步",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "@StorageProp",
+      "purpose": "AppStorage单向绑定装饰器，与AppStorage中属性建立单向同步",
+      "anchor": "-missing-",
+      "status": "missing"
+    },
+    {
+      "name": "AppStorage",
+      "purpose": "应用全局UI状态存储，提供跨页面的共享状态能力",
+      "anchor": "appstorage",
+      "status": "found"
+    },
+    {
+      "name": "LocalStorage",
+      "purpose": "页面级UI状态存储，实例化对象可在UIAbility/组件间共享",
+      "anchor": "localstorage9",
+      "status": "found"
+    },
+    {
+      "name": "PersistentStorage",
+      "purpose": "持久化存储UI状态，将AppStorage中的数据持久化到文件中",
+      "anchor": "persistentstorage",
+      "status": "found"
+    },
+    {
+      "name": "Environment",
+      "purpose": "设备环境查询，提供系统环境变量的读取能力",
+      "anchor": "environment",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@State/@Prop/@Link/@Observed/@ObjectLink/@Consume 为 ArkTS 编译器内置装饰器，在 API 参考文档中无独立页面，需查阅开发指南(guides)",
+    "@StorageLink/@StorageProp 同样为内置装饰器，在参考文档中仅被引用为 AppStorage 的订阅者装饰器",
+    "AppStorage/LocalStorage/PersistentStorage/Environment 的旧版大驼峰接口(API7+)从 API10 起废弃，推荐使用新版小驼峰接口",
+    "PersistentStorage 从 API12 开始支持 null/undefined 作为 defaultValue"
+  ],
+  "missingApis": [
+    "@State",
+    "@Prop",
+    "@Link",
+    "@Provide",
+    "@Consume",
+    "@Observed",
+    "@ObjectLink",
+    "@StorageLink",
+    "@StorageProp"
+  ]
+}

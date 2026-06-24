@@ -1,0 +1,216 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "appName": "平安扣 Pinankou",
+  "dataModel": {
+    "entities": {
+      "SafetyItem": {
+        "fields": {
+          "id": "string",
+          "title": "string (required)",
+          "category": "ItemCategory (消防安全|设备安全|电气安全|其他)",
+          "priority": "Priority (高|中|低)",
+          "owner": "string",
+          "dueDate": "string YYYY-MM-DD ('' when unset)",
+          "note": "string",
+          "status": "ItemStatus (待办|进行中|已完成)",
+          "createdAt": "number ms",
+          "updatedAt": "number ms"
+        },
+        "binding": "/safetyItems"
+      },
+      "Hazard": {
+        "fields": {
+          "id": "string",
+          "title": "string (required)",
+          "location": "string",
+          "level": "HazardLevel (高|中|低)",
+          "description": "string",
+          "hasPhoto": "boolean (photo-attached flag)",
+          "reporter": "string",
+          "status": "HazardStatus (待处理|处理中|待验收|已完成)",
+          "remarks": "HazardRemark[]",
+          "createdAt": "number ms",
+          "updatedAt": "number ms"
+        },
+        "binding": "/hazards"
+      },
+      "HazardRemark": {
+        "fields": { "status": "HazardStatus", "text": "string", "at": "number ms" }
+      },
+      "InspectionTask": {
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "checkpointCount": "number",
+          "dueDate": "string YYYY-MM-DD",
+          "status": "InspectionStatus (待巡检|进行中|已完成)",
+          "checkpoints": "Checkpoint[]",
+          "createdAt": "number ms",
+          "completedAt": "number ms (0 when not completed)"
+        },
+        "binding": "/inspections"
+      },
+      "Checkpoint": {
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "location": "string",
+          "result": "CheckpointResult (未检|正常|异常)",
+          "hasPhoto": "boolean",
+          "note": "string"
+        },
+        "binding": "/checkpoints"
+      },
+      "EmergencyContact": {
+        "fields": {
+          "id": "string",
+          "name": "string (required)",
+          "role": "string",
+          "phone": "string (required, validated >=7 digits)",
+          "isPrimary": "boolean",
+          "sortOrder": "number",
+          "createdAt": "number ms"
+        },
+        "binding": "/contacts"
+      }
+    },
+    "enums": {
+      "ItemCategory": ["消防安全", "设备安全", "电气安全", "其他"],
+      "Priority": ["高", "中", "低"],
+      "ItemStatus": ["待办", "进行中", "已完成"],
+      "HazardLevel": ["高", "中", "低"],
+      "HazardStatus": ["待处理", "处理中", "待验收", "已完成"],
+      "InspectionStatus": ["待巡检", "进行中", "已完成"],
+      "CheckpointResult": ["未检", "正常", "异常"],
+      "StatsPeriod": ["本周", "本月", "本季度"]
+    },
+    "formState": {
+      "itemForm": "/itemForm/* — draft bound to AppController.itemDraft (ItemDraft)",
+      "hazardForm": "/hazardForm/* — draft bound to AppController.hazardDraft (HazardDraft)",
+      "contactForm": "/contactForm/* — draft bound to AppController.contactDraft (ContactDraft)"
+    },
+    "computed": {
+      "summary": "/summary/pendingCount, /summary/overdueCount, /summary/todayInspectionStatus via StatsCalculator.computeHomeSummary",
+      "stats": "/stats/* via StatsCalculator.computeSnapshot(period)"
+    },
+    "persistence": {
+      "strategy": "local @kit.ArkData preferences (key-value JSON per collection)",
+      "store": "pinankou_store.json",
+      "keys": ["items", "hazards", "inspections", "contacts"],
+      "firstRun": "EMPTY — no seeded data"
+    }
+  },
+  "services": {
+    "DataStore": {
+      "file": "entry/src/main/ets/service/DataStore.ets",
+      "responsibilities": [
+        "singleton holding in-memory arrays mirroring persisted data",
+        "load() hydrates from preferences (async, idempotent)",
+        "CRUD: getAllItems/getItem/saveItem/deleteItem, hazards, inspections, contacts",
+        "generate ids as prefix-timestamp-random",
+        "persist on every mutation (JSON.stringify + flush)"
+      ]
+    },
+    "StatsCalculator": {
+      "file": "entry/src/main/ets/service/StatsCalculator.ets",
+      "responsibilities": [
+        "pure functions only (no I/O)",
+        "computeHomeSummary(items, inspections) -> HomeSummary",
+        "computeSnapshot(hazards, items, inspections, period) -> StatsSnapshot",
+        "computeTrend/computeDistribution/computeCompletionRate/computeInspectionRate/isOverdue"
+      ]
+    },
+    "AppController": {
+      "file": "entry/src/main/ets/controller/AppController.ets",
+      "kind": "@Observed view-model",
+      "responsibilities": [
+        "observable collections + filters + form drafts + surface state",
+        "event methods mapped 1:1 to ui-tree.json events",
+        "delegates persistence to DataStore, then refreshAll()"
+      ]
+    }
+  },
+  "stateMachine": {
+    "hazardStatusFlow": {
+      "transitions": ["待处理 -> 处理中 -> 待验收 -> 已完成"],
+      "progressIndex": { "待处理": 0, "处理中": 1, "待验收": 2, "已完成": 3 }
+    },
+    "itemStatus": {
+      "values": ["待办", "进行中", "已完成"],
+      "overdue": "dueDate < today AND status != 已完成"
+    },
+    "inspectionProgress": {
+      "statusValues": ["待巡检", "进行中", "已完成"],
+      "autoAdvance": "openInspectionTask flips 待巡检 -> 进行中",
+      "submitRule": "all checkpoints != 未检 required; on submit status -> 已完成, completedAt=now"
+    },
+    "checkpointResult": {
+      "values": ["未检", "正常", "异常"],
+      "toggle": "mark-checkpoint-normal/abnormal are mutually exclusive"
+    },
+    "surface": {
+      "tabs": ["home", "hazards", "inspections", "stats", "profile"],
+      "fullPage": ["safetyItems", "inspectionTask", "emergency", "itemForm", "hazardForm", "contactForm"],
+      "back": "navigate-back returns to lastTabSurface (or home)"
+    }
+  },
+  "interactionFlows": {
+    "navigate-back": "AppController.navigateBack() -> surface = lastTabSurface",
+    "navigate-safety-items": "surface = safetyItems",
+    "navigate-hazards": "surface = hazards (tab)",
+    "navigate-inspections": "surface = inspections (tab)",
+    "navigate-emergency": "surface = emergency",
+    "navigate-stats": "surface = stats (tab)",
+    "navigate-inspection-history": "inspectionStatusFilter = 已完成 + toast",
+    "navigate-settings": "toast '设置：本地优先，无云端'",
+    "navigate-about": "toast version info",
+    "export-data": "toast record count",
+    "open-item-form": "hydrate itemDraft (blank if id empty) -> surface itemForm",
+    "close-item-form": "surface = safetyItems",
+    "open-hazard-form": "hydrate hazardDraft -> surface hazardForm",
+    "close-hazard-form": "surface = hazards",
+    "open-contact-form": "hydrate contactDraft -> surface contactForm",
+    "close-contact-form": "surface = emergency",
+    "open-inspection-task": "activeInspectionId = id; flip 待巡检->进行中; surface inspectionTask",
+    "save-item": "validate title; DataStore.saveItem; refreshAll; toast; surface safetyItems",
+    "delete-item": "confirm dialog; DataStore.deleteItem; refreshAll; toast; surface safetyItems",
+    "save-hazard": "validate title; push initial remark on create; DataStore.saveHazard; toast; surface hazards",
+    "delete-hazard": "confirm; DataStore.deleteHazard; toast; surface hazards",
+    "save-contact": "validate name + phone; DataStore.saveContact; toast; surface emergency",
+    "delete-contact": "confirm; DataStore.deleteContact; toast; surface emergency",
+    "capture-hazard-photo": "hazardDraft.hasPhoto = true + toast",
+    "capture-checkpoint-photo": "checkpoint.hasPhoto = true + toast",
+    "mark-checkpoint-normal": "checkpoint.result = 正常; auto-update task progress",
+    "mark-checkpoint-abnormal": "checkpoint.result = 异常",
+    "change-checkpoint-note": "checkpoint.note = value",
+    "submit-inspection": "all checkpoints checked required; status->已完成; completedAt=now; surface inspections",
+    "call-contact": "toast + Want ohos.want.action.call tel:<phone>",
+    "sms-contact": "toast + Want sms:<phone>",
+    "edit-contact": "open-contact-form(id)",
+    "change-status-filter": "contextual: item/hazard/inspection statusFilter",
+    "change-priority-filter": "itemPriorityFilter",
+    "change-level-filter": "hazardLevelFilter",
+    "change-search": "itemSearch",
+    "change-stats-period": "statsPeriod"
+  },
+  "testTargets": [
+    "home-scan-button",
+    "home-report-button",
+    "home-pending-count",
+    "home-overdue-count",
+    "items-add-button",
+    "items-list",
+    "items-empty-state",
+    "hazards-add-button",
+    "hazards-list",
+    "hazards-empty-state",
+    "inspections-list",
+    "inspections-empty-state",
+    "task-submit-button",
+    "emergency-list",
+    "emergency-empty-state",
+    "stats-completion-rate",
+    "stats-trend-chart",
+    "stats-distribution-chart"
+  ]
+}

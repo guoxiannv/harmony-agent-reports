@@ -1,0 +1,233 @@
+{
+  "module": "03-file-management.md",
+  "group": "03 — File Management 文件/图片附件管理",
+  "apiCount": 36,
+  "apis": [
+    {
+      "name": "fileIo.stat",
+      "purpose": "获取文件或目录的详细属性信息",
+      "anchor": "fileiostat",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.access",
+      "purpose": "检查文件或目录是否存在，或校验操作权限",
+      "anchor": "fileioaccess",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.mkdir",
+      "purpose": "创建目录",
+      "anchor": "fileiomkdir",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.openSync",
+      "purpose": "同步方式打开文件或目录",
+      "anchor": "fileioopensync",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.close",
+      "purpose": "关闭文件",
+      "anchor": "fileioclose",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.write",
+      "purpose": "将数据写入文件",
+      "anchor": "fileiowrite",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.writeSync",
+      "purpose": "同步方式将数据写入文件",
+      "anchor": "fileiowritesync",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.readSync",
+      "purpose": "同步方式读取文件数据",
+      "anchor": "fileioreadsync",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.readText",
+      "purpose": "基于文本方式读取文件",
+      "anchor": "fileioreadtext",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.readTextSync",
+      "purpose": "同步方式读取文本文件",
+      "anchor": "fileioreadtextsync",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.listFile",
+      "purpose": "列出目录下所有文件名和目录名",
+      "anchor": "fileiolistfile",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.unlink",
+      "purpose": "删除文件",
+      "anchor": "fileiounlink",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.rename",
+      "purpose": "重命名文件或目录",
+      "anchor": "fileiorename",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.moveFile",
+      "purpose": "移动文件",
+      "anchor": "fileiomovefile",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.moveDir",
+      "purpose": "移动目录",
+      "anchor": "fileiomovedir",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.copyFile",
+      "purpose": "复制文件",
+      "anchor": "fileiocopyfile",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.fs",
+      "purpose": "基础文件操作API模块，提供文件管理、目录管理、流式读写等能力",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "Context.filesDir",
+      "purpose": "获取应用文件目录的沙箱路径",
+      "anchor": "context",
+      "status": "found"
+    },
+    {
+      "name": "Context.cacheDir",
+      "purpose": "获取应用缓存目录的沙箱路径",
+      "anchor": "context",
+      "status": "found"
+    },
+    {
+      "name": "file picker",
+      "purpose": "文件选择器对象，支撑选择和保存各种格式文档",
+      "anchor": "documentviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.picker",
+      "purpose": "选择器API模块，封装DocumentViewPicker、PhotoViewPicker等",
+      "anchor": "ohosfilepicker-选择器",
+      "status": "found"
+    },
+    {
+      "name": "PhotoViewPicker",
+      "purpose": "图库选择器对象，支持选择图片、视频",
+      "anchor": "class-photoviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "DocumentViewPicker",
+      "purpose": "文件选择器对象，支撑选择和保存文档",
+      "anchor": "documentviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper",
+      "purpose": "相册管理模块，提供创建相册、访问和修改媒体数据的能力",
+      "anchor": "ohosfilephotoaccesshelper-相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper",
+      "purpose": "相册管理API模块，提供相册和媒体文件管理能力",
+      "anchor": "ohosfilephotoaccesshelper-相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "image",
+      "purpose": "图片处理API模块，提供图片解码、编码、编辑、像素数据处理能力",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.image",
+      "purpose": "图片处理API模块（Image Kit），支持图片解码和编码",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "image.createImageSource",
+      "purpose": "创建ImageSource实例用于图片解码",
+      "anchor": "imagecreateimagesource",
+      "status": "found"
+    },
+    {
+      "name": "image.createPixelMap",
+      "purpose": "创建PixelMap位图对象",
+      "anchor": "imagecreatepixelmap8",
+      "status": "found"
+    },
+    {
+      "name": "image.createPicture",
+      "purpose": "通过PixelMap创建Picture多图对象",
+      "anchor": "imagecreatepicture13",
+      "status": "found"
+    },
+    {
+      "name": "ImageSource.createPixelMap",
+      "purpose": "将图片源解码为PixelMap位图",
+      "anchor": "createpixelmap",
+      "status": "found"
+    },
+    {
+      "name": "ImagePacker.packing",
+      "purpose": "将图片编码为压缩文件数据流",
+      "anchor": "packing",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper.getPhotoAccessHelper",
+      "purpose": "获取相册管理模块实例",
+      "anchor": "photoaccesshelpergetphotoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "PhotoAccessHelper.getAssets",
+      "purpose": "获取图片和视频资源",
+      "anchor": "getassets",
+      "status": "found"
+    },
+    {
+      "name": "PhotoAccessHelper.createAsset",
+      "purpose": "创建媒体资源",
+      "anchor": "createasset",
+      "status": "found"
+    },
+    {
+      "name": "PhotoViewPicker.select",
+      "purpose": "拉起photoPicker界面选择图片或视频",
+      "anchor": "select",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "fileIo 对应 @kit.CoreFileKit 导入路径，而 photoAccessHelper 对应 @kit.MediaLibraryKit 导入路径，两者分属不同 Kit",
+    "Context.filesDir / cacheDir 为 Context 属性，通过 import { common } from '@kit.AbilityKit' 获取，不在 Core File Kit 中",
+    "photoAccessHelper 在 04_媒体/08_Media Library Kit 目录下，非 target 目录 02_应用框架/09_Core File Kit，需从 fallback 目录/媒体服务索引找到",
+    "photoAccessHelper 未找到 filesDir 和 cacheDir 的 rg 搜索匹配 — Context 属性文档在 Ability Kit 的接口依赖元素定义中",
+    "PhotoViewPicker 返回的 photoUris 具有永久授权，可通过 photoAccessHelper.getAssets 免权限查询使用",
+    "DocumentViewPicker 构造需传入 Context，推荐使用有参构造函数以避免概率性失败",
+    "image 模块属于 @kit.ImageKit，导入路径为 import { image } from '@kit.ImageKit'"
+  ],
+  "missingApis": []
+}

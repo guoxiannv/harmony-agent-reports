@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PawLog 宠迹 - 健康</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "PingFang SC", "SF Pro Text", "Helvetica Neue", sans-serif;
+      background: #FFFBF6;
+      color: #3A3630;
+      min-height: 100vh;
+    }
+    .phone-frame {
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      background: #FFFBF6;
+      overflow-x: hidden;
+      padding-bottom: 92px;
+    }
+    .header {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(126,215,194,0.12);
+    }
+    .header-title { font-size: 22px; font-weight: 700; color: #3A3630; }
+    .pet-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.9);
+      padding: 6px 12px 6px 6px;
+      border-radius: 20px;
+      border: 1px solid rgba(126,215,194,0.15);
+    }
+    .pet-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E8FAF5, #FFF0F3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pet-avatar svg { width: 16px; height: 16px; }
+    .pet-name { font-size: 13px; font-weight: 700; color: #3A3630; }
+    .content { padding: 16px; }
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #3A3630;
+      margin: 20px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .section-link { font-size: 13px; color: #4CB5A0; font-weight: 600; }
+    .reminder-list { margin-bottom: 8px; }
+    .reminder-card {
+      background: white;
+      border-radius: 20px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 18px rgba(255,184,201,0.14);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-left: 4px solid #FFB8C9;
+    }
+    .reminder-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #FFB8C9, #F48FB1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .reminder-icon svg { width: 22px; height: 22px; color: white; }
+    .reminder-main { flex: 1; }
+    .reminder-title { font-size: 15px; font-weight: 700; color: #3A3630; }
+    .reminder-meta { font-size: 12px; color: #5C5750; margin-top: 2px; }
+    .reminder-status {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 10px;
+      background: #FFF0F3;
+      color: #F48FB1;
+      font-weight: 700;
+    }
+    .module-card {
+      background: white;
+      border-radius: 24px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(126,215,194,0.14);
+    }
+    .module-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .module-title { font-size: 16px; font-weight: 700; color: #3A3630; }
+    .module-add {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: #E8FAF5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+    }
+    .module-add svg { width: 18px; height: 18px; color: #4CB5A0; }
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #F2F0EB;
+    }
+    .history-item:last-child { border-bottom: none; }
+    .history-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #7ED7C2;
+    }
+    .history-dot.pink { background: #FFB8C9; }
+    .history-main { flex: 1; }
+    .history-title { font-size: 14px; font-weight: 700; color: #3A3630; }
+    .history-meta { font-size: 12px; color: #5C5750; margin-top: 2px; }
+    .history-date { font-size: 12px; color: #C4BEB4; }
+    .medical-card {
+      background: #FFF8F0;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .medical-title { font-size: 15px; font-weight: 700; color: #3A3630; }
+    .medical-meta { font-size: 12px; color: #5C5750; margin-top: 4px; }
+    .medical-tags { display: flex; gap: 6px; margin-top: 8px; }
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 10px;
+      background: white;
+      color: #4CB5A0;
+      font-weight: 600;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 24px 16px;
+      color: #C4BEB4;
+    }
+    .empty-state svg { width: 48px; height: 48px; margin-bottom: 10px; opacity: 0.5; }
+    .empty-state p { font-size: 13px; }
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      max-width: 390px;
+      height: 76px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-radius: 28px 28px 0 0;
+      border-top: 1px solid rgba(126,215,194,0.12);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      padding-top: 10px;
+      z-index: 20;
+      box-shadow: 0 -6px 20px rgba(126,215,194,0.10);
+    }
+    .tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding-top: 4px;
+      flex: 1;
+      position: relative;
+    }
+    .tab svg { width: 24px; height: 24px; color: #C4BEB4; }
+    .tab.active svg { color: #4CB5A0; }
+    .tab-label { font-size: 11px; font-weight: 600; color: #C4BEB4; }
+    .tab.active .tab-label { color: #4CB5A0; }
+    .tab-dot {
+      position: absolute;
+      top: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #4CB5A0;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame" data-page-id="health-page" data-tab-id="tab-health">
+    <header class="header">
+      <span class="header-title">健康</span>
+      <button class="pet-switcher" data-ui-id="health-pet-switcher">
+        <div class="pet-avatar">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <title>Selected Pet Indicator</title>
+            <circle cx="9" cy="10" r="2.5" fill="#4CB5A0"/>
+            <circle cx="15" cy="10" r="2.5" fill="#4CB5A0"/>
+            <ellipse cx="12" cy="16.5" rx="4" ry="2.5" fill="#FFB8C9"/>
+          </svg>
+        </div>
+        <span class="pet-name">豆包</span>
+      </button>
+    </header>
+
+    <main class="content">
+      <h2 class="section-title">待办提醒</h2>
+      <div class="reminder-list" data-ui-id="health-reminder-list">
+        <div class="reminder-card" id="health-reminder-1">
+          <div class="reminder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <title>Vaccination Due Reminder</title>
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div class="reminder-main">
+            <div class="reminder-title">猫三联疫苗</div>
+            <div class="reminder-meta">预计 06/27 到期 · 宠康动物医院</div>
+          </div>
+          <span class="reminder-status">5 天后</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-header">
+          <span class="module-title">疫苗记录</span>
+          <button class="module-add" data-ui-id="health-add-vaccine">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <title>Add Vaccine Record</title>
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="history-list" data-ui-id="health-vaccine-history">
+          <div class="history-item" id="health-vaccine-1">
+            <div class="history-dot"></div>
+            <div class="history-main">
+              <div class="history-title">猫三联</div>
+              <div class="history-meta">宠康动物医院 · 第 3 针</div>
+            </div>
+            <span class="history-date">2025.12.15</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-header">
+          <span class="module-title">驱虫记录</span>
+          <button class="module-add" data-ui-id="health-add-deworm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <title>Add Deworm Record</title>
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="history-list" data-ui-id="health-deworm-history">
+          <div class="history-item" id="health-deworm-1">
+            <div class="history-dot pink"></div>
+            <div class="history-main">
+              <div class="history-title">体内外驱虫</div>
+              <div class="history-meta">大宠爱 · 成猫剂量</div>
+            </div>
+            <span class="history-date">2026.05.10</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-header">
+          <span class="module-title">就医病历</span>
+          <button class="module-add" data-ui-id="health-add-medical">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <title>Add Medical Record</title>
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="medical-list" data-ui-id="health-medical-records">
+          <div class="medical-card" id="health-medical-1">
+            <div class="medical-title">年度体检</div>
+            <div class="medical-meta">宠康动物医院 · 王医生 · 2026.03.08</div>
+            <div class="medical-tags">
+              <span class="tag">体检</span>
+              <span class="tag">血常规正常</span>
+            </div>
+          </div>
+        </div>
+        <div class="empty-state" id="health-medical-empty" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C4BEB4" stroke-width="1.5">
+            <title>No Medical Records Placeholder</title>
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <p>暂无病历，点击右上角添加</p>
+        </div>
+      </div>
+    </main>
+
+    <nav class="tabbar">
+      <button class="tab" data-tab-id="tab-home">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <title>Home Tab</title>
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        <span class="tab-label">首页</span>
+      </button>
+      <button class="tab" data-tab-id="tab-records">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Records Tab</title>
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <span class="tab-label">记录</span>
+      </button>
+      <button class="tab" data-tab-id="tab-trends">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Trends Tab</title>
+          <path d="M3 3v18h18"/>
+          <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+        </svg>
+        <span class="tab-label">趋势</span>
+      </button>
+      <button class="tab active" data-tab-id="tab-health">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Health Tab</title>
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span class="tab-label">健康</span>
+        <span class="tab-dot"></span>
+      </button>
+      <button class="tab" data-tab-id="tab-profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Profile Tab</title>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span class="tab-label">我的</span>
+      </button>
+    </nav>
+  </div>
+</body>
+</html>

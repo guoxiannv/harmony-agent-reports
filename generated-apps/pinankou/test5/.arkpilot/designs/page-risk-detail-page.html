@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>平安扣 - 隐患详情</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #F3F6F8; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif; color: #0F172A; }
+    body { max-width: 420px; margin: 0 auto; position: relative; }
+    .page { min-height: 100%; padding: 24px 16px 140px; }
+    .appbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .back-btn { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(15,23,42,0.06); }
+    .appbar-title { font-size: 20px; font-weight: 700; }
+
+    .detail-header { background: #fff; border-radius: 18px; padding: 18px; box-shadow: 0 6px 22px rgba(15,23,42,0.06); margin-bottom: 16px; }
+    .detail-id { font-size: 12px; color: #64748B; margin-bottom: 6px; }
+    .detail-title { font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px; }
+    .detail-badges { display: flex; gap: 8px; margin-bottom: 16px; }
+    .badge { font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 8px; }
+    .badge.high { background: #FEE2E2; color: #DC2626; }
+    .badge.mid { background: #FEF3C7; color: #D97706; }
+    .badge.low { background: #DCFCE7; color: #16A34A; }
+    .badge.status-progress { background: #E0F2FE; color: #0EA5E9; }
+    .badge.status-pending { background: #F1F5F9; color: #64748B; }
+    .badge.status-review { background: #FEF3C7; color: #D97706; }
+    .badge.status-closed { background: #DCFCE7; color: #16A34A; }
+    .detail-info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .info-block {}
+    .info-label { font-size: 12px; color: #64748B; margin-bottom: 3px; }
+    .info-value { font-size: 14px; color: #0F172A; font-weight: 500; }
+
+    .section-title { font-size: 18px; font-weight: 600; margin: 24px 0 12px; }
+    .desc-card { background: #fff; border-radius: 16px; padding: 16px; box-shadow: 0 4px 16px rgba(15,23,42,0.05); font-size: 14px; color: #334155; line-height: 1.6; }
+
+    .timeline { display: flex; flex-direction: column; gap: 16px; }
+    .timeline-item { display: flex; gap: 12px; }
+    .timeline-track { width: 24px; display: flex; flex-direction: column; align-items: center; }
+    .timeline-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .timeline-dot.done { background: #2DD4BF; }
+    .timeline-dot.current { background: #0D9488; box-shadow: 0 0 0 4px rgba(13,148,136,0.15); }
+    .timeline-dot.pending { background: #CBD5E1; }
+    .timeline-line { flex: 1; width: 2px; background: #E2E8F0; margin: 4px 0; }
+    .timeline-line.done { background: #2DD4BF; }
+    .timeline-content { flex: 1; background: #F8FAFC; border-radius: 12px; padding: 14px; }
+    .timeline-title { font-size: 14px; font-weight: 600; color: #0F172A; margin-bottom: 3px; }
+    .timeline-time { font-size: 12px; color: #64748B; margin-bottom: 6px; }
+    .timeline-desc { font-size: 13px; color: #334155; }
+
+    .action-bar { position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); width: calc(100% - 32px); max-width: 388px; display: flex; gap: 10px; z-index: 90; }
+    .btn { flex: 1; padding: 14px; border-radius: 14px; font-size: 15px; font-weight: 600; text-align: center; border: none; }
+    .btn-primary { background: linear-gradient(135deg, #0D9488, #2DD4BF); color: #fff; box-shadow: 0 10px 28px rgba(13,148,136,0.28); }
+    .btn-secondary { background: #CCFBF1; color: #0F766E; }
+    .btn-destructive { background: #FEE2E2; color: #DC2626; }
+
+    svg { display: block; }
+  </style>
+</head>
+<body data-page-id="risk-detail-page">
+  <div class="page">
+    <header class="appbar">
+      <div class="back-btn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>返回隐患列表</title>
+          <path d="M19 12H5"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+      </div>
+      <h1 class="appbar-title">隐患详情</h1>
+    </header>
+
+    <div class="detail-header">
+      <div class="detail-id">#2025062201</div>
+      <div class="detail-title" data-ui-id="risk-detail-title">仓库配电箱未关闭</div>
+      <div class="detail-badges">
+        <span class="badge high" data-ui-id="risk-detail-level">高风险</span>
+        <span class="badge status-progress" data-ui-id="risk-detail-status">整改中</span>
+      </div>
+      <div class="detail-info">
+        <div class="info-block">
+          <div class="info-label">上报人</div>
+          <div class="info-value">王班长</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">责任人</div>
+          <div class="info-value">张师傅</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">地点</div>
+          <div class="info-value">仓库配电区</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">截止日期</div>
+          <div class="info-value" style="color:#EA580C;">2026-06-21</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">问题描述</div>
+    <div class="desc-card">
+      巡检发现仓库配电区 3 号配电箱箱门未关闭，内部积尘较多，存在触电和短路风险。已现场拍照并通知当班电工处理。
+    </div>
+
+    <div class="section-title">整改进度</div>
+    <div class="timeline" data-ui-id="risk-detail-progress-timeline">
+      <div class="timeline-item">
+        <div class="timeline-track">
+          <div class="timeline-dot done"></div>
+          <div class="timeline-line done"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-title">隐患上报</div>
+          <div class="timeline-time">2026-06-20 14:32 · 王班长</div>
+          <div class="timeline-desc">拍照记录，定级为高，指派张师傅整改。</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-track">
+          <div class="timeline-dot current"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-title">整改中</div>
+          <div class="timeline-time">2026-06-21 09:15 · 张师傅</div>
+          <div class="timeline-desc">已清理积尘，关闭箱门，等待复核。</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-track">
+          <div class="timeline-dot pending"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-title">复核关闭</div>
+          <div class="timeline-time">待复核</div>
+          <div class="timeline-desc">由安全负责人复核后关闭该隐患。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-bar">
+    <button class="btn btn-secondary" data-ui-id="risk-action-remind">催办</button>
+    <button class="btn btn-primary" data-ui-id="risk-action-submit-fix">提交整改</button>
+  </div>
+
+  <!-- 复核人视角：提交整改按钮替换为复核通过/不通过 -->
+  <!--
+  <div class="action-bar">
+    <button class="btn btn-destructive" data-ui-id="risk-action-review-reject">不通过</button>
+    <button class="btn btn-primary" data-ui-id="risk-action-review-pass">复核通过</button>
+  </div>
+  -->
+</body>
+</html>

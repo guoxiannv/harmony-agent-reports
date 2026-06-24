@@ -1,0 +1,59 @@
+{
+  "module": "05-image.md",
+  "group": "05 — Image Kit (Image Processing)",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.image (图片处理)",
+      "purpose": "图片解码、编码、编辑、元数据处理和图片接收等能力",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "PixelMap",
+      "purpose": "位图对象，包含像素数据和图片信息，支持读取/写入像素数据、裁剪、缩放、旋转、翻转等操作",
+      "anchor": "pixelmap",
+      "status": "found"
+    },
+    {
+      "name": "ImagePacker",
+      "purpose": "图片压缩和编码类，将 ImageSource/PixelMap/Picture 编码为压缩数据流或写入文件",
+      "anchor": "imagepacker",
+      "status": "found"
+    },
+    {
+      "name": "ImageSource",
+      "purpose": "图片源类，用于获取图片信息、解码为 PixelMap 或 Picture、读写 Exif 属性",
+      "anchor": "imagesource",
+      "status": "found"
+    },
+    {
+      "name": "image.createImageSource",
+      "purpose": "通过 uri/fd/ArrayBuffer/rawfile 创建 ImageSource 实例",
+      "anchor": "imagecreateimagesource",
+      "status": "found"
+    },
+    {
+      "name": "image.createPixelMap",
+      "purpose": "通过像素数据和图像属性创建 PixelMap 对象",
+      "anchor": "imagecreatepixelmap8",
+      "status": "found"
+    },
+    {
+      "name": "image.PackingOption",
+      "purpose": "图片编码选项，指定格式、质量、缓冲区大小、动态范围等参数",
+      "anchor": "packingoption",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "导入方式为 import { image } from '@kit.ImageKit'，not from '@ohos.multimedia.image'",
+    "PixelMap/ImageSource/ImagePacker 使用完成后必须调用 release() 释放 native 内存",
+    "PixelMap 序列化大小上限 128MB，按宽*高*每像素字节数计算",
+    "createPixelMapFromPixels/createEmptyPixelMap 是替代旧 createPixelMap/createPixelMapSync 的推荐 API",
+    "packToData/packToFile 是替代已废弃 packing 方法的推荐 API",
+    "HDR 图片需通过 desiredDynamicRange 参数控制解码/编码动态范围",
+    "PackingOption 编码格式支持 image/jpeg, image/webp, image/png, image/heic, image/gif 等"
+  ],
+  "missingApis": []
+}

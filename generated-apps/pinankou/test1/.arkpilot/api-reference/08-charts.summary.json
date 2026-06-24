@@ -1,0 +1,76 @@
+{
+  "module": "08-charts.md",
+  "group": "08 — Charts & Graphics",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "Canvas",
+      "purpose": "画布组件，用于自定义绘制图形",
+      "anchor": "canvas",
+      "status": "found"
+    },
+    {
+      "name": "CanvasRenderingContext2D",
+      "purpose": "与Canvas组件绑定的2D渲染上下文，提供路径/填充/描边/文本等完整绘制API",
+      "anchor": "canvasrenderingcontext2d",
+      "status": "found"
+    },
+    {
+      "name": "Path",
+      "purpose": "路径绘制组件，根据SVG路径命令字符串生成封闭的自定义形状",
+      "anchor": "path-绘制组件",
+      "status": "found"
+    },
+    {
+      "name": "Rect",
+      "purpose": "矩形绘制组件，支持圆角",
+      "anchor": "rect-绘制组件",
+      "status": "found"
+    },
+    {
+      "name": "Circle",
+      "purpose": "圆形绘制组件",
+      "anchor": "circle-绘制组件",
+      "status": "found"
+    },
+    {
+      "name": "Line",
+      "purpose": "直线绘制组件",
+      "anchor": "line-绘制组件",
+      "status": "found"
+    },
+    {
+      "name": "Shape",
+      "purpose": "绘制组件的父组件，包含Rect/Path/Circle/Ellipse等子组件，类似SVG效果",
+      "anchor": "shape-绘制父组件",
+      "status": "found"
+    },
+    {
+      "name": "Path2D",
+      "purpose": "Canvas路径对象，支持通过addPath/moveTo/lineTo/arc等方法描述路径，通过context.stroke/context.fill绘制",
+      "anchor": "path2d",
+      "status": "found"
+    },
+    {
+      "name": "Chart (组件)",
+      "purpose": "图表组件（线形图/柱状图/量规图），仅存在于JS组件体系，非ArkTS组件",
+      "anchor": "chart-js-组件",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.graphics.drawing",
+      "purpose": "底层2D绘制模块(API11+)，以PixelMap为目标提供Canvas/Brush/Pen/Path等绘制类",
+      "anchor": "ohosgraphicsdrawing",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Chart 组件仅存在于 JS 组件体系（compatible JS Web development paradigm），并非 ArkTS 组件。ArkTS 中实现图表必须通过 Canvas + CanvasRenderingContext2D 自定义绘制，或使用 DataPanel/Gauge 等内置信息展示组件",
+    "CanvasRenderingContext2D 是自定义图表绘制的核心路径，提供 fillRect/strokeRect/arc/lineTo/bezierCurveTo/fill/stroke 等完整2D绘制API",
+    "@ohos.graphics.drawing 是底层2D绘制模块，使用 px 单位（非 vp），单线程模型，通过 RenderNode 的 draw 回调使用",
+    "Shape 组件 + Circle/Rect/Path/Line 提供声明式图形绘制方案，适合独立图形元素而非逐帧自定义绘图",
+    "Canvas 组件宽或高超过 8000px 时使用 CPU 渲染，会导致性能明显下降；最大面积不超过 10000px*10000px",
+    "Path2D 支持从 SVG 路径描述字符串构造，与 CanvasRenderingContext2D 配合实现可复用路径"
+  ],
+  "missingApis": []
+}

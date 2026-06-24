@@ -1,0 +1,27 @@
+{
+  "module": "01-data-persistence.md",
+  "group": "01 — Data Persistence (数据持久化)",
+  "apiCount": 2,
+  "apis": [
+    {
+      "name": "@ohos.data.preferences (用户首选项)",
+      "purpose": "轻量级 Key-Value 数据持久化，适合配置项、用户偏好等小型数据存储，支持 XML 和 GSKV 两种存储模式",
+      "anchor": "ohos-data-preferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.relationalStore (关系型数据库)",
+      "purpose": "基于 SQLite 的关系型数据库管理，提供完整的 SQL 能力（插入/更新/删除/批量/事务/向量数据库），适合结构化大数据存储",
+      "anchor": "ohos-data-relationalstore-关系型数据库",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Preferences 不支持多进程并发安全，多进程共享应使用 DataShare 或 RDB",
+    "Preferences 从 API 18 起支持 GSKV 存储模式（实时落盘，无需 flush）；XML 模式需调用 flush() 落盘",
+    "relationalStore 单条数据建议不超过 2MB，单次查询不超过 5000 条（大数据量场景建议在 TaskPool 中查询）",
+    "relationalStore 从 API 18 起支持向量数据库，需配置 StoreConfig.vector=true",
+    "Preferences 和 relationalStore 均支持元服务（从 API 11 起），均使用 @kit.ArkData 导入路径"
+  ],
+  "missingApis": []
+}

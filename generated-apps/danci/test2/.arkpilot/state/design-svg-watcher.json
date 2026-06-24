@@ -1,0 +1,27 @@
+{
+  "pid": 49323,
+  "status": "controller-tick",
+  "launched_by_session_id": "6d91ce13-de8b-4c2d-b3a7-b85961e1dc8c",
+  "started_at": "2026-06-20T03:34:40.412Z",
+  "last_scan_at": "2026-06-20T03:57:25.690Z",
+  "last_change_at": "2026-06-20T03:38:47.788Z",
+  "html_signature": "[{\"name\":\"page-study.html\",\"mtime_ms\":1781926722501,\"size\":20649}]",
+  "html_files": [
+    {
+      "name": "page-study.html",
+      "mtime_ms": 1781926722501,
+      "size": 20649
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 11,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 11,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-20T03:57:25.690Z"
+}

@@ -1,0 +1,81 @@
+{
+  "module": "08-utility-capabilities.md",
+  "group": "08 — 工具能力 文件联系人权限 Lifecycle Permissions",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "fileIo (fs)",
+      "purpose": "基础文件操作：文件管理、目录管理、信息统计、流式读写",
+      "anchor": "fileio-fs",
+      "status": "found"
+    },
+    {
+      "name": "fileAccess",
+      "purpose": "文件访问能力（未在本地文档集中找到）",
+      "anchor": "fileaccess",
+      "status": "missing"
+    },
+    {
+      "name": "photoAccessHelper",
+      "purpose": "相册管理：创建相册、访问和修改相册中的媒体数据",
+      "anchor": "photoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "contact (contactsManager)",
+      "purpose": "联系人管理：添加、删除、更新联系人",
+      "anchor": "contact-contactsmanager",
+      "status": "found"
+    },
+    {
+      "name": "call (telephony)",
+      "purpose": "呼叫管理：拨打电话、跳转拨号界面、获取通话状态",
+      "anchor": "call-telephony",
+      "status": "found"
+    },
+    {
+      "name": "UIAbility",
+      "purpose": "带界面的应用组件，提供生命周期回调及后台通信能力",
+      "anchor": "uiability",
+      "status": "found"
+    },
+    {
+      "name": "AbilityStage",
+      "purpose": "Module级别组件管理器，资源预加载、线程创建等初始化操作",
+      "anchor": "abilitystage",
+      "status": "found"
+    },
+    {
+      "name": "window",
+      "purpose": "窗口管理：窗口创建、销毁、属性设置、窗口间管理调度",
+      "anchor": "window",
+      "status": "found"
+    },
+    {
+      "name": "abilityAccessCtrl",
+      "purpose": "程序访问控制：应用程序权限校验和管理",
+      "anchor": "abilityaccessctrl",
+      "status": "found"
+    },
+    {
+      "name": "bundleManager",
+      "purpose": "应用程序包管理：查询应用包信息、组件信息",
+      "anchor": "bundlemnager",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.enterprise.adminManager",
+      "purpose": "企业MDM应用admin权限管理：激活/解除激活、事件订阅、委托授权",
+      "anchor": "ohosenterpriseadminmanager",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "fileAccess (@ohos.file.fileAccess) not found in local docs; use fileManagerService from @kit.FileManagerServiceKit as alternative",
+    "photoAccessHelper belongs to Media Library Kit (@kit.MediaLibraryKit), not File Manager Service Kit",
+    "UIAbility/AbilityStage/bundleManager/abilityAccessCtrl all import from @kit.AbilityKit",
+    "@ohos.enterprise.adminManager only available for MDM device management apps with special permissions",
+    "call.makeCall is the recommended (non-deprecated) API for dialing, available from API 7+; call.dial is deprecated since API 9"
+  ],
+  "missingApis": ["fileAccess"]
+}

@@ -1,0 +1,1337 @@
+{
+  "generated_at": "2026-06-22T11:52:13.365Z",
+  "icons": [
+    {
+      "file_name": "icon_PawLog-应用标志.svg",
+      "title": "PawLog 应用标志",
+      "source_html": "page-home-page.html",
+      "hash": "3681f01379d5deca597f55a4cf00859f08304a5f",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#163832",
+      "fill_color": "white",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "app-logo",
+        "header-left",
+        "header"
+      ]
+    },
+    {
+      "file_name": "icon_体重记录条目.svg",
+      "title": "体重记录条目",
+      "source_html": "page-records-page.html",
+      "hash": "81cbba1f910a69203863d7e79c822094fdea51fe",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#87CEEB",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "weight",
+        "record-item",
+        "timeline"
+      ]
+    },
+    {
+      "file_name": "icon_体重趋势面积图.svg",
+      "title": "体重趋势面积图",
+      "source_html": "page-trends-page.html",
+      "hash": "b3183bb08d1c40336f54f9692872bc78a8b6c733",
+      "width": 100,
+      "height": 100,
+      "view_box": "0 0 320 220",
+      "paint_mode": "fill+stroke",
+      "default_color": "#163832",
+      "fill_color": "url(#areaFill)",
+      "stroke_color": "#E3EDEA",
+      "opacity": "1",
+      "context_classes": [
+        "chart-area",
+        "chart-card"
+      ]
+    },
+    {
+      "file_name": "icon_关闭体重记录表单.svg",
+      "title": "关闭体重记录表单",
+      "source_html": "page-record-weight-sheet.html",
+      "hash": "7850abb30ab5713381cb9d19553547c2e0834446",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3FC0A0",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "close-icon",
+        "sheet-header",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_关闭排泄记录表单.svg",
+      "title": "关闭排泄记录表单",
+      "source_html": "page-record-stool-sheet.html",
+      "hash": "b8df76163e270e286774dc2f3515e91875f43044",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3FC0A0",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "close-icon",
+        "sheet-header",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_关闭用药记录表单.svg",
+      "title": "关闭用药记录表单",
+      "source_html": "page-record-meds-sheet.html",
+      "hash": "b407ba0d8062484fd2cb5756cc6907357ad3c977",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3FC0A0",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "close-icon",
+        "sheet-header",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_关闭饮食记录表单.svg",
+      "title": "关闭饮食记录表单",
+      "source_html": "page-record-diet-sheet.html",
+      "hash": "b1bb98849bcc4fa44b8e50b95c72c0196039a493",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3FC0A0",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "close-icon",
+        "sheet-header",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_切换当前宠物.svg",
+      "title": "切换当前宠物",
+      "source_html": "page-home-page.html",
+      "hash": "fd4076209dc2265ebd665532373db988e3b72640",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3D5A52",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header-actions",
+        "header"
+      ]
+    },
+    {
+      "file_name": "icon_宠物头像-1.svg",
+      "title": "宠物头像",
+      "source_html": "page-home-page.html",
+      "hash": "83167108800ad365a9653e0beee9a6c2f51df771",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#163832",
+      "fill_color": "#FFB3C1",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "pet-avatar",
+        "pet-avatar-wrap",
+        "pet-item"
+      ]
+    },
+    {
+      "file_name": "icon_宠物头像-2.svg",
+      "title": "宠物头像",
+      "source_html": "page-pet-editor-page.html",
+      "hash": "a43442422dfe2bd504fa824857376f396183580c",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#163832",
+      "fill_color": "#3FC0A0",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "avatar-edit",
+        "avatar-section"
+      ]
+    },
+    {
+      "file_name": "icon_家庭成员共享入口.svg",
+      "title": "家庭成员共享入口",
+      "source_html": "page-profile-page.html",
+      "hash": "184772d606b5d9115f1c7e28b1c0de640f545ce6",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "family-icon",
+        "family-header",
+        "family-card"
+      ]
+    },
+    {
+      "file_name": "icon_家庭成员头像-1.svg",
+      "title": "家庭成员头像",
+      "source_html": "page-family-invite-sheet.html",
+      "hash": "a4e97abc90d36bd956533e5c670fa4d68bf955c3",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3FC0A0",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "member-avatar",
+        "member-item"
+      ]
+    },
+    {
+      "file_name": "icon_家庭成员头像-2.svg",
+      "title": "家庭成员头像",
+      "source_html": "page-profile-page.html",
+      "hash": "a4e97abc90d36bd956533e5c670fa4d68bf955c3",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFB3C1",
+      "opacity": "1",
+      "context_classes": [
+        "member-avatar",
+        "family-members",
+        "family-card"
+      ]
+    },
+    {
+      "file_name": "icon_已完成提醒条目.svg",
+      "title": "已完成提醒条目",
+      "source_html": "page-care-page.html",
+      "hash": "4be5e3e63bcd8734da1aeca739697274e27c7f4d",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "reminder-item",
+        "done",
+        "section"
+      ]
+    },
+    {
+      "file_name": "icon_当前宠物头像.svg",
+      "title": "当前宠物头像",
+      "source_html": "page-home-page.html",
+      "hash": "c4d3003ddc96ccb215758fa7e04370fa79afb6c2",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#163832",
+      "fill_color": "#3FC0A0",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "pet-avatar",
+        "pet-avatar-wrap",
+        "pet-item",
+        "active"
+      ]
+    },
+    {
+      "file_name": "icon_当前宠物概览头像.svg",
+      "title": "当前宠物概览头像",
+      "source_html": "page-home-page.html",
+      "hash": "98e25e8c7e54ea85ee244f8dac8dd5ead78f1178",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#163832",
+      "fill_color": "#3FC0A0",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "hero-pet-avatar",
+        "hero-pet",
+        "hero-header"
+      ]
+    },
+    {
+      "file_name": "icon_当前选中标记.svg",
+      "title": "当前选中标记",
+      "source_html": "page-pet-picker-sheet.html",
+      "hash": "79dca1a399bfb8a7276977ca84a7645990b6800d",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "pet-option-check",
+        "pet-option",
+        "active",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签-1.svg",
+      "title": "我的标签",
+      "source_html": "page-care-page.html",
+      "hash": "201919627b29e2d962e8125096f8caea369d4d5e",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签-2.svg",
+      "title": "我的标签",
+      "source_html": "page-profile-page.html",
+      "hash": "201919627b29e2d962e8125096f8caea369d4d5e",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签-3.svg",
+      "title": "我的标签",
+      "source_html": "page-home-page.html",
+      "hash": "4142c73f6cc54f7505d8a9fd14b6b0b9aa22f34d",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_打开应用设置.svg",
+      "title": "打开应用设置",
+      "source_html": "page-profile-page.html",
+      "hash": "46488b38385c5673571f07aad24ed0b58dd5c0e3",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#87CEEB",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "blue",
+        "menu-item",
+        "menu-group"
+      ]
+    },
+    {
+      "file_name": "icon_排泄记录条目.svg",
+      "title": "排泄记录条目",
+      "source_html": "page-records-page.html",
+      "hash": "a9caf0f3ce9a19db587b297e5e8027a7dbaea8c0",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#163832",
+      "fill_color": "#163832",
+      "stroke_color": "#5ED7B6",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "stool",
+        "record-item",
+        "timeline"
+      ]
+    },
+    {
+      "file_name": "icon_更换头像.svg",
+      "title": "更换头像",
+      "source_html": "page-pet-editor-page.html",
+      "hash": "1f74fbdfc6808cc3386bb778eca18acadb535189",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "avatar-badge",
+        "avatar-edit",
+        "avatar-section"
+      ]
+    },
+    {
+      "file_name": "icon_查看关于页面.svg",
+      "title": "查看关于页面",
+      "source_html": "page-profile-page.html",
+      "hash": "c846a1e61b7ef349eca692d84ad65c947445a7ca",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#B8B8E0",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "lavender",
+        "menu-item",
+        "menu-group"
+      ]
+    },
+    {
+      "file_name": "icon_添加体重记录.svg",
+      "title": "添加体重记录",
+      "source_html": "page-add-record-sheet.html",
+      "hash": "3494041df15e434624d55f1659219a75328976fe",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "option-icon",
+        "option",
+        "weight",
+        "grid"
+      ]
+    },
+    {
+      "file_name": "icon_添加宠物档案.svg",
+      "title": "添加宠物档案",
+      "source_html": "page-home-page.html",
+      "hash": "5daa9fda385e7ee33911a19907e7345191671966",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "pet-add",
+        "pet-avatar-wrap",
+        "pet-item"
+      ]
+    },
+    {
+      "file_name": "icon_添加排泄记录.svg",
+      "title": "添加排泄记录",
+      "source_html": "page-add-record-sheet.html",
+      "hash": "b5c74eda831880955ba5b9e22832d395198e9c21",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "option-icon",
+        "option",
+        "stool",
+        "grid"
+      ]
+    },
+    {
+      "file_name": "icon_添加新宠物.svg",
+      "title": "添加新宠物",
+      "source_html": "page-pet-picker-sheet.html",
+      "hash": "46a3ad0926f1d17dcb148eb08c9e7256144e1cb2",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3FC0A0",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "add-pet-icon",
+        "add-pet-row",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_添加新宠物档案.svg",
+      "title": "添加新宠物档案",
+      "source_html": "page-home-page.html",
+      "hash": "d8a705542315926841ccb16fcaf898f1a5e56cee",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3D5A52",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header-actions",
+        "header"
+      ]
+    },
+    {
+      "file_name": "icon_添加新记录.svg",
+      "title": "添加新记录",
+      "source_html": "page-records-page.html",
+      "hash": "d2b3d9da669392647acb274275e3265896210342",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3D5A52",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header-actions",
+        "header"
+      ]
+    },
+    {
+      "file_name": "icon_添加照护项目.svg",
+      "title": "添加照护项目",
+      "source_html": "page-care-page.html",
+      "hash": "acdc6e972ef1ffa75813df701927f5ab8fb423b6",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3D5A52",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header"
+      ]
+    },
+    {
+      "file_name": "icon_添加用药记录.svg",
+      "title": "添加用药记录",
+      "source_html": "page-add-record-sheet.html",
+      "hash": "38db42a5dc42325bb75efe36b9db3b7b34328992",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "option-icon",
+        "option",
+        "meds",
+        "grid"
+      ]
+    },
+    {
+      "file_name": "icon_添加病历图片附件.svg",
+      "title": "添加病历图片附件",
+      "source_html": "page-medical-case-editor-page.html",
+      "hash": "7b284b0fcad6cee0d7dc496b26ab09170ed3fe2c",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#B8B8E0",
+      "opacity": "1",
+      "context_classes": [
+        "upload-thumb",
+        "upload-grid",
+        "image-upload"
+      ]
+    },
+    {
+      "file_name": "icon_添加饮食记录.svg",
+      "title": "添加饮食记录",
+      "source_html": "page-add-record-sheet.html",
+      "hash": "4962dbb1d061dfc4a7131d93e38d3a4940de154f",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "option-icon",
+        "option",
+        "diet",
+        "grid"
+      ]
+    },
+    {
+      "file_name": "icon_照护标签-1.svg",
+      "title": "照护标签",
+      "source_html": "page-care-page.html",
+      "hash": "47195002bf1e947022772d18221cb570b3f0a56a",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_照护标签-2.svg",
+      "title": "照护标签",
+      "source_html": "page-profile-page.html",
+      "hash": "47195002bf1e947022772d18221cb570b3f0a56a",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_照护标签-3.svg",
+      "title": "照护标签",
+      "source_html": "page-home-page.html",
+      "hash": "d12e3c04a72f73eb2381526ab747c39077cfaa60",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_用户头像.svg",
+      "title": "用户头像",
+      "source_html": "page-profile-page.html",
+      "hash": "7bebe3412ecb62b83106bc49f0757d9376b5b805",
+      "width": 36,
+      "height": 36,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "profile-avatar",
+        "profile-card"
+      ]
+    },
+    {
+      "file_name": "icon_用药记录条目.svg",
+      "title": "用药记录条目",
+      "source_html": "page-records-page.html",
+      "hash": "91a1cb40db6fcd277150e06a7534464b58257384",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#B8B8E0",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "meds",
+        "record-item",
+        "timeline"
+      ]
+    },
+    {
+      "file_name": "icon_疫苗提醒.svg",
+      "title": "疫苗提醒",
+      "source_html": "page-home-page.html",
+      "hash": "6ec452e1db910a33aa4acf51c432cd0f89982ef0",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "reminder-item",
+        "urgent",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_疫苗提醒条目.svg",
+      "title": "疫苗提醒条目",
+      "source_html": "page-care-page.html",
+      "hash": "a95738b9a9854123f7064c95fd3e49c9a626479f",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "reminder-item",
+        "urgent",
+        "section"
+      ]
+    },
+    {
+      "file_name": "icon_疫苗提醒详情图标.svg",
+      "title": "疫苗提醒详情图标",
+      "source_html": "page-reminder-detail-page.html",
+      "hash": "5786ac7635ba3b87eed91d81a9ec12bcc514f505",
+      "width": 38,
+      "height": 38,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FF9AAE",
+      "opacity": "1",
+      "context_classes": [
+        "detail-icon",
+        "detail-card"
+      ]
+    },
+    {
+      "file_name": "icon_病历卡片.svg",
+      "title": "病历卡片",
+      "source_html": "page-care-page.html",
+      "hash": "c67961b219d66c5436b0955c4f91ad4e74ff08a1",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "medical-icon",
+        "medical-header",
+        "medical-card"
+      ]
+    },
+    {
+      "file_name": "icon_病历详情图标.svg",
+      "title": "病历详情图标",
+      "source_html": "page-medical-case-page.html",
+      "hash": "6bba79ea5635932459f97f3e54bdcf3e1f547e99",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "detail-icon",
+        "detail-header",
+        "detail-card"
+      ]
+    },
+    {
+      "file_name": "icon_病历附件图片.svg",
+      "title": "病历附件图片",
+      "source_html": "page-care-page.html",
+      "hash": "f4cbbdd8407aadd6f8a5ac0ea2f443befdbcf22c",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#163832",
+      "fill_color": "#163832",
+      "stroke_color": "#B8B8E0",
+      "opacity": "1",
+      "context_classes": [
+        "medical-thumb",
+        "medical-images",
+        "medical-card"
+      ]
+    },
+    {
+      "file_name": "icon_管理宠物档案.svg",
+      "title": "管理宠物档案",
+      "source_html": "page-profile-page.html",
+      "hash": "988446368c9068026cfc864b2da94dd5c047a097",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "mint",
+        "menu-item",
+        "menu-group"
+      ]
+    },
+    {
+      "file_name": "icon_记录体重.svg",
+      "title": "记录体重",
+      "source_html": "page-home-page.html",
+      "hash": "a33b385db18e515984934c49368131fc8c995390",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "quick-btn",
+        "weight",
+        "quick-item"
+      ]
+    },
+    {
+      "file_name": "icon_记录排泄.svg",
+      "title": "记录排泄",
+      "source_html": "page-home-page.html",
+      "hash": "4bf5ddc917895b2329eb3c3442d2cfba803c0516",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#163832",
+      "fill_color": "white",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "quick-btn",
+        "stool",
+        "quick-item"
+      ]
+    },
+    {
+      "file_name": "icon_记录标签-1.svg",
+      "title": "记录标签",
+      "source_html": "page-care-page.html",
+      "hash": "a10524c7b6ba3753a4c9fb17b3d968352c47e9d1",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_记录标签-2.svg",
+      "title": "记录标签",
+      "source_html": "page-home-page.html",
+      "hash": "0e4a7f9dace9afad83cbe7161b80872819bae423",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_记录标签-3.svg",
+      "title": "记录标签",
+      "source_html": "page-records-page.html",
+      "hash": "0e4a7f9dace9afad83cbe7161b80872819bae423",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_记录用药.svg",
+      "title": "记录用药",
+      "source_html": "page-home-page.html",
+      "hash": "075df4f2747b394c818554dd752af5a659a47045",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "quick-btn",
+        "meds",
+        "quick-item"
+      ]
+    },
+    {
+      "file_name": "icon_记录饮食.svg",
+      "title": "记录饮食",
+      "source_html": "page-home-page.html",
+      "hash": "9466596e87bb106a30a4003b560772293af64f06",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "quick-btn",
+        "diet",
+        "quick-item"
+      ]
+    },
+    {
+      "file_name": "icon_趋势标签-1.svg",
+      "title": "趋势标签",
+      "source_html": "page-care-page.html",
+      "hash": "3c4d98cda02ef7d76f9bc4df27a78f8d618c1491",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_趋势标签-2.svg",
+      "title": "趋势标签",
+      "source_html": "page-trends-page.html",
+      "hash": "3c4d98cda02ef7d76f9bc4df27a78f8d618c1491",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_趋势标签-3.svg",
+      "title": "趋势标签",
+      "source_html": "page-home-page.html",
+      "hash": "eb6162a79887d05876fd0d23fea94395f1e84d58",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_返回上一页.svg",
+      "title": "返回上一页",
+      "source_html": "page-medical-case-editor-page.html",
+      "hash": "fa89bfee0ff1270d7a9bca9ceeb524a177029300",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3D5A52",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "header-left",
+        "header"
+      ]
+    },
+    {
+      "file_name": "icon_进入关于页面.svg",
+      "title": "进入关于页面",
+      "source_html": "page-profile-page.html",
+      "hash": "7d7cd4eed0ad7e0ac13b1b5ac7f9b9cdaf1f2564",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "menu-item",
+        "menu-group"
+      ]
+    },
+    {
+      "file_name": "icon_进入照护提醒列表.svg",
+      "title": "进入照护提醒列表",
+      "source_html": "page-home-page.html",
+      "hash": "f9cb503014731478fdf43714be327706e25a6479",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3FC0A0",
+      "fill_color": "",
+      "stroke_color": "#5ED7B6",
+      "opacity": "1",
+      "context_classes": [
+        "card-more",
+        "card-header",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_进入管理宠物页面.svg",
+      "title": "进入管理宠物页面",
+      "source_html": "page-profile-page.html",
+      "hash": "bc24e8d5d5d4a844e3eaadb94b1ba317defbee0b",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "menu-item",
+        "menu-group"
+      ]
+    },
+    {
+      "file_name": "icon_进入设置页面.svg",
+      "title": "进入设置页面",
+      "source_html": "page-profile-page.html",
+      "hash": "4dc0dd76bedffbfb39a816dd5690ac5ad7c1b6c3",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "menu-item",
+        "menu-group"
+      ]
+    },
+    {
+      "file_name": "icon_选择宠物布丁.svg",
+      "title": "选择宠物布丁",
+      "source_html": "page-pet-picker-sheet.html",
+      "hash": "55367d5f732aae6a97b0171ea4e9d4ec3a4946ae",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#3FC0A0",
+      "fill_color": "#3FC0A0",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "pet-option-avatar",
+        "pet-option",
+        "active",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_选择宠物年糕.svg",
+      "title": "选择宠物年糕",
+      "source_html": "page-pet-picker-sheet.html",
+      "hash": "f78ade00f1b038b0d908e0d7e6d7c5082d2ba414",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#FFB3C1",
+      "fill_color": "#FFB3C1",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "pet-option-avatar",
+        "pet-option",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_邀请更多家庭成员.svg",
+      "title": "邀请更多家庭成员",
+      "source_html": "page-profile-page.html",
+      "hash": "1422531d77381254dac6bd37a83533dccd771405",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#FFB3C1",
+      "opacity": "1",
+      "context_classes": [
+        "member-avatar",
+        "family-members",
+        "family-card"
+      ]
+    },
+    {
+      "file_name": "icon_饮食记录条目.svg",
+      "title": "饮食记录条目",
+      "source_html": "page-records-page.html",
+      "hash": "5a71f2a890a00bbb46bc3b18580054daeab43dea",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#F4D0A4",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "diet",
+        "record-item",
+        "timeline"
+      ]
+    },
+    {
+      "file_name": "icon_首页标签-1.svg",
+      "title": "首页标签",
+      "source_html": "page-care-page.html",
+      "hash": "44760b2d545618ffcf6b1f24f09e4a8c34707894",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_首页标签-2.svg",
+      "title": "首页标签",
+      "source_html": "page-home-page.html",
+      "hash": "78c3fcbe1002209a72ef34ccd34364da5a0bc4fc",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_首页标签-3.svg",
+      "title": "首页标签",
+      "source_html": "page-records-page.html",
+      "hash": "78c3fcbe1002209a72ef34ccd34364da5a0bc4fc",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#6F8983",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tabbar"
+      ]
+    },
+    {
+      "file_name": "icon_驱虫提醒.svg",
+      "title": "驱虫提醒",
+      "source_html": "page-home-page.html",
+      "hash": "2790a36c3f510650d3f06d697eb005e07b1b0d23",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "reminder-item",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_驱虫提醒条目.svg",
+      "title": "驱虫提醒条目",
+      "source_html": "page-care-page.html",
+      "hash": "f59df5c98aa6b4868ab62e0896a12da2d6e970b2",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#163832",
+      "fill_color": "",
+      "stroke_color": "#3FC0A0",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "reminder-item",
+        "section"
+      ]
+    }
+  ]
+}

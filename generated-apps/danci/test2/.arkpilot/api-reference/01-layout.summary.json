@@ -1,0 +1,45 @@
+{
+  "module": "01-layout.md",
+  "group": "01 — Layout Components",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "Flex",
+      "purpose": "弹性布局容器，高效排列对齐子元素并分配剩余空间",
+      "anchor": "flex",
+      "status": "found"
+    },
+    {
+      "name": "Column",
+      "purpose": "沿垂直方向布局的容器，可设置子组件间距和对齐方式",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "沿水平方向布局的容器，可设置子组件间距和对齐方式",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，子组件按顺序依次入栈，后一个覆盖前一个",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动的容器组件，子组件尺寸超出父组件时内容可滚动",
+      "anchor": "scroll",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Flex 渲染时有二次布局过程，对性能要求高的场景建议用 Column/Row 替代",
+    "Column 默认 alignItems 为 HorizontalAlign.Center；Row 默认 alignItems 为 VerticalAlign.Center",
+    "Scroll 默认 clip 为 true，默认 scrollable 方向为 ScrollDirection.Vertical",
+    "Scroll 配合 Scroller 控制器可实现 scrollTo/scrollBy/scrollEdge 等编程滚动控制",
+    "FlexSpaceOptions12+ 的 space 属性与 justifyContent 的 SpaceBetween/SpaceAround/SpaceEvenly 互斥"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,89 @@
+{
+  "module": "04-controls-dialogs.md",
+  "group": "04 -- Controls, Dialogs & Input",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "Button",
+      "purpose": "按钮组件，支持Normal/Capsule/Circle/ROUNDED_RECTANGLE样式，用于触发操作",
+      "anchor": "button",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "文本展示组件，支持丰富样式、文本溢出、跑马灯、文本识别、文本选中复制",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Span",
+      "purpose": "Text组件的行内文本子组件，支持独立字体样式和装饰线",
+      "anchor": "span",
+      "status": "found"
+    },
+    {
+      "name": "TextInput",
+      "purpose": "单行文本输入框，支持多种输入类型(普通/密码/电话/邮箱等)和内联风格",
+      "anchor": "textinput",
+      "status": "found"
+    },
+    {
+      "name": "TextArea",
+      "purpose": "多行文本输入框，自动换行，自适应内容高度",
+      "anchor": "textarea",
+      "status": "found"
+    },
+    {
+      "name": "DatePicker",
+      "purpose": "滑动选择日期的组件，支持公历/农历、年-月-日/年-月/月-日模式",
+      "anchor": "datepicker",
+      "status": "found"
+    },
+    {
+      "name": "TimePicker",
+      "purpose": "滑动选择时间的组件，支持12/24小时制、时分/时分秒格式",
+      "anchor": "timepicker",
+      "status": "found"
+    },
+    {
+      "name": "AlertDialog",
+      "purpose": "警告弹窗，支持标题/副标题/消息、1-3个按钮、自定义样式和生命周期回调",
+      "anchor": "警告弹窗-alertdialog",
+      "status": "found"
+    },
+    {
+      "name": "CustomDialog",
+      "purpose": "通过CustomDialogController显示完全自定义内容的弹窗，支持数据双向绑定和动画",
+      "anchor": "自定义弹窗-customdialog",
+      "status": "found"
+    },
+    {
+      "name": "Menu",
+      "purpose": "垂直列表菜单容器，需配合bindMenu/bindContextMenu使用，支持多级菜单",
+      "anchor": "menu",
+      "status": "found"
+    },
+    {
+      "name": "MenuItem",
+      "purpose": "菜单选项，支持图标、文本、标签信息和二级菜单构建",
+      "anchor": "menuitem",
+      "status": "found"
+    },
+    {
+      "name": "Select",
+      "purpose": "下拉选择菜单组件，支持图标、Symbol图标、自定义菜单项样式",
+      "anchor": "select",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "AlertDialog.show()从API 18起废弃，推荐使用getUIContext().showAlertDialog()避免UI上下文不明确问题",
+    "自定义弹窗优先使用CustomDialog而非AlertDialog，便于样式与内容的完全自定义",
+    "TextInput和TextArea默认padding为{top:8vp, right:16vp, bottom:8vp, left:16vp}",
+    "Button的默认type从API 18起由Capsule变更为ROUNDED_RECTANGLE",
+    "Text组件的Span子组件从API 10起可继承父组件的字体属性",
+    "Menu组件必须通过bindMenu或bindContextMenu绑定使用，不支持单独声明为普通组件",
+    "DatePicker和TimePicker不建议在滑动动效过程中修改属性数据"
+  ],
+  "missingApis": []
+}

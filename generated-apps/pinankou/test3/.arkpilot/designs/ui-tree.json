@@ -1,0 +1,277 @@
+{
+  "version": "arkpilot-uitree/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "平安扣",
+  "appNameEn": "Pinankou",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home-page",
+      "name": "工作台",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        { "id": "home-header-title", "role": "assertion", "binding": "/app/title" },
+        { "id": "home-summary-card", "role": "assertion", "binding": "/home/summary" },
+        { "id": "home-open-inspections-button", "role": "action", "event": "navigate-to-inspections" },
+        { "id": "home-report-hazard-button", "role": "action", "event": "open-hazard-detail-new" },
+        { "id": "home-add-safety-note-button", "role": "action", "event": "open-safety-note-detail-new" },
+        { "id": "home-open-contacts-button", "role": "action", "event": "navigate-to-contacts" },
+        { "id": "home-recent-activity-list", "role": "list", "binding": "/home/recentActivity", "itemIdPattern": "home-activity-{id}", "emptyStateId": "home-empty-activity" },
+        { "id": "home-pending-tasks-count", "role": "assertion", "binding": "/home/pendingTasksCount" }
+      ]
+    },
+    {
+      "id": "inspections-page",
+      "surfaceId": "inspections",
+      "pageId": "inspections-page",
+      "name": "巡检",
+      "route": "pages/Inspections",
+      "tabId": "tab-inspections",
+      "semanticTargets": [
+        { "id": "inspections-title", "role": "assertion", "binding": "/app/pageTitle" },
+        { "id": "inspections-add-button", "role": "action", "event": "open-inspection-detail-new" },
+        { "id": "inspections-filter-segment", "role": "input", "binding": "/inspections/filter" },
+        { "id": "inspections-list", "role": "list", "binding": "/inspections/items", "itemIdPattern": "inspection-{id}", "emptyStateId": "inspections-empty-state" },
+        { "id": "inspections-total-count", "role": "assertion", "binding": "/inspections/totalCount" }
+      ]
+    },
+    {
+      "id": "inspection-detail-page",
+      "surfaceId": "inspection-detail",
+      "pageId": "inspection-detail-page",
+      "name": "巡检详情",
+      "route": "pages/InspectionDetail",
+      "semanticTargets": [
+        { "id": "inspection-detail-back-button", "role": "action", "event": "navigate-back" },
+        { "id": "inspection-detail-title-input", "role": "input", "binding": "/inspection/form/title" },
+        { "id": "inspection-detail-location-input", "role": "input", "binding": "/inspection/form/location" },
+        { "id": "inspection-detail-date-picker", "role": "input", "binding": "/inspection/form/date" },
+        { "id": "inspection-detail-checklist", "role": "list", "binding": "/inspection/checklist", "itemIdPattern": "inspection-check-{id}" },
+        { "id": "inspection-detail-check-normal-button", "role": "action", "event": "mark-check-normal" },
+        { "id": "inspection-detail-check-abnormal-button", "role": "action", "event": "mark-check-abnormal" },
+        { "id": "inspection-detail-convert-hazard-button", "role": "action", "event": "convert-to-hazard" },
+        { "id": "inspection-detail-submit-button", "role": "action", "event": "submit-inspection" },
+        { "id": "inspection-detail-delete-button", "role": "action", "event": "delete-inspection" }
+      ]
+    },
+    {
+      "id": "hazards-page",
+      "surfaceId": "hazards",
+      "pageId": "hazards-page",
+      "name": "隐患",
+      "route": "pages/Hazards",
+      "tabId": "tab-hazards",
+      "semanticTargets": [
+        { "id": "hazards-title", "role": "assertion", "binding": "/app/pageTitle" },
+        { "id": "hazards-add-button", "role": "action", "event": "open-hazard-detail-new" },
+        { "id": "hazards-filter-status", "role": "input", "binding": "/hazards/filter/status" },
+        { "id": "hazards-filter-level", "role": "input", "binding": "/hazards/filter/level" },
+        { "id": "hazards-list", "role": "list", "binding": "/hazards/items", "itemIdPattern": "hazard-{id}", "emptyStateId": "hazards-empty-state" },
+        { "id": "hazards-total-count", "role": "assertion", "binding": "/hazards/totalCount" }
+      ]
+    },
+    {
+      "id": "hazard-detail-page",
+      "surfaceId": "hazard-detail",
+      "pageId": "hazard-detail-page",
+      "name": "隐患详情",
+      "route": "pages/HazardDetail",
+      "semanticTargets": [
+        { "id": "hazard-detail-back-button", "role": "action", "event": "navigate-back" },
+        { "id": "hazard-detail-title-input", "role": "input", "binding": "/hazard/form/title" },
+        { "id": "hazard-detail-location-input", "role": "input", "binding": "/hazard/form/location" },
+        { "id": "hazard-detail-level-picker", "role": "input", "binding": "/hazard/form/level" },
+        { "id": "hazard-detail-status-picker", "role": "input", "binding": "/hazard/form/status" },
+        { "id": "hazard-detail-description-input", "role": "input", "binding": "/hazard/form/description" },
+        { "id": "hazard-detail-photo-uploader", "role": "input", "binding": "/hazard/form/photos" },
+        { "id": "hazard-detail-assignee-input", "role": "input", "binding": "/hazard/form/assignee" },
+        { "id": "hazard-detail-deadline-picker", "role": "input", "binding": "/hazard/form/deadline" },
+        { "id": "hazard-detail-progress-tracker", "role": "assertion", "binding": "/hazard/progress" },
+        { "id": "hazard-detail-comment-list", "role": "list", "binding": "/hazard/comments", "itemIdPattern": "hazard-comment-{id}", "emptyStateId": "hazard-empty-comments" },
+        { "id": "hazard-detail-comment-input", "role": "input", "binding": "/hazard/commentInput" },
+        { "id": "hazard-detail-submit-comment-button", "role": "action", "event": "submit-comment" },
+        { "id": "hazard-detail-save-button", "role": "action", "event": "save-hazard" },
+        { "id": "hazard-detail-delete-button", "role": "action", "event": "delete-hazard" }
+      ]
+    },
+    {
+      "id": "safety-notes-page",
+      "surfaceId": "safety-notes",
+      "pageId": "safety-notes-page",
+      "name": "安全事项",
+      "route": "pages/SafetyNotes",
+      "semanticTargets": [
+        { "id": "safety-notes-title", "role": "assertion", "binding": "/app/pageTitle" },
+        { "id": "safety-notes-add-button", "role": "action", "event": "open-safety-note-detail-new" },
+        { "id": "safety-notes-list", "role": "list", "binding": "/safetyNotes/items", "itemIdPattern": "safety-note-{id}", "emptyStateId": "safety-notes-empty-state" },
+        { "id": "safety-notes-completed-count", "role": "assertion", "binding": "/safetyNotes/completedCount" }
+      ]
+    },
+    {
+      "id": "safety-note-detail-page",
+      "surfaceId": "safety-note-detail",
+      "pageId": "safety-note-detail-page",
+      "name": "安全事项详情",
+      "route": "pages/SafetyNoteDetail",
+      "semanticTargets": [
+        { "id": "safety-note-detail-back-button", "role": "action", "event": "navigate-back" },
+        { "id": "safety-note-detail-title-input", "role": "input", "binding": "/safetyNote/form/title" },
+        { "id": "safety-note-detail-priority-picker", "role": "input", "binding": "/safetyNote/form/priority" },
+        { "id": "safety-note-detail-assignee-input", "role": "input", "binding": "/safetyNote/form/assignee" },
+        { "id": "safety-note-detail-deadline-picker", "role": "input", "binding": "/safetyNote/form/deadline" },
+        { "id": "safety-note-detail-description-input", "role": "input", "binding": "/safetyNote/form/description" },
+        { "id": "safety-note-detail-done-toggle", "role": "input", "binding": "/safetyNote/form/isDone" },
+        { "id": "safety-note-detail-save-button", "role": "action", "event": "save-safety-note" },
+        { "id": "safety-note-detail-delete-button", "role": "action", "event": "delete-safety-note" }
+      ]
+    },
+    {
+      "id": "contacts-page",
+      "surfaceId": "contacts",
+      "pageId": "contacts-page",
+      "name": "应急联系人",
+      "route": "pages/Contacts",
+      "semanticTargets": [
+        { "id": "contacts-title", "role": "assertion", "binding": "/app/pageTitle" },
+        { "id": "contacts-add-button", "role": "action", "event": "open-contact-detail-new" },
+        { "id": "contacts-search-input", "role": "input", "binding": "/contacts/searchQuery" },
+        { "id": "contacts-list", "role": "list", "binding": "/contacts/items", "itemIdPattern": "contact-{id}", "emptyStateId": "contacts-empty-state" },
+        { "id": "contacts-call-button", "role": "action", "event": "call-contact" },
+        { "id": "contacts-message-button", "role": "action", "event": "message-contact" }
+      ]
+    },
+    {
+      "id": "contact-detail-page",
+      "surfaceId": "contact-detail",
+      "pageId": "contact-detail-page",
+      "name": "联系人详情",
+      "route": "pages/ContactDetail",
+      "semanticTargets": [
+        { "id": "contact-detail-back-button", "role": "action", "event": "navigate-back" },
+        { "id": "contact-detail-name-input", "role": "input", "binding": "/contact/form/name" },
+        { "id": "contact-detail-role-input", "role": "input", "binding": "/contact/form/role" },
+        { "id": "contact-detail-department-input", "role": "input", "binding": "/contact/form/department" },
+        { "id": "contact-detail-phone-input", "role": "input", "binding": "/contact/form/phone" },
+        { "id": "contact-detail-emergency-toggle", "role": "input", "binding": "/contact/form/isEmergency" },
+        { "id": "contact-detail-save-button", "role": "action", "event": "save-contact" },
+        { "id": "contact-detail-delete-button", "role": "action", "event": "delete-contact" }
+      ]
+    },
+    {
+      "id": "stats-page",
+      "surfaceId": "stats",
+      "pageId": "stats-page",
+      "name": "统计看板",
+      "route": "pages/Stats",
+      "tabId": "tab-stats",
+      "semanticTargets": [
+        { "id": "stats-title", "role": "assertion", "binding": "/app/pageTitle" },
+        { "id": "stats-period-picker", "role": "input", "binding": "/stats/period" },
+        { "id": "stats-hazard-total-card", "role": "assertion", "binding": "/stats/hazardTotal" },
+        { "id": "stats-closed-rate-card", "role": "assertion", "binding": "/stats/closedRate" },
+        { "id": "stats-inspection-completion-card", "role": "assertion", "binding": "/stats/inspectionCompletion" },
+        { "id": "stats-overdue-count-card", "role": "assertion", "binding": "/stats/overdueCount" },
+        { "id": "stats-trend-chart", "role": "assertion", "binding": "/stats/trend" },
+        { "id": "stats-status-distribution", "role": "assertion", "binding": "/stats/statusDistribution" },
+        { "id": "stats-top-locations-list", "role": "list", "binding": "/stats/topLocations", "itemIdPattern": "stats-location-{id}", "emptyStateId": "stats-empty-locations" }
+      ]
+    },
+    {
+      "id": "profile-page",
+      "surfaceId": "profile",
+      "pageId": "profile-page",
+      "name": "我的",
+      "route": "pages/Profile",
+      "tabId": "tab-profile",
+      "semanticTargets": [
+        { "id": "profile-title", "role": "assertion", "binding": "/app/pageTitle" },
+        { "id": "profile-settings-button", "role": "action", "event": "open-settings" },
+        { "id": "profile-about-button", "role": "action", "event": "open-about" },
+        { "id": "profile-export-button", "role": "action", "event": "export-data" },
+        { "id": "profile-clear-data-button", "role": "action", "event": "clear-local-data" }
+      ]
+    }
+  ],
+  "events": [
+    { "name": "navigate-to-inspections", "context": "from home shortcut" },
+    { "name": "open-hazard-detail-new", "context": "new hazard report" },
+    { "name": "open-safety-note-detail-new", "context": "new safety note" },
+    { "name": "navigate-to-contacts", "context": "from home shortcut" },
+    { "name": "open-inspection-detail-new", "context": "new inspection task" },
+    { "name": "navigate-back", "context": "close detail/form page" },
+    { "name": "mark-check-normal", "context": "inspection checklist item" },
+    { "name": "mark-check-abnormal", "context": "inspection checklist item" },
+    { "name": "convert-to-hazard", "context": "from abnormal inspection item" },
+    { "name": "submit-inspection", "context": "save inspection result" },
+    { "name": "delete-inspection", "context": "remove inspection record" },
+    { "name": "save-hazard", "context": "create or update hazard" },
+    { "name": "delete-hazard", "context": "remove hazard record" },
+    { "name": "submit-comment", "context": "add hazard progress comment" },
+    { "name": "save-safety-note", "context": "create or update safety note" },
+    { "name": "delete-safety-note", "context": "remove safety note" },
+    { "name": "open-contact-detail-new", "context": "new emergency contact" },
+    { "name": "call-contact", "context": "dial contact phone" },
+    { "name": "message-contact", "context": "send sms to contact" },
+    { "name": "save-contact", "context": "create or update contact" },
+    { "name": "delete-contact", "context": "remove contact" },
+    { "name": "open-settings", "context": "app settings" },
+    { "name": "open-about", "context": "about page" },
+    { "name": "export-data", "context": "export local records" },
+    { "name": "clear-local-data", "context": "clear all local data" }
+  ],
+  "bindings": [
+    { "path": "/app/title", "type": "string", "default": "平安扣" },
+    { "path": "/app/pageTitle", "type": "string", "default": "" },
+    { "path": "/home/summary", "type": "object" },
+    { "path": "/home/recentActivity", "type": "array" },
+    { "path": "/home/pendingTasksCount", "type": "number", "default": 0 },
+    { "path": "/inspections/items", "type": "array" },
+    { "path": "/inspections/filter", "type": "string", "default": "all" },
+    { "path": "/inspections/totalCount", "type": "number", "default": 0 },
+    { "path": "/inspection/form/*", "type": "string|date|array" },
+    { "path": "/inspection/checklist", "type": "array" },
+    { "path": "/hazards/items", "type": "array" },
+    { "path": "/hazards/filter/status", "type": "string", "default": "all" },
+    { "path": "/hazards/filter/level", "type": "string", "default": "all" },
+    { "path": "/hazards/totalCount", "type": "number", "default": 0 },
+    { "path": "/hazard/form/*", "type": "string|date|array" },
+    { "path": "/hazard/progress", "type": "object" },
+    { "path": "/hazard/comments", "type": "array" },
+    { "path": "/hazard/commentInput", "type": "string" },
+    { "path": "/safetyNotes/items", "type": "array" },
+    { "path": "/safetyNotes/completedCount", "type": "number", "default": 0 },
+    { "path": "/safetyNote/form/*", "type": "string|date|boolean" },
+    { "path": "/contacts/items", "type": "array" },
+    { "path": "/contacts/searchQuery", "type": "string" },
+    { "path": "/contact/form/*", "type": "string|boolean" },
+    { "path": "/stats/period", "type": "string", "default": "7d" },
+    { "path": "/stats/hazardTotal", "type": "number" },
+    { "path": "/stats/closedRate", "type": "number" },
+    { "path": "/stats/inspectionCompletion", "type": "number" },
+    { "path": "/stats/overdueCount", "type": "number" },
+    { "path": "/stats/trend", "type": "array" },
+    { "path": "/stats/statusDistribution", "type": "array" },
+    { "path": "/stats/topLocations", "type": "array" }
+  ],
+  "testTargets": [
+    { "id": "tab-home", "type": "tab", "label": "工作台" },
+    { "id": "tab-inspections", "type": "tab", "label": "巡检" },
+    { "id": "tab-hazards", "type": "tab", "label": "隐患" },
+    { "id": "tab-stats", "type": "tab", "label": "统计" },
+    { "id": "tab-profile", "type": "tab", "label": "我的" },
+    { "id": "home-empty-activity", "type": "empty-state" },
+    { "id": "inspections-empty-state", "type": "empty-state" },
+    { "id": "hazards-empty-state", "type": "empty-state" },
+    { "id": "safety-notes-empty-state", "type": "empty-state" },
+    { "id": "contacts-empty-state", "type": "empty-state" },
+    { "id": "hazard-empty-comments", "type": "empty-state" },
+    { "id": "stats-empty-locations", "type": "empty-state" }
+  ]
+}

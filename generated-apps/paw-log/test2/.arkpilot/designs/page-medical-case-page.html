@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>病历详情</title>
+  <style>
+    :root {
+      --mint-600: #3FC0A0; --mint-500: #5ED7B6; --mint-300: #9CEBD4; --mint-100: #E5FAF4; --mint-50: #F4FDFA;
+      --pink-600: #FF9AAE; --pink-500: #FFB3C1; --pink-100: #FFF0F3;
+      --yellow-500: #FFD166; --yellow-100: #FFF9E6;
+      --blue-500: #87CEEB; --blue-100: #E6F5FB;
+      --lavender-500: #B8B8E0; --lavender-100: #F2F1FA;
+      --apricot-500: #F4D0A4; --apricot-100: #FDF5EA;
+      --forest-900: #163832; --forest-700: #3D5A52; --forest-500: #6F8983; --forest-200: #C9D8D4; --forest-100: #E3EDEA;
+      --white: #FFFFFF; --page-bg: #FAFDFC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--page-bg); color: var(--forest-900); max-width: 390px; margin: 0 auto;
+      min-height: 100vh; position: relative; padding-bottom: 100px;
+    }
+    .header { padding: 12px 16px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .back-btn { width: 36px; height: 36px; border-radius: 12px; background: var(--white); border: 1px solid var(--forest-100); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .back-btn svg { width: 18px; height: 18px; stroke: var(--forest-700); fill: none; }
+    .header-title { font-size: 18px; font-weight: 800; }
+    .edit-btn { padding: 8px 16px; border-radius: 18px; background: var(--lavender-100); color: var(--lavender-500); font-size: 13px; font-weight: 700; border: none; cursor: pointer; }
+
+    .detail-card {
+      margin: 8px 16px 16px; padding: 20px; border-radius: 24px;
+      background: var(--lavender-100); border: 1px solid rgba(184,184,224,0.4);
+      box-shadow: 0 6px 22px rgba(22,56,50,0.05);
+    }
+    .detail-header { display: flex; gap: 14px; margin-bottom: 16px; }
+    .detail-icon { width: 56px; height: 56px; border-radius: 18px; background: var(--lavender-500); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .detail-icon svg { width: 28px; height: 28px; stroke: var(--white); fill: none; }
+    .detail-title { font-size: 20px; font-weight: 800; }
+    .detail-meta { font-size: 13px; color: var(--forest-500); margin-top: 4px; }
+    .detail-block { margin-bottom: 16px; }
+    .detail-block:last-child { margin-bottom: 0; }
+    .detail-label { font-size: 12px; color: var(--forest-500); margin-bottom: 4px; }
+    .detail-text { font-size: 15px; font-weight: 600; color: var(--forest-900); line-height: 1.55; }
+
+    .image-section { margin: 0 16px 16px; }
+    .section-title { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+    .image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .image-thumb {
+      aspect-ratio: 1; border-radius: 16px; background: var(--white);
+      border: 1px solid var(--forest-100); display: flex; align-items: center; justify-content: center;
+    }
+    .image-thumb svg { width: 28px; height: 28px; stroke: var(--lavender-500); fill: none; }
+
+    .bottom-actions {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 390px; margin: 0 auto;
+      padding: 12px 16px 24px; background: var(--white); border-top: 1px solid var(--forest-100);
+    }
+    .btn-primary {
+      width: 100%; padding: 15px; border-radius: 28px; border: none;
+      background: linear-gradient(135deg, var(--mint-500) 0%, var(--mint-600) 50%, #2DB08E 100%);
+      color: var(--white); font-size: 16px; font-weight: 700;
+      box-shadow: 0 8px 24px rgba(63,192,160,0.36), inset 0 1px 0 rgba(255,255,255,0.35);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body data-page-id="medical-case-page">
+
+  <header class="header">
+    <div class="header-left">
+      <button class="back-btn" data-ui-id="medical-case-back">
+        <svg viewBox="0 0 24 24" role="img"><title>返回上一页</title><path d="M15 18l-6-6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <span class="header-title">病历详情</span>
+    </div>
+    <button class="edit-btn" data-ui-id="medical-case-edit">编辑</button>
+  </header>
+
+  <section class="detail-card">
+    <div class="detail-header">
+      <div class="detail-icon">
+        <svg viewBox="0 0 24 24" role="img">
+          <title>病历详情图标</title>
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="2" stroke-linecap="round"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="detail-title" data-ui-id="medical-case-title">肠胃炎复诊</div>
+        <div class="detail-meta" data-ui-id="medical-case-date">2026-05-15 · 瑞派宠物医院</div>
+      </div>
+    </div>
+
+    <div class="detail-block">
+      <div class="detail-label">诊断</div>
+      <div class="detail-text" data-ui-id="medical-case-diagnosis">轻度肠胃炎，建议调整饮食并服用益生菌。</div>
+    </div>
+
+    <div class="detail-block">
+      <div class="detail-label">医院</div>
+      <div class="detail-text" data-ui-id="medical-case-hospital">瑞派宠物医院（朝阳分院）</div>
+    </div>
+
+    <div class="detail-block">
+      <div class="detail-label">医嘱备注</div>
+      <div class="detail-text">少食多餐，避免油腻，3天后复查。</div>
+    </div>
+  </section>
+
+  <section class="image-section" data-ui-id="medical-case-images">
+    <div class="section-title">附件图片</div>
+    <div class="image-grid">
+      <div class="image-thumb" data-ui-id="medical-case-image-0">
+        <svg viewBox="0 0 24 24" role="img"><title>病历附件图片</title><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="image-thumb" data-ui-id="medical-case-image-1">
+        <svg viewBox="0 0 24 24" role="img"><title>病历附件图片</title><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="image-thumb" data-ui-id="medical-case-image-2">
+        <svg viewBox="0 0 24 24" role="img"><title>病历附件图片</title><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom-actions">
+    <button class="btn-primary">查看完整时间轴</button>
+  </div>
+
+</body>
+</html>

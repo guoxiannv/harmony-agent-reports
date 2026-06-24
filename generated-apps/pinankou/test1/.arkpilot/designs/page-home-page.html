@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 Pinankou - 首页</title>
+  <style>
+    :root {
+      --sky: #38BDF8; --mint: #34D399; --teal: #0F766E; --teal-500: #14B8A6;
+      --slate-900: #0F172A; --slate-600: #475569; --slate-400: #94A3B8; --slate-200: #E2E8F0;
+      --card-bg: rgba(255,255,255,0.88);
+      --page-bg: linear-gradient(180deg, #E0F2FE 0%, #D1FAE5 32%, #F0FDFA 68%, #F8FAFC 100%);
+      --shadow-card: 0 24px 48px -14px rgba(14,165,233,0.14), 0 6px 16px -6px rgba(0,0,0,0.05);
+      --shadow-fab: 0 18px 44px -10px rgba(14,165,233,0.5);
+      --shadow-tab: 0 -8px 30px rgba(15,23,42,0.08);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; height: 100%; font-family: "PingFang SC", "HarmonyOS Sans SC", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif; background: var(--page-bg); color: var(--slate-900); }
+    #app { max-width: 390px; margin: 0 auto; min-height: 100%; position: relative; padding-bottom: 90px; }
+    header { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: rgba(255,255,255,0.82); backdrop-filter: blur(20px) saturate(160%); border-bottom: 1px solid rgba(226,232,240,0.5); }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-icon { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--sky) 0%, var(--mint) 100%); display: grid; place-items: center; color: #fff; }
+    .brand-text { font-size: 18px; font-weight: 700; color: var(--teal); letter-spacing: -0.2px; }
+    .header-action { width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.7); border: 1px solid var(--slate-200); display: grid; place-items: center; color: var(--slate-600); }
+    main { padding: 16px; }
+    .welcome { margin-bottom: 18px; }
+    .welcome h1 { font-size: 22px; font-weight: 700; margin: 0 0 6px; color: var(--slate-900); }
+    .date-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.6); font-size: 13px; color: var(--slate-600); }
+    .dashboard { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 24px; scrollbar-width: none; }
+    .dashboard::-webkit-scrollbar { display: none; }
+    .dash-card { flex: 0 0 156px; padding: 18px; border-radius: 22px; background: var(--card-bg); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.65); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 10px; }
+    .dash-card .label { font-size: 13px; color: var(--slate-600); }
+    .dash-card .value { font-size: 32px; font-weight: 700; line-height: 1.05; background: linear-gradient(135deg, var(--teal) 0%, var(--sky) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .dash-card.alert .value { background: linear-gradient(135deg, #F87171 0%, #DC2626 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .dash-card .icon-row { display: flex; align-items: center; justify-content: space-between; }
+    .mini-ring { width: 32px; height: 32px; }
+    .mini-ring circle { fill: none; stroke: var(--slate-200); stroke-width: 4; }
+    .mini-ring .progress { stroke: url(#ringGradient); stroke-dasharray: 75; stroke-dashoffset: 19; stroke-linecap: round; }
+    .section-title { font-size: 18px; font-weight: 600; margin: 0 0 14px; color: var(--slate-900); }
+    .quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 28px; }
+    .quick-card { padding: 18px; border-radius: 22px; background: var(--card-bg); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.65); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 12px; cursor: pointer; }
+    .quick-icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; color: #fff; }
+    .quick-icon.blue { background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%); }
+    .quick-icon.green { background: linear-gradient(135deg, #34D399 0%, #10B981 100%); }
+    .quick-icon.teal { background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%); }
+    .quick-icon.orange { background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%); }
+    .quick-icon.red { background: linear-gradient(135deg, #F87171 0%, #EF4444 100%); }
+    .quick-icon.purple { background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%); }
+    .quick-card h3 { font-size: 16px; font-weight: 600; margin: 0; }
+    .quick-card p { font-size: 13px; color: var(--slate-400); margin: 0; }
+    .activity-card { padding: 18px; border-radius: 22px; background: var(--card-bg); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.65); box-shadow: var(--shadow-card); }
+    .activity-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--slate-200); }
+    .activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .activity-item:first-child { padding-top: 0; }
+    .activity-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+    .activity-dot.red { background: #EF4444; }
+    .activity-dot.orange { background: #F59E0B; }
+    .activity-dot.blue { background: #3B82F6; }
+    .activity-text { flex: 1; }
+    .activity-text .title { font-size: 15px; font-weight: 500; color: var(--slate-900); }
+    .activity-text .meta { font-size: 12px; color: var(--slate-400); margin-top: 2px; }
+    .chip { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+    .chip.high { background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); color: #DC2626; }
+    .chip.medium { background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); color: #B45309; }
+    .chip.low { background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%); color: #1E40AF; }
+    .tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 390px; height: 68px; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-top: 1px solid rgba(226,232,240,0.6); box-shadow: var(--shadow-tab); display: flex; justify-content: space-around; align-items: center; padding-bottom: env(safe-area-inset-bottom, 0); }
+    .tab { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 12px; border-radius: 16px; color: var(--slate-400); font-size: 11px; font-weight: 500; cursor: pointer; }
+    .tab.active { color: var(--sky); background: rgba(224,242,254,0.8); box-shadow: 0 0 24px rgba(56,189,248,0.4); }
+    .tab svg { width: 24px; height: 24px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div id="app" data-page-id="home-page" data-tab-id="tab-home">
+    <header>
+      <div class="brand">
+        <div class="brand-icon" data-decoration="logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>平安扣应用标志</title><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <span class="brand-text">平安扣</span>
+      </div>
+      <button class="header-action" data-ui-id="home-notification-button" aria-label="查看通知">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>打开通知中心</title><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+      </button>
+    </header>
+    <main>
+      <section class="welcome">
+        <h1>早上好，今天也要平安归家</h1>
+        <div class="date-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>当前日期</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+          2026年6月19日 星期五
+        </div>
+      </section>
+
+      <section class="dashboard" aria-label="今日安全仪表盘">
+        <div class="dash-card">
+          <div class="icon-row"><span class="label">待处理事项</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>待处理安全事项</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></div>
+          <div class="value" data-ui-id="home-pending-count">5</div>
+        </div>
+        <div class="dash-card alert">
+          <div class="icon-row"><span class="label">逾期事项</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>逾期安全事项</title><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+          <div class="value" data-ui-id="home-overdue-count">1</div>
+        </div>
+        <div class="dash-card">
+          <div class="icon-row"><span class="label">今日巡检</span><svg class="mini-ring" viewBox="0 0 32 32"><title>今日巡检完成进度</title><defs><linearGradient id="ringGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#38BDF8"/><stop offset="100%" stop-color="#34D399"/></linearGradient></defs><circle cx="16" cy="16" r="12"/><circle class="progress" cx="16" cy="16" r="12"/></svg></div>
+          <div class="value" data-ui-id="home-today-inspection-status">75%</div>
+        </div>
+      </section>
+
+      <section aria-label="快捷入口">
+        <h2 class="section-title">常用功能</h2>
+        <div class="quick-grid">
+          <div class="quick-card" data-ui-id="home-safety-items-card">
+            <div class="quick-icon blue"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>进入安全事项列表</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></div>
+            <h3>安全事项</h3><p>记录与跟踪日常安全任务</p>
+          </div>
+          <div class="quick-card" data-ui-id="home-hazards-card">
+            <div class="quick-icon orange"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>进入风险隐患列表</title><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+            <h3>风险隐患</h3><p>上报隐患并跟踪整改闭环</p>
+          </div>
+          <div class="quick-card" data-ui-id="home-inspections-card">
+            <div class="quick-icon green"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>进入巡检打卡</title><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></div>
+            <h3>巡检打卡</h3><p>按检查点逐项确认留痕</p>
+          </div>
+          <div class="quick-card" data-ui-id="home-emergency-card">
+            <div class="quick-icon red"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>进入应急联系人</title><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></div>
+            <h3>应急联系人</h3><p>一键拨打求助电话</p>
+          </div>
+          <div class="quick-card" data-ui-id="home-stats-card">
+            <div class="quick-icon teal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>进入统计看板</title><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
+            <h3>统计看板</h3><p>查看安全健康度指标</p>
+          </div>
+          <div class="quick-card">
+            <div class="quick-icon purple"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>查看更多功能</title><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></div>
+            <h3>更多</h3><p>设置与数据导出</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="最近动态">
+        <h2 class="section-title">最近动态</h2>
+        <div class="activity-card" data-ui-id="home-quick-action-list">
+          <div class="activity-item">
+            <div class="activity-dot red"></div>
+            <div class="activity-text">
+              <div class="title">消防通道堆放杂物</div>
+              <div class="meta">A栋3层 · 2小时前</div>
+            </div>
+            <span class="chip high">高风险</span>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot orange"></div>
+            <div class="activity-text">
+              <div class="title">配电箱巡检待完成</div>
+              <div class="meta">今日截止 · 负责人：王工</div>
+            </div>
+            <span class="chip medium">处理中</span>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot blue"></div>
+            <div class="activity-text">
+              <div class="title">灭火器月检已确认</div>
+              <div class="meta">B栋1层 · 昨天</div>
+            </div>
+            <span class="chip low">已完成</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="tabbar" role="tablist" aria-label="主导航">
+      <div class="tab active" role="tab" data-tab-id="tab-home" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页标签</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>首页</span>
+      </div>
+      <div class="tab" role="tab" data-tab-id="tab-hazards" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>风险隐患标签</title><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        <span>隐患</span>
+      </div>
+      <div class="tab" role="tab" data-tab-id="tab-inspections" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>巡检打卡标签</title><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>
+        <span>巡检</span>
+      </div>
+      <div class="tab" role="tab" data-tab-id="tab-stats" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>统计看板标签</title><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+        <span>统计</span>
+      </div>
+      <div class="tab" role="tab" data-tab-id="tab-profile" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的标签</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>我的</span>
+      </div>
+    </nav>
+  </div>
+</body>
+</html>

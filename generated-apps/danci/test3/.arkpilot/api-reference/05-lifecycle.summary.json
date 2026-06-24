@@ -1,0 +1,80 @@
+{
+  "module": "05-lifecycle.md",
+  "group": "05 — Lifecycle, Builder & Overlay",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "@Component",
+      "purpose": "声明自定义组件类",
+      "anchor": "component",
+      "status": "found"
+    },
+    {
+      "name": "@Entry",
+      "purpose": "标记自定义组件为UI页面入口（唯一）",
+      "anchor": "entry",
+      "status": "found"
+    },
+    {
+      "name": "aboutToAppear",
+      "purpose": "在组件创建后、build()前初始化状态变量",
+      "anchor": "abouttoappear",
+      "status": "found"
+    },
+    {
+      "name": "aboutToDisappear",
+      "purpose": "组件销毁时执行清理逻辑",
+      "anchor": "abouttodisappear",
+      "status": "found"
+    },
+    {
+      "name": "onPageShow",
+      "purpose": "router路由页面每次显示时触发",
+      "anchor": "onpageshow",
+      "status": "found"
+    },
+    {
+      "name": "onPageHide",
+      "purpose": "router路由页面每次隐藏时触发",
+      "anchor": "onpagehide",
+      "status": "found"
+    },
+    {
+      "name": "@Builder",
+      "purpose": "定义自定义构建函数，可在组件内外复用",
+      "anchor": "builder",
+      "status": "found"
+    },
+    {
+      "name": "@LocalBuilder",
+      "purpose": "定义组件内局部构建函数",
+      "anchor": "localbuilder",
+      "status": "found"
+    },
+    {
+      "name": "@CustomDialog (CustomDialogController)",
+      "purpose": "通过CustomDialogController创建和管理自定义弹窗",
+      "anchor": "customdialog-customdialogcontroller",
+      "status": "found"
+    },
+    {
+      "name": "bindSheet (bindSheet属性)",
+      "purpose": "为组件绑定半模态页面（Sheet）",
+      "anchor": "bindsheet",
+      "status": "found"
+    },
+    {
+      "name": "SheetTransition",
+      "purpose": "半模态转场概念（通过bindSheet实现）",
+      "anchor": "sheettransition",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@Component 和 @Builder/@LocalBuilder 无独立 API 参考文件; 装饰器定义位于 ArkTS 编程语言指南",
+    "SheetTransition 并非独立 API 名称，是 bindSheet 半模态转场的功能描述",
+    "bindSheet 仅限 Stage 模型使用（从 API version 10 开始）",
+    "aboutToAppear/aboutToDisappear/onPageShow/onPageHide 从 API version 7 开始支持，元服务从 API version 11 开始支持"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,84 @@
+{
+  "module": "03-file-storage.md",
+  "group": "03 — File Storage (文件存储)",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "@ohos.file.fs (fileIo)",
+      "purpose": "基础文件操作模块，提供文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能",
+      "anchor": "ohosfilefs-fileio",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.open()",
+      "purpose": "打开文件或目录，返回File对象（含fd），支持沙箱路径和URI，可指定OpenMode选项",
+      "anchor": "fileioopen",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.mkdir()",
+      "purpose": "创建目录，API 11+支持递归创建多级目录",
+      "anchor": "fileiomkdir",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.read()",
+      "purpose": "从已打开文件的fd读取数据到ArrayBuffer，支持offset/length选项",
+      "anchor": "fileioread",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.write()",
+      "purpose": "将数据写入已打开文件的fd，支持ArrayBuffer或string，支持offset/length/encoding选项",
+      "anchor": "fileiowrite",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.copyFile()",
+      "purpose": "复制文件，支持路径或文件描述符，mode=0完全覆盖目标文件",
+      "anchor": "fileiocopyfile",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.unlink()",
+      "purpose": "删除单个文件（非目录）",
+      "anchor": "fileiounlink",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.stat (fileStat)",
+      "purpose": "通过fileIo.stat()获取文件/目录详细属性（size/mtime/atime/ctime/mode/ino等），由Stat类承载",
+      "anchor": "fileiostat--stat-filestat",
+      "status": "found"
+    },
+    {
+      "name": "fileUri (@ohos.file.fileuri)",
+      "purpose": "通过PATH获取文件URI（file://格式），或通过URI获取文件名/沙箱路径，用于文件分享",
+      "anchor": "ohosfilefileuri-fileuri",
+      "status": "found"
+    },
+    {
+      "name": "Context.filesDir / Context.cacheDir / applicationContext",
+      "purpose": "Stage模型下通过this.context获取应用沙箱路径（filesDir/cacheDir等），作为所有文件操作的前置入口",
+      "anchor": "context-filesdir--cachedir-应用沙箱路径",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "fileIo (Core File Kit) 负责应用沙箱内的基础文件IO；fileManagerService (File Manager Service Kit) 负责用户公共目录文件的回收站删除、图标获取等系统级文件管理",
+    "所有 fileIo 文件操作必须先通过 this.context.filesDir/cacheDir 获取沙箱路径，URI也可作为入参（API 22+）",
+    "fileIo 每个异步方法均有对应的 Sync 版本（如 openSync、readSync、copyFileSync），使用后需 closeSync(file) 释放 fd",
+    "fileIo.open() mode 默认 READ_ONLY，需组合 OpenMode.CREATE 创建新文件，OpenMode.TRUNC 裁剪已有文件",
+    "fileUri.getUriFromPath 将沙箱路径转为 file://<bundleName>/data/storage/... URI 格式"
+  ],
+  "missingApis": [
+    {
+      "name": "@ohos.file.stat",
+      "reason": "无独立模块文件，fileStat 能力由 @ohos.file.fs 中的 fileIo.stat() 方法及 Stat 类提供，统一归入 fileIo"
+    },
+    {
+      "name": "sandbox path",
+      "reason": "sandbox path 为概念性术语而非独立API，通过 Context.filesDir / Context.cacheDir 获取，已在 Context 条目中覆盖"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "module": "02-animation.md",
+  "group": "02 -- 3D Card Flip Animation",
+  "apiCount": 8,
+  "apis": [
+    {
+      "name": "rotate (3D旋转)",
+      "purpose": "设置组件3D旋转，支持配置旋转轴向量、角度、旋转中心和视距",
+      "anchor": "rotate",
+      "status": "found"
+    },
+    {
+      "name": "animation (隐式动画)",
+      "purpose": "组件属性变化时自动插入渐变过渡动效",
+      "anchor": "animation",
+      "status": "found"
+    },
+    {
+      "name": "animateTo (显式动画)",
+      "purpose": "在闭包内改变状态时显式插入过渡动效",
+      "anchor": "animatetodeprecated",
+      "status": "found"
+    },
+    {
+      "name": "transition (转场动画)",
+      "purpose": "组件插入/删除时的过渡动效，支持多种效果组合",
+      "anchor": "transition",
+      "status": "found"
+    },
+    {
+      "name": "opacity (透明度)",
+      "purpose": "设置组件不透明度，支持子组件继承叠加",
+      "anchor": "opacity",
+      "status": "found"
+    },
+    {
+      "name": "scale (缩放)",
+      "purpose": "设置组件X/Y/Z轴独立缩放及缩放中心点",
+      "anchor": "scale",
+      "status": "found"
+    },
+    {
+      "name": "transformCenter (变换中心点)",
+      "purpose": "旋转和缩放时的变换锚点，通过centerX/centerY在RotateOptions/ScaleOptions中设置",
+      "anchor": "rotateoptions对象说明",
+      "status": "found"
+    },
+    {
+      "name": "perspective (透视投影)",
+      "purpose": "3D旋转视距，控制相机z轴位置以产生透视效果",
+      "anchor": "rotateoptions对象说明",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "transformCenter和perspective不是独立组件属性，而是RotateOptions/ScaleOptions对象中的字段",
+    "transition推荐使用API 10+的TransitionEffect链式API，TransitionOptions已废弃",
+    "animateTo全局方法从API 18开始废弃，建议通过this.getUIContext()?.animateTo()调用",
+    "3D翻转核心组合：rotate + animation/animateTo + perspective + opacity"
+  ],
+  "missingApis": []
+}

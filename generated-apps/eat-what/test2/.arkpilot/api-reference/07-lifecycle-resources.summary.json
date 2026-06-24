@@ -1,0 +1,74 @@
+{
+  "module": "07-lifecycle-resources.md",
+  "group": "07 — Lifecycle & Resources",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "UIAbility",
+      "purpose": "带界面的应用组件，管理 Ability 生命周期（onCreate/onForeground/onBackground/onDestroy）和后端通信",
+      "anchor": "uiability",
+      "status": "found"
+    },
+    {
+      "name": "AbilityStage",
+      "purpose": "Module 级别的组件管理器，支持资源预加载、线程创建、系统配置变化监听",
+      "anchor": "abilitystage",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.window (WindowStage)",
+      "purpose": "窗口管理器，管理主窗口和子窗口的创建、页面加载、窗口事件监听",
+      "anchor": "interface-windowstage",
+      "status": "found"
+    },
+    {
+      "name": "Context",
+      "purpose": "Stage 模型上下文基类，提供资源管理、沙箱路径、应用级操作等能力",
+      "anchor": "context-stage模型的上下文基类",
+      "status": "found"
+    },
+    {
+      "name": "aboutToAppear",
+      "purpose": "自定义组件创建后、build() 执行前调用的初始化回调",
+      "anchor": "abouttoappear",
+      "status": "found"
+    },
+    {
+      "name": "aboutToDisappear",
+      "purpose": "自定义组件析构销毁时执行的回调，用于清理资源",
+      "anchor": "abouttodisappear",
+      "status": "found"
+    },
+    {
+      "name": "onPageShow",
+      "purpose": "@Entry 路由页面每次显示时触发（路由跳转、应用进前台）",
+      "anchor": "onpageshow",
+      "status": "found"
+    },
+    {
+      "name": "onPageHide",
+      "purpose": "@Entry 路由页面每次隐藏时触发（路由跳转、应用进后台）",
+      "anchor": "onpagehide",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.resourceManager",
+      "purpose": "应用资源管理，按 Configuration 获取最匹配的字符串、图片、颜色等资源",
+      "anchor": "ohosresourcemanager-资源管理",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.hilog",
+      "purpose": "应用日志打印，支持 DEBUG/INFO/WARN/ERROR/FATAL 级别及隐私标识格式化",
+      "anchor": "ohoshilog-hilog日志打印",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "aboutToAppear/aboutToDisappear 对所有自定义组件生效；onPageShow/onPageHide 仅对 @Entry 路由页面生效",
+    "Stage 模型中 context.resourceManager 可直接访问资源，无需额外导入 @ohos.resourceManager",
+    "hilog 格式字符串缺省为 private，需显式用 %{public}s 标记明文输出",
+    "WindowStage 是 UIAbility 的窗口入口，通过 onWindowStageCreate 获得实例"
+  ],
+  "missingApis": []
+}

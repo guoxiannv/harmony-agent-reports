@@ -1,0 +1,86 @@
+{
+  "module": "03-media-library.md",
+  "group": "03 — Media Library (相册写入)",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "@ohos.file.photoAccessHelper.getPhotoAccessHelper",
+      "purpose": "获取相册管理模块实例",
+      "anchor": "photoaccesshelpergetphotoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.PhotoAccessHelper.createAsset",
+      "purpose": "创建图片/视频资源，返回URI",
+      "anchor": "createasset",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.PhotoAccessHelper.createPhotoAsset",
+      "purpose": "创建图片/视频资源（API 23+简化版）",
+      "anchor": "createphotoasset23",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.MediaAssetChangeRequest.createAssetRequest",
+      "purpose": "创建资产变更请求，配合addResource和applyChanges写入数据",
+      "anchor": "createassetrequest11",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.MediaAssetChangeRequest.addResource",
+      "purpose": "通过ArrayBuffer或文件URI添加资源数据到资产变更请求",
+      "anchor": "addresource11",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.PhotoAccessHelper.applyChanges",
+      "purpose": "提交媒体变更请求（创建/修改资产）",
+      "anchor": "applychanges11",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.PhotoAccessHelper.showAssetsCreationDialog",
+      "purpose": "显示保存确认弹窗，无需WRITE_IMAGEVIDEO权限",
+      "anchor": "showassetscreationdialog12",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.PhotoAccessHelper.createAssetWithShortTermPermission",
+      "purpose": "短期权限创建资源（首次弹窗，5分钟内免弹窗）",
+      "anchor": "createassetshorttermpermission12",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.MediaAssetChangeRequest.getWriteCacheHandler",
+      "purpose": "获取临时文件写句柄，用于写入资产数据",
+      "anchor": "getwritecachehandler11",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.PhotoType",
+      "purpose": "媒体文件类型枚举（IMAGE=1, VIDEO=2）",
+      "anchor": "phototype",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper.ResourceType",
+      "purpose": "资源类型枚举（IMAGE_RESOURCE等）",
+      "anchor": "resourcetype11",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.sendablePhotoAccessHelper",
+      "purpose": "基于Sendable对象的相册管理模块",
+      "anchor": "ohosfilesendablephotoaccesshelper基于sendable对象的相册管理模块",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "sendablePhotoAccessHelper 模块不包含 createAsset/applyChanges 等写入方法，仅支持读取操作；写入必须使用 photoAccessHelper 模块",
+    "导入路径使用 @kit.MediaLibraryKit，非 @ohos.file.photoAccessHelper",
+    "createAsset 需要 ohos.permission.WRITE_IMAGEVIDEO 权限，无权限时可使用 showAssetsCreationDialog（弹窗授权）或 createAssetWithShortTermPermission（短期权限）",
+    "推荐写入路径：createAssetRequest + addResource(ArrayBuffer) + applyChanges 直接写入PixelMap数据"
+  ],
+  "missingApis": []
+}

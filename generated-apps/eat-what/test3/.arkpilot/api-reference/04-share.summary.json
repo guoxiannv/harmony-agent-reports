@@ -1,0 +1,148 @@
+{
+  "module": "04-share.md",
+  "group": "04 — 系统分享",
+  "apiCount": 19,
+  "apis": [
+    {
+      "name": "systemShare（分享）",
+      "purpose": "系统标准分享面板，用于将图片/文本/链接等数据分享到其他应用",
+      "anchor": "systemshare分享",
+      "status": "found"
+    },
+    {
+      "name": "SharedRecord",
+      "purpose": "定义分享数据记录的字段（utd、title、label、description、thumbnail、uri、content等）",
+      "anchor": "sharedrecord",
+      "status": "found"
+    },
+    {
+      "name": "SharedData",
+      "purpose": "封装一组分享数据记录，支持构造、添加记录、获取记录",
+      "anchor": "shareddata",
+      "status": "found"
+    },
+    {
+      "name": "ShareController",
+      "purpose": "创建分享面板控制器，控制展示、事件监听（dismiss/shareCompleted）",
+      "anchor": "sharecontroller",
+      "status": "found"
+    },
+    {
+      "name": "ShareControllerOptions",
+      "purpose": "分享控制器配置项（锚点、预览模式、选择模式、排除能力、应用信任列表）",
+      "anchor": "sharecontrolleroptions",
+      "status": "found"
+    },
+    {
+      "name": "ShareControllerAnchor",
+      "purpose": "分享悬浮窗视图依附锚点（窗口偏移和尺寸）",
+      "anchor": "sharecontrolleranchor",
+      "status": "found"
+    },
+    {
+      "name": "SharePreviewMode",
+      "purpose": "分享预览模式枚举（DEFAULT缩略图卡片、DETAIL详细预览图）",
+      "anchor": "sharepreviewmode",
+      "status": "found"
+    },
+    {
+      "name": "SelectionMode",
+      "purpose": "分享选择模式枚举（SINGLE单选、BATCH批量）",
+      "anchor": "selectionmode",
+      "status": "found"
+    },
+    {
+      "name": "ShareAbilityType",
+      "purpose": "系统能力类型枚举，用于排除操作区不需显示的系统能力",
+      "anchor": "shareabilitytype",
+      "status": "found"
+    },
+    {
+      "name": "ShareAbilityName",
+      "purpose": "系统操作名称枚举（复制、保存至图库、另存为、打印、中转站等）",
+      "anchor": "shareabilityname",
+      "status": "found"
+    },
+    {
+      "name": "ShareOperationResult",
+      "purpose": "shareCompleted事件的返回值，包含用户选择的分享渠道信息",
+      "anchor": "shareoperationresult",
+      "status": "found"
+    },
+    {
+      "name": "ShareAbilityInfo",
+      "purpose": "用户分享渠道的信息（渠道名称）",
+      "anchor": "shareabilityinfo",
+      "status": "found"
+    },
+    {
+      "name": "getSharedData",
+      "purpose": "从目标应用Want信息中解析分享数据",
+      "anchor": "getshareddata",
+      "status": "found"
+    },
+    {
+      "name": "getContactInfo",
+      "purpose": "从目标应用Want信息中解析联系人信息",
+      "anchor": "getcontactinfo",
+      "status": "found"
+    },
+    {
+      "name": "getWant",
+      "purpose": "基于SharedData和预览模式构造Want数据",
+      "anchor": "getwant",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.fileshare (文件分享)",
+      "purpose": "Core File Kit文件分享能力，提供URI读写权限授权给其他应用的接口",
+      "anchor": "ohosfileshare-文件分享",
+      "status": "found"
+    },
+    {
+      "name": "OperationMode",
+      "purpose": "URI访问模式枚举（读、写、创建、删除、重命名权限）",
+      "anchor": "operationmode11",
+      "status": "found"
+    },
+    {
+      "name": "persistPermission",
+      "purpose": "对所选择的多个文件或目录URI持久化授权",
+      "anchor": "filesharepersistpermission11",
+      "status": "found"
+    },
+    {
+      "name": "revokePermission",
+      "purpose": "对所选择的多个文件或目录URI取消持久化授权",
+      "anchor": "filesharerevokepermission11",
+      "status": "found"
+    },
+    {
+      "name": "activatePermission",
+      "purpose": "使能多个已经永久授权过的文件或目录",
+      "anchor": "fileshareactivatepermission11",
+      "status": "found"
+    },
+    {
+      "name": "deactivatePermission",
+      "purpose": "取消使能授权过的多个文件或目录",
+      "anchor": "filesharedeactivatepermission11",
+      "status": "found"
+    },
+    {
+      "name": "checkPersistentPermission",
+      "purpose": "校验多个文件或目录URI的持久化授权状态",
+      "anchor": "filesharecheckpersistentpermission12",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "systemShare 和 @ohos.fileshare 分属不同 Kit（ShareKit vs CoreFileKit），分享数据用 systemShare + @kit.ShareKit，文件URI权限托管用 fileShare + @kit.CoreFileKit",
+    "@ohos.fileshare 的 persistPermission/revokePermission/activatePermission/deactivatePermission 均需 ohos.permission.FILE_ACCESS_PERSIST 权限",
+    "systemShare 仅支持 Stage 模型，从 API version 11 开始；@ohos.fileshare 从 API version 9 开始",
+    "systemShare 的 SharedData 最多 500 条记录且总大小不超过 IPC 200KB 上限；缩略图限制 32KB",
+    "Share Kit 目录下还有 harmonyShare（华为分享）API 未在本模块中覆盖",
+    "未发现需要标记 missing 或 skipped 的 API"
+  ],
+  "missingApis": []
+}

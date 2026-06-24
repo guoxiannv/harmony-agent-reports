@@ -1,0 +1,1213 @@
+{
+  "generated_at": "2026-06-22T11:46:13.109Z",
+  "icons": [
+    {
+      "file_name": "icon_About-App.svg",
+      "title": "About App",
+      "source_html": "page-profile-page.html",
+      "hash": "59fbb6347026f2be819358f37e0f005ad68026ce",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#F48FB1",
+      "opacity": "1",
+      "context_classes": [
+        "setting-icon",
+        "setting-label",
+        "setting-row"
+      ]
+    },
+    {
+      "file_name": "icon_Add-Deworm-Record.svg",
+      "title": "Add Deworm Record",
+      "source_html": "page-health-page.html",
+      "hash": "4fcf188b17d753132d9135523e052d19fb460059",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "module-add",
+        "module-header",
+        "module-card"
+      ]
+    },
+    {
+      "file_name": "icon_Add-Medical-Record.svg",
+      "title": "Add Medical Record",
+      "source_html": "page-health-page.html",
+      "hash": "05e37b0bb598be51339d86ec2711d5fd024420ed",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "module-add",
+        "module-header",
+        "module-card"
+      ]
+    },
+    {
+      "file_name": "icon_Add-New-Record.svg",
+      "title": "Add New Record",
+      "source_html": "page-records-page.html",
+      "hash": "3394377fde39db14e9e111a048e503b20c36dfb9",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "header-action",
+        "header",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Add-Pet-Profile.svg",
+      "title": "Add Pet Profile",
+      "source_html": "page-profile-page.html",
+      "hash": "2b43f0d3d46482d60063d0161e48898812d7d360",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "card-add",
+        "card-header",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_Add-Vaccine-Record.svg",
+      "title": "Add Vaccine Record",
+      "source_html": "page-health-page.html",
+      "hash": "1271717668f7606faedc700ca625456fae460454",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "module-add",
+        "module-header",
+        "module-card"
+      ]
+    },
+    {
+      "file_name": "icon_Attach-Medical-Photos.svg",
+      "title": "Attach Medical Photos",
+      "source_html": "page-medical-record-editor-page.html",
+      "hash": "acf4ab07091f42938448e21dacaa5c774565f93e",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7ED7C2",
+      "fill_color": "",
+      "stroke_color": "#7ED7C2",
+      "opacity": "1",
+      "context_classes": [
+        "attachment-box",
+        "form-group",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Back-to-Previous-Page.svg",
+      "title": "Back to Previous Page",
+      "source_html": "page-medical-record-detail-page.html",
+      "hash": "2c2928a6635e062dd7e269585e2171b215b2a9c0",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "header",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Current-Pet-Avatar-Placeholder.svg",
+      "title": "Current Pet Avatar Placeholder",
+      "source_html": "page-home-page.html",
+      "hash": "b7e7b6c0dc11257e827463a479a8636c58733563",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#3A3630",
+      "fill_color": "#3A3630",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "pet-avatar",
+        "pet-switcher",
+        "header"
+      ]
+    },
+    {
+      "file_name": "icon_Current-User-Avatar.svg",
+      "title": "Current User Avatar",
+      "source_html": "page-profile-page.html",
+      "hash": "a1dc3f5df0b490152df1c88504b30c09b6e30764",
+      "width": 34,
+      "height": 34,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "user-avatar",
+        "profile-header",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Deworm-Reminder-Icon.svg",
+      "title": "Deworm Reminder Icon",
+      "source_html": "page-reminder-list-page.html",
+      "hash": "77b96ae1c6b8121ac400801f806ae9ae4f826101",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "warning",
+        "reminder-card",
+        "reminder-list"
+      ]
+    },
+    {
+      "file_name": "icon_Edit-Pet-Profile.svg",
+      "title": "Edit Pet Profile",
+      "source_html": "page-profile-page.html",
+      "hash": "05c9e079345d5a4ffba2c832be2256cb3ac126ce",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "1",
+      "context_classes": [
+        "pet-row",
+        "pet-list",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_Family-Member-Avatar.svg",
+      "title": "Family Member Avatar",
+      "source_html": "page-profile-page.html",
+      "hash": "eac43b21ebb802a6345d2f6986f68215f5b99574",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#F48FB1",
+      "fill_color": "",
+      "stroke_color": "#F48FB1",
+      "opacity": "1",
+      "context_classes": [
+        "member-avatar",
+        "member-row",
+        "member-list"
+      ]
+    },
+    {
+      "file_name": "icon_Filter-by-Category.svg",
+      "title": "Filter by Category",
+      "source_html": "page-records-page.html",
+      "hash": "e861401d50ce5109a2c5c00f788376947f44d359",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3A3630",
+      "fill_color": "",
+      "stroke_color": "#3A3630",
+      "opacity": "1",
+      "context_classes": [
+        "filter-chip",
+        "filters",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Filter-by-Pet.svg",
+      "title": "Filter by Pet",
+      "source_html": "page-records-page.html",
+      "hash": "909baf9c6c4263b75faa95d513aaa1973c828e88",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "white",
+      "fill_color": "white",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "filter-chip",
+        "active",
+        "filters",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Filter-by-Time-Range.svg",
+      "title": "Filter by Time Range",
+      "source_html": "page-records-page.html",
+      "hash": "f1ce462b70f3cee0bb241c35dbc5f894b1515e1d",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3A3630",
+      "fill_color": "",
+      "stroke_color": "#3A3630",
+      "opacity": "1",
+      "context_classes": [
+        "filter-chip",
+        "filters",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Food-Category.svg",
+      "title": "Food Category",
+      "source_html": "page-record-editor-page.html",
+      "hash": "5d84e437e7dbf865933a3f5eb40cbd2329606246",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "category-tab",
+        "active",
+        "category-tabs",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Food-Record-Icon.svg",
+      "title": "Food Record Icon",
+      "source_html": "page-home-page.html",
+      "hash": "37b45e10c7210143c0f8b69085ff6a8b2079a179",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "record-card",
+        "recent-records"
+      ]
+    },
+    {
+      "file_name": "icon_Food-Record.svg",
+      "title": "Food Record",
+      "source_html": "page-records-page.html",
+      "hash": "a6d54cd4d08e1e5b4547f585055b8c87e2efe1aa",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3A3630",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "record-card",
+        "records"
+      ]
+    },
+    {
+      "file_name": "icon_Go-to-Reminder-List.svg",
+      "title": "Go to Reminder List",
+      "source_html": "page-home-page.html",
+      "hash": "f19f69432ee3ce65d58bca934217240ef42ce7d6",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#F48FB1",
+      "fill_color": "",
+      "stroke_color": "#F48FB1",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-banner",
+        "content",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Health-Tab-1.svg",
+      "title": "Health Tab",
+      "source_html": "page-health-page.html",
+      "hash": "7b36871eeee7c170c54e3ec43c3ce003b24e41c5",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Health-Tab-2.svg",
+      "title": "Health Tab",
+      "source_html": "page-home-page.html",
+      "hash": "7b36871eeee7c170c54e3ec43c3ce003b24e41c5",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Home-Tab-1.svg",
+      "title": "Home Tab",
+      "source_html": "page-health-page.html",
+      "hash": "130c1ebb47f64cc70633c1b41e2f3da6e3c6e72f",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#C4BEB4",
+      "fill_color": "#C4BEB4",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Home-Tab-2.svg",
+      "title": "Home Tab",
+      "source_html": "page-home-page.html",
+      "hash": "130c1ebb47f64cc70633c1b41e2f3da6e3c6e72f",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#4CB5A0",
+      "fill_color": "#4CB5A0",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Invite-Family-Member-Illustration.svg",
+      "title": "Invite Family Member Illustration",
+      "source_html": "page-member-invite-page.html",
+      "hash": "29f7e27ef9de3927bf164d2d0b3a982f9d1eb2a5",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "invite-icon",
+        "invite-card",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Invite-Family-Member.svg",
+      "title": "Invite Family Member",
+      "source_html": "page-profile-page.html",
+      "hash": "45aad3eca1184133f2a1f3bce0f0e9ad554bfc43",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "card-add",
+        "card-header",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_Medical-Attachment-Thumbnail.svg",
+      "title": "Medical Attachment Thumbnail",
+      "source_html": "page-medical-record-detail-page.html",
+      "hash": "7eb221297bde1c201b225e70bd51da2c8d219244",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "1",
+      "context_classes": [
+        "attachment-thumb",
+        "attachment-list",
+        "detail-section"
+      ]
+    },
+    {
+      "file_name": "icon_Medicine-Category.svg",
+      "title": "Medicine Category",
+      "source_html": "page-record-editor-page.html",
+      "hash": "7a0f649e187bcc8d8e0932c7d4db23aa24be010b",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#5C5750",
+      "fill_color": "",
+      "stroke_color": "#5C5750",
+      "opacity": "1",
+      "context_classes": [
+        "category-tab",
+        "category-tabs",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_No-Medical-Records-Placeholder.svg",
+      "title": "No Medical Records Placeholder",
+      "source_html": "page-health-page.html",
+      "hash": "9c6375c6bafddca27415fc3ce62c6fd2dcd7e6da",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "0.5",
+      "context_classes": [
+        "empty-state",
+        "module-card",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_No-Pets-Placeholder.svg",
+      "title": "No Pets Placeholder",
+      "source_html": "page-profile-page.html",
+      "hash": "33eefe940da32ce941b8e919da466d6a7f6541e8",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "0.5",
+      "context_classes": [
+        "empty-state",
+        "card",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_No-Recent-Records-Placeholder.svg",
+      "title": "No Recent Records Placeholder",
+      "source_html": "page-home-page.html",
+      "hash": "7d791f786bcec74913db362298011a3712311c01",
+      "width": 64,
+      "height": 64,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "0.5",
+      "context_classes": [
+        "empty-state",
+        "content",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_No-Records-Placeholder.svg",
+      "title": "No Records Placeholder",
+      "source_html": "page-records-page.html",
+      "hash": "2e0c80d0676cc71939d34ef46dab59cc6763179a",
+      "width": 72,
+      "height": 72,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "0.5",
+      "context_classes": [
+        "empty-state",
+        "content",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_No-Reminders-Placeholder.svg",
+      "title": "No Reminders Placeholder",
+      "source_html": "page-reminder-list-page.html",
+      "hash": "c60bbc535915eb4e0bfc8e4686ab89db0ec8d029",
+      "width": 72,
+      "height": 72,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "0.5",
+      "context_classes": [
+        "empty-state",
+        "content",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_No-Trend-Data-Placeholder.svg",
+      "title": "No Trend Data Placeholder",
+      "source_html": "page-trends-page.html",
+      "hash": "e6017d90d6e86bce6fe13d90a5dd5125096ed7ab",
+      "width": 72,
+      "height": 72,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "0.5",
+      "context_classes": [
+        "empty-state",
+        "content",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Open-About-Page.svg",
+      "title": "Open About Page",
+      "source_html": "page-profile-page.html",
+      "hash": "36e012c6fe021c21089e5a24fa01d17e913309fd",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "1",
+      "context_classes": [
+        "setting-row",
+        "card",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Open-Pet-Switcher.svg",
+      "title": "Open Pet Switcher",
+      "source_html": "page-home-page.html",
+      "hash": "3e355985374a56b723b2cf64573c9f60237e34fa",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "pet-switcher",
+        "header",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Open-Record-Options.svg",
+      "title": "Open Record Options",
+      "source_html": "page-records-page.html",
+      "hash": "95e97d8d52a887523e2bffe152551832befcb990",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#C4BEB4",
+      "fill_color": "#C4BEB4",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "record-menu",
+        "record-card",
+        "records"
+      ]
+    },
+    {
+      "file_name": "icon_Pet-Avatar-Placeholder-1.svg",
+      "title": "Pet Avatar Placeholder",
+      "source_html": "page-profile-page.html",
+      "hash": "8db964f7ad8aef245113c0543539de062450d8ae",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#4CB5A0",
+      "fill_color": "#4CB5A0",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "pet-avatar-sm",
+        "pet-row",
+        "pet-list"
+      ]
+    },
+    {
+      "file_name": "icon_Pet-Avatar-Placeholder-2.svg",
+      "title": "Pet Avatar Placeholder",
+      "source_html": "page-profile-page.html",
+      "hash": "0eb5ff92546f5669597552036d04ee08e3c260b5",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#4CB5A0",
+      "fill_color": "#4CB5A0",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "pet-avatar-sm",
+        "pet-row",
+        "pet-list"
+      ]
+    },
+    {
+      "file_name": "icon_Profile-Tab-1.svg",
+      "title": "Profile Tab",
+      "source_html": "page-health-page.html",
+      "hash": "cd1a51c6f24e20486de60edf9327dc0ccd014a58",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Profile-Tab-2.svg",
+      "title": "Profile Tab",
+      "source_html": "page-profile-page.html",
+      "hash": "cd1a51c6f24e20486de60edf9327dc0ccd014a58",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Quick-Add-Food-Record.svg",
+      "title": "Quick Add Food Record",
+      "source_html": "page-home-page.html",
+      "hash": "9f510136c1ee57ee63424a99573d0be3cd7f2308",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "mint",
+        "quick-btn",
+        "quick-actions"
+      ]
+    },
+    {
+      "file_name": "icon_Quick-Add-Medicine-Record.svg",
+      "title": "Quick Add Medicine Record",
+      "source_html": "page-home-page.html",
+      "hash": "2bf04c7a54203d610bc80d4e5d7b535941277123",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#5AA7C9",
+      "fill_color": "",
+      "stroke_color": "#5AA7C9",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "blue",
+        "quick-btn",
+        "quick-actions"
+      ]
+    },
+    {
+      "file_name": "icon_Quick-Add-Record.svg",
+      "title": "Quick Add Record",
+      "source_html": "page-records-page.html",
+      "hash": "698f8905436e022ee9291312fdeeb58d9b844558",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "fab",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Quick-Add-Toilet-Record.svg",
+      "title": "Quick Add Toilet Record",
+      "source_html": "page-home-page.html",
+      "hash": "1946b2cf3e64809b775cdc920101c084f5d40576",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#F48FB1",
+      "fill_color": "",
+      "stroke_color": "#F48FB1",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "pink",
+        "quick-btn",
+        "quick-actions"
+      ]
+    },
+    {
+      "file_name": "icon_Quick-Add-Weight-Record.svg",
+      "title": "Quick Add Weight Record",
+      "source_html": "page-home-page.html",
+      "hash": "3d1f812a3b39eb5f0133cd418dd943e6347e7062",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D4A843",
+      "fill_color": "",
+      "stroke_color": "#D4A843",
+      "opacity": "1",
+      "context_classes": [
+        "quick-icon",
+        "yellow",
+        "quick-btn",
+        "quick-actions"
+      ]
+    },
+    {
+      "file_name": "icon_Records-Tab-1.svg",
+      "title": "Records Tab",
+      "source_html": "page-health-page.html",
+      "hash": "d228cc75d069d9152cdcce3d39bc84d4fb1f6f8c",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Records-Tab-2.svg",
+      "title": "Records Tab",
+      "source_html": "page-records-page.html",
+      "hash": "d228cc75d069d9152cdcce3d39bc84d4fb1f6f8c",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Selected-Pet-Indicator.svg",
+      "title": "Selected Pet Indicator",
+      "source_html": "page-health-page.html",
+      "hash": "397dcc40ee0e38cc255feabe1da4b27a92c05ca5",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#3A3630",
+      "fill_color": "#3A3630",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "pet-avatar",
+        "pet-switcher",
+        "header"
+      ]
+    },
+    {
+      "file_name": "icon_Toilet-Category.svg",
+      "title": "Toilet Category",
+      "source_html": "page-record-editor-page.html",
+      "hash": "ea18160e140fdb0aba83211f447c9d1195c12897",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#5C5750",
+      "fill_color": "",
+      "stroke_color": "#5C5750",
+      "opacity": "1",
+      "context_classes": [
+        "category-tab",
+        "category-tabs",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Toilet-Record-Icon.svg",
+      "title": "Toilet Record Icon",
+      "source_html": "page-home-page.html",
+      "hash": "7b55216f29f549874c067aab8bc8a58aec19bccb",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#F48FB1",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "record-card",
+        "recent-records"
+      ]
+    },
+    {
+      "file_name": "icon_Toilet-Record.svg",
+      "title": "Toilet Record",
+      "source_html": "page-records-page.html",
+      "hash": "1380e74c9780736d65f8870721703810401d6c6d",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3A3630",
+      "fill_color": "",
+      "stroke_color": "#F48FB1",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "record-card",
+        "records"
+      ]
+    },
+    {
+      "file_name": "icon_Trends-Tab-1.svg",
+      "title": "Trends Tab",
+      "source_html": "page-health-page.html",
+      "hash": "91aca1277cdbd1c49e6bd2af95205e303754f6c5",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C4BEB4",
+      "fill_color": "",
+      "stroke_color": "#C4BEB4",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Trends-Tab-2.svg",
+      "title": "Trends Tab",
+      "source_html": "page-trends-page.html",
+      "hash": "91aca1277cdbd1c49e6bd2af95205e303754f6c5",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "tab",
+        "active",
+        "tabbar",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Upcoming-Vaccination-Reminder.svg",
+      "title": "Upcoming Vaccination Reminder",
+      "source_html": "page-home-page.html",
+      "hash": "90196e73f302e3e6f16d1bde9491f4e0bae3a735",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "reminder-left",
+        "reminder-banner"
+      ]
+    },
+    {
+      "file_name": "icon_Upload-Pet-Avatar.svg",
+      "title": "Upload Pet Avatar",
+      "source_html": "page-pet-editor-page.html",
+      "hash": "a3c8218203b025d6f28d9f37576017576344d446",
+      "width": 44,
+      "height": 44,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#4CB5A0",
+      "fill_color": "#4CB5A0",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "avatar-picker",
+        "content",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Vaccination-Due-Reminder.svg",
+      "title": "Vaccination Due Reminder",
+      "source_html": "page-health-page.html",
+      "hash": "82bc7e671a2620106ac584ac0b120e43626fad8b",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "reminder-card",
+        "reminder-list"
+      ]
+    },
+    {
+      "file_name": "icon_Vaccination-Reminder-Icon.svg",
+      "title": "Vaccination Reminder Icon",
+      "source_html": "page-reminder-list-page.html",
+      "hash": "36aa87673f219982912a49a6988a0de6557ac1ac",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "reminder-icon",
+        "reminder-card",
+        "reminder-list"
+      ]
+    },
+    {
+      "file_name": "icon_View-All-Reminders.svg",
+      "title": "View All Reminders",
+      "source_html": "page-home-page.html",
+      "hash": "1f35b95c25bee8f351033988530440ba0791a252",
+      "width": 0,
+      "height": 0,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "header-action",
+        "header",
+        "phone-frame"
+      ]
+    },
+    {
+      "file_name": "icon_Weight-Category.svg",
+      "title": "Weight Category",
+      "source_html": "page-record-editor-page.html",
+      "hash": "69b480129143d42641fd989ea08f14d4a9989780",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#5C5750",
+      "fill_color": "",
+      "stroke_color": "#5C5750",
+      "opacity": "1",
+      "context_classes": [
+        "category-tab",
+        "category-tabs",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Weight-Record.svg",
+      "title": "Weight Record",
+      "source_html": "page-records-page.html",
+      "hash": "fe852f5f0cc769f39892f7daee9587a954bfff11",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#3A3630",
+      "fill_color": "",
+      "stroke_color": "#D4A843",
+      "opacity": "1",
+      "context_classes": [
+        "record-icon",
+        "record-card",
+        "records"
+      ]
+    },
+    {
+      "file_name": "icon_Weight-Trend-Chart.svg",
+      "title": "Weight Trend Chart",
+      "source_html": "page-trends-page.html",
+      "hash": "1127efb6ef8655c74a9967979379de01b76106ec",
+      "width": 100,
+      "height": 100,
+      "view_box": "0 0 320 200",
+      "paint_mode": "fill+stroke",
+      "default_color": "#3A3630",
+      "fill_color": "url(#areaFill)",
+      "stroke_color": "#F2F0EB",
+      "opacity": "1",
+      "context_classes": [
+        "chart-area",
+        "chart-card",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_Weight-Unit-Setting.svg",
+      "title": "Weight Unit Setting",
+      "source_html": "page-profile-page.html",
+      "hash": "deefd6d75394349513b89cdf073922d1b17128a3",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4CB5A0",
+      "fill_color": "",
+      "stroke_color": "#4CB5A0",
+      "opacity": "1",
+      "context_classes": [
+        "setting-icon",
+        "setting-label",
+        "setting-row"
+      ]
+    }
+  ]
+}

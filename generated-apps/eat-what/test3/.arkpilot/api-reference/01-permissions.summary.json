@@ -1,0 +1,42 @@
+{
+  "module": "01-permissions.md",
+  "group": "01 — 权限管理",
+  "apiCount": 4,
+  "apis": [
+    {
+      "name": "@ohos.abilityAccessCtrl (程序访问控制管理)",
+      "purpose": "提供应用程序的权限校验和管理能力，包括请求用户授权、校验权限状态、订阅权限变更等",
+      "anchor": "@ohosabilityaccessctrl-程序访问控制管理",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.READ_MEDIA_IMAGES - 读取图片权限声明",
+      "purpose": "声明读取媒体图片所需的权限",
+      "anchor": "ohospermissionread_media_images-读取图片权限声明",
+      "status": "missing"
+    },
+    {
+      "name": "ohos.permission.WRITE_IMAGE - 写入图片权限声明",
+      "purpose": "声明写入图片所需的权限",
+      "anchor": "ohospermissionwrite_image-写入图片权限声明",
+      "status": "missing"
+    },
+    {
+      "name": "bundleManager - 通过 bundleManager.getPermissionFlags 获取权限状态",
+      "purpose": "获取应用的权限标志信息",
+      "anchor": "bundlemanager-通过-bundlemanagergetpermissionflags-获取权限状态",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "ohos.permission.READ_MEDIA_IMAGES 未在本地 references 中找到；本地记录的是 ohos.permission.READ_IMAGEVIDEO",
+    "ohos.permission.WRITE_IMAGE 未在本地 references 中找到；本地记录的是 ohos.permission.WRITE_IMAGEVIDEO",
+    "bundleManager.getPermissionFlags 未在本地文档中发现；bundleManager 模块不包含此方法",
+    "权限校验推荐使用 checkAccessToken/checkAccessTokenSync 替代已废弃的 verifyAccessToken"
+  ],
+  "missingApis": [
+    "ohos.permission.READ_MEDIA_IMAGES",
+    "ohos.permission.WRITE_IMAGE",
+    "bundleManager.getPermissionFlags"
+  ]
+}

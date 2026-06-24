@@ -1,0 +1,10 @@
+{
+  "started": true,
+  "started_at": "2026-06-20T03:34:40.216Z",
+  "session_id": "4d4c6a13-6eaf-42af-9107-6d233af954bb",
+  "hook_event_name": "SessionStart",
+  "source": "startup",
+  "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-danci-test4/4d4c6a13-6eaf-42af-9107-6d233af954bb.jsonl",
+  "codex_session_id": "",
+  "model": "glm-5.2"
+}

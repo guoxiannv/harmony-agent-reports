@@ -1,0 +1,67 @@
+{
+  "pid": 75833,
+  "status": "controller-tick",
+  "launched_by_session_id": "9277243c-9f2f-4b5b-a361-3493fb7fc52d",
+  "started_at": "2026-06-23T06:13:21.995Z",
+  "last_scan_at": "2026-06-23T07:10:30.271Z",
+  "last_change_at": "2026-06-23T06:35:36.785Z",
+  "html_signature": "[{\"name\":\"page-checkin-form-sheet.html\",\"mtime_ms\":1782196471845,\"size\":5018},{\"name\":\"page-checkin-page.html\",\"mtime_ms\":1782196152476,\"size\":14185},{\"name\":\"page-discover-page.html\",\"mtime_ms\":1782196008649,\"size\":11263},{\"name\":\"page-dish-detail-page.html\",\"mtime_ms\":1782196315030,\"size\":10359},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782195753819,\"size\":12594},{\"name\":\"page-ingredients-page.html\",\"mtime_ms\":1782195895804,\"size\":14247},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1782196427299,\"size\":9545},{\"name\":\"page-share-card-page.html\",\"mtime_ms\":1782196215756,\"size\":7061},{\"name\":\"page-wheel-settings-sheet.html\",\"mtime_ms\":1782196532620,\"size\":6161}]",
+  "html_files": [
+    {
+      "name": "page-checkin-form-sheet.html",
+      "mtime_ms": 1782196471845,
+      "size": 5018
+    },
+    {
+      "name": "page-checkin-page.html",
+      "mtime_ms": 1782196152476,
+      "size": 14185
+    },
+    {
+      "name": "page-discover-page.html",
+      "mtime_ms": 1782196008649,
+      "size": 11263
+    },
+    {
+      "name": "page-dish-detail-page.html",
+      "mtime_ms": 1782196315030,
+      "size": 10359
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782195753819,
+      "size": 12594
+    },
+    {
+      "name": "page-ingredients-page.html",
+      "mtime_ms": 1782195895804,
+      "size": 14247
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1782196427299,
+      "size": 9545
+    },
+    {
+      "name": "page-share-card-page.html",
+      "mtime_ms": 1782196215756,
+      "size": 7061
+    },
+    {
+      "name": "page-wheel-settings-sheet.html",
+      "mtime_ms": 1782196532620,
+      "size": 6161
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 51,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 51,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-23T07:10:30.271Z"
+}

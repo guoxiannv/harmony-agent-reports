@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>暂无应急联系人图标</title>
+          <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D9488"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient></defs>
+          <circle cx="60" cy="40" r="22"/>
+          <path d="M30 100c0-22 13.43-40 30-40s30 18 30 40"/>
+          <circle cx="90" cy="34" r="14"/>
+          <path d="M82 70c8 0 14 6 14 14"/>
+        </svg>

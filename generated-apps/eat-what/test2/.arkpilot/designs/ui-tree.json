@@ -1,0 +1,463 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "今天吃什么",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home",
+      "name": "今日决策首页",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        {
+          "id": "home-title",
+          "role": "assertion",
+          "binding": "/pageTitle"
+        },
+        {
+          "id": "home-quick-wheel-button",
+          "role": "action",
+          "event": "open-wheel"
+        },
+        {
+          "id": "home-filter-button",
+          "role": "action",
+          "event": "open-filter"
+        },
+        {
+          "id": "home-recommend-list",
+          "role": "list",
+          "binding": "/recommendations",
+          "itemIdPattern": "home-dish-{id}",
+          "emptyStateId": "home-empty-recommendations"
+        },
+        {
+          "id": "home-today-record-status",
+          "role": "assertion",
+          "binding": "/todayRecord/status"
+        },
+        {
+          "id": "home-add-record-button",
+          "role": "action",
+          "event": "open-add-record"
+        }
+      ]
+    },
+    {
+      "id": "wheel-page",
+      "surfaceId": "wheel",
+      "pageId": "wheel",
+      "name": "随机转盘",
+      "route": "pages/Wheel",
+      "semanticTargets": [
+        {
+          "id": "wheel-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "wheel-title",
+          "role": "assertion",
+          "binding": "/pageTitle"
+        },
+        {
+          "id": "wheel-canvas",
+          "role": "assertion",
+          "binding": "/wheel/candidates"
+        },
+        {
+          "id": "wheel-spin-button",
+          "role": "action",
+          "event": "spin-wheel"
+        },
+        {
+          "id": "wheel-result-name",
+          "role": "assertion",
+          "binding": "/wheel/result/name"
+        },
+        {
+          "id": "wheel-result-accept-button",
+          "role": "action",
+          "event": "accept-result"
+        },
+        {
+          "id": "wheel-result-reshuffle-button",
+          "role": "action",
+          "event": "reshuffle"
+        },
+        {
+          "id": "wheel-share-button",
+          "role": "action",
+          "event": "open-share-card"
+        }
+      ]
+    },
+    {
+      "id": "ingredients-page",
+      "surfaceId": "ingredients",
+      "pageId": "ingredients",
+      "name": "冰箱食材",
+      "route": "pages/Ingredients",
+      "tabId": "tab-ingredients",
+      "semanticTargets": [
+        {
+          "id": "ingredients-title",
+          "role": "assertion",
+          "binding": "/pageTitle"
+        },
+        {
+          "id": "ingredients-input",
+          "role": "input",
+          "event": "add-ingredient"
+        },
+        {
+          "id": "ingredients-add-button",
+          "role": "action",
+          "event": "add-ingredient"
+        },
+        {
+          "id": "ingredients-list",
+          "role": "list",
+          "binding": "/ingredients",
+          "itemIdPattern": "ingredient-{id}",
+          "emptyStateId": "ingredients-empty-state"
+        },
+        {
+          "id": "ingredient-delete-button",
+          "role": "action",
+          "event": "delete-ingredient"
+        },
+        {
+          "id": "ingredients-recommend-button",
+          "role": "action",
+          "event": "show-ingredient-recommendations"
+        },
+        {
+          "id": "ingredients-dish-list",
+          "role": "list",
+          "binding": "/ingredientRecommendations",
+          "itemIdPattern": "ingredients-dish-{id}",
+          "emptyStateId": "ingredients-empty-recommendations"
+        }
+      ]
+    },
+    {
+      "id": "filter-page",
+      "surfaceId": "filter",
+      "pageId": "filter",
+      "name": "筛选条件",
+      "route": "pages/Filter",
+      "semanticTargets": [
+        {
+          "id": "filter-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "filter-mood-group",
+          "role": "input",
+          "binding": "/filter/mood"
+        },
+        {
+          "id": "filter-time-group",
+          "role": "input",
+          "binding": "/filter/time"
+        },
+        {
+          "id": "filter-meal-group",
+          "role": "input",
+          "binding": "/filter/meal"
+        },
+        {
+          "id": "filter-apply-button",
+          "role": "action",
+          "event": "apply-filter"
+        },
+        {
+          "id": "filter-reset-button",
+          "role": "action",
+          "event": "reset-filter"
+        }
+      ]
+    },
+    {
+      "id": "records-page",
+      "surfaceId": "records",
+      "pageId": "records",
+      "name": "饮食打卡",
+      "route": "pages/Records",
+      "tabId": "tab-records",
+      "semanticTargets": [
+        {
+          "id": "records-title",
+          "role": "assertion",
+          "binding": "/pageTitle"
+        },
+        {
+          "id": "records-calendar",
+          "role": "assertion",
+          "binding": "/records/calendar"
+        },
+        {
+          "id": "records-add-button",
+          "role": "action",
+          "event": "open-add-record"
+        },
+        {
+          "id": "records-list",
+          "role": "list",
+          "binding": "/records",
+          "itemIdPattern": "record-{id}",
+          "emptyStateId": "records-empty-state"
+        },
+        {
+          "id": "record-share-button",
+          "role": "action",
+          "event": "open-share-card"
+        }
+      ]
+    },
+    {
+      "id": "record-form-sheet",
+      "surfaceId": "record-form",
+      "pageId": "record-form",
+      "name": "打卡表单",
+      "route": "pages/RecordForm",
+      "semanticTargets": [
+        {
+          "id": "record-form-date-picker",
+          "role": "input",
+          "binding": "/record/date"
+        },
+        {
+          "id": "record-form-meal-group",
+          "role": "input",
+          "binding": "/record/meal"
+        },
+        {
+          "id": "record-form-dish-input",
+          "role": "input",
+          "binding": "/record/dishName"
+        },
+        {
+          "id": "record-form-rating",
+          "role": "input",
+          "binding": "/record/rating"
+        },
+        {
+          "id": "record-form-note-input",
+          "role": "input",
+          "binding": "/record/note"
+        },
+        {
+          "id": "record-form-save-button",
+          "role": "action",
+          "event": "save-record"
+        },
+        {
+          "id": "record-form-cancel-button",
+          "role": "action",
+          "event": "cancel-record"
+        }
+      ]
+    },
+    {
+      "id": "share-card-page",
+      "surfaceId": "share-card",
+      "pageId": "share-card",
+      "name": "分享卡片",
+      "route": "pages/ShareCard",
+      "semanticTargets": [
+        {
+          "id": "share-card-preview",
+          "role": "assertion",
+          "binding": "/share/cardData"
+        },
+        {
+          "id": "share-card-save-button",
+          "role": "action",
+          "event": "save-share-card"
+        },
+        {
+          "id": "share-card-close-button",
+          "role": "action",
+          "event": "close-share-card"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "open-wheel",
+      "description": "打开随机转盘页面"
+    },
+    {
+      "name": "open-filter",
+      "description": "打开筛选条件页面"
+    },
+    {
+      "name": "apply-filter",
+      "description": "应用筛选条件"
+    },
+    {
+      "name": "reset-filter",
+      "description": "重置筛选条件"
+    },
+    {
+      "name": "spin-wheel",
+      "description": "启动转盘抽取"
+    },
+    {
+      "name": "accept-result",
+      "description": "接受转盘结果"
+    },
+    {
+      "name": "reshuffle",
+      "description": "重新抽取"
+    },
+    {
+      "name": "add-ingredient",
+      "description": "添加食材"
+    },
+    {
+      "name": "delete-ingredient",
+      "description": "删除食材"
+    },
+    {
+      "name": "show-ingredient-recommendations",
+      "description": "显示基于食材的推荐"
+    },
+    {
+      "name": "open-add-record",
+      "description": "打开新增打卡表单"
+    },
+    {
+      "name": "save-record",
+      "description": "保存打卡记录"
+    },
+    {
+      "name": "cancel-record",
+      "description": "取消打卡表单"
+    },
+    {
+      "name": "open-share-card",
+      "description": "打开分享卡片页面"
+    },
+    {
+      "name": "save-share-card",
+      "description": "保存分享卡片到相册"
+    },
+    {
+      "name": "close-share-card",
+      "description": "关闭分享卡片"
+    },
+    {
+      "name": "navigate-back",
+      "description": "返回上一页"
+    }
+  ],
+  "bindings": [
+    {
+      "path": "/recommendations",
+      "type": "array",
+      "description": "首页推荐菜谱列表"
+    },
+    {
+      "path": "/ingredients",
+      "type": "array",
+      "description": "用户冰箱食材列表"
+    },
+    {
+      "path": "/ingredientRecommendations",
+      "type": "array",
+      "description": "基于食材的推荐菜谱列表"
+    },
+    {
+      "path": "/filter/mood",
+      "type": "string",
+      "description": "当前心情筛选值"
+    },
+    {
+      "path": "/filter/time",
+      "type": "string",
+      "description": "可用时间筛选值"
+    },
+    {
+      "path": "/filter/meal",
+      "type": "string",
+      "description": "餐别筛选值"
+    },
+    {
+      "path": "/wheel/candidates",
+      "type": "array",
+      "description": "转盘候选菜谱"
+    },
+    {
+      "path": "/wheel/result/name",
+      "type": "string",
+      "description": "转盘结果菜名"
+    },
+    {
+      "path": "/records",
+      "type": "array",
+      "description": "打卡记录列表"
+    },
+    {
+      "path": "/records/calendar",
+      "type": "object",
+      "description": "打卡日历数据"
+    },
+    {
+      "path": "/share/cardData",
+      "type": "object",
+      "description": "分享卡片展示数据"
+    }
+  ],
+  "testTargets": [
+    "home-quick-wheel-button",
+    "home-filter-button",
+    "home-recommend-list",
+    "home-empty-recommendations",
+    "home-today-record-status",
+    "home-add-record-button",
+    "wheel-spin-button",
+    "wheel-result-name",
+    "wheel-result-accept-button",
+    "wheel-result-reshuffle-button",
+    "wheel-share-button",
+    "ingredients-input",
+    "ingredients-add-button",
+    "ingredients-list",
+    "ingredients-empty-state",
+    "ingredient-delete-button",
+    "ingredients-recommend-button",
+    "ingredients-dish-list",
+    "ingredients-empty-recommendations",
+    "filter-mood-group",
+    "filter-time-group",
+    "filter-meal-group",
+    "filter-apply-button",
+    "filter-reset-button",
+    "records-calendar",
+    "records-add-button",
+    "records-list",
+    "records-empty-state",
+    "record-share-button",
+    "record-form-date-picker",
+    "record-form-meal-group",
+    "record-form-dish-input",
+    "record-form-rating",
+    "record-form-save-button",
+    "record-form-cancel-button",
+    "share-card-preview",
+    "share-card-save-button",
+    "share-card-close-button"
+  ]
+}

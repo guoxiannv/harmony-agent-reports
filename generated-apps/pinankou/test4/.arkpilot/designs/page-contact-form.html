@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 编辑联系人</title>
+  <style>
+    :root {
+      --brand-deep: #115E59; --brand-primary: #0D9488; --brand-bright: #14B8A6; --brand-light: #5EEAD4; --brand-mint: #CCFBF1; --brand-pale: #F0FDFA;
+      --text-primary: #0F172A; --text-secondary: #475569; --text-tertiary: #94A3B8;
+      --surface-primary: #FFFFFF; --surface-secondary: #F8FAFC; --surface-tertiary: #E2E8F0;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04); --shadow-md: 0 4px 14px -3px rgba(13,148,136,0.13); --shadow-lg: 0 12px 32px -10px rgba(13,148,136,0.20);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--brand-pale); color: var(--text-primary); min-height: 100vh; max-width: 420px; margin: 0 auto; padding-bottom: 100px; }
+    .header { padding: 16px; display: flex; align-items: center; gap: 10px; }
+    .back-btn { width: 36px; height: 36px; border-radius: 10px; background: var(--surface-secondary); display: flex; align-items: center; justify-content: center; border: none; }
+    .header-title { font-size: 18px; font-weight: 600; }
+    .form { padding: 0 16px; display: flex; flex-direction: column; gap: 14px; }
+    .field label { display: block; font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+    .field input, .field select { width: 100%; border-radius: 12px; border: 1px solid transparent; background: var(--surface-secondary); padding: 12px 14px; font-size: 14px; color: var(--text-primary); }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(13,148,136,0.10); }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface-primary); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow-sm); }
+    .toggle-label { font-size: 14px; font-weight: 600; }
+    .toggle-switch { width: 48px; height: 28px; border-radius: 999px; background: var(--surface-tertiary); position: relative; transition: background 0.2s; }
+    .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; transition: transform 0.2s; }
+    .toggle-row.active .toggle-switch { background: var(--brand-primary); }
+    .toggle-row.active .toggle-switch::after { transform: translateX(20px); }
+    .action-bar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; background: var(--surface-primary); border-top: 1px solid rgba(226,232,240,0.6); padding: 12px 16px 24px; display: flex; gap: 10px; box-shadow: var(--shadow-lg); }
+    .btn-primary { flex: 1; height: 46px; border-radius: 9999px; border: none; background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; font-size: 15px; font-weight: 700; box-shadow: var(--shadow-md); }
+    .btn-secondary { flex: 1; height: 46px; border-radius: 9999px; border: none; background: rgba(13,148,136,0.08); color: var(--brand-primary); font-size: 15px; font-weight: 600; }
+  </style>
+</head>
+<body data-page-id="contact-form">
+  <header class="header">
+    <button class="back-btn" aria-label="返回上一级">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一级</title><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <h1 class="header-title">编辑联系人</h1>
+  </header>
+
+  <form class="form">
+    <div class="field">
+      <label for="name">姓名/名称</label>
+      <input id="name" type="text" placeholder="例如：张主管" data-ui-id="contact-form-name-input" />
+    </div>
+
+    <div class="field">
+      <label for="role">角色</label>
+      <input id="role" type="text" placeholder="例如：安全负责人" data-ui-id="contact-form-role-input" />
+    </div>
+
+    <div class="field">
+      <label for="group">分组</label>
+      <select id="group" data-ui-id="contact-form-group-picker">
+        <option>消防</option>
+        <option>安保</option>
+        <option>医疗</option>
+        <option>管理</option>
+        <option>其他</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="phone">电话</label>
+      <input id="phone" type="tel" placeholder="手机号码或内线" data-ui-id="contact-form-phone-input" />
+    </div>
+
+    <div class="toggle-row" data-ui-id="contact-form-priority-toggle">
+      <span class="toggle-label">设为紧急联系人</span>
+      <div class="toggle-switch"></div>
+    </div>
+  </form>
+
+  <footer class="action-bar">
+    <button class="btn-secondary" data-ui-id="contact-form-cancel-button">取消</button>
+    <button class="btn-primary" data-ui-id="contact-form-save-button">保存</button>
+  </footer>
+</body>
+</html>

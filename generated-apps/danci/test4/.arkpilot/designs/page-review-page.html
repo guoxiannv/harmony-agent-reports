@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>小词卡 - 复习页</title>
+  <style>
+    :root {
+      --cream: #FFF8F0;
+      --white: #FFFFFF;
+      --charcoal: #2D2D2D;
+      --dim-grey: #6B6B6B;
+      --light-grey: #A1A1A1;
+      --coral: #FF8C61;
+      --coral-dark: #E87A52;
+      --teal: #3FB8AF;
+      --teal-dark: #35A098;
+      --soft-yellow: #FFD166;
+      --card-back-tint: #F7F9FC;
+      --progress-track: #EBE4DC;
+      --shadow-card: 0 12px 40px rgba(45, 45, 45, 0.08);
+      --shadow-card-flip: 0 20px 50px rgba(45, 45, 45, 0.12);
+      --shadow-coral: 0 4px 14px rgba(255, 140, 97, 0.38);
+      --shadow-teal: 0 4px 14px rgba(63, 184, 175, 0.32);
+      --shadow-summary: 0 6px 20px rgba(45, 45, 45, 0.06);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: var(--cream);
+      font-family: "SF Pro Rounded", "Nunito", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--charcoal);
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-root {
+      width: 100%;
+      max-width: 420px;
+      min-height: 100vh;
+      position: relative;
+      padding: 0 24px 48px;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding-top: 12px;
+      margin: 0 -24px;
+      background: rgba(255, 248, 240, 0.88);
+      backdrop-filter: saturate(160%) blur(14px);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      padding: 0 24px;
+    }
+
+    .app-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: var(--charcoal);
+    }
+
+    .progress-text {
+      font-family: "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dim-grey);
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: var(--progress-track);
+      border-radius: 2px;
+      margin: 0 24px 12px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 20%;
+      background: var(--coral);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    /* Main Content */
+    .main {
+      padding-top: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Flip Card */
+    .card-scene {
+      width: 100%;
+      max-width: 342px;
+      aspect-ratio: 342 / 384;
+      perspective: 1200px;
+      margin-bottom: 36px;
+    }
+
+    .flip-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .flip-card.is-flipped {
+      transform: rotateY(180deg) translateY(-8px);
+    }
+
+    .flip-card:hover, .flip-card.is-flipped {
+      filter: drop-shadow(0 20px 50px rgba(45, 45, 45, 0.12));
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.4s ease;
+    }
+
+    .card-front {
+      background: var(--white);
+    }
+
+    .card-back {
+      background: var(--card-back-tint);
+      transform: rotateY(180deg);
+    }
+
+    .word-front {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 0.6px;
+      color: var(--charcoal);
+      text-align: center;
+    }
+
+    .flip-hint {
+      position: absolute;
+      bottom: 28px;
+      font-family: "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      color: var(--light-grey);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .flip-hint svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--light-grey);
+    }
+
+    .phonetic-back {
+      font-family: "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--dim-grey);
+      margin-bottom: 16px;
+      letter-spacing: 0.2px;
+    }
+
+    .meaning-back {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--charcoal);
+      text-align: center;
+    }
+
+    .back-decoration {
+      position: absolute;
+      bottom: 28px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .back-decoration svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--soft-yellow);
+      fill: var(--soft-yellow);
+    }
+
+    /* Action Bar */
+    .action-bar {
+      width: 100%;
+      max-width: 342px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      flex: 1;
+      height: 58px;
+      border: none;
+      border-radius: 16px;
+      font-family: "SF Pro Rounded", "Nunito", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    .btn svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--white);
+      stroke-width: 2.5;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-known {
+      background: var(--coral);
+      box-shadow: var(--shadow-coral);
+    }
+
+    .btn-known:active { background: var(--coral-dark); }
+
+    .btn-unknown {
+      background: var(--teal);
+      box-shadow: var(--shadow-teal);
+    }
+
+    .btn-unknown:active { background: var(--teal-dark); }
+
+    /* Summary Bar */
+    .summary-bar {
+      width: 100%;
+      max-width: 342px;
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .summary-card {
+      flex: 1;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 16px 12px;
+      text-align: center;
+      box-shadow: var(--shadow-summary);
+    }
+
+    .summary-number {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .summary-number.known { color: var(--coral); }
+    .summary-number.remaining { color: var(--teal); }
+
+    .summary-label {
+      font-family: "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dim-grey);
+    }
+
+    /* Completion Panel */
+    .completion-panel {
+      width: 100%;
+      max-width: 342px;
+      background: var(--white);
+      border-radius: 28px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .completion-icon {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 20px;
+    }
+
+    .completion-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--coral);
+      stroke: var(--coral);
+    }
+
+    .completion-title {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--charcoal);
+      margin-bottom: 28px;
+    }
+
+    .completion-stats {
+      width: 100%;
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .completion-stat {
+      flex: 1;
+      background: var(--card-back-tint);
+      border-radius: 16px;
+      padding: 18px 12px;
+    }
+
+    .completion-stat-number {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .completion-stat-number.known { color: var(--coral); }
+    .completion-stat-number.review { color: var(--teal); }
+
+    .completion-stat-label {
+      font-family: "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dim-grey);
+    }
+
+    .btn-restart {
+      width: 100%;
+      max-width: 240px;
+      height: 56px;
+      border: none;
+      border-radius: 16px;
+      background: var(--charcoal);
+      color: var(--white);
+      font-family: "SF Pro Rounded", "Nunito", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease;
+    }
+
+    .btn-restart svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--white);
+      stroke-width: 2.5;
+    }
+
+    .btn-restart:active {
+      transform: scale(0.97);
+      background: #1a1a1a;
+    }
+
+    /* Empty State */
+    .empty-state {
+      width: 100%;
+      max-width: 342px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 48px;
+    }
+
+    .empty-icon {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .empty-icon svg.book {
+      width: 100%;
+      height: 100%;
+      stroke: var(--dim-grey);
+      stroke-width: 1.5;
+    }
+
+    .empty-icon svg.star {
+      position: absolute;
+      top: -8px;
+      right: -4px;
+      width: 36px;
+      height: 36px;
+      fill: var(--soft-yellow);
+      stroke: var(--soft-yellow);
+    }
+
+    .empty-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .empty-body {
+      font-family: "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--dim-grey);
+      margin-bottom: 24px;
+      padding: 0 24px;
+    }
+
+    .btn-ghost {
+      height: 48px;
+      padding: 0 28px;
+      border: 1.5px solid #E0E0E0;
+      border-radius: 14px;
+      background: transparent;
+      color: var(--dim-grey);
+      font-family: "SF Pro Rounded", "Nunito", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .btn-ghost:active {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: #D0D0D0;
+    }
+
+    /* Hidden states helpers for HTML preview */
+    .is-hidden { display: none !important; }
+
+    @media (max-width: 360px) {
+      .app-root { padding: 0 16px 40px; }
+      .header-inner { padding: 0 16px; }
+      .word-front { font-size: 44px; }
+      .meaning-back { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-root" data-page-id="review-page">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="app-title" data-ui-id="review-app-title">小词卡</div>
+        <div class="progress-text" data-ui-id="review-progress-text">剩余 8 / 10</div>
+      </div>
+      <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill"></div>
+      </div>
+    </header>
+
+    <!-- Main Content: Review State -->
+    <main class="main">
+      <div class="card-scene" data-ui-id="review-card-stack">
+        <div class="flip-card" data-ui-id="review-flip-card" onclick="this.classList.toggle('is-flipped')">
+          <div class="card-face card-front">
+            <div class="word-front" data-ui-id="review-word-front">apple</div>
+            <div class="flip-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="翻转提示">
+                <title>点击卡片翻开释义</title>
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                <path d="M21 3v5h-5" />
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                <path d="M8 16H3v5" />
+              </svg>
+              点我翻看释义
+            </div>
+          </div>
+          <div class="card-face card-back">
+            <div class="phonetic-back" data-ui-id="review-phonetic-back">/ˈæp.əl/</div>
+            <div class="meaning-back" data-ui-id="review-meaning-back">苹果</div>
+            <div class="back-decoration" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="装饰星星">
+                <title>装饰星星</title>
+                <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <button class="btn btn-known" data-ui-id="review-known-button" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="认识">
+            <title>认识当前单词并移出卡片堆</title>
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+          认识
+        </button>
+        <button class="btn btn-unknown" data-ui-id="review-unknown-button" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="不认识">
+            <title>不认识当前单词，放回队列底部复习</title>
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+          </svg>
+          不认识
+        </button>
+      </div>
+
+      <div class="summary-bar">
+        <div class="summary-card">
+          <div class="summary-number known" data-ui-id="review-known-count">2</div>
+          <div class="summary-label">已认识</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-number remaining" data-ui-id="review-remaining-count">8</div>
+          <div class="summary-label">剩余</div>
+        </div>
+      </div>
+
+      <!-- Completion Panel (hidden by default in review state) -->
+      <div class="completion-panel is-hidden" data-ui-id="review-completion-panel">
+        <div class="completion-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="完成">
+            <title>本轮复习完成奖励星</title>
+            <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+          </svg>
+        </div>
+        <div class="completion-title">本轮复习完成！</div>
+        <div class="completion-stats">
+          <div class="completion-stat">
+            <div class="completion-stat-number known" data-ui-id="review-final-known-count">8</div>
+            <div class="completion-stat-label">已认识</div>
+          </div>
+          <div class="completion-stat">
+            <div class="completion-stat-number review" data-ui-id="review-final-review-count">2</div>
+            <div class="completion-stat-label">待复习</div>
+          </div>
+        </div>
+        <button class="btn-restart" data-ui-id="review-restart-button" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="再来一轮">
+            <title>重新加载单词开始新一轮复习</title>
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+            <path d="M21 3v5h-5" />
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+            <path d="M8 16H3v5" />
+          </svg>
+          再来一轮
+        </button>
+      </div>
+
+      <!-- Empty State (hidden by default) -->
+      <div class="empty-state is-hidden" data-ui-id="review-empty-state">
+        <div class="empty-icon">
+          <svg class="book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="空单词库">
+            <title>当前单词库为空</title>
+            <path d="M12 7v14" />
+            <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+          </svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="装饰星">
+            <title>装饰星</title>
+            <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+          </svg>
+        </div>
+        <div class="empty-title">还没有单词哦</div>
+        <div class="empty-body">点击加载当前阶段的单词，开始复习吧～</div>
+        <button class="btn-ghost" data-ui-id="review-empty-load-button" type="button">加载单词</button>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

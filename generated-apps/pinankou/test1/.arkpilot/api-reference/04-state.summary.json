@@ -1,0 +1,94 @@
+{
+  "module": "04-state.md",
+  "group": "04 — State Management",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "@State",
+      "purpose": "组件内响应式状态声明",
+      "anchor": "@state",
+      "status": "missing"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "父组件到子组件的单向数据传递",
+      "anchor": "@prop",
+      "status": "missing"
+    },
+    {
+      "name": "@Link",
+      "purpose": "父组件与子组件之间的双向数据同步",
+      "anchor": "@link",
+      "status": "missing"
+    },
+    {
+      "name": "@Provide",
+      "purpose": "向后代组件提供响应式数据",
+      "anchor": "@provide",
+      "status": "found"
+    },
+    {
+      "name": "@Consume",
+      "purpose": "接收祖先组件的@Provide提供的响应式数据",
+      "anchor": "@consume",
+      "status": "missing"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "监听状态变量变化并触发回调",
+      "anchor": "@watch",
+      "status": "found"
+    },
+    {
+      "name": "@ObjectLink",
+      "purpose": "装饰@Observed类对象属性以实现嵌套响应",
+      "anchor": "@objectlink",
+      "status": "missing"
+    },
+    {
+      "name": "@StorageLink",
+      "purpose": "与AppStorage建立双向数据绑定",
+      "anchor": "@storagelink",
+      "status": "found"
+    },
+    {
+      "name": "@LocalStorageLink",
+      "purpose": "与LocalStorage实例建立双向数据绑定",
+      "anchor": "@localstoragelink",
+      "status": "found"
+    },
+    {
+      "name": "@Observed",
+      "purpose": "类装饰器，使类属性变化可被监听",
+      "anchor": "@observed",
+      "status": "missing"
+    },
+    {
+      "name": "PersistentStorage",
+      "purpose": "持久化AppStorage属性到本地文件",
+      "anchor": "persistentstorage",
+      "status": "found"
+    },
+    {
+      "name": "Environment",
+      "purpose": "查询系统环境变量并存入AppStorage",
+      "anchor": "environment",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@State, @Prop, @Link, @Consume, @ObjectLink, @Observed 为ArkTS内置装饰器，本地API参考文档中无独立文档文件，实际用法详见HarmonyOS开发者指南",
+    "@StorageLink 和 @LocalStorageLink 在01_应用级变量的状态管理.md中被引用为AppStorage/LocalStorage订阅者，无独立参考文档",
+    "PersistentStorage/Environment API 自API 10开始推荐小写方法名（persistProp/envProp替代PersistProp/EnvProp）",
+    "@Env(SystemProperties.BREAK_POINT) 自API 22开始支持，用于响应式布局断点",
+    "AppStorage/LocalStorage 从API 12开始支持Map/Set/Date及null/undefined/联合类型"
+  ],
+  "missingApis": [
+    "@State",
+    "@Prop",
+    "@Link",
+    "@Consume",
+    "@ObjectLink",
+    "@Observed"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "started": true,
+  "started_at": "2026-06-22T07:34:40.181Z",
+  "session_id": "d45d60cb-9df3-4c0c-b773-ac3d404de3ec",
+  "hook_event_name": "SessionStart",
+  "source": "startup",
+  "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-pinankou-test4/d45d60cb-9df3-4c0c-b773-ac3d404de3ec.jsonl",
+  "codex_session_id": "",
+  "model": "kimi-k2.7-code"
+}

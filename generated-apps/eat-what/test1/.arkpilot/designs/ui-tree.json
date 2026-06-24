@@ -1,0 +1,374 @@
+{
+  "version": "arkpilot-uitree/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "今天吃什么",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home-page",
+      "name": "首页",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        {
+          "id": "home-spin-button",
+          "role": "action",
+          "event": "spin-wheel"
+        },
+        {
+          "id": "home-wheel-result",
+          "role": "assertion",
+          "binding": "/wheel/selectedDish"
+        },
+        {
+          "id": "home-result-view-button",
+          "role": "action",
+          "event": "open-dish-detail",
+          "context": { "source": "wheel-result" }
+        },
+        {
+          "id": "home-spin-again-button",
+          "role": "action",
+          "event": "spin-wheel"
+        },
+        {
+          "id": "home-wheel-settings-button",
+          "role": "action",
+          "event": "open-wheel-settings"
+        },
+        {
+          "id": "home-quick-checkin-button",
+          "role": "action",
+          "event": "open-checkin-form",
+          "context": { "source": "home-quick" }
+        }
+      ]
+    },
+    {
+      "id": "ingredients-page",
+      "surfaceId": "ingredients",
+      "pageId": "ingredients-page",
+      "name": "食材推荐",
+      "route": "pages/Ingredients",
+      "tabId": "tab-ingredients",
+      "semanticTargets": [
+        {
+          "id": "ingredients-input",
+          "role": "input",
+          "event": "add-ingredient"
+        },
+        {
+          "id": "ingredients-add-button",
+          "role": "action",
+          "event": "add-ingredient"
+        },
+        {
+          "id": "ingredients-list",
+          "role": "list",
+          "binding": "/ingredients",
+          "itemIdPattern": "ingredient-item-{id}",
+          "emptyStateId": "ingredients-empty-state"
+        },
+        {
+          "id": "ingredients-clear-button",
+          "role": "action",
+          "event": "clear-ingredients"
+        },
+        {
+          "id": "ingredients-recommend-list",
+          "role": "list",
+          "binding": "/ingredients/recommendations",
+          "itemIdPattern": "ingredients-dish-{id}",
+          "emptyStateId": "ingredients-recommend-empty-state"
+        },
+        {
+          "id": "ingredients-recommend-checkin-button",
+          "role": "action",
+          "event": "open-checkin-form",
+          "context": { "source": "ingredients-recommend" }
+        }
+      ]
+    },
+    {
+      "id": "discover-page",
+      "surfaceId": "discover",
+      "pageId": "discover-page",
+      "name": "发现",
+      "route": "pages/Discover",
+      "tabId": "tab-discover",
+      "semanticTargets": [
+        {
+          "id": "discover-mood-filter",
+          "role": "input",
+          "event": "filter-mood",
+          "binding": "/discover/selectedMoods"
+        },
+        {
+          "id": "discover-time-filter",
+          "role": "input",
+          "event": "filter-time",
+          "binding": "/discover/selectedTimes"
+        },
+        {
+          "id": "discover-reset-button",
+          "role": "action",
+          "event": "reset-filters"
+        },
+        {
+          "id": "discover-result-list",
+          "role": "list",
+          "binding": "/discover/results",
+          "itemIdPattern": "discover-dish-{id}",
+          "emptyStateId": "discover-empty-state"
+        }
+      ]
+    },
+    {
+      "id": "checkin-page",
+      "surfaceId": "checkin",
+      "pageId": "checkin-page",
+      "name": "打卡",
+      "route": "pages/Checkin",
+      "tabId": "tab-checkin",
+      "semanticTargets": [
+        {
+          "id": "checkin-add-button",
+          "role": "action",
+          "event": "open-checkin-form"
+        },
+        {
+          "id": "checkin-today-count",
+          "role": "assertion",
+          "binding": "/checkin/todayCount"
+        },
+        {
+          "id": "checkin-today-calories",
+          "role": "assertion",
+          "binding": "/checkin/todayCalories"
+        },
+        {
+          "id": "checkin-timeline-list",
+          "role": "list",
+          "binding": "/checkin/today",
+          "itemIdPattern": "checkin-item-{id}",
+          "emptyStateId": "checkin-empty-state"
+        },
+        {
+          "id": "checkin-edit-button",
+          "role": "action",
+          "event": "edit-checkin"
+        },
+        {
+          "id": "checkin-delete-button",
+          "role": "action",
+          "event": "delete-checkin"
+        },
+        {
+          "id": "checkin-share-button",
+          "role": "action",
+          "event": "open-share-card",
+          "context": { "source": "checkin" }
+        }
+      ]
+    },
+    {
+      "id": "share-card-page",
+      "surfaceId": "share-card",
+      "pageId": "share-card-page",
+      "name": "分享卡片",
+      "route": "pages/ShareCard",
+      "semanticTargets": [
+        {
+          "id": "share-card-preview",
+          "role": "assertion",
+          "binding": "/share/cardData"
+        },
+        {
+          "id": "share-template-selector",
+          "role": "input",
+          "event": "select-template",
+          "binding": "/share/selectedTemplate"
+        },
+        {
+          "id": "share-save-button",
+          "role": "action",
+          "event": "save-card"
+        },
+        {
+          "id": "share-share-button",
+          "role": "action",
+          "event": "share-card"
+        }
+      ]
+    },
+    {
+      "id": "dish-detail-page",
+      "surfaceId": "dish-detail",
+      "pageId": "dish-detail-page",
+      "name": "菜品详情",
+      "route": "pages/DishDetail",
+      "semanticTargets": [
+        {
+          "id": "dish-detail-title",
+          "role": "assertion",
+          "binding": "/dish/name"
+        },
+        {
+          "id": "dish-detail-checkin-button",
+          "role": "action",
+          "event": "open-checkin-form",
+          "context": { "source": "dish-detail" }
+        },
+        {
+          "id": "dish-detail-share-button",
+          "role": "action",
+          "event": "open-share-card",
+          "context": { "source": "dish-detail" }
+        }
+      ]
+    },
+    {
+      "id": "profile-page",
+      "surfaceId": "profile",
+      "pageId": "profile-page",
+      "name": "我的",
+      "route": "pages/Profile",
+      "tabId": "tab-profile",
+      "semanticTargets": [
+        {
+          "id": "profile-custom-dishes-list",
+          "role": "list",
+          "binding": "/profile/customDishes",
+          "itemIdPattern": "profile-custom-dish-{id}",
+          "emptyStateId": "profile-custom-dishes-empty-state"
+        },
+        {
+          "id": "profile-add-custom-dish-button",
+          "role": "action",
+          "event": "add-custom-dish"
+        },
+        {
+          "id": "profile-clear-data-button",
+          "role": "action",
+          "event": "clear-all-data"
+        }
+      ]
+    },
+    {
+      "id": "checkin-form-sheet",
+      "surfaceId": "checkin-form",
+      "pageId": "checkin-form-sheet",
+      "name": "打卡表单",
+      "route": "pages/CheckinForm",
+      "semanticTargets": [
+        {
+          "id": "checkin-form-meal-picker",
+          "role": "input",
+          "event": "select-meal",
+          "binding": "/checkinForm/meal"
+        },
+        {
+          "id": "checkin-form-dish-search",
+          "role": "input",
+          "event": "search-dish",
+          "binding": "/checkinForm/dishQuery"
+        },
+        {
+          "id": "checkin-form-note-input",
+          "role": "input",
+          "binding": "/checkinForm/note"
+        },
+        {
+          "id": "checkin-form-submit-button",
+          "role": "action",
+          "event": "submit-checkin"
+        },
+        {
+          "id": "checkin-form-cancel-button",
+          "role": "action",
+          "event": "cancel-checkin-form"
+        }
+      ]
+    },
+    {
+      "id": "wheel-settings-sheet",
+      "surfaceId": "wheel-settings",
+      "pageId": "wheel-settings-sheet",
+      "name": "转盘设置",
+      "route": "pages/WheelSettings",
+      "semanticTargets": [
+        {
+          "id": "wheel-settings-input",
+          "role": "input",
+          "binding": "/wheelSettings/newDishName"
+        },
+        {
+          "id": "wheel-settings-add-button",
+          "role": "action",
+          "event": "add-wheel-dish"
+        },
+        {
+          "id": "wheel-settings-list",
+          "role": "list",
+          "binding": "/wheelSettings/customDishes",
+          "itemIdPattern": "wheel-settings-dish-{id}",
+          "emptyStateId": "wheel-settings-empty-state"
+        },
+        {
+          "id": "wheel-settings-reset-button",
+          "role": "action",
+          "event": "reset-wheel-dishes"
+        }
+      ]
+    }
+  ],
+  "events": [
+    { "name": "spin-wheel", "description": "触发转盘旋转并随机选择菜品" },
+    { "name": "open-dish-detail", "description": "打开菜品详情页" },
+    { "name": "open-wheel-settings", "description": "打开转盘自定义设置" },
+    { "name": "add-wheel-dish", "description": "添加自定义转盘菜品" },
+    { "name": "reset-wheel-dishes", "description": "重置转盘菜品为默认" },
+    { "name": "add-ingredient", "description": "添加冰箱食材" },
+    { "name": "clear-ingredients", "description": "清空冰箱食材" },
+    { "name": "filter-mood", "description": "选择心情筛选标签" },
+    { "name": "filter-time", "description": "选择用餐时段筛选标签" },
+    { "name": "reset-filters", "description": "重置发现页筛选条件" },
+    { "name": "open-checkin-form", "description": "打开打卡表单" },
+    { "name": "submit-checkin", "description": "提交打卡记录" },
+    { "name": "cancel-checkin-form", "description": "取消打卡表单" },
+    { "name": "edit-checkin", "description": "编辑打卡记录" },
+    { "name": "delete-checkin", "description": "删除打卡记录" },
+    { "name": "open-share-card", "description": "打开分享卡片页" },
+    { "name": "select-template", "description": "切换分享卡片模板" },
+    { "name": "save-card", "description": "保存卡片到相册" },
+    { "name": "share-card", "description": "调用系统分享卡片" },
+    { "name": "add-custom-dish", "description": "添加全局自定义菜品" },
+    { "name": "clear-all-data", "description": "清空所有本地数据" }
+  ],
+  "bindings": [
+    { "path": "/wheel/selectedDish", "type": "Dish | null" },
+    { "path": "/wheel/isSpinning", "type": "boolean" },
+    { "path": "/ingredients", "type": "Ingredient[]" },
+    { "path": "/ingredients/recommendations", "type": "Dish[]" },
+    { "path": "/discover/selectedMoods", "type": "string[]" },
+    { "path": "/discover/selectedTimes", "type": "string[]" },
+    { "path": "/discover/results", "type": "Dish[]" },
+    { "path": "/checkin/today", "type": "Checkin[]" },
+    { "path": "/checkin/todayCount", "type": "number" },
+    { "path": "/checkin/todayCalories", "type": "number" },
+    { "path": "/checkinForm/meal", "type": "MealType" },
+    { "path": "/checkinForm/dishQuery", "type": "string" },
+    { "path": "/checkinForm/note", "type": "string" },
+    { "path": "/share/cardData", "type": "ShareCardData" },
+    { "path": "/share/selectedTemplate", "type": "string" },
+    { "path": "/dish/name", "type": "string" },
+    { "path": "/profile/customDishes", "type": "Dish[]" },
+    { "path": "/wheelSettings/customDishes", "type": "Dish[]" }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "module": "02-state.md",
+  "group": "02 — State & Reactive Decorators",
+  "apiCount": 6,
+  "apis": [
+    {
+      "name": "@State",
+      "purpose": "声明组件内部状态变量，值变化时自动触发 UI 重新渲染",
+      "anchor": "state",
+      "status": "found"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "父组件向子组件传递数据的单向绑定装饰器",
+      "anchor": "prop",
+      "status": "found"
+    },
+    {
+      "name": "@Builder",
+      "purpose": "定义自定义构建函数，封装可复用的 UI 结构",
+      "anchor": "builder",
+      "status": "found"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "监听 @State 状态变量变化，变化时触发指定回调函数",
+      "anchor": "watch",
+      "status": "found"
+    },
+    {
+      "name": "@Component",
+      "purpose": "将结构体声明为可复用的自定义组件，必须定义 build() 方法",
+      "anchor": "component",
+      "status": "found"
+    },
+    {
+      "name": "@Entry",
+      "purpose": "将自定义组件声明为 UI 页面入口，每个页面仅允许一个 @Entry",
+      "anchor": "entry",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@State、@Builder、@Component、@Prop 四个装饰器没有独立的参考文档（.md）文件，仅从示例代码和开发指南引用中间接确认",
+    "@Watch 和 @Entry 有独立的参考文档文件，分别位于 28_状态管理与渲染控制/ 和 25_自定义组件/06_组件扩展装饰器/",
+    "所有 V1 装饰器均为 ArkUI 内建装饰器，无需 import 语句；而 V2 对应物（@ComponentV2、@Local 等）需从 @kit.ArkUI 导入",
+    "自定义组件参数 ComponentOptions 支持 freezeWhenInactive 字段以支持组件冻结机制",
+    "EntryOptions 支持 routeName（命名路由）、storage（页面级 LocalStorage）、useSharedStorage 三个可选参数"
+  ],
+  "missingApis": []
+}

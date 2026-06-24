@@ -1,0 +1,76 @@
+{
+  "module": "03-local-notification.md",
+  "group": "03 -- Local Notifications (Reminders)",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "@ohos.notificationManager (通知管理)",
+      "purpose": "所有通知 API 的入口模块，提供发布/取消/渠道管理等能力",
+      "anchor": "ohosnotificationmanager-notificationmanager",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.publish (发送通知)",
+      "purpose": "发布本地通知，支持 Promise 和 Callback 两种异步方式",
+      "anchor": "notificationmanagerpublish-发布通知",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.requestEnableNotification (请求通知权限)",
+      "purpose": "拉起系统通知授权弹窗请求用户授权（API 10+，须在 loadContent 完成后调用）",
+      "anchor": "notificationmanagerrequestenablenotification-请求通知权限",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.cancel (取消通知)",
+      "purpose": "根据通知 ID 取消已发布的通知，支持按 label 精确匹配",
+      "anchor": "notificationmanagercancel-取消通知",
+      "status": "found"
+    },
+    {
+      "name": "NotificationRequest (通知请求对象)",
+      "purpose": "描述通知请求的完整内容，包含 content/id/slotType/wantAgent/badgeNumber 等字段",
+      "anchor": "notificationrequest-通知请求对象",
+      "status": "found"
+    },
+    {
+      "name": "NotificationRequest.content (通知内容)",
+      "purpose": "通知内容类型容器，通过 notificationContentType 指定格式（普通/长文本/多行/图片等）",
+      "anchor": "notificationrequestcontent-通知内容--notificationcontent",
+      "status": "found"
+    },
+    {
+      "name": "NotificationBasicContent (基本通知内容)",
+      "purpose": "普通文本类型通知，包含 title/text/additionalText 三个字段",
+      "anchor": "notificationbasiccontent-基本通知内容",
+      "status": "found"
+    },
+    {
+      "name": "NotificationLongTextContent (长文本通知内容)",
+      "purpose": "长文本展开型通知，继承 BasicContent，额外包含 longText/briefText/expandedTitle",
+      "anchor": "notificationlongtextcontent-长文本通知内容",
+      "status": "found"
+    },
+    {
+      "name": "wantAgent (意图代理，点击通知跳转)",
+      "purpose": "封装 Want 对象作为 NotificationRequest.wantAgent，实现通知点击后启动指定 Ability",
+      "anchor": "ohosappabilitywantagent-wantagent点击通知跳转",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.wantAgent",
+      "purpose": "WantAgent 模块导入路径（已更新为 @ohos.app.ability.wantAgent，从 @kit.AbilityKit 导入）",
+      "anchor": "ohosappabilitywantagent-wantagent点击通知跳转",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "requestEnableNotification 从 API 12 开始要求传入 UIAbilityContext 参数，无 context 版本已废弃",
+    "@ohos.wantAgent 已迁移为 @ohos.app.ability.wantAgent，导入语句为 import { wantAgent } from '@kit.AbilityKit'",
+    "WantAgentInfo 中 actionType (API 11+) 替代 operationType；actionFlags (API 11+) 替代 wantAgentFlags",
+    "通知必须通过 requestEnableNotification 获取用户授权后，才能成功调用 publish",
+    "通知去重功能通过 appMessageId 字段实现，去重标识在 24h 内有效",
+    "NotificationRequest 支持设置自定义铃声（sound 字段，支持 rawfile 或沙箱文件路径）、定时清除（autoDeletedTime）"
+  ],
+  "missingApis": []
+}

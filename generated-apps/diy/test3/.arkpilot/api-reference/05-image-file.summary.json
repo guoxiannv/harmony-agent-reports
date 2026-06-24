@@ -1,0 +1,59 @@
+{
+  "module": "05-image-file.md",
+  "group": "05 — Image & File",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "Image",
+      "purpose": "显示网络/本地/沙箱图片（头像、作品集、课程图片）",
+      "anchor": "image",
+      "status": "found"
+    },
+    {
+      "name": "ImageAnimator",
+      "purpose": "逐帧播放图片序列动画（签到成功动效）",
+      "anchor": "imageanimator",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.picker (PhotoViewPicker)",
+      "purpose": "从系统图库选择图片/视频（选择作品集照片）",
+      "anchor": "ohosfilepicker-photoviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper",
+      "purpose": "相册管理模块 - 访问和修改媒体库数据",
+      "anchor": "photoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.fs (fileIo)",
+      "purpose": "文件读写/复制/目录管理（复制图片到沙箱、管理临时文件）",
+      "anchor": "ohosfilefs-fileio",
+      "status": "found"
+    },
+    {
+      "name": "SaveButton",
+      "purpose": "安全保存控件 - 带用户授权的保存/下载按钮",
+      "anchor": "savebutton",
+      "status": "found"
+    },
+    {
+      "name": "uri (file:// URI patterns)",
+      "purpose": "HarmonyOS 沙箱文件 URI 表示方式（file://bundleName/sandboxPath）",
+      "anchor": "uri-file-uri-模式",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "PhotoViewPicker 和 DocumentViewPicker 分属不同 Kit：PhotoViewPicker 从 @kit.MediaLibraryKit 导入，DocumentViewPicker 从 @kit.CoreFileKit 导入",
+    "PhotoViewPicker 返回的 photoUris 具有永久授权，可通过 photoAccessHelper.getAssets 继续操作",
+    "SaveButton 是安全控件，需要用户点击授权后才能保存：API 19-授权10秒，API 20+授权1分钟",
+    "Image 组件沙箱文件路径需使用 file://<bundleName>/<sandboxPath> URI 格式，通过 fileUri.getUriFromPath(path) 转换",
+    "ImageAnimator 的 iterations 设为 -1 可实现无限循环动画",
+    "fileIo.mkdir 从 API 11 起支持 recursion=true 递归创建目录",
+    "ArkTS 卡片不支持 file:// 和 http:// 网络图片路径前缀"
+  ],
+  "missingApis": []
+}

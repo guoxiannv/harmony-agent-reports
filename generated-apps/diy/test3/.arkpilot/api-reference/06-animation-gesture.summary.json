@@ -1,0 +1,81 @@
+{
+  "module": "06-animation-gesture.md",
+  "group": "06 -- Animation & Gesture",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "animateTo",
+      "purpose": "显式动画 — 在闭包中改变状态变量时自动插入过渡动效",
+      "anchor": "animateto",
+      "status": "found"
+    },
+    {
+      "name": "transition",
+      "purpose": "组件内转场 — 组件插入/删除时的过渡动效",
+      "anchor": "transition",
+      "status": "found"
+    },
+    {
+      "name": "animation (属性动画)",
+      "purpose": "属性动画 — 组件属性变化时自动产生渐变过渡",
+      "anchor": "animation-属性动画",
+      "status": "found"
+    },
+    {
+      "name": "keyframeAnimateTo",
+      "purpose": "关键帧动画 — 指定若干关键帧状态实现分段动画",
+      "anchor": "keyframeanimateto",
+      "status": "found"
+    },
+    {
+      "name": "TapGesture",
+      "purpose": "点击手势 — 支持单击、双击和多次点击事件识别",
+      "anchor": "tapgesture",
+      "status": "found"
+    },
+    {
+      "name": "LongPressGesture",
+      "purpose": "长按手势 — 触发长按手势事件",
+      "anchor": "longpressgesture",
+      "status": "found"
+    },
+    {
+      "name": "PanGesture",
+      "purpose": "滑动手势 — 滑动距离达到设定值时触发",
+      "anchor": "pangesture",
+      "status": "found"
+    },
+    {
+      "name": "PinchGesture",
+      "purpose": "捏合手势 — 多指捏合缩放操作",
+      "anchor": "pinchgesture",
+      "status": "found"
+    },
+    {
+      "name": "GestureGroup",
+      "purpose": "手势组合 — 顺序/并发/互斥模式的手势识别组",
+      "anchor": "gesturegroup",
+      "status": "found"
+    },
+    {
+      "name": "onClick",
+      "purpose": "点击事件 — 组件被点击时触发回调",
+      "anchor": "onclick",
+      "status": "found"
+    },
+    {
+      "name": "onTouch",
+      "purpose": "触摸事件 — 手指触摸动作（按下/滑动/抬起）触发回调",
+      "anchor": "ontouch",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "animateTo (global) is deprecated from API 18 — always use this.getUIContext()?.animateTo() instead",
+    "keyframeAnimateTo is a UIContext instance method (API 11+), not a global function — requires UIContext instance via this.getUIContext()",
+    "TransitionOptions (old transition API) deprecated from API 10 — use TransitionEffect API instead",
+    "animation component attribute only applies to properties declared BEFORE it in the builder chain",
+    "onClick/onTouch are universal component events, not gesture recognizers — use .gesture() only for GestureType objects"
+  ],
+  "missingApis": []
+}

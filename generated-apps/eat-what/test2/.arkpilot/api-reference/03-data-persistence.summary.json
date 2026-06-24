@@ -1,0 +1,33 @@
+{
+  "module": "03-data-persistence.md",
+  "group": "03 -- Data Persistence",
+  "apiCount": 3,
+  "apis": [
+    {
+      "name": "@ohos.data.preferences",
+      "purpose": "Key-Value 轻量级用户首选项持久化，适合存储应用配置等小型数据",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.sendablePreferences",
+      "purpose": "Sendable 共享用户首选项，可在并发实例间以引用传递方式共享的 Key-Value 持久化",
+      "anchor": "ohosdatasendablepreferences",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.relationalStore",
+      "purpose": "基于 SQLite 的关系型数据库，支持完整 SQL 操作和事务管理",
+      "anchor": "ohosdatarelationalstore",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "preferences 不支持进程并发安全，不支持多进程场景",
+    "sendablePreferences 的 Preferences 实例继承 ISendable，可在主线程/TaskPool/Worker 间引用传递",
+    "relationalStore 单条数据建议不超过 2MB，单条字符串字段最大 8MB，大数据量查询建议在 TaskPool 中执行",
+    "relationalStore 从 API 14 起支持 Transaction 对象（createTransaction），提供 DEFERRED/IMMEDIATE/EXCLUSIVE 事务类型",
+    "preferences 从 API 18 起支持 StorageType 枚举（XML 默认 / GSKV 实时落盘）"
+  ],
+  "missingApis": []
+}

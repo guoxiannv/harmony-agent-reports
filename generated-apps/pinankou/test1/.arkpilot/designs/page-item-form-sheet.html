@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 事项表单</title>
+  <style>
+    :root { --sky:#38BDF8; --mint:#34D399; --teal:#0F766E; --slate-900:#0F172A; --slate-600:#475569; --slate-400:#94A3B8; --slate-200:#E2E8F0; }
+    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html,body { margin:0; padding:0; height:100%; font-family:"PingFang SC","HarmonyOS Sans SC","SF Pro Text",-apple-system,BlinkMacSystemFont,sans-serif; background:rgba(15,23,42,0.5); }
+    #app { max-width:390px; margin:0 auto; min-height:100%; display:flex; align-items:flex-end; }
+    .sheet { width:100%; background:#fff; border-radius:28px 28px 0 0; padding:20px 16px calc(24px + env(safe-area-inset-bottom,0)); }
+    .drag-bar { width:40px; height:5px; border-radius:3px; background:var(--slate-200); margin:0 auto 18px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    .sheet-title { font-size:20px; font-weight:700; color:var(--teal); margin:0; }
+    .close-btn { width:36px; height:36px; border-radius:12px; background:#F1F5F9; border:none; display:grid; place-items:center; color:var(--slate-600); }
+    .form-group { margin-bottom:18px; }
+    .form-label { display:block; font-size:13px; font-weight:600; color:var(--slate-600); margin-bottom:8px; letter-spacing:0.5px; text-transform:uppercase; }
+    .form-input { width:100%; padding:14px 16px; border-radius:14px; background:#F8FAFC; border:1px solid var(--slate-200); font-size:15px; outline:none; color:var(--slate-900); }
+    .form-input:focus { border-color:var(--sky); box-shadow:0 0 0 4px rgba(56,189,248,0.12); }
+    .select-row { display:flex; gap:10px; flex-wrap:wrap; }
+    .select-chip { padding:10px 16px; border-radius:20px; border:1px solid var(--slate-200); background:#F8FAFC; font-size:14px; color:var(--slate-600); }
+    .select-chip.active { background:linear-gradient(135deg,#E0F2FE,#D1FAE5); border-color:var(--sky); color:var(--teal); font-weight:600; }
+    .textarea { min-height:90px; resize:none; }
+    .footer { display:flex; gap:12px; margin-top:8px; }
+    .btn-save { flex:1; padding:14px; border-radius:16px; background:linear-gradient(135deg,var(--sky) 0%,var(--mint) 100%); color:#fff; font-size:16px; font-weight:700; border:none; box-shadow:0 10px 24px -6px rgba(14,165,233,0.35); }
+    .btn-delete { padding:14px 20px; border-radius:16px; background:#FEE2E2; color:#DC2626; font-size:16px; font-weight:600; border:none; }
+  </style>
+</head>
+<body>
+  <div id="app" data-page-id="item-form-sheet">
+    <div class="sheet">
+      <div class="drag-bar"></div>
+      <div class="topbar">
+        <h1 class="sheet-title">编辑安全事项</h1>
+        <button class="close-btn" data-ui-id="item-form-close" aria-label="关闭表单">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>关闭事项表单</title><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">事项标题</label>
+        <input type="text" class="form-input" data-ui-id="item-form-title" value="配电箱季度检修" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">分类</label>
+        <div class="select-row" data-ui-id="item-form-category">
+          <button class="select-chip">消防安全</button>
+          <button class="select-chip active">电气安全</button>
+          <button class="select-chip">设备安全</button>
+          <button class="select-chip">其他</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">优先级</label>
+        <div class="select-row" data-ui-id="item-form-priority">
+          <button class="select-chip active">高</button>
+          <button class="select-chip">中</button>
+          <button class="select-chip">低</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">负责人</label>
+        <input type="text" class="form-input" data-ui-id="item-form-owner" value="李工" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">截止日期</label>
+        <input type="text" class="form-input" data-ui-id="item-form-due-date" value="2026-06-18" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">状态</label>
+        <div class="select-row" data-ui-id="item-form-status">
+          <button class="select-chip active">待办</button>
+          <button class="select-chip">处理中</button>
+          <button class="select-chip">已完成</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">备注</label>
+        <textarea class="form-input textarea" data-ui-id="item-form-note" placeholder="补充说明">需联系供电局配合停电</textarea>
+      </div>
+
+      <div class="footer">
+        <button class="btn-delete" data-ui-id="item-form-delete">删除</button>
+        <button class="btn-save" data-ui-id="item-form-save">保存</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

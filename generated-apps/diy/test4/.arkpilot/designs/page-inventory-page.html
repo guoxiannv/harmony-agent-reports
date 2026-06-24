@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 - 库存管理</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; background:#F8F3EE; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; color:#3D2E26; }
+  .app-shell { width:100%; max-width:390px; margin:0 auto; min-height:100%; position:relative; padding-bottom:24px; }
+  .header { height:56px; background:linear-gradient(180deg, #C17A53 0%, #A85D3C 100%); border-radius:0 0 28px 28px; display:flex; align-items:center; padding:0 16px; position:relative; }
+  .back-btn { width:40px; height:40px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.16); cursor:pointer; }
+  .header-title { position:absolute; left:50%; transform:translateX(-50%); font-size:18px; font-weight:700; color:#F8F3EE; }
+  .add-btn { position:absolute; right:16px; width:40px; height:40px; border-radius:14px; background:rgba(255,255,255,0.20); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .content { padding:16px; display:flex; flex-direction:column; gap:16px; }
+  .card { background:#FFFFFF; border-radius:24px; padding:20px; box-shadow:0px 10px 28px rgba(61,46,38,0.08); }
+  .section-title { font-size:18px; font-weight:700; color:#3D2E26; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .alert-banner { background:rgba(196,90,75,0.10); border-radius:18px; padding:14px 16px; display:flex; align-items:center; gap:10px; color:#C45A4B; font-size:14px; font-weight:600; }
+  .inventory-list { display:flex; flex-direction:column; gap:12px; }
+  .inventory-item { display:flex; align-items:center; justify-content:space-between; padding:16px; background:#F8F3EE; border-radius:18px; }
+  .inventory-left { display:flex; align-items:center; gap:12px; }
+  .inventory-icon { width:44px; height:44px; border-radius:12px; background:#FFFFFF; display:flex; align-items:center; justify-content:center; }
+  .inventory-name { font-size:15px; font-weight:700; margin-bottom:4px; }
+  .inventory-desc { font-size:12px; color:#7A665B; }
+  .inventory-right { text-align:right; }
+  .inventory-qty { font-size:18px; font-weight:700; color:#3D2E26; font-variant-numeric:tabular-nums; }
+  .inventory-unit { font-size:12px; color:#7A665B; }
+  .inventory-low .inventory-qty { color:#C45A4B; }
+  .deduction-list { display:flex; flex-direction:column; gap:10px; }
+  .deduction-item { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid #F0E8E0; }
+  .deduction-item:last-child { border-bottom:none; }
+  .deduction-left h4 { font-size:14px; font-weight:700; }
+  .deduction-left p { font-size:12px; color:#7A665B; }
+  .deduction-qty { font-size:14px; font-weight:700; color:#C45A4B; }
+  .empty-state { text-align:center; padding:32px 20px; }
+  .empty-state svg { margin-bottom:12px; }
+  .empty-state h3 { font-size:16px; font-weight:700; margin-bottom:6px; }
+  .empty-state p { font-size:13px; color:#7A665B; }
+</style>
+</head>
+<body>
+<div class="app-shell" data-page-id="inventory-page">
+  <header class="header">
+    <div class="back-btn" data-ui-id="back-button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><title>返回上一页</title><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <h1 class="header-title">库存管理</h1>
+    <div class="add-btn" data-ui-id="inventory-add-button">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><title>新增物料</title><path d="M12 5v14M5 12h14"/></svg>
+    </div>
+  </header>
+  <main class="content">
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>库存预警</title><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        库存预警
+      </div>
+      <div class="alert-banner" data-ui-id="inventory-low-stock-alert">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C45A4B" stroke-width="2"><title>低库存警告图标</title><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4"/><circle cx="12" cy="17" r="1"/></svg>
+        2 项物料库存低于安全线
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>物料库存</title><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        物料库存
+      </div>
+      <div class="inventory-list" data-ui-id="inventory-list">
+        <div class="inventory-item">
+          <div class="inventory-left">
+            <div class="inventory-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>陶土物料图标</title><path d="M12 21c4.97 0 9-4.03 9-9-2.5 0-3-1.5-3-3 0-2-1.5-3-3-3s-3 1-3 3c0 1.5-.5 3-3 3 0 4.97 4.03 9 9 9z"/></svg>
+            </div>
+            <div>
+              <div class="inventory-name">陶土</div>
+              <div class="inventory-desc">高白泥</div>
+            </div>
+          </div>
+          <div class="inventory-right">
+            <div class="inventory-qty">12.5</div>
+            <div class="inventory-unit">kg</div>
+          </div>
+        </div>
+        <div class="inventory-item inventory-low">
+          <div class="inventory-left">
+            <div class="inventory-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C45A4B" stroke-width="2"><title>釉料物料图标</title><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <div>
+              <div class="inventory-name">釉料</div>
+              <div class="inventory-desc">天青釉</div>
+            </div>
+          </div>
+          <div class="inventory-right">
+            <div class="inventory-qty">0.3</div>
+            <div class="inventory-unit">kg</div>
+          </div>
+        </div>
+        <div class="inventory-item">
+          <div class="inventory-left">
+            <div class="inventory-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A9A8C" stroke-width="2"><title>木料物料图标</title><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
+            </div>
+            <div>
+              <div class="inventory-name">木料</div>
+              <div class="inventory-desc">黑胡桃</div>
+            </div>
+          </div>
+          <div class="inventory-right">
+            <div class="inventory-qty">8</div>
+            <div class="inventory-unit">块</div>
+          </div>
+        </div>
+      </div>
+      <div class="empty-state" data-ui-id="inventory-empty-state" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#E6D5C7" stroke-width="1.5"><title>暂无物料插画</title><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <h3>还没有物料</h3>
+        <p>点击右上角添加第一种物料</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>扣减记录</title><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        最近扣减
+      </div>
+      <div class="deduction-list" data-ui-id="inventory-deduction-log">
+        <div class="deduction-item">
+          <div class="deduction-left">
+            <h4>陶艺拉坯体验课</h4>
+            <p>06月20日 · 林小陶</p>
+          </div>
+          <div class="deduction-qty">-500g</div>
+        </div>
+        <div class="deduction-item">
+          <div class="deduction-left">
+            <h4>陶艺拉坯体验课</h4>
+            <p>06月18日 · 阿木</p>
+          </div>
+          <div class="deduction-qty">-500g</div>
+        </div>
+      </div>
+      <div class="empty-state" data-ui-id="inventory-deductions-empty" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#E6D5C7" stroke-width="1.5"><title>暂无扣减记录插画</title><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <h3>暂无扣减记录</h3>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{
+  "module": "03-animation.md",
+  "group": "03 — Animation & 3D Flip",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "animation",
+      "purpose": "组件通用属性变化时实现渐变过渡效果",
+      "anchor": "animation-属性动画",
+      "status": "found"
+    },
+    {
+      "name": "animate",
+      "purpose": "通过闭包代码的状态变化插入过渡动效（显式动画）",
+      "anchor": "animate-显式动画-animateto",
+      "status": "found"
+    },
+    {
+      "name": "transition",
+      "purpose": "组件插入和删除时显示过渡动效",
+      "anchor": "transition-组件内转场",
+      "status": "found"
+    },
+    {
+      "name": "rotate",
+      "purpose": "设置组件旋转（以组件左上角为坐标原点）",
+      "anchor": "rotate",
+      "status": "found"
+    },
+    {
+      "name": "scale",
+      "purpose": "设置组件缩放（X/Y/Z轴比例及缩放中心点）",
+      "anchor": "scale",
+      "status": "found"
+    },
+    {
+      "name": "opacity",
+      "purpose": "设置组件不透明度（子组件继承父组件透明度）",
+      "anchor": "opacity-透明度设置",
+      "status": "found"
+    },
+    {
+      "name": "transform",
+      "purpose": "二维矩阵变换（平移/缩放/旋转链式组合）",
+      "anchor": "transform",
+      "status": "found"
+    },
+    {
+      "name": "TransitionEffect",
+      "purpose": "以函数式 API 指定转场效果（平移/旋转/缩放/透明度/滑入滑出）",
+      "anchor": "transition-组件内转场",
+      "status": "found"
+    },
+    {
+      "name": "curve",
+      "purpose": "动画插值曲线（阶梯/贝塞尔/弹簧/弹性动画/自定义曲线）",
+      "anchor": "curve-插值曲线",
+      "status": "found"
+    },
+    {
+      "name": "AnimationCurve",
+      "purpose": "预定义动画曲线枚举（Linear/Ease/EaseIn/EaseOut 等13种）",
+      "anchor": "animationcurve-curve-枚举",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "animation 属性只对写在 .animation() 前面的属性生效，对组件构造器的属性不生效",
+    "animateTo 从 API 18 起废弃，推荐使用 this.getUIContext()?.animateTo() 替代",
+    "TransitionEffect 是 API 10+ 推荐的新式转场 API；旧式 TransitionOptions（结构体参数）已废弃",
+    "弹性动画曲线（springMotion/responsiveSpringMotion/interpolatingSpring）不响应 animation/animateTo 中的 duration 参数",
+    "transform 接口用于二维矩阵变换；含透视的三维变换应使用 API 20+ transform3D 接口",
+    "AnimationCurve 在本地文档中不存在对应名称，功能由 Curve 枚举和 curves 模块提供"
+  ],
+  "missingApis": []
+}

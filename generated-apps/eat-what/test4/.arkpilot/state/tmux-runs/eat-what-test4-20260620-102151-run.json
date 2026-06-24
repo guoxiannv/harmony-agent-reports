@@ -1,0 +1,167 @@
+{
+  "run_name": "eat-what-test4-20260620-102151-run",
+  "agent_runtime": "claude",
+  "agent_session_id": "4d4892e7-3745-4f16-a544-adc8e630ed0b",
+  "tmux_session": "eat-what-test4-20260620-102151-run",
+  "cwd": "/Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test4",
+  "plugin_root": "/Users/huaweiide/Desktop/fe/code/harmony-pilot",
+  "workflow_variant": "autopilot-html-tmux-team-split",
+  "plan_skill": "autopilot-html-tmux-design-a2ui-pro",
+  "originalTask": "为这个 HarmonyOS 工程实现一个‘今天吃什么’决策App，包含随机转盘抽菜、按冰箱食材推荐、按心情/时间筛选，以及每日饮食打卡记录和分享卡片功能，并完成构建和运行验证",
+  "status": "complete",
+  "current_stage": "qa",
+  "created_at": "2026-06-20T02:21:51.879Z",
+  "active_lane": "execution",
+  "lane_defaults": {
+    "planning": {
+      "model": "sonnet",
+      "effort": "medium",
+      "runtime": "claude"
+    },
+    "execution": {
+      "model": "opus",
+      "effort": "medium",
+      "runtime": "claude"
+    },
+    "ui_tree_test": {
+      "model": "opus",
+      "effort": "medium",
+      "runtime": "claude"
+    },
+    "api_reference": {
+      "model": "haiku",
+      "effort": "medium",
+      "runtime": "claude"
+    }
+  },
+  "ui_qa": {
+    "enabled": true,
+    "status": "complete",
+    "current_index": 2,
+    "current_skill": "",
+    "skills": [
+      {
+        "name": "ui-qa-tabbar",
+        "status": "skipped",
+        "skip_reason": "already-compliant",
+        "predicate_detail": "Skipped because Index.ets BottomTabBar layout is already compliant.",
+        "started_at": null,
+        "prompt_sent_at": null,
+        "completed_at": "2026-06-20T02:44:19.290Z"
+      },
+      {
+        "name": "ui-qa-svg-icon",
+        "status": "skipped",
+        "skip_reason": "no-inline-svg",
+        "predicate_detail": "Skipped because no files with inline SVG path data were found.",
+        "started_at": null,
+        "prompt_sent_at": null,
+        "completed_at": "2026-06-20T02:44:19.290Z"
+      }
+    ]
+  },
+  "lanes": {
+    "planning": {
+      "lane_name": "planning",
+      "agent_runtime": "claude",
+      "agent_session_id": "15a24ea7-c2bd-4bb9-8a34-f8fab4343383",
+      "claude_session_id": "15a24ea7-c2bd-4bb9-8a34-f8fab4343383",
+      "codex_session_id": "",
+      "pane_target": "eat-what-test4-20260620-102151-run:0.0",
+      "agent_transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/15a24ea7-c2bd-4bb9-8a34-f8fab4343383.jsonl",
+      "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/15a24ea7-c2bd-4bb9-8a34-f8fab4343383.jsonl",
+      "tmux_session": "eat-what-test4-20260620-102151-run",
+      "tmux_window": "",
+      "requested_at": null,
+      "started_marker_seen_at": "2026-06-20T02:21:52.805Z",
+      "last_idle_at": null,
+      "prompt_sent_at": "2026-06-20T02:21:53.244Z",
+      "launched_at": "2026-06-20T02:21:51.900Z",
+      "failed_at": null,
+      "error": "",
+      "status": "active",
+      "model": "sonnet",
+      "effort": "medium",
+      "current_stage": "plan",
+      "current_prompt_stage": "plan",
+      "handoff_summary": "",
+      "handoff_source_session_id": "",
+      "handoff_generated_at": null
+    },
+    "execution": {
+      "lane_name": "execution",
+      "agent_runtime": "claude",
+      "agent_session_id": "4d4892e7-3745-4f16-a544-adc8e630ed0b",
+      "claude_session_id": "4d4892e7-3745-4f16-a544-adc8e630ed0b",
+      "codex_session_id": "",
+      "pane_target": "eat-what-test4-20260620-102151-run:1.0",
+      "agent_transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/4d4892e7-3745-4f16-a544-adc8e630ed0b.jsonl",
+      "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/4d4892e7-3745-4f16-a544-adc8e630ed0b.jsonl",
+      "tmux_session": "eat-what-test4-20260620-102151-run",
+      "tmux_window": "1",
+      "requested_at": null,
+      "started_marker_seen_at": "2026-06-20T02:21:54.490Z",
+      "last_idle_at": "2026-06-20T02:22:54.259Z",
+      "prompt_sent_at": "2026-06-20T02:23:17.744Z",
+      "launched_at": "2026-06-20T02:21:53.254Z",
+      "failed_at": null,
+      "error": "",
+      "status": "active",
+      "model": "opus",
+      "effort": "medium",
+      "current_stage": "execution",
+      "current_prompt_stage": "execution",
+      "handoff_summary": "",
+      "handoff_source_session_id": "15a24ea7-c2bd-4bb9-8a34-f8fab4343383",
+      "handoff_generated_at": "2026-06-20T02:21:51.880Z"
+    },
+    "api_reference": {
+      "spec_path": "/Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test4/.arkpilot/autopilot/spec.md",
+      "output_dir": "/Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test4/.arkpilot/api-reference",
+      "lane_name": "api_reference",
+      "agent_runtime": "claude",
+      "agent_session_id": "ab8f8e3a-5aef-4e1b-a9e1-c15b9ad46d09",
+      "claude_session_id": "ab8f8e3a-5aef-4e1b-a9e1-c15b9ad46d09",
+      "codex_session_id": "",
+      "pane_target": "eat-what-test4-20260620-102151-run:2.0",
+      "agent_transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/ab8f8e3a-5aef-4e1b-a9e1-c15b9ad46d09.jsonl",
+      "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/ab8f8e3a-5aef-4e1b-a9e1-c15b9ad46d09.jsonl",
+      "tmux_session": "eat-what-test4-20260620-102151-run",
+      "tmux_window": "2",
+      "requested_at": "2026-06-20T02:22:42.789Z",
+      "started_marker_seen_at": "2026-06-20T02:22:43.802Z",
+      "last_idle_at": "2026-06-20T02:23:33.895Z",
+      "prompt_sent_at": "2026-06-20T02:22:45.387Z",
+      "launched_at": "2026-06-20T02:22:43.061Z",
+      "failed_at": null,
+      "error": "",
+      "status": "idle",
+      "model": "haiku",
+      "effort": "medium",
+      "current_stage": "api-reference",
+      "current_prompt_stage": "api-reference",
+      "handoff_summary": "",
+      "handoff_source_session_id": "15a24ea7-c2bd-4bb9-8a34-f8fab4343383",
+      "handoff_generated_at": "2026-06-20T02:22:42.789Z"
+    }
+  },
+  "updated_at": "2026-06-20T02:44:20.223Z",
+  "codex_session_id": "",
+  "claude_session_id": "4d4892e7-3745-4f16-a544-adc8e630ed0b",
+  "agent_transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/4d4892e7-3745-4f16-a544-adc8e630ed0b.jsonl",
+  "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/4d4892e7-3745-4f16-a544-adc8e630ed0b.jsonl",
+  "last_idle_at": "2026-06-20T02:22:54.259Z",
+  "prompt_sent_at": "2026-06-20T02:23:17.744Z",
+  "model": "opus",
+  "effort": "medium",
+  "pane_target": "eat-what-test4-20260620-102151-run:1.0",
+  "dag": {
+    "visual_alignment": {
+      "status": "attached",
+      "requested_at": "2026-06-20T02:30:16.018Z",
+      "source_session_id": "15a24ea7-c2bd-4bb9-8a34-f8fab4343383",
+      "attached_at": "2026-06-20T02:30:25.520Z",
+      "target_session_id": "4d4892e7-3745-4f16-a544-adc8e630ed0b"
+    }
+  }
+}

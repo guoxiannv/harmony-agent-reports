@@ -1,0 +1,82 @@
+{
+  "pid": 48876,
+  "status": "controller-tick",
+  "launched_by_session_id": "fd1c7851-9407-4b5e-8e0f-5c0ffcd24dc4",
+  "started_at": "2026-06-20T08:31:57.982Z",
+  "last_scan_at": "2026-06-20T09:05:56.541Z",
+  "last_change_at": "2026-06-20T08:40:23.347Z",
+  "html_signature": "[{\"name\":\"page-course-booking-page.html\",\"mtime_ms\":1781944821545,\"size\":11561},{\"name\":\"page-course-detail-page.html\",\"mtime_ms\":1781944821545,\"size\":14324},{\"name\":\"page-courses-page.html\",\"mtime_ms\":1781944821545,\"size\":16632},{\"name\":\"page-home-page.html\",\"mtime_ms\":1781944821541,\"size\":15868},{\"name\":\"page-inventory-edit-page.html\",\"mtime_ms\":1781944821546,\"size\":11616},{\"name\":\"page-inventory-page.html\",\"mtime_ms\":1781944821546,\"size\":16039},{\"name\":\"page-inventory-transaction-page.html\",\"mtime_ms\":1781944821547,\"size\":12011},{\"name\":\"page-member-detail-page.html\",\"mtime_ms\":1781944821544,\"size\":15370},{\"name\":\"page-member-edit-page.html\",\"mtime_ms\":1781944821544,\"size\":12850},{\"name\":\"page-members-page.html\",\"mtime_ms\":1781944821543,\"size\":17085},{\"name\":\"page-point-record-page.html\",\"mtime_ms\":1781944821546,\"size\":12000},{\"name\":\"page-points-page.html\",\"mtime_ms\":1781944821546,\"size\":16875}]",
+  "html_files": [
+    {
+      "name": "page-course-booking-page.html",
+      "mtime_ms": 1781944821545,
+      "size": 11561
+    },
+    {
+      "name": "page-course-detail-page.html",
+      "mtime_ms": 1781944821545,
+      "size": 14324
+    },
+    {
+      "name": "page-courses-page.html",
+      "mtime_ms": 1781944821545,
+      "size": 16632
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1781944821541,
+      "size": 15868
+    },
+    {
+      "name": "page-inventory-edit-page.html",
+      "mtime_ms": 1781944821546,
+      "size": 11616
+    },
+    {
+      "name": "page-inventory-page.html",
+      "mtime_ms": 1781944821546,
+      "size": 16039
+    },
+    {
+      "name": "page-inventory-transaction-page.html",
+      "mtime_ms": 1781944821547,
+      "size": 12011
+    },
+    {
+      "name": "page-member-detail-page.html",
+      "mtime_ms": 1781944821544,
+      "size": 15370
+    },
+    {
+      "name": "page-member-edit-page.html",
+      "mtime_ms": 1781944821544,
+      "size": 12850
+    },
+    {
+      "name": "page-members-page.html",
+      "mtime_ms": 1781944821543,
+      "size": 17085
+    },
+    {
+      "name": "page-point-record-page.html",
+      "mtime_ms": 1781944821546,
+      "size": 12000
+    },
+    {
+      "name": "page-points-page.html",
+      "mtime_ms": 1781944821546,
+      "size": 16875
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 37,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 37,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-20T09:05:56.541Z"
+}

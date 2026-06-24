@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>今天吃什么 - 打卡</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #FDF8F3;
+      color: #1A1A1A;
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
+    .container { max-width: 390px; margin: 0 auto; padding: 0 20px; }
+    header {
+      padding-top: 56px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .page-title { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+    .header-actions { display: flex; gap: 10px; }
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: #FFFFFF;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      color: #D97736;
+      cursor: pointer;
+    }
+    .summary-card {
+      background: linear-gradient(135deg, #F2A864 0%, #D97736 100%);
+      border-radius: 26px;
+      padding: 22px;
+      color: #FFFFFF;
+      box-shadow: 0 14px 36px rgba(217, 119, 54, 0.28);
+      margin-bottom: 20px;
+    }
+    .summary-date { font-size: 13px; opacity: 0.9; margin-bottom: 16px; }
+    .summary-stats { display: flex; gap: 32px; }
+    .stat { display: flex; flex-direction: column; }
+    .stat-value { font-size: 32px; font-weight: 800; line-height: 1; }
+    .stat-label { font-size: 12px; opacity: 0.9; margin-top: 6px; }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .add-btn {
+      background: linear-gradient(145deg, #F2A864 0%, #D97736 100%);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 14px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 6px 16px rgba(217, 119, 54, 0.28);
+    }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      bottom: 20px;
+      width: 2px;
+      background: #F5EFE9;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -28px;
+      top: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      border: 3px solid #FDF8F3;
+    }
+    .timeline-dot.breakfast { background: #E4B84A; }
+    .timeline-dot.lunch { background: #4A9B8E; }
+    .timeline-dot.dinner { background: #C65D4F; }
+    .timeline-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+    .timeline-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+    .timeline-name { font-size: 16px; font-weight: 700; }
+    .timeline-time { font-size: 12px; color: #A8A29E; font-weight: 600; }
+    .timeline-note { font-size: 13px; color: #6B6B6B; margin-bottom: 10px; }
+    .timeline-meta { display: flex; justify-content: space-between; align-items: center; }
+    .timeline-cal { font-size: 12px; color: #A8A29E; font-weight: 600; }
+    .timeline-actions { display: flex; gap: 8px; }
+    .mini-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      border: none;
+      background: #F5EFE9;
+      color: #6B6B6B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      color: #A8A29E;
+    }
+    .empty-state svg { color: #D97736; margin-bottom: 14px; }
+    .tab-bar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 390px;
+      height: 72px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: saturate(200%) blur(28px);
+      border-top: 1px solid rgba(0,0,0,0.03);
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding-top: 10px;
+      z-index: 10;
+    }
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: #A8A29E;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+    }
+    .tab-item.active { color: #D97736; font-weight: 700; }
+    .tab-item.active::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      width: 4px;
+      height: 4px;
+      background: #D97736;
+      border-radius: 50%;
+    }
+    .tab-item svg { width: 26px; height: 26px; }
+  </style>
+</head>
+<body data-page-id="checkin-page" data-tab-id="tab-checkin">
+  <div class="container">
+    <header>
+      <div>
+        <h1 class="page-title">今日打卡</h1>
+      </div>
+      <div class="header-actions">
+        <button class="icon-button" data-ui-id="checkin-share-button" aria-label="分享今日打卡">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>打开分享卡片</title>
+            <path d="M12 2v13"/>
+            <path d="m16 6-4-4-4 4"/>
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="summary-card">
+      <div class="summary-date">2026年6月23日 星期一</div>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-value" data-ui-id="checkin-today-count">3</span>
+          <span class="stat-label">今日打卡</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-ui-id="checkin-today-calories">820</span>
+          <span class="stat-label">kcal 总热量</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-header">
+      <span class="section-title">记录</span>
+      <button class="add-btn" data-ui-id="checkin-add-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>添加打卡记录</title>
+          <path d="M5 12h14"/>
+          <path d="M12 5v14"/>
+        </svg>
+        记一笔
+      </button>
+    </div>
+
+    <section class="timeline" data-ui-id="checkin-timeline-list">
+      <article class="timeline-item">
+        <div class="timeline-dot breakfast">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <title>早餐记录</title>
+            <path d="M10 2v2"/>
+            <path d="M14 2v2"/>
+            <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>
+            <path d="M6 2v2"/>
+          </svg>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-head">
+            <span class="timeline-name">燕麦牛奶粥</span>
+            <span class="timeline-time">08:15</span>
+          </div>
+          <div class="timeline-note">加了蓝莓和坚果</div>
+          <div class="timeline-meta">
+            <span class="timeline-cal">220 kcal</span>
+            <div class="timeline-actions">
+              <button class="mini-btn" data-ui-id="checkin-edit-button" aria-label="编辑打卡">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <title>编辑这条打卡记录</title>
+                  <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+                </svg>
+              </button>
+              <button class="mini-btn" data-ui-id="checkin-delete-button" aria-label="删除打卡">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <title>删除这条打卡记录</title>
+                  <path d="M10 11v6"/>
+                  <path d="M14 11v6"/>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+                  <path d="M3 6h18"/>
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-dot lunch">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <title>午餐记录</title>
+            <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"/>
+            <path d="M6 17h12"/>
+          </svg>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-head">
+            <span class="timeline-name">番茄鸡蛋面</span>
+            <span class="timeline-time">12:30</span>
+          </div>
+          <div class="timeline-note">多放了一把青菜</div>
+          <div class="timeline-meta">
+            <span class="timeline-cal">320 kcal</span>
+            <div class="timeline-actions">
+              <button class="mini-btn" aria-label="编辑打卡">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <title>编辑这条打卡记录</title>
+                  <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+                </svg>
+              </button>
+              <button class="mini-btn" aria-label="删除打卡">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <title>删除这条打卡记录</title>
+                  <path d="M10 11v6"/>
+                  <path d="M14 11v6"/>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+                  <path d="M3 6h18"/>
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="empty-state" style="display:none;" data-ui-id="checkin-empty-state">
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <title>今日无打卡记录</title>
+        <path d="M8 2v4"/>
+        <path d="M16 2v4"/>
+        <rect width="18" height="18" x="3" y="4" rx="2"/>
+        <path d="M3 10h18"/>
+        <path d="m9 16 2 2 4-4"/>
+      </svg>
+      <div style="font-size: 16px; font-weight: 700; color: #1A1A1A; margin-bottom: 6px;">今天还没有打卡</div>
+      <div>记录第一餐，开启健康饮食的一天</div>
+    </div>
+  </div>
+
+  <nav class="tab-bar">
+    <div class="tab-item" data-tab-id="tab-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>首页标签</title>
+        <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+        <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      </svg>
+      <span>首页</span>
+    </div>
+    <div class="tab-item" data-tab-id="tab-ingredients">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>食材推荐标签</title>
+        <path d="M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6Z"/>
+        <path d="M5 10h14"/>
+        <path d="M15 7v6"/>
+      </svg>
+      <span>食材</span>
+    </div>
+    <div class="tab-item" data-tab-id="tab-discover">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>发现标签</title>
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.34-4.34"/>
+      </svg>
+      <span>发现</span>
+    </div>
+    <div class="tab-item active" data-tab-id="tab-checkin">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>打卡标签</title>
+        <path d="M8 2v4"/>
+        <path d="M16 2v4"/>
+        <rect width="18" height="18" x="3" y="4" rx="2"/>
+        <path d="M3 10h18"/>
+        <path d="m9 16 2 2 4-4"/>
+      </svg>
+      <span>打卡</span>
+    </div>
+    <div class="tab-item" data-tab-id="tab-profile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>我的标签</title>
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span>我的</span>
+    </div>
+  </nav>
+</body>
+</html>

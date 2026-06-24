@@ -1,0 +1,38 @@
+{
+  "module": "03-image-album.md",
+  "group": "03 — 图片编码与相册保存",
+  "apiCount": 4,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.image ImagePacker",
+      "purpose": "将PixelMap编码为JPEG/PNG等格式的ArrayBuffer或文件",
+      "anchor": "ohosmultimediaimage-imagepacker---将-pixelmap-编码为-jpegpng-图片文件",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.image PixelMap",
+      "purpose": "像素图接口，componentSnapshot的输出类型，支持读写像素数据、变换操作",
+      "anchor": "ohosmultimediaimage-pixelmap---像素图接口componentsnapshot-的输出类型",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper PhotoAccessHelper",
+      "purpose": "相册管理入口，提供创建资源(getAssets/createAsset)、提交变更请求(applyChanges)等能力",
+      "anchor": "ohosfilephotoaccesshelper-photoaccesshelper---将图片保存到系统相册",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper MediaAssetChangeRequest",
+      "purpose": "创建图片资源写入请求，通过沙箱文件URI或ArrayBuffer添加资源数据",
+      "anchor": "ohosfilephotoaccesshelper-mediaassetchangerequest---创建图片资源写入请求",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "编码保存标准流程: componentSnapshot→PixelMap→ImagePacker.packToData(ArrayBuffer)→MediaAssetChangeRequest.addResource(ArrayBuffer)+applyChanges保存到相册",
+    "ImagePacker.packToData(pixelMap)返回Promise<ArrayBuffer>，packToFile(pixelMap, fd)直接写入文件描述符",
+    "相册写入需ohos.permission.WRITE_IMAGEVIDEO权限；无权限时可使用showAssetsCreationDialog用户确认弹窗或短期授权方案",
+    "ImagePacker和PixelMap使用后必须调用release()释放内存，PixelMap跨Worker线程传输后原线程不可再使用"
+  ],
+  "missingApis": []
+}

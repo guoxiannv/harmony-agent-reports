@@ -1,0 +1,93 @@
+{
+  "active": true,
+  "status": "active",
+  "driver": "tmux",
+  "iteration": 1,
+  "max_iterations": 10,
+  "originalTask": "为这个 HarmonyOS 工程实现一个“手作·印记”App。功能：会员档案（含擅长工艺与作品图）、消费/签到积分体系、课程预约与日历管理、沉睡会员自动提醒、库存关联扣减。视觉：陶土色+手写感，温润手作风，并完成构建和运行验证",
+  "workflow_variant": "autopilot-html-tmux-uitree-team-split",
+  "plan_skill": "autopilot-html-tmux-design-uitree-pro",
+  "session_id": "919fa543-e572-4ad6-84ec-76d5c766e54f",
+  "project_path": "/Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/diy/test4",
+  "started_at": "2026-06-22T08:49:32.697Z",
+  "updated_at": "2026-06-22T09:34:43.199Z",
+  "completed_at": null,
+  "awaiting_confirmation": false,
+  "awaiting_confirmation_set_at": null,
+  "reinforcement_count": 0,
+  "stage_history": [
+    {
+      "stage": "plan",
+      "at": "2026-06-22T08:49:32.697Z",
+      "reason": "initialized"
+    },
+    {
+      "stage": "qa",
+      "at": "2026-06-22T09:34:43.187Z",
+      "reason": "tmux-idle"
+    }
+  ],
+  "files_created": [],
+  "files_modified": [],
+  "agent_runs": 0,
+  "total_agents_spawned": 0,
+  "qa": {
+    "ultraqa_cycles": 0,
+    "build_status": "pending",
+    "lint_status": "pending",
+    "test_status": "pending"
+  },
+  "execution_ralph": {
+    "status": "pending",
+    "checked_at": null,
+    "passed_at": null,
+    "cycles": 0,
+    "verdict": "",
+    "blockers": []
+  },
+  "pipeline": {
+    "pipelineConfig": {
+      "design": "plan",
+      "implementation": "team",
+      "qa": true,
+      "workflowVariant": "autopilot-html-tmux-uitree-team-split",
+      "stageOrder": [
+        "plan",
+        "execution",
+        "qa"
+      ]
+    },
+    "stages": [
+      {
+        "id": "plan",
+        "status": "complete",
+        "iterations": 0,
+        "startedAt": "2026-06-22T08:49:32.697Z",
+        "completedAt": "2026-06-22T08:53:25.962Z",
+        "error": ""
+      },
+      {
+        "id": "execution",
+        "status": "complete",
+        "iterations": 0,
+        "startedAt": "2026-06-22T08:53:25.962Z",
+        "completedAt": "2026-06-22T09:34:43.187Z",
+        "error": ""
+      },
+      {
+        "id": "qa",
+        "status": "active",
+        "iterations": 0,
+        "startedAt": "2026-06-22T09:34:43.187Z",
+        "completedAt": null,
+        "error": ""
+      }
+    ],
+    "currentStageIndex": 2
+  },
+  "last_context": "",
+  "agent_runtime": "claude",
+  "completion_reason": "",
+  "resumed_at": "2026-06-22T08:53:25.962Z",
+  "role": "execution"
+}

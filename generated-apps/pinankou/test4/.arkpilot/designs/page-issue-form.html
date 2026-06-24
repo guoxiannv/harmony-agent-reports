@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 上报隐患</title>
+  <style>
+    :root {
+      --brand-deep: #115E59; --brand-primary: #0D9488; --brand-bright: #14B8A6; --brand-light: #5EEAD4; --brand-mint: #CCFBF1; --brand-pale: #F0FDFA;
+      --text-primary: #0F172A; --text-secondary: #475569; --text-tertiary: #94A3B8;
+      --surface-primary: #FFFFFF; --surface-secondary: #F8FAFC; --surface-tertiary: #E2E8F0;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04); --shadow-md: 0 4px 14px -3px rgba(13,148,136,0.13); --shadow-lg: 0 12px 32px -10px rgba(13,148,136,0.20);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--brand-pale); color: var(--text-primary); min-height: 100vh; max-width: 420px; margin: 0 auto; padding-bottom: 100px; }
+    .header { padding: 16px; display: flex; align-items: center; gap: 10px; }
+    .back-btn { width: 36px; height: 36px; border-radius: 10px; background: var(--surface-secondary); display: flex; align-items: center; justify-content: center; border: none; }
+    .header-title { font-size: 18px; font-weight: 600; }
+    .form { padding: 0 16px; display: flex; flex-direction: column; gap: 14px; }
+    .field label { display: block; font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+    .field input, .field textarea, .field select { width: 100%; border-radius: 12px; border: 1px solid transparent; background: var(--surface-secondary); padding: 12px 14px; font-size: 14px; color: var(--text-primary); }
+    .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(13,148,136,0.10); }
+    .field textarea { min-height: 90px; resize: vertical; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .photo-slot { aspect-ratio: 1; border-radius: 12px; background: var(--surface-secondary); display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); }
+    .photo-add { border: 2px dashed var(--brand-primary); color: var(--brand-primary); }
+    .action-bar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; background: var(--surface-primary); border-top: 1px solid rgba(226,232,240,0.6); padding: 12px 16px 24px; display: flex; gap: 10px; box-shadow: var(--shadow-lg); }
+    .btn-primary { flex: 1; height: 46px; border-radius: 9999px; border: none; background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; font-size: 15px; font-weight: 700; box-shadow: var(--shadow-md); }
+    .btn-secondary { flex: 1; height: 46px; border-radius: 9999px; border: none; background: rgba(13,148,136,0.08); color: var(--brand-primary); font-size: 15px; font-weight: 600; }
+  </style>
+</head>
+<body data-page-id="issue-form">
+  <header class="header">
+    <button class="back-btn" aria-label="返回上一级">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一级</title><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <h1 class="header-title">上报隐患/事项</h1>
+  </header>
+
+  <form class="form">
+    <div class="field">
+      <label for="title">标题</label>
+      <input id="title" type="text" placeholder="简要描述问题" data-ui-id="issue-form-title-input" />
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="type">类型</label>
+        <select id="type" data-ui-id="issue-form-type-picker">
+          <option>消防隐患</option>
+          <option>设施设备</option>
+          <option>环境卫生</option>
+          <option>其他</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="risk">风险等级</label>
+        <select id="risk" data-ui-id="issue-form-risk-picker">
+          <option>低</option>
+          <option>中</option>
+          <option selected>高</option>
+          <option>重大</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="location">位置</label>
+      <input id="location" type="text" placeholder="例如：A栋3层东侧通道" data-ui-id="issue-form-location-input" />
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="assignee">负责人</label>
+        <input id="assignee" type="text" placeholder="指派整改人" data-ui-id="issue-form-assignee-input" />
+      </div>
+      <div class="field">
+        <label for="due">截止日期</label>
+        <input id="due" type="date" data-ui-id="issue-form-due-date-picker" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="desc">详细描述</label>
+      <textarea id="desc" placeholder="请描述问题细节、影响范围及建议整改措施" data-ui-id="issue-form-description-input"></textarea>
+    </div>
+
+    <div class="field">
+      <label>现场照片</label>
+      <div class="photo-grid" data-ui-id="issue-form-photo-grid">
+        <button type="button" class="photo-slot photo-add" data-ui-id="issue-form-add-photo-button" aria-label="添加照片">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>拍摄隐患现场照片</title><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <footer class="action-bar">
+    <button class="btn-secondary" data-ui-id="issue-form-cancel-button">取消</button>
+    <button class="btn-primary" data-ui-id="issue-form-submit-button">提交上报</button>
+  </footer>
+</body>
+</html>

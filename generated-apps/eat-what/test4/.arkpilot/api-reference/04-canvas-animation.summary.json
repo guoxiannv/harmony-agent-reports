@@ -1,0 +1,98 @@
+{
+  "module": "04-canvas-animation.md",
+  "group": "04 — Canvas Rendering & Animation",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "Canvas",
+      "purpose": "画布组件，提供自定义2D绘制区域",
+      "anchor": "canvas",
+      "status": "found"
+    },
+    {
+      "name": "CanvasRenderingContext2D",
+      "purpose": "2D渲染上下文，绑定Canvas，提供图形/文本/图像绘制方法",
+      "anchor": "canvasrenderingcontext2d",
+      "status": "found"
+    },
+    {
+      "name": "Path2D",
+      "purpose": "可复用路径对象，支持SVG路径字符串或方法调用定义路径",
+      "anchor": "path2d",
+      "status": "found"
+    },
+    {
+      "name": "OffscreenCanvas",
+      "purpose": "离屏画布，可在Worker线程中并发绘制，避免影响UI性能",
+      "anchor": "offscreencanvas",
+      "status": "found"
+    },
+    {
+      "name": "animateTo",
+      "purpose": "显式动画，闭包中改变状态时自动插入过渡动效",
+      "anchor": "animateto",
+      "status": "found"
+    },
+    {
+      "name": "animation",
+      "purpose": "属性动画，组件属性变化时声明式实现渐变过渡",
+      "anchor": "animation",
+      "status": "found"
+    },
+    {
+      "name": "curve",
+      "purpose": "动画插值曲线，提供贝塞尔/弹簧/阶梯等曲线函数",
+      "anchor": "curve",
+      "status": "found"
+    },
+    {
+      "name": "Animatable",
+      "purpose": "非数字数据类型动画运算规则接口",
+      "anchor": "animatablearithmetic",
+      "status": "missing"
+    },
+    {
+      "name": "transition",
+      "purpose": "组件内转场，组件插入/删除时显示过渡动效",
+      "anchor": "transition",
+      "status": "found"
+    },
+    {
+      "name": "rotate",
+      "purpose": "设置组件绕指定轴旋转的通用属性",
+      "anchor": "rotate",
+      "status": "found"
+    },
+    {
+      "name": "scale",
+      "purpose": "设置组件沿各轴缩放的通用属性",
+      "anchor": "scale",
+      "status": "found"
+    },
+    {
+      "name": "@Animatable",
+      "purpose": "定义可动画属性的组件扩展装饰器",
+      "anchor": "animatableextend",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "animateTo 全局版本从 API 18 起不推荐，建议使用 this.getUIContext()?.animateTo() UIContext 实例方法替代",
+    "API 列表中 Animatable 不存在独立 API，对应的是 AnimatableArithmetic<T> 接口（用于非 number 类型的逐帧插值）",
+    "API 列表中 @Animatable 不存在独立装饰器，对应的是 @AnimatableExtend 装饰器",
+    "transition 旧版 transition(value: TransitionOptions) 从 API 10 起废弃，推荐使用 TransitionEffect 版",
+    "curve 实际是 @ohos.curves 模块，使用 import { curves } from '@kit.ArkUI'；其 Curve 枚举包含 13 种预定义曲线",
+    "OffscreenCanvas.getContext() 仅支持 \"2d\" 类型；API 11+ 可通过 postMessage 转移到 Worker 并发绘制",
+    "rotate 和 scale 是组件通用属性，适用于所有 ArkUI 组件，非 Canvas 专有 API"
+  ],
+  "missingApis": [
+    {
+      "name": "Animatable",
+      "note": "文档中无独立 Animatable API。对应概念为 AnimatableArithmetic<T> 接口（用于为 @AnimatableExtend 提供非 number 类型插值运算），定义在 _AnimatableExtend.md 中"
+    },
+    {
+      "name": "@Animatable",
+      "note": "文档中无独立 @Animatable 装饰器。对应装饰器为 @AnimatableExtend，定义在 02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/25_自定义组件/06_组件扩展装饰器/01_定义可动画属性 (_AnimatableExtend).md"
+    }
+  ]
+}

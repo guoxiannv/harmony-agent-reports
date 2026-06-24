@@ -1,0 +1,69 @@
+{
+  "module": "04-image-picker.md",
+  "group": "04 — Image Picker (图片选择)",
+  "apiCount": 9,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.photoAccessHelper (PhotoAccessHelper)",
+      "purpose": "相册管理模块入口，提供创建相册、访问和修改相册中的媒体数据的能力。注意实际模块名为 @ohos.file.photoAccessHelper",
+      "anchor": "ohosfilephotoaccesshelper-photoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "PhotoAccessHelper.getPhotoAccessHelper()",
+      "purpose": "获取相册管理模块的实例，用于访问和修改相册中的媒体文件。仅Stage模型下使用。",
+      "anchor": "photoaccesshelpergetphotoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "PhotoViewPicker",
+      "purpose": "图库选择器对象，用于选择图片/视频，通过拉起photoPicker界面让用户选择。",
+      "anchor": "class-photoviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.picker (PhotoViewPicker)",
+      "purpose": "图库选择器对象（已废弃，自API 12起），建议使用photoAccessHelper.PhotoViewPicker替代。",
+      "anchor": "ohosfilepicker-选择器",
+      "status": "found"
+    },
+    {
+      "name": "PhotoViewPicker.select()",
+      "purpose": "通过选择模式拉起photoPicker界面，用户选择一个或多个图片/视频。返回的photoUris具有永久授权。",
+      "anchor": "select",
+      "status": "found"
+    },
+    {
+      "name": "PhotoPickOptions",
+      "purpose": "图库选择选项，官方类名为PhotoSelectOptions。配置MIME类型、最大选择数等过滤条件。",
+      "anchor": "photoselectoptions",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper.MediaAsset",
+      "purpose": "媒体文件属性封装，官方接口名为PhotoAsset。提供uri、photoType、displayName属性和get/set/commitModify/getThumbnail等方法。",
+      "anchor": "interface-photoasset",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper.Album",
+      "purpose": "实体相册接口（继承AbsAlbum），提供imageCount、videoCount属性以及commitModify等方法。",
+      "anchor": "interface-album",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper.PhotoKeys",
+      "purpose": "图片和视频文件关键信息枚举，包含URI、PHOTO_TYPE、DISPLAY_NAME、SIZE、TITLE等字段。",
+      "anchor": "photokeys",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@ohos.multimedia.photoAccessHelper 的实际模块名为 @ohos.file.photoAccessHelper，导入为 import { photoAccessHelper } from '@kit.MediaLibraryKit'",
+    "MediaAsset 在官方文档中对应接口为 PhotoAsset，非 MediaAsset",
+    "PhotoPickOptions 在官方文档中对应类为 PhotoSelectOptions（继承自 BaseSelectOptions）",
+    "@ohos.file.picker 中的 PhotoViewPicker 自 API 12 起已废弃，应使用 photoAccessHelper.PhotoViewPicker 替代",
+    "PhotoViewPicker.select() 返回的 photoUris 具有永久授权，可通过 photoAccessHelper.getAssets() 进一步查询"
+  ],
+  "missingApis": []
+}

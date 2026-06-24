@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>宠迹 PawLog - 家庭</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #F3F4F6; color: #1F2937;
+      max-width: 390px; margin: 0 auto; min-height: 100vh;
+      position: relative; overflow-x: hidden;
+    }
+    .page { padding: 0 20px 120px; }
+    .header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.8); backdrop-filter: blur(24px) saturate(150%);
+      border-bottom: 1px solid rgba(255,255,255,0.65);
+      margin: 0 -20px; padding: 52px 20px 12px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .page-title { font-size: 24px; font-weight: 700; }
+    .invite-btn {
+      padding: 10px 18px; border-radius: 999px;
+      background: linear-gradient(135deg, #8EEDDB 0%, #45C4AD 100%);
+      color: #fff; font-size: 14px; font-weight: 700;
+      box-shadow: 0 10px 22px rgba(69,196,173,0.28);
+      border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;
+    }
+    .invite-btn svg { width: 16px; height: 16px; }
+    .section { margin-top: 26px; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .section-count { font-size: 13px; color: #9CA3AF; }
+    .family-card {
+      background: #fff; border-radius: 24px; padding: 20px;
+      box-shadow: 0 12px 32px rgba(31,41,55,0.08);
+      margin-bottom: 16px;
+    }
+    .member-list { display: flex; flex-direction: column; gap: 12px; }
+    .member-item {
+      display: flex; align-items: center; gap: 14px; padding: 12px;
+      background: #F9FAFB; border-radius: 18px;
+    }
+    .member-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .member-avatar.admin { background: linear-gradient(135deg, #8EEDDB, #45C4AD); }
+    .member-avatar.member { background: linear-gradient(135deg, #CAB8F0, #A58DDD); }
+    .member-avatar.pending { background: #E5E7EB; color: #9CA3AF; }
+    .member-info { flex: 1; }
+    .member-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
+    .member-role {
+      font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 8px;
+    }
+    .role-admin { background: #E6FAF6; color: #3CB5A0; }
+    .role-member { background: #F3EEFC; color: #8B6ACB; }
+    .role-pending { background: #F3F4F6; color: #9CA3AF; }
+    .member-status { font-size: 12px; color: #9CA3AF; }
+    .shared-pet-list { display: flex; flex-direction: column; gap: 12px; }
+    .shared-pet-item {
+      display: flex; align-items: center; gap: 14px; padding: 14px;
+      background: #F9FAFB; border-radius: 18px;
+    }
+    .shared-pet-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, #FFDDE6, #FF9DAF);
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #fff; box-shadow: 0 4px 10px rgba(31,41,55,0.08);
+    }
+    .shared-pet-avatar svg { width: 24px; height: 24px; color: #fff; }
+    .shared-pet-info { flex: 1; }
+    .shared-pet-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .shared-pet-meta { font-size: 12px; color: #9CA3AF; }
+    .empty-state {
+      text-align: center; padding: 32px 20px; background: #fff; border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(31,41,55,0.06);
+    }
+    .empty-state svg { width: 64px; height: 64px; color: #FFB8C9; margin-bottom: 12px; }
+    .empty-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .empty-desc { font-size: 13px; color: #9CA3AF; }
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 390px; margin: 0 auto;
+      height: 76px; background: rgba(255,255,255,0.82); backdrop-filter: blur(24px) saturate(150%);
+      border-top: 1px solid rgba(255,255,255,0.65);
+      box-shadow: 0 -4px 20px rgba(31,41,55,0.06);
+      display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px;
+      z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 56px; padding-top: 4px; color: #9CA3AF; text-decoration: none; }
+    .tab-item.active { color: #5DD9C1; }
+    .tab-item svg { width: 24px; height: 24px; }
+    .tab-label { font-size: 11px; font-weight: 700; }
+    .fab-wrap { position: relative; top: -28px; }
+    .fab {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #8EEDDB 0%, #45C4AD 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 14px 36px rgba(69,196,173,0.38); border: 3px solid #fff;
+    }
+    .fab svg { width: 26px; height: 26px; color: #fff; }
+  </style>
+</head>
+<body data-page-id="family-page" data-tab-id="tab-family">
+  <div class="page">
+    <header class="header">
+      <h1 class="page-title">家庭</h1>
+      <button class="invite-btn" data-ui-id="family-invite-button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>邀请家庭成员</title><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        邀请成员
+      </button>
+    </header>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">家庭成员</h2>
+        <span class="section-count">3 人</span>
+      </div>
+      <div class="family-card">
+        <div class="member-list" data-ui-id="family-member-list">
+          <div class="member-item" data-ui-id="family-member-1">
+            <div class="member-avatar admin">我</div>
+            <div class="member-info">
+              <div class="member-name">
+                我
+                <span class="member-role role-admin">管理员</span>
+              </div>
+              <div class="member-status">创建者 · 所有宠物可见</div>
+            </div>
+          </div>
+
+          <div class="member-item" data-ui-id="family-member-2">
+            <div class="member-avatar member">妈</div>
+            <div class="member-info">
+              <div class="member-name">
+                妈妈
+                <span class="member-role role-member">成员</span>
+              </div>
+              <div class="member-status">已加入 · 可记录</div>
+            </div>
+          </div>
+
+          <div class="member-item" data-ui-id="family-member-3">
+            <div class="member-avatar pending">?</div>
+            <div class="member-info">
+              <div class="member-name">
+                等待加入
+                <span class="member-role role-pending">待确认</span>
+              </div>
+              <div class="member-status">邀请码：PAW-7X2K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">共享宠物</h2>
+        <span class="section-count">2 只</span>
+      </div>
+      <div class="family-card">
+        <div class="shared-pet-list" data-ui-id="family-shared-pet-list">
+          <div class="shared-pet-item" data-ui-id="family-shared-pet-1">
+            <div class="shared-pet-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>宠物头像</title><path d="M12 5c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6c-.4-.4-.6-.9-.6-1.4 0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M6 9c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6C4 12 3.8 11.5 3.8 11c0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M18 9c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6c-.4-.4-.6-.9-.6-1.4 0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+            </div>
+            <div class="shared-pet-info">
+              <div class="shared-pet-name">豆豆</div>
+              <div class="shared-pet-meta">英国短毛猫 · 2 岁 · 全员可见</div>
+            </div>
+          </div>
+
+          <div class="shared-pet-item" data-ui-id="family-shared-pet-2">
+            <div class="shared-pet-avatar" style="background:linear-gradient(135deg,#CAB8F0,#A58DDD);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>宠物头像</title><path d="M12 5c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6c-.4-.4-.6-.9-.6-1.4 0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M6 9c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6C4 12 3.8 11.5 3.8 11c0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M18 9c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6c-.4-.4-.6-.9-.6-1.4 0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+            </div>
+            <div class="shared-pet-info">
+              <div class="shared-pet-name">年糕</div>
+              <div class="shared-pet-meta">金毛 · 4 岁 · 仅管理员可见病历</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="tabbar">
+    <a href="#" class="tab-item" data-ui-id="tab-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页标签</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span class="tab-label">首页</span>
+    </a>
+    <a href="#" class="tab-item" data-ui-id="tab-records">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>记录标签</title><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span class="tab-label">记录</span>
+    </a>
+    <div class="fab-wrap">
+      <button class="fab" aria-label="添加记录">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>快捷添加新记录</title><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+    <a href="#" class="tab-item" data-ui-id="tab-health">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>健康标签</title><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span class="tab-label">健康</span>
+    </a>
+    <a href="#" class="tab-item active" data-ui-id="tab-family">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>家庭标签</title><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="tab-label">家庭</span>
+    </a>
+  </nav>
+</body>
+</html>

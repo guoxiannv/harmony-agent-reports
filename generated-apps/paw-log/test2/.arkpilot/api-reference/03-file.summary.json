@@ -1,0 +1,39 @@
+{
+  "module": "03-file.md",
+  "group": "03 — Core File Kit (File I/O)",
+  "apiCount": 4,
+  "apis": [
+    {
+      "name": "@ohos.file.fs (文件管理)",
+      "purpose": "基础文件操作，包括文件/目录管理、读写、属性、复制、删除、文件流、文件监听等完整 IO 能力",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.picker (选择器)",
+      "purpose": "系统文件选择器，支持文档/音频/图片的选择与保存，通过 DocumentViewPicker/AudioViewPicker 拉起系统界面",
+      "anchor": "ohosfilepicker-选择器",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.environment (目录环境能力)",
+      "purpose": "获取系统预授权目录的沙箱路径（下载、桌面、文档目录），2in1 设备可用",
+      "anchor": "ohosfileenvironment-目录环境能力",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.fileuri (文件URI)",
+      "purpose": "文件 URI 与沙箱路径的转换，提供 FileUri 类进行 uri-path 双向转换和属性获取",
+      "anchor": "ohosfilefileuri-文件URI",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@ohos.file.picker 的 PhotoViewPicker 从 API 12 开始废弃，图片/视频选择应使用 @kit.MediaLibraryKit 的 photoAccessHelper.PhotoViewPicker",
+    "@ohos.file.picker 的 DocumentViewPicker 和 AudioViewPicker 推荐使用带 UIAbilityContext 参数的构造函数，无参构造存在概率性拉起失败",
+    "@ohos.file.environment（getUserDownloadDir/getUserDesktopDir/getUserDocumentDir）仅 2in1 设备可正常调用，其他设备返回 801 错误码",
+    "@ohos.file.fs 的 open/read/write/stat 等接口从 API 22 开始支持传入 URI，之前仅支持沙箱路径",
+    "picker 三类 URI（应用沙箱、文档、媒体）使用方式不同：文档 URI 通过 fileUri 转沙箱路径后用 fileIo 操作，媒体 URI 需用 photoAccessHelper.getAssets 临时授权访问"
+  ],
+  "missingApis": []
+}

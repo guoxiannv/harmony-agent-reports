@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 隐患与事项</title>
+  <style>
+    :root {
+      --brand-deep: #115E59; --brand-primary: #0D9488; --brand-bright: #14B8A6; --brand-light: #5EEAD4; --brand-mint: #CCFBF1; --brand-pale: #F0FDFA;
+      --safe: #059669; --safe-bg: #D1FAE5; --warning: #B45309; --warning-bg: #FEF3C7; --danger: #DC2626; --danger-bg: #FEE2E2; --critical: #991B1B; --critical-bg: #FECACA;
+      --text-primary: #0F172A; --text-secondary: #475569; --text-tertiary: #94A3B8;
+      --surface-primary: #FFFFFF; --surface-secondary: #F8FAFC; --surface-tertiary: #E2E8F0;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04); --shadow-md: 0 4px 14px -3px rgba(13,148,136,0.13); --shadow-lg: 0 12px 32px -10px rgba(13,148,136,0.20); --glow-brand: 0 0 18px rgba(94,234,212,0.48);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--brand-pale); color: var(--text-primary); min-height: 100vh; max-width: 420px; margin: 0 auto; padding-bottom: 90px; }
+    .header { padding: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .header-title { font-size: 22px; font-weight: 700; color: var(--brand-deep); }
+    .search-box { margin: 0 16px 14px; position: relative; }
+    .search-box input {
+      width: 100%; height: 46px; border-radius: 12px; border: 1px solid transparent; background: var(--surface-secondary);
+      padding: 0 16px 0 40px; font-size: 14px; color: var(--text-primary);
+    }
+    .search-box input:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(13,148,136,0.10); }
+    .search-box svg { position: absolute; left: 14px; top: 13px; color: var(--text-tertiary); }
+    .filters { display: flex; gap: 8px; padding: 0 16px 12px; overflow-x: auto; }
+    .filters::-webkit-scrollbar { display: none; }
+    .chip { flex-shrink: 0; padding: 7px 14px; border-radius: 9999px; font-size: 13px; font-weight: 600; background: var(--surface-secondary); color: var(--text-secondary); border: none; }
+    .chip.active { background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; box-shadow: var(--shadow-md); }
+    .list { display: flex; flex-direction: column; gap: 10px; padding: 0 16px; }
+    .issue-card { background: var(--surface-primary); border-radius: 16px; padding: 15px 16px; box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 12px; border-left: 4px solid var(--danger); }
+    .issue-card.warning { border-left-color: var(--warning); }
+    .issue-card.safe { border-left-color: var(--safe); }
+    .issue-card.critical { border-left-color: var(--critical); }
+    .issue-content { flex: 1; }
+    .issue-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .issue-meta { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
+    .issue-tags { display: flex; gap: 6px; margin-top: 8px; }
+    .badge { padding: 4px 9px; border-radius: 9999px; font-size: 10px; font-weight: 700; }
+    .badge-danger { background: var(--danger-bg); color: var(--danger); }
+    .badge-warning { background: var(--warning-bg); color: var(--warning); }
+    .badge-safe { background: var(--safe-bg); color: var(--safe); }
+    .badge-critical { background: var(--critical-bg); color: var(--critical); }
+    .badge-status { background: var(--surface-secondary); color: var(--text-secondary); }
+    .fab { position: fixed; right: calc(50% - 180px); bottom: 88px; width: 56px; height: 56px; border-radius: 50%; border: none; background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); }
+    .tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 68px; background: rgba(255,255,255,0.85); backdrop-filter: blur(24px) saturate(160%); border-top: 1px solid rgba(226,232,240,0.6); display: flex; justify-content: space-around; align-items: center; padding-bottom: 8px; box-shadow: var(--shadow-lg); }
+    .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-tertiary); font-size: 10px; }
+    .tab.active { color: var(--brand-primary); }
+    .tab-icon { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+    .tab.active .tab-icon { background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; box-shadow: var(--glow-brand); }
+  </style>
+</head>
+<body data-page-id="issues" data-tab-id="tab-issues">
+  <header class="header">
+    <h1 class="header-title" data-ui-id="issues-header-title">隐患与事项</h1>
+  </header>
+
+  <div class="search-box">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>搜索隐患</title><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input type="text" placeholder="搜索隐患标题、位置或负责人" data-ui-id="issues-search-input" />
+  </div>
+
+  <div class="filters" data-ui-id="issues-filter-status">
+    <button class="chip active">全部</button>
+    <button class="chip">待处理</button>
+    <button class="chip">处理中</button>
+    <button class="chip">待验收</button>
+    <button class="chip">已完成</button>
+  </div>
+
+  <div class="filters" data-ui-id="issues-filter-risk">
+    <button class="chip active">全部等级</button>
+    <button class="chip">低</button>
+    <button class="chip">中</button>
+    <button class="chip">高</button>
+    <button class="chip">重大</button>
+  </div>
+
+  <section class="list" data-ui-id="issues-list">
+    <article class="issue-card critical" data-ui-id="issues-item-1">
+      <div class="issue-content">
+        <div class="issue-title">A栋3层消防通道堆物阻塞</div>
+        <div class="issue-meta">A栋3层东侧通道 · 张主管</div>
+        <div class="issue-tags">
+          <span class="badge badge-critical">重大</span>
+          <span class="badge badge-status">待处理</span>
+        </div>
+      </div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-tertiary)"><title>进入隐患详情</title><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </article>
+
+    <article class="issue-card warning" data-ui-id="issues-item-2">
+      <div class="issue-content">
+        <div class="issue-title">B栋货梯门关闭异常</div>
+        <div class="issue-meta">B栋货梯厅 · 李维修</div>
+        <div class="issue-tags">
+          <span class="badge badge-warning">中</span>
+          <span class="badge badge-status">处理中</span>
+        </div>
+      </div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-tertiary)"><title>进入隐患详情</title><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </article>
+
+    <article class="issue-card" data-ui-id="issues-item-3">
+      <div class="issue-content">
+        <div class="issue-title">C栋2层应急灯不亮</div>
+        <div class="issue-meta">C栋2层走廊 · 王电工</div>
+        <div class="issue-tags">
+          <span class="badge badge-danger">高</span>
+          <span class="badge badge-status">待验收</span>
+        </div>
+      </div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-tertiary)"><title>进入隐患详情</title><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </article>
+
+    <article class="issue-card safe" data-ui-id="issues-item-4">
+      <div class="issue-content">
+        <div class="issue-title">D栋灭火器压力正常</div>
+        <div class="issue-meta">D栋各楼层 · 赵安全</div>
+        <div class="issue-tags">
+          <span class="badge badge-safe">低</span>
+          <span class="badge badge-status">已完成</span>
+        </div>
+      </div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-tertiary)"><title>进入隐患详情</title><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </article>
+  </section>
+
+  <button class="fab" data-ui-id="issues-add-button" aria-label="新建隐患或事项">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>新建隐患或事项</title><path d="M12 5v14M5 12h14"></path></svg>
+  </button>
+
+  <nav class="tabbar">
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页工作台</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </div>
+      <span>首页</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>巡检打卡</title><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      </div>
+      <span>巡检</span>
+    </div>
+    <div class="tab active">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>隐患与事项</title><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      </div>
+      <span>隐患</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>应急联系人</title><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      </div>
+      <span>联系人</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>统计看板</title><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      </div>
+      <span>统计</span>
+    </div>
+  </nav>
+</body>
+</html>

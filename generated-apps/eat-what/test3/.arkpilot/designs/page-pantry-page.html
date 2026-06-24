@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今天吃什么 - 食材</title>
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0;
+      font-family: "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #FFF8F0;
+      color: #2E2B28;
+    }
+    .app {
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 20px 22px 120px;
+    }
+    .header { margin-bottom: 18px; }
+    .title { font-size: 26px; font-weight: 700; letter-spacing: -0.3px; margin: 0 0 6px; }
+    .subtitle { font-size: 14px; color: #A9A29B; }
+    .input-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: rgba(46,43,40,0.08) 0 10px 32px;
+      margin-bottom: 18px;
+    }
+    .input-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .text-input {
+      flex: 1;
+      height: 54px;
+      border-radius: 16px;
+      border: none;
+      background: #F3ECE1;
+      padding: 0 18px;
+      font-size: 16px;
+      color: #2E2B28;
+      outline: none;
+    }
+    .text-input::placeholder { color: #A9A29B; }
+    .add-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(180deg, #E85D4E 0%, #D64F42 100%);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: rgba(232,93,78,0.25) 0 8px 20px;
+    }
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .pantry-tag {
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 12px;
+      background: #F3ECE1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #2E2B28;
+      font-weight: 500;
+    }
+    .pantry-tag .dot { width: 8px; height: 8px; border-radius: 50%; background: #7CAE7A; }
+    .pantry-tag .remove {
+      width: 16px; height: 16px;
+      display: flex; align-items: center; justify-content: center;
+      color: #A9A29B; cursor: pointer;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 28px 0;
+      color: #A9A29B;
+      font-size: 14px;
+    }
+    .btn-primary {
+      width: 100%;
+      height: 54px;
+      border-radius: 18px;
+      border: none;
+      background: linear-gradient(180deg, #E85D4E 0%, #D64F42 100%);
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 600;
+      box-shadow: rgba(232,93,78,0.28) 0 10px 24px;
+      cursor: pointer;
+      margin-bottom: 22px;
+    }
+    .filter-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #A9A29B;
+      margin: 0 0 10px;
+      display: block;
+    }
+    .mood-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      margin-bottom: 18px;
+    }
+    .mood-scroll::-webkit-scrollbar { display: none; }
+    .mood-tag {
+      flex: 0 0 auto;
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 14px;
+      border: 1px solid #E8DDD1;
+      background: #FFFFFF;
+      color: #6D6761;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .mood-tag.active {
+      border: none;
+      color: #4D7A4B;
+      background: #E2F0E1;
+    }
+    .result-list { display: flex; flex-direction: column; gap: 14px; }
+    .dish-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: rgba(46,43,40,0.08) 0 10px 32px;
+      display: flex;
+      gap: 16px;
+      cursor: pointer;
+    }
+    .dish-thumb {
+      width: 64px; height: 64px;
+      border-radius: 18px;
+      background: #F2B134;
+      display: flex; align-items: center; justify-content: center;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .dish-info { flex: 1; }
+    .dish-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .dish-ingredients {
+      font-size: 13px;
+      color: #6D6761;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .dish-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .meta-tag {
+      height: 24px;
+      padding: 0 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex; align-items: center;
+    }
+    .meta-tag.mood { background: #FFE8D6; color: #9C5A36; }
+    .meta-tag.time { background: #F3ECE1; color: #6D6761; }
+    .tab-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      margin: 0 auto;
+      max-width: 390px;
+      height: 80px;
+      background: rgba(255,248,240,0.94);
+      backdrop-filter: blur(24px);
+      border-radius: 28px 28px 0 0;
+      box-shadow: rgba(46,43,40,0.08) 0 -6px 24px;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding-top: 12px;
+      z-index: 100;
+    }
+    .tab-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      color: #A9A29B; font-size: 11px; font-weight: 500; cursor: pointer;
+    }
+    .tab-item.active { color: #E85D4E; }
+    .tab-item svg { width: 24px; height: 24px; }
+  </style>
+</head>
+<body data-page-id="pantry-page" data-tab-id="tab-pantry">
+  <div class="app">
+    <header class="header">
+      <h1 class="title">冰箱有什么</h1>
+      <p class="subtitle">告诉我还剩什么，我来推荐能做的菜</p>
+    </header>
+
+    <section class="input-card">
+      <div class="input-row">
+        <input class="text-input" type="text" placeholder="输入食材，如：鸡蛋、番茄" data-ui-id="pantry-input" />
+        <button class="add-btn" data-ui-id="pantry-add-button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <title>添加冰箱食材图标</title>
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+        </button>
+      </div>
+      <div class="tag-cloud" data-ui-id="pantry-item-list">
+        <div class="pantry-tag" data-ui-id="pantry-item-egg">
+          <span class="dot" style="background:#F2B134"></span>
+          鸡蛋
+          <span class="remove" data-ui-id="pantry-remove-button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>删除该食材图标</title>
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </span>
+        </div>
+        <div class="pantry-tag" data-ui-id="pantry-item-tomato">
+          <span class="dot" style="background:#E85D4E"></span>
+          番茄
+          <span class="remove" data-ui-id="pantry-remove-button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>删除该食材图标</title>
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </span>
+        </div>
+        <div class="pantry-tag" data-ui-id="pantry-item-beef">
+          <span class="dot" style="background:#C47D4C"></span>
+          牛肉
+          <span class="remove" data-ui-id="pantry-remove-button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>删除该食材图标</title>
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <button class="btn-primary" data-ui-id="pantry-recommend-button">
+      看看能做什么
+    </button>
+
+    <section>
+      <span class="filter-label">再按心情筛选</span>
+      <div class="mood-scroll" data-ui-id="pantry-mood-filter">
+        <div class="mood-tag active">全部</div>
+        <div class="mood-tag">健康</div>
+        <div class="mood-tag">快手</div>
+        <div class="mood-tag">放纵</div>
+        <div class="mood-tag">治愈</div>
+      </div>
+    </section>
+
+    <section class="result-list" data-ui-id="pantry-result-list">
+      <article class="dish-card" data-ui-id="pantry-dish-tomato-egg">
+        <div class="dish-thumb" style="background:#E85D4E">番</div>
+        <div class="dish-info">
+          <div class="dish-name">番茄炒蛋</div>
+          <div class="dish-ingredients">主要食材：番茄、鸡蛋、葱、盐</div>
+          <div class="dish-meta">
+            <span class="meta-tag mood">快手</span>
+            <span class="meta-tag time">午餐</span>
+          </div>
+        </div>
+      </article>
+      <article class="dish-card" data-ui-id="pantry-dish-beef-noodle">
+        <div class="dish-thumb" style="background:#C47D4C">牛</div>
+        <div class="dish-info">
+          <div class="dish-name">红烧牛肉面</div>
+          <div class="dish-ingredients">主要食材：牛肉、面条、青菜、香料</div>
+          <div class="dish-meta">
+            <span class="meta-tag mood">放纵</span>
+            <span class="meta-tag time">晚餐</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <nav class="tab-bar">
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>决策标签页图标</title>
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        <span>决策</span>
+      </div>
+      <div class="tab-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>食材标签页图标</title>
+          <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/>
+          <path d="M8 9V5a2 2 0 0 1 4 0v4"/>
+        </svg>
+        <span>食材</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打卡标签页图标</title>
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <span>打卡</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>我的标签页图标</title>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>我的</span>
+      </div>
+    </nav>
+  </div>
+</body>
+</html>

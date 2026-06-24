@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>饮食记录</title>
+  <style>
+    :root {
+      --mint-600: #3FC0A0; --mint-500: #5ED7B6; --mint-300: #9CEBD4; --mint-100: #E5FAF4; --mint-50: #F4FDFA;
+      --pink-600: #FF9AAE; --pink-500: #FFB3C1; --pink-100: #FFF0F3;
+      --yellow-500: #FFD166; --yellow-100: #FFF9E6;
+      --blue-500: #87CEEB; --blue-100: #E6F5FB;
+      --lavender-500: #B8B8E0; --lavender-100: #F2F1FA;
+      --apricot-500: #F4D0A4; --apricot-100: #FDF5EA;
+      --forest-900: #163832; --forest-700: #3D5A52; --forest-500: #6F8983; --forest-200: #C9D8D4; --forest-100: #E3EDEA;
+      --white: #FFFFFF; --page-bg: #FAFDFC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: rgba(22,56,50,0.35); max-width: 390px; margin: 0 auto;
+      min-height: 100vh; display: flex; align-items: flex-end;
+    }
+    .sheet {
+      width: 100%; background: var(--white); border-radius: 28px 28px 0 0;
+      padding: 20px 16px 32px; box-shadow: 0 -8px 32px rgba(22,56,50,0.2);
+    }
+    .sheet-handle { width: 40px; height: 4px; border-radius: 2px; background: var(--forest-200); margin: 0 auto 16px; }
+    .sheet-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .sheet-title { font-size: 20px; font-weight: 800; }
+    .close-icon { width: 32px; height: 32px; border-radius: 10px; background: var(--mint-100); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .close-icon svg { width: 18px; height: 18px; stroke: var(--mint-600); fill: none; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--forest-700); margin-bottom: 6px; }
+    .input {
+      width: 100%; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--forest-100);
+      background: var(--mint-50); font-size: 15px; color: var(--forest-900); outline: none;
+    }
+    .input:focus { border-color: var(--mint-500); box-shadow: 0 0 0 4px rgba(94,215,182,0.12); }
+    .input-row { display: flex; gap: 12px; }
+    .input-row .form-group { flex: 1; }
+    .btn-primary {
+      width: 100%; margin-top: 8px; padding: 15px;
+      background: linear-gradient(135deg, var(--mint-500) 0%, var(--mint-600) 50%, #2DB08E 100%);
+      color: var(--white); border: none; border-radius: 28px; font-size: 16px; font-weight: 700;
+      box-shadow: 0 8px 24px rgba(63,192,160,0.36), inset 0 1px 0 rgba(255,255,255,0.35);
+      cursor: pointer; transition: transform .15s;
+    }
+    .btn-primary:active { transform: scale(0.97); }
+  </style>
+</head>
+<body data-page-id="record-diet-sheet">
+
+  <div class="sheet">
+    <div class="sheet-handle" data-ui-id="record-diet-close"></div>
+    <div class="sheet-header">
+      <span class="sheet-title">记录饮食</span>
+      <div class="close-icon" data-ui-id="record-diet-close">
+        <svg viewBox="0 0 24 24" role="img"><title>关闭饮食记录表单</title><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">时间</label>
+      <input class="input" type="text" value="2026-06-22 08:30" data-ui-id="record-diet-time" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">食物名称</label>
+      <input class="input" type="text" value="鸡肉粮" placeholder="例如：鸡肉粮、罐头" data-ui-id="record-diet-food" />
+    </div>
+
+    <div class="input-row">
+      <div class="form-group">
+        <label class="form-label">份量</label>
+        <input class="input" type="text" value="80" data-ui-id="record-diet-amount" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">单位</label>
+        <input class="input" type="text" value="g" data-ui-id="record-diet-unit" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">备注</label>
+      <input class="input" type="text" placeholder="可选：光盘/剩了一半" data-ui-id="record-diet-note" />
+    </div>
+
+    <button class="btn-primary" data-ui-id="record-diet-save">保存记录</button>
+  </div>
+
+</body>
+</html>

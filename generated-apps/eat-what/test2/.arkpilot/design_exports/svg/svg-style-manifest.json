@@ -1,0 +1,791 @@
+{
+  "generated_at": "2026-06-20T02:34:50.851Z",
+  "icons": [
+    {
+      "file_name": "icon_App-二维码占位.svg",
+      "title": "App 二维码占位",
+      "source_html": "page-share-card.html",
+      "hash": "5b72aa96874e8ed5a9a8e628003ff7050e84baa0",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1A1A1A",
+      "fill_color": "",
+      "stroke_color": "#1A1A1A",
+      "opacity": "1",
+      "context_classes": [
+        "card-qr",
+        "card-footer",
+        "share-card"
+      ]
+    },
+    {
+      "file_name": "icon_一星评分.svg",
+      "title": "一星评分",
+      "source_html": "page-record-form.html",
+      "hash": "d812754d179a2b65e0a2a1d28429840d6328b467",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#fff",
+      "fill_color": "#fff",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "star",
+        "active",
+        "stars",
+        "form-row"
+      ]
+    },
+    {
+      "file_name": "icon_三星评分.svg",
+      "title": "三星评分",
+      "source_html": "page-record-form.html",
+      "hash": "4e4adc1a044f198f8726bdc5d3cbed5f3c02d58f",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#fff",
+      "fill_color": "#fff",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "star",
+        "active",
+        "stars",
+        "form-row"
+      ]
+    },
+    {
+      "file_name": "icon_二星评分.svg",
+      "title": "二星评分",
+      "source_html": "page-record-form.html",
+      "hash": "f7c42e28791840524be47298597d6514c9908410",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#fff",
+      "fill_color": "#fff",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "star",
+        "active",
+        "stars",
+        "form-row"
+      ]
+    },
+    {
+      "file_name": "icon_五星评分未选中.svg",
+      "title": "五星评分未选中",
+      "source_html": "page-record-form.html",
+      "hash": "384aa70965a51e4cfce202b6bfc35b608a25c289",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#8A8A8A",
+      "fill_color": "",
+      "stroke_color": "#8A8A8A",
+      "opacity": "1",
+      "context_classes": [
+        "star",
+        "stars",
+        "form-row"
+      ]
+    },
+    {
+      "file_name": "icon_今日首页导航-1.svg",
+      "title": "今日首页导航",
+      "source_html": "page-home.html",
+      "hash": "1520682643375430825f83ddd1aa764ea8ce5639",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B35",
+      "fill_color": "",
+      "stroke_color": "#FF6B35",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "bottom-tab"
+      ]
+    },
+    {
+      "file_name": "icon_今日首页导航-2.svg",
+      "title": "今日首页导航",
+      "source_html": "page-ingredients.html",
+      "hash": "1520682643375430825f83ddd1aa764ea8ce5639",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#8A8A8A",
+      "fill_color": "",
+      "stroke_color": "#8A8A8A",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "bottom-tab"
+      ]
+    },
+    {
+      "file_name": "icon_保存分享卡片到相册.svg",
+      "title": "保存分享卡片到相册",
+      "source_html": "page-share-card.html",
+      "hash": "8201603438d0c1a437f0230dd7ce095d587f3911",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "bottom-actions"
+      ]
+    },
+    {
+      "file_name": "icon_关闭分享卡片.svg",
+      "title": "关闭分享卡片",
+      "source_html": "page-share-card.html",
+      "hash": "65d0782404caa924b509548fbb23777f0830ca50",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "close-btn",
+        "top-bar"
+      ]
+    },
+    {
+      "file_name": "icon_冰箱为空状态.svg",
+      "title": "冰箱为空状态",
+      "source_html": "page-ingredients.html",
+      "hash": "93f50dad37b13a10e311e91fffba75cade332936",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D4D0CA",
+      "fill_color": "",
+      "stroke_color": "#D4D0CA",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "section"
+      ]
+    },
+    {
+      "file_name": "icon_冰箱食材导航-1.svg",
+      "title": "冰箱食材导航",
+      "source_html": "page-home.html",
+      "hash": "2703d681832bc40d88b93ec09896958f84deb7a9",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#8A8A8A",
+      "fill_color": "",
+      "stroke_color": "#8A8A8A",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "bottom-tab"
+      ]
+    },
+    {
+      "file_name": "icon_冰箱食材导航-2.svg",
+      "title": "冰箱食材导航",
+      "source_html": "page-ingredients.html",
+      "hash": "2703d681832bc40d88b93ec09896958f84deb7a9",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B35",
+      "fill_color": "",
+      "stroke_color": "#FF6B35",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "bottom-tab"
+      ]
+    },
+    {
+      "file_name": "icon_分享卡片主菜品图标.svg",
+      "title": "分享卡片主菜品图标",
+      "source_html": "page-share-card.html",
+      "hash": "ade0f8faf719b3e393cc6448e35a89fadd790418",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "hero-icon",
+        "card-hero",
+        "share-card"
+      ]
+    },
+    {
+      "file_name": "icon_切换到上个月.svg",
+      "title": "切换到上个月",
+      "source_html": "page-records.html",
+      "hash": "3133abde8678c78040c1aacfd6e9dfd6cd03fe0e",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4A4A4A",
+      "fill_color": "",
+      "stroke_color": "#4A4A4A",
+      "opacity": "1",
+      "context_classes": [
+        "calendar-nav",
+        "calendar-header"
+      ]
+    },
+    {
+      "file_name": "icon_切换到下个月.svg",
+      "title": "切换到下个月",
+      "source_html": "page-records.html",
+      "hash": "45da5b761424d7082f590670cbdd14d0fa985f6a",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4A4A4A",
+      "fill_color": "",
+      "stroke_color": "#4A4A4A",
+      "opacity": "1",
+      "context_classes": [
+        "calendar-nav",
+        "calendar-header"
+      ]
+    },
+    {
+      "file_name": "icon_删除该食材.svg",
+      "title": "删除该食材",
+      "source_html": "page-ingredients.html",
+      "hash": "374a3a8873a63bb7ef3287c3e8748fe6e27df11f",
+      "width": 12,
+      "height": 12,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#8A8A8A",
+      "fill_color": "",
+      "stroke_color": "#8A8A8A",
+      "opacity": "1",
+      "context_classes": [
+        "del",
+        "chip",
+        "chip-cloud"
+      ]
+    },
+    {
+      "file_name": "icon_取消并返回.svg",
+      "title": "取消并返回",
+      "source_html": "page-record-form.html",
+      "hash": "e86ac7e7f2d8af4253728e69df18c49cc529d102",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1A1A1A",
+      "fill_color": "",
+      "stroke_color": "#1A1A1A",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "top-bar"
+      ]
+    },
+    {
+      "file_name": "icon_四星满意度.svg",
+      "title": "四星满意度",
+      "source_html": "page-records.html",
+      "hash": "52d200a18347f676f5e7e509b3f0e9efbd994b9f",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#FFC93D",
+      "fill_color": "#FFC93D",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "record-stars",
+        "record-info",
+        "record-item"
+      ]
+    },
+    {
+      "file_name": "icon_四星评分.svg",
+      "title": "四星评分",
+      "source_html": "page-record-form.html",
+      "hash": "19924fc08494348008647cda444e83a5ef4c6de5",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill+stroke",
+      "default_color": "#fff",
+      "fill_color": "#fff",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "star",
+        "active",
+        "stars",
+        "form-row"
+      ]
+    },
+    {
+      "file_name": "icon_开始随机转盘抽取菜品.svg",
+      "title": "开始随机转盘抽取菜品",
+      "source_html": "page-home.html",
+      "hash": "d0d15139fc0efdc607d0626097a6f5aaa2379270",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "hero-actions",
+        "hero"
+      ]
+    },
+    {
+      "file_name": "icon_打开分享卡片页面.svg",
+      "title": "打开分享卡片页面",
+      "source_html": "page-wheel.html",
+      "hash": "354db13a4cc78ae7868b7f5af766c00a12acd8d0",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "share-btn",
+        "top-bar"
+      ]
+    },
+    {
+      "file_name": "icon_打开心情时间餐别筛选.svg",
+      "title": "打开心情时间餐别筛选",
+      "source_html": "page-home.html",
+      "hash": "f762957450a0f63a39cdd5ae291bbc500d846f86",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "btn-icon",
+        "hero-actions",
+        "hero"
+      ]
+    },
+    {
+      "file_name": "icon_抽中菜品图标.svg",
+      "title": "抽中菜品图标",
+      "source_html": "page-wheel.html",
+      "hash": "9f0e5d205568b9d198acfccf997f67b616b6a45c",
+      "width": 40,
+      "height": 40,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "result-thumb",
+        "result-sheet",
+        "wheel-area"
+      ]
+    },
+    {
+      "file_name": "icon_新增今日饮食打卡-1.svg",
+      "title": "新增今日饮食打卡",
+      "source_html": "page-home.html",
+      "hash": "933d8b53448dd1786f9be577b19961f1ae1f5058",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "floating-record"
+      ]
+    },
+    {
+      "file_name": "icon_新增今日饮食打卡-2.svg",
+      "title": "新增今日饮食打卡",
+      "source_html": "page-records.html",
+      "hash": "d7877165515109a6b60c4de21c96ac4eaf5c0995",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "page-header"
+      ]
+    },
+    {
+      "file_name": "icon_无匹配菜谱空状态.svg",
+      "title": "无匹配菜谱空状态",
+      "source_html": "page-ingredients.html",
+      "hash": "e360763e53762b8512b0382e073acf38f24eef79",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D4D0CA",
+      "fill_color": "",
+      "stroke_color": "#D4D0CA",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "card",
+        "section"
+      ]
+    },
+    {
+      "file_name": "icon_无打卡记录空状态.svg",
+      "title": "无打卡记录空状态",
+      "source_html": "page-records.html",
+      "hash": "29e4c1ac937f617b16b211706b507267f3e5b67a",
+      "width": 52,
+      "height": 52,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D4D0CA",
+      "fill_color": "",
+      "stroke_color": "#D4D0CA",
+      "opacity": "1",
+      "context_classes": [
+        "card",
+        "empty-state",
+        "section"
+      ]
+    },
+    {
+      "file_name": "icon_无推荐结果空状态.svg",
+      "title": "无推荐结果空状态",
+      "source_html": "page-home.html",
+      "hash": "da65d7efc5dfe90062c5de7074fc75fdf1e92d1b",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D4D0CA",
+      "fill_color": "",
+      "stroke_color": "#D4D0CA",
+      "opacity": "1",
+      "context_classes": [
+        "card",
+        "empty-state",
+        "section"
+      ]
+    },
+    {
+      "file_name": "icon_未点亮满意度星标.svg",
+      "title": "未点亮满意度星标",
+      "source_html": "page-records.html",
+      "hash": "6e1b86a4326f2860c22a1f1ee5b81fd7bf5a99e5",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFC93D",
+      "fill_color": "",
+      "stroke_color": "#FFC93D",
+      "opacity": "1",
+      "context_classes": [
+        "record-stars",
+        "record-info",
+        "record-item"
+      ]
+    },
+    {
+      "file_name": "icon_添加食材到冰箱清单.svg",
+      "title": "添加食材到冰箱清单",
+      "source_html": "page-ingredients.html",
+      "hash": "a235a51138be5748bf135e94cf20a9c90785db86",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "input-row",
+        "input-card"
+      ]
+    },
+    {
+      "file_name": "icon_清蒸鱼菜品图标.svg",
+      "title": "清蒸鱼菜品图标",
+      "source_html": "page-home.html",
+      "hash": "037c5f4ea0c3c63e38e8a93bee5ce80240227724",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "dish-thumb",
+        "dish-item",
+        "dish-list"
+      ]
+    },
+    {
+      "file_name": "icon_生成这条打卡的分享卡片.svg",
+      "title": "生成这条打卡的分享卡片",
+      "source_html": "page-records.html",
+      "hash": "26e6650ec8572a88589ed30c7659a276c9d3c27e",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B35",
+      "fill_color": "",
+      "stroke_color": "#FF6B35",
+      "opacity": "1",
+      "context_classes": [
+        "record-share",
+        "record-item",
+        "card"
+      ]
+    },
+    {
+      "file_name": "icon_番茄鸡蛋菜品图标-1.svg",
+      "title": "番茄鸡蛋菜品图标",
+      "source_html": "page-home.html",
+      "hash": "00392e36df7d840af9d28f908667d729345dca06",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "dish-thumb",
+        "dish-item",
+        "dish-list"
+      ]
+    },
+    {
+      "file_name": "icon_番茄鸡蛋菜品图标-2.svg",
+      "title": "番茄鸡蛋菜品图标",
+      "source_html": "page-ingredients.html",
+      "hash": "2fcc3cd2d7a8d580653e8a708f750366677c3187",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "dish-thumb",
+        "dish-item",
+        "dish-list"
+      ]
+    },
+    {
+      "file_name": "icon_转盘结果指针.svg",
+      "title": "转盘结果指针",
+      "source_html": "page-wheel.html",
+      "hash": "f4999be955156029667de0a378d305899d1ffbd6",
+      "width": 28,
+      "height": 36,
+      "view_box": "0 0 28 36",
+      "paint_mode": "color",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "wheel-container",
+        "wheel-area"
+      ]
+    },
+    {
+      "file_name": "icon_返回上一页-1.svg",
+      "title": "返回上一页",
+      "source_html": "page-filter.html",
+      "hash": "1e2d4c568e44955a6b0da54d97c4346d33120e9d",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1A1A1A",
+      "fill_color": "",
+      "stroke_color": "#1A1A1A",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "top-bar"
+      ]
+    },
+    {
+      "file_name": "icon_返回上一页-2.svg",
+      "title": "返回上一页",
+      "source_html": "page-wheel.html",
+      "hash": "1e2d4c568e44955a6b0da54d97c4346d33120e9d",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "top-bar"
+      ]
+    },
+    {
+      "file_name": "icon_随机转盘候选菜品.svg",
+      "title": "随机转盘候选菜品",
+      "source_html": "page-wheel.html",
+      "hash": "a4eb47fbe25992a371efaeedf1a0e2fbe298a382",
+      "width": 100,
+      "height": 100,
+      "view_box": "0 0 340 340",
+      "paint_mode": "fill",
+      "default_color": "#fff",
+      "fill_color": "url(#g1)",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "wheel",
+        "wheel-container",
+        "wheel-area"
+      ]
+    },
+    {
+      "file_name": "icon_饮食打卡导航-1.svg",
+      "title": "饮食打卡导航",
+      "source_html": "page-home.html",
+      "hash": "e849a0979cd8afc712e1bff1b7baa6ca04bc3658",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#8A8A8A",
+      "fill_color": "",
+      "stroke_color": "#8A8A8A",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "bottom-tab"
+      ]
+    },
+    {
+      "file_name": "icon_饮食打卡导航-2.svg",
+      "title": "饮食打卡导航",
+      "source_html": "page-records.html",
+      "hash": "e849a0979cd8afc712e1bff1b7baa6ca04bc3658",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF6B35",
+      "fill_color": "",
+      "stroke_color": "#FF6B35",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "bottom-tab"
+      ]
+    },
+    {
+      "file_name": "icon_麻婆豆腐菜品图标-1.svg",
+      "title": "麻婆豆腐菜品图标",
+      "source_html": "page-home.html",
+      "hash": "68f9ad90ee3256cac019704ab654a15ee5f46174",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "dish-thumb",
+        "dish-item",
+        "dish-list"
+      ]
+    },
+    {
+      "file_name": "icon_麻婆豆腐菜品图标-2.svg",
+      "title": "麻婆豆腐菜品图标",
+      "source_html": "page-ingredients.html",
+      "hash": "c60e351d73716ce434a93e408fe9b90164f477cc",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#fff",
+      "fill_color": "",
+      "stroke_color": "#fff",
+      "opacity": "1",
+      "context_classes": [
+        "dish-thumb",
+        "dish-item",
+        "dish-list"
+      ]
+    }
+  ]
+}

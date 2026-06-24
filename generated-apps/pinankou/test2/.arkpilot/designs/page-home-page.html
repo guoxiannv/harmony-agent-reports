@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>平安扣 - 工作台</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #F0F9FF 0%, #F0FDFA 50%, #F0F4F8 100%);
+      color: #334155;
+      padding-bottom: 84px;
+    }
+    .app-shell { max-width: 420px; margin: 0 auto; position: relative; }
+    .header-banner {
+      background: linear-gradient(135deg, #0F766E 0%, #14B8A6 60%, #2DD4BF 100%);
+      border-radius: 0 0 24px 24px;
+      padding: 56px 18px 42px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .header-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0.16) 0%, transparent 40%);
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+    .greeting h1 { font-size: 22px; font-weight: 700; line-height: 1.3; }
+    .greeting p { font-size: 14px; opacity: 0.84; margin-top: 4px; }
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: rgba(255,255,255,0.16);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; border: 1px solid rgba(255,255,255,0.22);
+      cursor: pointer;
+    }
+    .summary-cards {
+      display: flex; gap: 10px; margin: -22px 16px 0; position: relative; z-index: 2;
+    }
+    .summary-card {
+      flex: 1; background: #fff; border-radius: 18px; padding: 14px 10px;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.06); border: 1px solid #E2E8F0;
+      text-align: center;
+    }
+    .summary-card .num { font-size: 22px; font-weight: 700; color: #0F172A; line-height: 1.1; }
+    .summary-card .label { font-size: 12px; color: #64748B; margin-top: 6px; }
+    .summary-card.accent { background: linear-gradient(135deg, #0F766E 0%, #134E4A 100%); border: 1px solid rgba(45,212,191,0.28); }
+    .summary-card.accent .num, .summary-card.accent .label { color: #fff; }
+    .section { padding: 0 16px; margin-top: 22px; }
+    .section-title { font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .quick-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    }
+    .quick-item {
+      display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer;
+    }
+    .quick-icon {
+      width: 56px; height: 56px; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+      box-shadow: 0 4px 12px rgba(13,148,136,0.24); color: #fff;
+    }
+    .quick-icon.danger { background: linear-gradient(135deg, #FB7185 0%, #F43F5E 100%); box-shadow: 0 4px 12px rgba(244,63,94,0.24); }
+    .quick-icon.secondary { background: #fff; border: 1.5px solid #0D9488; color: #0D9488; }
+    .quick-label { font-size: 12px; color: #334155; font-weight: 500; }
+    .todo-list { display: flex; flex-direction: column; gap: 10px; }
+    .todo-item {
+      background: #fff; border-radius: 16px; padding: 14px 16px;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.04); border: 1px solid #E2E8F0;
+      display: flex; align-items: center; gap: 12px;
+      border-left: 4px solid #F59E0B;
+    }
+    .todo-item.high { border-left-color: #F43F5E; }
+    .todo-item.normal { border-left-color: #F59E0B; }
+    .todo-item.low { border-left-color: #3B82F6; }
+    .todo-content { flex: 1; }
+    .todo-title { font-size: 15px; font-weight: 600; color: #0F172A; }
+    .todo-meta { font-size: 12px; color: #64748B; margin-top: 4px; }
+    .todo-badge { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+    .todo-badge.warn { background: #FFFBEB; color: #F59E0B; }
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      width: 100%; max-width: 420px; margin: 0 auto;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(24px) saturate(170%);
+      border-top: 0.5px solid rgba(226,232,240,0.9);
+      display: flex; justify-content: space-around; padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #94A3B8; font-size: 11px; font-weight: 500; }
+    .tab-item.active { color: #0D9488; }
+    .tab-item svg { width: 24px; height: 24px; stroke-width: 2; }
+    .tab-item.active svg { stroke: #0D9488; }
+    .empty-state { text-align: center; padding: 32px 20px; color: #94A3B8; }
+    .empty-state svg { margin-bottom: 10px; stroke: #CBD5E1; }
+    .empty-state p { font-size: 14px; }
+    .title-svg { width: 22px; height: 22px; stroke: #0D9488; }
+  </style>
+</head>
+<body>
+  <div class="app-shell" data-page-id="home-page" data-tab-id="tab-home">
+    <header class="header-banner">
+      <div class="header-top">
+        <div class="greeting">
+          <h1>下午好，王安全</h1>
+          <p>今日待整改 3 项 · 巡检完成 60%</p>
+        </div>
+        <button class="icon-btn" data-ui-id="home-notification-button" aria-label="打开通知">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>打开通知中心</title><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="summary-cards" aria-label="核心数据概览">
+      <div class="summary-card">
+        <div class="num" data-ui-id="home-summary-pending-count">3</div>
+        <div class="label">待整改</div>
+      </div>
+      <div class="summary-card">
+        <div class="num" data-ui-id="home-summary-today-patrol-count">2</div>
+        <div class="label">今日巡检</div>
+      </div>
+      <div class="summary-card accent">
+        <div class="num" data-ui-id="home-summary-completion-rate">72%</div>
+        <div class="label">整改完成率</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <svg class="title-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>快捷操作图标</title><path d="M13 2a9 9 0 0 1 9 9"/><path d="M13 6a5 5 0 0 1 5 5"/><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+        快捷操作
+      </div>
+      <div class="quick-grid">
+        <div class="quick-item" data-ui-id="home-add-hazard-button">
+          <div class="quick-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>新建隐患上报</title><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          </div>
+          <span class="quick-label">新建隐患</span>
+        </div>
+        <div class="quick-item" data-ui-id="home-start-patrol-button">
+          <div class="quick-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>开始巡检打卡</title><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+          </div>
+          <span class="quick-label">开始巡检</span>
+        </div>
+        <div class="quick-item" data-ui-id="home-emergency-call-button">
+          <div class="quick-icon danger">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>一键呼叫应急联系人</title><path d="M7 18v-6a5 5 0 1 1 10 0v6"/><path d="M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z"/><path d="M21 12h1"/><path d="M18.5 4.5 18 5"/><path d="M2 12h1"/><path d="M12 2v1"/><path d="m4.929 4.929.707.707"/><path d="M12 12v6"/></svg>
+          </div>
+          <span class="quick-label">一键呼救</span>
+        </div>
+        <div class="quick-item">
+          <div class="quick-icon secondary">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>查看更多快捷功能</title><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          </div>
+          <span class="quick-label">更多</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <svg class="title-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><title>今日待办图标</title><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        今日待办
+      </div>
+      <div class="todo-list" data-ui-id="home-todo-list">
+        <div class="todo-item high" data-ui-id="home-todo-1">
+          <div class="todo-content">
+            <div class="todo-title">仓库货架消防通道堵塞</div>
+            <div class="todo-meta">B区仓库 · 截止 18:00</div>
+          </div>
+          <span class="todo-badge warn">待整改</span>
+        </div>
+        <div class="todo-item normal" data-ui-id="home-todo-2">
+          <div class="todo-content">
+            <div class="todo-title">配电箱巡检打卡</div>
+            <div class="todo-meta">A区配电房 · 14:00</div>
+          </div>
+          <span class="todo-badge warn">待巡检</span>
+        </div>
+        <div class="todo-item low" data-ui-id="home-todo-3">
+          <div class="todo-content">
+            <div class="todo-title">月度安全培训签到</div>
+            <div class="todo-meta">培训室 · 16:00</div>
+          </div>
+          <span class="todo-badge warn">待完成</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabbar" aria-label="底部导航">
+      <div class="tab-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>工作台标签</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>工作台</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>隐患管理标签</title><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        <span>隐患</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>巡检打卡标签</title><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+        <span>巡检</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>应急联系人标签</title><path d="M13 2a9 9 0 0 1 9 9"/><path d="M13 6a5 5 0 0 1 5 5"/><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+        <span>联系人</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>统计看板标签</title><path d="M5 21v-6"/><path d="M12 21V9"/><path d="M19 21V3"/></svg>
+        <span>统计</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的标签</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>我的</span>
+      </div>
+    </nav>
+  </div>
+</body>
+</html>

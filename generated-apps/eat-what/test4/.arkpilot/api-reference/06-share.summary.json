@@ -1,0 +1,98 @@
+{
+  "module": "06-share.md",
+  "group": "06 — Share Card & Image Export",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "ohos.share",
+      "purpose": "分享服务模块（无效名，实际为@kit.ShareKit下的systemShare/harmonyShare）",
+      "anchor": "systemShare-%E5%88%86%E4%BA%AB",
+      "status": "missing"
+    },
+    {
+      "name": "ShareKit",
+      "purpose": "分享服务Kit名称，用于导入systemShare和harmonyShare子模块",
+      "anchor": "systemShare-%E5%88%86%E4%BA%AB",
+      "status": "found"
+    },
+    {
+      "name": "ohos.multimedia.image",
+      "purpose": "图片处理模块，提供编解码、编辑、元数据处理能力",
+      "anchor": "ohosmultimediaimage-%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86",
+      "status": "found"
+    },
+    {
+      "name": "image.createImagePacker",
+      "purpose": "创建ImagePacker实例，用于图片编码",
+      "anchor": "imagecreateimagepacker",
+      "status": "found"
+    },
+    {
+      "name": "image.ImagePacker",
+      "purpose": "图片编码器接口，支持packToData/packToFile/packing/release",
+      "anchor": "interface-imagepacker",
+      "status": "found"
+    },
+    {
+      "name": "image.PackingOption",
+      "purpose": "图片编码选项，含format/quality/bufferSize等参数",
+      "anchor": "packingoption",
+      "status": "found"
+    },
+    {
+      "name": "ohos.window",
+      "purpose": "窗口管理模块，提供Window/WindowStage接口",
+      "anchor": "ohoswindow-%E7%AA%97%E5%8F%A3",
+      "status": "found"
+    },
+    {
+      "name": "window.screenshot",
+      "purpose": "窗口截图（实际API名为window.snapshot，非screenshot）",
+      "anchor": "snapshot9",
+      "status": "missing"
+    },
+    {
+      "name": "ohos.pasteboard",
+      "purpose": "系统剪贴板模块，支持多种数据类型操作",
+      "anchor": "ohospasteboard-%E5%89%AA%E8%B4%B4%E6%9D%BF",
+      "status": "found"
+    },
+    {
+      "name": "pasteboard.createData",
+      "purpose": "创建PasteData对象（单类型或多类型Record）",
+      "anchor": "pasteboardcreatedata9",
+      "status": "found"
+    },
+    {
+      "name": "pasteboard.setData",
+      "purpose": "将PasteData写入系统剪贴板（SystemPasteboard实例方法）",
+      "anchor": "setdata9",
+      "status": "found"
+    },
+    {
+      "name": "componentSnapshot",
+      "purpose": "组件截图模块（已推荐迁移至UIContext.getComponentSnapshot）",
+      "anchor": "ohosarkuicomponentsnapshot-%E7%BB%84%E4%BB%B6%E6%88%AA%E5%9B%BE",
+      "status": "found"
+    },
+    {
+      "name": "component.snapshot",
+      "purpose": "组件截图方法（实际为ComponentSnapshot.get，非独立API）",
+      "anchor": "class-componentsnapshot",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "ohos.share 并非有效模块名；正确入口为 @kit.ShareKit 下的 systemShare（系统分享面板）和 harmonyShare（华为跨端分享）",
+    "window.screenshot 不存在；窗口截图正确API为 Window 实例的 snapshot() 方法，返回 Promise<PixelMap>",
+    "component.snapshot 并非独立API；推荐使用 UIContext.getComponentSnapshot().get() 方式（componentSnapshot.get() 已从API 18废弃）",
+    "pasteboard.setData 是 SystemPasteboard 实例方法，需先通过 pasteboard.getSystemPasteboard() 获取实例",
+    "share Kit 文档中 thumbnail 字段限制 32KB，过大图片可使用 ImagePacker.packToData 压缩",
+    "PackingOption 的 quality 参数仅对 JPEG/HEIF 生效，PNG/WebP 为无损编码"
+  ],
+  "missingApis": [
+    "ohos.share",
+    "window.screenshot",
+    "component.snapshot"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "module": "02-camera-image.md",
+  "group": "02 -- Camera & Image (拍照与图片)",
+  "apiCount": 9,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.camera (相机管理)",
+      "purpose": "相机服务核心模块，提供预览、拍照、录像等相机管理能力",
+      "anchor": "ohosmultimediacamera-相机管理",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.cameraPicker (相机选择器)",
+      "purpose": "系统相机选择器，拉起系统相机拍照或录制并返回结果",
+      "anchor": "ohosmultimediacamerapicker-相机选择器",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.image (图片处理)",
+      "purpose": "图片解码、编码、编辑、元数据处理和图片接收能力",
+      "anchor": "ohosmultimediaimage-图片处理",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.photoAccessHelper (相册管理模块)",
+      "purpose": "相册管理能力，创建相册、访问和修改相册中的媒体数据",
+      "anchor": "ohosfilephotoaccesshelper-相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)",
+      "purpose": "基于Sendable对象的相册管理，支持跨并发实例共享",
+      "anchor": "ohosfilesendablephotoaccesshelper-基于sendable对象的相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.PhotoPickerComponent (PhotoPicker组件)",
+      "purpose": "嵌入页面的图片/视频选择组件，无需权限即可访问媒体文件",
+      "anchor": "ohosfilephotopickercomponent-photopicker组件",
+      "status": "found"
+    },
+    {
+      "name": "PhotoOutput",
+      "purpose": "拍照输出接口，提供拍照、使能动态拍照和获取拍照旋转角度等能力",
+      "anchor": "photooutput",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager",
+      "purpose": "相机管理器，提供查询相机设备、创建输入/输出流及会话等能力",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraInput",
+      "purpose": "相机设备输入对象，提供开关相机以及监听输入流异常的能力",
+      "anchor": "camerainput",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "相机 API 从 API 10 开始，导入 @kit.CameraKit，使用 camera.getCameraManager(context) 为入口",
+    "图片 API 从 API 6 开始，导入 @kit.ImageKit，支持解码 JPEG/PNG/GIF/WebP/HEIC/DNG 等格式",
+    "相册管理 API 从 API 10 开始，导入 @kit.MediaLibraryKit",
+    "sendablePhotoAccessHelper 为 API 12 新增的 Sendable 版本，适合并发场景",
+    "PhotoPickerComponent 为 API 12 新增，无需 READ_IMAGEVIDEO 权限",
+    "cameraPicker 从 API 11 开始，仅限 UIAbility 中调用",
+    "相机核心操作需 ohos.permission.CAMERA 权限",
+    "PhotoAccessHelper.getAssets 需 ohos.permission.READ_IMAGEVIDEO 权限",
+    "CameraManager 的 createPhotoOutput 从 API 11 起不再需要 surfaceId 参数",
+    "CameraManager.createSession 从 API 11 起替代废弃的 createCaptureSession",
+    "image.createPixelMapFromPixels 和 image.createEmptyPixelMap 从 API 26 开始支持"
+  ],
+  "missingApis": []
+}

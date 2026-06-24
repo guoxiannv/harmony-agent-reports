@@ -1,0 +1,65 @@
+{
+  "module": "07-location.md",
+  "group": "07 — Location 位置服务",
+  "apiCount": 8,
+  "apis": [
+    {
+      "name": "@ohos.geoLocationManager",
+      "purpose": "位置服务模块导入入口，提供 GNSS 定位、网络定位、地理编码、逆地理编码、国家码和地理围栏功能",
+      "anchor": "ohosgeolocationmanager-位置服务",
+      "status": "found"
+    },
+    {
+      "name": "geoLocationManager",
+      "purpose": "位置服务命名空间，所有定位、地理编码和围栏方法均通过该对象调用",
+      "anchor": "geolocationmanager-位置服务",
+      "status": "found"
+    },
+    {
+      "name": "geoLocationManager.on('locationChange')",
+      "purpose": "开启位置变化订阅并发起持续定位请求（callback 异步回调）",
+      "anchor": "geolocationmanageronlocationchange",
+      "status": "found"
+    },
+    {
+      "name": "geoLocationManager.getCurrentLocation",
+      "purpose": "获取当前位置，支持 callback 和 Promise 两种异步模式",
+      "anchor": "geolocationmanagergetcurrentlocation",
+      "status": "found"
+    },
+    {
+      "name": "geoLocationManager.getLastLocation",
+      "purpose": "同步获取上一次缓存的位置信息",
+      "anchor": "geolocationmanagergetlastlocation",
+      "status": "found"
+    },
+    {
+      "name": "LocationRequest",
+      "purpose": "持续定位的请求参数，配置 priority/scenario/timeInterval/distanceInterval/maxAccuracy",
+      "anchor": "locationrequest",
+      "status": "found"
+    },
+    {
+      "name": "CurrentLocationRequest",
+      "purpose": "单次当前位置请求参数，配置 priority/scenario/maxAccuracy/timeoutMs",
+      "anchor": "currentlocationrequest",
+      "status": "found"
+    },
+    {
+      "name": "Location",
+      "purpose": "位置信息结构体，包含经纬度、海拔、精度、速度、方向、时间戳等字段",
+      "anchor": "location",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有 Location Kit 核心 API 均在同一主模块文件 01_ohos.geoLocationManager (位置服务).md 中",
+    "导入路径固定为 import { geoLocationManager } from '@kit.LocationKit'",
+    "至少需要 ohos.permission.APPROXIMATELY_LOCATION 权限",
+    "获取精确位置需同时申请 ohos.permission.LOCATION",
+    "仅支持 WGS-84 坐标系",
+    "API version 9+，API 12 新增 SingleLocationRequest/ContinuousLocationRequest 等新类型",
+    "geoLocationManager.off('locationChange') 必须与 on 传入相同回调函数才能正确取消订阅"
+  ],
+  "missingApis": []
+}

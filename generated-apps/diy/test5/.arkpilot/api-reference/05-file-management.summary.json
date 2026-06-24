@@ -1,0 +1,83 @@
+{
+  "module": "05-file-management.md",
+  "group": "05 -- File FS 沙箱文件管理",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "@ohos.file.fs",
+      "purpose": "基础文件操作模块，提供文件管理、目录管理、信息统计、流式读写等能力",
+      "anchor": "ohosfilefs",
+      "status": "found"
+    },
+    {
+      "name": "fs.stat",
+      "purpose": "获取文件或目录详细属性信息",
+      "anchor": "fsstat",
+      "status": "found"
+    },
+    {
+      "name": "fs.open",
+      "purpose": "打开文件或目录，返回File对象，支持URI",
+      "anchor": "fsopen",
+      "status": "found"
+    },
+    {
+      "name": "fs.read",
+      "purpose": "从已打开的文件描述符读取数据到缓冲区",
+      "anchor": "fsread",
+      "status": "found"
+    },
+    {
+      "name": "fs.write",
+      "purpose": "将缓冲区或字符串数据写入已打开的文件",
+      "anchor": "fswrite",
+      "status": "found"
+    },
+    {
+      "name": "fs.mkdir",
+      "purpose": "创建目录，API 11起支持递归创建",
+      "anchor": "fsmkdir",
+      "status": "found"
+    },
+    {
+      "name": "fs.copyFile",
+      "purpose": "复制文件，支持文件描述符或路径",
+      "anchor": "fscopyfile",
+      "status": "found"
+    },
+    {
+      "name": "fs.access",
+      "purpose": "检查文件或目录是否存在，API 12起支持校验操作权限",
+      "anchor": "fsaccess",
+      "status": "found"
+    },
+    {
+      "name": "fs.unlink",
+      "purpose": "删除单个文件",
+      "anchor": "fsunlink",
+      "status": "found"
+    },
+    {
+      "name": "fs.listFile",
+      "purpose": "列出目录下所有文件名和目录名，支持过滤与递归",
+      "anchor": "fslistfile",
+      "status": "found"
+    },
+    {
+      "name": "fs.moveDir",
+      "purpose": "移动源目录至目标路径下，支持4种冲突处理模式",
+      "anchor": "fsmovedir",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "导入路径为 @kit.CoreFileKit，导入名称为 fileIo（非 fs）",
+    "所有接口需在沙箱路径下操作，通过 context.filesDir 获取",
+    "fs.open 可通过按位或组合 OpenMode 标志（CREATE/TRUNC/APPEND 等）",
+    "fs.read/write 操作需要已打开的 fd，使用 open 获取后再读写",
+    "fs.moveDir 从 API 10 开始支持，不操作分布式文件路径",
+    "fs.mkdir 从 API 11 支持 recursion 参数递归创建",
+    "fs.access 从 API 12 扩展了权限检查能力"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,213 @@
+{
+  "version": "arkpilot-uitree/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "平安扣",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home",
+      "name": "首页",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        { "id": "home-header-title", "role": "assertion", "binding": "/appName" },
+        { "id": "home-notification-button", "role": "action", "event": "open-notifications" },
+        { "id": "home-today-patrol-progress", "role": "assertion", "binding": "/today/patrolProgress" },
+        { "id": "home-pending-issues-count", "role": "assertion", "binding": "/today/pendingIssues" },
+        { "id": "home-resolved-this-week-count", "role": "assertion", "binding": "/stats/resolvedThisWeek" },
+        { "id": "home-quick-report-button", "role": "action", "event": "navigate-issue-form" },
+        { "id": "home-quick-patrol-button", "role": "action", "event": "navigate-patrol" },
+        { "id": "home-quick-contact-button", "role": "action", "event": "navigate-contacts" },
+        { "id": "home-recent-issues-list", "role": "list", "binding": "/issues/recent", "itemIdPattern": "home-recent-issue-{id}", "emptyStateId": "home-recent-empty" },
+        { "id": "home-view-all-issues-link", "role": "action", "event": "navigate-issues" },
+        { "id": "home-tabbar", "role": "navigation", "binding": "/tabs" }
+      ]
+    },
+    {
+      "id": "patrol-page",
+      "surfaceId": "patrol",
+      "pageId": "patrol",
+      "name": "巡检打卡",
+      "route": "pages/Patrol",
+      "tabId": "tab-patrol",
+      "semanticTargets": [
+        { "id": "patrol-header-title", "role": "assertion" },
+        { "id": "patrol-date-label", "role": "assertion", "binding": "/today/date" },
+        { "id": "patrol-progress-ring", "role": "assertion", "binding": "/patrol/progress" },
+        { "id": "patrol-route-name", "role": "assertion", "binding": "/patrol/routeName" },
+        { "id": "patrol-point-list", "role": "list", "binding": "/patrol/points", "itemIdPattern": "patrol-point-{id}", "emptyStateId": "patrol-empty" },
+        { "id": "patrol-point-{id}-checkin-button", "role": "action", "event": "open-checkin" },
+        { "id": "patrol-point-{id}-report-issue-link", "role": "action", "event": "navigate-issue-form-with-point" },
+        { "id": "patrol-checkin-modal", "role": "dialog" },
+        { "id": "patrol-checkin-photo-button", "role": "action", "event": "take-photo" },
+        { "id": "patrol-checkin-notes-input", "role": "input", "binding": "/patrol/checkin/notes" },
+        { "id": "patrol-checkin-abnormal-toggle", "role": "input", "binding": "/patrol/checkin/isAbnormal" },
+        { "id": "patrol-checkin-submit-button", "role": "action", "event": "submit-checkin" },
+        { "id": "patrol-checkin-cancel-button", "role": "action", "event": "cancel-checkin" }
+      ]
+    },
+    {
+      "id": "issues-page",
+      "surfaceId": "issues",
+      "pageId": "issues",
+      "name": "隐患与事项",
+      "route": "pages/Issues",
+      "tabId": "tab-issues",
+      "semanticTargets": [
+        { "id": "issues-header-title", "role": "assertion" },
+        { "id": "issues-search-input", "role": "input", "binding": "/issues/query" },
+        { "id": "issues-filter-status", "role": "input", "binding": "/issues/filter/status" },
+        { "id": "issues-filter-risk", "role": "input", "binding": "/issues/filter/risk" },
+        { "id": "issues-add-button", "role": "action", "event": "navigate-issue-form" },
+        { "id": "issues-list", "role": "list", "binding": "/issues", "itemIdPattern": "issues-item-{id}", "emptyStateId": "issues-empty" },
+        { "id": "issues-item-{id}-row", "role": "action", "event": "open-issue-detail" },
+        { "id": "issues-item-{id}-status-label", "role": "assertion", "binding": "/issues/{id}/status" },
+        { "id": "issues-loading-state", "role": "assertion" }
+      ]
+    },
+    {
+      "id": "issue-form-page",
+      "surfaceId": "issue-form",
+      "pageId": "issue-form",
+      "name": "上报隐患/事项",
+      "route": "pages/IssueForm",
+      "semanticTargets": [
+        { "id": "issue-form-title-input", "role": "input", "binding": "/issueForm/title" },
+        { "id": "issue-form-type-picker", "role": "input", "binding": "/issueForm/type" },
+        { "id": "issue-form-risk-picker", "role": "input", "binding": "/issueForm/riskLevel" },
+        { "id": "issue-form-location-input", "role": "input", "binding": "/issueForm/location" },
+        { "id": "issue-form-assignee-input", "role": "input", "binding": "/issueForm/assignee" },
+        { "id": "issue-form-due-date-picker", "role": "input", "binding": "/issueForm/dueDate" },
+        { "id": "issue-form-description-input", "role": "input", "binding": "/issueForm/description" },
+        { "id": "issue-form-photo-grid", "role": "list", "binding": "/issueForm/photos", "itemIdPattern": "issue-form-photo-{index}", "emptyStateId": "issue-form-photo-empty" },
+        { "id": "issue-form-add-photo-button", "role": "action", "event": "take-photo" },
+        { "id": "issue-form-submit-button", "role": "action", "event": "submit-issue" },
+        { "id": "issue-form-cancel-button", "role": "action", "event": "cancel-issue-form" }
+      ]
+    },
+    {
+      "id": "issue-detail-page",
+      "surfaceId": "issue-detail",
+      "pageId": "issue-detail",
+      "name": "隐患详情",
+      "route": "pages/IssueDetail",
+      "semanticTargets": [
+        { "id": "issue-detail-title", "role": "assertion", "binding": "/issueDetail/title" },
+        { "id": "issue-detail-status-badge", "role": "assertion", "binding": "/issueDetail/status" },
+        { "id": "issue-detail-risk-badge", "role": "assertion", "binding": "/issueDetail/riskLevel" },
+        { "id": "issue-detail-location", "role": "assertion", "binding": "/issueDetail/location" },
+        { "id": "issue-detail-assignee", "role": "assertion", "binding": "/issueDetail/assignee" },
+        { "id": "issue-detail-due-date", "role": "assertion", "binding": "/issueDetail/dueDate" },
+        { "id": "issue-detail-description", "role": "assertion", "binding": "/issueDetail/description" },
+        { "id": "issue-detail-photo-list", "role": "list", "binding": "/issueDetail/photos", "itemIdPattern": "issue-detail-photo-{index}", "emptyStateId": "issue-detail-photo-empty" },
+        { "id": "issue-detail-timeline-list", "role": "list", "binding": "/issueDetail/timeline", "itemIdPattern": "issue-detail-timeline-{index}" },
+        { "id": "issue-detail-progress-action-button", "role": "action", "event": "update-progress" },
+        { "id": "issue-detail-edit-button", "role": "action", "event": "edit-issue" },
+        { "id": "issue-detail-close-button", "role": "action", "event": "close-issue" }
+      ]
+    },
+    {
+      "id": "contacts-page",
+      "surfaceId": "contacts",
+      "pageId": "contacts",
+      "name": "应急联系人",
+      "route": "pages/Contacts",
+      "tabId": "tab-contacts",
+      "semanticTargets": [
+        { "id": "contacts-header-title", "role": "assertion" },
+        { "id": "contacts-search-input", "role": "input", "binding": "/contacts/query" },
+        { "id": "contacts-add-button", "role": "action", "event": "navigate-contact-form" },
+        { "id": "contacts-group-list", "role": "list", "binding": "/contacts/groups", "itemIdPattern": "contacts-group-{id}" },
+        { "id": "contacts-list", "role": "list", "binding": "/contacts", "itemIdPattern": "contacts-item-{id}", "emptyStateId": "contacts-empty" },
+        { "id": "contacts-item-{id}-call-button", "role": "action", "event": "call-contact" },
+        { "id": "contacts-item-{id}-edit-button", "role": "action", "event": "edit-contact" }
+      ]
+    },
+    {
+      "id": "contact-form-page",
+      "surfaceId": "contact-form",
+      "pageId": "contact-form",
+      "name": "编辑联系人",
+      "route": "pages/ContactForm",
+      "semanticTargets": [
+        { "id": "contact-form-name-input", "role": "input", "binding": "/contactForm/name" },
+        { "id": "contact-form-role-input", "role": "input", "binding": "/contactForm/role" },
+        { "id": "contact-form-group-picker", "role": "input", "binding": "/contactForm/group" },
+        { "id": "contact-form-phone-input", "role": "input", "binding": "/contactForm/phone" },
+        { "id": "contact-form-priority-toggle", "role": "input", "binding": "/contactForm/priority" },
+        { "id": "contact-form-save-button", "role": "action", "event": "save-contact" },
+        { "id": "contact-form-cancel-button", "role": "action", "event": "cancel-contact-form" }
+      ]
+    },
+    {
+      "id": "stats-page",
+      "surfaceId": "stats",
+      "pageId": "stats",
+      "name": "统计看板",
+      "route": "pages/Stats",
+      "tabId": "tab-stats",
+      "semanticTargets": [
+        { "id": "stats-header-title", "role": "assertion" },
+        { "id": "stats-period-picker", "role": "input", "binding": "/stats/period" },
+        { "id": "stats-kpi-issues", "role": "assertion", "binding": "/stats/issueCount" },
+        { "id": "stats-kpi-resolved", "role": "assertion", "binding": "/stats/resolvedCount" },
+        { "id": "stats-kpi-completion", "role": "assertion", "binding": "/stats/completionRate" },
+        { "id": "stats-kpi-patrol", "role": "assertion", "binding": "/stats/patrolCompletionRate" },
+        { "id": "stats-trend-chart", "role": "assertion", "binding": "/stats/trend" },
+        { "id": "stats-risk-chart", "role": "assertion", "binding": "/stats/riskDistribution" },
+        { "id": "stats-export-button", "role": "action", "event": "export-report" }
+      ]
+    }
+  ],
+  "events": [
+    { "name": "open-notifications", "context": {} },
+    { "name": "navigate-issue-form", "context": { "pointId?": "string" } },
+    { "name": "navigate-patrol", "context": {} },
+    { "name": "navigate-contacts", "context": {} },
+    { "name": "navigate-issues", "context": {} },
+    { "name": "open-checkin", "context": { "pointId": "string" } },
+    { "name": "navigate-issue-form-with-point", "context": { "pointId": "string" } },
+    { "name": "take-photo", "context": {} },
+    { "name": "submit-checkin", "context": {} },
+    { "name": "cancel-checkin", "context": {} },
+    { "name": "open-issue-detail", "context": { "issueId": "string" } },
+    { "name": "submit-issue", "context": {} },
+    { "name": "cancel-issue-form", "context": {} },
+    { "name": "update-progress", "context": { "issueId": "string" } },
+    { "name": "edit-issue", "context": { "issueId": "string" } },
+    { "name": "close-issue", "context": { "issueId": "string" } },
+    { "name": "call-contact", "context": { "contactId": "string" } },
+    { "name": "edit-contact", "context": { "contactId": "string" } },
+    { "name": "navigate-contact-form", "context": {} },
+    { "name": "save-contact", "context": {} },
+    { "name": "cancel-contact-form", "context": {} },
+    { "name": "export-report", "context": {} }
+  ],
+  "bindings": [
+    { "path": "/appName", "type": "string", "default": "平安扣" },
+    { "path": "/today/patrolProgress", "type": "number", "default": 0 },
+    { "path": "/today/pendingIssues", "type": "number", "default": 0 },
+    { "path": "/stats/resolvedThisWeek", "type": "number", "default": 0 },
+    { "path": "/issues/recent", "type": "array", "default": [] },
+    { "path": "/issues", "type": "array", "default": [] },
+    { "path": "/patrol/points", "type": "array", "default": [] },
+    { "path": "/contacts", "type": "array", "default": [] },
+    { "path": "/stats/trend", "type": "array", "default": [] },
+    { "path": "/stats/riskDistribution", "type": "object", "default": {} }
+  ],
+  "testTargets": [
+    { "id": "home-tabbar", "action": "assert-visible" },
+    { "id": "home-quick-report-button", "action": "tap" },
+    { "id": "patrol-point-list", "action": "scroll" },
+    { "id": "issues-add-button", "action": "tap" },
+    { "id": "issue-form-submit-button", "action": "tap" },
+    { "id": "contacts-item-{id}-call-button", "action": "tap" },
+    { "id": "stats-kpi-completion", "action": "assert-text" }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "started": true,
+  "started_at": "2026-06-20T02:21:54.490Z",
+  "session_id": "4d4892e7-3745-4f16-a544-adc8e630ed0b",
+  "hook_event_name": "SessionStart",
+  "source": "startup",
+  "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-eat-what-test4/4d4892e7-3745-4f16-a544-adc8e630ed0b.jsonl",
+  "codex_session_id": "",
+  "model": "glm-5.2"
+}

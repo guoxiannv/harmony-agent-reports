@@ -1,0 +1,68 @@
+{
+  "module": "05-audio-recording.md",
+  "group": "05 — Audio Recording 语音录制",
+  "apiCount": 9,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.audio",
+      "purpose": "音频管理模块，提供音量调节、设备管理、数据采集及渲染能力",
+      "anchor": "ohosmultimediaaudio",
+      "status": "found"
+    },
+    {
+      "name": "AVRecorder",
+      "purpose": "音视频录制管理类，支持音频录制、暂停、恢复、停止、重置和资源释放",
+      "anchor": "avrecorder",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.media",
+      "purpose": "媒体子系统模块，提供音视频播放、录制、转码、元数据提取和缩略图获取能力",
+      "anchor": "ohosmultimediamedia",
+      "status": "found"
+    },
+    {
+      "name": "AudioCapturer",
+      "purpose": "音频采集器接口，用于录制 PCM 音频数据",
+      "anchor": "audiocapturer",
+      "status": "found"
+    },
+    {
+      "name": "AudioCapturerOptions",
+      "purpose": "音频采集器配置选项，配置 streamInfo 和 capturerInfo",
+      "anchor": "audiocaptureroptions",
+      "status": "found"
+    },
+    {
+      "name": "AudioManager",
+      "purpose": "音频管理器，管理音量和设备，获取和监听音频场景模式",
+      "anchor": "audiomanager",
+      "status": "found"
+    },
+    {
+      "name": "AudioVolumeType",
+      "purpose": "音频音量类型枚举，区分语音电话、铃声、媒体、闹钟、无障碍和语音助手音量",
+      "anchor": "audiovolumetype",
+      "status": "found"
+    },
+    {
+      "name": "AudioRenderer",
+      "purpose": "音频渲染器接口，用于播放 PCM 音频数据",
+      "anchor": "audiorenderer",
+      "status": "found"
+    },
+    {
+      "name": "AudioRendererOptions",
+      "purpose": "音频渲染器配置选项，配置 streamInfo 和 rendererInfo",
+      "anchor": "audiorendereroptions",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "AudioRingtone 在当前本地文档中未找到，铃声设置能力实际由 @kit.RingtoneKit 的 ringtone.startRingtoneSetting() 提供",
+    "音频采集需申请 ohos.permission.MICROPHONE 权限",
+    "AVRecorder 推荐用于语音录制，支持 AAC/MP3/G711MU/AMR-NB/AMR-WB 编码",
+    "AudioCapturer 用于底层 PCM 音频数据采集，AudioRenderer 用于播放 PCM 数据"
+  ],
+  "missingApis": ["AudioRingtone"]
+}

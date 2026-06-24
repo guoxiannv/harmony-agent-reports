@@ -1,0 +1,77 @@
+{
+  "pid": 82745,
+  "status": "controller-tick",
+  "launched_by_session_id": "a58e3611-3e09-4cf4-ab1e-367af5d8922e",
+  "started_at": "2026-06-22T07:34:41.410Z",
+  "last_scan_at": "2026-06-22T08:46:30.925Z",
+  "last_change_at": "2026-06-22T07:57:32.084Z",
+  "html_signature": "[{\"name\":\"page-contact-detail-page.html\",\"mtime_ms\":1782114835527,\"size\":5297},{\"name\":\"page-contacts-page.html\",\"mtime_ms\":1782114787694,\"size\":5380},{\"name\":\"page-hazard-detail-page.html\",\"mtime_ms\":1782114636019,\"size\":11225},{\"name\":\"page-hazards-page.html\",\"mtime_ms\":1782114536780,\"size\":9518},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782114292695,\"size\":12960},{\"name\":\"page-inspection-detail-page.html\",\"mtime_ms\":1782114440360,\"size\":6682},{\"name\":\"page-inspections-page.html\",\"mtime_ms\":1782114377973,\"size\":9412},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1782115050092,\"size\":9375},{\"name\":\"page-safety-note-detail-page.html\",\"mtime_ms\":1782114733252,\"size\":5917},{\"name\":\"page-safety-notes-page.html\",\"mtime_ms\":1782114682236,\"size\":4531},{\"name\":\"page-stats-page.html\",\"mtime_ms\":1782114952539,\"size\":11506}]",
+  "html_files": [
+    {
+      "name": "page-contact-detail-page.html",
+      "mtime_ms": 1782114835527,
+      "size": 5297
+    },
+    {
+      "name": "page-contacts-page.html",
+      "mtime_ms": 1782114787694,
+      "size": 5380
+    },
+    {
+      "name": "page-hazard-detail-page.html",
+      "mtime_ms": 1782114636019,
+      "size": 11225
+    },
+    {
+      "name": "page-hazards-page.html",
+      "mtime_ms": 1782114536780,
+      "size": 9518
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782114292695,
+      "size": 12960
+    },
+    {
+      "name": "page-inspection-detail-page.html",
+      "mtime_ms": 1782114440360,
+      "size": 6682
+    },
+    {
+      "name": "page-inspections-page.html",
+      "mtime_ms": 1782114377973,
+      "size": 9412
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1782115050092,
+      "size": 9375
+    },
+    {
+      "name": "page-safety-note-detail-page.html",
+      "mtime_ms": 1782114733252,
+      "size": 5917
+    },
+    {
+      "name": "page-safety-notes-page.html",
+      "mtime_ms": 1782114682236,
+      "size": 4531
+    },
+    {
+      "name": "page-stats-page.html",
+      "mtime_ms": 1782114952539,
+      "size": 11506
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 38,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 38,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-22T08:46:30.925Z"
+}

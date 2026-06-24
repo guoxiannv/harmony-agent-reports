@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>宠迹 PawLog - 记录</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #F3F4F6; color: #1F2937;
+      max-width: 390px; margin: 0 auto; min-height: 100vh;
+      position: relative; overflow-x: hidden;
+    }
+    .page { padding: 0 20px 120px; }
+    .header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.8); backdrop-filter: blur(24px) saturate(150%);
+      border-bottom: 1px solid rgba(255,255,255,0.65);
+      margin: 0 -20px; padding: 52px 20px 12px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .page-title { font-size: 24px; font-weight: 700; }
+    .icon-btn {
+      width: 44px; height: 44px; border-radius: 14px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(31,41,55,0.07);
+      border: none; cursor: pointer;
+    }
+    .icon-btn svg { width: 22px; height: 22px; color: #4B5563; }
+    .search-bar {
+      margin-top: 18px; position: relative;
+    }
+    .search-input {
+      width: 100%; height: 50px; border-radius: 16px; border: none;
+      background: #F3F4F6; padding: 0 18px 0 44px;
+      font-size: 15px; color: #1F2937; outline: none;
+    }
+    .search-input:focus { background: #fff; box-shadow: 0 0 0 2px #5DD9C1, 0 0 0 5px #E6FAF6; }
+    .search-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: #9CA3AF;
+    }
+    .search-icon svg { width: 20px; height: 20px; }
+    .filters {
+      display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px;
+    }
+    .filter-chip {
+      flex-shrink: 0; padding: 8px 14px; border-radius: 999px;
+      background: #fff; color: #4B5563; font-size: 13px; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(31,41,55,0.05); border: 1.5px solid transparent;
+      display: flex; align-items: center; gap: 6px; cursor: pointer;
+    }
+    .filter-chip.active { background: #E6FAF6; color: #3CB5A0; border-color: #5DD9C1; }
+    .filter-chip svg { width: 14px; height: 14px; }
+    .section { margin-top: 26px; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .section-title { font-size: 16px; font-weight: 700; color: #9CA3AF; }
+    .timeline { display: flex; flex-direction: column; gap: 14px; }
+    .timeline-item { display: flex; align-items: flex-start; gap: 12px; }
+    .timeline-dot {
+      width: 16px; height: 16px; border-radius: 50%; border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(31,41,55,0.1); margin-top: 14px; flex-shrink: 0;
+    }
+    .timeline-dot.food { background: #5DD9C1; }
+    .timeline-dot.toilet { background: #FFD166; }
+    .timeline-dot.weight { background: #CAB8F0; }
+    .timeline-dot.medicine { background: #A8DADC; }
+    .timeline-content {
+      flex: 1; background: #fff; border-radius: 20px; padding: 14px 16px;
+      box-shadow: 0 10px 28px rgba(31,41,55,0.07);
+    }
+    .timeline-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .timeline-type-chip {
+      font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 10px;
+    }
+    .chip-food { background: #E6FAF6; color: #3CB5A0; }
+    .chip-toilet { background: #FFF8E6; color: #C98A0A; }
+    .chip-weight { background: #F3EEFC; color: #8B6ACB; }
+    .chip-medicine { background: #EDF7F7; color: #4A9B9E; }
+    .timeline-time { font-size: 12px; color: #9CA3AF; }
+    .timeline-text { font-size: 15px; color: #1F2937; font-weight: 700; }
+    .timeline-detail { font-size: 13px; color: #4B5563; margin-top: 4px; }
+    .timeline-pet { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+    .timeline-pet-avatar {
+      width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, #FFDDE6, #FF9DAF);
+    }
+    .timeline-pet-name { font-size: 12px; color: #9CA3AF; font-weight: 600; }
+    .empty-state {
+      text-align: center; padding: 40px 20px; background: #fff; border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(31,41,55,0.06);
+    }
+    .empty-state svg { width: 64px; height: 64px; color: #FFB8C9; margin-bottom: 12px; }
+    .empty-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .empty-desc { font-size: 13px; color: #9CA3AF; }
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 390px; margin: 0 auto;
+      height: 76px; background: rgba(255,255,255,0.82); backdrop-filter: blur(24px) saturate(150%);
+      border-top: 1px solid rgba(255,255,255,0.65);
+      box-shadow: 0 -4px 20px rgba(31,41,55,0.06);
+      display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px;
+      z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 56px; padding-top: 4px; color: #9CA3AF; text-decoration: none; }
+    .tab-item.active { color: #5DD9C1; }
+    .tab-item svg { width: 24px; height: 24px; }
+    .tab-label { font-size: 11px; font-weight: 700; }
+    .fab-wrap { position: relative; top: -28px; }
+    .fab {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #8EEDDB 0%, #45C4AD 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 14px 36px rgba(69,196,173,0.38); border: 3px solid #fff;
+    }
+    .fab svg { width: 26px; height: 26px; color: #fff; }
+  </style>
+</head>
+<body data-page-id="records-page" data-tab-id="tab-records">
+  <div class="page">
+    <header class="header">
+      <h1 class="page-title">记录</h1>
+      <button class="icon-btn" data-ui-id="records-add-button" aria-label="添加记录">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>添加新记录</title>
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="search-bar">
+      <span class="search-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>搜索图标</title><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </span>
+      <input type="text" class="search-input" placeholder="搜索食物、药品、症状..." data-ui-id="records-search-input" />
+    </div>
+
+    <div class="filters">
+      <button class="filter-chip active" data-ui-id="records-pet-filter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>宠物筛选</title><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        全部宠物
+      </button>
+      <button class="filter-chip" data-ui-id="records-type-filter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>类型筛选</title><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/></svg>
+        全部类型
+      </button>
+      <button class="filter-chip" data-ui-id="records-date-filter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>日期筛选</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        近 7 天
+      </button>
+    </div>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-title">今天</span>
+        <span style="font-size:13px;color:#9CA3AF;">3 条记录</span>
+      </div>
+      <div class="timeline" data-ui-id="records-timeline-list">
+        <div class="timeline-item" data-ui-id="records-timeline-item-101">
+          <div class="timeline-dot food"></div>
+          <div class="timeline-content">
+            <div class="timeline-top">
+              <span class="timeline-type-chip chip-food">饮食</span>
+              <span class="timeline-time">07:30</span>
+            </div>
+            <div class="timeline-text">早餐 45g 猫粮</div>
+            <div class="timeline-detail">鸡肉口味 · 全部吃完</div>
+            <div class="timeline-pet">
+              <div class="timeline-pet-avatar"></div>
+              <span class="timeline-pet-name">豆豆</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-ui-id="records-timeline-item-102">
+          <div class="timeline-dot toilet"></div>
+          <div class="timeline-content">
+            <div class="timeline-top">
+              <span class="timeline-type-chip chip-toilet">排泄</span>
+              <span class="timeline-time">06:50</span>
+            </div>
+            <div class="timeline-text">小便 1 次</div>
+            <div class="timeline-detail">颜色正常 · 无异味</div>
+            <div class="timeline-pet">
+              <div class="timeline-pet-avatar"></div>
+              <span class="timeline-pet-name">豆豆</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-title">昨天</span>
+        <span style="font-size:13px;color:#9CA3AF;">2 条记录</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item" data-ui-id="records-timeline-item-103">
+          <div class="timeline-dot medicine"></div>
+          <div class="timeline-content">
+            <div class="timeline-top">
+              <span class="timeline-type-chip chip-medicine">用药</span>
+              <span class="timeline-time">20:00</span>
+            </div>
+            <div class="timeline-text">体内驱虫药 1 片</div>
+            <div class="timeline-detail">已服用 · 饭后半小时</div>
+            <div class="timeline-pet">
+              <div class="timeline-pet-avatar"></div>
+              <span class="timeline-pet-name">豆豆</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-ui-id="records-timeline-item-104">
+          <div class="timeline-dot weight"></div>
+          <div class="timeline-content">
+            <div class="timeline-top">
+              <span class="timeline-type-chip chip-weight">体重</span>
+              <span class="timeline-time">08:15</span>
+            </div>
+            <div class="timeline-text">体重 4.6 kg</div>
+            <div class="timeline-detail">较上周 -0.1 kg</div>
+            <div class="timeline-pet">
+              <div class="timeline-pet-avatar"></div>
+              <span class="timeline-pet-name">豆豆</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="tabbar">
+    <a href="#" class="tab-item" data-ui-id="tab-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页标签</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span class="tab-label">首页</span>
+    </a>
+    <a href="#" class="tab-item active" data-ui-id="tab-records">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>记录标签</title><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span class="tab-label">记录</span>
+    </a>
+    <div class="fab-wrap">
+      <button class="fab" aria-label="添加记录">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>快捷添加新记录</title><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+    <a href="#" class="tab-item" data-ui-id="tab-health">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>健康标签</title><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span class="tab-label">健康</span>
+    </a>
+    <a href="#" class="tab-item" data-ui-id="tab-family">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>家庭标签</title><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="tab-label">家庭</span>
+    </a>
+  </nav>
+</body>
+</html>

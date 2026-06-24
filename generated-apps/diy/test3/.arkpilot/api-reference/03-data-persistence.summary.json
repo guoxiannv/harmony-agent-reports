@@ -1,0 +1,52 @@
+{
+  "module": "03-data-persistence.md",
+  "group": "03 -- Data Persistence",
+  "apiCount": 6,
+  "apis": [
+    {
+      "name": "PersistentStorage",
+      "purpose": "Cross-session persistent key-value storage backed by disk, bridging AppStorage to permanent storage for user config and last checkin date",
+      "anchor": "persistentstorage",
+      "status": "found"
+    },
+    {
+      "name": "AppStorage",
+      "purpose": "App-level reactive shared state singleton for current user and session data, accessible across all UI components",
+      "anchor": "appstorage",
+      "status": "found"
+    },
+    {
+      "name": "dataPreferences (ohos.data.preferences)",
+      "purpose": "Key-value preference storage for lightweight persistent settings and counters, backed by XML or GSKV files",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore (ohos.data.relationalStore)",
+      "purpose": "SQL-based relational database (SQLite wrapper) for structured data like courses, reservations, and inventory records",
+      "anchor": "模块描述",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.resourceManager",
+      "purpose": "Read bundled JSON, media, string, boolean, number resources and rawfile content from the app HAP",
+      "anchor": "ohosresourcemanager-资源管理",
+      "status": "found"
+    },
+    {
+      "name": "LocalStorage",
+      "purpose": "Page-level scoped reactive state storage for component-local or page-isolated UI state",
+      "anchor": "localstorage9",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "PersistentStorage must be initialized before AppStorage access to correctly bridge persisted data",
+    "dataPreferences does not guarantee process concurrency safety - avoid multi-process use",
+    "relationalStore single row must be under 2MB due to shared memory limits; large queries (>5000 rows) should use TaskPool",
+    "Stage model apps access resourceManager via context.resourceManager without importing the module",
+    "LocalStorage is page-scoped; for stage-shared LocalStorage use UIContext.getSharedLocalStorage() from API 12+",
+    "Standard JS JSON.parse/stringify are language built-ins, not HarmonyOS APIs"
+  ],
+  "missingApis": []
+}

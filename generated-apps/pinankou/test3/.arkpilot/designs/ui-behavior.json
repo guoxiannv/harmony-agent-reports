@@ -1,0 +1,244 @@
+{
+  "version": "arkpilot-behavior/v1",
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "SafetyNote",
+        "fields": [
+          { "name": "id", "type": "string", "required": true },
+          { "name": "title", "type": "string", "required": true },
+          { "name": "description", "type": "string" },
+          { "name": "priority", "type": "enum", "values": ["low", "medium", "high"] },
+          { "name": "assignee", "type": "string" },
+          { "name": "deadline", "type": "number|null", "note": "timestamp ms" },
+          { "name": "isDone", "type": "boolean", "default": false },
+          { "name": "createdAt", "type": "number" },
+          { "name": "updatedAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "Hazard",
+        "fields": [
+          { "name": "id", "type": "string", "required": true },
+          { "name": "title", "type": "string", "required": true },
+          { "name": "description", "type": "string" },
+          { "name": "location", "type": "string" },
+          { "name": "level", "type": "enum", "values": ["low", "medium", "high"] },
+          { "name": "status", "type": "enum", "values": ["pending", "in_progress", "awaiting_acceptance", "closed"] },
+          { "name": "assignee", "type": "string" },
+          { "name": "deadline", "type": "number|null" },
+          { "name": "photos", "type": "string[]", "note": "local file paths" },
+          { "name": "createdAt", "type": "number" },
+          { "name": "updatedAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "HazardComment",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "hazardId", "type": "string" },
+          { "name": "content", "type": "string" },
+          { "name": "createdAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "Inspection",
+        "fields": [
+          { "name": "id", "type": "string", "required": true },
+          { "name": "title", "type": "string", "required": true },
+          { "name": "location", "type": "string" },
+          { "name": "date", "type": "number", "note": "timestamp ms for scheduled/actual date" },
+          { "name": "status", "type": "enum", "values": ["pending", "in_progress", "completed", "abnormal"] },
+          { "name": "checklist", "type": "InspectionCheckItem[]" },
+          { "name": "createdAt", "type": "number" },
+          { "name": "updatedAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "InspectionCheckItem",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "text", "type": "string" },
+          { "name": "result", "type": "enum|null", "values": ["normal", "abnormal"] },
+          { "name": "remark", "type": "string" }
+        ]
+      },
+      {
+        "name": "Contact",
+        "fields": [
+          { "name": "id", "type": "string", "required": true },
+          { "name": "name", "type": "string", "required": true },
+          { "name": "role", "type": "string" },
+          { "name": "department", "type": "string" },
+          { "name": "phone", "type": "string", "required": true },
+          { "name": "isEmergency", "type": "boolean", "default": false },
+          { "name": "createdAt", "type": "number" },
+          { "name": "updatedAt", "type": "number" }
+        ]
+      },
+      {
+        "name": "Activity",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "kind", "type": "enum", "values": ["hazard", "inspection", "safety_note", "contact"] },
+          { "name": "entityId", "type": "string" },
+          { "name": "title", "type": "string" },
+          { "name": "subtitle", "type": "string" },
+          { "name": "timestamp", "type": "number" }
+        ]
+      }
+    ],
+    "settings": [],
+    "computed": [
+      { "name": "hazardClosedRate", "formula": "closedHazards / totalHazards" },
+      { "name": "inspectionCompletionRate", "formula": "completedInspections / totalInspections" },
+      { "name": "overdueCount", "formula": "hazards + notes with deadline < now and not closed/done" },
+      { "name": "pendingTasksCount", "formula": "pending/in_progress hazards + incomplete notes" }
+    ],
+    "persistence": "local relationalStore for MVP; in-memory fallback when relationalStore unavailable"
+  },
+  "services": [
+    {
+      "name": "StorageService",
+      "responsibilities": ["CRUD for SafetyNote, Hazard, Inspection, Contact", "query helpers", "reset all data"],
+      "interface": {
+        "notes": ["listNotes", "getNote", "saveNote", "deleteNote"],
+        "hazards": ["listHazards", "getHazard", "saveHazard", "deleteHazard"],
+        "comments": ["listCommentsByHazard", "addComment"],
+        "inspections": ["listInspections", "getInspection", "saveInspection", "deleteInspection"],
+        "contacts": ["listContacts", "getContact", "saveContact", "deleteContact", "searchContacts"],
+        "common": ["resetAll", "seedDemo"]
+      }
+    },
+    {
+      "name": "StatsService",
+      "responsibilities": ["compute home summary and stats page KPIs from StorageService"]
+    },
+    {
+      "name": "FileAttachmentService",
+      "responsibilities": ["store/load photo file paths"],
+      "note": "Stub: currently records user-supplied file paths only; camera/gallery integration deferred."
+    },
+    {
+      "name": "CallSmsService",
+      "responsibilities": ["initiate phone call and SMS via @kit.TelephonyKit"],
+      "note": "Stub with fallbacks if kit unavailable."
+    }
+  ],
+  "stateMachine": {
+    "appShell": {
+      "state": { "surface": "home | inspections | hazards | stats | profile | safety-notes | safety-note-detail | inspection-detail | hazard-detail | contact-detail", "activeTab": "TabId", "pendingId": "string" },
+      "transitions": [
+        { "event": "navigate-to-inspections", "from": "home", "to": "inspections" },
+        { "event": "open-hazard-detail-new", "from": "*", "to": "hazard-detail", "effect": "pendingId = ''" },
+        { "event": "open-safety-note-detail-new", "from": "*", "to": "safety-note-detail", "effect": "pendingId = ''" },
+        { "event": "navigate-to-contacts", "from": "home", "to": "contacts" },
+        { "event": "open-inspection-detail-new", "from": "inspections", "to": "inspection-detail", "effect": "pendingId = ''" },
+        { "event": "navigate-back", "from": "non-tab", "to": "lastTabSurface" },
+        { "event": "tab-switch", "from": "*", "to": "tab-surface" }
+      ]
+    },
+    "hazard": {
+      "statusFlow": ["pending", "in_progress", "awaiting_acceptance", "closed"],
+      "events": ["save-hazard", "delete-hazard", "submit-comment"]
+    },
+    "inspection": {
+      "statusFlow": ["pending", "in_progress", "completed", "abnormal"],
+      "events": ["mark-check-normal", "mark-check-abnormal", "convert-to-hazard", "submit-inspection", "delete-inspection"]
+    },
+    "safetyNote": {
+      "events": ["save-safety-note", "delete-safety-note"]
+    },
+    "contact": {
+      "events": ["save-contact", "delete-contact", "call-contact", "message-contact"]
+    },
+    "profile": {
+      "events": ["open-settings", "open-about", "export-data", "clear-local-data"]
+    }
+  },
+  "interactionFlows": [
+    {
+      "name": "Create hazard from home shortcut",
+      "trigger": "home-report-hazard-button click",
+      "steps": ["navigate to hazard-detail with empty id", "user fills form", "save-hazard event", "persist", "return to home"],
+      "error": ["title required", "show inline validation"]
+    },
+    {
+      "name": "Update inspection checklist",
+      "trigger": "inspection-detail-check-*-button click",
+      "steps": ["toggle selected item result", "if abnormal enable convert-to-hazard"],
+      "error": []
+    },
+    {
+      "name": "Convert inspection item to hazard",
+      "trigger": "convert-to-hazard",
+      "steps": ["create draft Hazard with title/location copied from inspection", "navigate to hazard-detail"]
+    },
+    {
+      "name": "Add hazard comment",
+      "trigger": "submit-comment",
+      "steps": ["validate non-empty", "add HazardComment", "refresh list"]
+    },
+    {
+      "name": "Call contact",
+      "trigger": "contacts-call-button click",
+      "steps": ["telephony callUI"]
+    },
+    {
+      "name": "Clear local data",
+      "trigger": "profile-clear-data-button click",
+      "steps": ["confirmation dialog", "StorageService.resetAll", "refresh home/stats"]
+    }
+  ],
+  "testTargets": {
+    "tabs": ["tab-home", "tab-inspections", "tab-hazards", "tab-stats", "tab-profile"],
+    "actions": [
+      "home-open-inspections-button", "home-report-hazard-button", "home-add-safety-note-button", "home-open-contacts-button",
+      "inspections-add-button", "inspection-detail-check-normal-button", "inspection-detail-check-abnormal-button",
+      "inspection-detail-convert-hazard-button", "inspection-detail-submit-button", "inspection-detail-delete-button",
+      "hazards-add-button", "hazard-detail-submit-comment-button", "hazard-detail-save-button", "hazard-detail-delete-button",
+      "safety-notes-add-button", "safety-note-detail-save-button", "safety-note-detail-delete-button",
+      "contacts-add-button", "contacts-call-button", "contacts-message-button",
+      "contact-detail-save-button", "contact-detail-delete-button",
+      "profile-settings-button", "profile-about-button", "profile-export-button", "profile-clear-data-button"
+    ],
+    "inputs": [
+      "inspections-filter-segment", "hazards-filter-status", "hazards-filter-level",
+      "inspection-detail-title-input", "inspection-detail-location-input", "inspection-detail-date-picker",
+      "hazard-detail-title-input", "hazard-detail-location-input", "hazard-detail-level-picker", "hazard-detail-status-picker",
+      "hazard-detail-description-input", "hazard-detail-photo-uploader", "hazard-detail-assignee-input", "hazard-detail-deadline-picker",
+      "hazard-detail-comment-input",
+      "safety-note-detail-title-input", "safety-note-detail-priority-picker", "safety-note-detail-assignee-input",
+      "safety-note-detail-deadline-picker", "safety-note-detail-description-input", "safety-note-detail-done-toggle",
+      "contacts-search-input",
+      "contact-detail-name-input", "contact-detail-role-input", "contact-detail-department-input", "contact-detail-phone-input",
+      "contact-detail-emergency-toggle",
+      "stats-period-picker"
+    ],
+    "assertions": [
+      "home-header-title", "home-summary-card", "home-pending-tasks-count",
+      "inspections-title", "inspections-total-count",
+      "hazards-title", "hazards-total-count",
+      "safety-notes-title", "safety-notes-completed-count",
+      "contacts-title", "stats-title",
+      "stats-hazard-total-card", "stats-closed-rate-card", "stats-inspection-completion-card", "stats-overdue-count-card",
+      "stats-trend-chart", "stats-status-distribution"
+    ],
+    "lists": [
+      { "id": "home-recent-activity-list", "itemPattern": "home-activity-{id}", "emptyStateId": "home-empty-activity" },
+      { "id": "inspections-list", "itemPattern": "inspection-{id}", "emptyStateId": "inspections-empty-state" },
+      { "id": "hazards-list", "itemPattern": "hazard-{id}", "emptyStateId": "hazards-empty-state" },
+      { "id": "safety-notes-list", "itemPattern": "safety-note-{id}", "emptyStateId": "safety-notes-empty-state" },
+      { "id": "contacts-list", "itemPattern": "contact-{id}", "emptyStateId": "contacts-empty-state" },
+      { "id": "hazard-detail-comment-list", "itemPattern": "hazard-comment-{id}", "emptyStateId": "hazard-empty-comments" },
+      { "id": "stats-top-locations-list", "itemPattern": "stats-location-{id}", "emptyStateId": "stats-empty-locations" }
+    ]
+  },
+  "changeRequests": [
+    "svg-icon rawfile assets are missing from scaffold; replace SvgIcon rawfile lookup with Shape-based or font-free icon alternatives to avoid missing assets.",
+    "scaffold theme placeholders (gold/green coffee brand) must be replaced with blue-green safety palette during visual integration.",
+    "Profile page was not included in ui-tree surface tab targets beyond tab-profile; implement as a real tab surface.",
+    "Stats trend chart requires a lightweight chart component (Canvas or bar visualization) since no chart library is in dependencies."
+  ]
+}

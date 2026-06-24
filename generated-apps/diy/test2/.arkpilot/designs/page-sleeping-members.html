@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 - 沉睡会员</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Noto+Sans+SC:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  background: linear-gradient(180deg, #FBF8F5 0%, #F0EBE5 55%, #E9E3DA 100%);
+  color: #3A2D28;
+  max-width: 390px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+.page { padding: 0 16px; }
+.header {
+  padding-top: 48px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.back-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: #FFFDFA;
+  border: 1px solid rgba(195, 170, 150, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3A2D28;
+}
+.page-title { font-size: 22px; font-weight: 700; flex: 1; }
+.hero-card {
+  background: #3A2D28;
+  border-radius: 26px;
+  padding: 24px;
+  color: #FBF8F5;
+  box-shadow: 0 12px 32px rgba(58, 45, 40, 0.18);
+  text-align: center;
+}
+.hero-icon { color: #D9A96D; margin-bottom: 10px; }
+.hero-title { font-size: 18px; font-weight: 600; }
+.hero-desc { font-size: 13px; color: rgba(251,248,245,0.7); margin-top: 6px; }
+.threshold-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 14px;
+}
+.threshold-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  color: #D9A96D;
+}
+.select-all-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px 0 12px;
+}
+.select-all-bar span { font-size: 14px; color: #3A2D28; font-weight: 500; }
+.select-all-btn {
+  font-size: 13px;
+  color: #B88363;
+  background: transparent;
+  border: none;
+  font-weight: 600;
+}
+.member-list { display: flex; flex-direction: column; gap: 12px; }
+.member-card {
+  background: #FFFDFA;
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 10px 28px rgba(58, 45, 40, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.member-checkbox {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid #B88363;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.member-checkbox.checked { background: #B88363; }
+.member-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E9E3DA, #D9C8B8);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 16px; font-weight: 500;
+  color: #5D4237;
+  flex-shrink: 0;
+}
+.member-info { flex: 1; }
+.member-name { font-size: 16px; font-weight: 600; color: #3A2D28; }
+.member-meta { font-size: 12px; color: #9B9189; margin-top: 4px; }
+.sleeping-days {
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  color: #C87E5D;
+  text-align: right;
+}
+.sleeping-days-label { font-size: 11px; color: #9B9189; font-family: 'Noto Sans SC', sans-serif; }
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: #9B9189;
+  font-size: 13px;
+}
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 12px 16px 24px;
+  background: rgba(251, 248, 245, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(195, 170, 150, 0.15);
+}
+.wake-btn {
+  width: 100%;
+  background: #C87E5D;
+  color: #FBF8F5;
+  border: none;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(200, 126, 93, 0.32);
+}
+</style>
+</head>
+<body data-page-id="sleeping-members">
+<div class="page">
+  <header class="header">
+    <button class="back-btn" data-ui-id="sleeping-members-back-button" aria-label="返回">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一页</title><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h1 class="page-title">沉睡会员</h1>
+  </header>
+
+  <div class="hero-card">
+    <div class="hero-icon">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><title>沉睡会员汇总图标</title><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </div>
+    <div class="hero-title">别让好手艺被遗忘</div>
+    <div class="hero-desc">系统已自动筛选出超过阈值未到店会员</div>
+    <div class="threshold-row">
+      <span>沉睡阈值</span>
+      <span class="threshold-value" data-ui-id="sleeping-members-threshold">45</span>
+      <span>天</span>
+    </div>
+  </div>
+
+  <div class="select-all-bar">
+    <span>已选 0 位会员</span>
+    <button class="select-all-btn" data-ui-id="sleeping-members-select-all-button">全选</button>
+  </div>
+
+  <div class="member-list" data-ui-id="sleeping-members-list">
+    <div class="member-card" data-ui-id="sleeping-member-1">
+      <div class="member-checkbox checked">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFDFA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><title>已选中该沉睡会员</title><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="member-avatar">周</div>
+      <div class="member-info">
+        <div class="member-name">周皮</div>
+        <div class="member-meta">擅长皮具 · 上次到店 2026-04-30</div>
+      </div>
+      <div class="sleeping-days">
+        <div>52</div>
+        <div class="sleeping-days-label">天</div>
+      </div>
+    </div>
+
+    <div class="member-card" data-ui-id="sleeping-member-2">
+      <div class="member-checkbox"></div>
+      <div class="member-avatar">王</div>
+      <div class="member-info">
+        <div class="member-name">王花</div>
+        <div class="member-meta">擅长花艺 · 上次到店 2026-05-08</div>
+      </div>
+      <div class="sleeping-days">
+        <div>44</div>
+        <div class="sleeping-days-label">天</div>
+      </div>
+    </div>
+
+    <div class="member-card" data-ui-id="sleeping-member-3">
+      <div class="member-checkbox"></div>
+      <div class="member-avatar">赵</div>
+      <div class="member-info">
+        <div class="member-name">赵银</div>
+        <div class="member-meta">擅长银饰 · 上次到店 2026-04-12</div>
+      </div>
+      <div class="sleeping-days">
+        <div>71</div>
+        <div class="sleeping-days-label">天</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" data-ui-id="sleeping-members-empty" style="display:none">没有沉睡会员，大家都还记得你</div>
+</div>
+
+<div class="action-bar">
+  <button class="wake-btn" data-ui-id="sleeping-members-wake-button">唤醒选中会员</button>
+</div>
+</body>
+</html>

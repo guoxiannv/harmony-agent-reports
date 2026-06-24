@@ -1,0 +1,27 @@
+{
+  "module": "04-album-file-io.md",
+  "group": "04 — Album Save & File IO (相册保存与文件操作)",
+  "apiCount": 2,
+  "apis": [
+    {
+      "name": "@ohos.file.photoAccessHelper (相册管理)",
+      "purpose": "相册管理，用于创建、查询、修改图片/视频媒体资源及其元数据",
+      "anchor": "ohosfilephotoaccesshelper-相册管理",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.fs (文件管理)",
+      "purpose": "基础文件操作，包括文件的读写、创建、删除、复制、目录管理、属性获取等",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "photoAccessHelper 从 API 10 开始支持，需要 READ_IMAGEVIDEO / WRITE_IMAGEVIDEO 权限，或通过 SaveButton 安全控件免权限保存",
+    "fileIo (file.fs) 从 API 9 开始支持，导入路径为 @kit.CoreFileKit，操作前需通过 context.filesDir 获取沙箱路径",
+    "photoAccessHelper 创建资源返回 URI 格式 file://media/Photo/...，可传递给 fileIo.openSync 进行二进制数据读写",
+    "fileIo.mkdir 从 API 11 开始支持 recursive 参数创建多层目录",
+    "两个 API 分别属于 @kit.MediaLibraryKit 和 @kit.CoreFileKit，不能混淆导入路径"
+  ],
+  "missingApis": []
+}

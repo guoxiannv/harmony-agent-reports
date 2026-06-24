@@ -1,0 +1,100 @@
+{
+  "module": "01-layout.md",
+  "group": "01 — Layout & UI Components",
+  "apiCount": 14,
+  "apis": [
+    {
+      "name": "Column",
+      "purpose": "垂直方向线性布局容器",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "水平方向线性布局容器",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，子组件按顺序入栈叠加",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "显示文本的组件",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Button",
+      "purpose": "按钮组件，支持多种样式模式",
+      "anchor": "button",
+      "status": "found"
+    },
+    {
+      "name": "Blank",
+      "purpose": "空白填充组件，自动填充容器主轴剩余空间",
+      "anchor": "blank",
+      "status": "found"
+    },
+    {
+      "name": "Divider",
+      "purpose": "分割线组件，分隔内容块",
+      "anchor": "divider",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动的容器组件",
+      "anchor": "scroll",
+      "status": "found"
+    },
+    {
+      "name": "Flex",
+      "purpose": "弹性布局容器组件",
+      "anchor": "flex",
+      "status": "found"
+    },
+    {
+      "name": "Align/JustifyContent",
+      "purpose": "子组件在容器主轴/交叉轴的对齐方式属性集",
+      "anchor": "align--justifycontent--alignitems",
+      "status": "found"
+    },
+    {
+      "name": "LayoutWeight",
+      "purpose": "组件布局权重，在父容器主轴按权重分配尺寸",
+      "anchor": "layoutweight",
+      "status": "found"
+    },
+    {
+      "name": "Width/Height (尺寸设置)",
+      "purpose": "组件自身宽度和高度的尺寸设置属性集",
+      "anchor": "width--height-（尺寸设置）",
+      "status": "found"
+    },
+    {
+      "name": "backgroundColor",
+      "purpose": "设置组件背景色",
+      "anchor": "backgroundcolor",
+      "status": "found"
+    },
+    {
+      "name": "borderRadius",
+      "purpose": "设置组件边框圆角半径",
+      "anchor": "borderradius",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Flex 组件存在二次布局过程，对性能敏感场景建议使用 Column/Row 替代",
+    "Column/Row 未设置宽高时自动自适应子组件大小；Flex 主轴默认撑满父容器",
+    "justifyContent 为 SpaceBetween / SpaceAround / SpaceEvenly 时 space 间距属性失效",
+    "layoutWeight 仅在 Row/Column/Flex 父容器中生效，设置后忽略 flexShrink/flexGrow",
+    "Scroll 组件的 clip 属性默认为 true",
+    "backgroundColor API 18+ 支持 Optional<ResourceColor>，设为 undefined 可恢复默认透明"
+  ],
+  "missingApis": []
+}

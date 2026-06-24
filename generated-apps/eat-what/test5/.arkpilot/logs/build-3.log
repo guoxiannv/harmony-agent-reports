@@ -1,0 +1,79 @@
+=== Build Output ===
+> /Applications/DevEco-Studio.app/contents/tools/node/bin/node /Applications/DevEco-Studio.app/contents/tools/hvigor/bin/hvigorw.js --mode project -p product=default assembleApp -p buildMode=debug --daemon
+
+> hvigor Finished ::PreBuildApp... after 1 ms 
+> hvigor UP-TO-DATE :entry:default@PreBuild...  
+> hvigor Finished ::DuplicateDependencyCheck... after 1 ms 
+> hvigor Finished :entry:default@CreateModuleInfo... after 1 ms 
+> hvigor UP-TO-DATE :entry:default@GenerateMetadata...  
+> hvigor Finished :entry:default@ConfigureCmake... after 1 ms 
+> hvigor UP-TO-DATE :entry:default@MergeProfile...  
+> hvigor UP-TO-DATE :entry:default@CreateBuildProfile...  
+> hvigor Finished :entry:default@PreCheckSyscap... after 1 ms 
+> hvigor UP-TO-DATE :entry:default@GeneratePkgContextInfo...  
+> hvigor Finished :entry:default@GeneratePkgSdkInfo... after 1 ms 
+> hvigor Finished :entry:default@ProcessIntegratedHsp... after 1 ms 
+> hvigor Finished :entry:default@BuildNativeWithCmake... after 1 ms 
+> hvigor UP-TO-DATE :entry:default@MakePackInfo...  
+> hvigor Finished :entry:default@SyscapTransform... after 1 ms 
+> hvigor UP-TO-DATE :entry:default@ProcessProfile...  
+> hvigor UP-TO-DATE :entry:default@ProcessRouterMap...  
+> hvigor UP-TO-DATE :entry:default@ProcessShareConfig...  
+> hvigor Finished :entry:default@ProcessStartupConfig... after 1 ms 
+> hvigor Finished :entry:default@BuildNativeWithNinja... after 1 ms 
+> hvigor UP-TO-DATE :entry:default@ProcessResource...  
+> hvigor UP-TO-DATE :entry:default@GenerateLoaderJson...  
+> hvigor UP-TO-DATE :entry:default@ProcessLibs...  
+> hvigor UP-TO-DATE :entry:default@CompileResource...  
+> hvigor UP-TO-DATE :entry:default@DoNativeStrip...  
+> hvigor Finished :entry:default@BuildJS... after 1 ms 
+> hvigor UP-TO-DATE :entry:default@CacheNativeLibs...  
+> hvigor WARN: WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/common/Feedback.ets:7:18
+ 'showToast' has been deprecated.
+
+WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/components/WheelPanel.ets:202:5
+ 'animateTo' has been deprecated.
+
+WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/ProfilePage.ets:149:20
+ 'showDialog' has been deprecated.
+
+WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/ProfilePage.ets:161:20
+ 'showDialog' has been deprecated.
+
+WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/services/ShareService.ets:45:48
+ 'get' has been deprecated.
+
+WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/services/ShareService.ets:51:49
+ 'packing' has been deprecated.
+
+WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/SharePage.ets:186:17
+ 'getContext' has been deprecated.
+
+WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/SharePage.ets:196:17
+ 'getContext' has been deprecated.
+
+
+> hvigor Finished :entry:default@CompileArkTS... after 439 ms 
+> hvigor UP-TO-DATE :entry:default@GeneratePkgModuleJson...  
+> hvigor Finished :entry:default@ProcessCompiledResources... after 1 ms 
+> hvigor Finished :entry:default@PackageHap... after 189 ms 
+> hvigor Finished :entry:default@PackingCheck... after 2 ms 
+> hvigor WARN: Will skip sign 'hos_hap'. No signingConfigs profile is configured in current project.
+             If needed, configure the signingConfigs in /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/build-profile.json5.
+> hvigor Finished :entry:default@SignHap... after 1 ms 
+> hvigor Finished :entry:default@CollectDebugSymbol... after 1 ms 
+> hvigor Finished :entry:assembleHap... after 1 ms 
+> hvigor UP-TO-DATE ::MakeProjectPackInfo...  
+> hvigor UP-TO-DATE ::ProcessProjectPrivacyProfile...  
+> hvigor UP-TO-DATE ::GeneratePackRes...  
+> hvigor Finished ::PackageApp... after 154 ms 
+> hvigor Finished ::SignPackagesFromApp... after 1 ms 
+> hvigor WARN: Will skip sign 'app'. No signingConfigs profile is configured in current project.
+             If needed, configure the signingConfigs in /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/build-profile.json5.
+> hvigor Finished ::SignApp... after 1 ms 
+> hvigor Finished ::assembleApp... after 1 ms 
+> hvigor BUILD SUCCESSFUL in 1 s 101 ms 
+
+
+Process finished with exit code 0
+

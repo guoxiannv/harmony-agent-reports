@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>手作·印记 - 课程详情</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #FAF6F0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: #5A4A3F;
+    }
+    body { max-width: 390px; margin: 0 auto; }
+    .page { min-height: 100%; padding-bottom: 32px; }
+    .header {
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .back-btn {
+      width: 36px; height: 36px;
+      background: #FFFDF9; border: 1px solid #F0E6DA;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .header-title {
+      flex: 1;
+      font-family: "ZCOOL XiaoWei", "STKaiti", cursive;
+      font-size: 28px; color: #3D2B1F;
+    }
+    .header-action {
+      font-size: 14px; font-weight: 600; color: #5A6F7C;
+      background: transparent; border: none;
+    }
+    .course-hero {
+      margin: 0 20px 20px;
+      background: linear-gradient(145deg, #FFFDF9 0%, #F8F1E9 55%, #F0E6DA 100%);
+      border: 1px solid #EFE6DA;
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 4px 12px rgba(99,72,54,0.06), 0 18px 44px rgba(99,72,54,0.10);
+    }
+    .course-hero .time {
+      font-size: 13px; color: #8C7D70; margin-bottom: 8px;
+    }
+    .course-hero h2 {
+      font-family: "ZCOOL XiaoWei", cursive;
+      font-size: 30px; color: #3D2B1F; margin-bottom: 8px;
+    }
+    .course-hero .teacher {
+      font-size: 15px; color: #5A4A3F; margin-bottom: 16px;
+    }
+    .hero-meta {
+      display: flex; gap: 12px;
+    }
+    .hero-badge {
+      background: rgba(198,123,92,0.12);
+      color: #C67B5C;
+      font-size: 13px; font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+    .action-row {
+      display: flex; gap: 12px;
+      padding: 0 20px 24px;
+    }
+    .btn-primary {
+      flex: 1;
+      background: #C67B5C; color: #FFFFFF;
+      border: none; border-radius: 999px;
+      padding: 14px 0; font-size: 15px; font-weight: 700;
+      box-shadow: 0 4px 14px rgba(198,123,92,0.32);
+    }
+    .btn-secondary {
+      flex: 1;
+      background: transparent; color: #C67B5C;
+      border: 1.5px solid #C67B5C; border-radius: 999px;
+      padding: 13px 0; font-size: 15px; font-weight: 600;
+    }
+    .section { padding: 0 20px 24px; }
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; color: #3D2B1F; }
+    .list-card {
+      background: #FFFDF9;
+      border: 1px solid #F0E6DA;
+      border-radius: 18px;
+      padding: 8px 18px;
+      box-shadow: 0 2px 8px rgba(99,72,54,0.06);
+    }
+    .list-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #EFE6DA;
+    }
+    .list-row:last-child { border-bottom: none; }
+    .list-row h4 { font-size: 15px; font-weight: 700; color: #3D2B1F; }
+    .list-row p { font-size: 13px; color: #8C7D70; margin-top: 2px; }
+    .status-badge {
+      font-size: 12px; font-weight: 600;
+      padding: 4px 10px; border-radius: 999px;
+    }
+    .status-badge.confirmed { background: rgba(168,181,160,0.16); color: #6B7A62; }
+    .qty { font-size: 14px; font-weight: 700; color: #B87D4B; }
+  </style>
+</head>
+<body data-page-id="course-detail-page">
+  <div class="page">
+    <header class="header">
+      <button class="back-btn" aria-label="返回">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>Go Back</title>
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+      <h1 class="header-title">课程详情</h1>
+      <button class="header-action" data-ui-id="course-detail-edit-button">编辑</button>
+    </header>
+
+    <div class="course-hero">
+      <div class="time">6月23日 周二 · 14:00 - 16:00</div>
+      <h2>手工陶艺杯</h2>
+      <div class="teacher">授课老师：阿陶 · 容量 6 人</div>
+      <div class="hero-meta">
+        <span class="hero-badge">已报名 2/6</span>
+        <span class="hero-badge">陶艺</span>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-primary" data-ui-id="course-detail-book-button">预约报名</button>
+      <button class="btn-secondary" data-ui-id="course-detail-deduct-button">扣减材料</button>
+    </div>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">报名学员</h2>
+      </div>
+      <div class="list-card" data-ui-id="course-detail-student-list">
+        <div class="list-row" id="course-student-1">
+          <div>
+            <h4>林小雨</h4>
+            <p>138 **** 6688 · 积分兑换</p>
+          </div>
+          <span class="status-badge confirmed">已确认</span>
+        </div>
+        <div class="list-row" id="course-student-2">
+          <div>
+            <h4>陈木心</h4>
+            <p>139 **** 2233 · 到店报名</p>
+          </div>
+          <span class="status-badge confirmed">已确认</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">材料消耗</h2>
+      </div>
+      <div class="list-card" data-ui-id="course-detail-material-list">
+        <div class="list-row" id="course-material-1">
+          <div>
+            <h4>陶土（高白泥）</h4>
+            <p>每人 500g · 自动扣减</p>
+          </div>
+          <span class="qty">-1kg</span>
+        </div>
+        <div class="list-row" id="course-material-2">
+          <div>
+            <h4>釉料（透明釉）</h4>
+            <p>每人 50ml · 自动扣减</p>
+          </div>
+          <span class="qty">-100ml</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

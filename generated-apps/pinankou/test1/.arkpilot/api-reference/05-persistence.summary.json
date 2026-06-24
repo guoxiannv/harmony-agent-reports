@@ -1,0 +1,39 @@
+{
+  "module": "05-persistence.md",
+  "group": "05 — Data Persistence",
+  "apiCount": 37,
+  "apis": [
+    {
+      "name": "@ohos.data.preferences",
+      "purpose": "Key-Value轻量持久化，适合存储用户设置和偏好数据",
+      "anchor": "ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.relationalStore",
+      "purpose": "基于SQLite的关系型数据库，提供完整的本地数据库管理",
+      "anchor": "ohosdatarelationalstore",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.distributedKVStore",
+      "purpose": "跨设备分布式键值数据库，支持端端数据同步",
+      "anchor": "ohosdatadistributedkvstore",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.dataShare",
+      "purpose": "跨应用数据共享，通过DataProxyHandle发布/订阅/读取配置",
+      "anchor": "ohosdatadatashare",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有四种数据持久化API均从 @kit.ArkData 统一导入，不要使用旧式 @ohos.data.* 导入路径",
+    "preferences 不支持多进程并发安全，XML模式下需主动调用 flush() 持久化；GSKV模式(API 18+)实时落盘无需flush",
+    "relationalStore 单条数据建议不超过2MB，单次查询不超过5000条；API 18+支持向量数据库",
+    "distributedKVStore 跨设备同步需要 ohos.permission.DISTRIBUTED_DATASYNC 权限",
+    "dataShare 仅Stage模型可用(API 9+)，API 20引入DataProxyHandle；每个应用最多64个共享配置(API 26+)"
+  ],
+  "missingApis": []
+}

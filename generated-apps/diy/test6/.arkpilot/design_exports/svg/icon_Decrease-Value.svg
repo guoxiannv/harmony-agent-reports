@@ -1,0 +1,14 @@
+<svg
+  class="lucide lucide-minus"
+  xmlns="http://www.w3.org/2000/svg"
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#B85448"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+><title>Decrease Value</title>
+  <path d="M5 12h14" />
+</svg>

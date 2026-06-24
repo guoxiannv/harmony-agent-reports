@@ -1,0 +1,122 @@
+{
+  "module": "01-layout-navigation.md",
+  "group": "01 — 布局与导航 Layout Navigation",
+  "apiCount": 18,
+  "apis": [
+    {
+      "name": "Column",
+      "purpose": "垂直方向线性布局容器",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "水平方向线性布局容器",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，子组件按顺序叠加覆盖",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Blank",
+      "purpose": "空白填充组件，自动填充容器主轴空余部分",
+      "anchor": "blank",
+      "status": "found"
+    },
+    {
+      "name": "Divider",
+      "purpose": "分割线组件，分割不同内容块",
+      "anchor": "divider",
+      "status": "found"
+    },
+    {
+      "name": "List",
+      "purpose": "列表容器，连续多行呈现同类数据",
+      "anchor": "list",
+      "status": "found"
+    },
+    {
+      "name": "ListItem",
+      "purpose": "列表具体条目，必须配合List使用",
+      "anchor": "listitem",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动的容器组件，子组件尺寸超出时滚动",
+      "anchor": "scroll",
+      "status": "found"
+    },
+    {
+      "name": "Grid",
+      "purpose": "网格容器，行列分割单元格布局",
+      "anchor": "grid",
+      "status": "found"
+    },
+    {
+      "name": "GridItem",
+      "purpose": "网格容器中单项内容容器",
+      "anchor": "griditem",
+      "status": "found"
+    },
+    {
+      "name": "Swiper",
+      "purpose": "滑块视图容器，子组件滑动轮播",
+      "anchor": "swiper",
+      "status": "found"
+    },
+    {
+      "name": "Tabs",
+      "purpose": "页签切换内容视图的容器",
+      "anchor": "tabs",
+      "status": "found"
+    },
+    {
+      "name": "TabContent",
+      "purpose": "Tabs中对应切换页签的内容视图",
+      "anchor": "tabcontent",
+      "status": "found"
+    },
+    {
+      "name": "Navigation",
+      "purpose": "路由导航根视图容器，含标题栏/内容区/工具栏",
+      "anchor": "navigation",
+      "status": "found"
+    },
+    {
+      "name": "NavDestination",
+      "purpose": "Navigation子页面的根容器",
+      "anchor": "navdestination",
+      "status": "found"
+    },
+    {
+      "name": "NavRouter",
+      "purpose": "导航组件，提供点击响应跳转（API13起废弃）",
+      "anchor": "navrouter",
+      "status": "found"
+    },
+    {
+      "name": "Router",
+      "purpose": "页面路由，通过URL访问不同页面（API18起废弃）",
+      "anchor": "router",
+      "status": "found"
+    },
+    {
+      "name": "Badge",
+      "purpose": "信息标记组件，附加单个组件上作信息提醒",
+      "anchor": "badge",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "NavRouter (API9-13 deprecated) 和 Router (@ohos.router, API18起废弃)均为已废弃API，新开发建议统一使用 Navigation + NavPathStack + NavDestination",
+    "所有布局与导航组件（除 Router 外）均为 ArkUI 内置声明式组件，无需 import 可直接使用",
+    "Badge 归类为信息展示组件，在此模块中作为附加标记提及",
+    "Router 需 import { router } from '@kit.ArkUI'，自API version 18起废弃，建议通过 UIContext.getRouter() 获取 Router 实例替代"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,99 @@
+{
+  "module": "02-state-management.md",
+  "group": "02 — 状态管理 State Management",
+  "apiCount": 14,
+  "apis": [
+    {
+      "name": "@Watch",
+      "purpose": "监听状态变量变化，在变量改变时触发回调函数",
+      "anchor": "#watch",
+      "status": "found"
+    },
+    {
+      "name": "@State",
+      "purpose": "组件内部状态，支持组件内可变状态变量声明",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "子组件从父组件接收的单向数据绑定",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Link",
+      "purpose": "子组件与父组件之间的双向数据绑定",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Provide",
+      "purpose": "向子组件提供数据（配合 @Consume 实现跨层级数据传递）",
+      "anchor": "#provideoptions",
+      "status": "found"
+    },
+    {
+      "name": "@Consume",
+      "purpose": "从祖先组件接收 @Provide 提供的数据",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@Observed",
+      "purpose": "装饰类使其成为可观察对象，支持嵌套对象的响应式更新",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@ObjectLink",
+      "purpose": "子组件中与 @Observed 装饰的父组件对象建立双向绑定",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@LocalStorageLink",
+      "purpose": "将 LocalStorage 中的属性与组件建立双向数据绑定",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "@LocalStorageProp",
+      "purpose": "将 LocalStorage 中的属性与组件建立单向数据绑定",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "AppStorage",
+      "purpose": "应用全局的UI状态存储，支持跨页面数据共享与持久化",
+      "anchor": "#appstorage",
+      "status": "found"
+    },
+    {
+      "name": "LocalStorage",
+      "purpose": "页面级UI状态存储，支持页面内组件数据共享",
+      "anchor": "#localstorage9",
+      "status": "found"
+    },
+    {
+      "name": "PersistentStorage",
+      "purpose": "将 AppStorage 中的属性持久化到磁盘文件",
+      "anchor": "#persistentstorage",
+      "status": "found"
+    },
+    {
+      "name": "Environment",
+      "purpose": "设备环境变量查询，将系统环境变量注入 AppStorage",
+      "anchor": "#environment",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@State、@Prop、@Link、@Consume、@Observed、@ObjectLink、@LocalStorageLink、@LocalStorageProp 装饰器在 API 参考文档中无独立文件，仅在 HarmonyOS 开发指南中详细描述。@Provide 仅在其参数类型 ProvideOptions 中有参考条目。",
+    "V1 状态管理 API（首字母大写的 Link/Prop/SetOrCreate 等）从 API version 10 起废弃，建议使用小写版本（link/prop/setOrCreate 等）。",
+    "从 API version 12 开始 AppStorage/LocalStorage 支持 Map、Set、Date 类型及 null/undefined 联合类型。",
+    "V2 状态管理使用 @ohos.arkui.StateManagement 模块（import from @kit.ArkUI），包含 AppStorageV2/PersistenceV2/UIUtils。",
+    "@Env 装饰器（API 22+）与早期 Environment 全局对象是不同的 API：前者在组件内读取系统属性，后者将环境变量写入 AppStorage。"
+  ],
+  "missingApis": ["@State", "@Prop", "@Link", "@Consume", "@Observed", "@ObjectLink", "@LocalStorageLink", "@LocalStorageProp"]
+}

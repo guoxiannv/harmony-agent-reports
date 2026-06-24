@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>手作·印记 - 首页</title>
+  <style>
+    :root {
+      --clay-white: #F7F4EF;
+      --clay-brown: #B88B6F;
+      --clay-ochre: #A2593B;
+      --clay-dark: #3E2F27;
+      --clay-gray: #7A6A5C;
+      --kiln-green: #6E8078;
+      --fire-orange: #E08A52;
+      --warn-red: #B84A3E;
+      --gold-kintsugi: #D9C3A0;
+      --card-bg: #FFFFFF;
+      --surface-khaki: #EBE2D7;
+      --border-clay: rgba(162, 89, 59, 0.10);
+      --shadow-card: rgba(62, 47, 39, 0.10) 0px 6px 20px -4px;
+      --shadow-btn: rgba(162, 89, 59, 0.22) 0px 4px 14px 0px;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; background: #E8E1D8; }
+    body {
+      font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      color: var(--clay-dark);
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      background: var(--clay-white);
+    }
+    .page-root { padding-bottom: 84px; }
+    .hero {
+      background: linear-gradient(165deg, #CBA58C 0%, #B88B6F 45%, #F7F4EF 100%);
+      border-radius: 0 0 24px 24px;
+      padding: 52px 16px 28px;
+      position: relative;
+    }
+    .hero-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .hero-title { font-size: 26px; font-weight: 600; letter-spacing: 0.6px; margin: 0; color: var(--clay-dark); }
+    .hero-subtitle { font-size: 14px; color: var(--clay-gray); margin-top: 4px; }
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(247, 244, 239, 0.65);
+      border: 1px solid rgba(162, 89, 59, 0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-signin-wrap { display: flex; justify-content: center; margin-top: 8px; }
+    .signin-btn {
+      width: 84px; height: 84px; border-radius: 50%;
+      background: linear-gradient(135deg, #E08A52 0%, #D67A3E 100%);
+      border: none;
+      color: var(--clay-white);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-btn);
+      position: relative;
+    }
+    .signin-btn::before {
+      content: "";
+      position: absolute; inset: 6px;
+      border: 2px dashed rgba(247, 244, 239, 0.45);
+      border-radius: 50%;
+    }
+    .signin-btn .label { font-size: 15px; font-weight: 600; letter-spacing: 0.4px; }
+    .signin-btn .sub { font-size: 10px; opacity: 0.9; margin-top: 2px; }
+    .section { padding: 0 16px; margin-top: 24px; }
+    .section-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .section-title { font-size: 18px; font-weight: 600; letter-spacing: 0.3px; margin: 0; }
+    .section-more { font-size: 13px; color: var(--clay-ochre); font-weight: 500; }
+    .banner {
+      background: rgba(184, 74, 62, 0.08);
+      border-left: 4px solid var(--warn-red);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-card);
+    }
+    .banner.warn { border-left-color: var(--warn-red); background: rgba(184, 74, 62, 0.08); }
+    .banner.alert { border-left-color: var(--fire-orange); background: rgba(224, 138, 82, 0.10); }
+    .banner-icon { flex-shrink: 0; }
+    .banner-body { flex: 1; }
+    .banner-title { font-size: 14px; font-weight: 600; }
+    .banner-desc { font-size: 12px; color: var(--clay-gray); margin-top: 2px; }
+    .banner-arrow { color: var(--clay-ochre); }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-clay);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow-card);
+    }
+    .course-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(162, 89, 59, 0.08);
+    }
+    .course-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .course-time {
+      width: 46px; text-align: center; flex-shrink: 0;
+    }
+    .course-time .h { font-size: 16px; font-weight: 700; color: var(--clay-ochre); }
+    .course-time .m { font-size: 11px; color: var(--clay-gray); }
+    .course-body { flex: 1; }
+    .course-name { font-size: 15px; font-weight: 600; }
+    .course-meta { font-size: 12px; color: var(--clay-gray); margin-top: 3px; }
+    .course-status {
+      font-size: 11px; font-weight: 600;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(110, 128, 120, 0.10); color: var(--kiln-green);
+    }
+    .course-status.booked { background: rgba(162, 89, 59, 0.10); color: var(--clay-ochre); }
+    .quick-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      margin-top: 12px;
+    }
+    .quick-card {
+      background: var(--surface-khaki);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex; flex-direction: column; gap: 8px;
+      border: 1px solid rgba(162, 89, 59, 0.08);
+    }
+    .quick-card .icon { width: 36px; height: 36px; }
+    .quick-card .title { font-size: 14px; font-weight: 600; }
+    .quick-card .desc { font-size: 11px; color: var(--clay-gray); }
+    .bottom-tab {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      max-width: 390px; margin: 0 auto;
+      height: 64px;
+      background: #5A463A;
+      border-top: 1px solid rgba(247, 244, 239, 0.12);
+      display: flex; justify-content: space-around; align-items: center;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      z-index: 100;
+    }
+    .tab-item {
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      color: #D9C3A0; font-size: 11px; font-weight: 500;
+      text-decoration: none;
+    }
+    .tab-item.active { color: var(--clay-white); }
+    .tab-item svg { opacity: 0.75; }
+    .tab-item.active svg { opacity: 1; }
+  </style>
+</head>
+<body data-page-id="home-page" data-tab-id="tab-home">
+  <div class="page-root">
+    <section class="hero">
+      <div class="hero-header">
+        <div>
+          <h1 class="hero-title">手作·印记</h1>
+          <div class="hero-subtitle">今日工作室 · 6月22日 周一</div>
+        </div>
+        <button class="icon-btn" data-ui-id="profile-about" aria-label="打开关于页面">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3E2F27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>打开关于与设置</title>
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="hero-signin-wrap">
+        <button class="signin-btn" data-ui-id="home-signin-button" data-event="member-signin">
+          <span class="label">今日签到</span>
+          <span class="sub">+5 积分</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="banner warn" data-ui-id="home-sleep-banner">
+        <div class="banner-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B84A3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <title>沉睡会员提醒图标</title>
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+            <path d="M19 11v.01"/>
+            <path d="M15 15h.01"/>
+          </svg>
+        </div>
+        <div class="banner-body">
+          <div class="banner-title" data-ui-id="home-sleep-count">3 位会员许久未见</div>
+          <div class="banner-desc">点击查看沉睡名单，送去一句问候</div>
+        </div>
+        <div class="banner-arrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A2593B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>进入沉睡会员列表</title>
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </div>
+      </div>
+      <div class="banner alert" data-ui-id="home-low-stock-banner">
+        <div class="banner-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E08A52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <title>低库存预警图标</title>
+            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+            <rect x="9" y="3" width="6" height="4" rx="2"/>
+            <path d="M9 14h.01"/><path d="M9 17h.01"/><path d="M12 16l1 1 3-3"/>
+          </svg>
+        </div>
+        <div class="banner-body">
+          <div class="banner-title">2 种耗材库存不足</div>
+          <div class="banner-desc">陶土、釉下彩颜料需补货</div>
+        </div>
+        <div class="banner-arrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A2593B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>进入库存管理</title>
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">今日课程</h2>
+        <span class="section-more" data-ui-id="home-quick-points">积分明细 →</span>
+      </div>
+      <div class="card" data-ui-id="home-today-course-list">
+        <div class="course-item" id="home-today-course-c1">
+          <div class="course-time">
+            <div class="h">10:00</div>
+            <div class="m">2h</div>
+          </div>
+          <div class="course-body">
+            <div class="course-name">手捏陶杯入门</div>
+            <div class="course-meta">已预约 4/6 人 · 陶土 x0.5kg</div>
+          </div>
+          <div class="course-status booked">已开课</div>
+        </div>
+        <div class="course-item" id="home-today-course-c2">
+          <div class="course-time">
+            <div class="h">14:30</div>
+            <div class="m">2.5h</div>
+          </div>
+          <div class="course-body">
+            <div class="course-name">釉下彩绘制</div>
+            <div class="course-meta">已预约 2/6 人 · 颜料套装</div>
+          </div>
+          <div class="course-status">可预约</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">快捷入口</h2>
+      </div>
+      <div class="quick-grid">
+        <div class="quick-card" data-ui-id="home-quick-inventory">
+          <div class="icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#A2593B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <title>进入库存管理</title>
+              <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+              <path d="m3.3 7 8.7 5 8.7-5"/>
+              <path d="M12 22V12"/>
+            </svg>
+          </div>
+          <div class="title">库存管理</div>
+          <div class="desc">耗材出入库与预警</div>
+        </div>
+        <div class="quick-card">
+          <div class="icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#6E8078" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <title>查看积分排行</title>
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+              <path d="M4 22h16"/>
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+            </svg>
+          </div>
+          <div class="title">积分排行</div>
+          <div class="desc">会员积分总览</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="bottom-tab" data-ui-id="home-bottom-tab-bar">
+    <a class="tab-item active" href="#" data-tab-id="tab-home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <title>首页标签</title>
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>首页</span>
+    </a>
+    <a class="tab-item" href="#" data-tab-id="tab-members">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <title>会员标签</title>
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <span>会员</span>
+    </a>
+    <a class="tab-item" href="#" data-tab-id="tab-courses">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <title>课程标签</title>
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <span>课程</span>
+    </a>
+    <a class="tab-item" href="#" data-tab-id="tab-inventory">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <title>库存标签</title>
+        <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+        <path d="m3.3 7 8.7 5 8.7-5"/>
+        <path d="M12 22V12"/>
+      </svg>
+      <span>库存</span>
+    </a>
+    <a class="tab-item" href="#" data-tab-id="tab-profile">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <title>我的标签</title>
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/>
+      </svg>
+      <span>我的</span>
+    </a>
+  </nav>
+</body>
+</html>

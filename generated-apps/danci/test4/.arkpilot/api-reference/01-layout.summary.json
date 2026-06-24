@@ -1,0 +1,79 @@
+{
+  "module": "01-layout.md",
+  "group": "01 — Layout & Basic Components",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "Column",
+      "purpose": "垂直方向线性布局容器，沿垂直方向排列子组件，支持间距和对齐设置",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "水平方向线性布局容器，沿水平方向排列子组件，支持间距和对齐设置",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，子组件按顺序入栈，后一个覆盖前一个，支持对齐方式和同步加载",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Flex",
+      "purpose": "弹性布局容器，高效排列、对齐子元素并分配剩余空间，支持方向/换行/对齐/间距设置",
+      "anchor": "flex",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "显示一段文本的组件，支持图文混排及丰富的文本样式/布局/溢出/选择属性",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Button",
+      "purpose": "按钮组件，支持多种样式(普通/胶囊/圆形/圆角矩形)和重要程度(强调/普通/文本)以及尺寸大小",
+      "anchor": "button",
+      "status": "found"
+    },
+    {
+      "name": "Blank",
+      "purpose": "空白填充组件，在容器主轴方向自动填充空余空间，仅在Row/Column/Flex父组件下生效",
+      "anchor": "blank",
+      "status": "found"
+    },
+    {
+      "name": "Divider",
+      "purpose": "分割线组件，用于分隔不同内容块，支持水平/垂直方向、颜色、粗细和端点样式",
+      "anchor": "divider",
+      "status": "found"
+    },
+    {
+      "name": "Image",
+      "purpose": "图片组件，支持png/jpg/webp/gif/svg等多种格式，支持占位图、填充方式、颜色滤镜等",
+      "anchor": "image",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动容器组件，支持垂直/水平/自由滚动，支持滚动条、边缘效果、嵌套滚动、缩放等",
+      "anchor": "scroll",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有布局和基础组件均为 ArkUI 内置组件，无需显式 import",
+    "Flex 组件有二次布局开销，对性能敏感场景应优先使用 Column/Row 替代",
+    "Blank 仅在父组件为 Row/Column/Flex 时生效",
+    "Image 加载网络图片需申请 ohos.permission.INTERNET 权限",
+    "Image 支持 PixelMap、ResourceStr、DrawableDescriptor 三种数据源类型",
+    "Scroll clip 属性默认值为 true，子组件超出部分会被裁剪",
+    "Button 从 API 18 起默认类型从 Capsule 变更为 ROUNDED_RECTANGLE",
+    "Column/Row 从 API 12 起支持 reverse 属性反转子组件排列顺序",
+    "通用属性文档位于 02_应用框架/05_ArkUI（方舟UI框架）/02_ArkTS组件/02_通用属性/"
+  ],
+  "missingApis": []
+}

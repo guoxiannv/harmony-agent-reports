@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 应急联系人</title>
+  <style>
+    :root {
+      --brand-deep: #115E59; --brand-primary: #0D9488; --brand-bright: #14B8A6; --brand-light: #5EEAD4; --brand-mint: #CCFBF1; --brand-pale: #F0FDFA;
+      --safe: #059669; --safe-bg: #D1FAE5; --warning: #B45309; --warning-bg: #FEF3C7; --danger: #DC2626; --danger-bg: #FEE2E2;
+      --text-primary: #0F172A; --text-secondary: #475569; --text-tertiary: #94A3B8;
+      --surface-primary: #FFFFFF; --surface-secondary: #F8FAFC; --surface-tertiary: #E2E8F0;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04); --shadow-md: 0 4px 14px -3px rgba(13,148,136,0.13); --shadow-lg: 0 12px 32px -10px rgba(13,148,136,0.20); --glow-brand: 0 0 18px rgba(94,234,212,0.48);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--brand-pale); color: var(--text-primary); min-height: 100vh; max-width: 420px; margin: 0 auto; padding-bottom: 90px; }
+    .header { padding: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .header-title { font-size: 22px; font-weight: 700; color: var(--brand-deep); }
+    .icon-btn { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--surface-secondary); border: none; }
+    .search-box { margin: 0 16px 14px; position: relative; }
+    .search-box input { width: 100%; height: 46px; border-radius: 12px; border: 1px solid transparent; background: var(--surface-secondary); padding: 0 16px 0 40px; font-size: 14px; color: var(--text-primary); }
+    .search-box input:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 0 3px rgba(13,148,136,0.10); }
+    .search-box svg { position: absolute; left: 14px; top: 13px; color: var(--text-tertiary); }
+    .filters { display: flex; gap: 8px; padding: 0 16px 12px; overflow-x: auto; }
+    .filters::-webkit-scrollbar { display: none; }
+    .chip { flex-shrink: 0; padding: 7px 14px; border-radius: 9999px; font-size: 13px; font-weight: 600; background: var(--surface-secondary); color: var(--text-secondary); border: none; }
+    .chip.active { background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; box-shadow: var(--shadow-md); }
+    .group-title { font-size: 13px; font-weight: 700; color: var(--text-secondary); padding: 8px 16px; }
+    .list { display: flex; flex-direction: column; gap: 10px; padding: 0 16px; }
+    .contact-card { background: var(--surface-primary); border-radius: 16px; padding: 14px 16px; box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; flex-shrink: 0; }
+    .avatar.danger { background: linear-gradient(135deg, #DC2626, #F87171); }
+    .contact-info { flex: 1; }
+    .contact-name { font-size: 16px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 6px; }
+    .contact-role { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+    .contact-phone { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+    .badge { padding: 3px 8px; border-radius: 9999px; font-size: 10px; font-weight: 700; }
+    .badge-danger { background: var(--danger-bg); color: var(--danger); }
+    .call-btn { width: 42px; height: 42px; border-radius: 50%; border: none; background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); }
+    .tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 68px; background: rgba(255,255,255,0.85); backdrop-filter: blur(24px) saturate(160%); border-top: 1px solid rgba(226,232,240,0.6); display: flex; justify-content: space-around; align-items: center; padding-bottom: 8px; box-shadow: var(--shadow-lg); }
+    .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-tertiary); font-size: 10px; }
+    .tab.active { color: var(--brand-primary); }
+    .tab-icon { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+    .tab.active .tab-icon { background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; box-shadow: var(--glow-brand); }
+  </style>
+</head>
+<body data-page-id="contacts" data-tab-id="tab-contacts">
+  <header class="header">
+    <h1 class="header-title" data-ui-id="contacts-header-title">应急联系人</h1>
+    <button class="icon-btn" data-ui-id="contacts-add-button" aria-label="添加联系人">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>添加应急联系人</title><path d="M12 5v14M5 12h14"></path></svg>
+    </button>
+  </header>
+
+  <div class="search-box">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>搜索联系人</title><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input type="text" placeholder="搜索姓名、角色或电话" data-ui-id="contacts-search-input" />
+  </div>
+
+  <div class="filters" data-ui-id="contacts-group-list">
+    <button class="chip active">全部</button>
+    <button class="chip">消防</button>
+    <button class="chip">安保</button>
+    <button class="chip">医疗</button>
+    <button class="chip">管理</button>
+  </div>
+
+  <div class="group-title">紧急联系人</div>
+  <section class="list" data-ui-id="contacts-list">
+    <article class="contact-card" data-ui-id="contacts-item-1">
+      <div class="avatar danger">消</div>
+      <div class="contact-info">
+        <div class="contact-name">消防中控室<span class="badge badge-danger">紧急</span></div>
+        <div class="contact-role">消防 · 24小时值守</div>
+        <div class="contact-phone">119 / 内线 8119</div>
+      </div>
+      <button class="call-btn" data-ui-id="contacts-item-1-call-button" aria-label="拨打消防中控室">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>拨打消防中控室</title><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.56 12.56 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.56 12.56 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </button>
+    </article>
+
+    <article class="contact-card" data-ui-id="contacts-item-2">
+      <div class="avatar">医</div>
+      <div class="contact-info">
+        <div class="contact-name">园区医务室</div>
+        <div class="contact-role">医疗 · 工作日值守</div>
+        <div class="contact-phone">120 / 内线 8120</div>
+      </div>
+      <button class="call-btn" data-ui-id="contacts-item-2-call-button" aria-label="拨打园区医务室">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>拨打园区医务室</title><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.56 12.56 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.56 12.56 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </button>
+    </article>
+
+    <article class="contact-card" data-ui-id="contacts-item-3">
+      <div class="avatar">安</div>
+      <div class="contact-info">
+        <div class="contact-name">安保值班室</div>
+        <div class="contact-role">安保 · 24小时值守</div>
+        <div class="contact-phone">内线 8101</div>
+      </div>
+      <button class="call-btn" data-ui-id="contacts-item-3-call-button" aria-label="拨打安保值班室">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>拨打安保值班室</title><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.56 12.56 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.56 12.56 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </button>
+    </article>
+
+    <article class="contact-card" data-ui-id="contacts-item-4">
+      <div class="avatar">管</div>
+      <div class="contact-info">
+        <div class="contact-name">张主管</div>
+        <div class="contact-role">管理 · 安全负责人</div>
+        <div class="contact-phone">138-0000-1234</div>
+      </div>
+      <button class="call-btn" data-ui-id="contacts-item-4-call-button" aria-label="拨打张主管">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>拨打张主管</title><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.56 12.56 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.56 12.56 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </button>
+    </article>
+  </section>
+
+  <nav class="tabbar">
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页工作台</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </div>
+      <span>首页</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>巡检打卡</title><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      </div>
+      <span>巡检</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>隐患与事项</title><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      </div>
+      <span>隐患</span>
+    </div>
+    <div class="tab active">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>应急联系人</title><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      </div>
+      <span>联系人</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>统计看板</title><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      </div>
+      <span>统计</span>
+    </div>
+  </nav>
+</body>
+</html>

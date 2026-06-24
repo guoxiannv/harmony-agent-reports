@@ -1,0 +1,201 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "version": "1.0",
+  "persistenceStrategy": {
+    "mechanism": "@ohos.data.preferences",
+    "storeName": "eatwhat_store",
+    "rationale": "Local-only personal app with small datasets (built-in dish bank, ingredient list, daily checkins, wheel/custom dishes). preferences with JSON-stringified arrays avoids relationalStore/ResultSet complexity and build risk while satisfying the spec's 'all data local storage' requirement.",
+    "keys": {
+      "customDishes": "custom_dishes",
+      "ingredients": "ingredients",
+      "checkins": "checkins",
+      "wheelCustomDishes": "wheel_custom_dishes"
+    }
+  },
+  "dataModel": {
+    "entities": {
+      "Dish": {
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "category": "string",
+          "tags": "string[]",
+          "ingredients": "string[] (required ingredient names)",
+          "steps": "string[]",
+          "calories": "number",
+          "timeSlots": "string[] (TimeSlot values)",
+          "moods": "string[] (MoodType values)",
+          "source": "'builtin' | 'custom'"
+        }
+      },
+      "Ingredient": { "fields": { "id": "string", "name": "string" } },
+      "Checkin": {
+        "fields": {
+          "id": "string",
+          "dishId": "string",
+          "dishName": "string",
+          "meal": "string (MealType)",
+          "note": "string",
+          "calories": "number",
+          "timestamp": "number (epoch ms)",
+          "dateKey": "string (YYYY-MM-DD)"
+        }
+      },
+      "ShareCardData": {
+        "fields": {
+          "dateKey": "string",
+          "title": "string",
+          "moodLine": "string",
+          "streakDays": "number",
+          "totalCheckins": "number",
+          "template": "string"
+        }
+      }
+    },
+    "enums": {
+      "MealType": ["breakfast", "lunch", "dinner", "lateNight"],
+      "TimeSlot": ["breakfast", "lunch", "dinner", "lateNight"],
+      "MoodType": ["light", "heavy", "quick", "healthy", "indulge", "comfort"],
+      "ShareTemplate": ["classic", "warm", "fresh"]
+    },
+    "formState": {
+      "checkinForm": { "meal": "MealType", "dishQuery": "string", "note": "string", "selectedDishId": "string|null", "editingId": "string|null", "source": "string" },
+      "wheelSettings": { "newDishName": "string" },
+      "share": { "selectedTemplate": "ShareTemplate", "cardData": "ShareCardData", "source": "string", "originDishName": "string|null" }
+    },
+    "computedState": {
+      "/wheel/selectedDish": "Dish | null (last spun result)",
+      "/wheel/isSpinning": "boolean",
+      "/ingredients/recommendations": "Dish[] sorted by matchScore desc",
+      "/discover/results": "Dish[] filtered by selectedMoods ∩ selectedTimes",
+      "/checkin/todayCount": "number (checkins with today dateKey)",
+      "/checkin/todayCalories": "number (sum of today checkin calories)",
+      "/checkin/streakDays": "number (consecutive days with >=1 checkin ending today)"
+    }
+  },
+  "services": {
+    "PersistenceService": "preferences-backed load/save for customDishes, ingredients, checkins, wheelCustomDishes; clearAll() deletes all keys",
+    "DishRepository": "merges builtin DishBank + persisted custom dishes; query by id, filter by moods/timeSlots, search by name",
+    "RecommendEngine": "scores each dish by ingredient-name match ratio over required ingredients; returns sorted list",
+    "ShareService": "builds ShareCardData from a checkin or wheel result; invokes systemShare.ShareController; saves card to album via photoAccessHelper (deferred to visual integration — needs canvas pixelmap)"
+  },
+  "stateMachine": {
+    "surfaces": ["home", "ingredients", "discover", "checkin", "profile", "dish-detail", "share-card"],
+    "overlays": ["checkin-form", "wheel-settings"],
+    "transitions": [
+      { "from": "any-tab", "event": "open-dish-detail", "to": "dish-detail", "carry": "pendingDishId, lastTabBeforePush" },
+      { "from": "dish-detail|checkin", "event": "open-share-card", "to": "share-card", "carry": "share.cardData, share.source" },
+      { "from": "any", "event": "open-checkin-form", "to": "overlay:checkin-form", "carry": "form.source, optional editingId, optional presetDishId" },
+      { "from": "home", "event": "open-wheel-settings", "to": "overlay:wheel-settings" },
+      { "from": "dish-detail|share-card|overlay", "event": "back", "to": "lastTabBeforePush" }
+    ]
+  },
+  "interactionFlows": [
+    {
+      "id": "spin-wheel",
+      "trigger": "home-spin-button | home-spin-again-button",
+      "steps": [
+        "isSpinning = true, selectedDish = null",
+        "pick uniformly random dish from wheelPool (builtin defaults + persisted wheelCustomDishes)",
+        "isSpinning = false, selectedDish = picked"
+      ],
+      "postState": { "/wheel/selectedDish": "Dish", "/wheel/isSpinning": "false" },
+      "errorPath": "if wheelPool empty -> keep button, show '请先添加菜品' feedback"
+    },
+    {
+      "id": "open-dish-detail",
+      "trigger": "home-result-view-button | any dish card",
+      "steps": ["set pendingDishId", "record lastTabBeforePush", "surface = dish-detail"],
+      "postState": { "/dish/name": "pendingDish.name" }
+    },
+    {
+      "id": "add-ingredient",
+      "trigger": "ingredients-add-button | ingredients-input submit",
+      "steps": ["read trimmed name", "reject empty/duplicate (case-insensitive)", "persist Ingredient[]", "recompute recommendations"],
+      "postState": { "/ingredients": "Ingredient[]", "/ingredients/recommendations": "Dish[]" }
+    },
+    {
+      "id": "clear-ingredients",
+      "trigger": "ingredients-clear-button",
+      "steps": ["persist empty list", "recommendations = []"]
+    },
+    {
+      "id": "filter-mood",
+      "trigger": "discover-mood-filter",
+      "steps": ["toggle mood in selectedMoods", "recompute results"],
+      "postState": { "/discover/results": "Dish[]" }
+    },
+    {
+      "id": "filter-time",
+      "trigger": "discover-time-filter",
+      "steps": ["toggle time in selectedTimes", "recompute results"],
+      "postState": { "/discover/results": "Dish[]" }
+    },
+    {
+      "id": "reset-filters",
+      "trigger": "discover-reset-button",
+      "steps": ["selectedMoods = [], selectedTimes = [], results = all builtin dishes"]
+    },
+    {
+      "id": "submit-checkin",
+      "trigger": "checkin-form-submit-button",
+      "steps": [
+        "require selectedDish (search match) and meal",
+        "build Checkin {dateKey today, timestamp now, calories from dish}",
+        "if editingId -> replace, else append",
+        "persist checkins, close overlay, recompute today stats"
+      ],
+      "postState": { "/checkin/today": "Checkin[]", "/checkin/todayCount": "n", "/checkin/todayCalories": "sum" }
+    },
+    {
+      "id": "delete-checkin",
+      "trigger": "checkin-delete-button",
+      "steps": ["remove by id", "persist", "recompute today stats"]
+    },
+    {
+      "id": "open-share-card",
+      "trigger": "checkin-share-button | dish-detail-share-button",
+      "steps": ["build ShareCardData from source (checkin or wheel result)", "default template = classic", "surface = share-card"]
+    },
+    {
+      "id": "select-template",
+      "trigger": "share-template-selector",
+      "steps": ["set selectedTemplate", "rebuild cardData.template"]
+    },
+    {
+      "id": "add-wheel-dish",
+      "trigger": "wheel-settings-add-button",
+      "steps": ["read newDishName", "reject empty/duplicate", "persist wheelCustomDishes, clear input"]
+    },
+    {
+      "id": "reset-wheel-dishes",
+      "trigger": "wheel-settings-reset-button",
+      "steps": ["persist empty wheelCustomDishes -> wheelPool reverts to builtin defaults"]
+    },
+    {
+      "id": "add-custom-dish",
+      "trigger": "profile-add-custom-dish-button",
+      "steps": ["add to global customDishes (also usable in wheel/discover/recommend)"]
+    },
+    {
+      "id": "clear-all-data",
+      "trigger": "profile-clear-data-button",
+      "steps": ["PersistenceService.clearAll() -> reset all lists to empty/default"]
+    }
+  ],
+  "testTargets": {
+    "preservedSemanticIds": [
+      "home-spin-button", "home-wheel-result", "home-result-view-button", "home-spin-again-button", "home-wheel-settings-button", "home-quick-checkin-button",
+      "ingredients-input", "ingredients-add-button", "ingredients-list", "ingredients-clear-button", "ingredients-recommend-list", "ingredients-recommend-checkin-button",
+      "discover-mood-filter", "discover-time-filter", "discover-reset-button", "discover-result-list",
+      "checkin-add-button", "checkin-today-count", "checkin-today-calories", "checkin-timeline-list", "checkin-edit-button", "checkin-delete-button", "checkin-share-button",
+      "share-card-preview", "share-template-selector", "share-save-button", "share-share-button",
+      "dish-detail-title", "dish-detail-checkin-button", "dish-detail-share-button",
+      "profile-custom-dishes-list", "profile-add-custom-dish-button", "profile-clear-data-button",
+      "checkin-form-meal-picker", "checkin-form-dish-search", "checkin-form-note-input", "checkin-form-submit-button", "checkin-form-cancel-button",
+      "wheel-settings-input", "wheel-settings-add-button", "wheel-settings-list", "wheel-settings-reset-button"
+    ],
+    "tabIds": ["tab-home", "tab-ingredients", "tab-discover", "tab-checkin", "tab-profile"]
+  },
+  "changeRequests": []
+}

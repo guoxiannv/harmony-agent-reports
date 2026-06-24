@@ -1,0 +1,158 @@
+{
+  "module": "04-file.md",
+  "group": "04 — 文件管理 (File)",
+  "apiCount": 23,
+  "apis": [
+    {
+      "name": "fileIo.open",
+      "purpose": "打开文件或目录，返回 File 对象（含 fd）",
+      "anchor": "fileioopen",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.openSync",
+      "purpose": "同步方式打开文件或目录",
+      "anchor": "fileioopensync",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.read",
+      "purpose": "从已打开的文件描述符读取数据到缓冲区",
+      "anchor": "fileioread",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.write",
+      "purpose": "将缓冲区或字符串数据写入已打开的文件",
+      "anchor": "fileiowrite",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.mkdir",
+      "purpose": "创建目录，支持递归创建",
+      "anchor": "fileiomkdir",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.access",
+      "purpose": "检查文件或目录是否存在，或校验操作权限",
+      "anchor": "fileioaccess",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.listFile",
+      "purpose": "列出目录下所有文件名和目录名，支持过滤和递归",
+      "anchor": "fileiolistfile",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.unlink",
+      "purpose": "删除单个文件",
+      "anchor": "fileiounlink",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.copyFile",
+      "purpose": "复制文件，支持完全覆盖模式",
+      "anchor": "fileiocopyfile",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.rename",
+      "purpose": "重命名文件或目录",
+      "anchor": "fileiorename",
+      "status": "found"
+    },
+    {
+      "name": "fileUri.getUriFromPath",
+      "purpose": "从沙箱路径获取文件 URI",
+      "anchor": "fileurigeturifrompath",
+      "status": "found"
+    },
+    {
+      "name": "fileUri.FileUri",
+      "purpose": "FileUri 类构造函数，通过 URI 或路径创建对象",
+      "anchor": "fileurifileuri",
+      "status": "found"
+    },
+    {
+      "name": "DocumentViewPicker",
+      "purpose": "文件选择器，支持选择和保存文档",
+      "anchor": "documentviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "DocumentViewPicker.select",
+      "purpose": "拉起 Picker 界面选择文件",
+      "anchor": "documentviewpickerselect",
+      "status": "found"
+    },
+    {
+      "name": "DocumentViewPicker.save",
+      "purpose": "拉起 Picker 界面保存文件",
+      "anchor": "documentviewpickersave",
+      "status": "found"
+    },
+    {
+      "name": "securityLabel.setSecurityLabel",
+      "purpose": "设置文件或目录的数据安全等级",
+      "anchor": "securitylabelsetsecuritylabel",
+      "status": "found"
+    },
+    {
+      "name": "securityLabel.getSecurityLabel",
+      "purpose": "获取文件或目录的数据安全等级",
+      "anchor": "securitylabelgetsecuritylabel",
+      "status": "found"
+    },
+    {
+      "name": "context.filesDir",
+      "purpose": "获取应用沙箱文件目录路径",
+      "anchor": "contextfilesdir",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.close",
+      "purpose": "关闭已打开的文件句柄",
+      "anchor": "fileioclose",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.stat",
+      "purpose": "获取文件或目录的详细属性信息",
+      "anchor": "fileiostat",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.writeSync",
+      "purpose": "同步方式将数据写入文件",
+      "anchor": "fileiowritesync",
+      "status": "found"
+    },
+    {
+      "name": "fileIo.readSync",
+      "purpose": "同步方式从文件读取数据",
+      "anchor": "fileioreadsync",
+      "status": "found"
+    },
+    {
+      "name": "securityLabel.setSecurityLabelSync",
+      "purpose": "同步方法设置文件或目录的数据安全等级",
+      "anchor": "securitylabelsetsecuritylabelsync",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@ohos.file.fs 模块的 import 名为 fileIo（而非 fs），所有基础文件操作均通过 fileIo.* 调用",
+    "`fs.*` 为常用别名，实际 API 命名空间为 fileIo：fs.open → fileIo.open，fs.read → fileIo.read，等等",
+    "所有 fileIo 文件操作函数需先通过 context.filesDir 获取应用沙箱路径",
+    "DocumentViewPicker 推荐使用 constructor(context) 带参构造，无参构造存在概率性拉起失败问题",
+    "securityLabel 数据安全等级 s0∼s4，仅可由低向高设置，未设置默认返回 s3",
+    "context.filesDir 是 Stage 模型 Context 基类的一个只读属性，需从 UIAbility.this.context 获取",
+    "@ohos.file.picker 中的 PhotoViewPicker 从 API 12 起已废弃，推荐使用 photoAccessHelper.PhotoViewPicker",
+    "File Manager Service Kit 提供的 fileManagerService.deleteToTrash 等能力属于文件管理扩展，非基础 IO"
+  ],
+  "missingApis": [
+    "fs.listFile 的实际名称为 fileIo.listFile，已记录在 apis 中"
+  ]
+}

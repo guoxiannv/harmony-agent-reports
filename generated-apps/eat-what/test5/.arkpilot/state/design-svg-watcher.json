@@ -1,0 +1,62 @@
+{
+  "pid": 75839,
+  "status": "controller-tick",
+  "launched_by_session_id": "fd15fc0b-d87f-4d86-8750-be9ab79fa215",
+  "started_at": "2026-06-23T06:13:21.679Z",
+  "last_scan_at": "2026-06-23T07:02:20.874Z",
+  "last_change_at": "2026-06-23T06:38:30.700Z",
+  "html_signature": "[{\"name\":\"page-checkin-page.html\",\"mtime_ms\":1782196411946,\"size\":11737},{\"name\":\"page-dish-page.html\",\"mtime_ms\":1782196709885,\"size\":10871},{\"name\":\"page-filter-page.html\",\"mtime_ms\":1782196291748,\"size\":13127},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782195890748,\"size\":12142},{\"name\":\"page-ingredient-page.html\",\"mtime_ms\":1782196151662,\"size\":10602},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1782196599551,\"size\":8878},{\"name\":\"page-recommend-page.html\",\"mtime_ms\":1782196003191,\"size\":12339},{\"name\":\"page-share-page.html\",\"mtime_ms\":1782196502940,\"size\":9533}]",
+  "html_files": [
+    {
+      "name": "page-checkin-page.html",
+      "mtime_ms": 1782196411946,
+      "size": 11737
+    },
+    {
+      "name": "page-dish-page.html",
+      "mtime_ms": 1782196709885,
+      "size": 10871
+    },
+    {
+      "name": "page-filter-page.html",
+      "mtime_ms": 1782196291748,
+      "size": 13127
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782195890748,
+      "size": 12142
+    },
+    {
+      "name": "page-ingredient-page.html",
+      "mtime_ms": 1782196151662,
+      "size": 10602
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1782196599551,
+      "size": 8878
+    },
+    {
+      "name": "page-recommend-page.html",
+      "mtime_ms": 1782196003191,
+      "size": 12339
+    },
+    {
+      "name": "page-share-page.html",
+      "mtime_ms": 1782196502940,
+      "size": 9533
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 54,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 54,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-23T07:02:20.874Z"
+}

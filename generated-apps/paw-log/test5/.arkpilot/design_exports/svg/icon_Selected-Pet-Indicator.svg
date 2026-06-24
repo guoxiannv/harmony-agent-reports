@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#3A3630">
+            <title>Selected Pet Indicator</title>
+            <circle cx="9" cy="10" r="2.5" fill="#4CB5A0"/>
+            <circle cx="15" cy="10" r="2.5" fill="#4CB5A0"/>
+            <ellipse cx="12" cy="16.5" rx="4" ry="2.5" fill="#FFB8C9"/>
+          </svg>

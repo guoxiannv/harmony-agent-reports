@@ -1,0 +1,112 @@
+{
+  "module": "02-controls.md",
+  "group": "02 — Controls & Input Components",
+  "apiCount": 16,
+  "apis": [
+    {
+      "name": "Button",
+      "purpose": "创建不同样式的按钮，支持文本和子组件两种方式",
+      "anchor": "button",
+      "status": "found"
+    },
+    {
+      "name": "TextInput",
+      "purpose": "单行文本输入框",
+      "anchor": "textinput",
+      "status": "found"
+    },
+    {
+      "name": "TextArea",
+      "purpose": "多行文本输入框，自动换行",
+      "anchor": "textarea",
+      "status": "found"
+    },
+    {
+      "name": "Search",
+      "purpose": "搜索框组件，支持搜索图标和搜索按钮",
+      "anchor": "search",
+      "status": "found"
+    },
+    {
+      "name": "Checkbox",
+      "purpose": "多选框组件，支持自定义选中样式和分组",
+      "anchor": "checkbox",
+      "status": "found"
+    },
+    {
+      "name": "Radio",
+      "purpose": "单选框，相同group内只能选中一项",
+      "anchor": "radio",
+      "status": "found"
+    },
+    {
+      "name": "Menu",
+      "purpose": "垂直列表菜单，需配合bindMenu或bindContextMenu使用",
+      "anchor": "menu",
+      "status": "found"
+    },
+    {
+      "name": "Select",
+      "purpose": "下拉选择菜单",
+      "anchor": "select",
+      "status": "found"
+    },
+    {
+      "name": "Badge",
+      "purpose": "信息标记组件，可附加在组件上做消息提醒",
+      "anchor": "badge",
+      "status": "found"
+    },
+    {
+      "name": "DatePicker",
+      "purpose": "滑动选择日期的组件",
+      "anchor": "datepicker",
+      "status": "found"
+    },
+    {
+      "name": "TimePicker",
+      "purpose": "滑动选择时间的组件",
+      "anchor": "timepicker",
+      "status": "found"
+    },
+    {
+      "name": "Rating",
+      "purpose": "评分组件，在给定范围内选择评分",
+      "anchor": "rating",
+      "status": "found"
+    },
+    {
+      "name": "Progress",
+      "purpose": "进度条组件，支持Linear/Ring/Scale/Moon等类型",
+      "anchor": "progress",
+      "status": "found"
+    },
+    {
+      "name": "LoadingProgress",
+      "purpose": "显示加载动效的组件",
+      "anchor": "loadingprogress",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "显示一段文本的组件，可包含Span/ImageSpan子组件",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Span",
+      "purpose": "Text的子组件，用于显示行内文本，支持继承父组件样式",
+      "anchor": "span",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有ArkUI控件均为内置组件，无需import声明可直接在build()方法中使用",
+    "高级类型（ComponentContent, SymbolGlyphModifier, LengthMetrics, ColorMetrics）需从@kit.ArkUI导入",
+    "Menu必须通过bindMenu()或bindContextMenu()挂载到目标组件上，不能单独使用",
+    "Span从API 10开始可继承父组件Text的字体/颜色属性",
+    "Checkbox在API 11起默认样式由圆角方形变为圆形",
+    "Radio在API 12起默认选中样式由DOT变为TICK"
+  ],
+  "missingApis": []
+}

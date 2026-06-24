@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今天吃什么 - 冰箱食材</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      background: #FAF8F5;
+      color: #1A1A1A;
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      padding-bottom: 80px;
+    }
+    .page-header {
+      padding: 48px 20px 20px;
+    }
+    .page-title { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+    .page-subtitle { font-size: 14px; color: #8A8A8A; }
+    .input-card {
+      background: #fff;
+      border-radius: 20px;
+      margin: 0 20px 20px;
+      padding: 16px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+    .input-row { display: flex; gap: 10px; }
+    .input-row input {
+      flex: 1;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 15px;
+      outline: none;
+    }
+    .input-row input:focus { border-color: #FF6B35; }
+    .add-btn {
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A5B 100%);
+      border: none;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(255,107,53,0.24);
+    }
+    .section { padding: 0 20px 16px; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .recommend-btn {
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A5B 100%);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .chip-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 18px;
+      padding: 8px 12px;
+      font-size: 13px;
+      display: inline-flex; align-items: center; gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .chip .del {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.05);
+      color: #8A8A8A;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 18px;
+      margin: 0 20px 16px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+    .dish-list { display: flex; flex-direction: column; gap: 12px; }
+    .dish-item {
+      display: flex; gap: 14px; align-items: center;
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .dish-thumb {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: linear-gradient(135deg, #3DD9C0 0%, #7EE8D8 100%);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .dish-thumb svg { width: 28px; height: 28px; color: #fff; }
+    .dish-info { flex: 1; }
+    .dish-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .dish-meta { font-size: 12px; color: #8A8A8A; display: flex; gap: 8px; align-items: center; }
+    .match-bar { width: 80px; height: 6px; border-radius: 3px; background: rgba(0,0,0,0.05); overflow: hidden; }
+    .match-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #FF6B35, #FF8A5B); }
+    .tag { font-size: 11px; padding: 3px 8px; border-radius: 10px; background: rgba(0,0,0,0.04); color: #4A4A4A; }
+    .tag.green { background: rgba(61,217,192,0.12); color: #3DD9C0; }
+    .empty-state {
+      text-align: center;
+      padding: 32px 20px;
+      color: #8A8A8A;
+    }
+    .empty-state svg { width: 48px; height: 48px; margin-bottom: 12px; color: #D4D0CA; }
+    .empty-title { font-size: 15px; color: #4A4A4A; margin-bottom: 6px; }
+    .bottom-tab {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      max-width: 390px;
+      margin: 0 auto;
+      height: 64px;
+      background: rgba(255, 248, 245, 0.86);
+      backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8A8A8A; font-size: 11px; font-weight: 600; }
+    .tab-item.active { color: #FF6B35; }
+    .tab-item svg { width: 24px; height: 24px; }
+  </style>
+</head>
+<body data-page-id="ingredients" data-tab-id="tab-ingredients">
+  <header class="page-header">
+    <h1 class="page-title" data-ui-id="ingredients-title">冰箱食材</h1>
+    <p class="page-subtitle">添加现有食材，发现今晚能做什么</p>
+  </header>
+
+  <section class="input-card">
+    <div class="input-row">
+      <input type="text" data-ui-id="ingredients-input" placeholder="例如：番茄、鸡蛋、豆腐" aria-label="输入食材名称"/>
+      <button class="add-btn" data-ui-id="ingredients-add-button" aria-label="添加食材">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>添加食材到冰箱清单</title>
+          <path d="M5 12h14"/>
+          <path d="M12 5v14"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">我的食材</h2>
+      <button class="recommend-btn" data-ui-id="ingredients-recommend-button">看看能做什么</button>
+    </div>
+    <div class="chip-cloud" data-ui-id="ingredients-list">
+      <span class="chip" data-ui-id="ingredient-1">番茄 <span class="del" data-ui-id="ingredient-delete-button" aria-label="删除番茄">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>删除该食材</title>
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </span></span>
+      <span class="chip" data-ui-id="ingredient-2">鸡蛋 <span class="del" data-ui-id="ingredient-delete-button" aria-label="删除鸡蛋">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>删除该食材</title>
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </span></span>
+      <span class="chip" data-ui-id="ingredient-3">豆腐 <span class="del" data-ui-id="ingredient-delete-button" aria-label="删除豆腐">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>删除该食材</title>
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </span></span>
+    </div>
+    <div class="empty-state" data-ui-id="ingredients-empty-state" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <title>冰箱为空状态</title>
+        <path d="M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6Z"/>
+        <path d="M5 10h14"/>
+        <path d="M15 7v6"/>
+      </svg>
+      <div class="empty-title">冰箱空空如也</div>
+      <div>添加食材后才能推荐菜谱哦</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">推荐菜谱</h2>
+      <span style="font-size:13px;color:#8A8A8A;">匹配 3 道</span>
+    </div>
+    <div class="card">
+      <div class="dish-list" data-ui-id="ingredients-dish-list">
+        <div class="dish-item" data-ui-id="ingredients-dish-1">
+          <div class="dish-thumb">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>番茄鸡蛋菜品图标</title>
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+              <path d="M7 2v20"/>
+              <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-name">番茄炒蛋</div>
+            <div class="dish-meta">
+              <span class="tag green">食材全匹配</span>
+              <span>15 分钟</span>
+              <div class="match-bar"><div class="match-fill" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="dish-item" data-ui-id="ingredients-dish-2">
+          <div class="dish-thumb" style="background: linear-gradient(135deg, #FF4D6D 0%, #FF7A8F 100%);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>麻婆豆腐菜品图标</title>
+              <rect width="18" height="18" x="3" y="3" rx="2"/>
+              <path d="M3 9h18"/>
+              <path d="M9 16h.01"/>
+              <path d="M15 13h.01"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-name">麻婆豆腐</div>
+            <div class="dish-meta">
+              <span class="tag">缺肉末</span>
+              <span>20 分钟</span>
+              <div class="match-bar"><div class="match-fill" style="width:70%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="empty-state" data-ui-id="ingredients-empty-recommendations" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>无匹配菜谱空状态</title>
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
+          <line x1="9" x2="9.01" y1="9" y2="9"/>
+          <line x1="15" x2="15.01" y1="9" y2="9"/>
+        </svg>
+        <div class="empty-title">暂时没匹配到菜谱</div>
+        <div>试试添加更多常见食材</div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="bottom-tab">
+    <div class="tab-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>今日首页导航</title>
+        <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+        <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      </svg>
+      今日
+    </div>
+    <div class="tab-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>冰箱食材导航</title>
+        <path d="M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6Z"/>
+        <path d="M5 10h14"/>
+        <path d="M15 7v6"/>
+      </svg>
+      食材
+    </div>
+    <div class="tab-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>饮食打卡导航</title>
+        <path d="M8 2v4"/>
+        <path d="M16 2v4"/>
+        <rect width="18" height="18" x="3" y="4" rx="2"/>
+        <path d="M3 10h18"/>
+      </svg>
+      打卡
+    </div>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="progress-ring" viewBox="0 0 100 100" data-ui-id="patrol-progress-ring">
+      <defs>
+        <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0D9488" />
+          <stop offset="100%" stop-color="#5EEAD4" />
+        </linearGradient>
+      </defs>
+      <circle class="bg" cx="50" cy="50" r="40"></circle>
+      <circle class="fg" cx="50" cy="50" r="40"></circle>
+      <text x="50" y="55" text-anchor="middle" class="progress-text">36%</text>
+    </svg>

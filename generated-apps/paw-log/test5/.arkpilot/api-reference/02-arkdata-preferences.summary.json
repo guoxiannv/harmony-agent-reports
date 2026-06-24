@@ -1,0 +1,64 @@
+{
+  "module": "02-arkdata-preferences.md",
+  "group": "02 — ArkData Preferences (轻量偏好存储)",
+  "apiCount": 8,
+  "apis": [
+    {
+      "name": "dataPreferences",
+      "purpose": "模块变量名（示例中使用的Preferences实例变量），实际模块为 import { preferences } from '@kit.ArkData'",
+      "anchor": "preferences-模块",
+      "status": "found"
+    },
+    {
+      "name": "Preferences",
+      "purpose": "首选项实例类，提供get/put/delete/flush/on/off等数据操作方法",
+      "anchor": "preferencesput",
+      "status": "found"
+    },
+    {
+      "name": "preferences.getPreferences",
+      "purpose": "获取Preferences实例（支持name或Options参数，callback/Promise/同步三种形式）",
+      "anchor": "preferencesgetpreferences",
+      "status": "found"
+    },
+    {
+      "name": "preferences.put",
+      "purpose": "写入键值对到缓存的Preferences实例（对应Preferences.put方法）",
+      "anchor": "preferencesput",
+      "status": "found"
+    },
+    {
+      "name": "preferences.get",
+      "purpose": "从缓存的Preferences实例中获取键对应的值（对应Preferences.get方法）",
+      "anchor": "preferencesget",
+      "status": "found"
+    },
+    {
+      "name": "preferences.delete",
+      "purpose": "从缓存的Preferences实例中删除指定键值对（对应Preferences.delete方法）",
+      "anchor": "preferencesdelete",
+      "status": "found"
+    },
+    {
+      "name": "preferences.flush",
+      "purpose": "将缓存的Preferences实例数据持久化到文件（对应Preferences.flush方法）",
+      "anchor": "preferencesflush",
+      "status": "found"
+    },
+    {
+      "name": "preferences.on",
+      "purpose": "订阅数据变更事件（支持change/multiProcessChange/dataChange三种类型）",
+      "anchor": "preferenceson",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "preferences 模块从 API version 9 开始支持，元服务从 API version 11 开始支持",
+    "首选项无法保证进程并发安全，不支持在多进程场景下使用（除 dataGroupId 场景外）",
+    "flush() 仅在 XML 存储模式下需要；GSKV 模式下数据实时落盘无需手动 flush",
+    "变更事件（on('change')）在调用 flush() 后触发，removePreferencesFromCache/deletePreferences 后自动取消订阅",
+    "ValueType 支持 number/string/boolean/数组/Uint8Array/object/bigint",
+    "api_list 中 'preferences.put/get/delete/flush/on' 实际是 Preferences 实例方法而非模块级函数，已在模块说明中标注"
+  ],
+  "missingApis": []
+}

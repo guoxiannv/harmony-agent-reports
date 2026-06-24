@@ -1,0 +1,35 @@
+{
+  "module": "03-image-encoding.md",
+  "group": "03 — Image Encoding (图片编码)",
+  "apiCount": 3,
+  "apis": [
+    {
+      "name": "image.Packer (ImagePacker)",
+      "purpose": "图片编码器，将 ImageSource/PixelMap/Picture 编码为压缩后的 ArrayBuffer 数据或写入文件，支持 jpeg/webp/png/heic/gif 格式",
+      "anchor": "ohosmultimediaimage--imagepacker-imagepacker",
+      "status": "found"
+    },
+    {
+      "name": "image.ImageSource",
+      "purpose": "图片解码源，通过 uri/fd/ArrayBuffer/RawFileDescriptor 创建，提供图片信息获取、Exif 属性读写、解码为 PixelMap/Picture 的能力",
+      "anchor": "ohosmultimediaimage--imagesource-imageimagesource",
+      "status": "found"
+    },
+    {
+      "name": "image.PixelMap",
+      "purpose": "位图对象，包含像素数据和图片信息，支持读取/写入像素数据，进行裁剪/缩放/旋转/翻转/平移等操作，可直接传给 Image 组件显示",
+      "anchor": "ohosmultimediaimage--pixelmap-imagepixelmap",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "导入方式为 import { image } from '@kit.ImageKit'，非旧版 @ohos.multimedia.image",
+    "ImagePacker 编码期间禁止修改或释放作为输入的 ImageSource/PixelMap/Picture 对象，否则返回 401 错误码",
+    "API version 13 起 packing 方法已废弃，推荐使用 packToData",
+    "API version 15 起推荐使用 createPixelMapUsingAllocator 以指定 DMA/SHARED/AUTO 内存类型",
+    "API version 26.0.0 起 createPixelMap 已废弃，推荐使用 createPixelMapFromPixels",
+    "PixelMap 序列化大小最大 128MB，跨线程通过 Worker 后原线程的 PixelMap 接口不可调用",
+    "所有 ImageSource/PixelMap/Packer 实例使用后必须主动调用 release() 释放内存"
+  ],
+  "missingApis": []
+}

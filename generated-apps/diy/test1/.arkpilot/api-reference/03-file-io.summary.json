@@ -1,0 +1,43 @@
+{
+  "module": "03-file-io.md",
+  "group": "03 — 文件存储 (File IO & Backup)",
+  "apiCount": 4,
+  "apis": [
+    {
+      "name": "fileIo (@ohos.file.fs)",
+      "purpose": "基础文件操作：stat/access/open/close/read/write/mkdir/rmdir/unlink/readText/copy/move/rename/listFile/createStream等",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "Environment (@ohos.file.environment)",
+      "purpose": "获取系统预授权目录（下载、桌面、文档）的沙箱路径",
+      "anchor": "ohosfileenvironment-目录环境能力",
+      "status": "found"
+    },
+    {
+      "name": "BackupExtensionAbility (@ohos.application.BackupExtensionAbility)",
+      "purpose": "备份恢复扩展能力基类，提供 onBackup/onRestore 生命周期回调",
+      "anchor": "ohosapplicationbackupextensionability-备份恢复扩展能力",
+      "status": "found"
+    },
+    {
+      "name": "BackupExtensionContext (@ohos.file.BackupExtensionContext)",
+      "purpose": "备份恢复扩展上下文，提供 backupDir 临时路径属性",
+      "anchor": "ohosfilebackupextensioncontext-备份恢复扩展能力",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@ohos.file.fs 导出的命名空间为 fileIo，通过 'import { fileIo } from '@kit.CoreFileKit' 导入",
+    "旧的 @ohos.fileio 模块从 API 9 开始废弃，建议迁移至 @kit.CoreFileKit",
+    "环境目录接口（getUserDownloadDir/getUserDesktopDir/getUserDocumentDir）仅在 2in1 设备上可用",
+    "BackupExtensionAbility 仅在 Stage 模型下可用，onBackupEx/onRestoreEx (API 12+) 与 onBackup/onRestore 互斥"
+  ],
+  "missingApis": [
+    {
+      "name": "fileAccess",
+      "reason": "未找到独立的 @ohos.file.access 模块或 fileAccess API。文件访问权限检查由 fileIo.access() / fileIo.accessSync() 提供"
+    }
+  ]
+}

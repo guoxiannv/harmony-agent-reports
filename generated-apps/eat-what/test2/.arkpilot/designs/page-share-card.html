@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今天吃什么 - 分享卡片</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      background: #0F0F0F;
+      color: #fff;
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 48px 20px 16px;
+    }
+    .close-btn {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .page-title { font-size: 18px; font-weight: 600; }
+    .preview-area {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .share-card {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 3 / 4;
+      border-radius: 28px;
+      background: linear-gradient(160deg, #1C1C1E 0%, #121212 100%);
+      padding: 28px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .share-card::before {
+      content: '';
+      position: absolute; top: -60px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(255,107,53,0.22) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .card-header { position: relative; z-index: 1; margin-bottom: 24px; }
+    .card-date { font-size: 13px; color: rgba(255,255,255,0.56); }
+    .card-title { font-size: 16px; font-weight: 600; margin-top: 4px; }
+    .card-hero {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,0.04);
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero-icon {
+      width: 96px; height: 96px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A5B 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 32px rgba(255,107,53,0.28);
+    }
+    .hero-icon svg { width: 48px; height: 48px; color: #fff; }
+    .hero-dish { font-size: 32px; font-weight: 700; text-align: center; }
+    .hero-desc { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 6px; text-align: center; }
+    .card-footer { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; }
+    .card-brand { font-size: 13px; color: rgba(255,255,255,0.56); }
+    .card-qr {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-qr svg { width: 24px; height: 24px; color: #1A1A1A; }
+    .bottom-actions {
+      padding: 16px 20px calc(24px + env(safe-area-inset-bottom, 0));
+      display: flex; gap: 12px;
+    }
+    .btn-primary {
+      flex: 1;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A5B 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(255,107,53,0.32);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body data-page-id="share-card">
+  <header class="top-bar">
+    <button class="close-btn" data-ui-id="share-card-close-button" aria-label="关闭分享卡片">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>关闭分享卡片</title>
+        <path d="M18 6 6 18"/>
+        <path d="m6 6 12 12"/>
+      </svg>
+    </button>
+    <div class="page-title">分享卡片</div>
+    <div style="width:40px;"></div>
+  </header>
+
+  <main class="preview-area">
+    <div class="share-card" data-ui-id="share-card-preview">
+      <div class="card-header">
+        <div class="card-date">2026.06.20 · 晚餐</div>
+        <div class="card-title">今天吃什么？就是它了</div>
+      </div>
+      <div class="card-hero">
+        <div class="hero-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>分享卡片主菜品图标</title>
+            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+            <path d="M7 2v20"/>
+            <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+          </svg>
+        </div>
+        <div class="hero-dish">番茄炒蛋</div>
+        <div class="hero-desc">家常快手菜 · 15 分钟 · 心情匹配</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-brand">今天吃什么</span>
+        <div class="card-qr">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>App 二维码占位</title>
+            <rect width="5" height="5" x="3" y="3" rx="1"/>
+            <rect width="5" height="5" x="16" y="3" rx="1"/>
+            <rect width="5" height="5" x="3" y="16" rx="1"/>
+            <path d="M21 16h-3"/>
+            <path d="M18 16v5"/>
+            <path d="M21 21h-5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bottom-actions">
+    <button class="btn-primary" data-ui-id="share-card-save-button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>保存分享卡片到相册</title>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" x2="12" y1="15" y2="3"/>
+      </svg>
+      保存到相册
+    </button>
+  </footer>
+</body>
+</html>

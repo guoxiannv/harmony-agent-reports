@@ -1,0 +1,85 @@
+{
+  "module": "03-media-library.md",
+  "group": "03 — 相册选择与图片处理 (Media Library & Image)",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "PhotoViewPicker",
+      "purpose": "图库选择器，拉起系统相册界面供用户选择图片/视频",
+      "anchor": "photoviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper",
+      "purpose": "相册管理模块，提供创建/查询/删除媒体资源的能力",
+      "anchor": "photoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "ImageDecoder",
+      "purpose": "图片解码器",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "ImagePacker",
+      "purpose": "图片编码器，将PixelMap/ImageSource/Picture编码为压缩数据流或文件",
+      "anchor": "imagepacker",
+      "status": "found"
+    },
+    {
+      "name": "image.createImageSource",
+      "purpose": "创建ImageSource解码源，支持uri/fd/ArrayBuffer/RawFileDescriptor多种入参",
+      "anchor": "imagecreateimagesource",
+      "status": "found"
+    },
+    {
+      "name": "image.createPixelMap",
+      "purpose": "通过像素数据或ImageSource解码创建PixelMap位图对象",
+      "anchor": "imagecreatepixelmap",
+      "status": "found"
+    },
+    {
+      "name": "PixelMap",
+      "purpose": "位图对象，包含像素数据和图片信息，支持读写像素、裁剪、缩放等操作",
+      "anchor": "pixelmap",
+      "status": "found"
+    },
+    {
+      "name": "ImageSource",
+      "purpose": "图片解码源，提供图片信息获取和PixelMap解码能力",
+      "anchor": "imagesource",
+      "status": "found"
+    },
+    {
+      "name": "ImageInfo",
+      "purpose": "图片信息结构，包含尺寸、密度、步幅、像素格式和透明度",
+      "anchor": "imageinfo",
+      "status": "found"
+    },
+    {
+      "name": "packing.PackingOption",
+      "purpose": "图片编码参数选项，包括格式、质量、缓冲区大小、动态范围和EXIF编码开关",
+      "anchor": "packingoption",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.multimedia.image",
+      "purpose": "图片处理核心模块（导入路径 @kit.ImageKit），包含解码/编码/编辑/元数据/像素图",
+      "anchor": "ohosmultimediaimage",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "PhotoSaveButton 未在本地文档中找到（可能为不同命名或独立组件），建议确认是否为 PhotoPickerComponent 或安全控件 API",
+    "ImageDecoder 未在本地文档中找到；图片解码统一通过 ImageSource + createPixelMap() 路径完成",
+    "image.createPixelMap(colors, options) 从 API 26 起建议用 createPixelMapFromPixels(pixels, param) 替代",
+    "ImagePacker.packing() 方法从 API 13 起废弃，建议用 packToData() 替代",
+    "@ohos.multimedia.image 导入路径为 @kit.ImageKit，@ohos.file.photoAccessHelper 导入路径为 @kit.MediaLibraryKit",
+    "PhotoViewPicker.select() 返回的 photoUris 具有永久授权，无需额外权限即可通过 getAssets() 访问"
+  ],
+  "missingApis": [
+    "PhotoSaveButton",
+    "ImageDecoder"
+  ]
+}

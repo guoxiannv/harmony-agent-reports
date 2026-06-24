@@ -1,0 +1,44 @@
+# 04 — 系统分享
+
+## systemShare（分享）
+
+系统标准分享面板，用于分享数据给其他应用、复制、打印等。支持多种数据记录、预览模式和选择模式，适用于应用拉起分享面板及接收分享数据的场景。
+
+| 用途 | API/组件/装饰器名 | 导入路径/模块 | API 定义/签名 | 用法示例 | 来源文件 |
+|------|-------------------|---------------|--------------|----------|----------|
+| 创建分享数据记录 | SharedRecord | `import { systemShare } from '@kit.ShareKit'` | `interface SharedRecord { utd: string; title?: string; label?: string; description?: string; thumbnail?: Uint8Array; thumbnailUri?: string; uri?: string; content?: string; extraData?: Record<string, string \| number \| boolean \| Array<string \| number \| boolean>>; revisitShareRecordData?: RevisitShareRecordData }` | `new systemShare.SharedData({ utd: utd.UniformDataType.PLAIN_TEXT, content: 'Hello HarmonyOS' })` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 封装分享数据对象 | SharedData | `import { systemShare } from '@kit.ShareKit'` | `class SharedData { constructor(record: SharedRecord); addRecord(record: SharedRecord): void; getRecords(): Array<SharedRecord> }` | `let data = new systemShare.SharedData({ utd, content: '...' }); data.addRecord({ utd, uri: 'file://...' })` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 创建并显示分享面板 | ShareController | `import { systemShare } from '@kit.ShareKit'` | `class ShareController { constructor(data: SharedData); show(context: common.UIAbilityContext, options: ShareControllerOptions): Promise<void>; on('dismiss', callback: () => void): void; off('dismiss', callback: () => void): void; on('shareCompleted', callback: Callback<ShareOperationResult>): void; off('shareCompleted', callback?: Callback<ShareOperationResult>): void }` | `let controller = new systemShare.ShareController(shareData); controller.show(context, { selectionMode: systemShare.SelectionMode.SINGLE, previewMode: systemShare.SharePreviewMode.DEFAULT })` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 分享控制器配置项 | ShareControllerOptions | `import { systemShare } from '@kit.ShareKit'` | `interface ShareControllerOptions { anchor?: string \| ShareControllerAnchor; previewMode?: SharePreviewMode; selectionMode?: SelectionMode; excludedAbilities?: Array<ShareAbilityType>; appLaunchTrustInfo?: Array<string> }` | `{ anchor: 'shareButton', previewMode: systemShare.SharePreviewMode.DETAIL, selectionMode: systemShare.SelectionMode.BATCH }` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 分享面板锚点 | ShareControllerAnchor | `import { systemShare } from '@kit.ShareKit'` | `interface ShareControllerAnchor { windowOffset: Offset; size?: Size }` | `{ windowOffset: { x: 10, y: 20 } }` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 分享预览模式枚举 | SharePreviewMode | `import { systemShare } from '@kit.ShareKit'` | `enum SharePreviewMode { DEFAULT = 0, DETAIL = 1 }` | `systemShare.SharePreviewMode.DETAIL` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 分享选择模式枚举 | SelectionMode | `import { systemShare } from '@kit.ShareKit'` | `enum SelectionMode { SINGLE = 0, BATCH = 1 }` | `systemShare.SelectionMode.BATCH` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 系统能力类型枚举（排除项） | ShareAbilityType | `import { systemShare } from '@kit.ShareKit'` | `enum ShareAbilityType { COPY_TO_PASTEBOARD = 0, SAVE_TO_MEDIA_ASSET = 1, SAVE_AS_FILE = 2, PRINT = 3, SAVE_TO_SUPERHUB = 4 }` | `systemShare.ShareAbilityType.PRINT` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 系统操作名称枚举 | ShareAbilityName | `import { systemShare } from '@kit.ShareKit'` | `enum ShareAbilityName { COPY_TO_PASTEBOARD = 'SystemShare_CopyToPasteboard', SAVE_TO_MEDIA_ASSET = 'SystemShare_SaveToMediaAsset', SAVE_AS_FILE = 'SystemShare_SaveAsFile', PRINT = 'SystemShare_Print', SAVE_TO_SUPERHUB = 'SystemShare_Superhub', COLLECTION = 'SystemShare_Collection', HARMONYSHARE = 'SystemShare_HarmonyShare', ENCRYPT = 'SystemShare_Encrypt' }` | — | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 分享操作结果 | ShareOperationResult | `import { systemShare } from '@kit.ShareKit'` | `interface ShareOperationResult { targetAbilityInfo: ShareAbilityInfo }` | `result.targetAbilityInfo.name` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 分享渠道信息 | ShareAbilityInfo | `import { systemShare } from '@kit.ShareKit'` | `interface ShareAbilityInfo { name: string }` | — | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 解析接收到的分享数据 | getSharedData | `import { systemShare } from '@kit.ShareKit'` | `function getSharedData(want: Want): Promise<SharedData>` | `systemShare.getSharedData(this.want).then(data => { let records = data.getRecords() })` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 解析接收到的联系人信息 | getContactInfo | `import { systemShare } from '@kit.ShareKit'` | `function getContactInfo(want: Want): Promise<ContactInfo>` | `systemShare.getContactInfo(this.want)` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+| 基于ShareData构造want | getWant | `import { systemShare } from '@kit.ShareKit'` | `function getWant(data: SharedData, options?: ShareControllerOptions): Promise<Want>` | `systemShare.getWant(data, { previewMode: systemShare.SharePreviewMode.DETAIL })` | `06_应用服务/26_Share Kit（分享服务）/01_ArkTS API/01_systemShare（分享）.md` |
+
+## @ohos.fileshare (文件分享)
+
+Core File Kit 的文件分享能力。提供文件/目录 URI 读写权限授权给其他应用的接口，支持临时授权、持久化授权、使能/取消使能、取消持久化及权限校验。
+
+| 用途 | API/组件/装饰器名 | 导入路径/模块 | API 定义/签名 | 用法示例 | 来源文件 |
+|------|-------------------|---------------|--------------|----------|----------|
+| URI 访问模式枚举 | OperationMode | `import { fileShare } from '@kit.CoreFileKit'` | `enum OperationMode { READ_MODE = 0b1, WRITE_MODE = 0b10, CREATE_MODE = 0b100, DELETE_MODE = 0b1000, RENAME_MODE = 0b10000 }` | `fileShare.OperationMode.READ_MODE \| fileShare.OperationMode.WRITE_MODE` | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+| 持久化授权 | persistPermission | `import { fileShare } from '@kit.CoreFileKit'` | `function persistPermission(policies: Array<PolicyInfo>): Promise<void>` | `fileShare.persistPermission([{ uri: uris[0], operationMode: fileShare.OperationMode.READ_MODE }])` | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+| 取消持久化授权 | revokePermission | `import { fileShare } from '@kit.CoreFileKit'` | `function revokePermission(policies: Array<PolicyInfo>): Promise<void>` | `fileShare.revokePermission([{ uri, operationMode }])` | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+| 使能持久化授权 | activatePermission | `import { fileShare } from '@kit.CoreFileKit'` | `function activatePermission(policies: Array<PolicyInfo>): Promise<void>` | `fileShare.activatePermission([{ uri, operationMode }])` | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+| 取消使能授权 | deactivatePermission | `import { fileShare } from '@kit.CoreFileKit'` | `function deactivatePermission(policies: Array<PolicyInfo>): Promise<void>` | `fileShare.deactivatePermission([{ uri, operationMode }])` | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+| 校验持久化授权 | checkPersistentPermission | `import { fileShare } from '@kit.CoreFileKit'` | `function checkPersistentPermission(policies: Array<PolicyInfo>): Promise<Array<boolean>>` | `fileShare.checkPersistentPermission(policies).then(result => { /* true/false */ })` | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+| 授权策略信息 | PolicyInfo | `import { fileShare } from '@kit.CoreFileKit'` | `interface PolicyInfo { uri: string; operationMode: number }` | `{ uri: 'file://docs/storage/...', operationMode: fileShare.OperationMode.READ_MODE }` | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+| 授权策略失败错误结果 | PolicyErrorResult | `import { fileShare } from '@kit.CoreFileKit'` | `interface PolicyErrorResult { uri: string; code: PolicyErrorCode; message: string }` | — | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+| 授权策略错误码枚举 | PolicyErrorCode | `import { fileShare } from '@kit.CoreFileKit'` | `enum PolicyErrorCode { PERSISTENCE_FORBIDDEN = 1, INVALID_MODE = 2, INVALID_PATH = 3, PERMISSION_NOT_PERSISTED = 4 }` | — | `02_应用框架/09_Core File Kit（文件基础服务）/01_ArkTS API/12_ohos.fileshare (文件分享).md` |
+
+## 模块要点
+
+- **systemShare（分享）** 始于 API version 11，仅支持 Stage 模型，系统能力为 `SystemCapability.Collaboration.SystemShare`。分享面板在不同设备形态下有不同的展示形式（手机以模态显示，2in1/平板以悬浮窗显示）。数据记录上限 500 条，且总大小不超过 IPC 上限 200KB。缩略图大小限制在 32KB 以下。
+- **@ohos.fileshare (文件分享)** 始于 API version 9，系统能力为 `SystemCapability.FileManagement.AppFileService.FolderAuthorization`。持久化授权相关的四个接口（persistPermission、revokePermission、activatePermission、deactivatePermission）均需 `ohos.permission.FILE_ACCESS_PERSIST` 权限。支持媒体类 URI 持久化从 API 22 开始。`policies` 数组大小上限为 500。
+- 共享 Kit 中还有 `harmonyShare（华为分享）` 和 `ArkTS API错误码` 文档位于同一目录，可按需查阅。

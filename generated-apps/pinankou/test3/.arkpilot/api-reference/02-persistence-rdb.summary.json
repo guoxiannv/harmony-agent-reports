@@ -1,0 +1,76 @@
+{
+  "module": "02-persistence-rdb.md",
+  "group": "02 — RDB 关系型数据库持久化",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "relationalStore",
+      "purpose": "关系型数据库模块入口，提供创建/删除RDB的功能",
+      "anchor": "relationalstore--ohosdatarelationalstore",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.relationalStore",
+      "purpose": "关系型数据库模块，基于SQLite的本地数据库管理",
+      "anchor": "relationalstore--ohosdatarelationalstore",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore",
+      "purpose": "管理关系数据库（RDB）方法的接口，提供insert/delete/update/query/executeSql等操作",
+      "anchor": "rdbstore",
+      "status": "found"
+    },
+    {
+      "name": "ValuesBucket",
+      "purpose": "键值对数据集类型，用于数据库读写操作的数据载体",
+      "anchor": "valuesbucket",
+      "status": "found"
+    },
+    {
+      "name": "ResultSet",
+      "purpose": "查询结果集，提供行遍历和列值读取方法",
+      "anchor": "resultset",
+      "status": "found"
+    },
+    {
+      "name": "dataSharePredicates",
+      "purpose": "通用谓词模块，提供条件筛选和排序能力",
+      "anchor": "datasharepredicates",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.dataSharePredicates",
+      "purpose": "数据共享谓词模块，用于DataShare和RDB的查询条件构造",
+      "anchor": "ohosdatadatasharepredicates-数据共享谓词",
+      "status": "found"
+    },
+    {
+      "name": "preferences",
+      "purpose": "用户首选项模块，提供轻量级键值持久化能力",
+      "anchor": "preferences--ohosdatapreferences",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.preferences",
+      "purpose": "用户首选项，支持Key-Value轻量级数据持久化",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "StoreConfig",
+      "purpose": "关系数据库配置接口，指定name/securityLevel/encrypt等参数",
+      "anchor": "storeconfig",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "ValuesBucket 在 relationalStore 和 @ohos.data.ValuesBucket 中有不同范围的 ValueType：RDB 含 Uint8Array/Asset/Assets/Float32Array/bigint，DataShare 仅含 number/string/boolean",
+    "dataSharePredicates.DataSharePredicates 是通用谓词，RdbPredicates 是RDB专属谓词，功能类似但方法命名不同",
+    "preferences 不支持多进程并发，dataGroupId 仅在Stage模式下可用",
+    "RDB单条数据不超过2MB，单次查询建议不超过5000条",
+    "getRdbStore 支持多线程并发操作",
+    "preferences 从API 18起支持GSKV存储模式（实时落盘），XML模式下需手动调用flush"
+  ],
+  "missingApis": []
+}

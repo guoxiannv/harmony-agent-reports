@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>今天吃什么 - 筛选条件</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      background: #FAF8F5;
+      color: #1A1A1A;
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      padding-bottom: 100px;
+    }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 48px 20px 20px;
+    }
+    .back-btn {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      color: #1A1A1A;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .page-title { font-size: 20px; font-weight: 700; }
+    .reset-btn { font-size: 14px; color: #8A8A8A; background: transparent; border: none; cursor: pointer; }
+    .section { padding: 0 20px 20px; }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+    .section-desc { font-size: 13px; color: #8A8A8A; margin-bottom: 14px; }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+    .chip-group { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      background: rgba(0,0,0,0.03);
+      border: 1px solid transparent;
+      border-radius: 18px;
+      padding: 9px 16px;
+      font-size: 14px;
+      color: #4A4A4A;
+      cursor: pointer;
+    }
+    .chip.active {
+      background: rgba(255,107,53,0.10);
+      color: #FF6B35;
+      border-color: #FF6B35;
+      font-weight: 600;
+    }
+    .chip.mood.active { background: #FFC93D; color: #1A1A1A; border-color: #FFC93D; }
+    .chip.time.active { background: #3DD9C0; color: #fff; border-color: #3DD9C0; }
+    .chip.meal.active { background: #FF6B35; color: #fff; border-color: #FF6B35; }
+    .bottom-actions {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      max-width: 390px;
+      margin: 0 auto;
+      padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0));
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex; gap: 12px;
+    }
+    .btn-primary {
+      flex: 1;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A5B 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(255,107,53,0.24);
+      cursor: pointer;
+    }
+    .btn-secondary {
+      width: 100px;
+      background: #fff;
+      color: #1A1A1A;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 14px 0;
+      border-radius: 24px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body data-page-id="filter">
+  <header class="top-bar">
+    <button class="back-btn" data-ui-id="filter-back-button" aria-label="返回上一页">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>返回上一页</title>
+        <path d="m12 19-7-7 7-7"/>
+        <path d="M19 12H5"/>
+      </svg>
+    </button>
+    <div class="page-title">筛选条件</div>
+    <button class="reset-btn" data-ui-id="filter-reset-button">重置</button>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="card">
+        <div class="section-title">今天心情</div>
+        <div class="section-desc">根据你的心情匹配更合适的口味</div>
+        <div class="chip-group" data-ui-id="filter-mood-group">
+          <button class="chip mood active">开心想吃好</button>
+          <button class="chip mood">有点疲惫</button>
+          <button class="chip mood">想吃辣的</button>
+          <button class="chip mood">想清淡点</button>
+          <button class="chip mood">随便都行</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="section-title">可用时间</div>
+        <div class="section-desc">推荐相应时长的菜谱</div>
+        <div class="chip-group" data-ui-id="filter-time-group">
+          <button class="chip time">15 分钟快手</button>
+          <button class="chip time active">30 分钟正餐</button>
+          <button class="chip time">1 小时大餐</button>
+          <button class="chip time">周末慢炖</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="section-title">餐别</div>
+        <div class="section-desc">决定早餐、午餐还是晚餐</div>
+        <div class="chip-group" data-ui-id="filter-meal-group">
+          <button class="chip meal">早餐</button>
+          <button class="chip meal">午餐</button>
+          <button class="chip meal active">晚餐</button>
+          <button class="chip meal">夜宵</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom-actions">
+    <button class="btn-secondary" data-ui-id="filter-reset-button">重置</button>
+    <button class="btn-primary" data-ui-id="filter-apply-button">应用筛选</button>
+  </footer>
+</body>
+</html>

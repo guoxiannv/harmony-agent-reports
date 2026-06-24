@@ -1,0 +1,85 @@
+{
+  "module": "01-navigation.md",
+  "group": "01 — Navigation, Tabs & Sheet Routing",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "Tabs",
+      "purpose": "页签内容视图切换容器组件，通过页签切换对应内容视图",
+      "anchor": "tabs",
+      "status": "found"
+    },
+    {
+      "name": "TabContent",
+      "purpose": "Tabs中单个页签对应的内容视图，仅在Tabs中使用",
+      "anchor": "tabcontent",
+      "status": "found"
+    },
+    {
+      "name": "Navigator",
+      "purpose": "路由容器组件（已停止维护，API 13起废弃），建议使用Navigation替代",
+      "anchor": "navigator-已停止维护",
+      "status": "found"
+    },
+    {
+      "name": "Navigation",
+      "purpose": "路由导航根视图容器，一般作为Page页面的根容器使用",
+      "anchor": "navigation",
+      "status": "found"
+    },
+    {
+      "name": "@Entry",
+      "purpose": "标识自定义组件为UI页面入口装饰器，一个页面仅允许一个",
+      "anchor": "entry",
+      "status": "found"
+    },
+    {
+      "name": "CustomDialog",
+      "purpose": "通过CustomDialogController显示的自定义弹窗组件",
+      "anchor": "customdialog",
+      "status": "found"
+    },
+    {
+      "name": "CustomDialogController",
+      "purpose": "自定义弹窗的控制器，提供open/close方法控制弹窗显示与关闭",
+      "anchor": "customdialogcontroller",
+      "status": "found"
+    },
+    {
+      "name": "SheetTransition",
+      "purpose": "通过bindSheet属性为组件绑定半模态页面，支持多种高度挡位和显示样式",
+      "anchor": "sheettransition-bindsheet",
+      "status": "found"
+    },
+    {
+      "name": "@Component",
+      "purpose": "标记struct为自定义组件",
+      "anchor": "component-未在本地参考文档中找到独立页面",
+      "status": "missing"
+    },
+    {
+      "name": "@Builder",
+      "purpose": "自定义构建函数装饰器",
+      "anchor": "builder-未在本地参考文档中找到独立页面",
+      "status": "missing"
+    },
+    {
+      "name": "@BuilderParam",
+      "purpose": "引用@Builder函数或方法的装饰器",
+      "anchor": "builderparam-未在本地参考文档中找到独立页面",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "Navigator 从 API 13 开始不再维护，新项目应使用 Navigation + NavPathStack (API 10+) 进行页面路由",
+    "@Component、@Builder、@BuilderParam 为 ArkUI 框架级装饰器，未在当前本地参考文档集中发现独立参考文档页面（位于开发指南而非 API 参考目录）",
+    "Tabs 从 API 11 开始默认支持安全区域避让底部 expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])",
+    "CustomDialogController 的 open/close 方法控制弹窗显示/关闭，getState 方法可获取弹窗状态（API 20+）",
+    "bindSheet 半模态转场仅可在 Stage 模型下使用，不支持路由跳转"
+  ],
+  "missingApis": [
+    "@Component",
+    "@Builder",
+    "@BuilderParam"
+  ]
+}

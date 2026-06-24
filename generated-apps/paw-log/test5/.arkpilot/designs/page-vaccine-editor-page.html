@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PawLog 宠迹 - 疫苗/驱虫编辑</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "PingFang SC", "SF Pro Text", "Helvetica Neue", sans-serif;
+      background: #FFFBF6;
+      color: #3A3630;
+      min-height: 100vh;
+    }
+    .phone-frame {
+      max-width: 390px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      background: #FFFBF6;
+      overflow-x: hidden;
+      padding-bottom: 24px;
+    }
+    .header {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(126,215,194,0.12);
+    }
+    .back-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: #E8FAF5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+    }
+    .back-btn svg { width: 20px; height: 20px; color: #4CB5A0; }
+    .header-title { font-size: 18px; font-weight: 700; color: #3A3630; }
+    .save-btn {
+      padding: 8px 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #7ED7C2, #5EC9B3);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      box-shadow: 0 4px 10px rgba(76,181,160,0.24);
+    }
+    .content { padding: 20px 16px; }
+    .type-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .type-tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      border-radius: 16px;
+      background: white;
+      border: 1px solid rgba(126,215,194,0.15);
+      font-size: 14px;
+      font-weight: 700;
+      color: #5C5750;
+    }
+    .type-tab.active {
+      background: linear-gradient(135deg, #FFB8C9, #F48FB1);
+      color: white;
+      border-color: transparent;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #5C5750;
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 15px 17px;
+      border-radius: 16px;
+      border: 1px solid rgba(126,215,194,0.15);
+      background: #FFF8F0;
+      font-size: 15px;
+      color: #3A3630;
+      outline: none;
+    }
+    .form-input:focus { border-color: #7ED7C2; }
+    .delete-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 24px;
+      border-radius: 18px;
+      background: #FFF0F3;
+      color: #F48FB1;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame" data-page-id="vaccine-editor-page">
+    <header class="header">
+      <button class="back-btn" data-ui-id="vaccine-editor-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <title>Back to Previous Page</title>
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <span class="header-title">添加疫苗/驱虫</span>
+      <button class="save-btn" data-ui-id="vaccine-editor-save">保存</button>
+    </header>
+
+    <main class="content">
+      <div class="type-tabs" data-ui-id="vaccine-editor-type">
+        <button class="type-tab active">疫苗</button>
+        <button class="type-tab">驱虫</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">名称</label>
+        <input class="form-input" type="text" placeholder="例如：猫三联、体内外驱虫" value="猫三联" data-ui-id="vaccine-editor-name" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">接种/驱虫日期</label>
+          <input class="form-input" type="date" value="2025-12-15" data-ui-id="vaccine-editor-date" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">下次提醒日期</label>
+          <input class="form-input" type="date" value="2026-06-27" data-ui-id="vaccine-editor-next-date" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">医院/机构</label>
+        <input class="form-input" type="text" placeholder="选填" value="宠康动物医院" data-ui-id="vaccine-editor-clinic" />
+      </div>
+
+      <button class="delete-btn" data-ui-id="vaccine-editor-delete">删除此记录</button>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PawLog 爱宠</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #FFFBF7;
+  color: #2E2B29;
+  min-height: 100vh;
+}
+.app-shell { max-width: 390px; margin: 0 auto; position: relative; min-height: 100vh; padding-bottom: 130px; }
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 50px 16px 14px;
+}
+.page-title { font-size: 24px; font-weight: 800; letter-spacing: -0.01em; }
+.add-btn {
+  width: 40px; height: 40px; border-radius: 14px; background: linear-gradient(135deg, #9BE8CA 0%, #7FDEB8 100%);
+  border: none; display: grid; place-items: center; box-shadow: 0 4px 12px rgba(127,222,184,0.28); cursor: pointer;
+}
+.add-btn svg { width: 22px; height: 22px; color: #fff; }
+.content { padding: 0 16px; }
+.section-title { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.pets-list { display: flex; flex-direction: column; gap: 14px; }
+.pet-card {
+  background: #fff; border-radius: 22px; padding: 16px;
+  box-shadow: 0 8px 24px rgba(46,43,41,0.07);
+  display: flex; align-items: center; gap: 14px; cursor: pointer;
+}
+.pet-avatar-lg {
+  width: 68px; height: 68px; border-radius: 50%; background: #EEFCF6;
+  display: grid; place-items: center; flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(127,222,184,0.20);
+}
+.pet-avatar-lg svg { width: 34px; height: 34px; color: #4BBF9A; }
+.pet-info { flex: 1; }
+.pet-name { font-size: 18px; font-weight: 800; color: #2E2B29; }
+.pet-meta { font-size: 13px; color: #8C8682; margin-top: 3px; }
+.pet-tags { display: flex; gap: 6px; margin-top: 8px; }
+.tag {
+  font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 10px;
+}
+.tag-mint { background: #EEFCF6; color: #4BBF9A; }
+.tag-pink { background: #FFF0F2; color: #E88694; }
+.chevron-right { width: 20px; height: 20px; color: #B8B2AE; }
+.fab {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, #7FDEB8 0%, #4BBF9A 100%);
+  box-shadow: 0 8px 24px rgba(75,191,154,0.42);
+  display: grid; place-items: center; border: none; cursor: pointer;
+  position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%);
+  z-index: 100;
+}
+.fab svg { width: 28px; height: 28px; color: #fff; }
+.bottom-tab {
+  position: fixed; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: 100%; max-width: 390px; height: 76px;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 -6px 20px rgba(46,43,41,0.05);
+  border-radius: 30px 30px 0 0;
+  display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px;
+  z-index: 99;
+}
+.tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 4px; color: #B8B2AE; text-decoration: none; }
+.tab-item.active { color: #4BBF9A; }
+.tab-item svg { width: 24px; height: 24px; }
+.tab-item span { font-size: 11px; font-weight: 600; }
+.tab-placeholder { width: 60px; }
+</style>
+</head>
+<body data-page-id="pets-page" data-tab-id="tab-pets">
+<div class="app-shell">
+  <header class="header">
+    <h1 class="page-title">我的爱宠</h1>
+    <button class="add-btn" data-ui-id="pets-add-button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>添加新宠物</title><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+  </header>
+
+  <div class="content">
+    <h2 class="section-title">共 2 位家庭成员</h2>
+    <div class="pets-list" data-ui-id="pets-list">
+      <div class="pet-card" id="pets-item-mochi" data-ui-id="pets-item-mochi">
+        <div class="pet-avatar-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Mochi 头像</title><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V10h4c2.2 0 4 1.8 4 4v2a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-2c0-2.2 1.8-4 4-4h4V9.4A4 4 0 0 1 8 6a4 4 0 0 1 4-4z"/></svg>
+        </div>
+        <div class="pet-info">
+          <div class="pet-name">Mochi</div>
+          <div class="pet-meta">英国短毛猫 · 2 岁 3 个月 · 4.6kg</div>
+          <div class="pet-tags">
+            <span class="tag tag-mint">已绝育</span>
+            <span class="tag tag-pink">疫苗即将到期</span>
+          </div>
+        </div>
+        <svg class="chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>查看宠物详情</title><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <div class="pet-card" id="pets-item-bobo" data-ui-id="pets-item-bobo">
+        <div class="pet-avatar-lg" style="background:#FFF0F2;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Bobo 头像</title><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V10h4c2.2 0 4 1.8 4 4v2a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-2c0-2.2 1.8-4 4-4h4V9.4A4 4 0 0 1 8 6a4 4 0 0 1 4-4z"/></svg>
+        </div>
+        <div class="pet-info">
+          <div class="pet-name">Bobo</div>
+          <div class="pet-meta">金毛寻回犬 · 4 岁 · 28.5kg</div>
+          <div class="pet-tags">
+            <span class="tag tag-mint">健康</span>
+          </div>
+        </div>
+        <svg class="chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>查看宠物详情</title><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <button class="fab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>打开新增记录</title><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  </button>
+
+  <nav class="bottom-tab">
+    <a href="#" class="tab-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页标签</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>首页</span>
+    </a>
+    <a href="#" class="tab-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>爱宠标签</title><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V10h4c2.2 0 4 1.8 4 4v2a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-2c0-2.2 1.8-4 4-4h4V9.4A4 4 0 0 1 8 6a4 4 0 0 1 4-4z"/></svg>
+      <span>爱宠</span>
+    </a>
+    <div class="tab-placeholder"></div>
+    <a href="#" class="tab-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>健康标签</title><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1 7.8 7.8 7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span>健康</span>
+    </a>
+    <a href="#" class="tab-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>家人标签</title><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>家人</span>
+    </a>
+  </nav>
+</div>
+</body>
+</html>

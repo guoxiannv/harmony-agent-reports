@@ -1,0 +1,57 @@
+{
+  "pid": 13930,
+  "status": "controller-tick",
+  "launched_by_session_id": "727effb6-8d7d-45fe-94ea-18ac585bc391",
+  "started_at": "2026-06-22T08:49:35.429Z",
+  "last_scan_at": "2026-06-23T06:13:11.138Z",
+  "last_change_at": "2026-06-22T09:17:56.026Z",
+  "html_signature": "[{\"name\":\"page-course-booking-page.html\",\"mtime_ms\":1782119844131,\"size\":9181},{\"name\":\"page-courses-page.html\",\"mtime_ms\":1782119267222,\"size\":13144},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782118790111,\"size\":15249},{\"name\":\"page-inventory-page.html\",\"mtime_ms\":1782119872975,\"size\":14404},{\"name\":\"page-member-detail-page.html\",\"mtime_ms\":1782119082962,\"size\":11510},{\"name\":\"page-members-page.html\",\"mtime_ms\":1782118940746,\"size\":11133},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1782119693311,\"size\":10771}]",
+  "html_files": [
+    {
+      "name": "page-course-booking-page.html",
+      "mtime_ms": 1782119844131,
+      "size": 9181
+    },
+    {
+      "name": "page-courses-page.html",
+      "mtime_ms": 1782119267222,
+      "size": 13144
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782118790111,
+      "size": 15249
+    },
+    {
+      "name": "page-inventory-page.html",
+      "mtime_ms": 1782119872975,
+      "size": 14404
+    },
+    {
+      "name": "page-member-detail-page.html",
+      "mtime_ms": 1782119082962,
+      "size": 11510
+    },
+    {
+      "name": "page-members-page.html",
+      "mtime_ms": 1782118940746,
+      "size": 11133
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1782119693311,
+      "size": 10771
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 34,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 34,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-23T06:13:11.138Z"
+}

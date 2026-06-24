@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>宠迹·PawLog 我的</title>
+  <style>
+    :root {
+      --mint-600: #3FC0A0; --mint-500: #5ED7B6; --mint-300: #9CEBD4; --mint-100: #E5FAF4; --mint-50: #F4FDFA;
+      --pink-600: #FF9AAE; --pink-500: #FFB3C1; --pink-100: #FFF0F3;
+      --yellow-500: #FFD166; --yellow-100: #FFF9E6;
+      --blue-500: #87CEEB; --blue-100: #E6F5FB;
+      --lavender-500: #B8B8E0; --lavender-100: #F2F1FA;
+      --apricot-500: #F4D0A4; --apricot-100: #FDF5EA;
+      --forest-900: #163832; --forest-700: #3D5A52; --forest-500: #6F8983; --forest-200: #C9D8D4; --forest-100: #E3EDEA;
+      --white: #FFFFFF; --page-bg: #FAFDFC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--page-bg); color: var(--forest-900); max-width: 390px; margin: 0 auto;
+      min-height: 100vh; position: relative; padding-bottom: 88px;
+    }
+    .header { padding: 16px; height: 64px; display: flex; align-items: center; }
+    .header-title { font-size: 22px; font-weight: 800; }
+
+    .profile-card {
+      margin: 0 16px 16px; padding: 20px; border-radius: 24px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(229,250,244,0.7) 100%);
+      backdrop-filter: blur(16px) saturate(150%);
+      border: 1px solid rgba(255,255,255,0.65);
+      box-shadow: 0 8px 28px rgba(22,56,50,0.07);
+      display: flex; align-items: center; gap: 16px;
+    }
+    .profile-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--mint-100), var(--pink-100));
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(94,215,182,0.2);
+    }
+    .profile-avatar svg { width: 36px; height: 36px; stroke: var(--mint-600); fill: none; }
+    .profile-name { font-size: 18px; font-weight: 800; }
+    .profile-meta { font-size: 13px; color: var(--forest-500); margin-top: 3px; }
+
+    .menu-group {
+      background: var(--white); border: 1px solid rgba(201,216,212,0.45); border-radius: 24px;
+      margin: 0 16px 16px; padding: 8px;
+      box-shadow: 0 6px 22px rgba(22,56,50,0.05), 0 2px 8px rgba(22,56,50,0.04);
+    }
+    .menu-item {
+      display: flex; align-items: center; gap: 14px; padding: 14px 12px;
+      border-radius: 16px; transition: background .15s, transform .15s; cursor: pointer;
+    }
+    .menu-item:active { background: var(--mint-50); transform: scale(0.99); }
+    .menu-icon {
+      width: 40px; height: 40px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .menu-icon.mint { background: var(--mint-100); }
+    .menu-icon.pink { background: var(--pink-100); }
+    .menu-icon.blue { background: var(--blue-100); }
+    .menu-icon.lavender { background: var(--lavender-100); }
+    .menu-icon.yellow { background: var(--yellow-100); }
+    .menu-icon svg { width: 22px; height: 22px; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .menu-icon.mint svg { stroke: var(--mint-600); }
+    .menu-icon.pink svg { stroke: var(--pink-500); }
+    .menu-icon.blue svg { stroke: var(--blue-500); }
+    .menu-icon.lavender svg { stroke: var(--lavender-500); }
+    .menu-icon.yellow svg { stroke: var(--yellow-500); }
+    .menu-main { flex: 1; }
+    .menu-title { font-size: 15px; font-weight: 700; }
+    .menu-sub { font-size: 12px; color: var(--forest-500); margin-top: 2px; }
+    .menu-arrow { width: 20px; height: 20px; stroke: var(--forest-500); }
+
+    .family-card {
+      background: var(--pink-100); border: 1px solid rgba(255,179,193,0.5); border-radius: 24px;
+      margin: 0 16px 16px; padding: 18px;
+      box-shadow: 0 6px 22px rgba(255,154,174,0.1);
+    }
+    .family-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .family-icon { width: 40px; height: 40px; border-radius: 14px; background: var(--pink-500); display: flex; align-items: center; justify-content: center; }
+    .family-icon svg { width: 22px; height: 22px; stroke: var(--white); fill: none; }
+    .family-title { font-size: 16px; font-weight: 700; }
+    .family-sub { font-size: 12px; color: var(--forest-500); }
+    .family-members { display: flex; gap: 8px; }
+    .member-avatar {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--white);
+      display: flex; align-items: center; justify-content: center; border: 2px solid var(--white);
+    }
+    .member-avatar svg { width: 18px; height: 18px; stroke: var(--pink-500); fill: none; }
+
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 390px; margin: 0 auto;
+      height: 68px; background: var(--white); border-top: 1px solid var(--forest-100);
+      display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 14px; cursor: pointer; }
+    .tab-item.active .tab-icon { stroke: var(--mint-600); }
+    .tab-item.active .tab-label { color: var(--mint-600); }
+    .tab-icon { width: 24px; height: 24px; stroke: var(--forest-500); fill: none; }
+    .tab-label { font-size: 11px; font-weight: 500; color: var(--forest-500); }
+  </style>
+</head>
+<body data-page-id="profile-page" data-tab-id="tab-profile">
+
+  <header class="header">
+    <span class="header-title">我的</span>
+  </header>
+
+  <section class="profile-card">
+    <div class="profile-avatar" data-ui-id="profile-avatar">
+      <svg viewBox="0 0 24 24" role="img">
+        <title>用户头像</title>
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="7" r="4" stroke-width="2"/>
+      </svg>
+    </div>
+    <div>
+      <div class="profile-name" data-ui-id="profile-nickname">布丁的主人</div>
+      <div class="profile-meta">已加入家庭共享 · 2只宠物</div>
+    </div>
+  </section>
+
+  <section class="family-card" data-ui-id="profile-family">
+    <div class="family-header">
+      <div class="family-icon">
+        <svg viewBox="0 0 24 24" role="img">
+          <title>家庭成员共享入口</title>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="9" cy="7" r="4" stroke-width="2"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="family-title">家庭成员</div>
+        <div class="family-sub">邀请家人一起记录宠物日常</div>
+      </div>
+    </div>
+    <div class="family-members">
+      <div class="member-avatar">
+        <svg viewBox="0 0 24 24" role="img"><title>家庭成员头像</title><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke-width="2"/></svg>
+      </div>
+      <div class="member-avatar">
+        <svg viewBox="0 0 24 24" role="img"><title>家庭成员头像</title><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke-width="2"/></svg>
+      </div>
+      <div class="member-avatar" style="border-style:dashed">
+        <svg viewBox="0 0 24 24" role="img"><title>邀请更多家庭成员</title><path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-group">
+    <div class="menu-item" data-ui-id="profile-manage-pets">
+      <div class="menu-icon mint">
+        <svg viewBox="0 0 24 24" role="img">
+          <title>管理宠物档案</title>
+          <path d="M12 14c-3.5 0-6 2.5-6 5.5 0 1.5 1 2.5 2.5 2.5h7c1.5 0 2.5-1 2.5-2.5 0-3-2.5-5.5-6-5.5z"/>
+          <circle cx="7.5" cy="10" r="2"/>
+          <circle cx="16.5" cy="10" r="2"/>
+          <circle cx="12" cy="7" r="2.5"/>
+        </svg>
+      </div>
+      <div class="menu-main">
+        <div class="menu-title">管理宠物</div>
+        <div class="menu-sub">编辑档案、添加新成员</div>
+      </div>
+      <svg class="menu-arrow" viewBox="0 0 24 24" role="img"><title>进入管理宠物页面</title><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <div class="menu-item" data-ui-id="profile-settings">
+      <div class="menu-icon blue">
+        <svg viewBox="0 0 24 24" role="img">
+          <title>打开应用设置</title>
+          <circle cx="12" cy="12" r="3" stroke-width="2"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9h.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="menu-main">
+        <div class="menu-title">设置</div>
+        <div class="menu-sub">通知、单位、隐私</div>
+      </div>
+      <svg class="menu-arrow" viewBox="0 0 24 24" role="img"><title>进入设置页面</title><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <div class="menu-item" data-ui-id="profile-about">
+      <div class="menu-icon lavender">
+        <svg viewBox="0 0 24 24" role="img">
+          <title>查看关于页面</title>
+          <circle cx="12" cy="12" r="10" stroke-width="2"/>
+          <line x1="12" y1="16" x2="12" y2="12" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="8" x2="12.01" y2="8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="menu-main">
+        <div class="menu-title">关于宠迹</div>
+        <div class="menu-sub">版本 1.0.0 · 使用说明</div>
+      </div>
+      <svg class="menu-arrow" viewBox="0 0 24 24" role="img"><title>进入关于页面</title><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </section>
+
+  <nav class="tabbar">
+    <div class="tab-item" data-ui-id="tab-home" data-tab-id="tab-home">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>首页标签</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9 22 9 12 15 12 15 22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">首页</span>
+    </div>
+    <div class="tab-item" data-ui-id="tab-records" data-tab-id="tab-records">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>记录标签</title><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="tab-label">记录</span>
+    </div>
+    <div class="tab-item" data-ui-id="tab-trends" data-tab-id="tab-trends">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>趋势标签</title><path d="M3 3v18h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">趋势</span>
+    </div>
+    <div class="tab-item" data-ui-id="tab-care" data-tab-id="tab-care">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>照护标签</title><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">照护</span>
+    </div>
+    <div class="tab-item active" data-ui-id="tab-profile" data-tab-id="tab-profile">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>我的标签</title><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke-width="2"/></svg>
+      <span class="tab-label">我的</span>
+    </div>
+  </nav>
+
+</body>
+</html>

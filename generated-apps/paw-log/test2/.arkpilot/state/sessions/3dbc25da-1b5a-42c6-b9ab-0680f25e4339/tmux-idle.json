@@ -1,0 +1,10 @@
+{
+  "idle": true,
+  "idle_at": "2026-06-22T11:54:00.227Z",
+  "session_id": "3dbc25da-1b5a-42c6-b9ab-0680f25e4339",
+  "hook_event_name": "Stop",
+  "stop_reason": "normal",
+  "transcript_path": "/Users/huaweiide/.claude/projects/-Users-huaweiide-Desktop-fe-code-harmony-pilot-generated-apps-paw-log-test2/3dbc25da-1b5a-42c6-b9ab-0680f25e4339.jsonl",
+  "codex_session_id": "",
+  "model": ""
+}

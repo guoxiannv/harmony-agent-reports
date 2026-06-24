@@ -1,0 +1,42 @@
+{
+  "module": "02-relational-database.md",
+  "group": "02 — Relational Database (RDB)",
+  "apiCount": 4,
+  "apis": [
+    {
+      "name": "relationalStore",
+      "purpose": "关系型数据库模块命名空间，提供 getRdbStore/deleteRdbStore 等顶层函数以及 RdbStore/ResultSet 等类型",
+      "anchor": "relationalstore",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore",
+      "purpose": "管理关系数据库（RDB）的接口，提供 insert/update/delete/query/execute 等 CRUD 操作方法",
+      "anchor": "rdbstore",
+      "status": "found"
+    },
+    {
+      "name": "ResultSet",
+      "purpose": "数据库查询返回的结果集接口，提供行指针移动、字段值读取（getString/getLong/getDouble/getBlob）及关闭方法",
+      "anchor": "resultset",
+      "status": "found"
+    },
+    {
+      "name": "ValuesBucket",
+      "purpose": "数据库插入/更新的键值对数据类型，类型定义为 Record<string, ValueType | Uint8Array | null>",
+      "anchor": "valuesbucket",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有 API 通过 import { relationalStore } from '@kit.ArkData' 导入，ValuesBucket 可单独导入 import { ValueType, ValuesBucket } from '@kit.ArkData'",
+    "首批接口从 API version 9 开始支持，getRdbStoreSync 和 insertSync 从 API 12/24 起提供同步版本",
+    "单条数据不超过 2MB，字符串单字段不超过 8MB；单次查询不超过 5000 行；大查询建议放在 TaskPool 中",
+    "RdbStore 不直接 new 实例化，必须通过 relationalStore.getRdbStore() 获取",
+    "ResultSet 使用后必须调用 close() 释放资源"
+  ],
+  "missingApis": [
+    "relationalStore.RdbStore — 已作为 RdbStore 覆盖",
+    "relationalStore.ResultSet — 已作为 ResultSet 覆盖"
+  ]
+}

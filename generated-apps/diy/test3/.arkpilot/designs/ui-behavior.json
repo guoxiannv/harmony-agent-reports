@@ -1,0 +1,65 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "dataModel": {
+    "entities": [
+      "Member(crafts, works, lastActiveDate, level)",
+      "WorkImage(uri, title)",
+      "PointRecord(type, amount, reason, date)",
+      "ConsumptionRecord(title, amountPoint, date)",
+      "ClassSlot(capacity, booked, materials, pricePoint)",
+      "ClassMaterial(inventoryItemId, quantityPerSeat)",
+      "InventoryItem(quantity, lowStockThreshold, unit)",
+      "DormantMember(daysDormant, derived)"
+    ],
+    "formState": [
+      "profile-edit: name, newCraft, works",
+      "dormant: thresholdDays"
+    ],
+    "computed": [
+      "points.balance, points.lifetime",
+      "checkin.streakDays (consecutive day rule)",
+      "dormant members (daysSince(lastActive) > threshold)",
+      "activity feed (merged point + consumption records)",
+      "class stockWarning (per-seat material vs inventory)",
+      "lowStockAlert (quantity < lowStockThreshold)"
+    ],
+    "persistence": [
+      "Single blob sm_state_v1 via AppStorage + PersistentStorage (offline-first)"
+    ]
+  },
+  "services": [
+    { "name": "DataStore", "role": "唯一持久化边界: 读写 AppStorage/PersistentStorage; 提供读取快照与变更方法" },
+    { "name": "DateUtil", "role": "日期字符串解析、连续签到判定、沉睡天数计算、周历生成" }
+  ],
+  "stateMachine": {
+    "checkIn": ["idle -> checked-today (already) | streak-continued | streak-reset"],
+    "booking": ["idle -> stock-or-capacity-blocked | booked(deduct stock+capacity) | cancelled(rollback, 24h rule)"],
+    "dormant": ["member -> dormant(days>threshold) -> woken(lastActive=today)"],
+    "inventory": ["ok -> low(quantity<threshold) -> restocked"]
+  },
+  "interactionFlows": [
+    { "trigger": "home-checkin-button", "event": "member-checkin", "steps": ["校验今日是否已签到", "更新连续天数与积分", "写入积分记录与活动", "刷新首页"], "errors": ["今日已签到"] },
+    { "trigger": "classes-slot-{id}-book", "event": "book-class-slot", "steps": ["校验名额", "校验每项耗材库存", "扣减名额与库存", "记录消费与积分奖励", "刷新列表"], "errors": ["名额已满", "耗材库存不足"] },
+    { "trigger": "classes-slot-{id}-cancel", "event": "cancel-class-slot", "steps": ["校验24h规则", "回滚名额与耗材"], "errors": ["不足24小时", "无人预约"] },
+    { "trigger": "class-detail-book", "event": "book-class", "steps": ["同 book-class-slot 复用 DataStore.bookSlot"] },
+    { "trigger": "profile-edit-save", "event": "save-profile", "steps": ["保存昵称/工艺/作品", "返回档案页刷新"] },
+    { "trigger": "profile-edit-add-work", "event": "add-work-image", "steps": ["选择/记录作品图(沙箱路径或占位)", "写入 works"] },
+    { "trigger": "dormant-member-{id}-wake", "event": "wake-member", "steps": ["设 lastActive=today", "移出沉睡列表"] },
+    { "trigger": "inventory-item-{id}-restock", "event": "restock-item", "steps": ["补货数量累加", "刷新预警"] }
+  ],
+  "testTargets": [
+    "home-checkin-button", "home-points-balance", "home-streak-days", "home-recent-list", "home-dormant-alert",
+    "tab-home", "tab-classes", "tab-points", "tab-profile",
+    "classes-calendar", "classes-slot-list", "classes-slot-{id}-book", "classes-slot-{id}-capacity", "classes-slot-{id}-stock-warning",
+    "class-detail-book", "class-detail-capacity", "class-detail-materials", "class-detail-stock-alert",
+    "points-balance", "points-lifetime", "points-segment", "points-history-list", "points-consumption-list",
+    "profile-name", "profile-level", "profile-craft-tags", "profile-gallery", "profile-edit-button", "profile-inventory-button",
+    "profile-edit-name-input", "profile-edit-craft-input", "profile-edit-craft-list", "profile-edit-add-work", "profile-edit-work-list", "profile-edit-save",
+    "dormant-count", "dormant-list", "dormant-member-{id}-wake", "dormant-threshold-input",
+    "inventory-list", "inventory-item-{id}-quantity", "inventory-item-{id}-restock", "inventory-low-stock-alert"
+  ],
+  "changeRequests": [
+    "无 rawfile SVG 资源: SvgIcon 改为内置矢量几何绘制, 保持 variant/iconSize/color/strokeWidth API 不变",
+    "为可验证性, 课程目录/库存为店主初始供给数据; 当前会员与会员活动从真实空态起步"
+  ]
+}

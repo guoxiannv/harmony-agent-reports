@@ -1,0 +1,70 @@
+{
+  "module": "03-persistence.md",
+  "group": "03 -- Data Persistence (数据持久化)",
+  "apiCount": 33,
+  "apis": [
+    {
+      "name": "@ohos.data.preferences (用户首选项)",
+      "purpose": "轻量级 Key-Value 键值型数据处理，支持应用持久化轻量级数据",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.sendablePreferences (共享用户首选项)",
+      "purpose": "支持 Sendable 跨线程传递的共享用户首选项，ArkTS 并发实例间引用传递",
+      "anchor": "ohosdatasendablepreferences-共享用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.relationalStore (关系型数据库)",
+      "purpose": "基于 SQLite 的本地关系型数据库管理，提供完整 CRUD 和 SQL 执行能力",
+      "anchor": "模块描述",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.ValuesBucket (数据集)",
+      "purpose": "向数据库插入的数据集合，以键值对形式传输，支持 number/string/boolean/Uint8Array/null",
+      "anchor": "ohosdatavaluesbucket-数据集",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.dataSharePredicates (数据共享谓词)",
+      "purpose": "DataShare 框架查询数据库所使用的筛选条件，支持 equalTo/and/or/orderBy/limit 等",
+      "anchor": "ohosdatadatasharepredicates-数据共享谓词",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.fs (文件管理)",
+      "purpose": "基础文件操作 API，提供文件基本管理、目录管理、信息统计、流式读写等功能",
+      "anchor": "ohosfilefs-文件管理",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore",
+      "purpose": "关系型数据库管理接口，提供 insert/update/delete/query/executeSql 等方法",
+      "anchor": "interface-rdbstore",
+      "status": "found"
+    },
+    {
+      "name": "ResultSet",
+      "purpose": "数据库查询结果集，提供游标式数据访问方法如 goToNextRow/getString/getLong/close 等",
+      "anchor": "interface-resultset",
+      "status": "found"
+    },
+    {
+      "name": "RdbPredicates",
+      "purpose": "关系型数据库谓词，确定条件表达式是 true 还是 false，支持多条件拼接",
+      "anchor": "class-rdbpredicates",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "sendablePreferences (API 12+) 相比 preferences (API 9+) 支持 Sendable 跨线程传递，是并发场景的首选方案",
+    "relationalStore 单条数据不得超过 2MB 共享内存限制，单次查询建议不超过 5000 条",
+    "ValuesBucket 和 RdbPredicates 均非线程安全，多线程操作需加锁保护",
+    "preferences 和 sendablePreferences 无法保证进程并发安全，不支持多进程场景",
+    "fileIo 导入路径为 '@kit.CoreFileKit'，名为 fileIo，非 'ohos.file.fs'",
+    "sendablePreferences 仅在 Stage 模型下可用，API 12 起支持"
+  ],
+  "missingApis": []
+}

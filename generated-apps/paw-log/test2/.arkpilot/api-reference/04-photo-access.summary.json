@@ -1,0 +1,59 @@
+{
+  "module": "04-photo-access.md",
+  "group": "04 — Photo Access (Media Library)",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "@ohos.file.photoAccessHelper (相册管理模块)",
+      "purpose": "获取 PhotoAccessHelper 实例，用于查询和操作相册中的图片视频资源",
+      "anchor": "ohosfilephotoaccesshelper-相册管理模块",
+      "status": "found"
+    },
+    {
+      "name": "PhotoViewPicker",
+      "purpose": "拉起系统图库选择界面，支持图片/视频选择，返回具有永久授权的 URI",
+      "anchor": "photoviewpicker",
+      "status": "found"
+    },
+    {
+      "name": "AlbumPickerComponent",
+      "purpose": "嵌入相册列表 ArkTS 组件 (API 12+)，无需权限即可访问公共相册列表，需配合 PhotoPickerComponent 使用",
+      "anchor": "albumpickercomponent",
+      "status": "found"
+    },
+    {
+      "name": "PhotoPickerComponent",
+      "purpose": "嵌入媒体文件选择 ArkTS 组件 (API 12+)，无需权限即可实现图片/视频选择功能",
+      "anchor": "photopickercomponent",
+      "status": "found"
+    },
+    {
+      "name": "FetchResult",
+      "purpose": "文件检索结果集，提供 getCount/getFirstObject/getNextObject/getAllObjects/close 等遍历方法",
+      "anchor": "fetchresult",
+      "status": "found"
+    },
+    {
+      "name": "PhotoAsset",
+      "purpose": "媒体文件资产接口，提供 get/set/commitModify/getThumbnail/clone 等属性和方法",
+      "anchor": "photoasset",
+      "status": "found"
+    },
+    {
+      "name": "MediaAssetManager",
+      "purpose": "媒体资产管理类，提供 requestImage/requestImageData/requestMovingPhoto/requestVideoFile/cancelRequest 等静态方法",
+      "anchor": "mediaassetmanager",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有 API 从 '@kit.MediaLibraryKit' 统一导入，API 23 前需要从 '@ohos.file.photoAccessHelper' 等分别导入",
+    "PhotoViewPicker.select 返回的 photoUris 具有永久授权，可通过 getAssets 使用，无需 READ_IMAGEVIDEO 权限",
+    "PhotoPickerComponent/AlbumPickerComponent 为无权限嵌入组件，从 API 12 开始支持",
+    "getAssets/getThumbnail/MediaAssetManager 请求方法需要 ohos.permission.READ_IMAGEVIDEO 权限",
+    "commitModify/clone 需要 ohos.permission.WRITE_IMAGEVIDEO 权限",
+    "MediaAssetManager 从 API 11 开始支持",
+    "PhotoViewPicker 重复拉起前需要销毁前一个实例"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,50 @@
+{
+  "module": "05-image-processing.md",
+  "group": "05 — Image Processing (Thumbnails)",
+  "apiCount": 6,
+  "apis": [
+    {
+      "name": "image",
+      "purpose": "Image Kit 图片处理模块，提供图片解码、编码、编辑、元数据处理和图片接收能力",
+      "anchor": "image-module",
+      "status": "found"
+    },
+    {
+      "name": "createImagePacker",
+      "purpose": "创建 ImagePacker 实例，用于图片压缩和编码",
+      "anchor": "createimagepacker",
+      "status": "found"
+    },
+    {
+      "name": "createImageSource",
+      "purpose": "通过 uri/fd/ArrayBuffer/RawFileDescriptor 创建 ImageSource 实例，用于图片解码",
+      "anchor": "createimagesource",
+      "status": "found"
+    },
+    {
+      "name": "ImageSource",
+      "purpose": "图片源类，提供获取图片信息、创建 PixelMap/Picture、读写 Exif 属性等能力",
+      "anchor": "imagesource",
+      "status": "found"
+    },
+    {
+      "name": "ImagePacker",
+      "purpose": "图片编码器类，提供将 ImageSource/PixelMap/Picture 编码为压缩数据或文件的能力",
+      "anchor": "imagepacker",
+      "status": "found"
+    },
+    {
+      "name": "PackingOption",
+      "purpose": "图片编码选项，指定编码格式(format)、质量(quality)、缓冲区大小、动态范围和属性编码标志",
+      "anchor": "packingoption",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有 6 个 API 均在 @ohos.multimedia.image 模块中，导入路径为 import { image } from '@kit.ImageKit'",
+    "ImageSource 支持 createThumbnail() / createThumbnailSync() (API 26+) 用于缩略图生成，仅 JPEG 和 HEIF 格式",
+    "PackingOption.quality 仅对 JPEG/HEIF 生效，WebP/PNG 为无损编码",
+    "所有图片对象使用完毕后应主动调用 release() 释放内存"
+  ],
+  "missingApis": []
+}

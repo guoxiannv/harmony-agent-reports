@@ -1,0 +1,1041 @@
+{
+  "generated_at": "2026-06-23T06:38:30.690Z",
+  "icons": [
+    {
+      "file_name": "icon_Add-Candidate-Dish.svg",
+      "title": "Add Candidate Dish",
+      "source_html": "page-recommend-page.html",
+      "hash": "25f91e12342bab8a8263ead4f6c818a78d84e1a8",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "input-row",
+        "candidate-section"
+      ]
+    },
+    {
+      "file_name": "icon_Add-Ingredient.svg",
+      "title": "Add Ingredient",
+      "source_html": "page-ingredient-page.html",
+      "hash": "46d5cc636603896e6a9df977253dc83db38f9782",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "input-row",
+        "input-card"
+      ]
+    },
+    {
+      "file_name": "icon_Add-New-Dish.svg",
+      "title": "Add New Dish",
+      "source_html": "page-dish-page.html",
+      "hash": "6bd82a0e3726d3addd4382dfaad026d3cb445c8d",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "fab-add",
+        "search-row",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_App-Brand-Icon.svg",
+      "title": "App Brand Icon",
+      "source_html": "page-share-page.html",
+      "hash": "2699abe8cbdc609adf1201ccdf3ff03ecd5bea05",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "share-brand",
+        "share-bottom",
+        "share-card"
+      ]
+    },
+    {
+      "file_name": "icon_Breakfast-Time.svg",
+      "title": "Breakfast Time",
+      "source_html": "page-filter-page.html",
+      "hash": "27f65a1b625a2ff45dc9bf329b34dbd7783fb459",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "active",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Calendar-Navigation.svg",
+      "title": "Calendar Navigation",
+      "source_html": "page-checkin-page.html",
+      "hash": "0c4826352ec307214700afe588f690c06537a062",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "calendar-header",
+        "calendar-card",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Check-in-Tab-1.svg",
+      "title": "Check-in Tab",
+      "source_html": "page-checkin-page.html",
+      "hash": "962451d95b3a87aafe36060fc54bdbd1d6b9040a",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF8C42",
+      "fill_color": "",
+      "stroke_color": "#FF8C42",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_Check-in-Tab-2.svg",
+      "title": "Check-in Tab",
+      "source_html": "page-dish-page.html",
+      "hash": "962451d95b3a87aafe36060fc54bdbd1d6b9040a",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29C",
+      "fill_color": "",
+      "stroke_color": "#A8A29C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_Chef-Hat-Decoration.svg",
+      "title": "Chef Hat Decoration",
+      "source_html": "page-home-page.html",
+      "hash": "16f65241e921b682b166a6ccc4cae35a3ffcf387",
+      "width": 80,
+      "height": 80,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF8C42",
+      "fill_color": "",
+      "stroke_color": "#FF8C42",
+      "opacity": "1",
+      "context_classes": [
+        "today-card",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Comfort-Mood.svg",
+      "title": "Comfort Mood",
+      "source_html": "page-filter-page.html",
+      "hash": "cc0801a5c9c01c66036ae764f72db1d32295dda6",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Daily-Check-in.svg",
+      "title": "Daily Check-in",
+      "source_html": "page-home-page.html",
+      "hash": "01b2b3177e1379466c732f9dcffb21d7bb6efc55",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#5A6B58",
+      "fill_color": "",
+      "stroke_color": "#5A6B58",
+      "opacity": "1",
+      "context_classes": [
+        "feature-icon",
+        "olive",
+        "feature-card",
+        "quick-grid"
+      ]
+    },
+    {
+      "file_name": "icon_Dinner-Time.svg",
+      "title": "Dinner Time",
+      "source_html": "page-filter-page.html",
+      "hash": "7a8948254e5ece340769c62828515ef347bbc7a7",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Dish-Library-Menu.svg",
+      "title": "Dish Library Menu",
+      "source_html": "page-profile-page.html",
+      "hash": "707a0a31b3bc14f21a0e4925d03e2c1f1c9abc2a",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF8C42",
+      "fill_color": "",
+      "stroke_color": "#FF8C42",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "orange",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_Dish-Library.svg",
+      "title": "Dish Library",
+      "source_html": "page-recommend-page.html",
+      "hash": "d310cdc45837e1523751fe86c40c8bd571bf8e63",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2A25",
+      "fill_color": "",
+      "stroke_color": "#2E2A25",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Edit-Dish.svg",
+      "title": "Edit Dish",
+      "source_html": "page-dish-page.html",
+      "hash": "c4c9fb5c473110a6d729961e082ad75c489ccc72",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "dish-edit",
+        "dish-item",
+        "dish-list"
+      ]
+    },
+    {
+      "file_name": "icon_Filter-Dishes.svg",
+      "title": "Filter Dishes",
+      "source_html": "page-home-page.html",
+      "hash": "81e3e04f2d6ad8bab3e2ee86fed8fa67400c51c9",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#8FA897",
+      "fill_color": "",
+      "stroke_color": "#8FA897",
+      "opacity": "1",
+      "context_classes": [
+        "feature-icon",
+        "sage",
+        "feature-card",
+        "quick-grid"
+      ]
+    },
+    {
+      "file_name": "icon_Filtered-Dish-1.svg",
+      "title": "Filtered Dish",
+      "source_html": "page-filter-page.html",
+      "hash": "ec132a7e2cc1503a855328b4ba793c0724c2d20f",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "result-color",
+        "orange",
+        "result-card",
+        "result-grid"
+      ]
+    },
+    {
+      "file_name": "icon_Filtered-Dish-2.svg",
+      "title": "Filtered Dish",
+      "source_html": "page-filter-page.html",
+      "hash": "c83101e7067dfd230e801a24eb7cd17fb0d8a2d6",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "result-color",
+        "green",
+        "result-card",
+        "result-grid"
+      ]
+    },
+    {
+      "file_name": "icon_Filtered-Dish-3.svg",
+      "title": "Filtered Dish",
+      "source_html": "page-filter-page.html",
+      "hash": "ea246243cda09f4f05906e3f56e5538ca2ea3238",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "result-color",
+        "sage",
+        "result-card",
+        "result-grid"
+      ]
+    },
+    {
+      "file_name": "icon_Filtered-Dish-4.svg",
+      "title": "Filtered Dish",
+      "source_html": "page-filter-page.html",
+      "hash": "cd07f1c5fcc27d47915910e9cc965f6b4e8b4c7e",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2A25",
+      "fill_color": "",
+      "stroke_color": "#2E2A25",
+      "opacity": "1",
+      "context_classes": [
+        "result-color",
+        "cream",
+        "result-card",
+        "result-grid"
+      ]
+    },
+    {
+      "file_name": "icon_Go-Back.svg",
+      "title": "Go Back",
+      "source_html": "page-dish-page.html",
+      "hash": "f70a965818d4c8e339b35ebddb51bf918b0e9ac7",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2A25",
+      "fill_color": "",
+      "stroke_color": "#2E2A25",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "header",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Happy-Mood.svg",
+      "title": "Happy Mood",
+      "source_html": "page-filter-page.html",
+      "hash": "e00d566476ca0bd7af8b5a4f396af24013092412",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "active",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Home-Tab-1.svg",
+      "title": "Home Tab",
+      "source_html": "page-checkin-page.html",
+      "hash": "ad5cd371d3f96cbb3dc6346bf487a5672c529ca5",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29C",
+      "fill_color": "",
+      "stroke_color": "#A8A29C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_Home-Tab-2.svg",
+      "title": "Home Tab",
+      "source_html": "page-home-page.html",
+      "hash": "ad5cd371d3f96cbb3dc6346bf487a5672c529ca5",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF8C42",
+      "fill_color": "",
+      "stroke_color": "#FF8C42",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_Indulgent-Mood.svg",
+      "title": "Indulgent Mood",
+      "source_html": "page-filter-page.html",
+      "hash": "02eaa91252101171c63ceb52b4bbd74f84116222",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Ingredient-Recommendation.svg",
+      "title": "Ingredient Recommendation",
+      "source_html": "page-home-page.html",
+      "hash": "ddf746311e0612ddea05456f2af8c9ba991d3a2b",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4ECB9C",
+      "fill_color": "",
+      "stroke_color": "#4ECB9C",
+      "opacity": "1",
+      "context_classes": [
+        "feature-icon",
+        "green",
+        "feature-card",
+        "quick-grid"
+      ]
+    },
+    {
+      "file_name": "icon_Late-Night-Time.svg",
+      "title": "Late Night Time",
+      "source_html": "page-filter-page.html",
+      "hash": "08a2d15d8bfe7158f17057ad73fbd7acf39c2dca",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Light-Mood.svg",
+      "title": "Light Mood",
+      "source_html": "page-filter-page.html",
+      "hash": "034b83773980882660f4382fc53f7b31eb798ba3",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Lunch-Time.svg",
+      "title": "Lunch Time",
+      "source_html": "page-filter-page.html",
+      "hash": "e7f890ff9bd1ce6e3246745c67adbc8726620c8b",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Navigate-Forward.svg",
+      "title": "Navigate Forward",
+      "source_html": "page-profile-page.html",
+      "hash": "6fdefc07eef3745e7b5bc0ea667e323f216032ab",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "menu-arrow",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_Open-Settings.svg",
+      "title": "Open Settings",
+      "source_html": "page-home-page.html",
+      "hash": "c2a24e931f7d509a0993bb81888cdceee3054a0f",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2A25",
+      "fill_color": "",
+      "stroke_color": "#2E2A25",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Profile-Tab-1.svg",
+      "title": "Profile Tab",
+      "source_html": "page-checkin-page.html",
+      "hash": "6a293c3519c98d17ecf7873e670553c7a68b87b9",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29C",
+      "fill_color": "",
+      "stroke_color": "#A8A29C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_Profile-Tab-2.svg",
+      "title": "Profile Tab",
+      "source_html": "page-dish-page.html",
+      "hash": "6a293c3519c98d17ecf7873e670553c7a68b87b9",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF8C42",
+      "fill_color": "",
+      "stroke_color": "#FF8C42",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_Recommend-Tab-1.svg",
+      "title": "Recommend Tab",
+      "source_html": "page-checkin-page.html",
+      "hash": "69ff7434dc113271f339242e8829a9a9ab647e03",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29C",
+      "fill_color": "",
+      "stroke_color": "#A8A29C",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_Recommend-Tab-2.svg",
+      "title": "Recommend Tab",
+      "source_html": "page-filter-page.html",
+      "hash": "69ff7434dc113271f339242e8829a9a9ab647e03",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF8C42",
+      "fill_color": "",
+      "stroke_color": "#FF8C42",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_Recommended-Dish-1.svg",
+      "title": "Recommended Dish",
+      "source_html": "page-ingredient-page.html",
+      "hash": "395030589032979803a388a538b93ef371b1282c",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF8C42",
+      "fill_color": "",
+      "stroke_color": "#FF8C42",
+      "opacity": "1",
+      "context_classes": [
+        "dish-icon",
+        "orange",
+        "dish-card",
+        "result-list"
+      ]
+    },
+    {
+      "file_name": "icon_Recommended-Dish-2.svg",
+      "title": "Recommended Dish",
+      "source_html": "page-ingredient-page.html",
+      "hash": "9e6e499ec6ac46772619b75314399a68b6063853",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4ECB9C",
+      "fill_color": "",
+      "stroke_color": "#4ECB9C",
+      "opacity": "1",
+      "context_classes": [
+        "dish-icon",
+        "green",
+        "dish-card",
+        "result-list"
+      ]
+    },
+    {
+      "file_name": "icon_Recommended-Dish-3.svg",
+      "title": "Recommended Dish",
+      "source_html": "page-ingredient-page.html",
+      "hash": "61605785605b6bc1098298537e4e38fbb00abde6",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#5A6B58",
+      "fill_color": "",
+      "stroke_color": "#5A6B58",
+      "opacity": "1",
+      "context_classes": [
+        "dish-icon",
+        "olive",
+        "dish-card",
+        "result-list"
+      ]
+    },
+    {
+      "file_name": "icon_Remove-Candidate.svg",
+      "title": "Remove Candidate",
+      "source_html": "page-recommend-page.html",
+      "hash": "a10a1f1d2c57ade1c70bb974be5a9ca3beabdf60",
+      "width": 12,
+      "height": 12,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2A25",
+      "fill_color": "",
+      "stroke_color": "#2E2A25",
+      "opacity": "1",
+      "context_classes": [
+        "del",
+        "tag",
+        "tag-list"
+      ]
+    },
+    {
+      "file_name": "icon_Remove-Ingredient.svg",
+      "title": "Remove Ingredient",
+      "source_html": "page-ingredient-page.html",
+      "hash": "0fe31b2c5a6f8293ba790108e87b8507b7ea229e",
+      "width": 12,
+      "height": 12,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1E7A63",
+      "fill_color": "",
+      "stroke_color": "#1E7A63",
+      "opacity": "1",
+      "context_classes": [
+        "del",
+        "ingredient-tag",
+        "tag-list"
+      ]
+    },
+    {
+      "file_name": "icon_Save-Image.svg",
+      "title": "Save Image",
+      "source_html": "page-checkin-page.html",
+      "hash": "cad5440992584e1e1cd789abccde6308dc72be7e",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2A25",
+      "fill_color": "",
+      "stroke_color": "#2E2A25",
+      "opacity": "1",
+      "context_classes": [
+        "share-btn",
+        "share-row",
+        "form-card"
+      ]
+    },
+    {
+      "file_name": "icon_Save-to-Album.svg",
+      "title": "Save to Album",
+      "source_html": "page-share-page.html",
+      "hash": "b22f5fd30e3fc921faeb39e4089b55cae52ba400",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "action-row",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Search-Dishes.svg",
+      "title": "Search Dishes",
+      "source_html": "page-dish-page.html",
+      "hash": "0ad2eb6f57a1c53c5f2cbd50f46cfcca6a91e505",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "search-input-wrap",
+        "search-row",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Settings-Menu.svg",
+      "title": "Settings Menu",
+      "source_html": "page-profile-page.html",
+      "hash": "98c70215ba5d222392385deec41d15b2431d10b6",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#5A6B58",
+      "fill_color": "",
+      "stroke_color": "#5A6B58",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "olive",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_Share-Card.svg",
+      "title": "Share Card",
+      "source_html": "page-checkin-page.html",
+      "hash": "3020966b8ed10873ed4574ab8c131dbed7fa054b",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2A25",
+      "fill_color": "",
+      "stroke_color": "#2E2A25",
+      "opacity": "1",
+      "context_classes": [
+        "share-btn",
+        "share-row",
+        "form-card"
+      ]
+    },
+    {
+      "file_name": "icon_Share-Check-in.svg",
+      "title": "Share Check-in",
+      "source_html": "page-checkin-page.html",
+      "hash": "b913e8283eed0e8a95353880607f2e92e2a653cd",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2A25",
+      "fill_color": "",
+      "stroke_color": "#2E2A25",
+      "opacity": "1",
+      "context_classes": [
+        "icon-btn",
+        "header",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Spicy-Mood.svg",
+      "title": "Spicy Mood",
+      "source_html": "page-filter-page.html",
+      "hash": "b5e8389753ce85fc1dde7cc31a8d07b9baaa0673",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Spin-Wheel.svg",
+      "title": "Spin Wheel",
+      "source_html": "page-home-page.html",
+      "hash": "6614b06b4248dbb63be5b2845080e50dbea560a3",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FF8C42",
+      "fill_color": "",
+      "stroke_color": "#FF8C42",
+      "opacity": "1",
+      "context_classes": [
+        "feature-icon",
+        "orange",
+        "feature-card",
+        "quick-grid"
+      ]
+    },
+    {
+      "file_name": "icon_Spinning-Wheel.svg",
+      "title": "Spinning Wheel",
+      "source_html": "page-recommend-page.html",
+      "hash": "236169d8867032ef400e4fa8753bc6237da4c67e",
+      "width": 300,
+      "height": 300,
+      "view_box": "0 0 300 300",
+      "paint_mode": "fill",
+      "default_color": "#2E2A25",
+      "fill_color": "#FF8C42",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "wheel",
+        "wheel-container",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Statistics-Menu.svg",
+      "title": "Statistics Menu",
+      "source_html": "page-profile-page.html",
+      "hash": "f092907ccc6e474ce13caec85e5408960906b245",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4ECB9C",
+      "fill_color": "",
+      "stroke_color": "#4ECB9C",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "green",
+        "menu-item",
+        "menu-list"
+      ]
+    },
+    {
+      "file_name": "icon_System-Share.svg",
+      "title": "System Share",
+      "source_html": "page-share-page.html",
+      "hash": "042bc11af936da36f9aa5d504f3fc96bf78b4fd0",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "action-row",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_User-Avatar.svg",
+      "title": "User Avatar",
+      "source_html": "page-profile-page.html",
+      "hash": "d6db5112bcfa319f8bb1b9638ee88281c28cdd49",
+      "width": 36,
+      "height": 36,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "white",
+      "fill_color": "",
+      "stroke_color": "white",
+      "opacity": "1",
+      "context_classes": [
+        "avatar",
+        "profile-card",
+        "page"
+      ]
+    },
+    {
+      "file_name": "icon_Whatever-Mood.svg",
+      "title": "Whatever Mood",
+      "source_html": "page-filter-page.html",
+      "hash": "0704072d4e1348ec7be899cd251cc1c94c0b8dee",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#7A746E",
+      "fill_color": "",
+      "stroke_color": "#7A746E",
+      "opacity": "1",
+      "context_classes": [
+        "chip",
+        "chip-list",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_Wheel-Pointer.svg",
+      "title": "Wheel Pointer",
+      "source_html": "page-recommend-page.html",
+      "hash": "04815a3069597d0142fe0ed62e7fbbf0ed0719a9",
+      "width": 28,
+      "height": 36,
+      "view_box": "0 0 24 24",
+      "paint_mode": "fill",
+      "default_color": "#FF8C42",
+      "fill_color": "#FF8C42",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "wheel-container",
+        "page"
+      ]
+    }
+  ]
+}

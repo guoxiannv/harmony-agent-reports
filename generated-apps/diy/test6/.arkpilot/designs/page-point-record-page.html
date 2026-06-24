@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>手作·印记</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --clay-primary: #9E4F2C;
+  --clay-secondary: #C98B6C;
+  --clay-light: #F7F3ED;
+  --clay-card: #FFFFFF;
+  --clay-dark: #4A3024;
+  --text-title: #3B2820;
+  --text-body: #6E5D53;
+  --text-muted: #9E8E84;
+  --green: #7D9472;
+  --pink: #D9A89B;
+  --red: #B85448;
+  --blue: #8BAAB8;
+  --ochre: #B87D4B;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: #E5E1DA;
+  font-family: 'PingFang SC', 'Noto Sans SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: var(--text-body);
+}
+.app-frame {
+  max-width: 390px;
+  margin: 0 auto;
+  background: var(--clay-light);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  box-shadow: 0 0 40px rgba(74,48,36,0.12);
+}
+.page-content { padding: 22px 22px 110px; }
+.handwritten {
+  font-family: 'Zhi Mang Xing', 'Ma Shan Zheng', cursive;
+  font-weight: 400;
+}
+.page-title {
+  font-size: 44px;
+  color: var(--text-title);
+  line-height: 1.12;
+  margin: 8px 0 4px;
+}
+.page-subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-title);
+  margin: 28px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card {
+  background: var(--clay-card);
+  border: 1px solid rgba(158,79,44,0.08);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: rgba(74,48,36,0.10) 0px 10px 28px -6px, rgba(74,48,36,0.06) 0px 4px 8px -2px;
+  margin-bottom: 14px;
+}
+.card-gradient {
+  background: linear-gradient(135deg, #9E4F2C 0%, #C98B6C 100%);
+  color: #fff;
+  border: none;
+  box-shadow: rgba(158,79,44,0.34) 0px 10px 28px -8px;
+}
+.card-gradient .card-title,
+.card-gradient .card-caption,
+.card-gradient .big-number { color: #fff; }
+.card-gradient-secondary {
+  background: linear-gradient(135deg, #D9A89B 0%, #F0DFD8 100%);
+  color: #3B2820;
+  border: none;
+}
+.card-gradient-alert {
+  background: linear-gradient(135deg, #B85448 0%, #D9A89B 100%);
+  color: #fff;
+  border: none;
+}
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-title);
+  margin: 0 0 4px;
+}
+.card-caption {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+.big-number {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-title);
+  margin: 8px 0 0;
+  letter-spacing: -0.5px;
+}
+.reminder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.reminder-card {
+  padding: 16px;
+  border-radius: 18px;
+}
+.reminder-card .card-title { font-size: 15px; }
+.reminder-card .big-number { font-size: 28px; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #9E4F2C 0%, #C98B6C 100%);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: rgba(158,79,44,0.34) 0px 10px 28px -4px;
+  cursor: pointer;
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--clay-primary);
+  border: 1.5px solid var(--clay-secondary);
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: var(--clay-primary);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  cursor: pointer;
+}
+.input-field {
+  width: 100%;
+  background: var(--clay-light);
+  border: 1px solid rgba(158,79,44,0.12);
+  border-radius: 14px;
+  padding: 15px 17px;
+  font-size: 15px;
+  color: var(--text-title);
+  margin-bottom: 14px;
+  outline: none;
+}
+.input-field::placeholder { color: var(--text-muted); }
+.input-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-title);
+  margin-bottom: 6px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  background: #F3EBE3;
+  color: var(--clay-dark);
+  border-radius: 12px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.chip-pink { background: #F5DDD6; color: #A64B3C; }
+.chip-red { background: #F5DDD6; color: #B85448; }
+.chip-green { background: #DFE8D6; color: #4F6644; }
+.chip-blue { background: #E3EBEF; color: #4A6070; }
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(158,79,44,0.08);
+}
+.list-item:last-child { border-bottom: none; }
+.avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9E4F2C 0%, #C98B6C 100%);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 600;
+  flex-shrink: 0;
+}
+.avatar-small { width: 36px; height: 36px; font-size: 14px; }
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+}
+.empty-state svg {
+  width: 120px; height: 120px;
+  stroke: var(--clay-secondary);
+  margin-bottom: 16px;
+}
+.empty-title {
+  font-size: 24px;
+  color: var(--text-title);
+  margin-bottom: 8px;
+}
+.empty-caption { font-size: 14px; color: var(--text-muted); }
+.bottom-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  max-width: 390px;
+  margin: 0 auto;
+  height: 68px;
+  background: rgba(247,243,237,0.88);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  border-top: 1px solid rgba(158,79,44,0.10);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  z-index: 100;
+}
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  padding-top: 8px;
+}
+.tab-item.active { color: var(--clay-primary); }
+.tab-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--clay-primary);
+}
+.fab {
+  position: fixed;
+  bottom: 102px;
+  right: calc(50% - 173px);
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  background: var(--clay-primary);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: rgba(158,79,44,0.34) 0px 10px 28px -4px;
+  border: none;
+  cursor: pointer;
+  z-index: 99;
+}
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px 0;
+}
+.top-nav-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-title);
+}
+.icon-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: var(--clay-light);
+  border: 1px solid rgba(158,79,44,0.10);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--clay-primary);
+  cursor: pointer;
+}
+.progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(158,79,44,0.10);
+  margin-top: 8px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--clay-secondary);
+}
+.progress-fill.low { background: var(--red); }
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+  font-size: 13px;
+}
+.calendar-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--clay-light);
+  position: relative;
+}
+.calendar-cell.active {
+  background: var(--clay-primary);
+  color: #fff;
+}
+.calendar-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--clay-secondary);
+  position: absolute;
+  bottom: 6px;
+}
+.toggle-pill {
+  display: inline-flex;
+  background: var(--clay-light);
+  border-radius: 14px;
+  padding: 4px;
+  border: 1px solid rgba(158,79,44,0.10);
+}
+.toggle-pill button {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.toggle-pill button.active {
+  background: #fff;
+  color: var(--clay-primary);
+  box-shadow: 0 2px 8px rgba(74,48,36,0.08);
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.image-slot {
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: var(--clay-light);
+  border: 1px dashed rgba(158,79,44,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clay-secondary);
+}
+.image-slot.filled {
+  border-style: solid;
+  background-size: cover;
+  background-position: center;
+}
+</style>
+</head>
+<body data-page-id="point-record-page" >
+  <div class="app-frame">
+    
+    <div class="top-nav">
+      <button class="icon-btn" data-ui-id="point-record-page-back-button" data-event="navigate-back"><!-- @license lucide-static v1.20.0 - ISC -->
+<svg
+  class="lucide lucide-arrow-left"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#9E4F2C"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+><title>Go Back</title>
+  <path d="m12 19-7-7 7-7" />
+  <path d="M19 12H5" />
+</svg>
+</button>
+      <div class="top-nav-title">积分补录</div>
+      <div style="width:40px"></div>
+    </div>
+    
+    <div class="page-content">
+      
+<div class="handwritten page-title"><!-- @license lucide-static v1.20.0 - ISC -->
+<svg
+  class="lucide lucide-wallet"
+  xmlns="http://www.w3.org/2000/svg"
+  width="28"
+  height="28"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#9E4F2C"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+><title>Navigate to Points Center</title>
+  <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+  <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+</svg>
+ 积分补录</div>
+<div class="page-subtitle">手动调整会员积分</div>
+
+<div class="card">
+  <label class="input-label">选择会员</label>
+  <div class="input-field" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer" data-ui-id="point-record-member-picker" data-event="select-point-member">
+    <div style="display:flex; align-items:center; gap:10px">
+      <div class="avatar avatar-small">林</div>
+      <span style="color:var(--text-title)">林小陶（当前 286 分）</span>
+    </div>
+    <!-- @license lucide-static v1.20.0 - ISC -->
+<svg
+  class="lucide lucide-chevron-down"
+  xmlns="http://www.w3.org/2000/svg"
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#9E8E84"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+><title>Expand Options</title>
+  <path d="m6 9 6 6 6-6" />
+</svg>
+
+  </div>
+
+  <label class="input-label">类型</label>
+  <div class="toggle-pill" data-ui-id="point-record-type-picker" data-event="select-point-type" style="margin-bottom:14px">
+    <button class="active">奖励</button>
+    <button>扣减</button>
+    <button>调整</button>
+  </div>
+
+  <label class="input-label">积分数值</label>
+  <input class="input-field" type="number" value="20" placeholder="请输入积分" data-ui-id="point-record-amount-input">
+
+  <label class="input-label">原因</label>
+  <input class="input-field" value="作品入选展示奖励" placeholder="如签到、消费、奖励等" data-ui-id="point-record-reason-input">
+</div>
+
+<div style="display:flex; gap:12px; margin-top:28px">
+  <button class="btn-secondary" style="flex:1" data-ui-id="point-record-cancel-button" data-event="cancel-point-record">取消</button>
+  <button class="btn-primary" style="flex:1" data-ui-id="point-record-save-button" data-event="save-point-record">保存</button>
+</div>
+
+    </div>
+    
+    
+  </div>
+</body>
+</html>

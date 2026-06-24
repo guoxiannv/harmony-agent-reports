@@ -1,0 +1,266 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "appShell": {
+    "kind": "fixed-bottom-tab-shell",
+    "shellFiles": [
+      "entry/src/main/ets/common/Theme.ets",
+      "entry/src/main/ets/common/SvgIcon.ets",
+      "entry/src/main/ets/common/TabTypes.ets",
+      "entry/src/main/ets/components/BottomTabBar.ets",
+      "entry/src/main/ets/pages/Index.ets"
+    ],
+    "tabs": [
+      { "tabId": "tab-home", "surfaceId": "home", "label": "今日", "page": "HomePage" },
+      { "tabId": "tab-ingredients", "surfaceId": "ingredients", "label": "食材", "page": "IngredientsPage" },
+      { "tabId": "tab-records", "surfaceId": "records", "label": "打卡", "page": "RecordsPage" }
+    ],
+    "nonTabSurfaces": ["wheel", "filter", "record-form", "share-card"]
+  },
+  "dataModel": {
+    "entities": {
+      "Dish": {
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "tags": "string[] (口味/风格标签，如 辣/清淡/重口)",
+          "ingredients": "string[] (所需食材名小写)",
+          "cookMinutes": "number",
+          "meals": "MealType[] (适合餐别)",
+          "difficulty": "DifficultyType",
+          "moods": "MoodType[] (适合心情)",
+          "cookTime": "CookTimeType (quick/normal/weekend)",
+          "cuisine": "string (菜系，可选)"
+        },
+        "source": "内置静态菜谱库 DishCatalog，随包发布"
+      },
+      "Ingredient": {
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "quantity": "string (可选，如 2个/一把)",
+          "addedAt": "number (毫秒时间戳)"
+        },
+        "source": "用户维护，持久化到本地 Preferences"
+      },
+      "DishRecord": {
+        "fields": {
+          "id": "string",
+          "date": "string (YYYYMMDD)",
+          "meal": "MealType",
+          "dishName": "string",
+          "rating": "number (1-5)",
+          "note": "string"
+        },
+        "source": "用户打卡，持久化到本地 Preferences"
+      },
+      "FilterCriteria": {
+        "fields": {
+          "mood": "MoodType | ''",
+          "time": "CookTimeType | ''",
+          "meal": "MealType | ''"
+        },
+        "source": "运行时状态；空表示不限制。各维度可独立为空。"
+      },
+      "ShareCardData": {
+        "fields": {
+          "dishName": "string",
+          "dateLabel": "string (展示用日期)",
+          "mealLabel": "string (展示用餐别)",
+          "reason": "string (决策理由：转盘/食材匹配/筛选)",
+          "tags": "string[]",
+          "source": "'wheel' | 'ingredient' | 'filter' | 'record'"
+        }
+      }
+    },
+    "enums": {
+      "MealType": ["breakfast", "lunch", "dinner", "lateNight"],
+      "MoodType": ["happy", "tired", "spicy", "light", "comfort", "adventurous"],
+      "CookTimeType": ["quick", "normal", "weekend"],
+      "DifficultyType": ["easy", "medium", "hard"]
+    },
+    "settingsFormState": {
+      "filterMood": "string",
+      "filterTime": "string",
+      "filterMeal": "string",
+      "recordFormDate": "string",
+      "recordFormMeal": "MealType",
+      "recordFormDishName": "string",
+      "recordFormRating": "number",
+      "recordFormNote": "string",
+      "ingredientInput": "string"
+    },
+    "computedState": {
+      "recommendations": "首页推荐：基于当前 FilterCriteria 过滤菜谱库，去重后取若干",
+      "ingredientRecommendations": "按用户食材匹配度排序的菜谱（至少匹配1项食材）",
+      "wheelCandidates": "受 FilterCriteria 约束的转盘候选池（无候选时回退全库）",
+      "calendar": "指定月份的 { dateYYYYMMDD -> 打卡数 } 映射"
+    },
+    "persistenceFields": {
+      "ingredients": "Preferences store 'eat_ingredients'，每条按 ingredient_<id> 存 JSON",
+      "records": "Preferences store 'eat_records'，每条按 record_<id> 存 JSON",
+      "lastFilter": "可选：记住最后一次筛选（MVP 不强制持久化，运行时状态）"
+    }
+  },
+  "services": [
+    {
+      "name": "DishCatalog",
+      "file": "entry/src/main/ets/data/DishCatalog.ets",
+      "responsibility": "内置静态菜谱库，提供全量列表与按 id 查询"
+    },
+    {
+      "name": "IngredientStore",
+      "file": "entry/src/main/ets/services/IngredientStore.ets",
+      "responsibility": "冰箱食材增删查，Preferences 持久化"
+    },
+    {
+      "name": "RecordStore",
+      "file": "entry/src/main/ets/services/RecordStore.ets",
+      "responsibility": "饮食打卡增删查、日历聚合，Preferences 持久化"
+    },
+    {
+      "name": "FilterStore",
+      "file": "entry/src/main/ets/services/FilterStore.ets",
+      "responsibility": "运行时筛选状态（mood/time/meal），提供清空与快照"
+    },
+    {
+      "name": "RecommendService",
+      "file": "entry/src/main/ets/services/RecommendService.ets",
+      "responsibility": "按 FilterCriteria 过滤候选；按食材计算匹配度排序"
+    },
+    {
+      "name": "WheelEngine",
+      "file": "entry/src/main/ets/services/WheelEngine.ets",
+      "responsibility": "由 FilterCriteria 生成候选池；spin 返回候选与命中索引/结果"
+    },
+    {
+      "name": "ShareCardBuilder",
+      "file": "entry/src/main/ets/services/ShareCardBuilder.ets",
+      "responsibility": "由 DishRecord 或 Dish 决策结果构造 ShareCardData"
+    },
+    {
+      "name": "AppServices",
+      "file": "entry/src/main/ets/services/AppServices.ets",
+      "responsibility": "单例聚合 + 在 EntryAbility 中以 context 初始化各持久化 Store"
+    }
+  ],
+  "stateMachine": {
+    "wheel": {
+      "states": ["idle", "spinning", "result"],
+      "transitions": [
+        { "from": "idle", "event": "spin-wheel", "to": "spinning" },
+        { "from": "spinning", "internal": "animation done", "to": "result" },
+        { "from": "result", "event": "reshuffle", "to": "spinning" },
+        { "from": "result", "event": "accept-result", "to": "idle" }
+      ]
+    },
+    "filter": {
+      "states": ["editing", "applied"],
+      "transitions": [
+        { "from": "*", "event": "apply-filter", "to": "applied" },
+        { "from": "*", "event": "reset-filter", "to": "editing" }
+      ]
+    },
+    "recordForm": {
+      "states": ["closed", "editing", "saved"],
+      "transitions": [
+        { "from": "closed", "event": "open-add-record", "to": "editing" },
+        { "from": "editing", "event": "save-record", "to": "saved" },
+        { "from": "saved", "internal": "dismiss", "to": "closed" },
+        { "from": "editing", "event": "cancel-record", "to": "closed" }
+      ]
+    },
+    "shareCard": {
+      "states": ["closed", "preview", "saved"],
+      "transitions": [
+        { "from": "closed", "event": "open-share-card", "to": "preview" },
+        { "from": "preview", "event": "save-share-card", "to": "saved" },
+        { "from": "preview|saved", "event": "close-share-card", "to": "closed" }
+      ]
+    }
+  },
+  "interactionFlows": [
+    {
+      "id": "home-quick-wheel",
+      "trigger": "home-quick-wheel-button (event open-wheel)",
+      "steps": [
+        "Index 切换 surface 至 wheel",
+        "WheelEngine 用当前 FilterCriteria 生成 wheelCandidates",
+        "进入 idle 态等待用户 spin"
+      ],
+      "expectedState": "wheel.idle，候选池非空"
+    },
+    {
+      "id": "wheel-spin",
+      "trigger": "wheel-spin-button (event spin-wheel)",
+      "steps": [
+        "wheel.idle -> spinning",
+        "WheelEngine.spin() 从候选池随机命中一个索引",
+        "播放旋转动画 -> wheel.result",
+        "展示 wheel-result-name",
+        "提供 accept-result / reshuffle / open-share-card"
+      ],
+      "errorPath": "候选池为空：回退使用全量菜谱库并提示"
+    },
+    {
+      "id": "filter-apply",
+      "trigger": "filter-apply-button (event apply-filter)",
+      "steps": [
+        "收集 filter-mood/time/meal 三个输入",
+        "FilterStore.set(mood,time,meal)",
+        "返回上一页；首页推荐与转盘候选池即时刷新"
+      ],
+      "expectedState": "filter.applied"
+    },
+    {
+      "id": "ingredient-manage-and-recommend",
+      "trigger": "ingredients-add-button / delete / show-ingredient-recommendations",
+      "steps": [
+        "add：校验名称非空去重 -> IngredientStore.add -> 刷新列表",
+        "delete：IngredientStore.remove -> 刷新列表",
+        "recommend：RecommendService.recommendByIngredients(ingredients) -> ingredients-dish-list"
+      ],
+      "errorPath": "无食材 -> empty-state；无匹配 -> empty-recommendations"
+    },
+    {
+      "id": "record-add",
+      "trigger": "records-add-button / home-add-record-button (event open-add-record)",
+      "steps": [
+        "recordForm.closed -> editing，默认日期=今日、餐别按当前时段",
+        "save-record：校验 dishName 非空、rating 1-5 -> RecordStore.add",
+        "dismiss -> closed；刷新 records-list 与 calendar"
+      ],
+      "errorPath": "dishName 为空 -> 阻止保存并提示"
+    },
+    {
+      "id": "share-card-open",
+      "trigger": "wheel-share-button / record-share-button (event open-share-card)",
+      "steps": [
+        "ShareCardBuilder 由当前决策结果/打卡记录构造 ShareCardData",
+        "shareCard.closed -> preview，展示 share-card-preview",
+        "save-share-card：保存为图片（MVP 走保存反馈/占位实现，文档记录）",
+        "close-share-card -> closed"
+      ]
+    }
+  ],
+  "testTargets": [
+    "home-quick-wheel-button", "home-filter-button", "home-recommend-list",
+    "home-empty-recommendations", "home-today-record-status", "home-add-record-button",
+    "wheel-spin-button", "wheel-result-name", "wheel-result-accept-button",
+    "wheel-result-reshuffle-button", "wheel-share-button",
+    "ingredients-input", "ingredients-add-button", "ingredients-list",
+    "ingredients-empty-state", "ingredient-delete-button", "ingredients-recommend-button",
+    "ingredients-dish-list", "ingredients-empty-recommendations",
+    "filter-mood-group", "filter-time-group", "filter-meal-group",
+    "filter-apply-button", "filter-reset-button",
+    "records-calendar", "records-add-button", "records-list",
+    "records-empty-state", "record-share-button",
+    "record-form-date-picker", "record-form-meal-group", "record-form-dish-input",
+    "record-form-rating", "record-form-save-button", "record-form-cancel-button",
+    "share-card-preview", "share-card-save-button", "share-card-close-button"
+  ],
+  "notes": {
+    "headlessPhase": "先实现 Models/DishCatalog/services，不在本轮落地页面布局；页面/组件在视觉对齐阶段实现",
+    "noSeededData": "首次启动不预置示例数据，所有用户数据从空状态开始",
+    "shareCardSave": "图片导出为可选能力；MVP 提供保存反馈，最终实现以系统保存能力为准"
+  }
+}

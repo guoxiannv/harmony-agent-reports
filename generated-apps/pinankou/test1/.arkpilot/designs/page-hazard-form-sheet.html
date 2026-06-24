@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 隐患表单</title>
+  <style>
+    :root { --sky:#38BDF8; --mint:#34D399; --teal:#0F766E; --slate-900:#0F172A; --slate-600:#475569; --slate-400:#94A3B8; --slate-200:#E2E8F0; }
+    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html,body { margin:0; padding:0; height:100%; font-family:"PingFang SC","HarmonyOS Sans SC","SF Pro Text",-apple-system,BlinkMacSystemFont,sans-serif; background:rgba(15,23,42,0.5); }
+    #app { max-width:390px; margin:0 auto; min-height:100%; display:flex; align-items:flex-end; }
+    .sheet { width:100%; background:#fff; border-radius:28px 28px 0 0; padding:20px 16px calc(24px + env(safe-area-inset-bottom,0)); }
+    .drag-bar { width:40px; height:5px; border-radius:3px; background:var(--slate-200); margin:0 auto 18px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    .sheet-title { font-size:20px; font-weight:700; color:var(--teal); margin:0; }
+    .close-btn { width:36px; height:36px; border-radius:12px; background:#F1F5F9; border:none; display:grid; place-items:center; color:var(--slate-600); }
+    .form-group { margin-bottom:18px; }
+    .form-label { display:block; font-size:13px; font-weight:600; color:var(--slate-600); margin-bottom:8px; letter-spacing:0.5px; text-transform:uppercase; }
+    .form-input { width:100%; padding:14px 16px; border-radius:14px; background:#F8FAFC; border:1px solid var(--slate-200); font-size:15px; outline:none; color:var(--slate-900); }
+    .form-input:focus { border-color:var(--sky); box-shadow:0 0 0 4px rgba(56,189,248,0.12); }
+    .select-row { display:flex; gap:10px; flex-wrap:wrap; }
+    .select-chip { padding:10px 16px; border-radius:20px; border:1px solid var(--slate-200); background:#F8FAFC; font-size:14px; color:var(--slate-600); }
+    .select-chip.active { background:linear-gradient(135deg,#E0F2FE,#D1FAE5); border-color:var(--sky); color:var(--teal); font-weight:600; }
+    .select-chip.high.active { background:linear-gradient(135deg,#FEE2E2,#FECACA); border-color:#F87171; color:#DC2626; }
+    .textarea { min-height:90px; resize:none; }
+    .photo-area { width:100%; padding:20px; border-radius:14px; background:#F8FAFC; border:1px dashed var(--slate-200); text-align:center; color:var(--slate-400); font-size:14px; }
+    .footer { display:flex; gap:12px; margin-top:8px; }
+    .btn-save { flex:1; padding:14px; border-radius:16px; background:linear-gradient(135deg,var(--sky) 0%,var(--mint) 100%); color:#fff; font-size:16px; font-weight:700; border:none; box-shadow:0 10px 24px -6px rgba(14,165,233,0.35); }
+    .btn-delete { padding:14px 20px; border-radius:16px; background:#FEE2E2; color:#DC2626; font-size:16px; font-weight:600; border:none; }
+  </style>
+</head>
+<body>
+  <div id="app" data-page-id="hazard-form-sheet">
+    <div class="sheet">
+      <div class="drag-bar"></div>
+      <div class="topbar">
+        <h1 class="sheet-title">上报隐患</h1>
+        <button class="close-btn" data-ui-id="hazard-form-close" aria-label="关闭表单">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>关闭隐患表单</title><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">隐患标题</label>
+        <input type="text" class="form-input" data-ui-id="hazard-form-title" placeholder="简短描述隐患" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">位置</label>
+        <input type="text" class="form-input" data-ui-id="hazard-form-location" placeholder="例如：A栋3层东侧通道" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">风险等级</label>
+        <div class="select-row" data-ui-id="hazard-form-level">
+          <button class="select-chip high active">高风险</button>
+          <button class="select-chip">中风险</button>
+          <button class="select-chip">低风险</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">隐患描述</label>
+        <textarea class="form-input textarea" data-ui-id="hazard-form-description" placeholder="详细描述隐患情况、可能后果"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">现场照片</label>
+        <button class="photo-area" data-ui-id="hazard-form-photo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px"><title>拍摄隐患现场照片</title><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/></svg>
+          点击拍摄或选择照片
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">上报人</label>
+        <input type="text" class="form-input" data-ui-id="hazard-form-reporter" value="当前用户" />
+      </div>
+
+      <div class="footer">
+        <button class="btn-save" data-ui-id="hazard-form-save">立即上报</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

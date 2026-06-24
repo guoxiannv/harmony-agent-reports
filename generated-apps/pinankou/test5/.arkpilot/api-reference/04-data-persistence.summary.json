@@ -1,0 +1,123 @@
+{
+  "module": "04-data-persistence.md",
+  "group": "04 — 数据持久化 (Data Persistence)",
+  "apiCount": 18,
+  "apis": [
+    {
+      "name": "preferences.getPreferences",
+      "purpose": "获取Preferences键值存储实例",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "preferences.Preferences.put",
+      "purpose": "写入键值对到Preferences缓存",
+      "anchor": "put",
+      "status": "found"
+    },
+    {
+      "name": "preferences.Preferences.get",
+      "purpose": "从Preferences缓存中读取键对应的值",
+      "anchor": "get",
+      "status": "found"
+    },
+    {
+      "name": "preferences.Preferences.delete",
+      "purpose": "从Preferences缓存中删除指定键值对",
+      "anchor": "delete",
+      "status": "found"
+    },
+    {
+      "name": "preferences.Preferences.flush",
+      "purpose": "将Preferences缓存数据持久化到文件",
+      "anchor": "flush",
+      "status": "found"
+    },
+    {
+      "name": "preferences.Preferences.on('change')",
+      "purpose": "订阅Preferences全局数据变更通知",
+      "anchor": "onchange",
+      "status": "found"
+    },
+    {
+      "name": "preferences.deletePreferences",
+      "purpose": "删除Preferences实例及其持久化文件",
+      "anchor": "preferencesdeletepreferences",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore.getRdbStore",
+      "purpose": "创建或打开关系型数据库(RDB)实例",
+      "anchor": "relationalstoregetrdbstore",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore.deleteRdbStore",
+      "purpose": "删除关系型数据库文件",
+      "anchor": "relationalstoredeleterdbstore",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.insert",
+      "purpose": "向数据库表中插入一行数据",
+      "anchor": "insert",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.update",
+      "purpose": "根据RdbPredicates条件更新数据库中的数据",
+      "anchor": "update",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.delete",
+      "purpose": "根据RdbPredicates条件删除数据库中的数据",
+      "anchor": "delete-1",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.query",
+      "purpose": "根据RdbPredicates条件查询数据库中的数据",
+      "anchor": "query",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.querySql",
+      "purpose": "执行原始SQL查询语句获取ResultSet",
+      "anchor": "querysql",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.executeSql",
+      "purpose": "执行原始SQL语句(DDL/DML, 不含查询)",
+      "anchor": "executesql",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.data.ValuesBucket",
+      "purpose": "数据行类型, 键为string, 值为ValueType/Uint8Array/null",
+      "anchor": "ohosdatavaluesbucket-数据集",
+      "status": "found"
+    },
+    {
+      "name": "DataSharePredicates",
+      "purpose": "数据共享谓词, 用于DataShare查询条件构造",
+      "anchor": "ohosdatadatasharepredicates-数据共享谓词",
+      "status": "found"
+    },
+    {
+      "name": "DataSharePredicates.equalTo/orderByAsc/limit",
+      "purpose": "链式谓词方法: 等于条件/升序排序/限制结果",
+      "anchor": "equalto",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "preferences在XML模式下需调用flush()落盘; GSKV模式实时落盘无需flush",
+    "preferences.on('change')仅在flush后触发回调; 还提供on('dataChange')精确订阅指定key",
+    "relationalStore.executeSql不支持分号分隔多条语句、不支持查询和事务; API12+推荐使用execute()替代",
+    "RDB单条数据受共享内存2MB限制, 单条字符串字段最大8MB",
+    "DataSharePredicates是DataShare模块的库外谓词; RDBStore内部应使用@ohos.data.relationalStore的RdbPredicates"
+  ],
+  "missingApis": []
+}

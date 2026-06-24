@@ -1,0 +1,230 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "version": "arkpilot-a2ui/v2",
+  "appName": "平安扣 Pinankou",
+  "dataModel": {
+    "entities": {
+      "Hazard": {
+        "fields": {
+          "id": "string",
+          "title": "string",
+          "location": "string",
+          "level": "RiskLevel(low|medium|high|critical)",
+          "description": "string",
+          "status": "HazardStatus(pending|rectifying|accepting|done)",
+          "assignee": "string",
+          "deadline": "number(ms) | 0",
+          "photoPath": "string | ''",
+          "createdAt": "number(ms)",
+          "updatedAt": "number(ms)",
+          "progress": "HazardProgress[]"
+        },
+        "notes": "Persisted locally; no seeded records on first launch."
+      },
+      "HazardProgress": {
+        "fields": {
+          "id": "string",
+          "type": "create|rectify|urge|accept|comment",
+          "text": "string",
+          "createdAt": "number(ms)"
+        }
+      },
+      "PatrolRoute": {
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "description": "string",
+          "checkpoints": "PatrolCheckpoint[]"
+        },
+        "notes": "Inspection route templates seeded (config), one active session at a time."
+      },
+      "PatrolCheckpoint": {
+        "fields": {
+          "id": "string",
+          "routeId": "string",
+          "name": "string",
+          "order": "number"
+        }
+      },
+      "CheckinRecord": {
+        "fields": {
+          "id": "string",
+          "routeId": "string",
+          "checkpointId": "string",
+          "time": "number(ms)",
+          "abnormal": "boolean",
+          "note": "string"
+        }
+      },
+      "Contact": {
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "phone": "string",
+          "group": "string",
+          "role": "string",
+          "isPrimary": "boolean"
+        }
+      },
+      "SafetyTodo": {
+        "fields": {
+          "id": "string",
+          "title": "string",
+          "type": "hazard|patrol|review",
+          "dueTime": "number(ms) | 0",
+          "done": "boolean"
+        }
+      },
+      "ProfileState": {
+        "fields": {
+          "name": "string",
+          "role": "user|admin",
+          "avatar": "string"
+        }
+      }
+    },
+    "computedState": {
+      "/summary/pendingHazards": "count of hazards where status != done",
+      "/summary/todayPatrols": "count of patrol checkins today",
+      "/summary/completionRate": "done / total hazards (0..1)",
+      "/stats/hazardTotal": "total hazards in time range",
+      "/stats/completionRate": "done / total in range",
+      "/stats/patrolCoverage": "checked checkpoints / total checkpoints today",
+      "/stats/trend": "hazard counts grouped by day for range",
+      "/stats/rank": "hazards grouped by location/level sorted desc"
+    },
+    "persistence": {
+      "strategy": "local-first via Preferences (dataPreferences). Load on EntryAbility onCreate, persist asynchronously after each mutation. No seeded hazard/contact/todo data. Patrol route templates seeded as inspection configuration.",
+      "storeKey": "AppStorage key 'dataStore' holding a @Observed DataStore singleton."
+    }
+  },
+  "services": {
+    "DataStore": {
+      "responsibility": "Single source of truth: in-memory observable collections + Preferences persistence. CRUD for hazards/contacts/todos; patrol session state; profile.",
+      "methods": [
+        "addHazard(form)",
+        "updateHazard(id, form)",
+        "urgeHazard(id)",
+        "rectifyHazard(id)",
+        "acceptHazard(id)",
+        "appendProgress(hazardId, type, text)",
+        "removeHazard(id)",
+        "startPatrol(routeId)",
+        "checkinCheckpoint(checkpointId, abnormal, note)",
+        "completePatrol()",
+        "addContact(contact)",
+        "removeContact(id)",
+        "setPrimaryContact(id)",
+        "seedRoutesIfEmpty()"
+      ]
+    },
+    "StatsService": {
+      "responsibility": "Pure computation over DataStore. Provides home summary and stats-page metrics with time-range filter.",
+      "methods": ["summary(store)", "computeStats(store, timeRange)", "trend(store, days)", "rank(store)"]
+    },
+    "PhoneService": {
+      "responsibility": "Initiate a phone call via @kit.AbilityKit call.makeCall. Stubbed to call.makeCall; documented fallback if permission unavailable.",
+      "methods": ["call(phoneNumber)"]
+    }
+  },
+  "stateMachine": {
+    "Hazard": {
+      "states": ["pending", "rectifying", "accepting", "done"],
+      "transitions": [
+        { "from": "pending", "to": "rectifying", "trigger": "save-hazard with assignee or urge-rectification", "effect": "appendProgress(rectify)" },
+        { "from": "rectifying", "to": "rectifying", "trigger": "urge-rectification", "effect": "appendProgress(urge)" },
+        { "from": "rectifying", "to": "accepting", "trigger": "rectifier marks ready (auto via urge path)", "effect": "appendProgress(urge)" },
+        { "from": "*", "to": "done", "trigger": "accept-rectification", "effect": "appendProgress(accept)" }
+      ]
+    },
+    "PatrolSession": {
+      "states": ["idle", "active", "completed"],
+      "transitions": [
+        { "from": "idle", "to": "active", "trigger": "start-patrol(routeId)" },
+        { "from": "active", "to": "active", "trigger": "checkin-patrol-point(checkpointId)" },
+        { "from": "active", "to": "completed", "trigger": "complete-patrol(routeId)" }
+      ]
+    }
+  },
+  "interactionFlows": [
+    {
+      "name": "create-hazard-3-steps",
+      "trigger": "home-add-hazard-button | hazard-create-button",
+      "steps": [
+        "navigate-to-hazard-edit (no hazardId)",
+        "user enters /hazardForm/title (required), picks /hazardForm/level, optional location/description/photo/assignee/deadline",
+        "save-hazard validates required fields, creates hazard with status=pending, appendProgress(create), navigate-back"
+      ],
+      "errorPaths": ["title empty -> validation toast, stay on form"]
+    },
+    {
+      "name": "edit-hazard",
+      "trigger": "hazard-detail-edit-button | navigate-to-hazard-edit(hazardId)",
+      "steps": ["load hazard into form", "edit fields", "save-hazard -> updateHazard, navigate-back"]
+    },
+    {
+      "name": "urge-rectification",
+      "trigger": "hazard-detail-urge-button",
+      "steps": ["urge-rectification(hazardId)", "status->rectifying if pending", "appendProgress(urge)", "toast feedback"]
+    },
+    {
+      "name": "accept-rectification",
+      "trigger": "hazard-detail-accept-button",
+      "steps": ["accept-rectification(hazardId)", "status->done", "appendProgress(accept)", "toast feedback"]
+    },
+    {
+      "name": "patrol-flow",
+      "trigger": "home-start-patrol-button -> navigate-to-patrol -> patrol-start-button(routeId)",
+      "steps": [
+        "start-patrol -> active session, show checkpoints",
+        "checkin-patrol-point(checkpointId) -> record normal checkin",
+        "report-abnormal-at-checkpoint(checkpointId) -> record abnormal + note, link to hazard creation",
+        "complete-patrol(routeId) -> session completed, todayPatrols increments"
+      ]
+    },
+    {
+      "name": "emergency-call",
+      "trigger": "home-emergency-call-button | contacts-call-button",
+      "steps": ["resolve primary or selected contact", "PhoneService.call(phone) via call.makeCall", "error path -> toast"]
+    },
+    {
+      "name": "contact-manage",
+      "trigger": "contacts-add-button",
+      "steps": ["open add dialog", "validate name+phone", "addContact", "list updates"]
+    },
+    {
+      "name": "stats-view",
+      "trigger": "tab-stats",
+      "steps": ["StatsService.computeStats(timeRange)", "render hazardTotal / completionRate / patrolCoverage / trend / rank"]
+    },
+    {
+      "name": "profile",
+      "trigger": "tab-profile",
+      "steps": ["profile-sync-button -> persist + sync toast", "profile-settings-button -> role toggle", "profile-about-button -> about dialog"]
+    }
+  ],
+  "testTargets": [
+    "home-add-hazard-button", "home-start-patrol-button", "home-emergency-call-button",
+    "home-summary-pending-count", "home-summary-today-patrol-count", "home-summary-completion-rate",
+    "home-todo-list", "home-notification-button",
+    "hazard-create-button", "hazard-search-input", "hazard-status-filter", "hazard-list", "hazard-empty-state",
+    "hazard-detail-back-button", "hazard-detail-edit-button", "hazard-detail-title", "hazard-detail-status",
+    "hazard-detail-urge-button", "hazard-detail-accept-button", "hazard-detail-progress-list",
+    "hazard-edit-back-button", "hazard-edit-title-input", "hazard-edit-location-input", "hazard-edit-level-picker",
+    "hazard-edit-description-input", "hazard-edit-photo-button", "hazard-edit-assignee-picker",
+    "hazard-edit-deadline-picker", "hazard-edit-save-button",
+    "patrol-route-list", "patrol-start-button", "patrol-checkpoint-list", "patrol-checkin-button",
+    "patrol-report-abnormal-button", "patrol-complete-button",
+    "contacts-search-input", "contacts-group-filter", "contacts-list", "contacts-call-button", "contacts-add-button",
+    "stats-time-filter", "stats-hazard-total", "stats-completion-rate", "stats-patrol-coverage",
+    "stats-trend-chart", "stats-rank-list",
+    "profile-avatar", "profile-name", "profile-settings-button", "profile-sync-button", "profile-about-button"
+  ],
+  "changeRequests": [],
+  "deferredOrStubbed": [
+    "Photo capture (take-photo): UI entry exists; camera capture stubbed to record a placeholder local path. No real camera pipeline.",
+    "Cloud sync (sync-data): persists locally and shows feedback; no remote endpoint.",
+    "Notifications (open-notifications): opens an in-app notifications panel; no push integration.",
+    "QR scan check-in: degraded to manual checkin per spec open question."
+  ]
+}

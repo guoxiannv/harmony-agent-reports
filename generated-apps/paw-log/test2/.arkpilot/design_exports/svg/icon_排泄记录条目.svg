@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" stroke="#5ED7B6">
+          <title>排泄记录条目</title>
+          <path d="M12 22c4.97 0 9-3.58 9-8s-4.03-8-9-8-9 3.58-9 8 4.03 8 9 8z"/>
+          <circle cx="9" cy="13" r="1.5" fill="#163832"/>
+          <circle cx="15" cy="13" r="1.5" fill="#163832"/>
+          <path d="M9 17c1.5 1.5 4.5 1.5 6 0"/>
+        </svg>

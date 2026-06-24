@@ -1,0 +1,26 @@
+{
+  "module": "05-telephony.md",
+  "group": "05 — Telephony (拨号服务)",
+  "apiCount": 2,
+  "apis": [
+    {
+      "name": "@ohos.telephony.call (拨打电话)",
+      "purpose": "提供拨打电话、跳转拨号界面、获取通话状态、格式化号码等呼叫管理功能",
+      "anchor": "ohostelephonycall-拨打电话",
+      "status": "found"
+    },
+    {
+      "name": "voipCall (应用内通话管理)",
+      "purpose": "提供应用内（VoIP）通话管理功能，包括上报来电/去电、通话状态、音频事件及监听用户按键事件",
+      "anchor": "voipcall-应用内通话管理",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "call.dial() 自 API 9 起废弃，仅系统应用可用；第三方应用应使用 call.makeCall() 跳转系统拨号界面",
+    "voipCall 所有接口仅限 Stage 模型使用（SystemCapability.Telephony.VoipCallManager），API 11 起支持",
+    "call.answerCall/hangUpCall/rejectCall（API 23+）需要 ohos.permission.ANSWER_CALL 或 MANAGE_CALL_FOR_DEVICES，仅系统应用可用",
+    "voipCall 上报来电需配合 pushService 接收推送消息，用户头像需传入 image.PixelMap 类型（最大 221x221px）"
+  ],
+  "missingApis": []
+}

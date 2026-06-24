@@ -1,0 +1,76 @@
+{
+  "module": "03-list.md",
+  "group": "03 — List, Scroll & Data Display",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "List",
+      "purpose": "列表容器，连续多行呈现同类数据（图片和文本），支持懒加载和预加载",
+      "anchor": "list",
+      "status": "found"
+    },
+    {
+      "name": "ListItem",
+      "purpose": "列表具体项，必须配合 List 或 ListItemGroup 使用，支持滑动操作",
+      "anchor": "listitem",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动的容器组件，子组件布局尺寸超过父组件尺寸时内容可滚动",
+      "anchor": "scroll",
+      "status": "found"
+    },
+    {
+      "name": "ForEach",
+      "purpose": "基于数组数据的循环渲染，需与容器组件配合使用",
+      "anchor": "foreach",
+      "status": "found"
+    },
+    {
+      "name": "LazyForEach",
+      "purpose": "按需迭代数据并创建组件，滑出可视区域时销毁回收以降低内存占用",
+      "anchor": "lazyforeach",
+      "status": "found"
+    },
+    {
+      "name": "Badge",
+      "purpose": "信息标记组件，可附加在单个组件上用于信息提醒",
+      "anchor": "badge",
+      "status": "found"
+    },
+    {
+      "name": "Swiper",
+      "purpose": "滑块视图容器，提供子组件滑动轮播显示的能力，支持自动播放和指示器",
+      "anchor": "swiper",
+      "status": "found"
+    },
+    {
+      "name": "Image",
+      "purpose": "图片组件，支持 png/jpg/svg/webp/gif/heif/tiff 格式，支持本地和网络图片",
+      "anchor": "image",
+      "status": "found"
+    },
+    {
+      "name": "Text",
+      "purpose": "文本显示组件，支持 Span/ImageSpan 子组件实现图文混排",
+      "anchor": "text",
+      "status": "found"
+    },
+    {
+      "name": "Counter",
+      "purpose": "计数器组件，提供增加/减少的计数操作，支持 onInc/onDec 事件",
+      "anchor": "counter",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有组件均为 ArkUI 内置组件/渲染控制语句，无需 import 导入",
+    "LazyForEach 优于 ForEach：大量数据场景下按需创建/销毁组件，推荐在 List、Swiper 等容器中使用",
+    "ForEach 会一次性加载所有数据并创建全部子组件，在数据量较大时可能影响性能",
+    "Scroll 嵌套 List 且滚动方向相同时，若 List 不设宽高会导致懒加载失效",
+    "Image 使用网络图片时需申请 ohos.permission.INTERNET 权限",
+    "List 组件从 API version 7 开始支持，所有组件支持在元服务中使用（API 11+）"
+  ],
+  "missingApis": []
+}

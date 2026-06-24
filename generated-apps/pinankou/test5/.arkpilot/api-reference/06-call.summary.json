@@ -1,0 +1,75 @@
+{
+  "module": "06-call.md",
+  "group": "06 — 一键拨号 (One-Click Dialing)",
+  "apiCount": 10,
+  "apis": [
+    {
+      "name": "call.makeCall",
+      "purpose": "跳转系统拨号界面并显示待拨号码（推荐方式，元服务可用）",
+      "anchor": "callmakecall7",
+      "status": "found"
+    },
+    {
+      "name": "call.dial",
+      "purpose": "直接拨打电话（API 9 废弃，仅系统应用可申请权限）",
+      "anchor": "calldialdeprecated",
+      "status": "found"
+    },
+    {
+      "name": "call.hasVoiceCapability",
+      "purpose": "检查设备是否具备语音通话能力",
+      "anchor": "callhasvoicecapability7",
+      "status": "found"
+    },
+    {
+      "name": "call.getCallState",
+      "purpose": "获取当前通话状态",
+      "anchor": "callgetcallstate",
+      "status": "found"
+    },
+    {
+      "name": "wantAgent.getWantAgent",
+      "purpose": "创建 WantAgent 实例，封装 Want 用于未来触发操作",
+      "anchor": "wantagentgetwantagent",
+      "status": "found"
+    },
+    {
+      "name": "wantAgent.trigger",
+      "purpose": "触发 WantAgent 执行指定操作（启动 Ability、发送公共事件等）",
+      "anchor": "wantagenttrigger",
+      "status": "found"
+    },
+    {
+      "name": "wantAgent.getBundleName",
+      "purpose": "获取 WantAgent 实例所属应用的包名",
+      "anchor": "wantagentgetbundlename",
+      "status": "found"
+    },
+    {
+      "name": "wantAgent.cancel",
+      "purpose": "取消 WantAgent 实例",
+      "anchor": "wantagentcancel",
+      "status": "found"
+    },
+    {
+      "name": "WantAgentInfo",
+      "purpose": "创建 WantAgent 所需的配置信息，包括 wants、actionType、requestCode 等",
+      "anchor": "wantagentinfo-1",
+      "status": "found"
+    },
+    {
+      "name": "Want",
+      "purpose": "应用组件间信息传递载体，含 deviceId、bundleName、abilityName、uri、parameters 等字段",
+      "anchor": "want",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "call.dial 从 API 9 起废弃，需 ohos.permission.PLACE_CALL（仅系统应用），普通应用必须使用 call.makeCall",
+    "call.makeCall 从 API 11 起支持元服务，API 12+ 支持传入 Context 的后台调用（需 START_ABILITIES_FROM_BACKGROUND 权限）",
+    "WantAgentInfo 中 operationType/wantAgentFlags 从 API 11 起废弃，应使用 actionType/actionFlags 替代",
+    "Want 跨进程最大数据量 200KB（API 23+），parameters 仅支持基本数据类型",
+    "一键拨号无需 PLACE_CALL 权限，使用 makeCall 直接跳转系统拨号界面即可"
+  ],
+  "missingApis": []
+}

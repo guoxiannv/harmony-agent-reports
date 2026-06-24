@@ -1,0 +1,105 @@
+{
+  "module": "02-image-picker.md",
+  "group": "02 — Image Picker & Album Access",
+  "apiCount": 15,
+  "apis": [
+    {
+      "name": "PhotoViewPicker (照片选择器)",
+      "purpose": "拉起系统相册供用户选择照片/视频文件，返回带永久授权的 URI",
+      "anchor": "photoviewpicker-照片选择器",
+      "status": "found"
+    },
+    {
+      "name": "photoAccessHelper.getPhotoAccessHelper (相册管理实例)",
+      "purpose": "获取 PhotoAccessHelper 实例，用于操作相册资产",
+      "anchor": "photoaccesshelpergetphotoaccesshelper",
+      "status": "found"
+    },
+    {
+      "name": "PhotoAccessHelper.getAssets (查询相册资源)",
+      "purpose": "按条件查询相册中的媒体文件列表",
+      "anchor": "photoaccesshelpergetassets",
+      "status": "found"
+    },
+    {
+      "name": "PhotoAccessHelper.createAsset (创建媒体资源)",
+      "purpose": "在相册中创建新的图片/视频资源并返回 URI",
+      "anchor": "photoaccesshelpercreateasset",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.picker / DocumentViewPicker (文件选择器)",
+      "purpose": "拉起系统文档选择器，用于选择和保存通用文件",
+      "anchor": "ohosfilepicker-选择器",
+      "status": "found"
+    },
+    {
+      "name": "DocumentViewPicker.save (文件保存)",
+      "purpose": "通过系统文件选择器界面保存文件到用户指定位置",
+      "anchor": "documentviewpickersave",
+      "status": "found"
+    },
+    {
+      "name": "image.createImagePacker (图片编码器)",
+      "purpose": "创建 ImagePacker 实例用于图片压缩和编码",
+      "anchor": "imagecreateimagepacker-图片编码",
+      "status": "found"
+    },
+    {
+      "name": "ImagePacker.packToData (图片编码为内存)",
+      "purpose": "将 ImageSource 或 PixelMap 编码为 JPEG/PNG/WebP 等格式的 ArrayBuffer",
+      "anchor": "imagepackerpacktodata",
+      "status": "found"
+    },
+    {
+      "name": "ImagePacker.packToFile (图片编码到文件)",
+      "purpose": "将图片编码后直接写入文件描述符对应的文件",
+      "anchor": "imagepackerpacktofile",
+      "status": "found"
+    },
+    {
+      "name": "image.createImageSource (图片解码)",
+      "purpose": "从 URI/文件描述符/缓冲区创建解码源 ImageSource",
+      "anchor": "imagecreateimagesource-图片解码",
+      "status": "found"
+    },
+    {
+      "name": "ImageSource.createPixelMap (解码为像素图)",
+      "purpose": "从 ImageSource 解码为可渲染的 PixelMap 对象",
+      "anchor": "imagesourcecreatepixelmap",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.file.fs / fileIo (文件IO操作)",
+      "purpose": "文件系统的打开、读取、写入、关闭等操作",
+      "anchor": "ohosfilefs-文件io操作",
+      "status": "found"
+    },
+    {
+      "name": "Image组件 (显示图片)",
+      "purpose": "ArkUI 内置组件，用于显示 Resource/PixelMap/file:// URI 格式的图片",
+      "anchor": "image组件-显示图片",
+      "status": "found"
+    },
+    {
+      "name": "Image组件 加载本地/沙箱文件路径",
+      "purpose": "通过 fileUri.getUriFromPath 转换沙箱路径后加载本地图片",
+      "anchor": "image组件-加载本地沙箱文件路径",
+      "status": "found"
+    },
+    {
+      "name": "Image组件 加载 PixelMap",
+      "purpose": "直接传入经过解码或从相册获取的 PixelMap 对象显示图片",
+      "anchor": "image组件-加载-pixelmap",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "@ohos.multimedia.mediaLibrary API 已废弃，全部替换为 @ohos.file.photoAccessHelper",
+    "PhotoViewPicker.select() 返回的 URI 具有永久授权，无需额外申请 READ_IMAGEVIDEO 权限",
+    "image.Packer.packing() 方法在 API 13+ 废弃，应使用 packToData() 替代",
+    "Image 组件加载沙箱文件路径需先通过 fileUri.getUriFromPath() 转换为 file:// URI",
+    "import 统一使用 @kit.* 模式：@kit.MediaLibraryKit / @kit.CoreFileKit / @kit.ImageKit"
+  ],
+  "missingApis": []
+}

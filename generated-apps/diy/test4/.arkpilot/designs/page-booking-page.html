@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 - 课程预约</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; background:#F8F3EE; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; color:#3D2E26; }
+  .app-shell { width:100%; max-width:390px; margin:0 auto; min-height:100%; position:relative; padding-bottom:24px; }
+  .header { height:56px; background:linear-gradient(180deg, #C17A53 0%, #A85D3C 100%); border-radius:0 0 28px 28px; display:flex; align-items:center; padding:0 16px; position:relative; }
+  .back-btn { width:40px; height:40px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.16); cursor:pointer; }
+  .header-title { position:absolute; left:50%; transform:translateX(-50%); font-size:18px; font-weight:700; color:#F8F3EE; }
+  .content { padding:16px; display:flex; flex-direction:column; gap:16px; }
+  .card { background:#FFFFFF; border-radius:24px; padding:20px; box-shadow:0px 10px 28px rgba(61,46,38,0.08); }
+  .section-title { font-size:18px; font-weight:700; color:#3D2E26; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+  .form-group { margin-bottom:16px; }
+  .form-group:last-child { margin-bottom:0; }
+  .form-label { font-size:13px; font-weight:600; color:#7A665B; margin-bottom:8px; display:block; }
+  .form-input { width:100%; height:48px; border-radius:14px; background:#F8F3EE; border:none; padding:0 16px; font-size:15px; color:#3D2E26; outline:none; }
+  .form-input:focus { box-shadow:0 0 0 2px #C17A53; }
+  .picker { width:100%; height:48px; border-radius:14px; background:#F8F3EE; border:none; padding:0 16px; font-size:15px; color:#3D2E26; outline:none; appearance:none; }
+  .picker:focus { box-shadow:0 0 0 2px #C17A53; }
+  .time-options { display:flex; flex-wrap:wrap; gap:10px; }
+  .time-chip { height:40px; border-radius:14px; padding:0 18px; background:#F0E8E0; color:#7A665B; font-size:14px; font-weight:600; border:none; cursor:pointer; }
+  .time-chip.active { background:#C17A53; color:#FFFFFF; }
+  .course-option { display:flex; align-items:center; gap:12px; padding:14px; background:#F8F3EE; border-radius:16px; margin-bottom:10px; cursor:pointer; }
+  .course-option.selected { box-shadow:0 0 0 2px #C17A53; }
+  .course-icon { width:44px; height:44px; border-radius:12px; background:#FFFFFF; display:flex; align-items:center; justify-content:center; }
+  .course-name { font-size:15px; font-weight:700; }
+  .course-desc { font-size:12px; color:#7A665B; }
+  .warning-box { background:rgba(196,90,75,0.10); border-radius:16px; padding:14px 16px; display:flex; align-items:center; gap:10px; color:#C45A4B; font-size:13px; font-weight:600; }
+  .submit-btn { width:100%; height:52px; border-radius:18px; background:linear-gradient(180deg, #D48C65 0%, #C17A53 100%); color:#FFFFFF; border:none; font-size:17px; font-weight:700; box-shadow:0px 8px 20px rgba(193,122,83,0.28); cursor:pointer; margin-top:8px; }
+  .submit-btn:disabled { background:#E6D5C7; color:rgba(61,46,38,0.4); box-shadow:none; }
+  .summary { background:#F8F3EE; border-radius:16px; padding:16px; margin-top:8px; }
+  .summary-row { display:flex; justify-content:space-between; font-size:14px; margin-bottom:8px; }
+  .summary-row:last-child { margin-bottom:0; }
+  .summary-label { color:#7A665B; }
+  .summary-value { font-weight:700; }
+  .empty-state { text-align:center; padding:32px 20px; }
+  .empty-state svg { margin-bottom:12px; }
+  .empty-state h3 { font-size:16px; font-weight:700; margin-bottom:6px; }
+  .empty-state p { font-size:13px; color:#7A665B; }
+</style>
+</head>
+<body>
+<div class="app-shell" data-page-id="booking-page">
+  <header class="header">
+    <div class="back-btn" data-ui-id="back-button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><title>返回上一页</title><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <h1 class="header-title">课程预约</h1>
+  </header>
+  <main class="content">
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>选择课程</title><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        选择课程
+      </div>
+      <div class="course-option selected" data-ui-id="booking-course-picker">
+        <div class="course-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>陶艺课程图标</title><path d="M12 21c4.97 0 9-4.03 9-9-2.5 0-3-1.5-3-3 0-2-1.5-3-3-3s-3 1-3 3c0 1.5-.5 3-3 3 0 4.97 4.03 9 9 9z"/></svg>
+        </div>
+        <div>
+          <div class="course-name">陶艺拉坯体验课</div>
+          <div class="course-desc">2小时 · 含陶土 500g</div>
+        </div>
+      </div>
+      <div class="course-option" data-ui-id="booking-course-picker">
+        <div class="course-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A9A8C" stroke-width="2"><title>木作课程图标</title><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M6 14h.01"/></svg>
+        </div>
+        <div>
+          <div class="course-name">木勺手作课</div>
+          <div class="course-desc">3小时 · 含木料 1块</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>预约信息</title><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        预约信息
+      </div>
+      <div class="form-group">
+        <label class="form-label">预约会员</label>
+        <select class="picker" data-ui-id="booking-member-picker">
+          <option>林小陶</option>
+          <option>阿木</option>
+          <option>皮小匠</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">选择日期</label>
+        <input type="date" class="form-input" value="2026-06-24" data-ui-id="booking-date-picker" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">选择时段</label>
+        <div class="time-options" data-ui-id="booking-time-picker">
+          <button class="time-chip">10:00</button>
+          <button class="time-chip active">14:00</button>
+          <button class="time-chip">16:00</button>
+          <button class="time-chip">19:00</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C17A53" stroke-width="2"><title>库存扣减</title><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        库存扣减
+      </div>
+      <div class="summary">
+        <div class="summary-row"><span class="summary-label">陶土</span><span class="summary-value">-500g</span></div>
+        <div class="summary-row"><span class="summary-label">釉料</span><span class="summary-value">-50g</span></div>
+        <div class="summary-row"><span class="summary-label">当前库存</span><span class="summary-value">陶土 12.5kg</span></div>
+      </div>
+      <div class="warning-box" data-ui-id="booking-stock-warning" style="margin-top:12px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C45A4B" stroke-width="2"><title>库存不足警告</title><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4"/><circle cx="12" cy="17" r="1"/></svg>
+        釉料库存不足，请及时补充
+      </div>
+    </section>
+
+    <button class="submit-btn" data-ui-id="booking-submit-button">确认预约</button>
+  </main>
+</div>
+</body>
+</html>

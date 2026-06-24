@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>手作·印记 - 首页</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #FAF6F0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: #5A4A3F;
+    }
+    body {
+      max-width: 390px;
+      margin: 0 auto;
+      position: relative;
+      background: #FAF6F0 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+    .page {
+      min-height: 100%;
+      padding-bottom: 88px;
+    }
+    .header {
+      padding: 20px 20px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-title {
+      font-family: "ZCOOL XiaoWei", "STKaiti", "KaiTi", cursive;
+      font-size: 30px;
+      color: #3D2B1F;
+      letter-spacing: 0.015em;
+    }
+    .header-action {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #FFFDF9;
+      border: 1px solid #F0E6DA;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(99,72,54,0.06);
+    }
+    .section { padding: 0 20px; margin-bottom: 28px; }
+    .section-title {
+      font-size: 20px; font-weight: 700; color: #3D2B1F;
+      margin-bottom: 14px;
+    }
+    .feature-card {
+      background: linear-gradient(145deg, #FFFDF9 0%, #F8F1E9 55%, #F0E6DA 100%);
+      border: 1px solid #EFE6DA;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 4px 12px rgba(99,72,54,0.06), 0 18px 44px rgba(99,72,54,0.10);
+      margin-bottom: 16px;
+    }
+    .welcome-text {
+      font-family: "ZCOOL XiaoWei", "STKaiti", cursive;
+      font-size: 44px;
+      color: #3D2B1F;
+      line-height: 1.18;
+      margin-bottom: 6px;
+    }
+    .welcome-sub {
+      font-size: 15px; color: #8C7D70; line-height: 1.6;
+    }
+    .quick-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      margin-bottom: 28px;
+    }
+    .quick-item {
+      background: #FFFDF9;
+      border: 1px solid #F0E6DA;
+      border-radius: 18px;
+      padding: 16px 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(99,72,54,0.06), 0 8px 22px rgba(99,72,54,0.06);
+    }
+    .quick-icon {
+      width: 36px; height: 36px; margin: 0 auto 8px;
+      background: rgba(198,123,92,0.10);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: #C67B5C;
+    }
+    .quick-label {
+      font-size: 13px; font-weight: 600; color: #3D2B1F;
+    }
+    .alert-card {
+      background: rgba(160,82,45,0.08);
+      border: 1px solid rgba(160,82,45,0.20);
+      border-left: 4px solid #A0522D;
+      border-radius: 18px;
+      padding: 16px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .alert-icon {
+      width: 44px; height: 44px;
+      background: rgba(160,82,45,0.12);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: #A0522D;
+      flex-shrink: 0;
+    }
+    .alert-content h4 { font-size: 16px; font-weight: 700; color: #3D2B1F; margin-bottom: 4px; }
+    .alert-content p { font-size: 13px; color: #8C7D70; }
+    .course-card {
+      background: #FFFDF9;
+      border: 1px solid #F0E6DA;
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(99,72,54,0.06);
+      display: flex; gap: 14px; align-items: center;
+    }
+    .course-time {
+      background: #F5EDE4;
+      border-radius: 12px;
+      padding: 10px 12px;
+      text-align: center;
+      min-width: 56px;
+    }
+    .course-time .time { font-size: 16px; font-weight: 700; color: #C67B5C; }
+    .course-time .ampm { font-size: 11px; color: #8C7D70; }
+    .course-info h4 { font-size: 16px; font-weight: 700; color: #3D2B1F; margin-bottom: 4px; }
+    .course-info p { font-size: 13px; color: #8C7D70; }
+    .empty-state {
+      text-align: center; padding: 40px 20px;
+    }
+    .empty-icon { width: 80px; height: 80px; margin: 0 auto 16px; color: #D9CFC2; }
+    .empty-title { font-size: 18px; font-weight: 700; color: #3D2B1F; margin-bottom: 6px; }
+    .empty-sub { font-size: 14px; color: #8C7D70; }
+    .tabbar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      max-width: 390px;
+      margin: 0 auto;
+      height: 68px;
+      background: rgba(255,253,249,0.94);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid #EFE6DA;
+      box-shadow: 0 -6px 24px rgba(99,72,54,0.08);
+      display: flex; justify-content: space-around; align-items: center;
+      padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+    .tab-item { text-align: center; color: #9E9186; }
+    .tab-item.active { color: #C67B5C; }
+    .tab-item svg { width: 24px; height: 24px; }
+    .tab-label { font-size: 11px; font-weight: 600; margin-top: 4px; }
+    .btn-primary {
+      background: #C67B5C; color: #FFFFFF;
+      border: none; border-radius: 999px;
+      padding: 14px 28px; font-size: 15px; font-weight: 700;
+      box-shadow: 0 4px 14px rgba(198,123,92,0.32);
+    }
+  </style>
+</head>
+<body data-page-id="home-page" data-tab-id="tab-home">
+  <div class="page">
+    <header class="header">
+      <h1 class="header-title">手作·印记</h1>
+      <button class="header-action" data-ui-id="home-checkin-button" aria-label="签到">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C67B5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>Open Member Check-in Sheet</title>
+          <path d="M12 3v18M3 12h18"/>
+        </svg>
+      </button>
+    </header>
+
+    <section class="section">
+      <div class="feature-card">
+        <div class="welcome-text">今日工坊</div>
+        <p class="welcome-sub">有 2 位会员预约了课程，3 位沉睡会员等待唤醒。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="quick-grid">
+        <button class="quick-item" data-ui-id="home-quick-add-member">
+          <div class="quick-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <title>Add New Member</title>
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M19 8v6M16 11h6"/>
+            </svg>
+          </div>
+          <div class="quick-label">新增会员</div>
+        </button>
+        <button class="quick-item" data-ui-id="home-quick-book-course">
+          <div class="quick-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <title>Open Course Calendar</title>
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div class="quick-label">预约课程</div>
+        </button>
+        <button class="quick-item" data-ui-id="home-quick-inventory">
+          <div class="quick-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <title>Open Inventory Management</title>
+              <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+              <path d="m3.3 7 8.7 5 8.7-5"/>
+              <path d="M12 22V12"/>
+            </svg>
+          </div>
+          <div class="quick-label">库存</div>
+        </button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="alert-card" data-ui-id="home-dormant-alert-card">
+        <div class="alert-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <title>Dormant Members Reminder</title>
+            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <div class="alert-content">
+          <h4>沉睡会员提醒</h4>
+          <p>超过 60 天未到店的会员：3 人</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">今日课程</h2>
+      <div data-ui-id="home-today-course-list">
+        <div class="course-card" id="home-today-course-101">
+          <div class="course-time">
+            <div class="time">14:00</div>
+            <div class="ampm">下午</div>
+          </div>
+          <div class="course-info">
+            <h4>手工陶艺杯</h4>
+            <p>2 人已报名 · 老师：阿陶</p>
+          </div>
+        </div>
+        <div class="course-card" id="home-today-course-102">
+          <div class="course-time">
+            <div class="time">16:30</div>
+            <div class="ampm">下午</div>
+          </div>
+          <div class="course-info">
+            <h4>植物染方巾</h4>
+            <p>4 人已报名 · 老师：小织</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="tabbar">
+    <button class="tab-item active" data-ui-id="tab-home" aria-label="首页">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <title>Home Tab</title>
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <div class="tab-label">首页</div>
+    </button>
+    <button class="tab-item" data-ui-id="tab-members" aria-label="会员">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <title>Members Tab</title>
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <div class="tab-label">会员</div>
+    </button>
+    <button class="tab-item" data-ui-id="tab-calendar" aria-label="课程">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <title>Course Calendar Tab</title>
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <div class="tab-label">课程</div>
+    </button>
+    <button class="tab-item" data-ui-id="tab-points" aria-label="积分">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <title>Points Tab</title>
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <div class="tab-label">积分</div>
+    </button>
+    <button class="tab-item" data-ui-id="tab-inventory" aria-label="库存">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <title>Inventory Tab</title>
+        <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+        <path d="m3.3 7 8.7 5 8.7-5"/>
+        <path d="M12 22V12"/>
+      </svg>
+      <div class="tab-label">库存</div>
+    </button>
+  </nav>
+</body>
+</html>

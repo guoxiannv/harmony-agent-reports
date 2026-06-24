@@ -1,0 +1,96 @@
+{
+  "module": "05-persistence.md",
+  "group": "05 -- Local Data Persistence",
+  "apiCount": 9,
+  "apis": [
+    {
+      "name": "ohos.data.preferences (PreferencesKit)",
+      "purpose": "KV键值型轻量级数据持久化模块",
+      "anchor": "ohosdatapreferences-用户首选项",
+      "status": "found"
+    },
+    {
+      "name": "dataPreferences",
+      "purpose": "示例代码中的变量名，非独立API",
+      "anchor": "",
+      "status": "missing"
+    },
+    {
+      "name": "preferences.getPreferences",
+      "purpose": "获取Preferences实例",
+      "anchor": "preferencesgetpreferences",
+      "status": "found"
+    },
+    {
+      "name": "Preferences",
+      "purpose": "首选项实例接口，提供get/put/delete/flush等方法",
+      "anchor": "preferences",
+      "status": "found"
+    },
+    {
+      "name": "preferences.put",
+      "purpose": "向缓存写入键值对数据",
+      "anchor": "put",
+      "status": "found"
+    },
+    {
+      "name": "preferences.get",
+      "purpose": "从缓存读取指定键的值",
+      "anchor": "get",
+      "status": "found"
+    },
+    {
+      "name": "preferences.delete",
+      "purpose": "从缓存删除指定键值对",
+      "anchor": "delete",
+      "status": "found"
+    },
+    {
+      "name": "preferences.flush",
+      "purpose": "将缓存数据持久化到文件",
+      "anchor": "flush",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore (RDB)",
+      "purpose": "关系型数据库模块（基于SQLite）",
+      "anchor": "模块描述",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore.getRdbStore",
+      "purpose": "创建或打开关系型数据库",
+      "anchor": "relationalstoregetrdbstore",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore.RdbStore",
+      "purpose": "数据库操作接口，提供insert/update/delete/query等方法",
+      "anchor": "interface-rdbstore",
+      "status": "found"
+    },
+    {
+      "name": "PersistentStorage",
+      "purpose": "持久化UI状态到文件（ArkUI状态管理，非ArkData）",
+      "anchor": "persistentstorage",
+      "status": "found"
+    },
+    {
+      "name": "EnvironmentStorage",
+      "purpose": "设备环境状态存储（不存在的API，正确名称为Environment）",
+      "anchor": "",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "dataPreferences是示例代码中的变量名，不是独立API，其类型为preferences.Preferences",
+    "EnvironmentStorage在HarmonyOS文档中不存在；正确API为Environment（ArkUI状态管理），提供envProp/envProps/keys方法",
+    "PersistentStorage属于ArkUI框架而非ArkData，是全局内置对象无需import",
+    "Preferences支持XML（默认/需flush）和GSKV（实时落盘）两种存储模式",
+    "RDB基于SQLite，StoreConfig必须配置name和securityLevel，单条数据不超过2MB"
+  ],
+  "missingApis": [
+    "dataPreferences (variable name, not an API)",
+    "EnvironmentStorage (does not exist; use Environment instead)"
+  ]
+}

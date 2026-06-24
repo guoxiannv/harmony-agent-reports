@@ -1,0 +1,53 @@
+{
+  "module": "03-preferences.md",
+  "group": "03 — Preferences (KV Storage)",
+  "apiCount": 40,
+  "apis": [
+    { "name": "preferences", "purpose": "Module import for user preferences KV storage", "anchor": "ohosdatapreferences", "status": "found" },
+    { "name": "preferences.getPreferences", "purpose": "Get Preferences instance (callback/Promise, name or Options)", "anchor": "preferencesgetpreferences", "status": "found" },
+    { "name": "preferences.getPreferencesSync", "purpose": "Synchronously get Preferences instance (API 10+)", "anchor": "preferencesgetpreferencessync10", "status": "found" },
+    { "name": "preferences.deletePreferences", "purpose": "Delete Preferences instance and its persistence file", "anchor": "preferencesdeletepreferences", "status": "found" },
+    { "name": "preferences.removePreferencesFromCache", "purpose": "Remove Preferences instance from cache only", "anchor": "preferencesremovepreferencesfromcache", "status": "found" },
+    { "name": "preferences.removePreferencesFromCacheSync", "purpose": "Synchronously remove Preferences from cache (API 10+)", "anchor": "preferencesremovepreferencesfromcachesync10", "status": "found" },
+    { "name": "preferences.isStorageTypeSupported", "purpose": "Check if a storage mode is supported on current platform (API 18+)", "anchor": "preferencesisstoragetypesupported18", "status": "found" },
+    { "name": "preferences.StorageType", "purpose": "Enum for storage mode (XML=0, GSKV=1) (API 18+)", "anchor": "storagetype18", "status": "found" },
+    { "name": "preferences.Options", "purpose": "Configuration options for Preferences instance (API 10+)", "anchor": "options10", "status": "found" },
+    { "name": "preferences.MAX_KEY_LENGTH", "purpose": "Maximum key length constant (1024 bytes)", "anchor": "常量", "status": "found" },
+    { "name": "preferences.MAX_VALUE_LENGTH", "purpose": "Maximum value length constant (16 MB)", "anchor": "常量", "status": "found" },
+    { "name": "preferences.Preferences", "purpose": "Preferences instance interface providing get/put/delete/has/clear/flush/on/off methods", "anchor": "preferences", "status": "found" },
+    { "name": "Preferences.get", "purpose": "Get value by key from cached Preferences instance", "anchor": "get", "status": "found" },
+    { "name": "Preferences.getSync", "purpose": "Synchronously get value by key (API 10+)", "anchor": "getsync10", "status": "found" },
+    { "name": "Preferences.getAll", "purpose": "Get all key-value pairs from cached Preferences instance", "anchor": "getall", "status": "found" },
+    { "name": "Preferences.getAllSync", "purpose": "Synchronously get all key-value pairs (API 10+)", "anchor": "getallsync10", "status": "found" },
+    { "name": "Preferences.put", "purpose": "Write data into cached Preferences instance", "anchor": "put", "status": "found" },
+    { "name": "Preferences.putSync", "purpose": "Synchronously write data into cached Preferences (API 10+)", "anchor": "putsync10", "status": "found" },
+    { "name": "Preferences.has", "purpose": "Check if a key exists in cached Preferences instance", "anchor": "has", "status": "found" },
+    { "name": "Preferences.hasSync", "purpose": "Synchronously check if a key exists (API 10+)", "anchor": "hassync10", "status": "found" },
+    { "name": "Preferences.delete", "purpose": "Delete a key-value pair from cached Preferences instance", "anchor": "delete", "status": "found" },
+    { "name": "Preferences.deleteSync", "purpose": "Synchronously delete a key-value pair (API 10+)", "anchor": "deletesync10", "status": "found" },
+    { "name": "Preferences.flush", "purpose": "Persist cached Preferences data to file (XML mode only)", "anchor": "flush", "status": "found" },
+    { "name": "Preferences.flushSync", "purpose": "Synchronously persist cached data to file (API 14+)", "anchor": "flushsync14", "status": "found" },
+    { "name": "Preferences.clear", "purpose": "Clear all data from cached Preferences instance", "anchor": "clear", "status": "found" },
+    { "name": "Preferences.clearSync", "purpose": "Synchronously clear all data (API 10+)", "anchor": "clearsync10", "status": "found" },
+    { "name": "Preferences.on('change')", "purpose": "Subscribe to all data change events", "anchor": "onchange", "status": "found" },
+    { "name": "Preferences.on('multiProcessChange')", "purpose": "Subscribe to multi-process data change events (API 10+)", "anchor": "onmultiprocesschange10", "status": "found" },
+    { "name": "Preferences.on('dataChange')", "purpose": "Subscribe to precise key-level data change events (API 12+)", "anchor": "ondatachange12", "status": "found" },
+    { "name": "Preferences.off('change')", "purpose": "Unsubscribe from data change events", "anchor": "offchange", "status": "found" },
+    { "name": "Preferences.off('multiProcessChange')", "purpose": "Unsubscribe from multi-process data change events (API 10+)", "anchor": "offmultiprocesschange10", "status": "found" },
+    { "name": "Preferences.off('dataChange')", "purpose": "Unsubscribe from precise key-level data change events (API 12+)", "anchor": "offdatachange12", "status": "found" },
+    { "name": "preferences.ValueType", "purpose": "Supported value types for Preferences storage", "anchor": "valuetype", "status": "found" }
+  ],
+  "notableFindings": [
+    "Import via `import { preferences } from '@kit.ArkData'` (not from @kit.ArkData or @ohos.data.preferences directly)",
+    "Preferences does NOT guarantee process concurrency safety — risk of file corruption in multi-process scenarios",
+    "API 18+ introduced StorageType enum: XML (default, requires manual flush) and GSKV (real-time persistence, no flush needed)",
+    "Key max 1024 bytes, Value max 16 MB",
+    "Sync APIs (*Sync) available from API 10+",
+    "on('dataChange') from API 12+ supports precise key-level subscription with new value in callback",
+    "flush() only needed in XML mode; GSKV mode persists data in real-time automatically",
+    "dataGroupId in Options enables cross-process data sharing (Stage model only, requires marketplace approval)"
+  ],
+  "missingApis": [
+    "dataPreferences (not an API — this is a common variable name for a Preferences instance; the proper API is `preferences`)"
+  ]
+}

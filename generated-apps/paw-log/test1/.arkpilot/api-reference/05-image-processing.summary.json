@@ -1,0 +1,94 @@
+{
+  "module": "05-image-processing.md",
+  "group": "05 — Image Processing (图片处理)",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "@ohos.multimedia.image (Image Kit)",
+      "purpose": "Image Kit 模块入口，提供图片解码、编码、编辑和元数据处理能力",
+      "anchor": "@ohosmultimediaimage-image-kit",
+      "status": "found"
+    },
+    {
+      "name": "image.createImageSource()",
+      "purpose": "通过 uri/fd/ArrayBuffer/RawFileDescriptor 创建 ImageSource 实例",
+      "anchor": "imagecreateimagesource",
+      "status": "found"
+    },
+    {
+      "name": "image.ImageSource",
+      "purpose": "图片源类，支持解码为 PixelMap、获取图片信息、读写 Exif 属性",
+      "anchor": "imageimagesource",
+      "status": "found"
+    },
+    {
+      "name": "image.createImagePacker()",
+      "purpose": "创建 ImagePacker 实例用于图片压缩和编码",
+      "anchor": "imagecreateimagepacker",
+      "status": "found"
+    },
+    {
+      "name": "image.ImagePacker",
+      "purpose": "图片编码类，支持将 ImageSource/PixelMap/Picture 编码为数据流或文件",
+      "anchor": "imageimagepacker",
+      "status": "found"
+    },
+    {
+      "name": "image.PackingOption",
+      "purpose": "图片编码选项，指定目标格式和质量",
+      "anchor": "imagepackingoption",
+      "status": "found"
+    },
+    {
+      "name": "image.ImageDecoder",
+      "purpose": "未在当前本地文档中找到对应类，图片解码能力由 ImageSource 提供",
+      "anchor": "imageimagedecoder",
+      "status": "missing"
+    },
+    {
+      "name": "image.createPixelMap()",
+      "purpose": "通过像素数据和图像属性创建 PixelMap 位图对象",
+      "anchor": "imagecreatepixelmap",
+      "status": "found"
+    },
+    {
+      "name": "image.PixelMap",
+      "purpose": "位图对象，包含像素数据及图片信息，支持读写像素、裁剪、缩放、旋转、翻转等",
+      "anchor": "imagepixelmap",
+      "status": "found"
+    },
+    {
+      "name": "image.DecodingOptions",
+      "purpose": "图像解码设置选项（缩放、旋转、像素格式、动态范围等）",
+      "anchor": "imagedecodingoptions",
+      "status": "found"
+    },
+    {
+      "name": "image.Size",
+      "purpose": "图片尺寸接口，包含宽度和高度",
+      "anchor": "imagesize",
+      "status": "found"
+    },
+    {
+      "name": "image.createIncrementalSource()",
+      "purpose": "以增量方式通过 ArrayBuffer 创建 ImageSource 实例（实际 API 名为 CreateIncrementalSource）",
+      "anchor": "imagecreateincrementalsource",
+      "status": "found"
+    },
+    {
+      "name": "image.ImageInfo",
+      "purpose": "图片信息接口，包含尺寸、像素密度、像素格式、透明度、MIME 类型、HDR 标识",
+      "anchor": "imageimageinfo",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "image.createIncrementalSource() 在 HarmonyOS API 中实际命名为 image.CreateIncrementalSource()（首字母大写 C），注意引用时大小写",
+    "image.ImageDecoder 在当前本地文档中未找到对应类定义，图片解码能力由 image.ImageSource 提供",
+    "所有资源和类（ImageSource/ImagePacker/PixelMap）使用完毕必须调用 release() 及时释放内存",
+    "Image Kit 从 API version 6 开始支持，最新文档版本 V172"
+  ],
+  "missingApis": [
+    "image.ImageDecoder"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "module": "04-permissions-lifecycle.md",
+  "group": "04 — Permissions & Lifecycle (权限与生命周期)",
+  "apiCount": 4,
+  "apis": [
+    {
+      "name": "@ohos.abilityAccessCtrl (程序访问控制管理)",
+      "purpose": "Runtime permission checking, requesting, and management for applications",
+      "anchor": "ohosabilityaccessctrl-程序访问控制管理",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.WRITE_IMAGEVIDEO (写入图片视频权限)",
+      "purpose": "Required permission for saving/creating image and video assets to the album via photoAccessHelper",
+      "anchor": "ohospermissionwrite_imagevideo-写入图片视频权限",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.READ_IMAGEVIDEO (读取图片视频权限)",
+      "purpose": "Required permission for reading image and video assets from the album via photoAccessHelper",
+      "anchor": "ohospermissionread_imagevideo-读取图片视频权限",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.app.ability.UIAbility (UIAbility生命周期)",
+      "purpose": "UI component lifecycle management including Create, Foreground, Background, Destroy with corresponding callbacks",
+      "anchor": "ohosappabilityuiability-uiability生命周期",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "WRITE_IMAGEVIDEO and READ_IMAGEVIDEO are user_grant type permissions; must be declared in module.json5 and requested at runtime via requestPermissionsFromUser",
+    "requestPermissionsFromUser can only be called once per permission; subsequent calls require requestPermissionOnSetting or openPermissionOnSetting",
+    "UIAbility.onCreate is synchronous (no async support) while onDestroy supports Promise-based async",
+    "Permissions type is imported from '@kit.AbilityKit' as a string union type",
+    "Through picker access to media files does not require READ_IMAGEVIDEO permission",
+    "getSelfPermissionStatus (API 20+) returns NOT_DETERMINED status before first runtime permission request, which is useful for showing permission rationale UI"
+  ],
+  "missingApis": []
+}

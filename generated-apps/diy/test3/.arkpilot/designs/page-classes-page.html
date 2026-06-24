@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 — 课程预约</title>
+<style>
+:root {
+  --bg: #FAF6F1;
+  --card: #EDE6DC;
+  --card-light: #FAF6F1;
+  --text: #3A2E29;
+  --text-secondary: #6B5A4F;
+  --text-tertiary: #A89A8E;
+  --clay: #A65D48;
+  --fire: #E57A39;
+  --green: #4D8A72;
+  --yellow: #C99E3A;
+  --red: #B84A3D;
+  --sand: #EBDBC2;
+  --border: #DCC8B0;
+  --shadow: rgba(111, 69, 59, 0.10);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", sans-serif; }
+body { max-width: 420px; margin: 0 auto; min-height: 100vh; padding-bottom: 92px; }
+.page { padding: 20px; }
+.header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.back-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--card-light); border: 1px solid var(--border); display: inline-flex; align-items: center; justify-content: center; color: var(--clay); }
+.page-title { font-family: "Ma Shan Zheng", cursive; font-size: 30px; color: var(--clay); flex: 1; }
+.calendar-card { background: var(--card-light); border-radius: 22px; padding: 18px; box-shadow: 0 8px 24px var(--shadow); margin-bottom: 20px; }
+.calendar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.calendar-header .month { font-size: 18px; font-weight: 600; }
+.calendar-header .nav { display: flex; gap: 8px; }
+.calendar-header .nav button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--card-light); color: var(--clay); display: inline-flex; align-items: center; justify-content: center; }
+.weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; }
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+.day { width: 40px; height: 40px; line-height: 40px; border-radius: 50%; font-size: 14px; margin: 0 auto; position: relative; color: var(--text-secondary); }
+.day.active { background: var(--clay); color: #FFFBF6; }
+.day.today { border: 2px solid var(--fire); line-height: 36px; }
+.day.has-class::after { content: ""; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--green); }
+.day.other { color: var(--text-tertiary); opacity: 0.6; }
+.section-title { font-family: "Ma Shan Zheng", cursive; font-size: 24px; color: var(--clay); margin: 24px 0 14px; }
+.slot-card { background: var(--card-light); border-radius: 22px; padding: 18px; box-shadow: 0 8px 24px var(--shadow); margin-bottom: 16px; display: flex; gap: 14px; align-items: flex-start; }
+.slot-time { width: 64px; text-align: center; flex-shrink: 0; }
+.slot-time .hour { font-size: 22px; font-weight: 700; color: var(--clay); }
+.slot-time .ampm { font-size: 11px; color: var(--text-tertiary); }
+.slot-body { flex: 1; }
+.slot-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+.slot-meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+.slot-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.tag { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: var(--sand); color: var(--clay); }
+.tag.stock { background: #F4E4E2; color: var(--red); }
+.slot-actions { display: flex; gap: 10px; }
+.btn { padding: 10px 20px; border-radius: 999px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; }
+.btn-primary { background: var(--fire); color: #FFFBF6; box-shadow: 0 4px 12px rgba(229,122,57,0.28); }
+.btn-secondary { background: var(--card); color: var(--clay); border: 1px solid var(--border); }
+.btn:disabled { background: var(--card); color: var(--text-tertiary); box-shadow: none; }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--text-tertiary); }
+.empty-state svg { width: 64px; height: 64px; color: var(--border); margin-bottom: 12px; }
+.tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 76px; background: rgba(250,246,241,0.92); backdrop-filter: blur(18px); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding-bottom: env(safe-area-inset-bottom); }
+.tab { flex: 1; text-align: center; color: var(--text-tertiary); font-size: 11px; padding-top: 8px; }
+.tab.active { color: var(--clay); }
+.tab svg { width: 24px; height: 24px; margin-bottom: 4px; }
+</style>
+</head>
+<body data-page-id="classes-page" data-tab-id="tab-classes">
+<div class="page">
+  <div class="header">
+    <button class="back-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回</title><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <div class="page-title">课程预约</div>
+  </div>
+
+  <div class="calendar-card" data-ui-id="classes-calendar">
+    <div class="calendar-header">
+      <div class="month">2026年6月</div>
+      <div class="nav">
+        <button aria-label="上个月"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>上个月</title><path d="m15 18-6-6 6-6"/></svg></button>
+        <button aria-label="下个月"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>下个月</title><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+    </div>
+    <div class="weekdays">
+      <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+    </div>
+    <div class="days">
+      <div class="day other">31</div>
+      <div class="day">1</div>
+      <div class="day has-class">2</div>
+      <div class="day">3</div>
+      <div class="day has-class">4</div>
+      <div class="day">5</div>
+      <div class="day">6</div>
+      <div class="day">7</div>
+      <div class="day has-class">8</div>
+      <div class="day">9</div>
+      <div class="day today active">10</div>
+      <div class="day has-class">11</div>
+      <div class="day">12</div>
+      <div class="day">13</div>
+      <div class="day has-class">14</div>
+      <div class="day">15</div>
+      <div class="day">16</div>
+      <div class="day">17</div>
+      <div class="day">18</div>
+      <div class="day has-class">19</div>
+      <div class="day">20</div>
+    </div>
+  </div>
+
+  <div class="section-title">6月10日 课程</div>
+  <div class="slot-card" data-ui-id="classes-slot-list" data-ui-id-item="classes-slot-101">
+    <div class="slot-time">
+      <div class="hour">10:00</div>
+      <div class="ampm">上午</div>
+    </div>
+    <div class="slot-body">
+      <div class="slot-title">拉坯入门体验</div>
+      <div class="slot-meta">名额剩余 <span data-ui-id="classes-slot-101-capacity">3/8</span> · 90分钟</div>
+      <div class="slot-tags">
+        <span class="tag">陶泥</span>
+        <span class="tag">零基础</span>
+      </div>
+      <div class="slot-actions">
+        <button class="btn btn-primary" data-ui-id="classes-slot-101-book">预约</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slot-card" data-ui-id-item="classes-slot-102">
+    <div class="slot-time">
+      <div class="hour">14:00</div>
+      <div class="ampm">下午</div>
+    </div>
+    <div class="slot-body">
+      <div class="slot-title">釉下彩绘制</div>
+      <div class="slot-meta">名额剩余 <span data-ui-id="classes-slot-102-capacity">1/6</span> · 120分钟</div>
+      <div class="slot-tags">
+        <span class="tag stock"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>库存不足</title><path d="M12 9v4"/><path d="M12 17h.01"/></svg> 颜料库存不足</span>
+        <span class="tag">进阶</span>
+      </div>
+      <div class="slot-actions">
+        <button class="btn btn-primary" disabled data-ui-id="classes-slot-102-book">已约满</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slot-card" data-ui-id-item="classes-slot-103">
+    <div class="slot-time">
+      <div class="hour">16:30</div>
+      <div class="ampm">下午</div>
+    </div>
+    <div class="slot-body">
+      <div class="slot-title">皮具手缝基础</div>
+      <div class="slot-meta">名额剩余 <span data-ui-id="classes-slot-103-capacity">5/6</span> · 150分钟</div>
+      <div class="slot-tags">
+        <span class="tag">植鞣革</span>
+        <span class="tag">已预约</span>
+      </div>
+      <div class="slot-actions">
+        <button class="btn btn-secondary" data-ui-id="classes-slot-103-cancel">取消预约</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" id="classes-empty-state" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><title>无课程</title><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+    <div>当天暂无课程，换一天看看吧</div>
+  </div>
+</div>
+
+<div class="tabbar">
+  <div class="tab" data-ui-id="tab-home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    <div>首页</div>
+  </div>
+  <div class="tab active" data-ui-id="tab-classes">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>课程</title><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+    <div>课程</div>
+  </div>
+  <div class="tab" data-ui-id="tab-points">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>积分</title><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 0 1-5.66-5.66"/></svg>
+    <div>积分</div>
+  </div>
+  <div class="tab" data-ui-id="tab-profile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div>我的</div>
+  </div>
+</div>
+</body>
+</html>

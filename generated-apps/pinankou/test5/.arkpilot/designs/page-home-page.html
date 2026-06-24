@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>平安扣 - 首页</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #F3F6F8; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif; color: #0F172A; }
+    body { max-width: 420px; margin: 0 auto; position: relative; }
+    .page { min-height: 100%; padding: 24px 16px 120px; }
+    .appbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .appbar-title { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+    .appbar-action { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(15,23,42,0.06); }
+
+    .hero { background: linear-gradient(135deg, #0D9488 0%, #2DD4BF 100%); border-radius: 20px; padding: 22px; color: #fff; box-shadow: 0 18px 48px rgba(13,148,136,0.20); margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+    .hero-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .hero-subtitle { font-size: 14px; opacity: 0.92; }
+    .hero-icon { width: 48px; height: 48px; }
+
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .stat-card { background: #fff; border-radius: 18px; padding: 16px; box-shadow: 0 6px 22px rgba(15,23,42,0.06); }
+    .stat-icon { width: 28px; height: 28px; margin-bottom: 10px; }
+    .stat-label { font-size: 12px; color: #64748B; margin-bottom: 4px; }
+    .stat-value { font-size: 28px; font-weight: 700; color: #0F172A; letter-spacing: -0.5px; }
+
+    .section-title { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+
+    .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .quick-item { background: #fff; border-radius: 16px; padding: 14px 8px; text-align: center; box-shadow: 0 4px 16px rgba(15,23,42,0.05); }
+    .quick-icon { width: 40px; height: 40px; margin: 0 auto 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .quick-icon.primary { background: linear-gradient(135deg, #0D9488, #2DD4BF); }
+    .quick-icon.secondary { background: #E0F2FE; }
+    .quick-icon.warning { background: #FFEDD5; }
+    .quick-icon.info { background: #CCFBF1; }
+    .quick-label { font-size: 12px; color: #334155; }
+
+    .chart-card { background: #fff; border-radius: 18px; padding: 16px; box-shadow: 0 6px 22px rgba(15,23,42,0.06); margin-bottom: 24px; }
+    .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .chart-title { font-size: 16px; font-weight: 600; }
+    .chart-legend { display: flex; gap: 12px; font-size: 11px; color: #64748B; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+    .chart-bars { display: flex; align-items: flex-end; justify-content: space-around; height: 120px; padding-top: 10px; }
+    .bar-wrap { text-align: center; flex: 1; }
+    .bar { width: 28px; margin: 0 auto; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, #0D9488, #2DD4BF); position: relative; }
+    .bar-label { font-size: 11px; color: #64748B; margin-top: 8px; }
+
+    .activity-list { background: #fff; border-radius: 18px; padding: 16px; box-shadow: 0 6px 22px rgba(15,23,42,0.06); }
+    .activity-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #F1F5F9; }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .activity-content { flex: 1; }
+    .activity-title { font-size: 14px; font-weight: 600; color: #0F172A; margin-bottom: 3px; }
+    .activity-meta { font-size: 12px; color: #64748B; }
+
+    .empty-state { text-align: center; padding: 40px 16px; }
+    .empty-icon { width: 120px; height: 120px; margin: 0 auto 16px; }
+    .empty-title { font-size: 16px; font-weight: 600; color: #0F172A; margin-bottom: 6px; }
+    .empty-desc { font-size: 14px; color: #64748B; }
+
+    .tabbar { position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 68px; background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.76) 100%); backdrop-filter: blur(24px); border-top: 1px solid rgba(226,232,240,0.6); box-shadow: 0 -4px 16px rgba(15,23,42,0.05); display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; z-index: 100; }
+    .tab-item { flex: 1; text-align: center; padding-top: 4px; }
+    .tab-icon { width: 24px; height: 24px; margin: 0 auto 3px; color: #94A3B8; }
+    .tab-item.active .tab-icon { color: #0D9488; }
+    .tab-label { font-size: 11px; font-weight: 500; color: #94A3B8; }
+    .tab-item.active .tab-label { color: #0D9488; }
+    .tab-fab { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #0D9488, #2DD4BF); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 36px rgba(13,148,136,0.32); border: 3px solid #F3F6F8; }
+
+    svg { display: block; }
+  </style>
+</head>
+<body data-page-id="home-page" data-tab-id="tab-home">
+  <div class="page">
+    <header class="appbar">
+      <h1 class="appbar-title" data-ui-id="home-header-title">平安扣</h1>
+      <div class="appbar-action">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开通知中心</title>
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="hero-title">今日安全，由我守护</div>
+        <div class="hero-subtitle">完成巡检 · 闭环隐患 · 守护现场</div>
+      </div>
+      <div class="hero-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>安全盾牌图标</title>
+          <path d="M24 4L6 12v12c0 12 8 21 18 24 10-3 18-12 18-24V12L24 4z"/>
+          <path d="M16 24l6 6 12-12"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card" data-ui-id="home-stat-today-inspection">
+        <div class="stat-icon" style="color:#0D9488;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>今日巡检数量</title>
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </div>
+        <div class="stat-label">今日巡检</div>
+        <div class="stat-value">3</div>
+      </div>
+      <div class="stat-card" data-ui-id="home-stat-pending-risk">
+        <div class="stat-icon" style="color:#D97706;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>待处理隐患数量</title>
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <div class="stat-label">待处理隐患</div>
+        <div class="stat-value">5</div>
+      </div>
+      <div class="stat-card" data-ui-id="home-stat-overdue-risk">
+        <div class="stat-icon" style="color:#EA580C;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>逾期隐患数量</title>
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="stat-label">逾期隐患</div>
+        <div class="stat-value">1</div>
+      </div>
+      <div class="stat-card" data-ui-id="home-stat-closed-rate">
+        <div class="stat-icon" style="color:#16A34A;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>整改闭环率</title>
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <div class="stat-label">整改闭环率</div>
+        <div class="stat-value">86%</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">快捷入口</div>
+      <div class="quick-grid">
+        <div class="quick-item" data-ui-id="home-quick-action-report">
+          <div class="quick-icon primary">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>上报新的风险隐患</title>
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </div>
+          <div class="quick-label">上报隐患</div>
+        </div>
+        <div class="quick-item" data-ui-id="home-quick-action-inspection">
+          <div class="quick-icon info">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>开始今日巡检任务</title>
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <div class="quick-label">开始巡检</div>
+        </div>
+        <div class="quick-item" data-ui-id="home-quick-action-contact">
+          <div class="quick-icon warning">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>查看应急联系人</title>
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div class="quick-label">应急联系</div>
+        </div>
+        <div class="quick-item">
+          <div class="quick-icon secondary">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>查看全部统计数据</title>
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <div class="quick-label">统计报表</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="chart-card" data-ui-id="home-chart-risk-distribution">
+        <div class="chart-header">
+          <div class="chart-title">隐患状态分布</div>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#0D9488;"></i>待整改</span>
+            <span><i class="legend-dot" style="background:#0EA5E9;"></i>整改中</span>
+            <span><i class="legend-dot" style="background:#D97706;"></i>待复核</span>
+            <span><i class="legend-dot" style="background:#16A34A;"></i>已关闭</span>
+          </div>
+        </div>
+        <div class="chart-bars">
+          <div class="bar-wrap"><div class="bar" style="height:60%;"></div><div class="bar-label">待整改</div></div>
+          <div class="bar-wrap"><div class="bar" style="height:40%;"></div><div class="bar-label">整改中</div></div>
+          <div class="bar-wrap"><div class="bar" style="height:30%;"></div><div class="bar-label">待复核</div></div>
+          <div class="bar-wrap"><div class="bar" style="height:80%;"></div><div class="bar-label">已关闭</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">最近动态</div>
+      <div class="activity-list" data-ui-id="home-recent-activity-list">
+        <div class="activity-item" id="home-activity-1">
+          <div class="activity-dot" style="background:#0EA5E9;"></div>
+          <div class="activity-content">
+            <div class="activity-title">隐患 #2025062201 状态变更：整改中</div>
+            <div class="activity-meta">张师傅 · 10 分钟前</div>
+          </div>
+        </div>
+        <div class="activity-item" id="home-activity-2">
+          <div class="activity-dot" style="background:#16A34A;"></div>
+          <div class="activity-content">
+            <div class="activity-title">巡检任务“北区消防通道”已完成</div>
+            <div class="activity-meta">李安全 · 35 分钟前</div>
+          </div>
+        </div>
+        <div class="activity-item" id="home-activity-3">
+          <div class="activity-dot" style="background:#D97706;"></div>
+          <div class="activity-content">
+            <div class="activity-title">新增隐患：仓库配电箱未关闭</div>
+            <div class="activity-meta">王班长 · 1 小时前</div>
+          </div>
+        </div>
+      </div>
+      <div class="empty-state" id="home-empty-activity" style="display:none;">
+        <div class="empty-icon">
+          <svg viewBox="0 0 120 120" fill="none" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>暂无动态图标</title>
+            <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D9488"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient></defs>
+            <rect x="20" y="30" width="80" height="60" rx="8"/>
+            <line x1="20" y1="50" x2="100" y2="50"/>
+            <line x1="40" y1="70" x2="70" y2="70"/>
+          </svg>
+        </div>
+        <div class="empty-title">暂无动态</div>
+        <div class="empty-desc">完成巡检或上报隐患后，这里会显示最新进展</div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="tabbar">
+    <div class="tab-item active" data-tab-id="tab-home">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开首页统计看板</title>
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="tab-label">首页</div>
+    </div>
+    <div class="tab-item" data-tab-id="tab-inspection">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开巡检任务页面</title>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div class="tab-label">巡检</div>
+    </div>
+    <div class="tab-fab" data-ui-id="risk-add-button">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <title>快速上报隐患</title>
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </div>
+    <div class="tab-item" data-tab-id="tab-risk" style="margin-left:48px;">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开隐患列表页面</title>
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="tab-label">隐患</div>
+    </div>
+    <div class="tab-item" data-tab-id="tab-emergency">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开应急联系人页面</title>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <div class="tab-label">应急</div>
+    </div>
+    <div class="tab-item" data-tab-id="tab-profile">
+      <div class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开个人中心页面</title>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="tab-label">我的</div>
+    </div>
+  </nav>
+</body>
+</html>

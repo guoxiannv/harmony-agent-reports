@@ -1,0 +1,101 @@
+{
+  "module": "02-camera-picker.md",
+  "group": "02 — 相机拍照 (Camera & Picker)",
+  "apiCount": 14,
+  "apis": [
+    {
+      "name": "camera.getCameraManager",
+      "purpose": "获取相机管理器实例",
+      "anchor": "ohosmultimediacamera-相机管理",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager.getSupportedCameras",
+      "purpose": "获取支持的相机设备列表",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager.getSupportedOutputCapability",
+      "purpose": "获取相机在指定模式下的输出能力",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager.createSession",
+      "purpose": "创建指定SceneMode的Session实例",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager.createCameraInput",
+      "purpose": "使用CameraDevice创建CameraInput实例",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager.createPreviewOutput",
+      "purpose": "创建预览输出对象",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager.createPhotoOutput",
+      "purpose": "创建拍照输出对象",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraInput.open",
+      "purpose": "打开相机设备",
+      "anchor": "camerainput",
+      "status": "found"
+    },
+    {
+      "name": "CameraInput.close",
+      "purpose": "关闭相机设备",
+      "anchor": "camerainput",
+      "status": "found"
+    },
+    {
+      "name": "CameraDevice",
+      "purpose": "相机设备信息（cameraId, cameraPosition, cameraType等）",
+      "anchor": "cameradevice",
+      "status": "found"
+    },
+    {
+      "name": "cameraPicker.pick",
+      "purpose": "拉起相机选择器，根据媒体类型拍照或录像",
+      "anchor": "ohosmultimediacamerapicker-相机选择器",
+      "status": "found"
+    },
+    {
+      "name": "SurfaceId",
+      "purpose": "预览表面ID（string类型），从XComponent或ImageReceiver获取",
+      "anchor": "surfaceid",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager.createPreviewOutput (12+)",
+      "purpose": "创建无配置信息的预览输出对象，配合preconfig使用",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "PickerProfile",
+      "purpose": "相机选择器配置（cameraPosition, saveUri, videoDuration）",
+      "anchor": "pickerprofile",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "`cameraController` 并非独立 API 名; 相机流程由 CameraManager -> Session(PhotoSession) -> addInput/addOutput -> commitConfig -> start 控制",
+    "`SurfaceId` 在 API 中的类型为 `string`，通过 XComponent 的 surfaceId 事件或 ImageReceiver 获取",
+    "`@ohos.multimedia.cameraPicker.pick` 从 API 11 支持，需要 UIAbility 上下文，不可在后台调用",
+    "相机拍照需要 `ohos.permission.CAMERA` 权限",
+    "`createSession` 需传入 `SceneMode.NORMAL_PHOTO` 得到 `PhotoSession`（API 11+），废弃了旧版 `createCaptureSession`"
+  ],
+  "missingApis": [
+    "cameraController — 不是一个独立的 API; 相机控制通过 CameraManager + Session + PhotoOutput 实现"
+  ]
+}

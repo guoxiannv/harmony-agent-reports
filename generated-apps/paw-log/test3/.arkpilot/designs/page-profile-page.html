@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>宠迹 PawLog - 我的</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #F3F4F6; color: #1F2937;
+      max-width: 390px; margin: 0 auto; min-height: 100vh;
+      position: relative; overflow-x: hidden;
+    }
+    .page { padding: 0 20px 120px; }
+    .header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.8); backdrop-filter: blur(24px) saturate(150%);
+      border-bottom: 1px solid rgba(255,255,255,0.65);
+      margin: 0 -20px; padding: 52px 20px 12px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .page-title { font-size: 24px; font-weight: 700; }
+    .icon-btn {
+      width: 44px; height: 44px; border-radius: 14px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(31,41,55,0.07); border: none; cursor: pointer;
+    }
+    .icon-btn svg { width: 22px; height: 22px; color: #4B5563; }
+    .profile-card {
+      background: linear-gradient(135deg, #8EEDDB 0%, #45C4AD 100%);
+      border-radius: 24px; padding: 24px; margin-top: 18px;
+      box-shadow: 0 14px 32px rgba(69,196,173,0.28);
+      color: #fff; display: flex; align-items: center; gap: 18px;
+    }
+    .profile-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      border: 3px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(4px);
+    }
+    .profile-avatar svg { width: 36px; height: 36px; color: #fff; }
+    .profile-info { flex: 1; }
+    .profile-name { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+    .profile-role { font-size: 13px; opacity: 0.9; }
+    .section { margin-top: 26px; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .menu-card {
+      background: #fff; border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(31,41,55,0.08); overflow: hidden;
+    }
+    .menu-item {
+      display: flex; align-items: center; gap: 14px; padding: 16px 18px;
+      border-bottom: 1px solid #F3F4F6; cursor: pointer;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-icon {
+      width: 40px; height: 40px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .menu-icon.mint { background: #E6FAF6; color: #3CB5A0; }
+    .menu-icon.pink { background: #FFF0F3; color: #D96680; }
+    .menu-icon.lilac { background: #F3EEFC; color: #8B6ACB; }
+    .menu-icon.coral { background: #FFF0ED; color: #D96C5A; }
+    .menu-icon.sky { background: #EDF7F7; color: #4A9B9E; }
+    .menu-icon svg { width: 22px; height: 22px; }
+    .menu-text { flex: 1; }
+    .menu-title { font-size: 15px; font-weight: 700; }
+    .menu-desc { font-size: 12px; color: #9CA3AF; margin-top: 2px; }
+    .menu-arrow { color: #9CA3AF; }
+    .menu-arrow svg { width: 18px; height: 18px; }
+    .pet-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    .pet-grid-item {
+      background: #fff; border-radius: 20px; padding: 14px 8px;
+      box-shadow: 0 8px 24px rgba(31,41,55,0.06);
+      text-align: center;
+    }
+    .pet-grid-avatar {
+      width: 52px; height: 52px; border-radius: 50%; margin: 0 auto 8px;
+      background: linear-gradient(135deg, #FFDDE6, #FF9DAF);
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #fff; box-shadow: 0 4px 12px rgba(31,41,55,0.08);
+    }
+    .pet-grid-avatar svg { width: 24px; height: 24px; color: #fff; }
+    .pet-grid-name { font-size: 14px; font-weight: 700; }
+    .pet-grid-meta { font-size: 11px; color: #9CA3AF; margin-top: 2px; }
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 390px; margin: 0 auto;
+      height: 76px; background: rgba(255,255,255,0.82); backdrop-filter: blur(24px) saturate(150%);
+      border-top: 1px solid rgba(255,255,255,0.65);
+      box-shadow: 0 -4px 20px rgba(31,41,55,0.06);
+      display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px;
+      z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 56px; padding-top: 4px; color: #9CA3AF; text-decoration: none; }
+    .tab-item.active { color: #5DD9C1; }
+    .tab-item svg { width: 24px; height: 24px; }
+    .tab-label { font-size: 11px; font-weight: 700; }
+    .fab-wrap { position: relative; top: -28px; }
+    .fab {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #8EEDDB 0%, #45C4AD 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 14px 36px rgba(69,196,173,0.38); border: 3px solid #fff;
+    }
+    .fab svg { width: 26px; height: 26px; color: #fff; }
+  </style>
+</head>
+<body data-page-id="profile-page" data-tab-id="tab-profile">
+  <div class="page">
+    <header class="header">
+      <h1 class="page-title">我的</h1>
+      <button class="icon-btn" data-ui-id="profile-settings-button" aria-label="设置">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>打开设置</title><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </header>
+
+    <section class="profile-card">
+      <div class="profile-avatar" data-ui-id="profile-user-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>当前用户头像</title><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="profile-info">
+        <div class="profile-name" data-ui-id="profile-user-name">宠物主小安</div>
+        <div class="profile-role">家庭空间管理员 · 2 只宠物</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">我的宠物</h2>
+        <button class="icon-btn" style="width:36px;height:36px;" data-ui-id="profile-manage-pets-button" aria-label="管理宠物">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>管理宠物档案</title><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button>
+      </div>
+      <div class="pet-grid">
+        <div class="pet-grid-item">
+          <div class="pet-grid-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>宠物豆豆头像</title><path d="M12 5c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6c-.4-.4-.6-.9-.6-1.4 0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M6 9c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6C4 12 3.8 11.5 3.8 11c0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M18 9c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6c-.4-.4-.6-.9-.6-1.4 0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+          </div>
+          <div class="pet-grid-name">豆豆</div>
+          <div class="pet-grid-meta">英短 · 2 岁</div>
+        </div>
+        <div class="pet-grid-item">
+          <div class="pet-grid-avatar" style="background:linear-gradient(135deg,#CAB8F0,#A58DDD);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>宠物年糕头像</title><path d="M12 5c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6c-.4-.4-.6-.9-.6-1.4 0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M6 9c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6C4 12 3.8 11.5 3.8 11c0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M18 9c.5 0 1 .2 1.4.6.4.4.6.9.6 1.4 0 .5-.2 1-.6 1.4-.4.4-.9.6-1.4.6s-1-.2-1.4-.6c-.4-.4-.6-.9-.6-1.4 0-.5.2-1 .6-1.4.4-.4.9-.6 1.4-.6z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+          </div>
+          <div class="pet-grid-name">年糕</div>
+          <div class="pet-grid-meta">金毛 · 4 岁</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">更多功能</h2>
+      </div>
+      <div class="menu-card">
+        <div class="menu-item" data-ui-id="profile-export-data-button">
+          <div class="menu-icon sky">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>导出数据</title><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div class="menu-text">
+            <div class="menu-title">导出数据</div>
+            <div class="menu-desc">备份记录与病历到本地</div>
+          </div>
+          <div class="menu-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>进入导出数据</title><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+
+        <div class="menu-item" data-ui-id="profile-settings-button">
+          <div class="menu-icon mint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>应用设置</title><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <div class="menu-text">
+            <div class="menu-title">设置</div>
+            <div class="menu-desc">通知、隐私、账户管理</div>
+          </div>
+          <div class="menu-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>进入设置</title><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+
+        <div class="menu-item" data-ui-id="profile-about-button">
+          <div class="menu-icon lilac">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>关于宠迹</title><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div class="menu-text">
+            <div class="menu-title">关于</div>
+            <div class="menu-desc">版本 1.0.0 · 用户协议</div>
+          </div>
+          <div class="menu-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>进入关于页面</title><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="tabbar">
+    <a href="#" class="tab-item" data-ui-id="tab-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页标签</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span class="tab-label">首页</span>
+    </a>
+    <a href="#" class="tab-item" data-ui-id="tab-records">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>记录标签</title><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span class="tab-label">记录</span>
+    </a>
+    <div class="fab-wrap">
+      <button class="fab" aria-label="添加记录">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><title>快捷添加新记录</title><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+    <a href="#" class="tab-item" data-ui-id="tab-health">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>健康标签</title><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span class="tab-label">健康</span>
+    </a>
+    <a href="#" class="tab-item active" data-ui-id="tab-profile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的标签</title><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span class="tab-label">我的</span>
+    </a>
+  </nav>
+</body>
+</html>

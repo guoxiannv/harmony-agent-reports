@@ -1,0 +1,99 @@
+{
+  "module": "02-camera.md",
+  "group": "02 — 相机拍照 (Camera)",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "@kit.CameraKit",
+      "purpose": "Camera Kit 导入模块，所有相机 API 的统一导入路径",
+      "anchor": "@kit.CameraKit",
+      "status": "found"
+    },
+    {
+      "name": "camera.getCameraManager",
+      "purpose": "获取相机管理器实例（api_list 中写作 createCameraManager，docs 中为 getCameraManager）",
+      "anchor": "cameragetcameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraManager",
+      "purpose": "相机管理器类，提供获取相机设备、创建输入/输出流、创建 Session、监听相机状态等能力",
+      "anchor": "cameramanager",
+      "status": "found"
+    },
+    {
+      "name": "CameraInput",
+      "purpose": "相机设备输入对象，提供开关相机及监听输入流异常的能力",
+      "anchor": "camerainput",
+      "status": "found"
+    },
+    {
+      "name": "CameraDevice",
+      "purpose": "相机设备信息对象，包含 cameraId、cameraPosition、cameraType、connectionType 等属性",
+      "anchor": "cameradevice",
+      "status": "found"
+    },
+    {
+      "name": "CameraOutputCapability",
+      "purpose": "相机输出能力项，包含支持的预览/拍照/录像配置和 metadata 流类型",
+      "anchor": "cameraoutputcapability",
+      "status": "found"
+    },
+    {
+      "name": "PreviewOutput",
+      "purpose": "预览输出类，提供预览流帧率、旋转角度查询和设置能力",
+      "anchor": "previewoutput",
+      "status": "found"
+    },
+    {
+      "name": "PhotoOutput",
+      "purpose": "拍照输出类，提供拍照、动态照片、镜像、画质优先策略等能力",
+      "anchor": "photooutput",
+      "status": "found"
+    },
+    {
+      "name": "cameraManager.getSupportedOutputCapability",
+      "purpose": "查询相机设备在指定模式下支持的输出能力（CameraManager 实例方法）",
+      "anchor": "getsupportedoutputcapability11",
+      "status": "found"
+    },
+    {
+      "name": "cameraManager.createPhotoOutput",
+      "purpose": "创建拍照输出对象（CameraManager 实例方法）",
+      "anchor": "createphotooutput11",
+      "status": "found"
+    },
+    {
+      "name": "ImageReceiver",
+      "purpose": "图片接收类（属于 Image Kit），用于获取 surfaceId、接收最新/下一张图片",
+      "anchor": "imagereceiver",
+      "status": "found"
+    },
+    {
+      "name": "camera.createCameraManager",
+      "purpose": "api_list 中的名称，实际无此函数，对应 camera.getCameraManager",
+      "anchor": "cameracreatecameramanager",
+      "status": "missing"
+    },
+    {
+      "name": "camera.createPhotoOutput",
+      "purpose": "api_list 中的名称，实际是 CameraManager 实例方法 cameraManager.createPhotoOutput，非 module-level 函数",
+      "anchor": "cameracreatephotooutput",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "所有相机 API 导入路径为 `import { camera } from '@kit.CameraKit'`",
+    "`camera.createCameraManager` 不存在，实际 API 为 `camera.getCameraManager(context)`",
+    "`camera.getSupportedOutputCapability` 和 `camera.createPhotoOutput` 是 CameraManager 实例方法而非 module-level 函数",
+    "`ImageReceiver` 属于 `@kit.ImageKit` 而非 Camera Kit",
+    "标准拍照流程: getCameraManager -> getSupportedCameras -> createCameraInput -> createSession -> beginConfig -> addInput/addOutput -> commitConfig -> start -> photoOutput.capture()",
+    "API version 11+ 推荐使用 `createSession(mode)` 替代已废弃的 `createCaptureSession()`",
+    "`getSupportedOutputCapability(camera, mode)` 的 mode 参数从 API 11 开始必填（废弃了无 mode 的重载）"
+  ],
+  "missingApis": [
+    "camera.createCameraManager（应使用 camera.getCameraManager）",
+    "camera.createPhotoOutput（应使用 cameraManager.createPhotoOutput，是实例方法）",
+    "camera.getSupportedOutputCapability（应使用 cameraManager.getSupportedOutputCapability，是实例方法）"
+  ]
+}

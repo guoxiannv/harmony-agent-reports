@@ -1,0 +1,107 @@
+{
+  "module": "03-state.md",
+  "group": "03 — State Management & Lifecycle",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "@Entry",
+      "purpose": "标记自定义组件为页面入口，一个UI页面仅允许一个@Entry",
+      "anchor": "entry",
+      "status": "found"
+    },
+    {
+      "name": "@Component",
+      "purpose": "标识结构体为自定义组件，支持freezeWhenInactive组件冻结配置",
+      "anchor": "component",
+      "status": "found"
+    },
+    {
+      "name": "build()",
+      "purpose": "自定义组件必须实现的声明式UI描述方法",
+      "anchor": "build",
+      "status": "found"
+    },
+    {
+      "name": "aboutToAppear()",
+      "purpose": "组件创建后、build()执行前调用，可在其中修改状态变量",
+      "anchor": "abouttoappear",
+      "status": "found"
+    },
+    {
+      "name": "aboutToDisappear()",
+      "purpose": "组件析构销毁时执行，不建议修改状态变量",
+      "anchor": "abouttodisappear",
+      "status": "found"
+    },
+    {
+      "name": "@ForEach",
+      "purpose": "基于数组数据进行循环渲染，需配合容器组件",
+      "anchor": "foreach",
+      "status": "found"
+    },
+    {
+      "name": "LazyForEach",
+      "purpose": "懒加载循环渲染，适用于大数据量场景",
+      "anchor": "lazyforeach",
+      "status": "found"
+    },
+    {
+      "name": "@Preview",
+      "purpose": "装饰自定义组件实现IDE预览功能",
+      "anchor": "preview装饰器",
+      "status": "found"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "状态管理V1中监听状态变量变化的装饰器",
+      "anchor": "watch",
+      "status": "found"
+    },
+    {
+      "name": "AppStorage / LocalStorage",
+      "purpose": "应用级/页面级UI状态存储，提供link/prop/ref等操作",
+      "anchor": "appstorage",
+      "status": "found"
+    },
+    {
+      "name": "wrapBuilder",
+      "purpose": "封装全局@Builder函数为WrappedBuilder对象，便于传递",
+      "anchor": "wrapbuilder",
+      "status": "found"
+    },
+    {
+      "name": "mutableBuilder",
+      "purpose": "实现全局@Builder动态切换，继承自WrappedBuilder",
+      "anchor": "mutablebuilder",
+      "status": "found"
+    },
+    {
+      "name": "@PreviewGroup",
+      "purpose": "组件预览分组装饰器",
+      "anchor": "previewgroup",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "11个装饰器/语法(@State, @Prop, @Link, @Builder, @BuilderParam, @Observed, @ObjectLink, @Reusable, @LocalStorageProp, @LocalStorageLink, if/else条件渲染)在当前API参考文档树中无独立API参考页面，仅在developer guides中详细文档化",
+    "@PreviewGroup未在当前文档树中找到任何引用",
+    "@ForEach默认keyGenerator规则: (item, index) => index + '__' + JSON.stringify(item)",
+    "wrapBuilder和mutableBuilder是全局@Builder的包装/动态切换工具，而非@Builder本身",
+    "LocalStorage从API 9支持，AppStorage从API 7支持，API 10起新式link/prop/ref接口替换旧式Link/Prop",
+    "V2状态管理(@ObservedV2, @Trace, @Monitor, @SyncMonitor, @ComponentV2)是独立的状态管理体系，不应与V1混用"
+  ],
+  "missingApis": [
+    "@State",
+    "@Prop",
+    "@Link",
+    "@Builder",
+    "@BuilderParam",
+    "@Observed",
+    "@ObjectLink",
+    "@Reusable",
+    "if/else conditional rendering",
+    "@LocalStorageProp",
+    "@LocalStorageLink",
+    "@PreviewGroup"
+  ]
+}

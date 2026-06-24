@@ -1,0 +1,87 @@
+{
+  "module": "01-layout-navigation.md",
+  "group": "01 — Layout & Navigation",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "Tabs",
+      "purpose": "Tab switching container for bottom/top tab navigation with TabContent children",
+      "anchor": "tabs",
+      "status": "found"
+    },
+    {
+      "name": "TabContent",
+      "purpose": "Content view for each tab within Tabs, supports string/CustomBuilder/BottomTabBarStyle tabBar",
+      "anchor": "tabcontent",
+      "status": "found"
+    },
+    {
+      "name": "Column",
+      "purpose": "Vertical linear layout container with optional space parameter",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "Horizontal linear layout container with optional space parameter",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "Stack container that overlays children in order, support alignContent for child alignment",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Flex",
+      "purpose": "Flexbox layout container with direction, wrap, justifyContent, alignItems support",
+      "anchor": "flex",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "Scrollable container for content exceeding parent bounds, configurable scroll direction",
+      "anchor": "scroll",
+      "status": "found"
+    },
+    {
+      "name": "List",
+      "purpose": "List container with lazy loading via LazyForEach/Repeat, supports cachedCount and initialIndex",
+      "anchor": "list",
+      "status": "found"
+    },
+    {
+      "name": "Grid",
+      "purpose": "Grid container with rows/columns layout, supports cross-row/column GridItem via GridLayoutOptions",
+      "anchor": "grid",
+      "status": "found"
+    },
+    {
+      "name": "Navigation",
+      "purpose": "Root navigation view container with NavPathStack routing, title, menus, toolbar support",
+      "anchor": "navigation",
+      "status": "found"
+    },
+    {
+      "name": "PageTransition",
+      "purpose": "Page enter/exit transition animations via pageTransition() lifecycle hook, used with router",
+      "anchor": "pagetransition",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Navigator component is deprecated since API 13 -- use Navigation with NavPathStack instead",
+    "@ohos.router API is deprecated since API 18 -- recommended use Navigation component or UIContext.getRouter()",
+    "BottomTabBarStyle is the standard way to create bottom icon+text tab bars (no underline, default 48vp height from API 12)",
+    "Flex has secondary layout performance overhead; use Column/Row for performance-sensitive linear layouts",
+    "List lazy loading requires LazyForEach or Repeat with virtualScroll; cachedCount enables pre-loading",
+    "Grid performance improves significantly when GridLayoutOptions.regularSize is set even without irregular items"
+  ],
+  "missingApis": [
+    {
+      "name": "Navigator/router",
+      "reason": "Navigator component is deprecated since API 13, @ohos.router is deprecated since API 18. The recommended replacement is Navigation with NavPathStack. Both are documented for legacy reference."
+    }
+  ]
+}

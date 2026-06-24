@@ -1,0 +1,49 @@
+{
+  "module": "05-location.md",
+  "group": "05 -- 定位服务 (Location)",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "geoLocationManager.getLastLocation",
+      "purpose": "获取上一次缓存的位置信息（同步方法）",
+      "anchor": "geolocationmanagergetlastlocation",
+      "status": "found"
+    },
+    {
+      "name": "geoLocationManager.on('locationChange')",
+      "purpose": "开启连续位置变化订阅并启动定位请求",
+      "anchor": "geolocationmanageronlocationchange",
+      "status": "found"
+    },
+    {
+      "name": "geoLocationManager.off('locationChange')",
+      "purpose": "关闭位置变化订阅并删除对应的定位请求",
+      "anchor": "geolocationmanagerofflocationchange",
+      "status": "found"
+    },
+    {
+      "name": "geoLocationManager.getCurrentLocation",
+      "purpose": "获取当前位置（单次定位，支持 callback 和 Promise）",
+      "anchor": "geolocationmanagergetcurrentlocation",
+      "status": "found"
+    },
+    {
+      "name": "geoLocationManager.isLocationEnabled",
+      "purpose": "判断位置服务是否已开启",
+      "anchor": "geolocationmanagerislocationenabled",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "requestLocationPermission 不是 Location Kit 的独立 API; 位置权限通过 module.json5 声明 + @ohos.abilityAccessCtrl 运行时请求，非此模块的 API",
+    "Location Kit 仅支持 WGS-84 坐标系",
+    "使用 Location Kit 前需确保设备位置开关已开启，否则接口抛出 3301100 错误码",
+    "getLastLocation 为同步方法; getCurrentLocation 和 on('locationChange') 为异步"
+  ],
+  "missingApis": [
+    {
+      "name": "requestLocationPermission",
+      "reason": "并非 @ohos.geoLocationManager 模块提供的 API; 位置权限需在 module.json5 中声明并使用 @ohos.abilityAccessCtrl.requestPermissionsFromUser 动态请求"
+    }
+  ]
+}

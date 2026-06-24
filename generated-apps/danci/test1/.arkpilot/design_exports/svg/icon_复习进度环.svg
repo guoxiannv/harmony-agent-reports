@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" aria-hidden="true">
+          <title>复习进度环</title>
+          <circle cx="28" cy="28" r="25" fill="none" stroke="#EDE8DD" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="28" cy="28" r="25" fill="none" stroke="url(#progressGradient)" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="157" stroke-dashoffset="109.9"/>
+          <defs>
+            <linearGradient id="progressGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFD93D"/>
+              <stop offset="100%" stop-color="#F5C116"/>
+            </linearGradient>
+          </defs>
+        </svg>

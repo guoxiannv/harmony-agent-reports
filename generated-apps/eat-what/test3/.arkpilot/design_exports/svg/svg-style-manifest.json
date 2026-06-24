@@ -1,0 +1,633 @@
+{
+  "generated_at": "2026-06-23T06:29:12.157Z",
+  "icons": [
+    {
+      "file_name": "icon_保存到相册图标.svg",
+      "title": "保存到相册图标",
+      "source_html": "page-share-card-page.html",
+      "hash": "829e45cf2e8631cd357c3702cea170146b30c44e",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2B28",
+      "fill_color": "",
+      "stroke_color": "#2E2B28",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "bottom-actions",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_关于菜单图标.svg",
+      "title": "关于菜单图标",
+      "source_html": "page-profile-page.html",
+      "hash": "d4d7ae09d3baf9abdc3b61a058e2cb53f6234c96",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6D6761",
+      "fill_color": "",
+      "stroke_color": "#6D6761",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "menu-item-left",
+        "menu-item"
+      ]
+    },
+    {
+      "file_name": "icon_冰箱食材推荐图标.svg",
+      "title": "冰箱食材推荐图标",
+      "source_html": "page-home-page.html",
+      "hash": "bc6d4b9a3d89ec5ca4c32f31ff1e6558964a0630",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2B28",
+      "fill_color": "",
+      "stroke_color": "#2E2B28",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "actions",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_决策标签页图标-1.svg",
+      "title": "决策标签页图标",
+      "source_html": "page-check-in-page.html",
+      "hash": "3a7d9fc3f2db66e7352f374e9ed4ad247e520e7b",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A9A29B",
+      "fill_color": "",
+      "stroke_color": "#A9A29B",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_决策标签页图标-2.svg",
+      "title": "决策标签页图标",
+      "source_html": "page-home-page.html",
+      "hash": "3a7d9fc3f2db66e7352f374e9ed4ad247e520e7b",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#E85D4E",
+      "fill_color": "",
+      "stroke_color": "#E85D4E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_删除该打卡记录图标.svg",
+      "title": "删除该打卡记录图标",
+      "source_html": "page-check-in-page.html",
+      "hash": "935f899a728dbd59b54ad1004d1a53663068c7d6",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6D6761",
+      "fill_color": "",
+      "stroke_color": "#6D6761",
+      "opacity": "1",
+      "context_classes": [
+        "record-actions",
+        "record-item"
+      ]
+    },
+    {
+      "file_name": "icon_删除该食材图标.svg",
+      "title": "删除该食材图标",
+      "source_html": "page-pantry-page.html",
+      "hash": "f119f17ff3b1c71811787576529e71499fc1615c",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A9A29B",
+      "fill_color": "",
+      "stroke_color": "#A9A29B",
+      "opacity": "1",
+      "context_classes": [
+        "remove",
+        "pantry-tag",
+        "tag-cloud"
+      ]
+    },
+    {
+      "file_name": "icon_应用-Logo-小图标.svg",
+      "title": "应用 Logo 小图标",
+      "source_html": "page-share-card-page.html",
+      "hash": "6003d280f56339fdcdad48b310e1459629de1bcb",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "card-logo",
+        "card-brand",
+        "card-footer"
+      ]
+    },
+    {
+      "file_name": "icon_开始转盘图标.svg",
+      "title": "开始转盘图标",
+      "source_html": "page-home-page.html",
+      "hash": "1478c28f83c58ce1031e8281a24141e51ba52acc",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "actions",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_快手标签图标.svg",
+      "title": "快手标签图标",
+      "source_html": "page-result-page.html",
+      "hash": "baf6b8215562ea7af92808df7a1efbd7b52381bc",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFF8F0",
+      "fill_color": "",
+      "stroke_color": "#FFF8F0",
+      "opacity": "1",
+      "context_classes": [
+        "hero-tag",
+        "hero-tags",
+        "hero"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签页图标-1.svg",
+      "title": "我的标签页图标",
+      "source_html": "page-check-in-page.html",
+      "hash": "062bc27d45d35b6a996d9defb1038b52de8b3072",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A9A29B",
+      "fill_color": "",
+      "stroke_color": "#A9A29B",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签页图标-2.svg",
+      "title": "我的标签页图标",
+      "source_html": "page-profile-page.html",
+      "hash": "062bc27d45d35b6a996d9defb1038b52de8b3072",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#E85D4E",
+      "fill_color": "",
+      "stroke_color": "#E85D4E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_打卡标签页图标-1.svg",
+      "title": "打卡标签页图标",
+      "source_html": "page-check-in-page.html",
+      "hash": "bb6cbc40f8fa5500f36f1581eebb24523d88e085",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#E85D4E",
+      "fill_color": "",
+      "stroke_color": "#E85D4E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_打卡标签页图标-2.svg",
+      "title": "打卡标签页图标",
+      "source_html": "page-home-page.html",
+      "hash": "bb6cbc40f8fa5500f36f1581eebb24523d88e085",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A9A29B",
+      "fill_color": "",
+      "stroke_color": "#A9A29B",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_查看菜品详情箭头.svg",
+      "title": "查看菜品详情箭头",
+      "source_html": "page-home-page.html",
+      "hash": "5cfffc56946e248dee34c8d9aff5ac2ac53e6f9a",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#E85D4E",
+      "fill_color": "",
+      "stroke_color": "#E85D4E",
+      "opacity": "1",
+      "context_classes": [
+        "result-detail-btn",
+        "result-area",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_添加冰箱食材图标.svg",
+      "title": "添加冰箱食材图标",
+      "source_html": "page-pantry-page.html",
+      "hash": "287ec8fdf1278515d66cc169f7612e838fbfb052",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "input-row",
+        "input-card"
+      ]
+    },
+    {
+      "file_name": "icon_生成分享卡片图标-1.svg",
+      "title": "生成分享卡片图标",
+      "source_html": "page-check-in-page.html",
+      "hash": "a73b65dbead04d9fd7868f2bfe23d8d90b2d7577",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6D6761",
+      "fill_color": "",
+      "stroke_color": "#6D6761",
+      "opacity": "1",
+      "context_classes": [
+        "record-actions",
+        "record-item"
+      ]
+    },
+    {
+      "file_name": "icon_生成分享卡片图标-2.svg",
+      "title": "生成分享卡片图标",
+      "source_html": "page-result-page.html",
+      "hash": "7f13517c59f7c4b260606de8e628301e400f14c0",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2B28",
+      "fill_color": "",
+      "stroke_color": "#2E2B28",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "bottom-actions",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_用户头像占位图标.svg",
+      "title": "用户头像占位图标",
+      "source_html": "page-profile-page.html",
+      "hash": "15a6af067402bd423e28b71662f4c182ccbd4adc",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A9A29B",
+      "fill_color": "",
+      "stroke_color": "#A9A29B",
+      "opacity": "1",
+      "context_classes": [
+        "avatar",
+        "profile-header",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_系统分享图标.svg",
+      "title": "系统分享图标",
+      "source_html": "page-share-card-page.html",
+      "hash": "650e1dd8f0d8129bf397d43b62b3cd5c16ccbf7c",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "bottom-actions",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_补录打卡图标.svg",
+      "title": "补录打卡图标",
+      "source_html": "page-check-in-page.html",
+      "hash": "28d6941b3aa611bf16deb48d41dfe9f517f494fb",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "fab",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_装饰餐具图标.svg",
+      "title": "装饰餐具图标",
+      "source_html": "page-share-card-page.html",
+      "hash": "2c0c4d61a4c3a30a675084ab248bf07df9564bbb",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "card-footer",
+        "share-card",
+        "preview-area"
+      ]
+    },
+    {
+      "file_name": "icon_记录打卡图标.svg",
+      "title": "记录打卡图标",
+      "source_html": "page-result-page.html",
+      "hash": "c8c02b2fee2f6809168d44a4c92904b926dabbb6",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "bottom-actions",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_设置菜单图标.svg",
+      "title": "设置菜单图标",
+      "source_html": "page-profile-page.html",
+      "hash": "e9e4709a999d204809395944727f43ef9b15859e",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6D6761",
+      "fill_color": "",
+      "stroke_color": "#6D6761",
+      "opacity": "1",
+      "context_classes": [
+        "menu-icon",
+        "menu-item-left",
+        "menu-item"
+      ]
+    },
+    {
+      "file_name": "icon_转盘指针.svg",
+      "title": "转盘指针",
+      "source_html": "page-home-page.html",
+      "hash": "86b1af614561aa976d2e87683315b3afb6e402c8",
+      "width": 28,
+      "height": 34,
+      "view_box": "0 0 28 34",
+      "paint_mode": "fill",
+      "default_color": "#2E2B28",
+      "fill_color": "#E85D4E",
+      "stroke_color": "",
+      "opacity": "1",
+      "context_classes": [
+        "wheel-wrapper",
+        "wheel-section",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_返回上一页图标-1.svg",
+      "title": "返回上一页图标",
+      "source_html": "page-check-in-editor-page.html",
+      "hash": "34a50b3bb73ea898a513e3aeef449e8a04f3fd9a",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2B28",
+      "fill_color": "",
+      "stroke_color": "#2E2B28",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "top-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_返回上一页图标-2.svg",
+      "title": "返回上一页图标",
+      "source_html": "page-result-page.html",
+      "hash": "34a50b3bb73ea898a513e3aeef449e8a04f3fd9a",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFF8F0",
+      "fill_color": "",
+      "stroke_color": "#FFF8F0",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "hero",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_进入关于箭头.svg",
+      "title": "进入关于箭头",
+      "source_html": "page-profile-page.html",
+      "hash": "ffc926e1b613adcad726f71374e1b0724b1bfcf7",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A9A29B",
+      "fill_color": "",
+      "stroke_color": "#A9A29B",
+      "opacity": "1",
+      "context_classes": [
+        "menu-item",
+        "menu-card",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_进入设置箭头.svg",
+      "title": "进入设置箭头",
+      "source_html": "page-profile-page.html",
+      "hash": "cddce9f7c386ff92848a3dbc533496cea378e650",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A9A29B",
+      "fill_color": "",
+      "stroke_color": "#A9A29B",
+      "opacity": "1",
+      "context_classes": [
+        "menu-item",
+        "menu-card",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_连续打卡徽章图标.svg",
+      "title": "连续打卡徽章图标",
+      "source_html": "page-profile-page.html",
+      "hash": "c42b1667684fac5d044c9fd9cc9fafa8971c42be",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#9C5A36",
+      "fill_color": "",
+      "stroke_color": "#9C5A36",
+      "opacity": "1",
+      "context_classes": [
+        "profile-badge",
+        "profile-meta",
+        "profile-header"
+      ]
+    },
+    {
+      "file_name": "icon_食材标签页图标-1.svg",
+      "title": "食材标签页图标",
+      "source_html": "page-check-in-page.html",
+      "hash": "a8f39ba7dcdef85ad784ca40eceabfd738a93e0f",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A9A29B",
+      "fill_color": "",
+      "stroke_color": "#A9A29B",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_食材标签页图标-2.svg",
+      "title": "食材标签页图标",
+      "source_html": "page-pantry-page.html",
+      "hash": "a8f39ba7dcdef85ad784ca40eceabfd738a93e0f",
+      "width": 24,
+      "height": 24,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#E85D4E",
+      "fill_color": "",
+      "stroke_color": "#E85D4E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar",
+        "app"
+      ]
+    },
+    {
+      "file_name": "icon_食材清单图标.svg",
+      "title": "食材清单图标",
+      "source_html": "page-result-page.html",
+      "hash": "c0d733ff8628f7f5749e1d5fb9d26e5e838fa622",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#2E2B28",
+      "fill_color": "",
+      "stroke_color": "#7CAE7A",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "detail-sheet",
+        "app"
+      ]
+    }
+  ]
+}

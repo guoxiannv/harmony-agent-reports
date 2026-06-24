@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>平安扣 - 统计看板</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: #F0FDFA; color: #0F172A; max-width: 390px; margin: 0 auto;
+      min-height: 100vh; padding-bottom: 88px;
+    }
+    .header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 52px 16px 12px;
+    }
+    .header-title { font-size: 22px; font-weight: 700; }
+    .period-picker {
+      padding: 6px 12px; border-radius: 10px; background: #fff; border: 1px solid #E2E8F0;
+      font-size: 13px; color: #334155; cursor: pointer;
+    }
+
+    .section { padding: 0 16px 16px; }
+    .metrics-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .metric-card {
+      border-radius: 18px; padding: 16px; color: #fff;
+      box-shadow: 0 6px 24px rgba(13, 148, 136, 0.12);
+    }
+    .metric-card.teal { background: linear-gradient(135deg, #0D9488, #14B8A6); }
+    .metric-card.cyan { background: linear-gradient(135deg, #06B6D4, #0EA5E9); }
+    .metric-card.indigo { background: linear-gradient(135deg, #6366F1, #8B5CF6); }
+    .metric-card.orange { background: linear-gradient(135deg, #F59E0B, #EF4444); }
+    .metric-label { font-size: 12px; opacity: 0.9; }
+    .metric-value { font-size: 28px; font-weight: 700; margin-top: 6px; }
+    .metric-sub { font-size: 11px; opacity: 0.85; margin-top: 4px; }
+
+    .card {
+      background: #fff; border-radius: 18px; padding: 16px;
+      box-shadow: 0 6px 24px rgba(13, 148, 136, 0.10);
+    }
+    .card-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+
+    .chart-area { height: 140px; position: relative; }
+    .chart-svg { width: 100%; height: 100%; }
+
+    .donut-wrap { display: flex; align-items: center; gap: 16px; }
+    .donut { width: 120px; height: 120px; }
+    .legend { display: flex; flex-direction: column; gap: 8px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #334155; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    .rank-list { display: flex; flex-direction: column; gap: 10px; }
+    .rank-item { display: flex; align-items: center; gap: 10px; }
+    .rank-num { width: 20px; font-size: 12px; font-weight: 700; color: #94A3B8; }
+    .rank-bar-wrap { flex: 1; height: 8px; border-radius: 4px; background: #F1F5F9; overflow: hidden; }
+    .rank-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #0D9488, #14B8A6); }
+    .rank-label { font-size: 12px; color: #334155; width: 64px; text-align: right; }
+
+    .tab-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 390px; margin: 0 auto;
+      height: 68px; background: rgba(255,255,255,0.88); backdrop-filter: blur(24px) saturate(180%);
+      box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.06);
+      display: flex; justify-content: space-around; align-items: center; padding-bottom: 8px;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #94A3B8; position: relative; }
+    .tab-item.active { color: #0D9488; }
+    .tab-item.active::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 18px; height: 3px; border-radius: 2px; background: #0D9488; }
+    .tab-item svg { width: 22px; height: 22px; stroke: currentColor; }
+    .tab-item span { font-size: 11px; }
+  </style>
+</head>
+<body data-page-id="stats-page" data-tab-id="tab-stats">
+  <header class="header">
+    <div class="header-title" data-ui-id="stats-title">统计看板</div>
+    <select class="period-picker" data-ui-id="stats-period-picker">
+      <option>近 7 天</option>
+      <option>近 30 天</option>
+      <option>本季度</option>
+    </select>
+  </header>
+
+  <div class="section">
+    <div class="metrics-grid">
+      <div class="metric-card teal" data-ui-id="stats-hazard-total-card">
+        <div class="metric-label">隐患总数</div>
+        <div class="metric-value">12</div>
+        <div class="metric-sub">较上期 +2</div>
+      </div>
+      <div class="metric-card cyan" data-ui-id="stats-closed-rate-card">
+        <div class="metric-label">整改率</div>
+        <div class="metric-value">75%</div>
+        <div class="metric-sub">9 / 12 已关闭</div>
+      </div>
+      <div class="metric-card indigo" data-ui-id="stats-inspection-completion-card">
+        <div class="metric-label">巡检完成率</div>
+        <div class="metric-value">88%</div>
+        <div class="metric-sub">7 / 8 项完成</div>
+      </div>
+      <div class="metric-card orange" data-ui-id="stats-overdue-count-card">
+        <div class="metric-label">逾期隐患</div>
+        <div class="metric-value">1</div>
+        <div class="metric-sub">需尽快处理</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="card">
+      <div class="card-title">近7日隐患趋势</div>
+      <div class="chart-area" data-ui-id="stats-trend-chart">
+        <svg class="chart-svg" viewBox="0 0 320 140" preserveAspectRatio="none">
+          <title>近7日隐患上报数量趋势图</title>
+          <defs>
+            <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#14B8A6" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#14B8A6" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,110 L46,100 L92,80 L138,90 L184,60 L230,50 L276,40 L320,30" fill="none" stroke="#0D9488" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M0,110 L46,100 L92,80 L138,90 L184,60 L230,50 L276,40 L320,30 V140 H0 Z" fill="url(#trendFill)"/>
+          <circle cx="0" cy="110" r="3" fill="#0D9488"/>
+          <circle cx="46" cy="100" r="3" fill="#0D9488"/>
+          <circle cx="92" cy="80" r="3" fill="#0D9488"/>
+          <circle cx="138" cy="90" r="3" fill="#0D9488"/>
+          <circle cx="184" cy="60" r="3" fill="#0D9488"/>
+          <circle cx="230" cy="50" r="3" fill="#0D9488"/>
+          <circle cx="276" cy="40" r="3" fill="#0D9488"/>
+          <circle cx="320" cy="30" r="3" fill="#0D9488"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="card">
+      <div class="card-title">隐患状态分布</div>
+      <div class="donut-wrap" data-ui-id="stats-status-distribution">
+        <svg class="donut" viewBox="0 0 100 100">
+          <title>隐患状态分布环形图</title>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#E2E8F0" stroke-width="16"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#0D9488" stroke-width="16" stroke-dasharray="75 251" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#F59E0B" stroke-width="16" stroke-dasharray="50 251" stroke-dashoffset="-75" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#EF4444" stroke-width="16" stroke-dasharray="25 251" stroke-dashoffset="-125" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#0EA5E9" stroke-width="16" stroke-dasharray="25 251" stroke-dashoffset="-150" transform="rotate(-90 50 50)"/>
+          <circle cx="50" cy="50" r="25" fill="#fff"/>
+          <text x="50" y="52" text-anchor="middle" font-size="10" fill="#0F172A" font-weight="700">12</text>
+        </svg>
+        <div class="legend">
+          <div class="legend-item">
+            <span class="legend-dot" style="background:#0D9488;"></span> 已关闭 5
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background:#F59E0B;"></span> 整改中 4
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background:#EF4444;"></span> 待处理 2
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background:#0EA5E9;"></span> 待验收 1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="card">
+      <div class="card-title">隐患高发位置 Top 5</div>
+      <div class="rank-list" data-ui-id="stats-top-locations-list">
+        <div class="rank-item" data-ui-id="stats-location-1">
+          <span class="rank-num">1</span>
+          <div class="rank-bar-wrap">
+            <div class="rank-bar" style="width:100%;"></div>
+          </div>
+          <span class="rank-label">仓库北区</span>
+        </div>
+        <div class="rank-item" data-ui-id="stats-location-2">
+          <span class="rank-num">2</span>
+          <div class="rank-bar-wrap">
+            <div class="rank-bar" style="width:75%;"></div>
+          </div>
+          <span class="rank-label">车间 A 区</span>
+        </div>
+        <div class="rank-item" data-ui-id="stats-location-3">
+          <span class="rank-num">3</span>
+          <div class="rank-bar-wrap">
+            <div class="rank-bar" style="width:50%;"></div>
+          </div>
+          <span class="rank-label">配电房</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="tab-bar" role="tablist">
+    <div class="tab-item" role="tab" data-ui-id="tab-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>工作台标签</title>
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>工作台</span>
+    </div>
+    <div class="tab-item" role="tab" data-ui-id="tab-inspections">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>巡检标签</title>
+        <path d="M9 11l3 3L22 4"/>
+        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+      </svg>
+      <span>巡检</span>
+    </div>
+    <div class="tab-item" role="tab" data-ui-id="tab-hazards">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>隐患标签</title>
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <span>隐患</span>
+    </div>
+    <div class="tab-item active" role="tab" data-ui-id="tab-stats">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>统计标签</title>
+        <line x1="18" y1="20" x2="18" y2="10"/>
+        <line x1="12" y1="20" x2="12" y2="4"/>
+        <line x1="6" y1="20" x2="6" y2="14"/>
+      </svg>
+      <span>统计</span>
+    </div>
+    <div class="tab-item" role="tab" data-ui-id="tab-profile">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>我的标签</title>
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span>我的</span>
+    </div>
+  </nav>
+</body>
+</html>

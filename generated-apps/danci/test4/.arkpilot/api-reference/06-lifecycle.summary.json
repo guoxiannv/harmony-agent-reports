@@ -1,0 +1,57 @@
+{
+  "module": "06-lifecycle.md",
+  "group": "06 — Page & App Lifecycle",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "@Entry",
+      "purpose": "声明自定义组件为UI页面入口，每个页面仅允许一个",
+      "anchor": "entry",
+      "status": "found"
+    },
+    {
+      "name": "@Component",
+      "purpose": "声明自定义组件的基本装饰器",
+      "anchor": "component",
+      "status": "found"
+    },
+    {
+      "name": "aboutToAppear/aboutToDisappear",
+      "purpose": "自定义组件创建后build前执行 / 自定义组件销毁前执行",
+      "anchor": "abouttoappear--abouttodisappear",
+      "status": "found"
+    },
+    {
+      "name": "onPageShow/onPageHide",
+      "purpose": "@Entry页面每次显示/隐藏时触发",
+      "anchor": "onpageshow--onpagehide",
+      "status": "found"
+    },
+    {
+      "name": "UIAbility.onCreate/onDestroy",
+      "purpose": "UIAbility实例创建/销毁时的应用级生命周期回调",
+      "anchor": "uiabilityoncreate--ondestroy",
+      "status": "found"
+    },
+    {
+      "name": "window.getLastWindow",
+      "purpose": "获取当前应用内层级最高的子窗口或主窗口",
+      "anchor": "windowgetlastwindow",
+      "status": "found"
+    },
+    {
+      "name": "页面可见性",
+      "purpose": "通过onPageShow/onPageHide实现页面可见性监听",
+      "anchor": "页面可见性",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "HarmonyOS没有独立的页面可见性API，该能力通过onPageShow/onPageHide回调实现",
+    "API version 23+新增了装饰器模式生命周期(@ComponentInit/@ComponentAppear/@ComponentBuilt/@ComponentDisappear)，是旧回调模式的推荐替代",
+    "UIAbility.onCreate仅在冷启动时触发，热启动走onNewWant路径",
+    "@Component和@Entry都是内置装饰器，无需import即可使用",
+    "aboutToAppear/aboutToDisappear适用于所有自定义组件，onPageShow/onPageHide仅作用于@Entry页面"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,94 @@
+{
+  "module": "01-layout-navigation.md",
+  "group": "01 --- Layout & Navigation",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "Column",
+      "purpose": "垂直方向线性布局容器，可设置子组件间距",
+      "anchor": "column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "水平方向线性布局容器，可设置子组件间距",
+      "anchor": "row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，子组件按顺序入栈，后一个覆盖前一个",
+      "anchor": "stack",
+      "status": "found"
+    },
+    {
+      "name": "Flex",
+      "purpose": "弹性布局容器，高效排列对齐子元素并分配剩余空间",
+      "anchor": "flex",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动容器组件，子组件布局尺寸超过父组件时可滚动",
+      "anchor": "scroll",
+      "status": "found"
+    },
+    {
+      "name": "List",
+      "purpose": "列表容器，连续多行呈现同类数据，支持懒加载和预加载",
+      "anchor": "list",
+      "status": "found"
+    },
+    {
+      "name": "Grid",
+      "purpose": "网格容器，由行和列分割的单元格组成",
+      "anchor": "grid",
+      "status": "found"
+    },
+    {
+      "name": "Tabs",
+      "purpose": "通过页签进行内容视图切换的容器组件",
+      "anchor": "tabs",
+      "status": "found"
+    },
+    {
+      "name": "TabContent",
+      "purpose": "仅在Tabs中使用，对应一个切换页签的内容视图",
+      "anchor": "tabcontent",
+      "status": "found"
+    },
+    {
+      "name": "Navigation",
+      "purpose": "路由导航根视图容器，内部含标题栏、内容区和工具栏",
+      "anchor": "navigation",
+      "status": "found"
+    },
+    {
+      "name": "Divider",
+      "purpose": "分割线组件，分隔不同内容块或内容元素",
+      "anchor": "divider",
+      "status": "found"
+    },
+    {
+      "name": "Blank",
+      "purpose": "空白填充组件，自动填充容器主轴方向空余空间",
+      "anchor": "blank",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.router",
+      "purpose": "页面路由（不推荐，建议使用Navigation组件替代）",
+      "anchor": "ohosrouter-页面路由不推荐",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "Column/Row 未设置主轴大小时默认自适应子组件大小，而 Flex 主轴不设长度时默认撑满父容器（包含 position 子组件时例外）",
+    "Flex 组件存在二次布局过程，对性能有严格要求的场景建议用 Column/Row 替代",
+    "@ohos.router 从 API 18 开始已废弃，推荐使用 Navigation + NavPathStack 作为应用路由框架",
+    "Scroll 支持单个子组件，嵌套 List 时若 List 不设宽高会默认全部加载导致性能问题",
+    "Blank 仅在父组件为 Row/Column/Flex 时生效",
+    "Tabs 的 TabContent 支持 SubTabBarStyle（子页签/下划线）和 BottomTabBarStyle（底部页签/图标加文字）两种内置页签样式"
+  ],
+  "missingApis": []
+}

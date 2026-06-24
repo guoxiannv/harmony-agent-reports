@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>平安扣 - 首页</title>
+  <style>
+    :root {
+      --brand-deep: #115E59;
+      --brand-primary: #0D9488;
+      --brand-bright: #14B8A6;
+      --brand-light: #5EEAD4;
+      --brand-mint: #CCFBF1;
+      --brand-pale: #F0FDFA;
+      --safe: #059669; --safe-bg: #D1FAE5;
+      --warning: #B45309; --warning-bg: #FEF3C7;
+      --danger: #DC2626; --danger-bg: #FEE2E2;
+      --critical: #991B1B; --critical-bg: #FECACA;
+      --info: #1D4ED8; --info-bg: #DBEAFE;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-tertiary: #94A3B8;
+      --surface-primary: #FFFFFF;
+      --surface-secondary: #F8FAFC;
+      --surface-tertiary: #E2E8F0;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04);
+      --shadow-md: 0 4px 14px -3px rgba(13,148,136,0.13);
+      --shadow-lg: 0 12px 32px -10px rgba(13,148,136,0.20);
+      --glow-brand: 0 0 18px rgba(94,234,212,0.48);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--brand-pale);
+      color: var(--text-primary);
+      min-height: 100vh;
+      max-width: 420px;
+      margin: 0 auto;
+      padding-bottom: 90px;
+    }
+    .header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,0.80);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(226,232,240,0.6);
+      padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-title { font-size: 22px; font-weight: 700; color: var(--brand-deep); letter-spacing: -0.25px; }
+    .icon-btn { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--surface-secondary); }
+    .hero { padding: 24px 16px 18px; position: relative; overflow: hidden; }
+    .hero-greeting { font-size: 20px; font-weight: 700; color: var(--text-primary); }
+    .hero-date { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+    .decoration { position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.35; }
+    .dec-1 { width: 120px; height: 120px; background: var(--brand-light); top: -30px; right: -20px; }
+    .dec-2 { width: 80px; height: 80px; background: var(--brand-bright); top: 50px; right: 90px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px; }
+    .kpi-card {
+      background: linear-gradient(145deg, #FFFFFF 0%, var(--brand-pale) 100%);
+      border-radius: 20px; padding: 16px 10px; text-align: center;
+      box-shadow: var(--shadow-md);
+      border-top: 3px solid transparent;
+      border-image: linear-gradient(90deg, var(--brand-primary), var(--brand-light)) 1;
+    }
+    .kpi-value { font-size: 24px; font-weight: 700; color: var(--brand-deep); }
+    .kpi-label { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+    .quick-actions { display: flex; gap: 10px; padding: 18px 16px; }
+    .quick-btn {
+      flex: 1; height: 44px; border-radius: 9999px; border: none; display: flex; align-items: center; justify-content: center; gap: 6px;
+      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-bright) 60%, var(--brand-light) 100%);
+      color: #fff; font-size: 13px; font-weight: 700; box-shadow: var(--shadow-md);
+    }
+    .section-title { font-size: 18px; font-weight: 600; padding: 22px 16px 10px; color: var(--text-primary); }
+    .list { display: flex; flex-direction: column; gap: 10px; padding: 0 16px; }
+    .list-item {
+      background: var(--surface-primary); border-radius: 14px; padding: 14px 16px;
+      box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 12px;
+      border-left: 4px solid var(--warning);
+    }
+    .list-item.safe { border-left-color: var(--safe); }
+    .list-item.danger { border-left-color: var(--danger); }
+    .list-content { flex: 1; }
+    .list-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .list-meta { font-size: 12px; color: var(--text-tertiary); margin-top: 3px; }
+    .badge { padding: 4px 9px; border-radius: 9999px; font-size: 10px; font-weight: 700; }
+    .badge-warning { background: var(--warning-bg); color: var(--warning); }
+    .badge-safe { background: var(--safe-bg); color: var(--safe); }
+    .badge-danger { background: var(--danger-bg); color: var(--danger); }
+    .view-all { text-align: center; padding: 16px; color: var(--brand-primary); font-size: 14px; font-weight: 600; }
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto; max-width: 420px; height: 68px;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(24px) saturate(160%);
+      border-top: 1px solid rgba(226,232,240,0.6); display: flex; justify-content: space-around; align-items: center; padding-bottom: 8px; box-shadow: var(--shadow-lg);
+    }
+    .tab { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-tertiary); font-size: 10px; }
+    .tab.active { color: var(--brand-primary); }
+    .tab-icon { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+    .tab.active .tab-icon { background: linear-gradient(135deg, var(--brand-primary), var(--brand-bright)); color: #fff; box-shadow: var(--glow-brand); }
+  </style>
+</head>
+<body data-page-id="home" data-tab-id="tab-home">
+  <header class="header">
+    <h1 class="header-title" data-ui-id="home-header-title">平安扣</h1>
+    <button class="icon-btn" data-ui-id="home-notification-button" aria-label="查看通知消息">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>查看通知消息</title>
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        <circle cx="18" cy="6" r="3" fill="#EF4444" stroke="none"></circle>
+      </svg>
+    </button>
+  </header>
+
+  <section class="hero">
+    <div class="decoration dec-1"></div>
+    <div class="decoration dec-2"></div>
+    <div class="hero-greeting">早安，安全员</div>
+    <div class="hero-date">2026年6月22日 星期一</div>
+  </section>
+
+  <section class="kpi-grid">
+    <article class="kpi-card" data-ui-id="home-today-patrol-progress">
+      <div class="kpi-value">36%</div>
+      <div class="kpi-label">巡检进度</div>
+    </article>
+    <article class="kpi-card" data-ui-id="home-pending-issues-count">
+      <div class="kpi-value">5</div>
+      <div class="kpi-label">待处理隐患</div>
+    </article>
+    <article class="kpi-card" data-ui-id="home-resolved-this-week-count">
+      <div class="kpi-value">12</div>
+      <div class="kpi-label">本周已整改</div>
+    </article>
+  </section>
+
+  <section class="quick-actions">
+    <button class="quick-btn" data-ui-id="home-quick-report-button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>快速上报隐患</title><path d="M12 5v14M5 12h14"></path></svg>
+      上报隐患
+    </button>
+    <button class="quick-btn" data-ui-id="home-quick-patrol-button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>开始今日巡检</title><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      开始巡检
+    </button>
+    <button class="quick-btn" data-ui-id="home-quick-contact-button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><title>查看应急联系人</title><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.56 12.56 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.56 12.56 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      应急联系
+    </button>
+  </section>
+
+  <h2 class="section-title">最近动态</h2>
+  <section class="list" data-ui-id="home-recent-issues-list">
+    <article class="list-item danger" data-ui-id="home-recent-issue-1">
+      <div class="list-content">
+        <div class="list-title">A栋3层消防通道堆物</div>
+        <div class="list-meta">15分钟前 · A栋3层东侧通道</div>
+      </div>
+      <span class="badge badge-danger">待处理</span>
+    </article>
+    <article class="list-item warning" data-ui-id="home-recent-issue-2">
+      <div class="list-content">
+        <div class="list-title">B栋货梯门关闭异常</div>
+        <div class="list-meta">1小时前 · B栋货梯厅</div>
+      </div>
+      <span class="badge badge-warning">处理中</span>
+    </article>
+    <article class="list-item safe" data-ui-id="home-recent-issue-3">
+      <div class="list-content">
+        <div class="list-title">C栋应急照明测试</div>
+        <div class="list-meta">今天 09:30 · C栋各楼层</div>
+      </div>
+      <span class="badge badge-safe">已完成</span>
+    </article>
+  </section>
+
+  <div class="view-all" data-ui-id="home-view-all-issues-link">查看全部隐患</div>
+
+  <nav class="tabbar" data-ui-id="home-tabbar">
+    <div class="tab active">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页工作台</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </div>
+      <span>首页</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>巡检打卡</title><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      </div>
+      <span>巡检</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>隐患与事项</title><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      </div>
+      <span>隐患</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>应急联系人</title><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      </div>
+      <span>联系人</span>
+    </div>
+    <div class="tab">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>统计看板</title><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      </div>
+      <span>统计</span>
+    </div>
+  </nav>
+</body>
+</html>

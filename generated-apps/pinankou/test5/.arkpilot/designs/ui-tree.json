@@ -1,0 +1,504 @@
+{
+  "version": "arkpilot-uitree/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "平安扣",
+  "appNameEn": "Pinankou",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home-page",
+      "name": "首页",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        {
+          "id": "home-header-title",
+          "role": "assertion",
+          "binding": "/app/title"
+        },
+        {
+          "id": "home-stat-today-inspection",
+          "role": "assertion",
+          "binding": "/stats/todayInspectionCount"
+        },
+        {
+          "id": "home-stat-pending-risk",
+          "role": "assertion",
+          "binding": "/stats/pendingRiskCount"
+        },
+        {
+          "id": "home-stat-overdue-risk",
+          "role": "assertion",
+          "binding": "/stats/overdueRiskCount"
+        },
+        {
+          "id": "home-stat-closed-rate",
+          "role": "assertion",
+          "binding": "/stats/closedRate"
+        },
+        {
+          "id": "home-quick-action-report",
+          "role": "action",
+          "event": "navigate-report-risk"
+        },
+        {
+          "id": "home-quick-action-inspection",
+          "role": "action",
+          "event": "navigate-inspection"
+        },
+        {
+          "id": "home-quick-action-contact",
+          "role": "action",
+          "event": "navigate-emergency"
+        },
+        {
+          "id": "home-chart-risk-distribution",
+          "role": "assertion",
+          "binding": "/charts/riskDistribution"
+        },
+        {
+          "id": "home-recent-activity-list",
+          "role": "list",
+          "binding": "/activities",
+          "itemIdPattern": "home-activity-{id}",
+          "emptyStateId": "home-empty-activity"
+        }
+      ]
+    },
+    {
+      "id": "inspection-page",
+      "surfaceId": "inspection",
+      "pageId": "inspection-page",
+      "name": "巡检",
+      "route": "pages/Inspection",
+      "tabId": "tab-inspection",
+      "semanticTargets": [
+        {
+          "id": "inspection-segment-today",
+          "role": "action",
+          "event": "switch-segment-today"
+        },
+        {
+          "id": "inspection-segment-pending",
+          "role": "action",
+          "event": "switch-segment-pending"
+        },
+        {
+          "id": "inspection-segment-history",
+          "role": "action",
+          "event": "switch-segment-history"
+        },
+        {
+          "id": "inspection-task-list",
+          "role": "list",
+          "binding": "/inspectionTasks",
+          "itemIdPattern": "inspection-task-{id}",
+          "emptyStateId": "inspection-empty-task"
+        },
+        {
+          "id": "inspection-task-start-{id}",
+          "role": "action",
+          "event": "start-inspection",
+          "context": { "itemIdPattern": "inspection-task-{id}" }
+        },
+        {
+          "id": "inspection-add-task",
+          "role": "action",
+          "event": "open-add-inspection-sheet"
+        }
+      ]
+    },
+    {
+      "id": "inspection-detail-page",
+      "surfaceId": "inspection-detail",
+      "pageId": "inspection-detail-page",
+      "name": "巡检详情",
+      "route": "pages/InspectionDetail",
+      "semanticTargets": [
+        {
+          "id": "inspection-detail-title",
+          "role": "assertion",
+          "binding": "/inspectionDetail/title"
+        },
+        {
+          "id": "inspection-detail-checklist",
+          "role": "list",
+          "binding": "/inspectionDetail/checkItems",
+          "itemIdPattern": "inspection-checkitem-{id}",
+          "emptyStateId": "inspection-empty-checkitem"
+        },
+        {
+          "id": "inspection-checkitem-pass-{id}",
+          "role": "action",
+          "event": "mark-checkitem-pass",
+          "context": { "itemIdPattern": "inspection-checkitem-{id}" }
+        },
+        {
+          "id": "inspection-checkitem-fail-{id}",
+          "role": "action",
+          "event": "mark-checkitem-fail",
+          "context": { "itemIdPattern": "inspection-checkitem-{id}" }
+        },
+        {
+          "id": "inspection-checkitem-note-{id}",
+          "role": "input",
+          "binding": "/inspectionDetail/checkItems/{id}/note"
+        },
+        {
+          "id": "inspection-submit-result",
+          "role": "action",
+          "event": "submit-inspection-result"
+        }
+      ]
+    },
+    {
+      "id": "risk-page",
+      "surfaceId": "risk",
+      "pageId": "risk-page",
+      "name": "隐患",
+      "route": "pages/Risk",
+      "tabId": "tab-risk",
+      "semanticTargets": [
+        {
+          "id": "risk-filter-all",
+          "role": "action",
+          "event": "filter-risk-all"
+        },
+        {
+          "id": "risk-filter-pending",
+          "role": "action",
+          "event": "filter-risk-pending"
+        },
+        {
+          "id": "risk-filter-inprogress",
+          "role": "action",
+          "event": "filter-risk-inprogress"
+        },
+        {
+          "id": "risk-filter-review",
+          "role": "action",
+          "event": "filter-risk-review"
+        },
+        {
+          "id": "risk-filter-closed",
+          "role": "action",
+          "event": "filter-risk-closed"
+        },
+        {
+          "id": "risk-add-button",
+          "role": "action",
+          "event": "navigate-report-risk"
+        },
+        {
+          "id": "risk-search-input",
+          "role": "input",
+          "binding": "/risks/searchQuery"
+        },
+        {
+          "id": "risk-list",
+          "role": "list",
+          "binding": "/risks",
+          "itemIdPattern": "risk-item-{id}",
+          "emptyStateId": "risk-empty-list"
+        },
+        {
+          "id": "risk-item-{id}",
+          "role": "action",
+          "event": "open-risk-detail",
+          "context": { "itemIdPattern": "risk-item-{id}" }
+        }
+      ]
+    },
+    {
+      "id": "risk-detail-page",
+      "surfaceId": "risk-detail",
+      "pageId": "risk-detail-page",
+      "name": "隐患详情",
+      "route": "pages/RiskDetail",
+      "semanticTargets": [
+        {
+          "id": "risk-detail-title",
+          "role": "assertion",
+          "binding": "/riskDetail/title"
+        },
+        {
+          "id": "risk-detail-status",
+          "role": "assertion",
+          "binding": "/riskDetail/status"
+        },
+        {
+          "id": "risk-detail-level",
+          "role": "assertion",
+          "binding": "/riskDetail/level"
+        },
+        {
+          "id": "risk-detail-progress-timeline",
+          "role": "list",
+          "binding": "/riskDetail/timeline",
+          "itemIdPattern": "risk-timeline-{id}",
+          "emptyStateId": "risk-empty-timeline"
+        },
+        {
+          "id": "risk-action-assign",
+          "role": "action",
+          "event": "assign-risk-handler"
+        },
+        {
+          "id": "risk-action-remind",
+          "role": "action",
+          "event": "remind-risk-handler"
+        },
+        {
+          "id": "risk-action-submit-fix",
+          "role": "action",
+          "event": "submit-risk-fix"
+        },
+        {
+          "id": "risk-action-review-pass",
+          "role": "action",
+          "event": "review-risk-pass"
+        },
+        {
+          "id": "risk-action-review-reject",
+          "role": "action",
+          "event": "review-risk-reject"
+        }
+      ]
+    },
+    {
+      "id": "report-risk-page",
+      "surfaceId": "report-risk",
+      "pageId": "report-risk-page",
+      "name": "上报隐患",
+      "route": "pages/ReportRisk",
+      "semanticTargets": [
+        {
+          "id": "report-risk-title-input",
+          "role": "input",
+          "binding": "/reportRisk/title"
+        },
+        {
+          "id": "report-risk-type-picker",
+          "role": "input",
+          "binding": "/reportRisk/type"
+        },
+        {
+          "id": "report-risk-level-picker",
+          "role": "input",
+          "binding": "/reportRisk/level"
+        },
+        {
+          "id": "report-risk-location-input",
+          "role": "input",
+          "binding": "/reportRisk/location"
+        },
+        {
+          "id": "report-risk-desc-input",
+          "role": "input",
+          "binding": "/reportRisk/description"
+        },
+        {
+          "id": "report-risk-photos",
+          "role": "input",
+          "binding": "/reportRisk/photos"
+        },
+        {
+          "id": "report-risk-deadline-picker",
+          "role": "input",
+          "binding": "/reportRisk/deadline"
+        },
+        {
+          "id": "report-risk-handler-picker",
+          "role": "input",
+          "binding": "/reportRisk/handler"
+        },
+        {
+          "id": "report-risk-submit",
+          "role": "action",
+          "event": "submit-report-risk"
+        }
+      ]
+    },
+    {
+      "id": "emergency-page",
+      "surfaceId": "emergency",
+      "pageId": "emergency-page",
+      "name": "应急",
+      "route": "pages/Emergency",
+      "tabId": "tab-emergency",
+      "semanticTargets": [
+        {
+          "id": "emergency-search-input",
+          "role": "input",
+          "binding": "/emergency/searchQuery"
+        },
+        {
+          "id": "emergency-add-contact",
+          "role": "action",
+          "event": "open-add-contact-sheet"
+        },
+        {
+          "id": "emergency-contact-list",
+          "role": "list",
+          "binding": "/emergencyContacts",
+          "itemIdPattern": "emergency-contact-{id}",
+          "emptyStateId": "emergency-empty-contact"
+        },
+        {
+          "id": "emergency-contact-call-{id}",
+          "role": "action",
+          "event": "dial-contact",
+          "context": { "itemIdPattern": "emergency-contact-{id}" }
+        }
+      ]
+    },
+    {
+      "id": "profile-page",
+      "surfaceId": "profile",
+      "pageId": "profile-page",
+      "name": "我的",
+      "route": "pages/Profile",
+      "tabId": "tab-profile",
+      "semanticTargets": [
+        {
+          "id": "profile-avatar",
+          "role": "assertion",
+          "binding": "/profile/avatar"
+        },
+        {
+          "id": "profile-name",
+          "role": "assertion",
+          "binding": "/profile/name"
+        },
+        {
+          "id": "profile-role",
+          "role": "assertion",
+          "binding": "/profile/role"
+        },
+        {
+          "id": "profile-setting-export",
+          "role": "action",
+          "event": "export-data"
+        },
+        {
+          "id": "profile-setting-about",
+          "role": "action",
+          "event": "open-about"
+        }
+      ]
+    }
+  ],
+  "events": [
+    { "name": "navigate-report-risk", "description": "打开隐患上报页" },
+    { "name": "navigate-inspection", "description": "切换到巡检 Tab" },
+    { "name": "navigate-emergency", "description": "切换到应急 Tab" },
+    { "name": "switch-segment-today", "description": "巡检页切换到今日任务" },
+    { "name": "switch-segment-pending", "description": "巡检页切换到待办任务" },
+    { "name": "switch-segment-history", "description": "巡检页切换到历史记录" },
+    { "name": "start-inspection", "description": "开始某条巡检任务" },
+    { "name": "open-add-inspection-sheet", "description": "打开新建巡检任务表单" },
+    { "name": "mark-checkitem-pass", "description": "巡检项标记为正常" },
+    { "name": "mark-checkitem-fail", "description": "巡检项标记为异常并进入隐患池" },
+    { "name": "submit-inspection-result", "description": "提交巡检结果" },
+    { "name": "filter-risk-all", "description": "隐患筛选全部" },
+    { "name": "filter-risk-pending", "description": "隐患筛选待整改" },
+    { "name": "filter-risk-inprogress", "description": "隐患筛选整改中" },
+    { "name": "filter-risk-review", "description": "隐患筛选待复核" },
+    { "name": "filter-risk-closed", "description": "隐患筛选已关闭" },
+    { "name": "open-risk-detail", "description": "打开隐患详情" },
+    { "name": "assign-risk-handler", "description": "指定/更改整改责任人" },
+    { "name": "remind-risk-handler", "description": "催办整改责任人" },
+    { "name": "submit-risk-fix", "description": "提交整改结果" },
+    { "name": "review-risk-pass", "description": "复核通过并关闭隐患" },
+    { "name": "review-risk-reject", "description": "复核不通过并退回整改" },
+    { "name": "submit-report-risk", "description": "提交隐患上报表单" },
+    { "name": "dial-contact", "description": "拨打应急联系人电话" },
+    { "name": "open-add-contact-sheet", "description": "打开新建应急联系人表单" },
+    { "name": "export-data", "description": "导出本地数据" },
+    { "name": "open-about", "description": "打开关于页面" }
+  ],
+  "bindings": [
+    { "path": "/app/title", "type": "string", "default": "平安扣" },
+    { "path": "/stats/todayInspectionCount", "type": "number", "default": 0 },
+    { "path": "/stats/pendingRiskCount", "type": "number", "default": 0 },
+    { "path": "/stats/overdueRiskCount", "type": "number", "default": 0 },
+    { "path": "/stats/closedRate", "type": "string", "default": "0%" },
+    { "path": "/charts/riskDistribution", "type": "object" },
+    { "path": "/activities", "type": "array" },
+    { "path": "/inspectionTasks", "type": "array" },
+    { "path": "/inspectionDetail/title", "type": "string" },
+    { "path": "/inspectionDetail/checkItems", "type": "array" },
+    { "path": "/risks", "type": "array" },
+    { "path": "/risks/searchQuery", "type": "string", "default": "" },
+    { "path": "/riskDetail/title", "type": "string" },
+    { "path": "/riskDetail/status", "type": "string" },
+    { "path": "/riskDetail/level", "type": "string" },
+    { "path": "/riskDetail/timeline", "type": "array" },
+    { "path": "/reportRisk/title", "type": "string" },
+    { "path": "/reportRisk/type", "type": "string" },
+    { "path": "/reportRisk/level", "type": "string" },
+    { "path": "/reportRisk/location", "type": "string" },
+    { "path": "/reportRisk/description", "type": "string" },
+    { "path": "/reportRisk/photos", "type": "array" },
+    { "path": "/reportRisk/deadline", "type": "string" },
+    { "path": "/reportRisk/handler", "type": "string" },
+    { "path": "/emergency/searchQuery", "type": "string", "default": "" },
+    { "path": "/emergencyContacts", "type": "array" },
+    { "path": "/profile/avatar", "type": "string" },
+    { "path": "/profile/name", "type": "string" },
+    { "path": "/profile/role", "type": "string" }
+  ],
+  "testTargets": [
+    "home-stat-today-inspection",
+    "home-stat-pending-risk",
+    "home-stat-overdue-risk",
+    "home-stat-closed-rate",
+    "home-quick-action-report",
+    "home-quick-action-inspection",
+    "home-quick-action-contact",
+    "home-recent-activity-list",
+    "home-empty-activity",
+    "inspection-segment-today",
+    "inspection-segment-pending",
+    "inspection-segment-history",
+    "inspection-task-list",
+    "inspection-empty-task",
+    "inspection-add-task",
+    "inspection-detail-title",
+    "inspection-detail-checklist",
+    "inspection-submit-result",
+    "risk-filter-all",
+    "risk-filter-pending",
+    "risk-filter-inprogress",
+    "risk-filter-review",
+    "risk-filter-closed",
+    "risk-add-button",
+    "risk-search-input",
+    "risk-list",
+    "risk-empty-list",
+    "risk-detail-title",
+    "risk-detail-status",
+    "risk-detail-level",
+    "risk-detail-progress-timeline",
+    "risk-action-assign",
+    "risk-action-submit-fix",
+    "risk-action-review-pass",
+    "risk-action-review-reject",
+    "report-risk-title-input",
+    "report-risk-level-picker",
+    "report-risk-submit",
+    "emergency-search-input",
+    "emergency-add-contact",
+    "emergency-contact-list",
+    "emergency-empty-contact",
+    "profile-name",
+    "profile-setting-export",
+    "profile-setting-about"
+  ]
+}

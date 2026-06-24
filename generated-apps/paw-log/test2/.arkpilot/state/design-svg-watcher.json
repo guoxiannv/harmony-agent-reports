@@ -1,0 +1,102 @@
+{
+  "pid": 67684,
+  "status": "controller-tick",
+  "launched_by_session_id": "c8b52b97-d60c-4cac-8707-b44cc7d3df27",
+  "started_at": "2026-06-22T11:20:10.345Z",
+  "last_scan_at": "2026-06-23T06:13:07.132Z",
+  "last_change_at": "2026-06-22T11:52:13.377Z",
+  "html_signature": "[{\"name\":\"page-add-record-sheet.html\",\"mtime_ms\":1782128541046,\"size\":5219},{\"name\":\"page-care-page.html\",\"mtime_ms\":1782128339353,\"size\":13573},{\"name\":\"page-family-invite-sheet.html\",\"mtime_ms\":1782129048415,\"size\":4832},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782127971016,\"size\":22545},{\"name\":\"page-medical-case-editor-page.html\",\"mtime_ms\":1782128995381,\"size\":6389},{\"name\":\"page-medical-case-page.html\",\"mtime_ms\":1782128929771,\"size\":7136},{\"name\":\"page-pet-editor-page.html\",\"mtime_ms\":1782129128692,\"size\":8178},{\"name\":\"page-pet-picker-sheet.html\",\"mtime_ms\":1782128785096,\"size\":5209},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1782128480054,\"size\":13055},{\"name\":\"page-record-diet-sheet.html\",\"mtime_ms\":1782128586785,\"size\":4459},{\"name\":\"page-record-meds-sheet.html\",\"mtime_ms\":1782128728567,\"size\":4234},{\"name\":\"page-record-stool-sheet.html\",\"mtime_ms\":1782128637223,\"size\":4917},{\"name\":\"page-record-weight-sheet.html\",\"mtime_ms\":1782128684252,\"size\":4563},{\"name\":\"page-records-page.html\",\"mtime_ms\":1782128098107,\"size\":12957},{\"name\":\"page-reminder-detail-page.html\",\"mtime_ms\":1782128850648,\"size\":6156},{\"name\":\"page-trends-page.html\",\"mtime_ms\":1782128209978,\"size\":10888}]",
+  "html_files": [
+    {
+      "name": "page-add-record-sheet.html",
+      "mtime_ms": 1782128541046,
+      "size": 5219
+    },
+    {
+      "name": "page-care-page.html",
+      "mtime_ms": 1782128339353,
+      "size": 13573
+    },
+    {
+      "name": "page-family-invite-sheet.html",
+      "mtime_ms": 1782129048415,
+      "size": 4832
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782127971016,
+      "size": 22545
+    },
+    {
+      "name": "page-medical-case-editor-page.html",
+      "mtime_ms": 1782128995381,
+      "size": 6389
+    },
+    {
+      "name": "page-medical-case-page.html",
+      "mtime_ms": 1782128929771,
+      "size": 7136
+    },
+    {
+      "name": "page-pet-editor-page.html",
+      "mtime_ms": 1782129128692,
+      "size": 8178
+    },
+    {
+      "name": "page-pet-picker-sheet.html",
+      "mtime_ms": 1782128785096,
+      "size": 5209
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1782128480054,
+      "size": 13055
+    },
+    {
+      "name": "page-record-diet-sheet.html",
+      "mtime_ms": 1782128586785,
+      "size": 4459
+    },
+    {
+      "name": "page-record-meds-sheet.html",
+      "mtime_ms": 1782128728567,
+      "size": 4234
+    },
+    {
+      "name": "page-record-stool-sheet.html",
+      "mtime_ms": 1782128637223,
+      "size": 4917
+    },
+    {
+      "name": "page-record-weight-sheet.html",
+      "mtime_ms": 1782128684252,
+      "size": 4563
+    },
+    {
+      "name": "page-records-page.html",
+      "mtime_ms": 1782128098107,
+      "size": 12957
+    },
+    {
+      "name": "page-reminder-detail-page.html",
+      "mtime_ms": 1782128850648,
+      "size": 6156
+    },
+    {
+      "name": "page-trends-page.html",
+      "mtime_ms": 1782128209978,
+      "size": 10888
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 70,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 70,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-23T06:13:07.132Z"
+}

@@ -1,0 +1,126 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "appName": "小小单词卡",
+  "scope": "单页工具型复习应用：加载当前阶段单词队列，3D 翻转卡片复习，认识/不认识 调整队列，一轮完成给出统计。无 Tab、无导航。",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Word",
+        "fields": {
+          "english": "string — 英文单词（卡片正面）",
+          "phonetic": "string — 音标，如 /ˈæp.əl/",
+          "chinese": "string — 中文释义（卡片背面）"
+        }
+      }
+    ],
+    "settingsFormState": "无表单/设置。单词数据源由当前阶段单词库提供。",
+    "computedState": [
+      "/pageTitle → string（固定：今日复习）",
+      "/progress/currentAndTotal → string，格式 `${completedCount} / ${totalForRound}`",
+      "/progress/percent → number，0-100，completedCount/totalForRound*100",
+      "/currentWord/english → currentWord.english",
+      "/currentWord/phonetic → currentWord.phonetic",
+      "/currentWord/chinese → currentWord.chinese",
+      "/currentWord/translationAndPhonetic → `${chinese}\n${phonetic}` 背面展示",
+      "/completion/isVisible → 队列空且数据源非空（已完成一轮）",
+      "/completion/correctAndTotal → `${correctCount} / ${totalForRound}`",
+      "/empty/isVisible → 数据源加载后为空（无单词可复习）",
+      "/empty/message → 固定文案：还没有要复习的单词哦"
+    ],
+    "persistenceRelevantFields": "本阶段不持久化历史记录。correctCount/totalCount 仅运行时本轮有效。"
+  },
+  "services": [
+    {
+      "name": "WordBankService",
+      "purpose": "提供当前阶段已学单词的数据源。loadCurrentStage(): Word[] 返回当前阶段单词数组。",
+      "persistence": "本地单词库（当前阶段）。首屏为真实空状态：当数据源返回空数组时触发空状态。",
+      "notes": "数据源代表外部学习系统/家长配置的 JSON 数组。本实现使用本地单词库作为数据源；不把 HTML 示例数据当作种子。"
+    }
+  ],
+  "stateMachine": {
+    "states": [
+      "Loading — 初始化，尚未加载单词队列",
+      "Reviewing — 队列非空，展示队首卡片",
+      "Completed — 队列已空（全部认识移出），数据源非空",
+      "Empty — 数据源为空，无可复习单词"
+    ],
+    "fields": [
+      "reviewState: ReviewState",
+      "reviewQueue: Word[]（运行时队列，原地操作）",
+      "currentWord: Word | null（= reviewQueue[0]，队列为空时为 null）",
+      "isFlipped: boolean（卡片翻转态，true=背面）",
+      "correctCount: number（本轮认识数）",
+      "totalForRound: number（本轮初始总词数，加载后固定）"
+    ],
+    "transitions": [
+      "Loading --loadStage(非空)--> Reviewing",
+      "Loading --loadStage(空)--> Empty",
+      "Reviewing --mark-known(队列长度变为0)--> Completed",
+      "Reviewing --mark-known(队列仍非空)--> Reviewing(下一张)",
+      "Reviewing --mark-unknown--> Reviewing(队首移至队尾，下一张)",
+      "Reviewing --flip-card--> Reviewing(翻转态切换)",
+      "Completed --restart-review--> Reviewing(重新加载队列)",
+      "Empty --restart-review--> Empty/Reviewing(按数据源重新判定)"
+    ]
+  },
+  "interactionFlows": [
+    {
+      "flow": "进入复习",
+      "trigger": "应用启动 / 页面加载",
+      "steps": [
+        "WordBankService.loadCurrentStage() 读取当前阶段单词",
+        "拷贝为 reviewQueue，totalForRound = 队列长度，correctCount = 0，isFlipped = false",
+        "非空 → Reviewing，currentWord = reviewQueue[0]；空 → Empty"
+      ],
+      "expectedState": "Reviewing 或 Empty"
+    },
+    {
+      "flow": "flip-card",
+      "trigger": "点击卡片 (review-flashcard)",
+      "steps": ["切换 isFlipped；至少支持一次完整正面↔背面翻转"],
+      "expectedState": "Reviewing，isFlipped 取反"
+    },
+    {
+      "flow": "mark-known",
+      "trigger": "点击「认识」 (review-known-button)",
+      "steps": [
+        "从 reviewQueue 移除队首",
+        "correctCount += 1",
+        "isFlipped = false",
+        "队列空 → Completed；否则 currentWord = 新队首"
+      ],
+      "expectedState": "Reviewing(下一张) 或 Completed"
+    },
+    {
+      "flow": "mark-unknown",
+      "trigger": "点击「不认识」 (review-unknown-button)",
+      "steps": [
+        "队首移到 reviewQueue 队尾",
+        "isFlipped = false",
+        "currentWord = 新队首（队尾循环；队列长度不变）"
+      ],
+      "expectedState": "Reviewing(同一批词循环复习)"
+    },
+    {
+      "flow": "restart-review",
+      "trigger": "点击「再学一次」 (review-restart-button)",
+      "steps": ["重新调用 loadCurrentStage 拷贝队列，重置 correctCount/isFlipped"],
+      "expectedState": "Reviewing(或 Empty，按数据源)"
+    }
+  ],
+  "testTargets": [
+    "review-progress-text",
+    "review-progress-ring",
+    "review-flashcard",
+    "review-word-english",
+    "review-word-phonetic",
+    "review-word-chinese",
+    "review-unknown-button",
+    "review-known-button",
+    "review-completion-score",
+    "review-restart-button",
+    "review-empty-message"
+  ],
+  "events": ["flip-card", "mark-unknown", "mark-known", "restart-review"],
+  "changeRequests": []
+}

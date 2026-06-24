@@ -1,0 +1,71 @@
+{
+  "module": "01-permissions.md",
+  "group": "01 — Permissions & Ability Access Control",
+  "apiCount": 8,
+  "apis": [
+    {
+      "name": "ohos.abilityAccessCtrl (程序访问控制管理)",
+      "purpose": "提供应用程序的权限校验和管理能力，包括权限检查、用户授权弹框、权限状态变更订阅",
+      "anchor": "ohosabilityaccessctrl-程序访问控制管理",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.checkAccessToken",
+      "purpose": "校验指定应用的指定权限是否已授予（Promise异步）",
+      "anchor": "checkaccesstoken9",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.checkAccessTokenSync",
+      "purpose": "校验指定应用的指定权限是否已授予（同步返回）",
+      "anchor": "checkaccesstokensync10",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.requestPermissionsFromUser",
+      "purpose": "拉起系统授权弹框向用户请求权限授权",
+      "anchor": "requestpermissionsfromuser9",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.requestPermissionOnSetting",
+      "purpose": "二次拉起权限设置弹框引导用户授权",
+      "anchor": "requestpermissiononsetting12",
+      "status": "found"
+    },
+    {
+      "name": "PermissionRequestResult",
+      "purpose": "权限请求结果对象，包含权限列表、授权结果、弹窗结果和错误原因",
+      "anchor": "permissionrequestresult",
+      "status": "found"
+    },
+    {
+      "name": "GrantStatus",
+      "purpose": "授权状态枚举（PERMISSION_DENIED=未授权, PERMISSION_GRANTED=已授权）",
+      "anchor": "grantstatus",
+      "status": "found"
+    },
+    {
+      "name": "PermissionStatus",
+      "purpose": "权限状态枚举，支持 DENIED/GRANTED/NOT_DETERMINED/INVALID/RESTRICTED 五种状态",
+      "anchor": "permissionstatus20",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 是 HarmonyOS 应用权限列表中的 user_grant 权限名称，定义在官方 app-permissions 指南中，不在 API 参考文档内，本地知识库缺失",
+    "permission request workflow (向用户申请授权) 是开发者指南文档，不在 API 参考目录中，本地未收录",
+    "module.json5 permission declarations 构建配置的完整 schema 不在 API 参考文档中，但已根据 HarmonyOS 标准 practice 在 Module Notes 中提供了基本结构",
+    "checkAccessToken API 9+ 和 checkAccessTokenSync API 10+ 推荐替代 verifyAccessToken (deprecated)",
+    "requestPermissionsFromUser 仅支持 Stage 模型",
+    "getSelfPermissionStatus API 20+ 可直接查询本应用权限状态，无需获取 tokenID",
+    "openPermissionOnSetting API 22+ 支持跳转设置页弹窗，仅支持 manual_settings 类型权限",
+    "所有权限相关 API 系统能力为 SystemCapability.Security.AccessToken"
+  ],
+  "missingApis": [
+    "ohos.permission.READ_IMAGEVIDEO",
+    "ohos.permission.WRITE_IMAGEVIDEO",
+    "permission request workflow",
+    "module.json5 permission declarations"
+  ]
+}

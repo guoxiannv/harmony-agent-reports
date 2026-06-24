@@ -1,0 +1,203 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "小词卡",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "review-page",
+      "surfaceId": "review",
+      "pageId": "review-page",
+      "name": "复习页",
+      "route": "pages/ReviewPage",
+      "tabId": null,
+      "semanticTargets": [
+        {
+          "id": "review-app-title",
+          "role": "assertion",
+          "binding": "/app/title"
+        },
+        {
+          "id": "review-progress-text",
+          "role": "assertion",
+          "binding": "/review/progress"
+        },
+        {
+          "id": "review-card-stack",
+          "role": "list",
+          "binding": "/review/cards",
+          "itemIdPattern": "review-card-{index}",
+          "emptyStateId": "review-empty-state"
+        },
+        {
+          "id": "review-flip-card",
+          "role": "action",
+          "event": "flip-card"
+        },
+        {
+          "id": "review-word-front",
+          "role": "assertion",
+          "binding": "/review/currentWord/word"
+        },
+        {
+          "id": "review-phonetic-back",
+          "role": "assertion",
+          "binding": "/review/currentWord/phonetic"
+        },
+        {
+          "id": "review-meaning-back",
+          "role": "assertion",
+          "binding": "/review/currentWord/meaning"
+        },
+        {
+          "id": "review-known-button",
+          "role": "action",
+          "event": "mark-known"
+        },
+        {
+          "id": "review-unknown-button",
+          "role": "action",
+          "event": "mark-unknown"
+        },
+        {
+          "id": "review-known-count",
+          "role": "assertion",
+          "binding": "/review/knownCount"
+        },
+        {
+          "id": "review-remaining-count",
+          "role": "assertion",
+          "binding": "/review/remainingCount"
+        },
+        {
+          "id": "review-completion-panel",
+          "role": "assertion",
+          "binding": "/review/isComplete"
+        },
+        {
+          "id": "review-final-known-count",
+          "role": "assertion",
+          "binding": "/review/finalKnownCount"
+        },
+        {
+          "id": "review-final-review-count",
+          "role": "assertion",
+          "binding": "/review/finalReviewCount"
+        },
+        {
+          "id": "review-restart-button",
+          "role": "action",
+          "event": "restart-round"
+        },
+        {
+          "id": "review-empty-state",
+          "role": "assertion",
+          "binding": "/review/empty"
+        },
+        {
+          "id": "review-empty-load-button",
+          "role": "action",
+          "event": "load-words"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "flip-card",
+      "description": "点击卡片切换正反面（3D 翻转动画）",
+      "surfaceId": "review"
+    },
+    {
+      "name": "mark-known",
+      "description": "点击“认识”按钮，将当前单词移出队列并增加已认识计数",
+      "surfaceId": "review"
+    },
+    {
+      "name": "mark-unknown",
+      "description": "点击“不认识”按钮，将当前单词放回队列底部",
+      "surfaceId": "review"
+    },
+    {
+      "name": "restart-round",
+      "description": "本轮完成后点击“再来一轮”重新生成队列",
+      "surfaceId": "review"
+    },
+    {
+      "name": "load-words",
+      "description": "单词库为空时点击加载当前阶段单词",
+      "surfaceId": "review"
+    }
+  ],
+  "bindings": [
+    {
+      "path": "/app/title",
+      "type": "string",
+      "description": "App 标题"
+    },
+    {
+      "path": "/review/progress",
+      "type": "string",
+      "description": "当前进度文案，例如 "剩余 8 / 10""
+    },
+    {
+      "path": "/review/cards",
+      "type": "array",
+      "description": "当前轮次的单词卡片数组"
+    },
+    {
+      "path": "/review/currentWord",
+      "type": "object",
+      "description": "当前展示单词对象 { word, phonetic, meaning }"
+    },
+    {
+      "path": "/review/knownCount",
+      "type": "number",
+      "description": "本轮已认识数量"
+    },
+    {
+      "path": "/review/remainingCount",
+      "type": "number",
+      "description": "剩余未复习卡片数量"
+    },
+    {
+      "path": "/review/isComplete",
+      "type": "boolean",
+      "description": "本轮是否已完成"
+    },
+    {
+      "path": "/review/finalKnownCount",
+      "type": "number",
+      "description": "本轮完成时已认识数量"
+    },
+    {
+      "path": "/review/finalReviewCount",
+      "type": "number",
+      "description": "本轮完成时需要再次复习数量（=总数 - 已认识）"
+    },
+    {
+      "path": "/review/empty",
+      "type": "boolean",
+      "description": "当前阶段是否没有可复习单词"
+    }
+  ],
+  "testTargets": [
+    "review-progress-text",
+    "review-flip-card",
+    "review-word-front",
+    "review-phonetic-back",
+    "review-meaning-back",
+    "review-known-button",
+    "review-unknown-button",
+    "review-known-count",
+    "review-remaining-count",
+    "review-completion-panel",
+    "review-restart-button",
+    "review-empty-state",
+    "review-empty-load-button"
+  ]
+}

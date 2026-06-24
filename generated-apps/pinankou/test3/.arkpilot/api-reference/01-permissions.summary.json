@@ -1,0 +1,69 @@
+{
+  "module": "01-permissions.md",
+  "group": "01 — Permissions 权限管理",
+  "apiCount": 9,
+  "apis": [
+    {
+      "name": "abilityAccessCtrl",
+      "purpose": "程序访问控制管理，提供权限校验和用户授权能力",
+      "anchor": "abilityaccessctrl",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.ability.AbilityConstant",
+      "purpose": "Ability相关常量（启动原因、退出原因、迁移结果等枚举）",
+      "anchor": "ohosabilityabilityconstant",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.ability.UIAbility",
+      "purpose": "带界面的应用组件，提供生命周期回调及后台通信能力",
+      "anchor": "ohosabilityuiability",
+      "status": "found"
+    },
+    {
+      "name": "PermissionRequestResult",
+      "purpose": "权限请求结果对象，包含permissions、authResults、dialogShownResults、errorReasons属性",
+      "anchor": "permissionrequestresult",
+      "status": "found"
+    },
+    {
+      "name": "Permissions (系统权限定义)",
+      "purpose": "系统权限名称类型，由@kit.AbilityKit导出的字符串别名类型",
+      "anchor": "permissions-系统权限定义",
+      "status": "found"
+    },
+    {
+      "name": "bundleManager",
+      "purpose": "应用程序包管理模块，提供BundleInfo/ApplicationInfo查询能力",
+      "anchor": "bundlemanager",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.bundle.bundleManager",
+      "purpose": "应用程序包管理模块的导入名称，提供getBundleInfoForSelfSync等方法",
+      "anchor": "ohosbundlebundlemanager",
+      "status": "found"
+    },
+    {
+      "name": "requestPermissionsFromUser",
+      "purpose": "AtManager方法，拉起弹框请求用户授权（callback和Promise两种模式）",
+      "anchor": "requestpermissionsfromuser",
+      "status": "found"
+    },
+    {
+      "name": "Context.requestPermissionsFromUser",
+      "purpose": "Context作为requestPermissionsFromUser的第一个参数类型，实际通过AtManager调用",
+      "anchor": "contextrequestpermissionsfromuser",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "`@ohos.ability.AbilityConstant` 在文档中实际路径为 `@ohos.app.ability.AbilityConstant`（含 `.app.` 中间段）",
+    "`@ohos.ability.UIAbility` 在文档中实际路径为 `@ohos.app.ability.UIAbility`（含 `.app.` 中间段）",
+    "`Permissions` 类型无独立文档文件，为 `@kit.AbilityKit` 导出的字符串别名类型，完整权限名列表参考外部 HarmonyOS 指南",
+    "`requestPermissionsFromUser` 是 `AtManager` 的实例方法，非 `Context` 的直接方法；`Context` 仅作为其第一个参数",
+    "`bundleManager.getBundleInfoForSelfSync()` 用于获取本应用的 `accessTokenId`，是权限校验的关键前置步骤"
+  ],
+  "missingApis": []
+}

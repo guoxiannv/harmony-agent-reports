@@ -1,0 +1,69 @@
+{
+  "module": "01-permissions.md",
+  "group": "01 -- Permissions (权限请求)",
+  "apiCount": 9,
+  "apis": [
+    {
+      "name": "abilityAccessCtrl (requestPermissionsFromUser)",
+      "purpose": "程序访问控制管理，提供权限校验和用户授权请求能力",
+      "anchor": "abilityaccessctrl-requestpermissionsfromuser",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.abilityAccessCtrl",
+      "purpose": "程序访问控制管理模块，导入能力AccessCtrl相关API及枚举类型",
+      "anchor": "ohosabilityaccessctrl",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.READ_IMAGEVIDEO",
+      "purpose": "读取图片视频权限字符串常量，用于媒体访问",
+      "anchor": "permissions-类型权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.READ_MEDIA",
+      "purpose": "读取媒体文件权限字符串常量，用于相册/音频等媒体读取",
+      "anchor": "permissions-类型权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.WRITE_MEDIA",
+      "purpose": "写入媒体文件权限字符串常量",
+      "anchor": "permissions-类型权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.NOTIFICATION_AGENT_CONTROLLER",
+      "purpose": "通知代理控制器权限字符串常量（系统级权限）",
+      "anchor": "permissions-类型权限字符串常量",
+      "status": "found"
+    },
+    {
+      "name": "Context (UIAbilityContext)",
+      "purpose": "UIAbility组件上下文，提供Ability信息、启动Ability、销毁Ability等能力",
+      "anchor": "context-uiabilitycontext",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.app.ability.UIAbility",
+      "purpose": "带界面的应用组件基类，提供生命周期回调及后台通信能力",
+      "anchor": "ohosappabilityuiability",
+      "status": "found"
+    },
+    {
+      "name": "PermissionRequestResult",
+      "purpose": "权限请求结果对象，包含permissions/authResults/dialogShownResults/errorReasons",
+      "anchor": "permissionrequestresult",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "requestPermissionsFromUser 仅限 Stage 模型使用，用户拒绝后需调用 requestPermissionOnSetting 二次拉起",
+    "ohos.permission.NOTIFICATION_AGENT_CONTROLLER 为系统级权限，普通应用不可申请",
+    "权限字符串常量（ohos.permission.*）定义在 HarmonyOS 应用权限列表指南中，非 ArkTS API 可导入类型；声明需在 module.json5 的 requestPermissions 中",
+    "建议优先使用 Promise 风格 API（requestPermissionsFromUser/checkAccessToken），而非 callback 风格或已废弃的 verifyAccessToken",
+    "校验已有权限推荐使用 checkAccessTokenSync（同步）或 checkAccessToken（异步），替代已废弃的 verifyAccessToken"
+  ],
+  "missingApis": []
+}

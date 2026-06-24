@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>宠迹 · PawLog — 今日</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at 12% 0%, #F0FDF9 0%, #F8FAFC 40%, #FFF6F7 100%);
+      color: #0F172A;
+      min-height: 100vh;
+      padding-bottom: 100px;
+    }
+    .container { max-width: 390px; margin: 0 auto; padding: 0 20px; position: relative; }
+    header {
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .greeting h1 { font-size: 30px; font-weight: 700; line-height: 1.18; letter-spacing: -0.3px; }
+    .greeting p { font-size: 13px; color: #64748B; margin-top: 4px; }
+    .user-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, #CCFBEF 0%, #FFE4E6 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(251,113,133,0.20);
+    }
+    .section-title {
+      font-size: 18px; font-weight: 700; line-height: 1.28; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .pet-switcher {
+      display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 20px;
+    }
+    .pet-chip {
+      display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 64px;
+    }
+    .pet-chip .avatar {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, #CCFBEF 0%, #FFE4E6 100%);
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #FFE4E6;
+    }
+    .pet-chip.active .avatar { border: 3px solid #14B8A6; box-shadow: 0 4px 12px rgba(20,184,166,0.25); }
+    .pet-chip .name { font-size: 12px; color: #334155; }
+    .add-pet {
+      width: 60px; height: 60px; border-radius: 50%; border: 2px dashed #CBD5E1;
+      display: flex; align-items: center; justify-content: center; background: #FFFFFF;
+    }
+    .card {
+      background: #FFFFFF; border-radius: 22px; padding: 18px;
+      box-shadow: 0 8px 28px rgba(15,23,42,0.06); margin-bottom: 20px;
+    }
+    .card-warm {
+      background: linear-gradient(160deg, #FFF1F2 0%, #FFFFFF 100%);
+      border: 1px solid rgba(251,113,133,0.10);
+    }
+    .reminder-list { display: flex; flex-direction: column; gap: 10px; }
+    .reminder-item {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+      background: #FFFFFF; border-radius: 16px;
+    }
+    .reminder-item.overdue { border-left: 4px solid #EF4444; }
+    .reminder-item.soon { border-left: 4px solid #F59E0B; }
+    .reminder-item.ok { border-left: 4px solid #14B8A6; }
+    .reminder-icon { width: 36px; height: 36px; border-radius: 12px; background: #F0FDF9; display: flex; align-items: center; justify-content: center; }
+    .reminder-content { flex: 1; }
+    .reminder-title { font-size: 14px; font-weight: 600; color: #334155; }
+    .reminder-meta { font-size: 12px; color: #64748B; margin-top: 2px; }
+    .reminder-status {
+      font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 8px;
+    }
+    .status-overdue { background: #FFF1F2; color: #BE123C; }
+    .status-soon { background: #FFFBEB; color: #B45309; }
+    .status-ok { background: #F0FDF9; color: #0F766E; }
+    .quick-record-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;
+    }
+    .quick-record-btn {
+      border: none; border-radius: 20px; padding: 18px; text-align: left;
+      display: flex; flex-direction: column; gap: 10px; color: #334155;
+      background: linear-gradient(160deg, #FFFFFF 0%, #F0FDF9 100%);
+      box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+    }
+    .quick-record-btn .icon-wrap {
+      width: 44px; height: 44px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .icon-food { background: #F0FDF9; color: #14B8A6; }
+    .icon-waste { background: #FFEDD5; color: #C2410C; }
+    .icon-weight { background: #EFF6FF; color: #2563EB; }
+    .icon-medicine { background: #F3E8FF; color: #7C3AED; }
+    .quick-record-btn .label { font-size: 15px; font-weight: 600; }
+    .quick-record-btn .hint { font-size: 12px; color: #64748B; }
+    .record-list { display: flex; flex-direction: column; gap: 12px; }
+    .record-item {
+      display: flex; align-items: center; gap: 12px; background: #FFFFFF;
+      border-radius: 18px; padding: 14px;
+      box-shadow: 0 4px 16px rgba(15,23,42,0.04);
+    }
+    .record-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .record-content { flex: 1; }
+    .record-title { font-size: 14px; font-weight: 600; color: #334155; }
+    .record-meta { font-size: 12px; color: #64748B; margin-top: 2px; }
+    .record-time { font-size: 12px; color: #94A3B8; }
+    .view-all {
+      display: block; width: 100%; text-align: center; padding: 12px;
+      background: #F8FAFC; border-radius: 16px; color: #14B8A6;
+      font-size: 14px; font-weight: 600; text-decoration: none; margin-top: 12px;
+    }
+    .tab-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; margin: 0 auto;
+      max-width: 390px; height: 72px;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-top: 0.5px solid rgba(0,0,0,0.04);
+      box-shadow: 0 -4px 20px rgba(15,23,42,0.04);
+      display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #94A3B8; font-size: 11px; margin-top: 4px; }
+    .tab-item.active { color: #14B8A6; }
+    .fab-wrap { position: relative; top: -18px; }
+    .fab {
+      width: 60px; height: 60px; border-radius: 50%; border: none;
+      background: linear-gradient(135deg, #14B8A6 0%, #FB7185 100%);
+      box-shadow: 0 10px 28px rgba(20,184,166,0.32), 0 4px 12px rgba(251,113,133,0.18);
+      display: flex; align-items: center; justify-content: center;
+    }
+  </style>
+</head>
+<body data-page-id="home-page" data-tab-id="tab-home">
+  <div class="container">
+    <header>
+      <div class="greeting">
+        <h1>早安，铲屎官 👋</h1>
+        <p>2026年6月22日 星期一</p>
+      </div>
+      <div class="user-avatar" data-ui-id="profile-settings-row">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>打开个人中心</title>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+    </header>
+
+    <div class="section-title">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FB7185" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <title>当前宠物</title>
+        <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.82-6.42-.42-7 1.39-.58 4.64.26 6.42 2.26.65-.17 1.33-.26 2-.26z"></path>
+      </svg>
+      我的毛孩子
+    </div>
+
+    <div class="pet-switcher" data-ui-id="home-pet-switcher">
+      <div class="pet-chip active" data-ui-id="home-pet-chip-1">
+        <div class="avatar">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14B8A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>宠物豆豆头像占位</title>
+            <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.82-6.42-.42-7 1.39-.58 4.64.26 6.42 2.26.65-.17 1.33-.26 2-.26z"></path>
+          </svg>
+        </div>
+        <span class="name">豆豆</span>
+      </div>
+      <div class="pet-chip" data-ui-id="home-pet-chip-2">
+        <div class="avatar">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FB7185" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>宠物奶茶头像占位</title>
+            <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.82-6.42-.42-7 1.39-.58 4.64.26 6.42 2.26.65-.17 1.33-.26 2-.26z"></path>
+          </svg>
+        </div>
+        <span class="name">奶茶</span>
+      </div>
+      <button class="add-pet" data-ui-id="home-add-pet-button" aria-label="添加宠物">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>添加新宠物档案</title>
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="section-title">今日待办</div>
+    <div class="card card-warm">
+      <div class="reminder-list" data-ui-id="home-reminder-list">
+        <div class="reminder-item overdue" data-ui-id="home-reminder-1">
+          <div class="reminder-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>疫苗提醒</title>
+              <path d="M8 21h8a2 2 0 0 0 2-2v-2H6v2a2 2 0 0 0 2 2z"></path>
+              <path d="M6 13h12v-2a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2z"></path>
+              <path d="M12 2v9"></path>
+            </svg>
+          </div>
+          <div class="reminder-content">
+            <div class="reminder-title">豆豆 · 狂犬疫苗加强针</div>
+            <div class="reminder-meta">已逾期 2 天</div>
+          </div>
+          <span class="reminder-status status-overdue">逾期</span>
+        </div>
+        <div class="reminder-item soon" data-ui-id="home-reminder-2">
+          <div class="reminder-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>驱虫提醒</title>
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m14.31 8 5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16 3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"></path>
+            </svg>
+          </div>
+          <div class="reminder-content">
+            <div class="reminder-title">奶茶 · 体外驱虫</div>
+            <div class="reminder-meta">3 天后到期</div>
+          </div>
+          <span class="reminder-status status-soon">即将到期</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">一键记录</div>
+    <div class="quick-record-grid">
+      <button class="quick-record-btn" data-ui-id="home-quick-record-food">
+        <div class="icon-wrap icon-food">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>记录饮食</title>
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            <line x1="6" y1="2" x2="6" y2="4"></line>
+            <line x1="10" y1="2" x2="10" y2="4"></line>
+            <line x1="14" y1="2" x2="14" y2="4"></line>
+          </svg>
+        </div>
+        <span class="label">饮食</span>
+        <span class="hint">吃了多少、吃什么</span>
+      </button>
+      <button class="quick-record-btn" data-ui-id="home-quick-record-waste">
+        <div class="icon-wrap icon-waste">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>记录排泄</title>
+            <path d="M12 22c4.97 0 9-3.1 9-7.56 0-1.25-.5-2.4-1-3.44 0 0 1.82-6.42.42-7C19.03 3.42 15.78 4.26 14 6.26c-.65-.17-1.33-.26-2-.26s-1.35.09-2 .26C8.22 4.26 4.97 3.42 3.58 4 2.18 4.58 4 11 4 11c-.5 1.04-1 2.19-1 3.44C3 18.9 7.03 22 12 22z"></path>
+          </svg>
+        </div>
+        <span class="label">排泄</span>
+        <span class="hint">大小便、异常情况</span>
+      </button>
+      <button class="quick-record-btn" data-ui-id="home-quick-record-weight">
+        <div class="icon-wrap icon-weight">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>记录体重</title>
+            <path d="M12 22c4.97 0 9-3.1 9-7.56 0-1.25-.5-2.4-1-3.44 0 0 1.82-6.42.42-7C19.03 3.42 15.78 4.26 14 6.26c-.65-.17-1.33-.26-2-.26s-1.35.09-2 .26C8.22 4.26 4.97 3.42 3.58 4 2.18 4.58 4 11 4 11c-.5 1.04-1 2.19-1 3.44C3 18.9 7.03 22 12 22z"></path>
+            <path d="M12 14v-4"></path>
+            <path d="M8 14v-2"></path>
+            <path d="M16 14v-2"></path>
+          </svg>
+        </div>
+        <span class="label">体重</span>
+        <span class="hint">定期称重、追踪趋势</span>
+      </button>
+      <button class="quick-record-btn" data-ui-id="home-quick-record-medicine">
+        <div class="icon-wrap icon-medicine">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>记录用药</title>
+            <path d="m19.41 7.41-9.83 9.83a2 2 0 0 1-2.83 0L2 12a2 2 0 0 1 0-2.83l9.83-9.83a2 2 0 0 1 2.83 0l4.75 4.75a2 2 0 0 1 0 2.83z"></path>
+            <line x1="16" y1="16" x2="20" y2="20"></line>
+          </svg>
+        </div>
+        <span class="label">用药</span>
+        <span class="hint">药品、剂量、时间</span>
+      </button>
+    </div>
+
+    <div class="section-title">最近记录</div>
+    <div class="card">
+      <div class="record-list" data-ui-id="home-recent-record-list">
+        <div class="record-item" data-ui-id="home-recent-record-1">
+          <div class="record-dot" style="background:#14B8A6"></div>
+          <div class="record-content">
+            <div class="record-title">豆豆 · 饮食 · 80g 猫粮</div>
+            <div class="record-meta">早餐，胃口不错</div>
+          </div>
+          <span class="record-time">08:30</span>
+        </div>
+        <div class="record-item" data-ui-id="home-recent-record-2">
+          <div class="record-dot" style="background:#C2410C"></div>
+          <div class="record-content">
+            <div class="record-title">奶茶 · 排泄 · 正常</div>
+            <div class="record-meta">猫砂盆清理完成</div>
+          </div>
+          <span class="record-time">07:45</span>
+        </div>
+      </div>
+      <a href="#" class="view-all" data-ui-id="home-view-all-records">查看全部记录</a>
+    </div>
+  </div>
+
+  <nav class="tab-bar" data-ui-id="home-tab-bar">
+    <button class="tab-item active" data-ui-id="home-tab-home">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>今日首页</title>
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      今日
+    </button>
+    <button class="tab-item" data-ui-id="home-tab-records">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>查看记录</title>
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+      记录
+    </button>
+    <div class="fab-wrap">
+      <button class="fab" data-ui-id="home-fab-add" aria-label="添加记录">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>添加新记录</title>
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+    </div>
+    <button class="tab-item" data-ui-id="home-tab-charts">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>查看趋势</title>
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg>
+      趋势
+    </button>
+    <button class="tab-item" data-ui-id="home-tab-profile">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title>我的</title>
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      我的
+    </button>
+  </nav>
+</body>
+</html>

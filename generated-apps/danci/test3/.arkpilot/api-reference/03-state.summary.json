@@ -1,0 +1,98 @@
+{
+  "module": "03-state.md",
+  "group": "03 — State Management",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "@State",
+      "purpose": "装饰组件内状态变量，变化时自动触发 UI 刷新",
+      "anchor": "state",
+      "status": "missing"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "从父组件接收单向数据，变化自动同步到子组件",
+      "anchor": "prop",
+      "status": "missing"
+    },
+    {
+      "name": "@Link",
+      "purpose": "与父组件建立双向数据绑定",
+      "anchor": "link",
+      "status": "missing"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "监听 @State 等状态变量变化并执行回调",
+      "anchor": "watch",
+      "status": "found"
+    },
+    {
+      "name": "@Provide",
+      "purpose": "提供后代组件可通过 @Consume 访问的状态变量",
+      "anchor": "provide",
+      "status": "found"
+    },
+    {
+      "name": "@Consume",
+      "purpose": "接收祖先组件通过 @Provide 提供的状态变量",
+      "anchor": "consume",
+      "status": "missing"
+    },
+    {
+      "name": "@ObjectLink",
+      "purpose": "用于组件间传递 @Observed 装饰类的对象引用",
+      "anchor": "objectlink",
+      "status": "missing"
+    },
+    {
+      "name": "@Observed",
+      "purpose": "装饰 class，使其属性变化可被 @ObjectLink 观察到",
+      "anchor": "observed",
+      "status": "missing"
+    },
+    {
+      "name": "@StorageLink",
+      "purpose": "与 AppStorage 中属性建立双向绑定",
+      "anchor": "storagelink",
+      "status": "missing"
+    },
+    {
+      "name": "@StorageProp",
+      "purpose": "与 AppStorage 中属性建立单向绑定",
+      "anchor": "storageprop",
+      "status": "missing"
+    },
+    {
+      "name": "@LocalStorageLink",
+      "purpose": "与 LocalStorage 中属性建立双向绑定",
+      "anchor": "localstoragelink",
+      "status": "missing"
+    },
+    {
+      "name": "@LocalStorageProp",
+      "purpose": "与 LocalStorage 中属性建立单向绑定",
+      "anchor": "localstorageprop",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "@State, @Prop, @Link, @Consume, @ObjectLink, @Observed are built-in ArkUI V1 decorators without standalone API reference docs — their definitions reside in dev guides, not reference docs",
+    "@StorageLink, @StorageProp, @LocalStorageLink, @LocalStorageProp are referenced only by cross-links in 01_应用级变量的状态管理.md; no standalone API definition exists in the reference docs",
+    "The local reference docs have duplicate directories 27_状态管理与渲染控制/ and 28_状态管理与渲染控制/ with same file set; 27/ is the more up-to-date version (V197/V149 vs V187/V139)",
+    "@Provide is partially documented via ProvideOptions (allowOverride parameter) in 02_状态管理V1装饰器参数.md — the @Provide decorator itself is not defined in API reference",
+    "AppStorageV2, PersistenceV2, @ObservedV2, @Trace V2 APIs are documented separately under @ohos.arkui.StateManagement (API 12+) in 01_ArkTS API/ directory"
+  ],
+  "missingApis": [
+    "@State",
+    "@Prop",
+    "@Link",
+    "@Consume",
+    "@ObjectLink",
+    "@Observed",
+    "@StorageLink",
+    "@StorageProp",
+    "@LocalStorageLink",
+    "@LocalStorageProp"
+  ]
+}

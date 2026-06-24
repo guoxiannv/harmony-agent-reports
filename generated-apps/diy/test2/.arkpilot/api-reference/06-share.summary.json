@@ -1,0 +1,104 @@
+{
+  "module": "06-share.md",
+  "group": "06 — Share Kit (System Share)",
+  "apiCount": 14,
+  "apis": [
+    {
+      "name": "systemShare.ShareController",
+      "purpose": "分享面板控制器，用于准备分享数据、配置预览模式、拉起系统分享面板",
+      "anchor": "systemshare",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.SharedData",
+      "purpose": "封装分享数据记录，支持文本/链接/文件/图片等多类型数据",
+      "anchor": "shareddata",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.SharedRecord",
+      "purpose": "分享数据记录，包含 utd、content/uri、title、description、thumbnail 等字段",
+      "anchor": "sharedrecord",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.ShareControllerOptions",
+      "purpose": "分享控制器配置项，配置预览模式、选择模式、锚点信息等",
+      "anchor": "sharecontrolleroptions",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.getSharedData",
+      "purpose": "从目标应用 want 中解析出分享数据",
+      "anchor": "getshareddata",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.getContactInfo",
+      "purpose": "从目标应用 want 中解析出意图框架推荐联系人信息",
+      "anchor": "getcontactinfo",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.getWant",
+      "purpose": "基于 SharedData 和预览模式构造 want 数据，用于自定义分享流程",
+      "anchor": "getwant",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.ShareController.on('dismiss')",
+      "purpose": "注册分享面板关闭事件监听",
+      "anchor": "ondismiss",
+      "status": "found"
+    },
+    {
+      "name": "systemShare.ShareController.on('shareCompleted')",
+      "purpose": "注册用户完成分享事件监听，获取分享渠道信息",
+      "anchor": "onsharecompleted",
+      "status": "found"
+    },
+    {
+      "name": "harmonyShare.on('knockShare')",
+      "purpose": "注册设备轻贴（碰一碰）分享事件监听",
+      "anchor": "onknockshare",
+      "status": "found"
+    },
+    {
+      "name": "harmonyShare.on('gesturesShare')",
+      "purpose": "注册隔空传送（抓取握拳）事件监听",
+      "anchor": "ongesturesshare",
+      "status": "found"
+    },
+    {
+      "name": "harmonyShare.on('dataReceive')",
+      "purpose": "注册沙箱接收事件监听（仅文件类型数据）",
+      "anchor": "ondatareceive",
+      "status": "found"
+    },
+    {
+      "name": "harmonyShare.SharableTarget.share",
+      "purpose": "跨端发送分享数据（从 SharableTarget 回调调用）",
+      "anchor": "share-1",
+      "status": "found"
+    },
+    {
+      "name": "harmonyShare.ReceivableTarget.receive",
+      "purpose": "沙箱接收文件并保存至指定目录",
+      "anchor": "receive",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "No @ohos.share API exists; the actual import module is @kit.ShareKit with two namespaces: systemShare and harmonyShare",
+    "UIExtensionAbility is referenced in systemShare via ShareAbilityResultCode return values, but its definition lives in Ability Kit docs, not in Share Kit",
+    "Share Kit is the kit name (@kit.ShareKit), not an individual API symbol",
+    "systemShare requires Stage model only, API version >= 4.1.0(11); harmonyShare requires API version >= 5.0.0(12)",
+    "Key system capabilities: SystemCapability.Collaboration.SystemShare and SystemCapability.Collaboration.HarmonyShare",
+    "SharedData supports up to 500 records, total data size must not exceed IPC limit of 200KB"
+  ],
+  "missingApis": [
+    "@ohos.share",
+    "UIExtensionAbility",
+    "Share Kit"
+  ]
+}

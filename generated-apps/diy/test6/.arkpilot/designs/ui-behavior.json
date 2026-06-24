@@ -1,0 +1,220 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "version": "1.0",
+  "notes": "Behavior contract for 手作·印记. Logic-first; UI is compile-anchor until design artifacts (page-*.html, design-alignment.md) arrive. Persistence is local-first via preferences; in-memory fallback when prefs unavailable.",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Member",
+        "fields": {
+          "id": "string",
+          "name": "string (required)",
+          "phone": "string (required, unique)",
+          "nickname": "string",
+          "birthday": "string (yyyy-mm-dd, optional)",
+          "crafts": "string[] (multi-select)",
+          "notes": "string",
+          "allergy": "string",
+          "workImages": "string[] (local file uri, max 6)",
+          "points": "number (balance, derived mirror of last tx balanceAfter)",
+          "totalSpend": "number (sum of earn-from-spend tx amounts/pointsPerYuan cost)",
+          "lastVisitAt": "number (ms, optional; updated on checkin/spend/booking)",
+          "createdAt": "number (ms)"
+        },
+        "derived": {
+          "isSleeping": "now - lastVisitAt > settings.sleepingThresholdDays (and has a lastVisitAt)",
+          "lowStockIrrelevant": "n/a"
+        }
+      },
+      {
+        "name": "Course",
+        "fields": {
+          "id": "string",
+          "title": "string (required)",
+          "startAt": "number (ms, required)",
+          "durationMin": "number",
+          "capacity": "number (required, >=1)",
+          "price": "number",
+          "location": "string",
+          "materials": "CourseMaterial[] (materialId + quantity per booking)",
+          "notes": "string",
+          "createdAt": "number (ms)"
+        }
+      },
+      {
+        "name": "CourseMaterial",
+        "fields": { "materialId": "string", "quantity": "number (>0)" }
+      },
+      {
+        "name": "Booking",
+        "fields": {
+          "id": "string",
+          "courseId": "string",
+          "memberId": "string",
+          "remark": "string",
+          "usePoints": "boolean",
+          "status": "'active' | 'cancelled'",
+          "createdAt": "number (ms)"
+        }
+      },
+      {
+        "name": "PointTransaction",
+        "fields": {
+          "id": "string",
+          "memberId": "string",
+          "type": "'earn' | 'spend' | 'checkin' | 'adjust'",
+          "amount": "number (signed: +earn, -spend)",
+          "balanceAfter": "number",
+          "reason": "string",
+          "refType": "'manual' | 'consume' | 'checkin' | 'course' | undefined",
+          "refId": "string | undefined",
+          "createdAt": "number (ms)"
+        }
+      },
+      {
+        "name": "Material",
+        "fields": {
+          "id": "string",
+          "name": "string (required)",
+          "spec": "string",
+          "unit": "string",
+          "stock": "number",
+          "safeStock": "number",
+          "notes": "string",
+          "createdAt": "number (ms)"
+        },
+        "derived": { "isLowStock": "stock <= safeStock" }
+      },
+      {
+        "name": "InventoryTransaction",
+        "fields": {
+          "id": "string",
+          "materialId": "string",
+          "type": "'in' | 'out' | 'adjust' | 'courseConsume' | 'bookingCancel'",
+          "quantity": "number (signed)",
+          "balanceAfter": "number",
+          "reason": "string",
+          "refType": "string | undefined",
+          "refId": "string | undefined",
+          "createdAt": "number (ms)"
+        }
+      },
+      {
+        "name": "AppSettings",
+        "fields": {
+          "pointsPerYuan": "number (default 1)",
+          "checkinPoints": "number (default 5)",
+          "sleepingThresholdDays": "number (default 30)"
+        }
+      }
+    ],
+    "formState": {
+      "memberForm": "name, phone, nickname, birthday, crafts[], notes, allergy, workImages[], editingId?",
+      "inventoryForm": "name, spec, unit, stock, safeStock, notes, editingId?",
+      "pointRecord": "memberId, type(earn|spend|adjust), amount(>=0 absolute), reason",
+      "inventoryTransaction": "materialId, type(in|out|adjust), quantity(>=0 absolute), reason",
+      "bookingForm": "courseId, memberId, remark, usePoints"
+    },
+    "persistence": "preferences-backed under AppStorage keys: members, courses, bookings, pointTx, materials, invTx, settings. Persisted best-effort on every mutation; in-memory when prefs unavailable. AppStorage is the reactive layer pages observe via @StorageLink."
+  },
+  "services": [
+    { "name": "AppStore", "role": "Singleton over AppStorage: CRUD + derived queries for all entities; mutates AppStorage keys (reassigns arrays for reactivity); triggers persistence." },
+    { "name": "PointService", "role": "applyPointTx(memberId, type, signedAmount, reason, ref) -> updates member.points mirror + appends PointTransaction with balanceAfter; enforces spend <= balance." },
+    { "name": "InventoryService", "role": "applyTx(materialId, type, signedQty, reason, ref) -> updates material.stock + appends InventoryTransaction with balanceAfter." },
+    { "name": "BookingService", "role": "createBooking(courseId, memberId, remark, usePoints): validates capacity + stock, appends Booking, increments bookedCount via active bookings count, deducts course materials via InventoryService, awards points (price * pointsPerYuan, minus points-used if usePoints) via PointService, updates member.lastVisitAt. cancelBooking(bookingId): sets cancelled, restores stock, releases capacity, no point reversal (documented)." },
+    { "name": "ReminderService", "role": "sleepingMembers(thresholdDays), lowStockMaterials(); formatReminderSummary for home banner." },
+    { "name": "PersistenceService", "role": "load(): read preferences JSON into AppStorage on app start; save(): serialize AppStorage to preferences best-effort. Initialized with UIAbilityContext in EntryAbility." }
+  ],
+  "stateMachine": {
+    "appShell": { "states": ["home", "members", "courses", "points", "inventory"], "tabMap": { "tab-home": "home", "tab-members": "members", "tab-courses": "courses", "tab-points": "points", "tab-inventory": "inventory" } },
+    "nonTabSurfaces": ["member-detail", "member-edit", "course-detail", "course-booking", "point-record", "inventory-edit", "inventory-transaction"],
+    "navigationParams": { "pendingMemberId": "string", "pendingCourseId": "string", "pendingMaterialId": "string", "lastTabBeforePush": "TabId" },
+    "memberFormMode": { "create": "editingId empty", "edit": "editingId set, prefilled" },
+    "bookingValidation": { "ok": "booking created", "errFull": "course at capacity", "errStock": "insufficient material stock", "errDup": "member already has active booking for course" },
+    "checkinState": { "available": "no checkin tx for member today", "done": "checkin tx exists today -> button disabled with feedback" }
+  },
+  "interactionFlows": [
+    {
+      "flow": "create-member",
+      "trigger": "navigate-member-edit (no id) from home/members",
+      "steps": ["open member-edit surface create mode", "fill required name+phone", "save-member validates: name non-empty, phone non-empty, phone unique", "append Member(points=0,totalSpend=0,createdAt=now)", "navigate back to members"],
+      "errors": ["name empty -> block + message", "phone empty -> block", "phone duplicate -> block + message"]
+    },
+    {
+      "flow": "edit-member",
+      "trigger": "navigate-member-edit (id) / member-detail-edit-button",
+      "steps": ["prefill form from Member", "save-member validates uniqueness excluding self", "update array", "navigate back"]
+    },
+    {
+      "flow": "delete-member",
+      "trigger": "member-detail-delete-button -> delete-confirm-dialog",
+      "steps": ["confirm", "remove Member; cascade: cancel active bookings, keep tx history but mark? (MVP: remove member tx from points list view filter, keep data)"],
+      "decision": "MVP keeps transaction history data but member removed from members list; detail no longer reachable."
+    },
+    {
+      "flow": "daily-checkin",
+      "trigger": "daily-checkin(memberId) from points/home/member-detail",
+      "steps": ["check if a checkin tx exists for member today", "if done -> no-op + feedback '今日已签到'", "else applyPointTx(memberId,'checkin',+checkinPoints,'每日签到','checkin')", "update member.lastVisitAt=now", "show check-in-success-sheet"],
+      "errors": ["none fatal"]
+    },
+    {
+      "flow": "manual-point-record",
+      "trigger": "save-point-record from point-record-page",
+      "steps": ["select member", "type earn(+)/spend(-)/adjust(sign by value)", "amount absolute >=0", "validate spend/adjust does not exceed balance (spend) ", "applyPointTx", "if type relates to spend and reason indicates consume, optionally bump totalSpend (MVP: only course bookings bump spend)"],
+      "errors": ["spend exceeds balance -> block"]
+    },
+    {
+      "flow": "create-course + booking -> inventory deduction",
+      "trigger": "submit-course-booking",
+      "steps": ["validate capacity (active bookings < capacity)", "validate each course material has stock >= quantity", "create Booking(active)", "for each CourseMaterial: InventoryService.applyTx consume signed(-quantity,'courseConsume',ref=bookingId)", "points: earn = price*pointsPerYuan; if usePoints and member.points>0, spend min(member.points, earn) -> net earn; applyPointTx earn/spend accordingly", "member.totalSpend += price; member.lastVisitAt = now"],
+      "errors": ["errFull / errStock / errDup"]
+    },
+    {
+      "flow": "cancel-booking",
+      "trigger": "cancel-course(courseId) / cancel via booking",
+      "steps": ["confirm", "set Booking.status=cancelled", "restore stock: InventoryService.applyTx(+quantity,'bookingCancel',ref=bookingId) for each material", "release capacity (bookedCount recomputed from active)"],
+      "notes": "No point reversal in MVP (documented in handoff)."
+    },
+    {
+      "flow": "sleeping-reminder",
+      "trigger": "open-sleeping-members from home card",
+      "steps": ["navigate members tab with sleeping filter active", "member-detail wake action records lastVisitAt touch + note (MVP: marks as contacted by setting a contactedAt note)"],
+      "notes": "Local notification is best-effort via ReminderService; MVP records wake action."
+    },
+    {
+      "flow": "low-stock",
+      "trigger": "open-low-stock from home card",
+      "steps": ["navigate inventory tab filtered to low stock"]
+    },
+    {
+      "flow": "inventory-manual-tx",
+      "trigger": "save-inventory-transaction",
+      "steps": ["select material", "type in(+)/out(-)/adjust(absolute set)", "apply signed quantity", "record reason"],
+      "errors": ["out exceeds stock -> clamp at 0 + warn (MVP)"]
+    },
+    {
+      "flow": "courses-calendar/list-toggle",
+      "trigger": "toggle-calendar-list",
+      "steps": ["switch local view mode between month calendar and list"]
+    }
+  ],
+  "testTargets": [
+    "home-sleeping-count", "home-low-stock-count", "home-checkin-button", "home-add-member-button",
+    "members-search-input", "members-filter-sleeping", "members-list", "members-total-count", "members-add-button",
+    "member-detail-points", "member-detail-edit-button", "member-detail-checkin-button", "member-detail-delete-button",
+    "member-edit-name-input", "member-edit-phone-input", "member-edit-save-button",
+    "courses-view-toggle", "courses-calendar", "courses-list", "courses-add-button",
+    "course-detail-book-button", "course-detail-cancel-button",
+    "course-booking-member-picker", "course-booking-submit-button",
+    "points-total-balance", "points-checkin-button", "points-transaction-list", "points-add-record-button",
+    "point-record-save-button",
+    "inventory-low-stock-count", "inventory-list", "inventory-add-button", "inventory-transaction-button",
+    "inventory-edit-save-button", "inventory-transaction-save-button"
+  ],
+  "changeRequests": [
+    "Spec lists 5 tabs; scaffold template ships 4 (home/explore/orders/rewards). Shell remapped to: home/members/courses/points/inventory. All template placeholder pages removed.",
+    "Theme is template green/gold; product requires terracotta + handwritten warmth. Theme tokens retuned to clay palette; handwritten typography polish deferred to visual integration (design lane).",
+    "Rawfile SVG icon assets not yet generated by design lane; BottomTabBar keeps SvgIcon wrapper contract (renders blank until assets arrive). No emoji/unicode icons used.",
+    "course-edit page is referenced by navigate-course-edit event but has no dedicated surface in ui-tree; MVP creates courses via a lightweight inline dialog/form on the courses page (recorded here, not in ui-tree)."
+  ]
+}

@@ -1,0 +1,961 @@
+{
+  "generated_at": "2026-06-23T06:35:36.775Z",
+  "icons": [
+    {
+      "file_name": "icon_为这顿饭打卡.svg",
+      "title": "为这顿饭打卡",
+      "source_html": "page-dish-detail-page.html",
+      "hash": "2b4d5b407689b61449c1cc5c52520c0f55c817bd",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "floating-bar",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_为这顿饭添加打卡记录.svg",
+      "title": "为这顿饭添加打卡记录",
+      "source_html": "page-home-page.html",
+      "hash": "b51d0c83fa537834abce879f1974e9788b166850",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "result-card"
+      ]
+    },
+    {
+      "file_name": "icon_今日无打卡记录.svg",
+      "title": "今日无打卡记录",
+      "source_html": "page-checkin-page.html",
+      "hash": "f7b331b42c18d6e5a8105bf764fd1498da71c088",
+      "width": 56,
+      "height": 56,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_保存卡片到相册.svg",
+      "title": "保存卡片到相册",
+      "source_html": "page-share-card-page.html",
+      "hash": "daa97a04e5d9538b5df128387b40a5041982fdc7",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "action-row",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_做法步骤.svg",
+      "title": "做法步骤",
+      "source_html": "page-dish-detail-page.html",
+      "hash": "a1b9f5c335b4d7e9dd1036a9ec4db3e7bdcc94b1",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "section",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_关闭转盘设置.svg",
+      "title": "关闭转盘设置",
+      "source_html": "page-wheel-settings-sheet.html",
+      "hash": "95bb14ab5a7304e3e9d5c4c8b2fa51760433f498",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "close-btn",
+        "sheet-header",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_再转一次菜品.svg",
+      "title": "再转一次菜品",
+      "source_html": "page-home-page.html",
+      "hash": "94a6b3feb389dbfb4141e5229069b041d4bf066a",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "result-actions",
+        "result-card"
+      ]
+    },
+    {
+      "file_name": "icon_删除此自定义菜品.svg",
+      "title": "删除此自定义菜品",
+      "source_html": "page-profile-page.html",
+      "hash": "8f7d521095cff181238dc2bc223d95a7b5c2577a",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C65D4F",
+      "fill_color": "",
+      "stroke_color": "#C65D4F",
+      "opacity": "1",
+      "context_classes": [
+        "delete-btn",
+        "list-item",
+        "list-card"
+      ]
+    },
+    {
+      "file_name": "icon_删除此转盘菜品.svg",
+      "title": "删除此转盘菜品",
+      "source_html": "page-wheel-settings-sheet.html",
+      "hash": "2fa866f96d41cb5553be19bc9b780f5780248600",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#C65D4F",
+      "fill_color": "",
+      "stroke_color": "#C65D4F",
+      "opacity": "1",
+      "context_classes": [
+        "delete-btn",
+        "list-item",
+        "list-card"
+      ]
+    },
+    {
+      "file_name": "icon_删除此食材.svg",
+      "title": "删除此食材",
+      "source_html": "page-ingredients-page.html",
+      "hash": "d3c6b7cc80ccb74a9bf8a556e1b66c235b6baecc",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#B85C25",
+      "fill_color": "",
+      "stroke_color": "#B85C25",
+      "opacity": "1",
+      "context_classes": [
+        "ingredient-tag",
+        "ingredients-bar"
+      ]
+    },
+    {
+      "file_name": "icon_删除这条打卡记录.svg",
+      "title": "删除这条打卡记录",
+      "source_html": "page-checkin-page.html",
+      "hash": "2f0842b4f9d5693656fa22c90a21c4a88d4b5b18",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6B6B6B",
+      "fill_color": "",
+      "stroke_color": "#6B6B6B",
+      "opacity": "1",
+      "context_classes": [
+        "mini-btn",
+        "timeline-actions",
+        "timeline-meta"
+      ]
+    },
+    {
+      "file_name": "icon_午餐记录.svg",
+      "title": "午餐记录",
+      "source_html": "page-checkin-page.html",
+      "hash": "0959848b451aed9b89153a92186ca1a36f8a7ab5",
+      "width": 12,
+      "height": 12,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "timeline-dot",
+        "lunch",
+        "timeline-item",
+        "timeline"
+      ]
+    },
+    {
+      "file_name": "icon_发现标签-1.svg",
+      "title": "发现标签",
+      "source_html": "page-checkin-page.html",
+      "hash": "4b21011382bec6e5a9473a0953827b66914d3340",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_发现标签-2.svg",
+      "title": "发现标签",
+      "source_html": "page-discover-page.html",
+      "hash": "4b21011382bec6e5a9473a0953827b66914d3340",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_取消打卡.svg",
+      "title": "取消打卡",
+      "source_html": "page-checkin-form-sheet.html",
+      "hash": "fbb3150977d30b6ddf9f5df3ef58be99353f5c91",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "close-btn",
+        "sheet-header",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_家常菜品图标.svg",
+      "title": "家常菜品图标",
+      "source_html": "page-discover-page.html",
+      "hash": "df16938628d6dcaba41ccec9019990a5636a94cf",
+      "width": 40,
+      "height": 40,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "tile-cover",
+        "orange",
+        "dish-tile",
+        "result-grid"
+      ]
+    },
+    {
+      "file_name": "icon_将推荐菜品加入打卡.svg",
+      "title": "将推荐菜品加入打卡",
+      "source_html": "page-ingredients-page.html",
+      "hash": "bd23179d4511e3df12e816fcadd9fd1daa84d5b5",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "checkin-mini",
+        "dish-card"
+      ]
+    },
+    {
+      "file_name": "icon_快手菜图标.svg",
+      "title": "快手菜图标",
+      "source_html": "page-discover-page.html",
+      "hash": "4746c2eee65baa9a954d285973319b5f22655b6b",
+      "width": 40,
+      "height": 40,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "tile-cover",
+        "yellow",
+        "dish-tile",
+        "result-grid"
+      ]
+    },
+    {
+      "file_name": "icon_恢复默认转盘菜品.svg",
+      "title": "恢复默认转盘菜品",
+      "source_html": "page-wheel-settings-sheet.html",
+      "hash": "3113f31c7a9630eebc38583841779dc43acb1914",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "reset-link",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签-1.svg",
+      "title": "我的标签",
+      "source_html": "page-checkin-page.html",
+      "hash": "986b4beaf4468b4b357c340ac610b67bcf37f604",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_我的标签-2.svg",
+      "title": "我的标签",
+      "source_html": "page-profile-page.html",
+      "hash": "986b4beaf4468b4b357c340ac610b67bcf37f604",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_打卡标签-1.svg",
+      "title": "打卡标签",
+      "source_html": "page-checkin-page.html",
+      "hash": "e6245a6517449323143b69e4525edcecc12563fb",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_打卡标签-2.svg",
+      "title": "打卡标签",
+      "source_html": "page-discover-page.html",
+      "hash": "e6245a6517449323143b69e4525edcecc12563fb",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_打开分享卡片.svg",
+      "title": "打开分享卡片",
+      "source_html": "page-checkin-page.html",
+      "hash": "c342d904173176ec4bb66e2f6035f67decd49ce7",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "icon-button",
+        "header-actions"
+      ]
+    },
+    {
+      "file_name": "icon_打开转盘设置.svg",
+      "title": "打开转盘设置",
+      "source_html": "page-home-page.html",
+      "hash": "418d3099506e248803179665a399044b51e2e384",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "icon-button",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_早餐记录.svg",
+      "title": "早餐记录",
+      "source_html": "page-checkin-page.html",
+      "hash": "5d53652ace567c29cda3f33c5920a28b86a632ec",
+      "width": 12,
+      "height": 12,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "timeline-dot",
+        "breakfast",
+        "timeline-item",
+        "timeline"
+      ]
+    },
+    {
+      "file_name": "icon_查看选中菜品做法.svg",
+      "title": "查看选中菜品做法",
+      "source_html": "page-home-page.html",
+      "hash": "c770e42b0b475e48d287dd55d581f6899885fbe4",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "result-actions",
+        "result-card"
+      ]
+    },
+    {
+      "file_name": "icon_没有推荐结果.svg",
+      "title": "没有推荐结果",
+      "source_html": "page-ingredients-page.html",
+      "hash": "7f8548210913c7ad74771dcc83424c2032ae72e4",
+      "width": 56,
+      "height": 56,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "empty-state",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_添加冰箱食材.svg",
+      "title": "添加冰箱食材",
+      "source_html": "page-ingredients-page.html",
+      "hash": "a22b39ad10c6ecd627e40c462a86ffbf3d87c3bb",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "input-row",
+        "input-card"
+      ]
+    },
+    {
+      "file_name": "icon_添加打卡记录.svg",
+      "title": "添加打卡记录",
+      "source_html": "page-checkin-page.html",
+      "hash": "187d05b1b5b340c1ba3aa05db1f851e0e4d54f0a",
+      "width": 16,
+      "height": 16,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "section-header",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_添加自定义菜品.svg",
+      "title": "添加自定义菜品",
+      "source_html": "page-profile-page.html",
+      "hash": "dae34d47d2aa998d7922dfd31af69a005cc1fb59",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "add-link",
+        "section-header",
+        "section"
+      ]
+    },
+    {
+      "file_name": "icon_添加自定义转盘菜品.svg",
+      "title": "添加自定义转盘菜品",
+      "source_html": "page-wheel-settings-sheet.html",
+      "hash": "3f33bc89d1f0cb1555c32a918954590d815c9d2d",
+      "width": 22,
+      "height": 22,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "add-btn",
+        "input-row",
+        "sheet"
+      ]
+    },
+    {
+      "file_name": "icon_清淡菜品图标.svg",
+      "title": "清淡菜品图标",
+      "source_html": "page-discover-page.html",
+      "hash": "534575b9d90153759734f1ead97cf14ccf8c420e",
+      "width": 40,
+      "height": 40,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "tile-cover",
+        "green",
+        "dish-tile",
+        "result-grid"
+      ]
+    },
+    {
+      "file_name": "icon_生成分享卡片.svg",
+      "title": "生成分享卡片",
+      "source_html": "page-dish-detail-page.html",
+      "hash": "141c57e5a4a31957d6b1a26fef8bc297c2884dd6",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "btn-secondary",
+        "floating-bar",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_用户头像.svg",
+      "title": "用户头像",
+      "source_html": "page-profile-page.html",
+      "hash": "5f20978aceafe985187f17eff2a8eab068ce6efa",
+      "width": 32,
+      "height": 32,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "avatar",
+        "profile-card",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_空状态提示图标.svg",
+      "title": "空状态提示图标",
+      "source_html": "page-home-page.html",
+      "hash": "772441fd018e92a119ce1c06176532b4936d7a8b",
+      "width": 48,
+      "height": 48,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "empty-hint",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_编辑这条打卡记录.svg",
+      "title": "编辑这条打卡记录",
+      "source_html": "page-checkin-page.html",
+      "hash": "5a049eba4d37605b1eb8be858e3dfa01d7725abb",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#6B6B6B",
+      "fill_color": "",
+      "stroke_color": "#6B6B6B",
+      "opacity": "1",
+      "context_classes": [
+        "mini-btn",
+        "timeline-actions",
+        "timeline-meta"
+      ]
+    },
+    {
+      "file_name": "icon_菜品图标-1.svg",
+      "title": "菜品图标",
+      "source_html": "page-ingredients-page.html",
+      "hash": "3a8495c150119d36420c56aa047243b8726eecda",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "dish-icon",
+        "dish-card"
+      ]
+    },
+    {
+      "file_name": "icon_菜品图标-2.svg",
+      "title": "菜品图标",
+      "source_html": "page-ingredients-page.html",
+      "hash": "58ffb435b2411a3643b429271ada649f410d314b",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "dish-icon",
+        "dish-card"
+      ]
+    },
+    {
+      "file_name": "icon_菜品图标-3.svg",
+      "title": "菜品图标",
+      "source_html": "page-ingredients-page.html",
+      "hash": "e72243adc9f996827315526a2c740af33483f0d2",
+      "width": 28,
+      "height": 28,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "dish-icon",
+        "dish-card"
+      ]
+    },
+    {
+      "file_name": "icon_调用系统分享.svg",
+      "title": "调用系统分享",
+      "source_html": "page-share-card-page.html",
+      "hash": "1f873bff289a1421bba2abb97159bf4af1ea6b21",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "btn-primary",
+        "action-row",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_返回上一页-1.svg",
+      "title": "返回上一页",
+      "source_html": "page-dish-detail-page.html",
+      "hash": "1ec7e8056cb5cc49cc66e63a3aba89333786c3c7",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#FFFFFF",
+      "fill_color": "",
+      "stroke_color": "#FFFFFF",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "hero",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_返回上一页-2.svg",
+      "title": "返回上一页",
+      "source_html": "page-share-card-page.html",
+      "hash": "1ec7e8056cb5cc49cc66e63a3aba89333786c3c7",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#1A1A1A",
+      "fill_color": "",
+      "stroke_color": "#1A1A1A",
+      "opacity": "1",
+      "context_classes": [
+        "back-btn",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_进入清空数据.svg",
+      "title": "进入清空数据",
+      "source_html": "page-profile-page.html",
+      "hash": "da8a4e5d2aac9907d3fc551d67abf2fda37d869a",
+      "width": 18,
+      "height": 18,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "danger-item",
+        "danger-zone",
+        "container"
+      ]
+    },
+    {
+      "file_name": "icon_重置筛选条件.svg",
+      "title": "重置筛选条件",
+      "source_html": "page-discover-page.html",
+      "hash": "9e74295cf1314095e9eae4cfb9d83f536bb25c9e",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "text-btn",
+        "filter-actions",
+        "filter-card"
+      ]
+    },
+    {
+      "file_name": "icon_食材推荐标签-1.svg",
+      "title": "食材推荐标签",
+      "source_html": "page-checkin-page.html",
+      "hash": "a3e0b433cb702b90ddeac15c686683a27e888d88",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_食材推荐标签-2.svg",
+      "title": "食材推荐标签",
+      "source_html": "page-ingredients-page.html",
+      "hash": "a3e0b433cb702b90ddeac15c686683a27e888d88",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_食材清单.svg",
+      "title": "食材清单",
+      "source_html": "page-dish-detail-page.html",
+      "hash": "8b59a8014cb6d6ceeb83c4736271b9b98873dd29",
+      "width": 20,
+      "height": 20,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "section-title",
+        "section",
+        "content"
+      ]
+    },
+    {
+      "file_name": "icon_食材项.svg",
+      "title": "食材项",
+      "source_html": "page-dish-detail-page.html",
+      "hash": "044f4cbb11cabbd913d4a684af18ce10bccd48c6",
+      "width": 14,
+      "height": 14,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#4A9B8E",
+      "fill_color": "",
+      "stroke_color": "#4A9B8E",
+      "opacity": "1",
+      "context_classes": [
+        "ingredient-item",
+        "ingredient-list",
+        "section"
+      ]
+    },
+    {
+      "file_name": "icon_首页标签-1.svg",
+      "title": "首页标签",
+      "source_html": "page-checkin-page.html",
+      "hash": "7b5a058a08e045e5ce13a0ca1eee99520453c4ad",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#A8A29E",
+      "fill_color": "",
+      "stroke_color": "#A8A29E",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "tab-bar"
+      ]
+    },
+    {
+      "file_name": "icon_首页标签-2.svg",
+      "title": "首页标签",
+      "source_html": "page-home-page.html",
+      "hash": "7b5a058a08e045e5ce13a0ca1eee99520453c4ad",
+      "width": 26,
+      "height": 26,
+      "view_box": "0 0 24 24",
+      "paint_mode": "stroke",
+      "default_color": "#D97736",
+      "fill_color": "",
+      "stroke_color": "#D97736",
+      "opacity": "1",
+      "context_classes": [
+        "tab-item",
+        "active",
+        "tab-bar"
+      ]
+    }
+  ]
+}

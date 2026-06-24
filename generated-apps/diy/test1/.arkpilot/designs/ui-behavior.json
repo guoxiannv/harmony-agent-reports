@@ -1,0 +1,280 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Member",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "name", "type": "string" },
+          { "name": "phone", "type": "string" },
+          { "name": "avatarUri", "type": "string", "optional": true },
+          { "name": "crafts", "type": "string[]" },
+          { "name": "workImages", "type": "WorkImage[]" },
+          { "name": "pointsBalance", "type": "number" },
+          { "name": "lastVisitAt", "type": "number", "description": "timestamp ms" },
+          { "name": "createdAt", "type": "number", "description": "timestamp ms" }
+        ]
+      },
+      {
+        "name": "WorkImage",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "uri", "type": "string" },
+          { "name": "caption", "type": "string", "optional": true }
+        ]
+      },
+      {
+        "name": "PointRecord",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "memberId", "type": "string" },
+          { "name": "type", "type": "'earn' | 'redeem'" },
+          { "name": "source", "type": "string", "description": "checkin / consume / redeem-course / redeem-material / manual" },
+          { "name": "amount", "type": "number", "description": "positive; earn adds, redeem subtracts" },
+          { "name": "relatedId", "type": "string", "optional": true, "description": "courseId, itemId, etc." },
+          { "name": "note", "type": "string", "optional": true },
+          { "name": "createdAt", "type": "number", "description": "timestamp ms" }
+        ]
+      },
+      {
+        "name": "Course",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "title", "type": "string" },
+          { "name": "teacher", "type": "string" },
+          { "name": "startTime", "type": "number", "description": "timestamp ms" },
+          { "name": "durationMinutes", "type": "number" },
+          { "name": "capacity", "type": "number" },
+          { "name": "status", "type": "'draft' | 'open' | 'closed' | 'completed'" },
+          { "name": "materials", "type": "CourseMaterial[]" }
+        ]
+      },
+      {
+        "name": "CourseMaterial",
+        "fields": [
+          { "name": "itemId", "type": "string" },
+          { "name": "name", "type": "string" },
+          { "name": "quantityPerStudent", "type": "number" },
+          { "name": "unit", "type": "string" }
+        ]
+      },
+      {
+        "name": "Booking",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "courseId", "type": "string" },
+          { "name": "memberId", "type": "string" },
+          { "name": "status", "type": "'pending' | 'confirmed' | 'cancelled' | 'completed'" },
+          { "name": "createdAt", "type": "number", "description": "timestamp ms" }
+        ]
+      },
+      {
+        "name": "InventoryItem",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "name", "type": "string" },
+          { "name": "category", "type": "string" },
+          { "name": "unit", "type": "string" },
+          { "name": "currentStock", "type": "number" },
+          { "name": "safeStock", "type": "number" },
+          { "name": "note", "type": "string", "optional": true }
+        ]
+      },
+      {
+        "name": "InventoryLog",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "itemId", "type": "string" },
+          { "name": "type", "type": "'in' | 'out' | 'auto-deduct'" },
+          { "name": "quantity", "type": "number", "description": "positive; direction from type" },
+          { "name": "courseId", "type": "string", "optional": true },
+          { "name": "memberId", "type": "string", "optional": true },
+          { "name": "note", "type": "string", "optional": true },
+          { "name": "createdAt", "type": "number", "description": "timestamp ms" }
+        ]
+      },
+      {
+        "name": "AppSettings",
+        "fields": [
+          { "name": "dormantThresholdDays", "type": "number", "default": 60 },
+          { "name": "pointsRatio", "type": "number", "default": 1, "description": "points per yuan spent" },
+          { "name": "checkinPoints", "type": "number", "default": 10 },
+          { "name": "reminderHour", "type": "number", "default": 10, "description": "not actively scheduled in MVP" }
+        ]
+      }
+    ],
+    "computedState": [
+      { "name": "dormantMembers", "formula": "members where now - lastVisitAt > dormantThresholdDays * 86400000", "sort": "lastVisitAt ascending" },
+      { "name": "todayCourses", "formula": "courses whose startTime falls in current local day" },
+      { "name": "lowStockItems", "formula": "inventory items where currentStock <= safeStock" },
+      { "name": "memberPointsHistory", "formula": "point records for memberId sorted by createdAt descending" },
+      { "name": "courseBookings", "formula": "bookings for courseId" },
+      { "name": "filteredMembers", "formula": "members where name or phone includes query (case-insensitive), optionally by craft" }
+    ],
+    "persistence": {
+      "strategy": "HarmonyOS preferences JSON store per collection",
+      "keys": {
+        "members": "craft_members",
+        "pointRecords": "craft_point_records",
+        "courses": "craft_courses",
+        "bookings": "craft_bookings",
+        "inventory": "craft_inventory",
+        "inventoryLogs": "craft_inventory_logs",
+        "settings": "craft_settings"
+      },
+      "note": "All collections stored as JSON arrays/objects in application preferences. No RDB required for MVP."
+    }
+  },
+  "services": [
+    {
+      "name": "AppRepository",
+      "responsibility": "Owns all local JSON preference stores, exposes CRUD and query methods for every entity, emits derived lists.",
+      "dependencies": ["Context from app shell"]
+    },
+    {
+      "name": "PhotoPickerService",
+      "responsibility": "Wrap photoAccessHelper.PhotoViewPicker to select avatar/work images and return URI arrays.",
+      "dependencies": ["UIAbility context"]
+    },
+    {
+      "name": "NotificationBadgeService",
+      "responsibility": "Set/clear app icon badge for dormant-member reminders; best-effort only.",
+      "dependencies": ["@kit.NotificationKit"]
+    },
+    {
+      "name": "AppController / AppState",
+      "responsibility": "Reactive app state (@Observed) holding live collections and derived values; exposes command methods used by pages.",
+      "dependencies": ["AppRepository"]
+    }
+  ],
+  "stateMachine": {
+    "topLevel": [
+      { "state": "initializing", "description": "Shell loads persisted collections on Index aboutToAppear" },
+      { "state": "ready", "description": "Collections loaded, derived stats available" }
+    ],
+    "member": [
+      { "event": "save-member", "from": "editing", "to": "saved", "effect": "upsert Member, refresh lists" },
+      { "event": "delete-member", "from": "detail|editing", "to": "deleted", "effect": "remove Member and dependent PointRecords/Bookings, pop surface" },
+      { "event": "member-checkin", "from": "detail|home", "to": "checked-in", "effect": "update lastVisitAt, add earn PointRecord, update balance" }
+    ],
+    "points": [
+      { "event": "earn-points", "from": "detail|points", "to": "recorded", "effect": "add earn PointRecord, increment member balance" },
+      { "event": "redeem-points", "from": "detail|points", "to": "redeemed", "effect": "add redeem PointRecord if balance sufficient, decrement balance" }
+    ],
+    "course": [
+      { "event": "save-course", "from": "editing", "to": "saved", "effect": "upsert Course, refresh calendar" },
+      { "event": "book-course", "from": "detail", "to": "booked", "effect": "create Booking pending -> confirmed if capacity allows" },
+      { "event": "deduct-course-materials", "from": "detail", "to": "deducted", "effect": "for each confirmed booking, reduce inventory by qty * students, create auto-deduct InventoryLog" }
+    ],
+    "inventory": [
+      { "event": "adjust-stock", "from": "inventory", "to": "adjusted", "effect": "update InventoryItem.currentStock, create in/out InventoryLog" },
+      { "event": "auto-deduct", "from": "course-detail", "to": "deducted", "effect": "see course.deduct" }
+    ]
+  },
+  "interactionFlows": [
+    {
+      "name": "Create member",
+      "trigger": "home-quick-add-member or members-add-button",
+      "steps": [
+        "Push MemberForm surface with memberId absent",
+        "Draft local name, phone, crafts, avatar, works",
+        "Validate name non-empty and phone valid",
+        "On save-member, create Member with createdAt=now, persist",
+        "Return to members tab and refresh list"
+      ],
+      "errorPaths": ["Empty name: disable save and show inline error", "Duplicate phone: allow but surface warning dialog"]
+    },
+    {
+      "name": "Check-in member",
+      "trigger": "home-checkin-button or member-detail-checkin-button",
+      "steps": [
+        "Open check-in sheet (member selector if from home)",
+        "Confirm checkin",
+        "Update member.lastVisitAt = now",
+        "Add PointRecord earn(checkin, checkinPoints)",
+        "Update member.pointsBalance += checkinPoints",
+        "Show success toast and refresh home stats"
+      ],
+      "errorPaths": ["No member selected: keep confirm disabled"]
+    },
+    {
+      "name": "Dormant reminder",
+      "trigger": "App launch / home surface visible",
+      "steps": [
+        "Compute dormant count from settings.dormantThresholdDays",
+        "Display home-dormant-alert-card if count > 0",
+        "home-dormant-list-button navigates to Members tab with dormant filter pre-applied",
+        "Best-effort badge update via NotificationBadgeService"
+      ]
+    },
+    {
+      "name": "Book course",
+      "trigger": "course-detail-book-button",
+      "steps": [
+        "Open booking sheet listing members",
+        "Select member, confirm",
+        "If confirmed bookings < capacity, create Booking status confirmed",
+        "Else create pending or reject with capacity dialog",
+        "Refresh course student list"
+      ]
+    },
+    {
+      "name": "Deduct materials",
+      "trigger": "course-detail-deduct-button",
+      "steps": [
+        "Confirm deduct dialog",
+        "For each confirmed booking, for each CourseMaterial, reduce InventoryItem.currentStock by quantityPerStudent",
+        "Create auto-deduct InventoryLog per material",
+        "If any stock would go below safeStock, warn but proceed if confirmed",
+        "Mark course status completed"
+      ]
+    },
+    {
+      "name": "Redeem points",
+      "trigger": "points-redeem-button or member-detail-points-history-button",
+      "steps": [
+        "Open redeem sheet; choose member (if from points tab) and amount/note",
+        "If member.pointsBalance >= amount, create redeem PointRecord",
+        "Decrement balance; refresh records and stats",
+        "If insufficient, show error inline"
+      ]
+    }
+  ],
+  "testTargets": [
+    { "id": "tab-home", "type": "tab" },
+    { "id": "tab-members", "type": "tab" },
+    { "id": "tab-calendar", "type": "tab" },
+    { "id": "tab-points", "type": "tab" },
+    { "id": "tab-inventory", "type": "tab" },
+    { "id": "home-checkin-button", "type": "action" },
+    { "id": "home-dormant-alert-card", "type": "assertion" },
+    { "id": "home-dormant-list-button", "type": "action" },
+    { "id": "home-quick-add-member", "type": "action" },
+    { "id": "members-search-input", "type": "input" },
+    { "id": "members-add-button", "type": "action" },
+    { "id": "members-list", "type": "list" },
+    { "id": "members-empty-state", "type": "empty" },
+    { "id": "member-detail-edit-button", "type": "action" },
+    { "id": "member-detail-points-balance", "type": "assertion" },
+    { "id": "member-detail-checkin-button", "type": "action" },
+    { "id": "member-detail-works-grid", "type": "list" },
+    { "id": "member-form-save-button", "type": "action" },
+    { "id": "points-total-issued", "type": "assertion" },
+    { "id": "points-total-redeemed", "type": "assertion" },
+    { "id": "points-record-list", "type": "list" },
+    { "id": "calendar-view-switch", "type": "input" },
+    { "id": "calendar-course-list", "type": "list" },
+    { "id": "course-detail-book-button", "type": "action" },
+    { "id": "course-detail-student-list", "type": "list" },
+    { "id": "course-detail-deduct-button", "type": "action" },
+    { "id": "inventory-add-button", "type": "action" },
+    { "id": "inventory-low-stock-alert", "type": "assertion" },
+    { "id": "inventory-list", "type": "list" },
+    { "id": "settings-dormant-threshold-input", "type": "input" },
+    { "id": "settings-points-ratio-input", "type": "input" }
+  ],
+  "changeRequests": [
+    "ui-tree events do not include explicit earn-points / redeem-points / adjust-stock events; using open-redeem-sheet and save-member family instead."
+  ]
+}

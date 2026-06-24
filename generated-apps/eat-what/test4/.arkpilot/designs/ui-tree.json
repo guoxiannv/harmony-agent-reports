@@ -1,0 +1,249 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "今天吃什么",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home-page",
+      "name": "Home",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        {
+          "id": "home-spin-button",
+          "role": "action",
+          "event": "spin-wheel"
+        },
+        {
+          "id": "home-wheel",
+          "role": "assertion",
+          "binding": "/wheel/state"
+        },
+        {
+          "id": "home-dish-result",
+          "role": "assertion",
+          "binding": "/recommendation/current"
+        },
+        {
+          "id": "home-dish-card",
+          "role": "state",
+          "binding": "/recommendation/current"
+        },
+        {
+          "id": "home-log-button",
+          "role": "action",
+          "event": "log-current-dish"
+        },
+        {
+          "id": "home-filter-mood",
+          "role": "input",
+          "binding": "/filters/mood"
+        },
+        {
+          "id": "home-filter-time",
+          "role": "input",
+          "binding": "/filters/time"
+        }
+      ]
+    },
+    {
+      "id": "fridge-page",
+      "surfaceId": "fridge",
+      "pageId": "fridge-page",
+      "name": "Fridge",
+      "route": "pages/Fridge",
+      "tabId": "tab-fridge",
+      "semanticTargets": [
+        {
+          "id": "fridge-ingredient-input",
+          "role": "input",
+          "binding": "/fridge/input"
+        },
+        {
+          "id": "fridge-add-button",
+          "role": "action",
+          "event": "add-ingredient"
+        },
+        {
+          "id": "fridge-ingredient-list",
+          "role": "list",
+          "binding": "/fridge/ingredients",
+          "itemIdPattern": "fridge-ingredient-{id}",
+          "emptyStateId": "fridge-empty-state"
+        },
+        {
+          "id": "fridge-recommend-button",
+          "role": "action",
+          "event": "recommend-by-ingredients"
+        },
+        {
+          "id": "fridge-recommendation-list",
+          "role": "list",
+          "binding": "/fridge/recommendations",
+          "itemIdPattern": "fridge-recommendation-{id}",
+          "emptyStateId": "fridge-no-match-state"
+        }
+      ]
+    },
+    {
+      "id": "mood-page",
+      "surfaceId": "mood",
+      "pageId": "mood-page",
+      "name": "Mood",
+      "route": "pages/Mood",
+      "tabId": "tab-mood",
+      "semanticTargets": [
+        {
+          "id": "mood-mood-selector",
+          "role": "input",
+          "binding": "/filters/mood"
+        },
+        {
+          "id": "mood-time-selector",
+          "role": "input",
+          "binding": "/filters/time"
+        },
+        {
+          "id": "mood-apply-button",
+          "role": "action",
+          "event": "apply-mood-filters"
+        },
+        {
+          "id": "mood-dish-list",
+          "role": "list",
+          "binding": "/mood/results",
+          "itemIdPattern": "mood-dish-{id}",
+          "emptyStateId": "mood-empty-state"
+        },
+        {
+          "id": "mood-log-button",
+          "role": "action",
+          "event": "log-selected-dish"
+        }
+      ]
+    },
+    {
+      "id": "log-page",
+      "surfaceId": "log",
+      "pageId": "log-page",
+      "name": "Log",
+      "route": "pages/Log",
+      "tabId": "tab-log",
+      "semanticTargets": [
+        {
+          "id": "log-today-count",
+          "role": "assertion",
+          "binding": "/log/todayCount"
+        },
+        {
+          "id": "log-entry-list",
+          "role": "list",
+          "binding": "/log/entries",
+          "itemIdPattern": "log-entry-{id}",
+          "emptyStateId": "log-empty-state"
+        },
+        {
+          "id": "log-share-button",
+          "role": "action",
+          "event": "open-share-card"
+        }
+      ]
+    },
+    {
+      "id": "share-card-sheet",
+      "surfaceId": "share-card",
+      "pageId": "share-card-sheet",
+      "name": "Share Card",
+      "semanticTargets": [
+        {
+          "id": "share-card-preview",
+          "role": "assertion",
+          "binding": "/share/preview"
+        },
+        {
+          "id": "share-card-export-button",
+          "role": "action",
+          "event": "export-share-card"
+        },
+        {
+          "id": "share-card-close-button",
+          "role": "action",
+          "event": "close-share-card"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "spin-wheel",
+      "context": [ "wheelSpeed" ]
+    },
+    {
+      "name": "log-current-dish",
+      "context": [ "dishId" ]
+    },
+    {
+      "name": "add-ingredient",
+      "context": [ "ingredientName" ]
+    },
+    {
+      "name": "remove-ingredient",
+      "context": [ "ingredientId" ]
+    },
+    {
+      "name": "recommend-by-ingredients",
+      "context": [ "ingredientIds" ]
+    },
+    {
+      "name": "apply-mood-filters",
+      "context": [ "mood", "time" ]
+    },
+    {
+      "name": "log-selected-dish",
+      "context": [ "dishId" ]
+    },
+    {
+      "name": "open-share-card",
+      "context": [ "logEntryId" ]
+    },
+    {
+      "name": "export-share-card",
+      "context": [ "logEntryId", "format" ]
+    },
+    {
+      "name": "close-share-card"
+    }
+  ],
+  "bindings": [
+    { "path": "/wheel/state", "type": "string" },
+    { "path": "/recommendation/current", "type": "object" },
+    { "path": "/filters/mood", "type": "string" },
+    { "path": "/filters/time", "type": "string" },
+    { "path": "/fridge/input", "type": "string" },
+    { "path": "/fridge/ingredients", "type": "array" },
+    { "path": "/fridge/recommendations", "type": "array" },
+    { "path": "/mood/results", "type": "array" },
+    { "path": "/log/todayCount", "type": "number" },
+    { "path": "/log/entries", "type": "array" },
+    { "path": "/share/preview", "type": "object" }
+  ],
+  "testTargets": [
+    { "id": "home-spin-button", "action": "tap" },
+    { "id": "home-dish-result", "assertion": "text-not-empty" },
+    { "id": "home-log-button", "action": "tap" },
+    { "id": "fridge-add-button", "action": "tap" },
+    { "id": "fridge-recommend-button", "action": "tap" },
+    { "id": "fridge-ingredient-list", "assertion": "has-items-or-empty" },
+    { "id": "mood-apply-button", "action": "tap" },
+    { "id": "mood-dish-list", "assertion": "has-items-or-empty" },
+    { "id": "log-entry-list", "assertion": "has-items-or-empty" },
+    { "id": "share-card-export-button", "action": "tap" }
+  ]
+}

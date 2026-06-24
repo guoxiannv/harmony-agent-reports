@@ -1,0 +1,194 @@
+{
+  "version": "arkpilot-uitree/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "今天吃什么",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home-page",
+      "name": "决策",
+      "route": "pages/HomePage",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        { "id": "home-mood-filter", "role": "input", "event": "mood-filter-change", "binding": "/filters/mood" },
+        { "id": "home-time-filter", "role": "input", "event": "time-filter-change", "binding": "/filters/time" },
+        { "id": "home-spin-button", "role": "action", "event": "spin-wheel" },
+        { "id": "home-wheel-result", "role": "assertion", "binding": "/wheel/result" },
+        { "id": "home-result-detail-button", "role": "action", "event": "open-result-detail" },
+        { "id": "home-quick-pantry-button", "role": "action", "event": "go-to-pantry" },
+        { "id": "home-empty-candidates", "role": "assertion", "binding": "/wheel/candidatesEmpty" }
+      ]
+    },
+    {
+      "id": "pantry-page",
+      "surfaceId": "pantry",
+      "pageId": "pantry-page",
+      "name": "食材",
+      "route": "pages/PantryPage",
+      "tabId": "tab-pantry",
+      "semanticTargets": [
+        { "id": "pantry-input", "role": "input", "event": "pantry-input-change", "binding": "/pantry/inputText" },
+        { "id": "pantry-add-button", "role": "action", "event": "add-pantry-item" },
+        { "id": "pantry-item-list", "role": "list", "binding": "/pantry/items", "itemIdPattern": "pantry-item-{id}", "emptyStateId": "pantry-empty-state" },
+        { "id": "pantry-remove-button", "role": "action", "event": "remove-pantry-item" },
+        { "id": "pantry-recommend-button", "role": "action", "event": "recommend-by-pantry" },
+        { "id": "pantry-mood-filter", "role": "input", "event": "pantry-mood-filter-change", "binding": "/pantry/filters/mood" },
+        { "id": "pantry-result-list", "role": "list", "binding": "/pantry/results", "itemIdPattern": "pantry-dish-{id}", "emptyStateId": "pantry-no-result-state" },
+        { "id": "pantry-dish-card", "role": "action", "event": "open-dish-detail" }
+      ]
+    },
+    {
+      "id": "check-in-page",
+      "surfaceId": "check-in",
+      "pageId": "check-in-page",
+      "name": "打卡",
+      "route": "pages/CheckInPage",
+      "tabId": "tab-check-in",
+      "semanticTargets": [
+        { "id": "check-in-add-button", "role": "action", "event": "open-check-in-editor" },
+        { "id": "check-in-list", "role": "list", "binding": "/checkIn/records", "itemIdPattern": "check-in-record-{id}", "emptyStateId": "check-in-empty-state" },
+        { "id": "check-in-share-button", "role": "action", "event": "open-share-card" },
+        { "id": "check-in-delete-button", "role": "action", "event": "delete-check-in" }
+      ]
+    },
+    {
+      "id": "profile-page",
+      "surfaceId": "profile",
+      "pageId": "profile-page",
+      "name": "我的",
+      "route": "pages/ProfilePage",
+      "tabId": "tab-profile",
+      "semanticTargets": [
+        { "id": "profile-streak-count", "role": "assertion", "binding": "/profile/streak" },
+        { "id": "profile-total-check-ins", "role": "assertion", "binding": "/profile/totalCheckIns" },
+        { "id": "profile-settings-button", "role": "action", "event": "open-settings" }
+      ]
+    },
+    {
+      "id": "result-page",
+      "surfaceId": "result",
+      "pageId": "result-page",
+      "name": "结果详情",
+      "route": "pages/ResultPage",
+      "semanticTargets": [
+        { "id": "result-dish-name", "role": "assertion", "binding": "/result/dishName" },
+        { "id": "result-dish-tags", "role": "assertion", "binding": "/result/dishTags" },
+        { "id": "result-check-in-button", "role": "action", "event": "check-in-from-result" },
+        { "id": "result-share-button", "role": "action", "event": "share-from-result" },
+        { "id": "result-back-button", "role": "action", "event": "back-from-result" }
+      ]
+    },
+    {
+      "id": "check-in-editor-page",
+      "surfaceId": "check-in-editor",
+      "pageId": "check-in-editor-page",
+      "name": "打卡编辑",
+      "route": "pages/CheckInEditorPage",
+      "semanticTargets": [
+        { "id": "editor-date-picker", "role": "input", "event": "editor-date-change", "binding": "/checkIn/editor/date" },
+        { "id": "editor-meal-picker", "role": "input", "event": "editor-meal-change", "binding": "/checkIn/editor/meal" },
+        { "id": "editor-dish-input", "role": "input", "event": "editor-dish-change", "binding": "/checkIn/editor/dishName" },
+        { "id": "editor-mood-picker", "role": "input", "event": "editor-mood-change", "binding": "/checkIn/editor/mood" },
+        { "id": "editor-note-input", "role": "input", "event": "editor-note-change", "binding": "/checkIn/editor/note" },
+        { "id": "editor-save-button", "role": "action", "event": "save-check-in" },
+        { "id": "editor-back-button", "role": "action", "event": "back-from-editor" }
+      ]
+    },
+    {
+      "id": "share-card-page",
+      "surfaceId": "share-card",
+      "pageId": "share-card-page",
+      "name": "分享卡片",
+      "route": "pages/ShareCardPage",
+      "semanticTargets": [
+        { "id": "share-card-preview", "role": "assertion", "binding": "/share/cardPreview" },
+        { "id": "share-save-button", "role": "action", "event": "save-share-card" },
+        { "id": "share-system-button", "role": "action", "event": "system-share-card" },
+        { "id": "share-back-button", "role": "action", "event": "back-from-share" }
+      ]
+    }
+  ],
+  "events": [
+    { "name": "spin-wheel", "context": "触发转盘旋转，基于当前筛选候选池" },
+    { "name": "mood-filter-change", "context": "心情标签变化" },
+    { "name": "time-filter-change", "context": "时间场景变化" },
+    { "name": "go-to-pantry", "context": "跳转食材页" },
+    { "name": "add-pantry-item", "context": "添加冰箱食材" },
+    { "name": "remove-pantry-item", "context": "删除冰箱食材" },
+    { "name": "recommend-by-pantry", "context": "根据食材推荐菜品" },
+    { "name": "pantry-mood-filter-change", "context": "食材页心情筛选变化" },
+    { "name": "open-dish-detail", "context": "打开菜品详情/结果页" },
+    { "name": "open-check-in-editor", "context": "打开打卡编辑页" },
+    { "name": "save-check-in", "context": "保存打卡记录" },
+    { "name": "delete-check-in", "context": "删除打卡记录" },
+    { "name": "open-share-card", "context": "打开分享卡片页" },
+    { "name": "save-share-card", "context": "保存分享卡片到相册" },
+    { "name": "system-share-card", "context": "调用系统分享卡片" },
+    { "name": "check-in-from-result", "context": "从结果页直接打卡" },
+    { "name": "share-from-result", "context": "从结果页直接分享" },
+    { "name": "back-from-result", "context": "结果页返回" },
+    { "name": "back-from-editor", "context": "编辑页返回" },
+    { "name": "back-from-share", "context": "分享页返回" },
+    { "name": "open-settings", "context": "打开设置" }
+  ],
+  "bindings": [
+    { "path": "/filters/mood", "type": "string[]" },
+    { "path": "/filters/time", "type": "string" },
+    { "path": "/wheel/result", "type": "Dish|null" },
+    { "path": "/wheel/candidatesEmpty", "type": "boolean" },
+    { "path": "/pantry/items", "type": "PantryItem[]" },
+    { "path": "/pantry/inputText", "type": "string" },
+    { "path": "/pantry/filters/mood", "type": "string[]" },
+    { "path": "/pantry/results", "type": "Dish[]" },
+    { "path": "/checkIn/records", "type": "CheckInRecord[]" },
+    { "path": "/checkIn/editor/date", "type": "Date" },
+    { "path": "/checkIn/editor/meal", "type": "string" },
+    { "path": "/checkIn/editor/dishName", "type": "string" },
+    { "path": "/checkIn/editor/mood", "type": "string" },
+    { "path": "/checkIn/editor/note", "type": "string" },
+    { "path": "/result/dishName", "type": "string" },
+    { "path": "/result/dishTags", "type": "string[]" },
+    { "path": "/share/cardPreview", "type": "ShareCardModel" },
+    { "path": "/profile/streak", "type": "number" },
+    { "path": "/profile/totalCheckIns", "type": "number" }
+  ],
+  "testTargets": {
+    "tabIds": ["tab-home", "tab-pantry", "tab-check-in", "tab-profile"],
+    "assertionIds": [
+      "home-wheel-result",
+      "home-empty-candidates",
+      "pantry-item-list",
+      "pantry-result-list",
+      "check-in-list",
+      "profile-streak-count",
+      "profile-total-check-ins",
+      "result-dish-name",
+      "share-card-preview"
+    ],
+    "actionIds": [
+      "home-spin-button",
+      "home-result-detail-button",
+      "home-quick-pantry-button",
+      "pantry-add-button",
+      "pantry-recommend-button",
+      "pantry-dish-card",
+      "check-in-add-button",
+      "check-in-share-button",
+      "check-in-delete-button",
+      "result-check-in-button",
+      "result-share-button",
+      "result-back-button",
+      "editor-save-button",
+      "editor-back-button",
+      "share-save-button",
+      "share-system-button",
+      "share-back-button"
+    ]
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "WordFlip Kids",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "review-page",
+      "surfaceId": "review",
+      "pageId": "review-page",
+      "name": "复习卡片页",
+      "route": "pages/Review",
+      "semanticTargets": [
+        {
+          "id": "review-title",
+          "role": "assertion",
+          "binding": "pageTitle"
+        },
+        {
+          "id": "review-remaining-count",
+          "role": "assertion",
+          "binding": "remainingCount"
+        },
+        {
+          "id": "review-correct-count",
+          "role": "assertion",
+          "binding": "correctCount"
+        },
+        {
+          "id": "review-flashcard",
+          "role": "action",
+          "event": "toggle-flip",
+          "binding": "currentWord"
+        },
+        {
+          "id": "review-word-front",
+          "role": "assertion",
+          "binding": "currentWord.english"
+        },
+        {
+          "id": "review-word-back-meaning",
+          "role": "assertion",
+          "binding": "currentWord.meaning"
+        },
+        {
+          "id": "review-word-back-phonetic",
+          "role": "assertion",
+          "binding": "currentWord.phonetic"
+        },
+        {
+          "id": "review-known-button",
+          "role": "action",
+          "event": "mark-known"
+        },
+        {
+          "id": "review-unknown-button",
+          "role": "action",
+          "event": "mark-unknown"
+        },
+        {
+          "id": "review-empty-state",
+          "role": "assertion",
+          "binding": "isQueueEmpty"
+        },
+        {
+          "id": "review-completion-overlay",
+          "role": "assertion",
+          "binding": "isComplete"
+        },
+        {
+          "id": "review-restart-button",
+          "role": "action",
+          "event": "restart-review"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "toggle-flip",
+      "description": "切换当前单词卡片正反面"
+    },
+    {
+      "name": "mark-known",
+      "description": "用户点击「认识」，将当前单词移出队列，correctCount +1"
+    },
+    {
+      "name": "mark-unknown",
+      "description": "用户点击「不认识」，将当前单词移到队列底部"
+    },
+    {
+      "name": "restart-review",
+      "description": "完成复习后重新加载当前阶段单词队列"
+    }
+  ],
+  "bindings": [
+    {
+      "path": "pageTitle",
+      "type": "string",
+      "default": "今日复习"
+    },
+    {
+      "path": "remainingCount",
+      "type": "number",
+      "description": "本轮剩余卡片数"
+    },
+    {
+      "path": "correctCount",
+      "type": "number",
+      "description": "本轮已认识数"
+    },
+    {
+      "path": "currentWord",
+      "type": "object",
+      "fields": {
+        "english": "string",
+        "meaning": "string",
+        "phonetic": "string"
+      }
+    },
+    {
+      "path": "isQueueEmpty",
+      "type": "boolean",
+      "description": "当前阶段是否没有可复习单词"
+    },
+    {
+      "path": "isComplete",
+      "type": "boolean",
+      "description": "本轮卡片堆是否全部复习完成"
+    }
+  ],
+  "testTargets": {
+    "assertVisible": [
+      "review-title",
+      "review-remaining-count",
+      "review-correct-count",
+      "review-flashcard",
+      "review-word-front"
+    ],
+    "assertState": [
+      {
+        "id": "review-flashcard",
+        "state": "flipped",
+        "description": "卡片背面可见"
+      }
+    ],
+    "actions": [
+      "review-flashcard",
+      "review-known-button",
+      "review-unknown-button",
+      "review-restart-button"
+    ]
+  }
+}

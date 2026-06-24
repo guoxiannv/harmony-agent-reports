@@ -1,0 +1,27 @@
+{
+  "pid": 49326,
+  "status": "controller-tick",
+  "launched_by_session_id": "36edd102-8a38-4798-a64c-587c283c9adc",
+  "started_at": "2026-06-20T03:34:40.376Z",
+  "last_scan_at": "2026-06-20T03:46:42.676Z",
+  "last_change_at": "2026-06-20T03:38:41.755Z",
+  "html_signature": "[{\"name\":\"page-review-page.html\",\"mtime_ms\":1781926720911,\"size\":16167}]",
+  "html_files": [
+    {
+      "name": "page-review-page.html",
+      "mtime_ms": 1781926720911,
+      "size": 16167
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 5,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 5,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-20T03:46:42.676Z"
+}

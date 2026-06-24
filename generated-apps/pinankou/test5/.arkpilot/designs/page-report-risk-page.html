@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>平安扣 - 上报隐患</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #F3F6F8; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif; color: #0F172A; }
+    body { max-width: 420px; margin: 0 auto; position: relative; }
+    .page { min-height: 100%; padding: 24px 16px 120px; }
+    .appbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .back-btn { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(15,23,42,0.06); }
+    .appbar-title { font-size: 20px; font-weight: 700; }
+
+    .form-card { background: #fff; border-radius: 16px; padding: 16px; box-shadow: 0 4px 16px rgba(15,23,42,0.05); margin-bottom: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-label { display: block; font-size: 14px; font-weight: 600; color: #0F172A; margin-bottom: 8px; }
+    .form-input, .form-textarea, .form-select { width: 100%; border: 1px solid #E2E8F0; border-radius: 12px; padding: 13px 15px; font-size: 14px; color: #334155; background: #fff; outline: none; }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: #0D9488; box-shadow: 0 0 0 3px rgba(13,148,136,0.12); }
+    .form-input::placeholder, .form-textarea::placeholder { color: #94A3B8; }
+    .form-textarea { min-height: 90px; resize: none; }
+    .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ctitle%3e展开选择器%3c/title%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+
+    .photo-upload { background: #F8FAFC; border: 2px dashed #CBD5E1; border-radius: 12px; padding: 24px; text-align: center; color: #64748B; }
+    .photo-upload svg { margin: 0 auto 10px; color: #94A3B8; }
+    .photo-hint { font-size: 13px; }
+
+    .submit-btn { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); width: calc(100% - 32px); max-width: 388px; padding: 16px; border-radius: 14px; border: none; background: linear-gradient(135deg, #0D9488, #2DD4BF); color: #fff; font-size: 16px; font-weight: 600; box-shadow: 0 10px 28px rgba(13,148,136,0.28); z-index: 90; }
+
+    svg { display: block; }
+  </style>
+</head>
+<body data-page-id="report-risk-page">
+  <div class="page">
+    <header class="appbar">
+      <div class="back-btn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>取消并返回上一页</title>
+          <path d="M19 12H5"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+      </div>
+      <h1 class="appbar-title">上报隐患</h1>
+    </header>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label class="form-label">隐患标题</label>
+        <input type="text" class="form-input" placeholder="如：仓库配电箱未关闭" data-ui-id="report-risk-title-input" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">隐患类型</label>
+        <select class="form-select" data-ui-id="report-risk-type-picker">
+          <option value="">请选择类型</option>
+          <option value="fire">消防</option>
+          <option value="electric">电气</option>
+          <option value="mechanical">机械</option>
+          <option value="environment">环境</option>
+          <option value="personnel">人员行为</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">风险等级</label>
+        <select class="form-select" data-ui-id="report-risk-level-picker">
+          <option value="">请选择等级</option>
+          <option value="low">低</option>
+          <option value="medium">中</option>
+          <option value="high">高</option>
+          <option value="critical">重大</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">发生地点</label>
+        <input type="text" class="form-input" placeholder="如：仓库配电区 3 号箱" data-ui-id="report-risk-location-input" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">问题描述</label>
+        <textarea class="form-textarea" placeholder="请描述隐患具体情况、可能后果..." data-ui-id="report-risk-desc-input"></textarea>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label class="form-label">现场照片</label>
+        <div class="photo-upload" data-ui-id="report-risk-photos">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <title>上传隐患现场照片</title>
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <div class="photo-hint">点击拍照或从相册选择，最多 6 张</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label class="form-label">整改截止日期</label>
+        <input type="date" class="form-input" data-ui-id="report-risk-deadline-picker" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">整改责任人</label>
+        <select class="form-select" data-ui-id="report-risk-handler-picker">
+          <option value="">请选择责任人</option>
+          <option value="zhang">张师傅</option>
+          <option value="li">李安全</option>
+          <option value="wang">王班长</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" data-ui-id="report-risk-submit">提交上报</button>
+</body>
+</html>

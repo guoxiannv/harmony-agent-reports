@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="chart-svg" viewBox="0 0 320 160" preserveAspectRatio="none">
+          <title>Mochi 近 30 天体重趋势图</title>
+          <defs>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#7FDEB8" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#7FDEB8" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 110 C30 105,60 100,90 95 S150 88,180 80 S240 72,320 60" fill="none" stroke="#4BBF9A" stroke-width="3" stroke-linecap="round"/>
+          <path d="M0 110 C30 105,60 100,90 95 S150 88,180 80 S240 72,320 60 V160 H0 Z" fill="url(#lineGrad)"/>
+          <circle cx="320" cy="60" r="5" fill="#fff" stroke="#4BBF9A" stroke-width="3"/>
+          <line x1="0" y1="160" x2="320" y2="160" stroke="#EDE9E5" stroke-width="1"/>
+        </svg>

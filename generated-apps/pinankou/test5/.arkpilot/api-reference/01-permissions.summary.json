@@ -1,0 +1,96 @@
+{
+  "module": "01-permissions.md",
+  "group": "01 -- 权限管理 (Permissions)",
+  "apiCount": 13,
+  "apis": [
+    {
+      "name": "@ohos.abilityAccessCtrl (程序访问控制管理)",
+      "purpose": "程序访问控制管理，提供权限校验和用户授权能力",
+      "anchor": "ohosabilityaccessctrl-程序访问控制管理",
+      "status": "found"
+    },
+    {
+      "name": "abilityAccessCtrl.createAtManager",
+      "purpose": "创建 AtManager 实例",
+      "anchor": "abilityaccessctrlcreateatmanager",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.checkAccessToken",
+      "purpose": "校验应用是否被授予指定权限（Promise 异步）",
+      "anchor": "checkaccesstoken9",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.checkAccessTokenSync",
+      "purpose": "校验应用是否被授予指定权限（同步返回）",
+      "anchor": "checkaccesstokensync10",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.requestPermissionsFromUser",
+      "purpose": "拉起弹框请求用户授权",
+      "anchor": "requestpermissionsfromuser9",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.requestPermissionOnSetting",
+      "purpose": "二次拉起权限设置弹框（用户拒绝后引导授权）",
+      "anchor": "requestpermissionsonsetting12",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.requestGlobalSwitch",
+      "purpose": "拉起全局开关设置弹框（相机/麦克风/位置）",
+      "anchor": "requestglobalswitch12",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.getSelfPermissionStatus",
+      "purpose": "查询应用权限状态（同步返回）",
+      "anchor": "getselfpermissionstatus20",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.on/off (selfPermissionStateChange)",
+      "purpose": "订阅/取消订阅自身权限授权状态变化事件",
+      "anchor": "on18",
+      "status": "found"
+    },
+    {
+      "name": "PermissionRequestResult",
+      "purpose": "权限请求结果对象，包含权限名、授权结果、弹窗结果、错误原因",
+      "anchor": "permissionrequestresult10",
+      "status": "found"
+    },
+    {
+      "name": "ohos.permission.* (权限常量)",
+      "purpose": "HarmonyOS 权限名称常量，作为 Permissions 类型字符串字面量使用",
+      "anchor": "权限常量-ohospermission",
+      "status": "found"
+    },
+    {
+      "name": "UIAbilityContext",
+      "purpose": "UIAbility 组件上下文，用于传入 requestPermissionsFromUser 等 API",
+      "anchor": "uiabilitycontext",
+      "status": "found"
+    },
+    {
+      "name": "AtManager.verifyAccessTokenSync",
+      "purpose": "校验应用是否被授予权限（同步，推荐使用 checkAccessTokenSync 替代）",
+      "anchor": "verifyaccesstokensync9",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "requestPermissionsFromUser 属于 AtManager（来自 abilityAccessCtrl.createAtManager()），不在 UIAbilityContext 上；UIAbilityContext 作为 context 参数传入",
+    "grantPermission 方法在本地参考文档中不存在——权限授予由系统在用户授权流程中处理，应用侧无法直接调用",
+    "ohos.permission.* 权限常量无独立 API 参考文档，作为 Permissions 类型字符串在 API 文档中被引用，详细定义见在线指南",
+    "requestPermissionsFromUser 的 callback 和 Promise 重载均从 API version 9 开始支持，且仅可在 Stage 模型下使用",
+    "SwitchType 枚举值：CAMERA(0)、MICROPHONE(1)、LOCATION(2)，用于 requestGlobalSwitch",
+    "PermissionRequestResult.authResults: -1=未授权, 0=已授权, 2=请求无效; dialogShownResults 从 API 12 开始支持; errorReasons 从 API 18 开始支持"
+  ],
+  "missingApis": [
+    "grantPermission — 本地参考文档中不存在该 API。可能为内部/系统接口，不属于公开 ArkTS API"
+  ]
+}

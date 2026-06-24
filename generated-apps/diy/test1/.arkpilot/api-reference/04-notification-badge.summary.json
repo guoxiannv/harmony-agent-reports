@@ -1,0 +1,68 @@
+{
+  "module": "04-notification-badge.md",
+  "group": "04 -- 通知角标 (Notification Badge)",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "notificationManager",
+      "purpose": "通知管理模块导入入口，提供角标、发布通知等能力",
+      "anchor": "notificationmanager-模块",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.setBadgeNumber (Promise)",
+      "purpose": "设定桌面图标角标个数，使用 Promise 异步回调",
+      "anchor": "notificationmanagersetbadgenumber-promise",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.setBadgeNumber (Callback)",
+      "purpose": "设定桌面图标角标个数，使用 Callback 异步回调",
+      "anchor": "notificationmanagersetbadgenumber-callback",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.getBadgeNumber",
+      "purpose": "获取当前应用角标数量",
+      "anchor": "notificationmanagergetbadgenumber",
+      "status": "found"
+    },
+    {
+      "name": "NotificationRequest.badgeNumber",
+      "purpose": "通知请求上的角标数字属性，发布通知时累加展示在桌面图标上",
+      "anchor": "notificationmanagernotificationrequestbadgenumber",
+      "status": "found"
+    },
+    {
+      "name": "NotificationSlot.badgeFlag",
+      "purpose": "通知渠道是否显示角标的开关",
+      "anchor": "notificationmanagernotificationslotbadgeflag",
+      "status": "found"
+    },
+    {
+      "name": "notificationManager.publish",
+      "purpose": "发布通知到系统通知中心",
+      "anchor": "notificationmanagerpublish",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "NotificationBadgeStyle 在 Notification Kit 文档中不存在作为独立 API 或类型定义，角标样式属性 badgeIconStyle 为预留能力暂未支持",
+    "角标设数有两条路径：NotificationRequest.badgeNumber（累加，API 9+）和 setBadgeNumber()（覆盖，API 10+）",
+    "badgeNumber 取值 <=0 清除角标，>99 显示 99+；受 NotificationSlot.badgeFlag（默认 true）控制",
+    "setBadgeNumber 在 Wearable 设备返回 801 错误码，在其他设备可正常调用",
+    "getBadgeNumber 从 API 22 开始支持，返回的角标数量与通知开关和桌面角标开关无关"
+  ],
+  "missingApis": [
+    {
+      "name": "NotificationBadgeStyle",
+      "purpose": "通知角标样式类型定义",
+      "reason": "在 Notification Kit 文档中未找到独立的 NotificationBadgeStyle 类型定义。ArkUI Badge 组件有 BadgeStyle 对象，但属于 UI 组件，不属于通知角标 API"
+    },
+    {
+      "name": "NotificationRequest.badgeIconStyle",
+      "purpose": "通知角标类型，预留能力暂未支持",
+      "reason": "该属性存在于 NotificationRequest 中但标注为'预留能力，暂未支持'，不可用于实际开发"
+    }
+  ]
+}

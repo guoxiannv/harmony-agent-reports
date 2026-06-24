@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 - 积分中心</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Noto+Sans+SC:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  background: linear-gradient(180deg, #FBF8F5 0%, #F0EBE5 55%, #E9E3DA 100%);
+  color: #FBF8F5;
+  max-width: 390px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 32px;
+}
+.page { padding: 0 16px; }
+.header {
+  padding-top: 48px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #3A2D28;
+}
+.back-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: #FFFDFA;
+  border: 1px solid rgba(195, 170, 150, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3A2D28;
+}
+.page-title { font-size: 22px; font-weight: 700; flex: 1; }
+.balance-card {
+  background: #3A2D28;
+  border-radius: 26px;
+  padding: 28px;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(58, 45, 40, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.balance-card::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(94, 138, 150, 0.12);
+}
+.balance-label {
+  font-size: 14px;
+  color: rgba(251, 248, 245, 0.7);
+  position: relative; z-index: 1;
+}
+.balance-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 52px;
+  font-weight: 500;
+  margin: 8px 0 6px;
+  position: relative; z-index: 1;
+}
+.balance-unit {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: #D9A96D;
+  position: relative; z-index: 1;
+}
+.redeem-btn {
+  margin-top: 18px;
+  background: #C87E5D;
+  color: #FBF8F5;
+  border: none;
+  padding: 13px 28px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(200, 126, 93, 0.32);
+  position: relative; z-index: 1;
+}
+.rules-card {
+  background: #FFFDFA;
+  border-radius: 22px;
+  padding: 18px;
+  margin-top: 16px;
+  box-shadow: 0 10px 28px rgba(58, 45, 40, 0.08);
+  color: #3A2D28;
+}
+.rules-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.rule-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1.5px dashed rgba(195, 170, 150, 0.22);
+}
+.rule-row:last-child { border-bottom: none; }
+.rule-name { font-size: 14px; color: #3A2D28; }
+.rule-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: #B88363;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #3A2D28;
+  margin: 24px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-dot { width: 8px; height: 8px; border-radius: 50%; background: #B88363; }
+.history-card {
+  background: #FFFDFA;
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 10px 28px rgba(58, 45, 40, 0.08);
+  color: #3A2D28;
+}
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1.5px dashed rgba(195, 170, 150, 0.22);
+}
+.history-item:last-child { border-bottom: none; }
+.history-left { display: flex; align-items: center; gap: 10px; }
+.history-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(184, 131, 99, 0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: #B88363;
+}
+.history-text { font-size: 14px; color: #3A2D28; }
+.history-time { font-size: 12px; color: #9B9189; margin-top: 2px; }
+.history-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+}
+.positive { color: #7E9273; }
+.negative { color: #C87E5D; }
+.empty-state {
+  text-align: center;
+  padding: 32px 20px;
+  color: #9B9189;
+  font-size: 13px;
+}
+</style>
+</head>
+<body data-page-id="points">
+<div class="page">
+  <header class="header">
+    <button class="back-btn" data-ui-id="points-back-button" aria-label="返回">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>返回上一页</title><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h1 class="page-title">积分中心</h1>
+  </header>
+
+  <div class="balance-card">
+    <div class="balance-label">当前积分余额</div>
+    <div class="balance-value" data-ui-id="points-balance">368</div>
+    <div class="balance-unit">points</div>
+    <button class="redeem-btn" data-ui-id="points-redeem-button">兑换权益</button>
+  </div>
+
+  <div class="rules-card">
+    <div class="rules-title">积分规则</div>
+    <div class="rule-row">
+      <span class="rule-name">每日签到</span>
+      <span class="rule-value" data-ui-id="points-rule-check-in">+5 分</span>
+    </div>
+    <div class="rule-row">
+      <span class="rule-name">消费积分比例</span>
+      <span class="rule-value" data-ui-id="points-rule-spend-ratio">1 元 = 1 分</span>
+    </div>
+  </div>
+
+  <h2 class="section-title"><span class="section-dot"></span>积分明细</h2>
+  <div class="history-card">
+    <div class="history-list" data-ui-id="points-history-list">
+      <div class="history-item" data-ui-id="points-history-1">
+        <div class="history-left">
+          <div class="history-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>签到积分记录图标</title><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="history-text">到店签到</div>
+            <div class="history-time">2026-06-20 10:23</div>
+          </div>
+        </div>
+        <div class="history-value positive">+5</div>
+      </div>
+      <div class="history-item" data-ui-id="points-history-2">
+        <div class="history-left">
+          <div class="history-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>课程积分记录图标</title><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <div class="history-text">完成课程「陶艺拉坯入门」</div>
+            <div class="history-time">2026-06-15 16:40</div>
+          </div>
+        </div>
+        <div class="history-value positive">+30</div>
+      </div>
+      <div class="history-item" data-ui-id="points-history-3">
+        <div class="history-left">
+          <div class="history-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>消费积分记录图标</title><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div>
+            <div class="history-text">消费 ¥128</div>
+            <div class="history-time">2026-06-10 14:05</div>
+          </div>
+        </div>
+        <div class="history-value positive">+128</div>
+      </div>
+    </div>
+    <div class="empty-state" data-ui-id="points-history-empty" style="display:none">暂无积分明细</div>
+  </div>
+</div>
+</body>
+</html>

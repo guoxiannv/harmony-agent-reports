@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>手作·印记 - 首页</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Noto+Sans+SC:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  background: linear-gradient(180deg, #FBF8F5 0%, #F0EBE5 55%, #E9E3DA 100%);
+  color: #3A2D28;
+  max-width: 390px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 88px;
+}
+.page { padding: 0 16px; }
+.hero {
+  padding-top: 48px;
+  padding-bottom: 12px;
+}
+.hero-greeting {
+  font-size: 14px;
+  color: #9B9189;
+  margin-bottom: 4px;
+}
+.hero-title {
+  font-family: 'Caveat', cursive;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.08;
+  margin: 0;
+  transform: rotate(-1deg);
+  transform-origin: left center;
+  color: #3A2D28;
+}
+.hero-subtitle {
+  font-size: 14px;
+  color: #9B9189;
+  margin-top: 8px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #3A2D28;
+  margin: 20px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #B88363;
+}
+.quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.quick-card {
+  background: rgba(255, 253, 250, 0.9);
+  border: 1px solid rgba(195, 170, 150, 0.18);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 10px 28px rgba(58, 45, 40, 0.08);
+  backdrop-filter: blur(16px);
+}
+.quick-card h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9B9189;
+  margin: 0 0 8px;
+}
+.quick-card .number {
+  font-family: 'DM Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  color: #3A2D28;
+}
+.today-card {
+  background: #FFFDFA;
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 10px 28px rgba(58, 45, 40, 0.08);
+  margin-top: 12px;
+}
+.today-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1.5px dashed rgba(195, 170, 150, 0.22);
+}
+.today-row:last-child { border-bottom: none; }
+.today-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(184, 131, 99, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B88363;
+}
+.today-info { flex: 1; }
+.today-label { font-size: 13px; color: #9B9189; }
+.today-value { font-size: 15px; font-weight: 600; color: #3A2D28; margin-top: 2px; }
+.sleeping-card {
+  background: #3A2D28;
+  border-radius: 22px;
+  padding: 18px;
+  color: #FBF8F5;
+  box-shadow: 0 10px 28px rgba(58, 45, 40, 0.16);
+  position: relative;
+  overflow: hidden;
+}
+.sleeping-card::after {
+  content: '';
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(94, 138, 150, 0.12);
+}
+.sleeping-header { display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; }
+.sleeping-title { font-size: 16px; font-weight: 600; }
+.sleeping-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 24px;
+  font-weight: 500;
+  color: #D9A96D;
+  margin: 12px 0 4px;
+  position: relative; z-index: 1;
+}
+.sleeping-desc { font-size: 13px; color: rgba(251, 248, 245, 0.7); position: relative; z-index: 1; }
+.sleeping-action {
+  margin-top: 14px;
+  display: inline-block;
+  background: #C87E5D;
+  color: #FBF8F5;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative; z-index: 1;
+}
+.points-card {
+  background: #FFFDFA;
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 10px 28px rgba(58, 45, 40, 0.08);
+}
+.points-card h3 { font-size: 16px; font-weight: 600; margin: 0 0 12px; }
+.points-list { display: flex; flex-direction: column; gap: 10px; }
+.points-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: rgba(184, 131, 99, 0.06);
+  border-radius: 14px;
+}
+.points-item-left { display: flex; align-items: center; gap: 10px; }
+.points-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(184, 131, 99, 0.18);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: #B88363; font-weight: 600;
+}
+.points-item-text { font-size: 14px; color: #3A2D28; }
+.points-item-time { font-size: 11px; color: #9B9189; margin-top: 2px; }
+.points-item-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: #7E9273;
+}
+.empty-state {
+  text-align: center;
+  padding: 24px 0;
+  color: #9B9189;
+  font-size: 13px;
+}
+.fab {
+  position: fixed;
+  bottom: 88px;
+  right: calc(50% - 171px);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #3A2D28;
+  color: #FBF8F5;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(58, 45, 40, 0.36);
+  cursor: pointer;
+}
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  0: 0;
+  right: 0;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  height: 68px;
+  background: rgba(251, 248, 245, 0.92);
+  backdrop-filter: blur(18px);
+  border-top: 1px solid rgba(195, 170, 150, 0.12);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  left: 0;
+}
+.tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #B9AEA4; font-size: 11px; }
+.tab-item.active { color: #3A2D28; }
+.tab-item.active .tab-icon { color: #B88363; }
+.tab-dot {
+  width: 4px; height: 4px; border-radius: 50%; background: #B88363;
+  position: absolute; top: 8px;
+}
+</style>
+</head>
+<body data-page-id="home" data-tab-id="tab-home">
+<div class="page">
+  <section class="hero">
+    <div class="hero-greeting">早上好，主理人</div>
+    <h1 class="hero-title">手作·印记</h1>
+    <div class="hero-subtitle">今日也用心，记住每一位客人</div>
+  </section>
+
+  <div class="quick-grid">
+    <div class="quick-card">
+      <h3>今日课程</h3>
+      <div class="number" data-ui-id="home-today-classes-count">3</div>
+    </div>
+    <div class="quick-card">
+      <h3>待处理预约</h3>
+      <div class="number" data-ui-id="home-today-reservations-count">5</div>
+    </div>
+  </div>
+
+  <section class="sleeping-card" data-ui-id="home-sleeping-reminder-card">
+    <div class="sleeping-header">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>沉睡会员提醒入口</title><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <span class="sleeping-title">沉睡会员提醒</span>
+    </div>
+    <div class="sleeping-count" data-ui-id="home-sleeping-count">12</div>
+    <div class="sleeping-desc">位会员已超过 45 天未到店</div>
+    <div class="sleeping-action">去唤醒</div>
+  </section>
+
+  <h2 class="section-title"><span class="section-dot"></span>今日预约</h2>
+  <div class="today-card">
+    <div class="today-row">
+      <div class="today-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B88363" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>今日陶艺课程图标</title><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="today-info">
+        <div class="today-label">14:00 · 陶艺拉坯入门</div>
+        <div class="today-value">3 人已预约 / 限 6 人</div>
+      </div>
+    </div>
+    <div class="today-row">
+      <div class="today-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B88363" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>今日木作课程图标</title><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/></svg>
+      </div>
+      <div class="today-info">
+        <div class="today-label">16:30 · 木作小 Spoon</div>
+        <div class="today-value">2 人已预约 / 限 4 人</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title"><span class="section-dot"></span>积分动态</h2>
+  <div class="points-card">
+    <h3>最近积分变动</h3>
+    <div class="points-list" data-ui-id="home-points-activity-list">
+      <div class="points-item" data-ui-id="home-points-item-1">
+        <div class="points-item-left">
+          <div class="points-avatar">林</div>
+          <div>
+            <div class="points-item-text">林小陶 签到</div>
+            <div class="points-item-time">10:23</div>
+          </div>
+        </div>
+        <div class="points-item-value">+5</div>
+      </div>
+      <div class="points-item" data-ui-id="home-points-item-2">
+        <div class="points-item-left">
+          <div class="points-avatar">陈</div>
+          <div>
+            <div class="points-item-text">陈木 完成课程</div>
+            <div class="points-item-time">09:47</div>
+          </div>
+        </div>
+        <div class="points-item-value">+30</div>
+      </div>
+      <div class="points-item" data-ui-id="home-points-item-3">
+        <div class="points-item-left">
+          <div class="points-avatar">周</div>
+          <div>
+            <div class="points-item-text">周皮 消费 ¥128</div>
+            <div class="points-item-time">昨天</div>
+          </div>
+        </div>
+        <div class="points-item-value">+128</div>
+      </div>
+    </div>
+    <div class="empty-state" data-ui-id="home-points-empty" style="display:none">暂无积分动态</div>
+  </div>
+</div>
+
+<button class="fab" data-ui-id="home-quick-check-in-button" aria-label="快捷签到或录入消费">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>打开签到与消费录入页面</title><path d="M12 5v14M5 12h14"/></svg>
+</button>
+
+<nav class="tabbar">
+  <div class="tab-item active" style="position:relative">
+    <div class="tab-dot"></div>
+    <svg class="tab-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>首页标签</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>首页</span>
+  </div>
+  <div class="tab-item">
+    <svg class="tab-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>会员列表标签</title><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    <span>会员</span>
+  </div>
+  <div class="tab-item">
+    <svg class="tab-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>课程日历标签</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <span>课程</span>
+  </div>
+  <div class="tab-item">
+    <svg class="tab-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>库存管理标签</title><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+    <span>库存</span>
+  </div>
+  <div class="tab-item">
+    <svg class="tab-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的设置标签</title><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>我的</span>
+  </div>
+</nav>
+</body>
+</html>

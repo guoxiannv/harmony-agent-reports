@@ -1,0 +1,103 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "单词翻翻乐",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "review-page",
+      "surfaceId": "review",
+      "pageId": "review-page",
+      "name": "复习页面",
+      "route": "pages/ReviewPage",
+      "semanticTargets": [
+        {
+          "id": "review-progress-total",
+          "role": "assertion",
+          "binding": "/session/totalCount"
+        },
+        {
+          "id": "review-progress-remaining",
+          "role": "assertion",
+          "binding": "/session/remainingCount"
+        },
+        {
+          "id": "review-progress-known",
+          "role": "assertion",
+          "binding": "/session/knownCount"
+        },
+        {
+          "id": "review-flashcard",
+          "role": "action",
+          "event": "flip-card"
+        },
+        {
+          "id": "review-card-front-word",
+          "role": "assertion",
+          "binding": "/currentWord/word"
+        },
+        {
+          "id": "review-card-back-meaning",
+          "role": "assertion",
+          "binding": "/currentWord/meaning"
+        },
+        {
+          "id": "review-card-back-phonetic",
+          "role": "assertion",
+          "binding": "/currentWord/phonetic"
+        },
+        {
+          "id": "review-known-button",
+          "role": "action",
+          "event": "mark-known"
+        },
+        {
+          "id": "review-unknown-button",
+          "role": "action",
+          "event": "mark-unknown"
+        },
+        {
+          "id": "review-empty-state",
+          "role": "assertion",
+          "binding": "/session/isComplete"
+        },
+        {
+          "id": "review-restart-button",
+          "role": "action",
+          "event": "restart-session"
+        }
+      ],
+      "events": [
+        {
+          "name": "flip-card",
+          "description": "Toggle the flashcard between front (English) and back (meaning + phonetic)."
+        },
+        {
+          "name": "mark-known",
+          "description": "Remove the current word from the queue and increment the known/correct count."
+        },
+        {
+          "name": "mark-unknown",
+          "description": "Move the current word to the bottom of the queue for re-review."
+        },
+        {
+          "name": "restart-session",
+          "description": "Reload the word bank and start a new review session."
+        }
+      ],
+      "bindings": [
+        { "path": "/session/totalCount", "type": "number", "description": "Total words in the current review set." },
+        { "path": "/session/remainingCount", "type": "number", "description": "Words still in the review queue." },
+        { "path": "/session/knownCount", "type": "number", "description": "Words marked known this session." },
+        { "path": "/session/isComplete", "type": "boolean", "description": "True when the queue is empty." },
+        { "path": "/currentWord/word", "type": "string", "description": "English word shown on the card front." },
+        { "path": "/currentWord/meaning", "type": "string", "description": "Chinese meaning shown on the card back." },
+        { "path": "/currentWord/phonetic", "type": "string", "description": "Phonetic symbol shown on the card back." }
+      ]
+    }
+  ]
+}

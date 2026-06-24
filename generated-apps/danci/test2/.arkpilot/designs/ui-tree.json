@@ -1,0 +1,146 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "童词卡",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "study-page",
+      "surfaceId": "study",
+      "pageId": "study",
+      "name": "复习页",
+      "route": "pages/Study",
+      "semanticTargets": [
+        {
+          "id": "study-progress-header",
+          "role": "assertion",
+          "binding": "/study/progress"
+        },
+        {
+          "id": "study-remaining-count",
+          "role": "assertion",
+          "binding": "/study/remainingCount"
+        },
+        {
+          "id": "study-known-count",
+          "role": "assertion",
+          "binding": "/study/knownCount"
+        },
+        {
+          "id": "study-flashcard",
+          "role": "action",
+          "event": "toggle-flip-card"
+        },
+        {
+          "id": "study-word-front",
+          "role": "assertion",
+          "binding": "/study/currentWord/english"
+        },
+        {
+          "id": "study-word-back-meaning",
+          "role": "assertion",
+          "binding": "/study/currentWord/meaning"
+        },
+        {
+          "id": "study-word-back-phonetic",
+          "role": "assertion",
+          "binding": "/study/currentWord/phonetic"
+        },
+        {
+          "id": "study-known-button",
+          "role": "action",
+          "event": "mark-known"
+        },
+        {
+          "id": "study-unknown-button",
+          "role": "action",
+          "event": "mark-unknown"
+        },
+        {
+          "id": "study-empty-state",
+          "role": "assertion",
+          "binding": "/study/isEmpty"
+        },
+        {
+          "id": "study-completion-panel",
+          "role": "assertion",
+          "binding": "/study/isComplete"
+        },
+        {
+          "id": "study-completion-desc",
+          "role": "assertion",
+          "binding": "/study/knownCount"
+        },
+        {
+          "id": "study-restart-button",
+          "role": "action",
+          "event": "restart-study"
+        }
+      ],
+      "events": [
+        {
+          "name": "toggle-flip-card",
+          "description": "点击卡片切换正反面 3D 翻转"
+        },
+        {
+          "name": "mark-known",
+          "description": "标记当前单词已认识，从队列移除并增加正确数"
+        },
+        {
+          "name": "mark-unknown",
+          "description": "标记当前单词不认识，将卡片放回队列底部"
+        },
+        {
+          "name": "restart-study",
+          "description": "复习完成后重新开始"
+        }
+      ],
+      "bindings": [
+        {
+          "path": "/study/currentWord",
+          "type": "object",
+          "fields": ["english", "meaning", "phonetic"]
+        },
+        {
+          "path": "/study/remainingCount",
+          "type": "number"
+        },
+        {
+          "path": "/study/knownCount",
+          "type": "number"
+        },
+        {
+          "path": "/study/totalCount",
+          "type": "number"
+        },
+        {
+          "path": "/study/isComplete",
+          "type": "boolean"
+        },
+        {
+          "path": "/study/isFlipped",
+          "type": "boolean"
+        }
+      ],
+      "testTargets": [
+        "study-progress-header",
+        "study-remaining-count",
+        "study-known-count",
+        "study-flashcard",
+        "study-word-front",
+        "study-word-back-meaning",
+        "study-word-back-phonetic",
+        "study-known-button",
+        "study-unknown-button",
+        "study-empty-state",
+        "study-completion-panel",
+        "study-completion-desc",
+        "study-restart-button"
+      ]
+    }
+  ]
+}

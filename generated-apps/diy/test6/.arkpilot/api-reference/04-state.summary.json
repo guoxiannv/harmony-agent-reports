@@ -1,0 +1,108 @@
+{
+  "module": "04-state.md",
+  "group": "04 — State Management & Reactivity",
+  "apiCount": 17,
+  "apis": [
+    {
+      "name": "@State",
+      "purpose": "组件内可变状态装饰器，标记组件内部可变状态变量",
+      "anchor": "@state",
+      "status": "missing"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "父组件到子组件的单向数据同步装饰器",
+      "anchor": "@prop",
+      "status": "missing"
+    },
+    {
+      "name": "@Link",
+      "purpose": "父组件到子组件的双向数据同步装饰器",
+      "anchor": "@link",
+      "status": "missing"
+    },
+    {
+      "name": "@Provide/@Consume",
+      "purpose": "跨级祖先到后代组件的状态传递装饰器",
+      "anchor": "@provide/@consume",
+      "status": "found"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "状态变量变化监听装饰器（V1），监听状态变量修改回调",
+      "anchor": "@watch",
+      "status": "found"
+    },
+    {
+      "name": "AppStorage",
+      "purpose": "应用全局UI状态存储，支持跨Ability/跨页面状态共享",
+      "anchor": "appstorage",
+      "status": "found"
+    },
+    {
+      "name": "LocalStorage",
+      "purpose": "UIAbility作用域内的UI状态存储，支持页面级状态共享",
+      "anchor": "localstorage9",
+      "status": "found"
+    },
+    {
+      "name": "@StorageLink/@StorageProp",
+      "purpose": "组件与AppStorage双向/单向绑定的装饰器",
+      "anchor": "@storagelink/-@storageprop",
+      "status": "missing"
+    },
+    {
+      "name": "@ObjectLink",
+      "purpose": "子组件接收@Observed装饰类的对象引用，建立与父组件的数据同步",
+      "anchor": "@objectlink",
+      "status": "missing"
+    },
+    {
+      "name": "@Observed",
+      "purpose": "可观察类装饰器，使类实例属性变化可被框架追踪",
+      "anchor": "@observed",
+      "status": "missing"
+    },
+    {
+      "name": "@Builder",
+      "purpose": "自定义构建函数装饰器，定义可复用的UI片段",
+      "anchor": "@builder",
+      "status": "missing"
+    },
+    {
+      "name": "@BuilderParam",
+      "purpose": "自定义构建函数引用装饰器，接收外部传入的@Builder逻辑",
+      "anchor": "@builderparam",
+      "status": "missing"
+    },
+    {
+      "name": "ForEach",
+      "purpose": "数组类型数据的循环渲染，为每个元素创建对应组件",
+      "anchor": "foreach",
+      "status": "found"
+    },
+    {
+      "name": "LazyForEach",
+      "purpose": "按需迭代数据源的懒加载循环渲染，支持IDataSource",
+      "anchor": "lazyforeach",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "V1装饰器（@State、@Prop、@Link、@ObjectLink、@Observed、@Builder、@BuilderParam）本地未见独立API参考页面，定义仅在arkts-guides开发指南中",
+    "@StorageLink/@StorageProp在本地API参考中仅被提及说明与AppStorage/LocalStorage的联动关系，无独立签名页面",
+    "@Provide/@Consume仅提供ProvideOptions参数文档（allowOverride），装饰器本身签名在开发指南中",
+    "AppStorage和LocalStorage提供完整API参考：ref/setAndRef/link/setAndLink/prop/setAndProp等",
+    "@Watch在本地有完整API参考（包含V1 Watch和V2 @Monitor/@SyncMonitor）"
+  ],
+  "missingApis": [
+    "@State",
+    "@Prop",
+    "@Link",
+    "@ObjectLink",
+    "@Observed",
+    "@Builder",
+    "@BuilderParam",
+    "@StorageLink/@StorageProp"
+  ]
+}

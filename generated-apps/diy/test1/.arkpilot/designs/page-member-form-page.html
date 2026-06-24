@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>手作·印记 - 会员表单</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #FAF6F0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: #5A4A3F;
+    }
+    body { max-width: 390px; margin: 0 auto; }
+    .page { min-height: 100%; padding-bottom: 32px; }
+    .header {
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .back-btn {
+      width: 36px; height: 36px;
+      background: #FFFDF9; border: 1px solid #F0E6DA;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .header-title {
+      flex: 1;
+      font-family: "ZCOOL XiaoWei", "STKaiti", cursive;
+      font-size: 28px; color: #3D2B1F;
+    }
+    .header-action {
+      font-size: 14px; font-weight: 600; color: #A0522D;
+      background: transparent; border: none;
+    }
+    .form { padding: 0 20px; }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block; font-size: 14px; font-weight: 700; color: #3D2B1F;
+      margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%;
+      background: #F5EDE4;
+      border: 1.5px solid transparent;
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-size: 15px; color: #3D2B1F;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: #C67B5C;
+      background: #FAF6F0;
+      box-shadow: 0 0 0 4px rgba(198,123,92,0.08);
+    }
+    .form-input::placeholder { color: #9E9186; }
+    .craft-options {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .craft-chip {
+      background: #F5EDE4;
+      color: #5A4A3F;
+      font-size: 14px; font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+    }
+    .craft-chip.selected {
+      background: #C67B5C; color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(198,123,92,0.24);
+    }
+    .image-picker {
+      width: 100px; height: 100px;
+      background: #F5EDE4;
+      border: 2px dashed #D9CFC2;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      color: #9E9186;
+    }
+    .works-row {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .works-row .image-picker { width: 80px; height: 80px; }
+    .submit-row {
+      padding: 8px 20px 32px;
+      display: flex; gap: 12px;
+    }
+    .btn-primary {
+      flex: 1;
+      background: #C67B5C; color: #FFFFFF;
+      border: none; border-radius: 999px;
+      padding: 15px 0; font-size: 15px; font-weight: 700;
+      box-shadow: 0 4px 14px rgba(198,123,92,0.32);
+    }
+    .btn-danger {
+      flex: 1;
+      background: transparent; color: #A0522D;
+      border: 1.5px solid #A0522D; border-radius: 999px;
+      padding: 14px 0; font-size: 15px; font-weight: 600;
+    }
+  </style>
+</head>
+<body data-page-id="member-form-page">
+  <div class="page">
+    <header class="header">
+      <button class="back-btn" aria-label="返回">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D2B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>Go Back</title>
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </button>
+      <h1 class="header-title">编辑会员</h1>
+      <button class="header-action" data-ui-id="member-form-delete-button">删除</button>
+    </header>
+
+    <form class="form">
+      <div class="form-group">
+        <label class="form-label">头像</label>
+        <div class="image-picker" data-ui-id="member-form-avatar-picker">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <title>Select Member Avatar</title>
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="member-name">姓名</label>
+        <input id="member-name" class="form-input" data-ui-id="member-form-name-input" type="text" value="林小雨" placeholder="请输入姓名" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="member-phone">手机号</label>
+        <input id="member-phone" class="form-input" data-ui-id="member-form-phone-input" type="tel" value="138****6688" placeholder="请输入手机号" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">擅长工艺</label>
+        <div class="craft-options" data-ui-id="member-form-crafts-selector">
+          <button type="button" class="craft-chip selected">陶艺</button>
+          <button type="button" class="craft-chip selected">编织</button>
+          <button type="button" class="craft-chip selected">植物染</button>
+          <button type="button" class="craft-chip">木工</button>
+          <button type="button" class="craft-chip">皮具</button>
+          <button type="button" class="craft-chip">金缮</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">作品图</label>
+        <div class="works-row" data-ui-id="member-form-works-picker">
+          <div class="image-picker">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <title>Add Artwork Photo</title>
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <div class="image-picker">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <title>Add Artwork Photo</title>
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <div class="image-picker">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <title>Add Artwork Photo</title>
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15 16 10 5 21"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="submit-row">
+      <button type="submit" class="btn-primary" data-ui-id="member-form-save-button">保存</button>
+      <button type="button" class="btn-danger" data-ui-id="member-form-delete-button">删除</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "appName": "童词卡",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "WordItem",
+        "fields": [
+          { "name": "id", "type": "string", "notes": "stable word id, used for repeated-card keys" },
+          { "name": "english", "type": "string" },
+          { "name": "meaning", "type": "string" },
+          { "name": "phonetic", "type": "string" },
+          { "name": "stage", "type": "string", "notes": "learning stage; default 'basic'" }
+        ]
+      }
+    ],
+    "settings": [],
+    "computed": [
+      { "name": "currentWord", "type": "WordItem | undefined", "notes": "queue[0], the card currently shown" },
+      { "name": "remainingCount", "type": "number", "notes": "queue.length" },
+      { "name": "knownCount", "type": "number", "notes": "correct answers this session" },
+      { "name": "totalCount", "type": "number", "notes": "original queue size" },
+      { "name": "isComplete", "type": "boolean", "notes": "queue.length === 0 and totalCount > 0" },
+      { "name": "isEmpty", "type": "boolean", "notes": "bank produced no words for the stage" }
+    ],
+    "persistenceFields": [],
+    "persistenceStrategy": "runtime-only",
+    "persistenceNotes": "Spec section 6/9: no cross-session persistence. State (queue, knownCount) lives in memory for the study session only."
+  },
+  "services": [
+    {
+      "name": "WordBankService",
+      "role": "Loads the built-in word library filtered by learning stage.",
+      "interface": "loadStage(stage: string): WordItem[]",
+      "notes": "Built-in static word resource. No network, no login. Default stage 'basic'. Returns stable WordItem[] with unique ids."
+    }
+  ],
+  "stateMachine": {
+    "globalStates": [],
+    "pageStates": {
+      "study": {
+        "states": ["studying", "complete", "empty"],
+        "initial": "studying",
+        "owner": "StudyPage owns queue/knownCount/isFlipped as @State; computed fields synced via syncFromQueue() after each transition",
+        "transitions": [
+          { "from": "studying", "event": "mark-known", "to": "studying | complete", "guard": "queue becomes empty after removal" },
+          { "from": "studying", "event": "mark-unknown", "to": "studying" },
+          { "from": "complete", "event": "restart-study", "to": "studying" },
+          { "from": "studying", "event": "toggle-flip-card", "to": "studying", "notes": "toggles isFlipped only" }
+        ]
+      }
+    }
+  },
+  "interactionFlows": [
+    {
+      "name": "toggle-flip-card",
+      "trigger": "semanticTarget 'study-flashcard' click",
+      "steps": [
+        "Toggle isFlipped on the current card.",
+        "Render front (english) when isFlipped=false, back (meaning+phonetic) when isFlipped=true."
+      ],
+      "expectedState": "isFlipped flipped; queue/knownCount unchanged",
+      "errorPaths": []
+    },
+    {
+      "name": "mark-known",
+      "trigger": "semanticTarget 'study-known-button' click",
+      "steps": [
+        "Remove the current card (queue[0]) from the queue.",
+        "Increment knownCount by 1.",
+        "Reset isFlipped to false.",
+        "Advance to the new queue[0] (next card).",
+        "If queue is now empty, transition to complete state."
+      ],
+      "sideEffects": ["knownCount++"],
+      "expectedState": "remainingCount decreased by 1; knownCount increased by 1; isFlipped=false; shows next card or completion panel",
+      "errorPaths": []
+    },
+    {
+      "name": "mark-unknown",
+      "trigger": "semanticTarget 'study-unknown-button' click",
+      "steps": [
+        "Take the current card (queue[0]) and move it to the end of the queue.",
+        "Reset isFlipped to false.",
+        "Advance to the new queue[0] (next card)."
+      ],
+      "sideEffects": [],
+      "expectedState": "remainingCount unchanged; knownCount unchanged; isFlipped=false; shows next card; unknown card scheduled for re-review at queue tail",
+      "errorPaths": []
+    },
+    {
+      "name": "restart-study",
+      "trigger": "semanticTarget 'study-restart-button' click",
+      "steps": [
+        "Reload the word queue from WordBankService for the current stage.",
+        "Reset knownCount to 0.",
+        "Reset isFlipped to false.",
+        "Transition back to studying state."
+      ],
+      "expectedState": "queue refilled; knownCount=0; isFlipped=false; studying state",
+      "errorPaths": []
+    }
+  ],
+  "testTargets": [
+    "study-progress-header",
+    "study-remaining-count",
+    "study-known-count",
+    "study-flashcard",
+    "study-word-front",
+    "study-word-back-meaning",
+    "study-word-back-phonetic",
+    "study-known-button",
+    "study-unknown-button",
+    "study-empty-state",
+    "study-completion-panel",
+    "study-completion-desc",
+    "study-restart-button"
+  ],
+  "changeRequests": [
+    {
+      "topic": "single-page shell vs scaffold bottom-tab shell",
+      "detail": "Spec sections 4/5 explicitly require a single-page app with NO bottom tab navigation (launch directly into StudyPage). The scaffold ships a fixed multi-tab BottomTabBar shell (Theme/SvgIcon/TabTypes/BottomTabBar/Index). Plan: simplify Index.ets to a single-surface shell that loads StudyPage directly and omits BottomTabBar. Keep Theme.ets as the shared token source; leave BottomTabBar/TabTypes/SvgIcon present but unused unless tabs are added later.",
+      "blocking": false
+    },
+    {
+      "topic": "added study-completion-desc semantic target",
+      "detail": "During implementation, the completion description text (e.g. '已认识 X / Y 个单词') was bound to study-empty-state, causing a duplicate id warning. A new assertion target study-completion-desc was added to ui-tree.json and StudyPage.ets to resolve the conflict while preserving study-empty-state for the true empty-bank state.",
+      "blocking": false
+    },
+    {
+      "topic": "StudySession view-model inlined into StudyPage",
+      "detail": "The original plan placed session state in StudySession.ets with @Observed/@ObjectLink. During runtime verification, primitive @State values passed through a @Builder parameter lost reactivity, so the count labels did not update. To guarantee reactive updates, the queue/knownCount/remainingCount/totalCount/currentWord/isComplete state was moved directly into StudyPage as @State fields and synced via syncFromQueue(). StudySession.ets remains in the repo but is not imported by the running app; it can be removed or re-adopted if a future refactor solves the builder-reactivity issue.",
+      "blocking": false
+    }
+  ]
+}

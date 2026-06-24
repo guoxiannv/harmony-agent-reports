@@ -1,0 +1,33 @@
+{
+  "module": "01-layout.md",
+  "group": "01 — Layout & Container Components",
+  "apiCount": 13,
+  "apis": [
+    {"name": "Column", "purpose": "沿垂直方向布局的容器，可设置子组件间距", "anchor": "column", "status": "found"},
+    {"name": "Row", "purpose": "沿水平方向布局的容器，可设置子组件间距", "anchor": "row", "status": "found"},
+    {"name": "Stack", "purpose": "堆叠容器，子组件依次入栈，后一个覆盖前一个", "anchor": "stack", "status": "found"},
+    {"name": "Flex", "purpose": "以弹性方式布局子组件的容器，可高效排列、对齐子元素并分配剩余空间", "anchor": "flex", "status": "found"},
+    {"name": "Scroll", "purpose": "可滚动的容器组件，当子组件尺寸超出父组件时内容可滚动", "anchor": "scroll", "status": "found"},
+    {"name": "List", "purpose": "列表容器，包含一系列相同宽度的列表项，适合连续多行呈现同类数据", "anchor": "list", "status": "found"},
+    {"name": "Grid/ForEach", "purpose": "网格容器（Grid）由行列分割单元格组成；ForEach 提供基于数组的循环渲染能力", "anchor": "gridforeach", "status": "found"},
+    {"name": "Tabs/TabContent", "purpose": "通过页签进行内容视图切换的容器组件（Tabs）；TabContent 对应切换页签的内容视图", "anchor": "tabstabcontent", "status": "found"},
+    {"name": "Blank", "purpose": "空白填充组件，在容器主轴方向上自动填充容器空余部分", "anchor": "blank", "status": "found"},
+    {"name": "Divider", "purpose": "提供分割线组件，分割不同内容块或内容元素", "anchor": "divider", "status": "found"},
+    {"name": "Badge", "purpose": "信息标记组件，附加在单个组件上用于信息提醒", "anchor": "badge", "status": "found"},
+    {"name": "Swiper", "purpose": "滑块视图容器，提供子组件滑动轮播显示的能力", "anchor": "swiper", "status": "found"},
+    {"name": "router (page routing)", "purpose": "通过不同 url 访问不同页面的页面路由（已废弃，推荐 Navigation 组件）", "anchor": "router-page-routing", "status": "found"}
+  ],
+  "notableFindings": [
+    "Column/Row/Stack/Flex/Scroll/List/Grid/Swiper/Tabs/Badge/Blank/Divider 均为 ArkUI 内置组件，无需 import 语句",
+    "Flex 存在二次布局过程，性能敏感场景推荐 Column/Row 替代",
+    "Scroll 嵌套 List 时若 List 无宽高则全量加载，需显式指定宽高",
+    "ForEach 一次性创建全部子节点；大数据集推荐 LazyForEach（按需创建销毁）",
+    "@ohos.router 从 API version 18 废弃，推荐 Navigation 组件或 this.getUIContext().getRouter()",
+    "Badge 支持 count（数字型）和 value（字符串型）两种构造方式",
+    "Blank 仅在父组件为 Row/Column/Flex 时生效；交叉轴默认 alignSelf: ItemAlign.Stretch 撑满",
+    "router 导入路径：import { router } from '@kit.ArkUI'",
+    "Tabs 子组件仅支持 TabContent 及渲染控制语法（if/else/ForEach）",
+    "List 子组件仅支持 ListItem 和 ListItemGroup；Grid 子组件仅支持 GridItem"
+  ],
+  "missingApis": []
+}

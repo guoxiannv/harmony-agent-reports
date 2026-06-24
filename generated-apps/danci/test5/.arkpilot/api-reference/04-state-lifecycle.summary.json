@@ -1,0 +1,179 @@
+{
+  "module": "04-state-lifecycle.md",
+  "group": "04 — State Management & Lifecycle",
+  "apiCount": 15,
+  "apis": [
+    {
+      "name": "@Component",
+      "purpose": "自定义组件标记装饰器，用于声明式ArkUI自定义组件",
+      "anchor": "component",
+      "status": "found"
+    },
+    {
+      "name": "@Entry",
+      "purpose": "页面入口装饰器，标记自定义组件作为UI页面入口，支持命名路由和LocalStorage配置",
+      "anchor": "entry",
+      "status": "found"
+    },
+    {
+      "name": "@Preview",
+      "purpose": "组件预览装饰器，支持在IDE中预览单个自定义组件UI效果，可配置设备参数",
+      "anchor": "preview",
+      "status": "found"
+    },
+    {
+      "name": "aboutToAppear",
+      "purpose": "自定义组件创建后build()执行前的生命周期回调，可在此初始化状态变量",
+      "anchor": "abouttoappear",
+      "status": "found"
+    },
+    {
+      "name": "aboutToDisappear",
+      "purpose": "自定义组件析构销毁时的生命周期回调，不允许在此改变状态变量",
+      "anchor": "abouttodisappear",
+      "status": "found"
+    },
+    {
+      "name": "build",
+      "purpose": "自定义组件必须实现的声明式UI描述函数，定义组件结构和布局",
+      "anchor": "build",
+      "status": "found"
+    },
+    {
+      "name": "@Watch",
+      "purpose": "状态管理V1中监听状态变量变化的属性装饰器，变量变化时回调指定函数",
+      "anchor": "watch",
+      "status": "found"
+    },
+    {
+      "name": "LocalStorage",
+      "purpose": "页面级UI状态存储，支持页面内共享，提供get/set/link/prop/delete等操作",
+      "anchor": "localstorage9",
+      "status": "found"
+    },
+    {
+      "name": "AppStorage",
+      "purpose": "应用全局UI状态存储单例，跨页面/组件共享状态，支持link双向/prop单向绑定",
+      "anchor": "appstorage",
+      "status": "found"
+    },
+    {
+      "name": "PersistentStorage",
+      "purpose": "持久化存储UI状态，将AppStorage中属性持久化到磁盘文件",
+      "anchor": "persistentstorage",
+      "status": "found"
+    },
+    {
+      "name": "StateManagement",
+      "purpose": "状态管理V2模块，提供AppStorageV2/PersistenceV2/UIUtils用于V2状态管理",
+      "anchor": "ohosarkuistatemanagement-状态管理",
+      "status": "found"
+    },
+    {
+      "name": "Provide",
+      "purpose": "@Provide装饰器的参数配置，支持allowOverride重写（仅参数类型在API参考中）",
+      "anchor": "provideoptions",
+      "status": "found"
+    },
+    {
+      "name": "Observed",
+      "purpose": "V1装饰器，@Observed装饰的class可被状态管理框架观察变化",
+      "anchor": "observed",
+      "status": "missing"
+    },
+    {
+      "name": "ObjectLink",
+      "purpose": "V1装饰器，@ObjectLink用于在子组件中建立对@Observed对象的引用",
+      "anchor": "objectlink",
+      "status": "missing"
+    },
+    {
+      "name": "@Reusable",
+      "purpose": "组件复用装饰器，支持列表滚动场景下的自定义组件复用",
+      "anchor": "reusable",
+      "status": "missing"
+    },
+    {
+      "name": "@Builder",
+      "purpose": "自定义构建函数装饰器，用于封装重复UI逻辑，支持全局和局部两种形式",
+      "anchor": "builder",
+      "status": "missing"
+    },
+    {
+      "name": "@BuilderParam",
+      "purpose": "用于接收@Builder函数作为参数的装饰器，实现组件内容定制",
+      "anchor": "builderparam",
+      "status": "missing"
+    },
+    {
+      "name": "@Prop",
+      "purpose": "V1装饰器，父组件向子组件传递数据的单向数据绑定",
+      "anchor": "prop",
+      "status": "missing"
+    },
+    {
+      "name": "@Link",
+      "purpose": "V1装饰器，父组件和子组件之间的双向数据绑定",
+      "anchor": "link",
+      "status": "missing"
+    },
+    {
+      "name": "@State",
+      "purpose": "V1装饰器，标记组件内部可变状态变量，变化时触发UI刷新",
+      "anchor": "state",
+      "status": "missing"
+    },
+    {
+      "name": "Consume",
+      "purpose": "V1装饰器，子组件接收由@Provide提供的状态变量",
+      "anchor": "consume",
+      "status": "missing"
+    }
+  ],
+  "notableFindings": [
+    "@State、@Prop、@Link、@Observed、@ObjectLink、@Builder、@BuilderParam、@Consume、@Reusable 等V1装饰器的完整定义仅存在于开发指南(guides/)中，不在API参考(references/)目录下，建议将这些API移至独立的'状态管理V1装饰器'模块",
+    "AppStorage旧式API(Link、SetAndLink、Prop等首字母大写)从API version 10起废弃，应使用小写新式API(ref/link/prop/set等)替代",
+    "PersistentStorage旧式API(PersistProp、DeleteProp等)从API version 10起废弃，新式API从API12开始支持null/undefined默认值",
+    "@Provide的ProvideOptions参数类型有API参考条目，可配置allowOverride支持重写",
+    "状态管理V2的PersistenceV2.globalConnect从API18起支持，可通过ConnectOptions配置加密级别(EL1-EL5)",
+    "@ObservedV2/@Trace/@Monitor/@Computed是状态管理V2的装饰器体系，API version 12起可用"
+  ],
+  "missingApis": [
+    {
+      "name": "@Observed",
+      "reason": "仅在开发指南(guides/)中定义，API参考中无独立文档"
+    },
+    {
+      "name": "@ObjectLink",
+      "reason": "仅在开发指南(guides/)中定义，API参考中通过UIUtils.makeV1Observed间接引用"
+    },
+    {
+      "name": "@Reusable",
+      "reason": "仅在开发指南(guides/)中定义，API参考中仅有reuseId/reuse属性方法"
+    },
+    {
+      "name": "@Builder",
+      "reason": "仅在开发指南(guides/)中定义，API参考中wrapBuilder/mutableBuilder间接引用"
+    },
+    {
+      "name": "@BuilderParam",
+      "reason": "仅在开发指南(guides/)中定义，API参考中无独立文档"
+    },
+    {
+      "name": "@Prop",
+      "reason": "仅在开发指南(guides/)中定义，API参考中无独立文档"
+    },
+    {
+      "name": "@Link",
+      "reason": "仅在开发指南(guides/)中定义，API参考中无独立文档"
+    },
+    {
+      "name": "@State",
+      "reason": "仅在开发指南(guides/)中定义，API参考中无独立文档"
+    },
+    {
+      "name": "Consume",
+      "reason": "仅在开发指南(guides/)中定义，API参考中无独立文档"
+    }
+  ]
+}

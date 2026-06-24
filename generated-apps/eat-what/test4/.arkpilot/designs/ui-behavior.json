@@ -1,0 +1,244 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "version": "arkpilot-a2ui/v2",
+  "appName": "今天吃什么",
+  "summary": "Local-first daily meal decision helper: spin wheel, recommend-by-fridge, mood/time filter, daily log, and share card.",
+  "dataModel": {
+    "enums": {
+      "MoodTag": ["rich", "light", "spicy", "sweet", "comfort", "quick"],
+      "MealTime": ["breakfast", "lunch", "dinner", "lateNight"]
+    },
+    "entities": [
+      {
+        "name": "Ingredient",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "name", "type": "string" }
+        ]
+      },
+      {
+        "name": "Dish",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "name", "type": "string" },
+          { "name": "ingredientNames", "type": "string[]" },
+          { "name": "moods", "type": "MoodTag[]" },
+          { "name": "times", "type": "MealTime[]" },
+          { "name": "minutes", "type": "number" },
+          { "name": "calories", "type": "number?", "note": "optional rough estimate" }
+        ],
+        "source": "Hard-coded fallback dish library in DishCatalog (spec-permitted default behavior, NOT seeded user data)."
+      },
+      {
+        "name": "Recommendation",
+        "fields": [
+          { "name": "dish", "type": "Dish" },
+          { "name": "matchCount", "type": "number", "note": "ingredient overlap count" },
+          { "name": "totalIngredients", "type": "number", "note": "dish ingredient count" },
+          { "name": "score", "type": "number", "note": "rank score" }
+        ]
+      },
+      {
+        "name": "LogEntry",
+        "fields": [
+          { "name": "id", "type": "string" },
+          { "name": "dishId", "type": "string" },
+          { "name": "dishName", "type": "string" },
+          { "name": "timestamp", "type": "number", "note": "epoch ms" },
+          { "name": "mealTime", "type": "MealTime" },
+          { "name": "mood", "type": "MoodTag?" },
+          { "name": "note", "type": "string?" }
+        ],
+        "persistence": "Persisted via StorageService/preferences under key 'log_entries'."
+      },
+      {
+        "name": "ShareCardPreview",
+        "fields": [
+          { "name": "dishName", "type": "string" },
+          { "name": "date", "type": "string" },
+          { "name": "mealTimeLabel", "type": "string" },
+          { "name": "moodLabel", "type": "string?" },
+          { "name": "note", "type": "string?" }
+        ]
+      }
+    ],
+    "formState": [
+      { "path": "/fridge/input", "type": "string", "owner": "FridgeController.inputText" },
+      { "path": "/fridge/ingredients", "type": "Ingredient[]", "owner": "FridgeController.ingredients" },
+      { "path": "/filters/mood", "type": "MoodTag|string", "owner": "MoodController/HomeController.selectedMood" },
+      { "path": "/filters/time", "type": "MealTime|string", "owner": "MoodController/HomeController.selectedTime" }
+    ],
+    "computedState": [
+      { "path": "/wheel/state", "type": "string", "owner": "HomeController.wheelState", "values": ["idle", "spinning", "settled"] },
+      { "path": "/recommendation/current", "type": "Dish|null", "owner": "HomeController.currentDish" },
+      { "path": "/fridge/recommendations", "type": "Recommendation[]", "owner": "FridgeController.recommendations" },
+      { "path": "/mood/results", "type": "Dish[]", "owner": "MoodController.results" },
+      { "path": "/log/todayCount", "type": "number", "owner": "LogController.todayCount" },
+      { "path": "/log/entries", "type": "LogEntry[]", "owner": "LogController.entries" },
+      { "path": "/share/preview", "type": "ShareCardPreview|null", "owner": "ShareCardController.preview" }
+    ]
+  },
+  "services": [
+    {
+      "name": "StorageService",
+      "responsibility": "Preferences-backed key-value + JSON persistence; initialized with UIAbility context.",
+      "api": ["init(context)", "putString(key,val)", "getString(key,def)", "putJson(key,val)", "getJson(key,converter,def)"]
+    },
+    {
+      "name": "LogRepository",
+      "responsibility": "CRUD for LogEntry; persists via StorageService; derives todayCount and date filtering.",
+      "api": ["getAll()", "addEntry(entry)", "removeEntry(id)", "todayCount()"]
+    },
+    {
+      "name": "RecommendationEngine",
+      "responsibility": "Pure logic: spin pick (deterministic post-animation result), ingredient-overlap ranking, mood/time filtering.",
+      "api": ["spin(dishes)", "rankByIngredients(dishes,ingredientNames)", "filterByMoodTime(dishes,mood,time)"]
+    },
+    {
+      "name": "ShareCardBuilder",
+      "responsibility": "Build a ShareCardPreview from a LogEntry (date/label formatting).",
+      "api": ["build(entry)"]
+    }
+  ],
+  "stateMachine": {
+    "home": {
+      "states": ["idle", "spinning", "settled"],
+      "transitions": [
+        { "from": "idle|settled", "event": "spin-wheel", "to": "spinning", "then": "settled", "note": "spin result computed on settle" }
+      ]
+    },
+    "share-card": {
+      "states": ["closed", "open"],
+      "transitions": [
+        { "from": "closed", "event": "open-share-card", "to": "open" },
+        { "from": "open", "event": "close-share-card", "to": "closed" },
+        { "from": "open", "event": "export-share-card", "to": "open", "note": "export side-effect, stays open" }
+      ]
+    }
+  },
+  "interactionFlows": [
+    {
+      "trigger": "home-spin-button / event spin-wheel",
+      "inputs": ["wheelSpeed"],
+      "steps": [
+        "HomeController.wheelState = spinning",
+        "RecommendationEngine.spin(dishLibrary) -> Dish",
+        "HomeController.currentDish = Dish, wheelState = settled",
+        "home-dish-result / home-dish-card reflect currentDish"
+      ],
+      "sideEffects": [],
+      "expectedState": "wheelState=settled, currentDish non-null",
+      "errorPath": "If dish library empty -> show fallback text '暂无菜品'"
+    },
+    {
+      "trigger": "home-log-button / event log-current-dish",
+      "inputs": ["dishId (currentDish)"],
+      "steps": [
+        "LogRepository.addEntry(currentDish, inferred mealTime by hour, selectedMood)",
+        "LogController refresh; home shows confirmation"
+      ],
+      "sideEffects": ["persist LogEntry"],
+      "expectedState": "todayCount incremented, entry appears in log",
+      "errorPath": "If currentDish null -> log button disabled/no-op"
+    },
+    {
+      "trigger": "fridge-add-button / event add-ingredient",
+      "inputs": ["ingredientName = fridge-ingredient-input"],
+      "steps": [
+        "validate non-empty, dedupe by name (case-insensitive)",
+        "FridgeController.ingredients.add({id, name})",
+        "clear /fridge/input"
+      ],
+      "expectedState": "fridge-ingredient-list contains new item",
+      "errorPath": "Empty/duplicate input -> ignored"
+    },
+    {
+      "trigger": "remove-ingredient",
+      "inputs": ["ingredientId"],
+      "steps": ["FridgeController.ingredients.remove(id)"],
+      "expectedState": "item removed from list"
+    },
+    {
+      "trigger": "fridge-recommend-button / event recommend-by-ingredients",
+      "inputs": ["ingredientIds"],
+      "steps": [
+        "names = ingredients.map(name)",
+        "RecommendationEngine.rankByIngredients(dishLibrary, names) -> Recommendation[]",
+        "FridgeController.recommendations = result"
+      ],
+      "expectedState": "fridge-recommendation-list populated or fridge-no-match-state when empty",
+      "errorPath": "No ingredients -> empty list + empty-state"
+    },
+    {
+      "trigger": "mood-apply-button / event apply-mood-filters",
+      "inputs": ["mood", "time"],
+      "steps": [
+        "RecommendationEngine.filterByMoodTime(dishLibrary, mood, time) -> Dish[]",
+        "MoodController.results = result"
+      ],
+      "expectedState": "mood-dish-list populated or mood-empty-state",
+      "errorPath": "No match -> empty-state"
+    },
+    {
+      "trigger": "mood-log-button / event log-selected-dish",
+      "inputs": ["dishId"],
+      "steps": [
+        "resolve Dish from library",
+        "LogRepository.addEntry with selected mood/time",
+        "LogController refresh"
+      ],
+      "sideEffects": ["persist LogEntry"],
+      "expectedState": "todayCount incremented"
+    },
+    {
+      "trigger": "log-share-button / event open-share-card",
+      "inputs": ["logEntryId"],
+      "steps": [
+        "resolve LogEntry",
+        "ShareCardBuilder.build(entry) -> ShareCardPreview",
+        "ShareCardController.preview = preview, state=open"
+      ],
+      "expectedState": "share-card-preview shows dish/date; export button enabled",
+      "errorPath": "Entry not found -> sheet stays closed"
+    },
+    {
+      "trigger": "share-card-export-button / event export-share-card",
+      "inputs": ["logEntryId", "format"],
+      "steps": ["Produce export payload (text summary to clipboard in v1 local-only); provide feedback"],
+      "sideEffects": ["clipboard copy of card summary"],
+      "expectedState": "export feedback shown; sheet remains open until close"
+    },
+    {
+      "trigger": "share-card-close-button / event close-share-card",
+      "steps": ["ShareCardController.state = closed, preview cleared"],
+      "expectedState": "sheet closed"
+    }
+  ],
+  "testTargets": [
+    { "id": "home-spin-button", "action": "tap", "binding": "event spin-wheel" },
+    { "id": "home-dish-result", "assertion": "text-not-empty after spin" },
+    { "id": "home-dish-card", "assertion": "reflects /recommendation/current" },
+    { "id": "home-log-button", "action": "tap", "binding": "event log-current-dish" },
+    { "id": "home-filter-mood", "role": "input", "binding": "/filters/mood" },
+    { "id": "home-filter-time", "role": "input", "binding": "/filters/time" },
+    { "id": "fridge-ingredient-input", "role": "input", "binding": "/fridge/input" },
+    { "id": "fridge-add-button", "action": "tap" },
+    { "id": "fridge-ingredient-list", "assertion": "has-items-or-empty", "itemIdPattern": "fridge-ingredient-{id}" },
+    { "id": "fridge-recommend-button", "action": "tap" },
+    { "id": "fridge-recommendation-list", "assertion": "has-items-or-empty", "itemIdPattern": "fridge-recommendation-{id}" },
+    { "id": "mood-mood-selector", "role": "input" },
+    { "id": "mood-time-selector", "role": "input" },
+    { "id": "mood-apply-button", "action": "tap" },
+    { "id": "mood-dish-list", "assertion": "has-items-or-empty", "itemIdPattern": "mood-dish-{id}" },
+    { "id": "mood-log-button", "action": "tap" },
+    { "id": "log-today-count", "assertion": "number >= 0" },
+    { "id": "log-entry-list", "assertion": "has-items-or-empty", "itemIdPattern": "log-entry-{id}" },
+    { "id": "log-share-button", "action": "tap" },
+    { "id": "share-card-preview", "assertion": "reflects /share/preview" },
+    { "id": "share-card-export-button", "action": "tap" },
+    { "id": "share-card-close-button", "action": "tap" }
+  ],
+  "changeRequests": [
+    "Scaffold shell ships with template tabs (home/explore/orders/rewards) and template page imports in Index.ets; these must be remapped to the real 4 tabs (tab-home/fridge/mood/log) during shell-contract update and visual integration. Index.ets currently imports non-existent HomePage/ExplorePage/OrdersPage/RewardsPage/DetailPage/EditorPage/ProfilePage — must be replaced by real Home/Fridge/Mood/Log pages + share-card sheet during visual integration."
+  ]
+}

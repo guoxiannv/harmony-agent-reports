@@ -1,0 +1,46 @@
+{
+  "module": "07-communication.md",
+  "group": "07 — Phone, SMS & Communication",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "@ohos.telephony.call",
+      "purpose": "Call management: dial, make call, check call state, answer/hangup/reject calls",
+      "anchor": "ohostelephonycall",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.telephony.sms",
+      "purpose": "SMS service: send messages, create message from PDU, query default SIM slot",
+      "anchor": "ohostelephonysms",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.telephony.radio",
+      "purpose": "Network search: get network state, signal strength, operator name, radio tech",
+      "anchor": "ohostelephonyradio",
+      "status": "found"
+    },
+    {
+      "name": "want",
+      "purpose": "Inter-component information carrier for starting abilities and passing data",
+      "anchor": "want",
+      "status": "found"
+    },
+    {
+      "name": "startAbility",
+      "purpose": "Launch a UIAbility from context with Want and optional StartOptions",
+      "anchor": "startability",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "call.dial deprecated from API 9; third-party apps must use call.makeCall to jump to system dialer",
+    "call.makeCall(12+) supports Context parameter; (24+) supports MakeCallOptions to hide dial screen",
+    "sms.sendMessage deprecated from API 10; use sms.sendShortMessage instead",
+    "SMS sending requires system permission ohos.permission.SEND_MESSAGES (system apps only)",
+    "Want max data size is 200KB from API 23 (100KB before)",
+    "startAbility supports callback and Promise patterns and only runs on main thread"
+  ],
+  "missingApis": []
+}

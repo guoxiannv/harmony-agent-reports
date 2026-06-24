@@ -1,0 +1,294 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Pet",
+        "fields": [
+          { "name": "id", "type": "string", "required": true, "generated": "uuid" },
+          { "name": "name", "type": "string", "required": true },
+          { "name": "avatar", "type": "string", "required": false },
+          { "name": "species", "type": "string", "required": false },
+          { "name": "breed", "type": "string", "required": false },
+          { "name": "birthday", "type": "string", "required": false },
+          { "name": "gender", "type": "string", "enum": ["male", "female", "unknown"], "required": false },
+          { "name": "weight", "type": "number", "required": false },
+          { "name": "neutered", "type": "boolean", "required": false },
+          { "name": "medicalHistory", "type": "string", "required": false }
+        ]
+      },
+      {
+        "name": "Record",
+        "fields": [
+          { "name": "id", "type": "string", "required": true, "generated": "uuid" },
+          { "name": "petId", "type": "string", "required": true },
+          { "name": "type", "type": "string", "enum": ["food", "waste", "weight", "medicine"], "required": true },
+          { "name": "datetime", "type": "string", "required": true },
+          { "name": "foodAmount", "type": "number", "required": false },
+          { "name": "foodType", "type": "string", "required": false },
+          { "name": "wasteType", "type": "string", "enum": ["pee", "poop", "vomit", "other"], "required": false },
+          { "name": "weightValue", "type": "number", "required": false },
+          { "name": "medicineName", "type": "string", "required": false },
+          { "name": "medicineDose", "type": "string", "required": false },
+          { "name": "note", "type": "string", "required": false }
+        ]
+      },
+      {
+        "name": "Reminder",
+        "fields": [
+          { "name": "id", "type": "string", "required": true, "generated": "uuid" },
+          { "name": "petId", "type": "string", "required": true },
+          { "name": "title", "type": "string", "required": true },
+          { "name": "category", "type": "string", "enum": ["vaccine", "deworm", "checkup", "other"], "required": true },
+          { "name": "dueDate", "type": "string", "required": true },
+          { "name": "advanceDays", "type": "number", "required": false, "default": 1 },
+          { "name": "repeat", "type": "boolean", "required": false, "default": false },
+          { "name": "enabled", "type": "boolean", "required": false, "default": true }
+        ]
+      },
+      {
+        "name": "MedicalRecord",
+        "fields": [
+          { "name": "id", "type": "string", "required": true, "generated": "uuid" },
+          { "name": "petId", "type": "string", "required": true },
+          { "name": "date", "type": "string", "required": true },
+          { "name": "hospital", "type": "string", "required": false },
+          { "name": "doctor", "type": "string", "required": false },
+          { "name": "symptom", "type": "string", "required": false },
+          { "name": "diagnosis", "type": "string", "required": false },
+          { "name": "prescription", "type": "string", "required": false },
+          { "name": "images", "type": "string[]", "required": false }
+        ]
+      },
+      {
+        "name": "FamilyGroup",
+        "fields": [
+          { "name": "id", "type": "string", "required": true, "generated": "uuid" },
+          { "name": "name", "type": "string", "required": true },
+          { "name": "inviteCode", "type": "string", "required": true },
+          { "name": "members", "type": "FamilyMember[]", "required": true }
+        ]
+      },
+      {
+        "name": "FamilyMember",
+        "fields": [
+          { "name": "id", "type": "string", "required": true, "generated": "uuid" },
+          { "name": "nickname", "type": "string", "required": true },
+          { "name": "role", "type": "string", "enum": ["owner", "member"], "required": true },
+          { "name": "avatar", "type": "string", "required": false }
+        ]
+      }
+    ],
+    "settings": {
+      "selectedPetId": { "type": "string", "persist": false },
+      "activeTab": { "type": "TabId", "persist": false },
+      "currentSurface": { "type": "AppSurface", "persist": false },
+      "sheetMode": { "type": "SheetMode | null", "persist": false },
+      "editingRecordId": { "type": "string | null", "persist": false },
+      "editingPetId": { "type": "string | null", "persist": false },
+      "editingReminderId": { "type": "string | null", "persist": false },
+      "editingMedicalId": { "type": "string | null", "persist": false },
+      "recordFilter": {
+        "type": "object",
+        "fields": [
+          { "name": "petId", "type": "string | 'all'" },
+          { "name": "type", "type": "RecordType | 'all'" },
+          { "name": "dateRange", "type": "string", "enum": ["7", "30", "90", "all"] }
+        ]
+      },
+      "reminderFilterStatus": { "type": "string", "enum": ["all", "due", "upcoming", "normal"] },
+      "medicalFilterPetId": { "type": "string | 'all'" },
+      "chart": {
+        "type": "object",
+        "fields": [
+          { "name": "metric", "type": "string", "enum": ["weight", "food", "waste", "medicine"] },
+          { "name": "period", "type": "string", "enum": ["week", "month"] },
+          { "name": "petId", "type": "string" }
+        ]
+      }
+    },
+    "computedState": [
+      { "name": "pets", "binding": "/pets", "source": "store" },
+      { "name": "records", "binding": "/records", "source": "store" },
+      { "name": "reminders", "binding": "/reminders", "source": "store" },
+      { "name": "medicalRecords", "binding": "/medical", "source": "store" },
+      { "name": "familyGroup", "binding": "/family", "source": "store" },
+      { "name": "todayReminders", "binding": "/reminders/today", "dependsOn": ["reminders", "selectedPetId"] },
+      { "name": "recentRecords", "binding": "/records/recent", "dependsOn": ["records", "selectedPetId"] },
+      { "name": "filteredRecords", "binding": "/records", "dependsOn": ["records", "recordFilter"] },
+      { "name": "filteredReminders", "binding": "/reminders", "dependsOn": ["reminders", "reminderFilterStatus"] },
+      { "name": "filteredMedical", "binding": "/medical", "dependsOn": ["medicalRecords", "medicalFilterPetId"] },
+      { "name": "chartData", "binding": "/chart/data", "dependsOn": ["records", "chart.metric", "chart.period", "chart.petId"] },
+      { "name": "chartInsight", "binding": "/chart/insight", "dependsOn": ["chartData"] }
+    ]
+  },
+  "services": [
+    {
+      "name": "Store",
+      "responsibility": "Local JSON persistence using @kit.LocalStorageKit dataPreferences or in-memory fallback. Loads and saves pets, records, reminders, medical records, family group.",
+      "api": ["loadAll()", "savePets(pets)", "saveRecords(records)", "saveReminders(reminders)", "saveMedical(medical)", "saveFamily(family)"]
+    },
+    {
+      "name": "Repository",
+      "responsibility": "High-level data access and simple query helpers: CRUD for pets/records/reminders/medical/family; latest weight; status classification; chart aggregation.",
+      "api": ["add/update/delete/get/list/filter/chartData"]
+    },
+    {
+      "name": "NotificationService",
+      "responsibility": "Request publish permission and schedule local notifications for reminders. Stubbed initially; real notificationManager used when API reference available.",
+      "api": ["requestPermission()", "scheduleReminder(reminder)", "cancelReminder(id)", "publishDueNotifications(reminders)"]
+    },
+    {
+      "name": "ImageService",
+      "responsibility": "Pick image from album/photo picker and return local URI/path. Save medical images to app local files. Stubbed initially.",
+      "api": ["pickImage()", "pickImages(max)", "saveMedicalImage(uri)"]
+    }
+  ],
+  "stateMachine": {
+    "states": [
+      { "name": "boot", "description": "App initializing; load store and hydrate state" },
+      { "name": "home", "description": "Main tab surface; selected pet, today reminders, quick records, recent records" },
+      { "name": "records", "description": "Records tab with filters and timeline" },
+      { "name": "charts", "description": "Charts tab with metric/period selectors" },
+      { "name": "profile", "description": "Profile tab with navigation rows" },
+      { "name": "pets", "description": "Non-tab surface: pet archive list" },
+      { "name": "pet-detail", "description": "Non-tab surface: single pet overview" },
+      { "name": "reminders", "description": "Non-tab surface: reminder management list" },
+      { "name": "medical", "description": "Non-tab surface: medical records archive" },
+      { "name": "family", "description": "Non-tab surface: family group management" },
+      { "name": "sheet-open", "description": "A bottom sheet is open; underlying surface remains visible" }
+    ],
+    "transitions": [
+      { "from": "boot", "event": "load-complete", "to": "home" },
+      { "from": "home", "event": "switch-tab", "to": "records|charts|profile" },
+      { "from": "records", "event": "switch-tab", "to": "home|charts|profile" },
+      { "from": "charts", "event": "switch-tab", "to": "home|records|profile" },
+      { "from": "profile", "event": "navigate-*", "to": "pets|reminders|medical|family" },
+      { "from": "home", "event": "navigate-records", "to": "records" },
+      { "from": "pets", "event": "navigate-pet-detail", "to": "pet-detail" },
+      { "from": "pet-detail", "event": "navigate-back", "to": "profile|home" },
+      { "from": "pets|reminders|medical|family", "event": "navigate-back", "to": "profile" },
+      { "from": "*", "event": "open-*-editor", "to": "sheet-open" },
+      { "from": "sheet-open", "event": "close-sheet|save-*|delete-*", "to": "previous-surface" }
+    ]
+  },
+  "interactionFlows": [
+    {
+      "name": "add-pet",
+      "trigger": "home-add-pet-button | pets-add-button | pet-detail-edit",
+      "steps": [
+        "Open pet editor sheet with empty form and optional petId",
+        "User fills name (required), species, breed, birthday, gender, weight, neutered, medicalHistory; optionally picks avatar",
+        "Validate name non-empty",
+        "Save to Repository; persist via Store",
+        "If no selected pet, set selectedPetId to new pet",
+        "Close sheet and refresh list"
+      ],
+      "errorPaths": ["empty-name → show inline validation"],
+      "sideEffects": ["persist pets"]
+    },
+    {
+      "name": "delete-pet",
+      "trigger": "pet-editor-delete",
+      "steps": [
+        "Delete pet, its records, reminders, and medical records from Repository",
+        "Clear selectedPetId if deleted",
+        "Persist and close sheet"
+      ],
+      "errorPaths": []
+    },
+    {
+      "name": "quick-record",
+      "trigger": "home-quick-record-* | home-fab-add | records-add-button | records-item-{id}",
+      "steps": [
+        "Open record editor sheet; if editing existing id, load it; if new, prefill type and petId",
+        "User selects pet, type, datetime, type-specific fields, note",
+        "Validate required fields per type (petId, type, datetime; weight requires weightValue; medicine requires name)",
+        "Save to Repository; persist via Store",
+        "Close sheet; refresh home/records/charts"
+      ],
+      "errorPaths": ["missing-required → inline validation"]
+    },
+    {
+      "name": "delete-record",
+      "trigger": "record-editor-delete",
+      "steps": ["Delete record from Repository", "Persist and close sheet"]
+    },
+    {
+      "name": "manage-reminder",
+      "trigger": "home-reminder-* | pet-detail-add-reminder | reminders-add-button | reminders-item-{id}",
+      "steps": [
+        "Open reminder editor sheet; load existing if editing",
+        "User selects pet, title, category, dueDate, advanceDays, repeat, enabled",
+        "Validate petId, title, category, dueDate",
+        "Save to Repository; persist; schedule/cancel local notification",
+        "Close sheet"
+      ],
+      "errorPaths": ["missing-required → inline validation"]
+    },
+    {
+      "name": "delete-reminder",
+      "trigger": "reminder-editor-delete",
+      "steps": ["Delete reminder; cancel notification", "Persist and close sheet"]
+    },
+    {
+      "name": "manage-medical",
+      "trigger": "pet-detail-add-medical | medical-add-button | medical-card-{id}",
+      "steps": [
+        "Open medical editor sheet; load existing if editing",
+        "User selects pet, date, hospital, doctor, symptom, diagnosis, prescription; picks up to 9 images",
+        "Save to Repository; persist image URIs",
+        "Close sheet"
+      ]
+    },
+    {
+      "name": "delete-medical",
+      "trigger": "medical-editor-delete",
+      "steps": ["Delete medical record", "Persist and close sheet"]
+    },
+    {
+      "name": "filter-records",
+      "trigger": "records-filter-pet | records-filter-type | records-filter-date-range | records-clear-filters",
+      "steps": ["Update recordFilter state", "Recompute filteredRecords"]
+    },
+    {
+      "name": "chart-switch",
+      "trigger": "charts-metric-* | charts-period-* | charts-pet-switcher",
+      "steps": ["Update chart state metric/period/petId", "Recompute chartData and chartInsight"]
+    },
+    {
+      "name": "family-flow",
+      "trigger": "profile-family-row | family-create-button | family-invite-button",
+      "steps": [
+        "If no family group, create one with default name and generated inviteCode",
+        "Open family invite sheet showing inviteCode",
+        "Copy code to clipboard or share intent"
+      ]
+    }
+  ],
+  "testTargets": {
+    "home": ["home-pet-switcher", "home-pet-chip-{id}", "home-add-pet-button", "home-reminder-list", "home-reminder-{id}", "home-reminder-empty", "home-quick-record-food", "home-quick-record-waste", "home-quick-record-weight", "home-quick-record-medicine", "home-recent-record-list", "home-recent-record-{id}", "home-view-all-records", "home-tab-bar", "home-tab-records", "home-tab-charts", "home-tab-profile", "home-fab-add"],
+    "records": ["records-filter-pet", "records-filter-type", "records-filter-date-range", "records-clear-filters", "records-list", "records-item-{id}", "records-empty", "records-add-button"],
+    "charts": ["charts-pet-switcher", "charts-metric-tabs", "charts-metric-weight", "charts-metric-food", "charts-metric-waste", "charts-metric-medicine", "charts-period-week", "charts-period-month", "charts-canvas", "charts-empty", "charts-insight-card"],
+    "profile": ["profile-pets-row", "profile-reminders-row", "profile-medical-row", "profile-family-row", "profile-settings-row"],
+    "pets": ["pets-list", "pets-card-{id}", "pets-add-button", "pets-empty"],
+    "pet-detail": ["pet-detail-back", "pet-detail-edit", "pet-detail-avatar", "pet-detail-name", "pet-detail-info", "pet-detail-latest-weight", "pet-detail-reminder-list", "pet-detail-medical-list", "pet-detail-add-reminder", "pet-detail-add-medical"],
+    "reminders": ["reminders-filter-status", "reminders-list", "reminders-item-{id}", "reminders-item-{id}-toggle", "reminders-add-button", "reminders-empty"],
+    "medical": ["medical-filter-pet", "medical-list", "medical-card-{id}", "medical-card-{id}-images", "medical-add-button", "medical-empty"],
+    "family": ["family-group-name", "family-member-list", "family-member-{id}", "family-invite-button", "family-create-button", "family-empty"],
+    "record-editor-sheet": ["record-editor-close", "record-editor-type-picker", "record-editor-pet-picker", "record-editor-datetime", "record-editor-food-amount", "record-editor-food-type", "record-editor-waste-type", "record-editor-weight-value", "record-editor-medicine-name", "record-editor-medicine-dose", "record-editor-note", "record-editor-delete", "record-editor-save"],
+    "pet-editor-sheet": ["pet-editor-close", "pet-editor-avatar-picker", "pet-editor-name", "pet-editor-species", "pet-editor-breed", "pet-editor-birthday", "pet-editor-gender", "pet-editor-weight", "pet-editor-neutered", "pet-editor-medical-history", "pet-editor-delete", "pet-editor-save"],
+    "reminder-editor-sheet": ["reminder-editor-close", "reminder-editor-pet-picker", "reminder-editor-title", "reminder-editor-category", "reminder-editor-due-date", "reminder-editor-advance-days", "reminder-editor-repeat", "reminder-editor-delete", "reminder-editor-save"],
+    "medical-editor-sheet": ["medical-editor-close", "medical-editor-pet-picker", "medical-editor-date", "medical-editor-hospital", "medical-editor-doctor", "medical-editor-symptom", "medical-editor-diagnosis", "medical-editor-prescription", "medical-editor-image-picker", "medical-editor-image-list", "medical-editor-delete", "medical-editor-save"],
+    "family-invite-sheet": ["family-invite-close", "family-invite-code", "family-invite-copy", "family-invite-share"]
+  },
+  "changeRequests": [
+    "TabTypes.ets currently defines tab-home, tab-explore, tab-orders, tab-rewards. It must be updated to tab-home, tab-records, tab-charts, tab-profile to match ui-tree.json tabIds.",
+    "Index.ets currently imports generic pages (HomePage, ExplorePage, OrdersPage, RewardsPage). It must be updated to import PawLog pages (HomePage, RecordsPage, ChartsPage, ProfilePage) and non-tab surfaces (PetsPage, PetDetailPage, RemindersPage, MedicalPage, FamilyPage).",
+    "BottomTabBar.ets TABS data uses generic labels/icons. It must be updated to 今日/记录/趋势/我的 with matching icons.",
+    "Theme.ets currently uses cafe/gold palette. It must be updated to mint-green + paw-pink palette per spec.",
+    "SvgIcon.ets variant mapping currently uses beverage/cafe icons. It must be updated to pet/home/chart/profile/paw medical/reminder icons once SVG assets are available.",
+    "App shell does not currently provide a Sheet host. Visual integration must add a shared Sheet surface managed by AppViewModel with a bindable overlay.",
+    "No design-alignment.md or page-*.html artifacts exist yet; UI visuals are deferred until those artifacts are produced."
+  ]
+}

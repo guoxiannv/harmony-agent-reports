@@ -1,0 +1,45 @@
+{
+  "module": "06-notification.md",
+  "group": "06 — Notification & Reminder",
+  "apiCount": 5,
+  "apis": [
+    {
+      "name": "notificationManager (NotificationManager)",
+      "purpose": "Notification management: publish, cancel, manage channels, query enabled status, request permission, set badges",
+      "anchor": "notificationmanager",
+      "status": "found"
+    },
+    {
+      "name": "notification.request/publish",
+      "purpose": "Publish a notification to the system notification panel (deprecated old API; use notificationManager.publish instead)",
+      "anchor": "notificationmanagerpublish",
+      "status": "found"
+    },
+    {
+      "name": "notificationWant (Agent)",
+      "purpose": "WantAgent for notification click actions — triggers target ability when user taps a notification",
+      "anchor": "wantagent-notificationwantagent",
+      "status": "found"
+    },
+    {
+      "name": "Want",
+      "purpose": "Information transfer carrier between application components (abilityName, bundleName, parameters, URI, etc.)",
+      "anchor": "want",
+      "status": "found"
+    },
+    {
+      "name": "reminderAgent (reminder notification)",
+      "purpose": "Background agent-powered reminders: countdown timer, calendar, and alarm types, managed by system service when app is frozen or exited",
+      "anchor": "reminderagentmanager",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "notificationManager is the recommended module (API 9+); @ohos.notification is deprecated since API 9",
+    "reminderAgentManager replaces the deprecated @ohos.reminderAgent module since API 9",
+    "notificationWant refers to WantAgent used in notification click actions — import from @kit.AbilityKit",
+    "Reminder publishing requires ohos.permission.PUBLISH_AGENT_REMINDER and notification must be enabled first",
+    "Want data is limited to 200KB (API 23+) / 100KB (API 22) due to IPC constraints"
+  ],
+  "missingApis": []
+}

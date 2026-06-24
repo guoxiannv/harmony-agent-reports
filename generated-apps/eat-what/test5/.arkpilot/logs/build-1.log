@@ -1,0 +1,125 @@
+=== Build Output ===
+> /Applications/DevEco-Studio.app/contents/tools/node/bin/node /Applications/DevEco-Studio.app/contents/tools/hvigor/bin/hvigorw.js --mode project -p product=default assembleApp -p buildMode=debug --daemon
+
+> hvigor hvigor client: Starting hvigor daemon.
+> hvigor Hvigor Daemon started in 174 ms
+> hvigor Finished ::PreBuildApp... after 1 ms 
+> hvigor Finished :entry:default@PreBuild... after 58 ms 
+> hvigor Finished ::DuplicateDependencyCheck... after 1 ms 
+> hvigor Finished :entry:default@CreateModuleInfo... after 1 ms 
+> hvigor Finished :entry:default@GenerateMetadata... after 2 ms 
+> hvigor Finished :entry:default@ConfigureCmake... after 1 ms 
+> hvigor Finished :entry:default@MergeProfile... after 2 ms 
+> hvigor Finished :entry:default@CreateBuildProfile... after 1 ms 
+> hvigor Finished :entry:default@PreCheckSyscap... after 1 ms 
+> hvigor Finished :entry:default@GeneratePkgContextInfo... after 2 ms 
+> hvigor Finished :entry:default@GeneratePkgSdkInfo... after 1 ms 
+> hvigor Finished :entry:default@ProcessIntegratedHsp... after 1 ms 
+> hvigor Finished :entry:default@BuildNativeWithCmake... after 1 ms 
+> hvigor Finished :entry:default@MakePackInfo... after 1 ms 
+> hvigor Finished :entry:default@SyscapTransform... after 1 ms 
+> hvigor Finished :entry:default@ProcessProfile... after 43 ms 
+> hvigor Finished :entry:default@ProcessRouterMap... after 2 ms 
+> hvigor Finished :entry:default@ProcessShareConfig... after 1 ms 
+> hvigor Finished :entry:default@ProcessStartupConfig... after 1 ms 
+> hvigor Finished :entry:default@BuildNativeWithNinja... after 1 ms 
+> hvigor Finished :entry:default@ProcessResource... after 1 ms 
+> hvigor Finished :entry:default@GenerateLoaderJson... after 3 ms 
+> hvigor Finished :entry:default@ProcessLibs... after 2 ms 
+> hvigor Finished :entry:default@CompileResource... after 161 ms 
+> hvigor Finished :entry:default@DoNativeStrip... after 1 ms 
+> hvigor Finished :entry:default@BuildJS... after 1 ms 
+> hvigor Finished :entry:default@CacheNativeLibs... after 3 ms 
+> hvigor ERROR: Failed :entry:default@CompileArkTS... 
+> hvigor WARN: 
+1 WARN: ArkTS:WARN: For details about ArkTS syntax errors, see FAQs
+2 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/common/Feedback.ets:7:18
+ 'showToast' has been deprecated.
+
+3 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/components/WheelPanel.ets:202:5
+ 'animateTo' has been deprecated.
+
+4 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/ProfilePage.ets:149:20
+ 'showDialog' has been deprecated.
+
+5 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/ProfilePage.ets:161:20
+ 'showDialog' has been deprecated.
+
+6 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/services/ShareService.ets:45:48
+ 'get' has been deprecated.
+
+7 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/services/ShareService.ets:51:49
+ 'packing' has been deprecated.
+
+8 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/SharePage.ets:186:17
+ 'getContext' has been deprecated.
+
+9 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/SharePage.ets:196:17
+ 'getContext' has been deprecated.
+
+10 WARN: ArkTS:WARN File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/CheckinPage.ets:237:14
+ The current component id "checkin-share-button" is duplicate with /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/CheckinPage.ets:94:12.
+> hvigor ERROR: ArkTS Compiler Error
+1 ERROR: 10605038 ArkTS Compiler Error
+Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:125:26
+
+
+2 ERROR: 10605038 ArkTS Compiler Error
+Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:126:17
+
+
+3 ERROR: 10605038 ArkTS Compiler Error
+Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:131:26
+
+
+4 ERROR: 10605038 ArkTS Compiler Error
+Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:132:17
+
+
+5 ERROR: 10605038 ArkTS Compiler Error
+Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:141:26
+
+
+6 ERROR: 10605038 ArkTS Compiler Error
+Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:142:17
+
+
+7 ERROR: 10605038 ArkTS Compiler Error
+Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:147:26
+
+
+8 ERROR: 10605038 ArkTS Compiler Error
+Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:148:17
+
+
+9 ERROR: 10505001 ArkTS Compiler Error
+Error Message: Argument of type '{ item: { icon: string; tint: string; title: string; desc: string; id: string; onTap: () => void; }; }' is not assignable to parameter of type 'FeatureItem'.
+  Object literal may only specify known properties, and 'item' does not exist in type 'FeatureItem'. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:126:11
+
+
+10 ERROR: 10505001 ArkTS Compiler Error
+Error Message: Argument of type '{ item: { icon: string; tint: string; title: string; desc: string; id: string; onTap: () => void; }; }' is not assignable to parameter of type 'FeatureItem'.
+  Object literal may only specify known properties, and 'item' does not exist in type 'FeatureItem'. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:132:11
+
+
+11 ERROR: 10505001 ArkTS Compiler Error
+Error Message: Argument of type '{ item: { icon: string; tint: string; title: string; desc: string; id: string; onTap: () => void; }; }' is not assignable to parameter of type 'FeatureItem'.
+  Object literal may only specify known properties, and 'item' does not exist in type 'FeatureItem'. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:142:11
+
+
+12 ERROR: 10505001 ArkTS Compiler Error
+Error Message: Argument of type '{ item: { icon: string; tint: string; title: string; desc: string; id: string; onTap: () => void; }; }' is not assignable to parameter of type 'FeatureItem'.
+  Object literal may only specify known properties, and 'item' does not exist in type 'FeatureItem'. At File: /Users/huaweiide/Desktop/fe/code/harmony-pilot/generated-apps/eat-what/test5/entry/src/main/ets/pages/HomePage.ets:148:11
+
+
+COMPILE RESULT:FAIL {ERROR:13 WARN:10}
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+
+> hvigor ERROR: BUILD FAILED in 3 s 853 ms 
+
+
+Process finished with exit code 255
+

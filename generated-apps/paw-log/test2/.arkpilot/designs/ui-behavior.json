@@ -1,0 +1,181 @@
+{
+  "uiTreePath": ".arkpilot/designs/ui-tree.json",
+  "dataModel": {
+    "entities": [
+      {
+        "name": "Pet",
+        "fields": ["id", "name", "avatar", "species", "breed", "birthday", "gender", "neutered", "weight", "notes", "createdAt", "updatedAt"],
+        "key": "id (uuid)"
+      },
+      {
+        "name": "Record",
+        "fields": ["id", "petId", "type", "time", "title", "subtitle", "tagText", "tagColor", "payload", "createdAt"],
+        "key": "id (uuid)"
+      },
+      {
+        "name": "Reminder",
+        "fields": ["id", "petId", "title", "category", "dueDate", "isDone", "createdAt", "updatedAt"],
+        "key": "id (uuid)"
+      },
+      {
+        "name": "MedicalCase",
+        "fields": ["id", "petId", "title", "date", "hospital", "diagnosis", "note", "images", "createdAt", "updatedAt"],
+        "key": "id (uuid)"
+      },
+      {
+        "name": "FamilyMember",
+        "fields": ["id", "name", "avatar", "role", "joinedAt"],
+        "key": "id (uuid)"
+      }
+    ],
+    "settings": {
+      "currentPetId": "string | null",
+      "userNickname": "string",
+      "userAvatar": "string | null",
+      "inviteCode": "string"
+    },
+    "computed": [
+      "currentPet: derived from currentPetId + pets",
+      "todaySummary: computed from selected pet's records of today",
+      "upcomingReminders: filtered and sorted reminders for selected pet, urgent when dueDate <= now + 3 days",
+      "recordsByPet: records filtered by selected pet, sorted desc by time",
+      "trendData: aggregated weight/diet/stool points by date for selected pet",
+      "remindersByPet: reminders filtered by selected pet",
+      "medicalCasesByPet: medical cases filtered by selected pet"
+    ]
+  },
+  "services": [
+    {
+      "name": "PetRepository",
+      "responsibility": "CRUD for pets; manage currentPetId persistence"
+    },
+    {
+      "name": "RecordRepository",
+      "responsibility": "CRUD for records; list/filter by pet and type; compute today summary"
+    },
+    {
+      "name": "ReminderRepository",
+      "responsibility": "CRUD for reminders; mark done; compute urgency"
+    },
+    {
+      "name": "MedicalRepository",
+      "responsibility": "CRUD for medical cases and image URIs"
+    },
+    {
+      "name": "FamilyRepository",
+      "responsibility": "invite code generation and member list (local simulated)"
+    },
+    {
+      "name": "PhotoService",
+      "responsibility": "wrap PhotoViewPicker and copy picked URI into app sandbox"
+    },
+    {
+      "name": "NotificationService",
+      "responsibility": "stub for future local notification scheduling; v1.0 returns enabled/disabled"
+    },
+    {
+      "name": "AppStore",
+      "responsibility": "JSON preferences wrapper for persistence of serialized entities"
+    }
+  ],
+  "stateMachine": {
+    "globalStates": ["initialized", "no-pets", "ready"],
+    "pageStates": {
+      "home-page": ["empty", "populated"],
+      "records-page": ["loading", "empty", "populated"],
+      "trends-page": ["empty", "populated"],
+      "care-page": ["reminders", "medical"],
+      "profile-page": ["idle"],
+      "pet-editor-page": ["create", "edit"],
+      "medical-case-editor-page": ["create", "edit"]
+    },
+    "transitions": [
+      { "event": "select-pet", "from": "home-page", "to": "currentPet updated" },
+      { "event": "open-pet-picker", "from": "home-page", "to": "pet-picker-sheet shown" },
+      { "event": "open-pet-editor", "from": "home-page|profile-page", "to": "pet-editor-page create/edit" },
+      { "event": "save-pet", "from": "pet-editor-page", "to": "pet saved, navigate back" },
+      { "event": "open-add-record", "from": "home-page|records-page", "to": "add-record-sheet shown" },
+      { "event": "open-record-*", "from": "add-record-sheet", "to": "record-*-sheet shown" },
+      { "event": "save-record-*", "from": "record-*-sheet", "to": "record saved, sheet closed" },
+      { "event": "filter-records-*", "from": "records-page", "to": "records filter updated" },
+      { "event": "switch-trends-*", "from": "trends-page", "to": "trends metric updated" },
+      { "event": "set-period-*", "from": "trends-page", "to": "trends period updated" },
+      { "event": "switch-care-*", "from": "care-page", "to": "care tab updated" },
+      { "event": "open-reminder-editor", "from": "care-page|reminder-detail-page", "to": "reminder editor create/edit" },
+      { "event": "mark-reminder-done", "from": "reminder-detail-page", "to": "reminder status done" },
+      { "event": "delete-reminder", "from": "reminder-detail-page", "to": "reminder deleted" },
+      { "event": "open-medical-editor", "from": "care-page|medical-case-page", "to": "medical editor create/edit" },
+      { "event": "save-medical-case", "from": "medical-case-editor-page", "to": "case saved" },
+      { "event": "pick-medical-image", "from": "medical-case-editor-page", "to": "image added to draft" },
+      { "event": "open-family-invite", "from": "profile-page", "to": "family-invite-sheet shown" },
+      { "event": "copy-invite-code", "from": "family-invite-sheet", "to": "code copied to clipboard" },
+      { "event": "close-sheet", "from": "*sheet", "to": "sheet dismissed" },
+      { "event": "navigate-back", "from": "*page", "to": "previous surface" }
+    ]
+  },
+  "interactionFlows": [
+    {
+      "name": "Create first pet",
+      "trigger": "home-add-pet-button / open-pet-editor",
+      "steps": ["navigate to pet-editor-page in create mode", "user fills name/species/breed/birthday/gender/neutered/weight/notes", "user picks avatar via PhotoService", "tap save-pet", "validate required fields", "PetRepository persists pet, sets currentPetId", "navigate back to home-page populated state"]
+    },
+    {
+      "name": "Switch current pet",
+      "trigger": "home-pet-switcher / open-pet-picker",
+      "steps": ["show pet-picker-sheet", "user taps a pet", "update currentPetId in PetRepository", "close sheet", "refresh home/records/trends/care"]
+    },
+    {
+      "name": "Record diet",
+      "trigger": "home-quick-diet / add-record-diet",
+      "steps": ["open add-record-sheet", "tap add-record-diet", "open record-diet-sheet with currentPetId", "input time/food/amount/unit/note", "tap save-record-diet", "validate amount > 0", "RecordRepository creates Record", "close sheet", "refresh home today summary"]
+    },
+    {
+      "name": "View records",
+      "trigger": "records-filter-*",
+      "steps": ["user selects filter", "RecordsPage recomputes visible records", "render list with empty state if none"]
+    },
+    {
+      "name": "Check trends",
+      "trigger": "switch-trends-* / set-period-*",
+      "steps": ["user changes metric or period", "TrendsPage recomputes trendData and trendStats", "render chart and stat pills"]
+    },
+    {
+      "name": "Manage reminder",
+      "trigger": "care-reminder-add / open-reminder-editor",
+      "steps": ["open reminder editor (dialog/page) in create/edit mode", "input title/category/dueDate", "save", "ReminderRepository persists", "CarePage refresh"]
+    },
+    {
+      "name": "Archive medical case",
+      "trigger": "care-medical-add / open-medical-editor",
+      "steps": ["open medical-case-editor-page", "input title/hospital/diagnosis/note/date", "pick up to 6 images via PhotoService", "save-medical-case", "MedicalRepository persists", "navigate back"]
+    },
+    {
+      "name": "Invite family",
+      "trigger": "profile-family / open-family-invite",
+      "steps": ["show family-invite-sheet", "display inviteCode", "copy-invite-code to clipboard", "show member list"]
+    }
+  ],
+  "testTargets": [
+    { "id": "home-pet-switcher", "usage": ["tap", "assert"] },
+    { "id": "home-quick-diet", "usage": ["tap"] },
+    { "id": "home-quick-stool", "usage": ["tap"] },
+    { "id": "home-quick-weight", "usage": ["tap"] },
+    { "id": "home-quick-meds", "usage": ["tap"] },
+    { "id": "home-current-pet-name", "usage": ["assert"] },
+    { "id": "records-filter-diet", "usage": ["tap"] },
+    { "id": "records-list", "usage": ["assert", "scroll"] },
+    { "id": "trends-chart", "usage": ["assert"] },
+    { "id": "trends-tab-weight", "usage": ["tap"] },
+    { "id": "care-reminder-list", "usage": ["assert", "scroll"] },
+    { "id": "care-medical-list", "usage": ["assert", "scroll"] },
+    { "id": "profile-family", "usage": ["tap"] },
+    { "id": "family-invite-code", "usage": ["assert"] },
+    { "id": "pet-editor-name", "usage": ["input"] },
+    { "id": "pet-editor-save", "usage": ["tap"] }
+  ],
+  "changeRequests": [
+    "pet-picker-sheet and add-record-sheet are not pages but overlays; Index.ets shell will model them as overlay states rather than NavPathStack routes unless design artifacts specify a sheet implementation.",
+    "reminder editor does not have a dedicated page/sheet in ui-tree.json; implement as inline editor or CustomDialog within CarePage until a design artifact defines it.",
+    "medical-case-editor-page route exists; implement as NavDestination page."
+  ]
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>平安扣 - 安全事项详情</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: #F0FDFA; color: #0F172A; max-width: 390px; margin: 0 auto;
+      min-height: 100vh; padding-bottom: 100px;
+    }
+    .header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(24px) saturate(180%);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 52px 16px 12px; border-bottom: 1px solid rgba(226,232,240,0.6);
+    }
+    .header-left, .header-right { width: 40px; }
+    .header-back {
+      width: 40px; height: 40px; border-radius: 12px; background: #F1F5F9;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .header-back svg { width: 20px; height: 20px; stroke: #334155; }
+    .header-title { font-size: 18px; font-weight: 600; }
+    .save-btn {
+      padding: 8px 14px; border-radius: 12px; background: linear-gradient(135deg, #0D9488, #14B8A6);
+      color: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(13,148,136,0.28); cursor: pointer;
+    }
+
+    .section { padding: 16px; }
+    .card {
+      background: #fff; border-radius: 18px; padding: 16px;
+      box-shadow: 0 6px 24px rgba(13, 148, 136, 0.10);
+    }
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .field-label { font-size: 12px; color: #64748B; margin-bottom: 6px; }
+    .field-input, .field-textarea {
+      width: 100%; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid #E2E8F0; background: #F8FAFC; font-size: 14px; color: #0F172A;
+    }
+    .field-textarea { min-height: 100px; resize: none; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .switch-row {
+      display: flex; justify-content: space-between; align-items: center; padding: 12px 0;
+    }
+    .switch-label { font-size: 14px; font-weight: 500; color: #334155; }
+    .switch-desc { font-size: 12px; color: #94A3B8; margin-top: 2px; }
+    .toggle {
+      width: 48px; height: 28px; border-radius: 14px; background: #E2E8F0; position: relative; cursor: pointer;
+    }
+    .toggle.on { background: #0D9488; }
+    .toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px; width: 24px; height: 24px;
+      border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: left 0.2s;
+    }
+    .toggle.on::after { left: 22px; }
+
+    .fab {
+      position: fixed; bottom: 24px; left: 16px; right: 16px; max-width: 358px; margin: 0 auto;
+      padding: 14px; border-radius: 14px; background: linear-gradient(135deg, #0D9488, #14B8A6);
+      color: #fff; font-size: 16px; font-weight: 600; text-align: center;
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.32); cursor: pointer;
+    }
+    .danger-btn {
+      margin-top: 12px; width: 100%; padding: 12px; border-radius: 12px;
+      background: #FEF2F2; color: #EF4444; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer;
+    }
+  </style>
+</head>
+<body data-page-id="safety-note-detail-page">
+  <header class="header">
+    <div class="header-left">
+      <div class="header-back" data-ui-id="safety-note-detail-back-button">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <title>返回上一页</title>
+          <path d="M19 12H5"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+      </div>
+    </div>
+    <div class="header-title">安全事项</div>
+    <div class="header-right" style="display:flex;justify-content:flex-end;">
+      <div class="save-btn" data-ui-id="safety-note-detail-save-button">保存</div>
+    </div>
+  </header>
+
+  <div class="section">
+    <div class="card">
+      <div class="field">
+        <div class="field-label">事项标题</div>
+        <input class="field-input" type="text" value="班前会防护用品检查" data-ui-id="safety-note-detail-title-input" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">优先级</div>
+          <select class="field-input" data-ui-id="safety-note-detail-priority-picker">
+            <option>低</option>
+            <option>中</option>
+            <option selected>高</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label">截止日期</div>
+          <input class="field-input" type="date" value="2026-06-22" data-ui-id="safety-note-detail-deadline-picker" />
+        </div>
+      </div>
+      <div class="field">
+        <div class="field-label">负责人</div>
+        <input class="field-input" type="text" value="王班" data-ui-id="safety-note-detail-assignee-input" />
+      </div>
+      <div class="field">
+        <div class="field-label">备注说明</div>
+        <textarea class="field-textarea" data-ui-id="safety-note-detail-description-input">检查安全帽、防护鞋、反光背心佩戴情况，拍照留痕。</textarea>
+      </div>
+      <div class="switch-row">
+        <div>
+          <div class="switch-label">已完成</div>
+          <div class="switch-desc">标记为已完成后不再提醒</div>
+        </div>
+        <div class="toggle" data-ui-id="safety-note-detail-done-toggle"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fab" data-ui-id="safety-note-detail-save-button">保存安全事项</div>
+  <div class="section" style="padding-top:0;">
+    <div class="danger-btn" data-ui-id="safety-note-detail-delete-button">删除事项</div>
+  </div>
+</body>
+</html>

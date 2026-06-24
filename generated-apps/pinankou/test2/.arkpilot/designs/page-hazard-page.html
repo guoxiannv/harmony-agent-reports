@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>平安扣 - 隐患管理</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #F0F9FF 0%, #F0FDFA 50%, #F0F4F8 100%);
+      color: #334155;
+      padding-bottom: 84px;
+    }
+    .app-shell { max-width: 420px; margin: 0 auto; position: relative; }
+    .page-header {
+      padding: 56px 16px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .page-title { font-size: 22px; font-weight: 700; color: #0F172A; }
+    .search-bar {
+      margin: 0 16px 12px;
+      background: #fff; border-radius: 14px; border: 1px solid #E2E8F0;
+      padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+    }
+    .search-bar input {
+      border: none; outline: none; flex: 1; font-size: 15px; color: #334155; background: transparent;
+    }
+    .search-bar input::placeholder { color: #94A3B8; }
+    .filter-tabs {
+      display: flex; gap: 8px; padding: 0 16px 12px; overflow-x: auto;
+    }
+    .filter-tab {
+      white-space: nowrap; padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 500;
+      background: #fff; border: 1px solid #E2E8F0; color: #64748B;
+    }
+    .filter-tab.active { background: #0D9488; color: #fff; border-color: #0D9488; }
+    .hazard-list { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+    .hazard-card {
+      background: #fff; border-radius: 18px; padding: 16px;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.04); border: 1px solid #E2E8F0;
+      border-left: 5px solid #F59E0B; cursor: pointer;
+    }
+    .hazard-card.high { border-left-color: #F43F5E; }
+    .hazard-card.normal { border-left-color: #F59E0B; }
+    .hazard-card.low { border-left-color: #3B82F6; }
+    .hazard-card.resolved { border-left-color: #10B981; }
+    .hazard-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .hazard-title { font-size: 16px; font-weight: 600; color: #0F172A; }
+    .hazard-meta { font-size: 13px; color: #64748B; margin-top: 8px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .hazard-footer { margin-top: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .badge { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+    .badge-high { background: #FFF1F2; color: #F43F5E; }
+    .badge-normal { background: #FFFBEB; color: #F59E0B; }
+    .badge-low { background: #EFF6FF; color: #3B82F6; }
+    .badge-resolved { background: #ECFDF5; color: #10B981; }
+    .hazard-date { font-size: 12px; color: #94A3B8; }
+    .fab {
+      position: fixed; bottom: 90px; right: calc(50% - 190px);
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+      box-shadow: 0 6px 20px rgba(13,148,136,0.40);
+      display: flex; align-items: center; justify-content: center; color: #fff; cursor: pointer;
+    }
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      width: 100%; max-width: 420px; margin: 0 auto;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(24px) saturate(170%);
+      border-top: 0.5px solid rgba(226,232,240,0.9);
+      display: flex; justify-content: space-around; padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #94A3B8; font-size: 11px; font-weight: 500; }
+    .tab-item.active { color: #0D9488; }
+    .tab-item svg { width: 24px; height: 24px; stroke-width: 2; }
+    .tab-item.active svg { stroke: #0D9488; }
+    .empty-state { text-align: center; padding: 48px 20px; color: #94A3B8; }
+    .empty-state p { font-size: 14px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="app-shell" data-page-id="hazard-page" data-tab-id="tab-hazard">
+    <header class="page-header">
+      <h1 class="page-title">隐患管理</h1>
+      <button class="icon-btn" data-ui-id="hazard-create-button" aria-label="新建隐患" style="background: #F0FDFA; border: none; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0D9488;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>新建隐患记录</title><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      </button>
+    </header>
+
+    <div class="search-bar" data-ui-id="hazard-search-input">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>搜索隐患图标</title><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+      <input type="text" placeholder="搜索隐患标题、位置、上报人">
+    </div>
+
+    <div class="filter-tabs" data-ui-id="hazard-status-filter">
+      <div class="filter-tab active">全部</div>
+      <div class="filter-tab">待整改</div>
+      <div class="filter-tab">整改中</div>
+      <div class="filter-tab">已完成</div>
+      <div class="filter-tab">我负责</div>
+    </div>
+
+    <div class="hazard-list" data-ui-id="hazard-list">
+      <div class="hazard-card high" data-ui-id="hazard-item-1">
+        <div class="hazard-header">
+          <div class="hazard-title">仓库货架消防通道堵塞</div>
+        </div>
+        <div class="hazard-meta">
+          <span>B区仓库</span>
+          <span>上报人：张工</span>
+        </div>
+        <div class="hazard-footer">
+          <span class="badge badge-high">高风险</span>
+          <span class="hazard-date">截止 06-20 18:00</span>
+        </div>
+      </div>
+
+      <div class="hazard-card normal" data-ui-id="hazard-item-2">
+        <div class="hazard-header">
+          <div class="hazard-title">配电箱未张贴警示标识</div>
+        </div>
+        <div class="hazard-meta">
+          <span>A区配电房</span>
+          <span>上报人：李安全</span>
+        </div>
+        <div class="hazard-footer">
+          <span class="badge badge-normal">中风险</span>
+          <span class="hazard-date">截止 06-21 12:00</span>
+        </div>
+      </div>
+
+      <div class="hazard-card resolved" data-ui-id="hazard-item-3">
+        <div class="hazard-header">
+          <div class="hazard-title">车间地面油污已清理</div>
+        </div>
+        <div class="hazard-meta">
+          <span>C区车间</span>
+          <span>上报人：王班</span>
+        </div>
+        <div class="hazard-footer">
+          <span class="badge badge-resolved">已完成</span>
+          <span class="hazard-date">06-19 验收通过</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="fab" data-ui-id="hazard-create-button" aria-label="新建隐患">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>新建隐患浮动按钮</title><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+    </button>
+
+    <nav class="tabbar" aria-label="底部导航">
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>工作台标签</title><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>工作台</span>
+      </div>
+      <div class="tab-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>隐患管理标签</title><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        <span>隐患</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>巡检打卡标签</title><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+        <span>巡检</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>应急联系人标签</title><path d="M13 2a9 9 0 0 1 9 9"/><path d="M13 6a5 5 0 0 1 5 5"/><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+        <span>联系人</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>统计看板标签</title><path d="M5 21v-6"/><path d="M12 21V9"/><path d="M19 21V3"/></svg>
+        <span>统计</span>
+      </div>
+      <div class="tab-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>我的标签</title><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>我的</span>
+      </div>
+    </nav>
+  </div>
+</body>
+</html>

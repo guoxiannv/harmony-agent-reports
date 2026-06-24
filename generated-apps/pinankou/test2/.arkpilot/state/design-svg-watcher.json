@@ -1,0 +1,62 @@
+{
+  "pid": 21404,
+  "status": "controller-tick",
+  "launched_by_session_id": "6b634090-75b4-47ff-86cf-bff9305587e3",
+  "started_at": "2026-06-20T04:45:06.457Z",
+  "last_scan_at": "2026-06-20T05:14:52.658Z",
+  "last_change_at": "2026-06-20T04:59:21.224Z",
+  "html_signature": "[{\"name\":\"page-contacts-page.html\",\"mtime_ms\":1781931415810,\"size\":10304},{\"name\":\"page-hazard-detail-page.html\",\"mtime_ms\":1781931244461,\"size\":7964},{\"name\":\"page-hazard-edit-page.html\",\"mtime_ms\":1781931287466,\"size\":5941},{\"name\":\"page-hazard-page.html\",\"mtime_ms\":1781931188325,\"size\":9936},{\"name\":\"page-home-page.html\",\"mtime_ms\":1781931114542,\"size\":13137},{\"name\":\"page-patrol-page.html\",\"mtime_ms\":1781931338081,\"size\":7470},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1781931560064,\"size\":8756},{\"name\":\"page-stats-page.html\",\"mtime_ms\":1781931496785,\"size\":10532}]",
+  "html_files": [
+    {
+      "name": "page-contacts-page.html",
+      "mtime_ms": 1781931415810,
+      "size": 10304
+    },
+    {
+      "name": "page-hazard-detail-page.html",
+      "mtime_ms": 1781931244461,
+      "size": 7964
+    },
+    {
+      "name": "page-hazard-edit-page.html",
+      "mtime_ms": 1781931287466,
+      "size": 5941
+    },
+    {
+      "name": "page-hazard-page.html",
+      "mtime_ms": 1781931188325,
+      "size": 9936
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1781931114542,
+      "size": 13137
+    },
+    {
+      "name": "page-patrol-page.html",
+      "mtime_ms": 1781931338081,
+      "size": 7470
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1781931560064,
+      "size": 8756
+    },
+    {
+      "name": "page-stats-page.html",
+      "mtime_ms": 1781931496785,
+      "size": 10532
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 40,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 40,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-20T05:14:52.658Z"
+}

@@ -1,0 +1,58 @@
+{
+  "module": "03-dialogs.md",
+  "group": "03 -- Dialogs & Sheets",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "AlertDialog",
+      "purpose": "显示警告弹窗组件，可设置文本内容与响应回调",
+      "anchor": "alertdialog",
+      "status": "found"
+    },
+    {
+      "name": "CustomDialog",
+      "purpose": "通过CustomDialogController类显示完全自定义的弹窗",
+      "anchor": "customdialog",
+      "status": "found"
+    },
+    {
+      "name": "ActionSheet",
+      "purpose": "列表选择弹窗，显示多个选项供用户选择",
+      "anchor": "actionsheet",
+      "status": "found"
+    },
+    {
+      "name": "BottomSheet (bindSheet)",
+      "purpose": "通过bindSheet属性为组件绑定半模态页面",
+      "anchor": "bottomsheet-bindsheet",
+      "status": "found"
+    },
+    {
+      "name": "promptAction",
+      "purpose": "创建并显示即时反馈（Toast）、对话框和操作菜单的全局API模块",
+      "anchor": "promptaction-showdialog-showtoast-showactionmenu",
+      "status": "found"
+    },
+    {
+      "name": "Toast (showToast)",
+      "purpose": "创建并显示即时反馈提示消息",
+      "anchor": "toast-showtoast-opentoast",
+      "status": "found"
+    },
+    {
+      "name": "Menu",
+      "purpose": "以垂直列表形式显示的菜单，需配合bindMenu或bindContextMenu使用",
+      "anchor": "menu",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "AlertDialog.show() 和 ActionSheet.show() 从API version 18废弃，推荐使用 UIContext.showAlertDialog() / UIContext.showActionSheet()",
+    "promptAction.showToast/showDialog/showActionMenu/openCustomDialog 从API version 18废弃，推荐通过 UIContext.getPromptAction() 调用替代方法",
+    "Dialog（弹出框）是系统预置的二次封装组件（TipsDialog/SelectDialog/ConfirmDialog/AlertDialog/LoadingDialog/CustomContentDialog），导入自 @kit.ArkUI",
+    "DialogV2 从API version 18支持，基于状态管理V2，按钮使用 AdvancedDialogV2Button 类构造",
+    "bindSheet 半模态转场支持多挡位高度（detents）和多种样式（底部/居中/跟手/侧边/全屏），不支持路由跳转，仅限Stage模型",
+    "CustomDialog 不支持动态刷新参数，但可通过设置 customStyle=true 并在自定义组件上绑定状态变量实现动态效果"
+  ],
+  "missingApis": []
+}

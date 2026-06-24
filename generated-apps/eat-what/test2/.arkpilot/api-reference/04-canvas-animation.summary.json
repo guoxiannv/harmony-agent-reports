@@ -1,0 +1,87 @@
+{
+  "module": "04-canvas-animation.md",
+  "group": "04 — Canvas & Animation",
+  "apiCount": 12,
+  "apis": [
+    {
+      "name": "Canvas",
+      "purpose": "Canvas组件，提供画布用于自定义绘制图形",
+      "anchor": "canvas",
+      "status": "found"
+    },
+    {
+      "name": "CanvasRenderingContext2D",
+      "purpose": "2D渲染上下文，与Canvas绑定后在画布上绘制形状、文本、图片",
+      "anchor": "canvasrenderingcontext2d",
+      "status": "found"
+    },
+    {
+      "name": "CanvasGradient",
+      "purpose": "渐变对象，通过addColorStop设置渐变断点颜色和偏移",
+      "anchor": "canvasgradient",
+      "status": "found"
+    },
+    {
+      "name": "Path",
+      "purpose": "路径绘制组件，通过SVG命令字符串生成封闭自定义形状",
+      "anchor": "path图形绘制组件",
+      "status": "found"
+    },
+    {
+      "name": "Path2D",
+      "purpose": "路径对象，支持SVG路径字符串构造，用于Canvas的stroke/fill绘制",
+      "anchor": "path2d",
+      "status": "found"
+    },
+    {
+      "name": "Circle",
+      "purpose": "圆形绘制组件，支持填充、边框、虚线等属性",
+      "anchor": "circle",
+      "status": "found"
+    },
+    {
+      "name": "Shape",
+      "purpose": "绘制组件的父容器，支持viewPort和多个子图形实现类似SVG的效果",
+      "anchor": "shape",
+      "status": "found"
+    },
+    {
+      "name": "animateTo",
+      "purpose": "显式动画，闭包内状态变化自动插入过渡动效",
+      "anchor": "animateto",
+      "status": "found"
+    },
+    {
+      "name": "transition",
+      "purpose": "组件内转场，组件插入/删除时显示过渡动效",
+      "anchor": "transition",
+      "status": "found"
+    },
+    {
+      "name": "keyframeAnimateTo",
+      "purpose": "关键帧动画，分段控制多个关键帧状态实现分段的动画",
+      "anchor": "keyframeanimateto",
+      "status": "found"
+    },
+    {
+      "name": "@ohos.curves",
+      "purpose": "插值计算模块，提供动画插值曲线（阶梯、贝塞尔、弹簧、弹性）",
+      "anchor": "ohoscurves",
+      "status": "found"
+    },
+    {
+      "name": "属性动画 (animation)",
+      "purpose": "组件属性变化时自动产生渐变过渡效果",
+      "anchor": "属性动画-animation",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "animateTo全局函数从API 18废弃，推荐使用this.getUIContext()?.animateTo()替代",
+    "@ohos.curves的springMotion/responsiveSpringMotion/interpolatingSpring为物理曲线，duration参数不生效，动画时长由曲线参数决定",
+    "transition从API 10起推荐使用TransitionEffect链式API，旧版TransitionOptions已废弃",
+    "keyframeAnimateTo不支持springMotion等弹性曲线（因时长不生效）",
+    "CanvasRenderingContext2D和Path2D从API 12起支持LengthMetricsUnit配置单位模式"
+  ],
+  "missingApis": []
+}

@@ -1,0 +1,57 @@
+{
+  "pid": 75836,
+  "status": "controller-tick",
+  "launched_by_session_id": "796a8540-be80-43d1-9624-e559912bcaa7",
+  "started_at": "2026-06-23T06:13:22.197Z",
+  "last_scan_at": "2026-06-23T06:48:02.218Z",
+  "last_change_at": "2026-06-23T06:29:12.165Z",
+  "html_signature": "[{\"name\":\"page-check-in-editor-page.html\",\"mtime_ms\":1782196068918,\"size\":5735},{\"name\":\"page-check-in-page.html\",\"mtime_ms\":1782195858906,\"size\":9665},{\"name\":\"page-home-page.html\",\"mtime_ms\":1782195672446,\"size\":12331},{\"name\":\"page-pantry-page.html\",\"mtime_ms\":1782195771275,\"size\":11046},{\"name\":\"page-profile-page.html\",\"mtime_ms\":1782195947595,\"size\":8958},{\"name\":\"page-result-page.html\",\"mtime_ms\":1782196020270,\"size\":7768},{\"name\":\"page-share-card-page.html\",\"mtime_ms\":1782196151479,\"size\":7476}]",
+  "html_files": [
+    {
+      "name": "page-check-in-editor-page.html",
+      "mtime_ms": 1782196068918,
+      "size": 5735
+    },
+    {
+      "name": "page-check-in-page.html",
+      "mtime_ms": 1782195858906,
+      "size": 9665
+    },
+    {
+      "name": "page-home-page.html",
+      "mtime_ms": 1782195672446,
+      "size": 12331
+    },
+    {
+      "name": "page-pantry-page.html",
+      "mtime_ms": 1782195771275,
+      "size": 11046
+    },
+    {
+      "name": "page-profile-page.html",
+      "mtime_ms": 1782195947595,
+      "size": 8958
+    },
+    {
+      "name": "page-result-page.html",
+      "mtime_ms": 1782196020270,
+      "size": 7768
+    },
+    {
+      "name": "page-share-card-page.html",
+      "mtime_ms": 1782196151479,
+      "size": 7476
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 33,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 33,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-23T06:48:02.219Z"
+}

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>WordFlip Kids - 今日复习</title>
+  <style>
+    :root {
+      --bg: #F5F0EA;
+      --card-bg: #FFFFFF;
+      --heading: #1E293B;
+      --meaning: #0F172A;
+      --body: #475569;
+      --muted: #94A3B8;
+      --teal: #0D9488;
+      --sky: #0EA5E9;
+      --violet: #8B5CF6;
+      --known-start: #22C55E;
+      --known-end: #0D9488;
+      --unknown-start: #FB923C;
+      --unknown-end: #F97316;
+      --gradient-primary: linear-gradient(135deg, #0D9488 0%, #0EA5E9 55%, #8B5CF6 100%);
+      --gradient-line: linear-gradient(90deg, #0D9488, #0EA5E9);
+      --gradient-known: linear-gradient(135deg, #22C55E 0%, #0D9488 100%);
+      --gradient-unknown: linear-gradient(135deg, #FB923C 0%, #F97316 100%);
+      --shadow-card: 0 24px 60px rgba(30,41,59,0.09), 0 10px 24px rgba(30,41,59,0.05), inset 0 0 0 1px rgba(255,255,255,0.85);
+      --shadow-card-active: 0 32px 80px rgba(30,41,59,0.12), 0 14px 32px rgba(30,41,59,0.07), inset 0 0 0 1px rgba(255,255,255,0.85);
+      --shadow-button-known: 0 10px 28px rgba(13,148,136,0.35);
+      --shadow-button-unknown: 0 10px 28px rgba(249,115,22,0.35);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg);
+      background-image: radial-gradient(ellipse 120% 60% at 50% 0%, rgba(255,255,255,0.85) 0%, rgba(245,240,234,0) 60%);
+      font-family: 'Nunito', 'PingFang SC', 'HarmonyOS Sans SC', sans-serif;
+      color: var(--heading);
+      overflow-x: hidden;
+    }
+
+    .app-root {
+      width: 100%;
+      max-width: 390px;
+      margin: 0 auto;
+      padding: 20px 20px 28px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Header */
+    .header-glass {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(255,255,255,0.7);
+      backdrop-filter: saturate(160%) blur(24px);
+      -webkit-backdrop-filter: saturate(160%) blur(24px);
+      border-radius: 22px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(30,41,59,0.04);
+    }
+
+    .header-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 3px rgba(13,148,136,0.18);
+      flex-shrink: 0;
+    }
+
+    .header-title {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.6px;
+      color: var(--heading);
+    }
+
+    .stats {
+      display: flex;
+      gap: 10px;
+    }
+
+    .stat-pill {
+      background: #FFFFFF;
+      border-radius: 14px;
+      padding: 8px 12px;
+      min-width: 58px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(30,41,59,0.05);
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.5px;
+      color: var(--heading);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.4px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* Card scene */
+    .card-scene {
+      margin-top: 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .card-container {
+      width: min(330px, 80vw);
+      height: 440px;
+      perspective: 1400px;
+      position: relative;
+    }
+
+    .flashcard {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 550ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow-card);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .flashcard:active .card-face {
+      box-shadow: var(--shadow-card-active);
+    }
+
+    .card-top-line {
+      height: 8px;
+      width: 100%;
+      background: var(--gradient-line);
+      flex-shrink: 0;
+    }
+
+    .card-front {
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      position: relative;
+    }
+
+    .flip-hint {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #E0F2FE;
+      color: var(--sky);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .word-front {
+      font-size: 54px;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.2px;
+      color: var(--heading);
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .front-prompt {
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.2px;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      padding: 0;
+    }
+
+    .back-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+    }
+
+    .meaning-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .meaning-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .word-meaning {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--meaning);
+    }
+
+    .divider {
+      height: 1px;
+      background: #F1F5F9;
+      margin: 0 28px;
+      flex-shrink: 0;
+    }
+
+    .phonetic-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .phonetic-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .word-phonetic {
+      font-family: 'Inter', 'SF Mono', monospace;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.45;
+      letter-spacing: 0.6px;
+      color: var(--body);
+    }
+
+    /* Action bar */
+    .action-bar {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      max-width: 330px;
+    }
+
+    .action-btn {
+      flex: 1;
+      height: 60px;
+      border: none;
+      border-radius: 20px;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+    }
+
+    .action-btn:active {
+      transform: scale(0.96);
+    }
+
+    .known-btn {
+      background: var(--gradient-known);
+      box-shadow: var(--shadow-button-known);
+    }
+
+    .known-btn:active {
+      box-shadow: 0 6px 16px rgba(13,148,136,0.28);
+    }
+
+    .unknown-btn {
+      background: var(--gradient-unknown);
+      box-shadow: var(--shadow-button-unknown);
+    }
+
+    .unknown-btn:active {
+      box-shadow: 0 6px 16px rgba(249,115,22,0.28);
+    }
+
+    /* Empty state */
+    .empty-state {
+      display: none;
+      margin-top: 64px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .empty-state.is-visible {
+      display: flex;
+    }
+
+    .empty-icon-wrap {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: var(--violet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .empty-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: -0.3px;
+      color: var(--heading);
+      margin-bottom: 8px;
+    }
+
+    .empty-body {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.55;
+      color: var(--body);
+    }
+
+    /* Completion overlay */
+    .completion-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(40,36,32,0.50);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .completion-overlay.is-visible {
+      display: flex;
+    }
+
+    .completion-card {
+      width: min(330px, 82vw);
+      background: #FFFFFF;
+      border-radius: 32px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 24px 70px rgba(30,41,59,0.18);
+      animation: completionIn 380ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes completionIn {
+      from { opacity: 0; transform: scale(0.88); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .completion-badge {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 18px 48px rgba(139,92,246,0.32);
+    }
+
+    .completion-title {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.6px;
+      color: var(--heading);
+      margin-bottom: 24px;
+    }
+
+    .completion-stat {
+      margin-bottom: 24px;
+    }
+
+    .completion-number {
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -1.2px;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .completion-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-top: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .restart-btn {
+      width: 100%;
+      height: 56px;
+      border: none;
+      border-radius: 18px;
+      background: var(--gradient-primary);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(139,92,246,0.32);
+      transition: transform 150ms ease-out;
+    }
+
+    .restart-btn:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body data-page-id="review-page">
+  <div class="app-root">
+    <header class="header-glass" data-ui-id="review-title">
+      <div class="header-title-wrap">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="header-title">今日复习</span>
+      </div>
+      <div class="stats">
+        <div class="stat-pill">
+          <div class="stat-number" data-ui-id="review-remaining-count">8</div>
+          <div class="stat-label">剩余</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-number" data-ui-id="review-correct-count">0</div>
+          <div class="stat-label">答对</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="card-scene" id="card-scene">
+      <div class="card-container">
+        <div class="flashcard" data-ui-id="review-flashcard" id="flashcard">
+          <!-- Front -->
+          <div class="card-face card-front">
+            <div class="card-top-line"></div>
+            <div class="flip-hint" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <title>翻转卡片查看释义</title>
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+            </div>
+            <div class="word-front" data-ui-id="review-word-front">apple</div>
+            <div class="front-prompt">点击卡片查看释义</div>
+          </div>
+
+          <!-- Back -->
+          <div class="card-face card-back">
+            <div class="card-top-line"></div>
+            <div class="back-content">
+              <div class="meaning-section">
+                <div class="meaning-label">中文释义</div>
+                <div class="word-meaning" data-ui-id="review-word-back-meaning">苹果</div>
+              </div>
+              <div class="divider"></div>
+              <div class="phonetic-section">
+                <div class="phonetic-label">音标</div>
+                <div class="word-phonetic" data-ui-id="review-word-back-phonetic">/ˈæp.əl/</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <button class="action-btn unknown-btn" data-ui-id="review-unknown-button" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <title>将当前单词放回队列底部稍后复习</title>
+            <path d="M3 12a9 9 0 1 1 9 9"></path>
+            <polyline points="12 17 12 12 16 12"></polyline>
+          </svg>
+          不认识
+        </button>
+        <button class="action-btn known-btn" data-ui-id="review-known-button" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <title>标记当前单词为已认识并移出卡片堆</title>
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          认识
+        </button>
+      </div>
+
+      <div class="empty-state" data-ui-id="review-empty-state" id="empty-state">
+        <div class="empty-icon-wrap" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <title>还没有可复习的单词</title>
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+        </div>
+        <div class="empty-title">还没有可复习的单词哦</div>
+        <div class="empty-body">先去学习新单词，再来这里复习吧～</div>
+      </div>
+    </section>
+
+    <div class="completion-overlay" data-ui-id="review-completion-overlay" id="completion-overlay">
+      <div class="completion-card" role="dialog" aria-modal="true" aria-labelledby="completion-heading">
+        <div class="completion-badge" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <title>本轮复习完成</title>
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="completion-title" id="completion-heading">太棒了！</div>
+        <div class="completion-stat">
+          <div class="completion-number">8</div>
+          <div class="completion-label">答对单词</div>
+        </div>
+        <button class="restart-btn" data-ui-id="review-restart-button" type="button">再学一次</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('flashcard');
+    card.addEventListener('click', () => {
+      card.classList.toggle('is-flipped');
+    });
+  </script>
+</body>
+</html>

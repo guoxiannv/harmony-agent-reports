@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>宠迹·PawLog 趋势</title>
+  <style>
+    :root {
+      --mint-600: #3FC0A0; --mint-500: #5ED7B6; --mint-300: #9CEBD4; --mint-100: #E5FAF4; --mint-50: #F4FDFA;
+      --pink-600: #FF9AAE; --pink-500: #FFB3C1; --pink-100: #FFF0F3;
+      --yellow-500: #FFD166; --yellow-100: #FFF9E6;
+      --blue-500: #87CEEB; --blue-100: #E6F5FB;
+      --lavender-500: #B8B8E0; --lavender-100: #F2F1FA;
+      --apricot-500: #F4D0A4; --apricot-100: #FDF5EA;
+      --forest-900: #163832; --forest-700: #3D5A52; --forest-500: #6F8983; --forest-200: #C9D8D4; --forest-100: #E3EDEA;
+      --white: #FFFFFF; --page-bg: #FAFDFC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--page-bg); color: var(--forest-900); max-width: 390px; margin: 0 auto;
+      min-height: 100vh; position: relative; padding-bottom: 88px;
+    }
+    .header { padding: 16px; height: 64px; display: flex; align-items: center; }
+    .header-title { font-size: 22px; font-weight: 800; }
+
+    .tab-row {
+      display: flex; gap: 8px; padding: 0 16px 12px;
+    }
+    .tab-row .chip { flex: 1; text-align: center; }
+    .chip {
+      padding: 10px 0; border-radius: 16px; background: var(--white);
+      border: 1px solid var(--forest-100); font-size: 14px; font-weight: 600;
+      color: var(--forest-700); transition: all .15s; cursor: pointer;
+    }
+    .chip.active { background: var(--mint-100); color: var(--mint-600); border-color: var(--mint-500); box-shadow: 0 2px 8px rgba(94,215,182,0.12); }
+    .chip:active { transform: scale(0.96); }
+
+    .period-row {
+      display: flex; justify-content: center; gap: 8px; margin-bottom: 16px;
+    }
+    .period-row .chip { padding: 6px 16px; border-radius: 20px; }
+
+    .chart-card {
+      background: var(--white); border: 1px solid rgba(201,216,212,0.45); border-radius: 24px;
+      margin: 0 16px 16px; padding: 20px;
+      box-shadow: 0 6px 22px rgba(22,56,50,0.05), 0 2px 8px rgba(22,56,50,0.04);
+    }
+    .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .chart-title { font-size: 17px; font-weight: 700; }
+    .chart-value { font-size: 24px; font-weight: 800; color: var(--mint-600); }
+    .chart-value span { font-size: 13px; color: var(--forest-500); margin-left: 2px; }
+    .chart-area {
+      height: 220px; position: relative;
+    }
+    .chart-svg { width: 100%; height: 100%; }
+
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+      padding: 0 16px;
+    }
+    .stat-card {
+      border-radius: 20px; padding: 16px;
+      border: 1px solid var(--forest-100);
+      box-shadow: 0 4px 14px rgba(22,56,50,0.04);
+    }
+    .stat-card.weight { background: var(--blue-100); }
+    .stat-card.avg { background: var(--mint-100); }
+    .stat-card.max { background: var(--apricot-100); }
+    .stat-card.min { background: var(--lavender-100); }
+    .stat-label { font-size: 12px; color: var(--forest-500); margin-bottom: 6px; }
+    .stat-value { font-size: 20px; font-weight: 800; color: var(--forest-900); }
+    .stat-change {
+      display: inline-block; margin-top: 6px; padding: 3px 8px; border-radius: 8px;
+      font-size: 11px; font-weight: 700; background: var(--white);
+    }
+    .stat-change.up { color: var(--pink-600); }
+    .stat-change.down { color: var(--mint-600); }
+
+    /* Empty */
+    .empty-state { display: flex; flex-direction: column; align-items: center; padding: 40px 24px; text-align: center; }
+    .empty-illust { width: 120px; height: 120px; border-radius: 32px; background: linear-gradient(135deg, var(--mint-50), var(--mint-100)); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .empty-illust svg { width: 64px; height: 64px; stroke: var(--mint-500); fill: none; }
+    .empty-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .empty-desc { font-size: 14px; color: var(--forest-500); margin-bottom: 16px; }
+
+    .tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0; max-width: 390px; margin: 0 auto;
+      height: 68px; background: var(--white); border-top: 1px solid var(--forest-100);
+      display: flex; justify-content: space-around; align-items: flex-start; padding-top: 8px; z-index: 100;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 14px; cursor: pointer; }
+    .tab-item.active .tab-icon { stroke: var(--mint-600); }
+    .tab-item.active .tab-label { color: var(--mint-600); }
+    .tab-icon { width: 24px; height: 24px; stroke: var(--forest-500); fill: none; }
+    .tab-label { font-size: 11px; font-weight: 500; color: var(--forest-500); }
+  </style>
+</head>
+<body data-page-id="trends-page" data-tab-id="tab-trends">
+
+  <header class="header">
+    <span class="header-title">健康趋势</span>
+  </header>
+
+  <div class="tab-row">
+    <button class="chip active" data-ui-id="trends-tab-weight">体重</button>
+    <button class="chip" data-ui-id="trends-tab-diet">饮食</button>
+    <button class="chip" data-ui-id="trends-tab-stool">排泄</button>
+  </div>
+
+  <div class="period-row">
+    <button class="chip active" data-ui-id="trends-period-week">近7天</button>
+    <button class="chip" data-ui-id="trends-period-month">近30天</button>
+  </div>
+
+  <div class="chart-card" data-ui-id="trends-chart">
+    <div class="chart-header">
+      <span class="chart-title">体重变化</span>
+      <div class="chart-value">12.5<span>kg</span></div>
+    </div>
+    <div class="chart-area">
+      <svg class="chart-svg" viewBox="0 0 320 220" preserveAspectRatio="none" role="img">
+        <title>体重趋势面积图</title>
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5ED7B6" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#5ED7B6" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="#E3EDEA" stroke-width="1" stroke-dasharray="4 4">
+          <line x1="0" y1="44" x2="320" y2="44"/>
+          <line x1="0" y1="88" x2="320" y2="88"/>
+          <line x1="0" y1="132" x2="320" y2="132"/>
+          <line x1="0" y1="176" x2="320" y2="176"/>
+        </g>
+        <path d="M0 154 L53 140 L107 128 L160 132 L213 118 L267 108 L320 100 L320 220 L0 220 Z" fill="url(#areaFill)" stroke="none"/>
+        <path d="M0 154 L53 140 L107 128 L160 132 L213 118 L267 108 L320 100" fill="none" stroke="#3FC0A0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="#3FC0A0" stroke="#FFFFFF" stroke-width="2">
+          <circle cx="0" cy="154" r="5"/>
+          <circle cx="53" cy="140" r="5"/>
+          <circle cx="107" cy="128" r="5"/>
+          <circle cx="160" cy="132" r="5"/>
+          <circle cx="213" cy="118" r="5"/>
+          <circle cx="267" cy="108" r="5"/>
+          <circle cx="320" cy="100" r="5"/>
+        </g>
+        <g font-size="10" fill="#6F8983" text-anchor="middle">
+          <text x="0" y="210">6.16</text>
+          <text x="53" y="210">6.17</text>
+          <text x="107" y="210">6.18</text>
+          <text x="160" y="210">6.19</text>
+          <text x="213" y="210">6.20</text>
+          <text x="267" y="210">6.21</text>
+          <text x="320" y="210">今天</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stats-grid" data-ui-id="trends-stats-list">
+    <div class="stat-card weight" data-ui-id="trends-stat-latest">
+      <div class="stat-label">最新体重</div>
+      <div class="stat-value">12.5kg</div>
+      <span class="stat-change down">较上周 +0.1kg</span>
+    </div>
+    <div class="stat-card avg" data-ui-id="trends-stat-avg">
+      <div class="stat-label">平均体重</div>
+      <div class="stat-value">12.4kg</div>
+      <span class="stat-change down">稳定</span>
+    </div>
+    <div class="stat-card max" data-ui-id="trends-stat-max">
+      <div class="stat-label">最高体重</div>
+      <div class="stat-value">12.6kg</div>
+      <span class="stat-change up">6.19</span>
+    </div>
+    <div class="stat-card min" data-ui-id="trends-stat-min">
+      <div class="stat-label">最低体重</div>
+      <div class="stat-value">12.2kg</div>
+      <span class="stat-change down">6.16</span>
+    </div>
+  </div>
+
+  <nav class="tabbar">
+    <div class="tab-item" data-ui-id="tab-home" data-tab-id="tab-home">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>首页标签</title><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9 22 9 12 15 12 15 22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">首页</span>
+    </div>
+    <div class="tab-item" data-ui-id="tab-records" data-tab-id="tab-records">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>记录标签</title><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="tab-label">记录</span>
+    </div>
+    <div class="tab-item active" data-ui-id="tab-trends" data-tab-id="tab-trends">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>趋势标签</title><path d="M3 3v18h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">趋势</span>
+    </div>
+    <div class="tab-item" data-ui-id="tab-care" data-tab-id="tab-care">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>照护标签</title><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-label">照护</span>
+    </div>
+    <div class="tab-item" data-ui-id="tab-profile" data-tab-id="tab-profile">
+      <svg class="tab-icon" viewBox="0 0 24 24" role="img"><title>我的标签</title><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke-width="2"/></svg>
+      <span class="tab-label">我的</span>
+    </div>
+  </nav>
+
+</body>
+</html>

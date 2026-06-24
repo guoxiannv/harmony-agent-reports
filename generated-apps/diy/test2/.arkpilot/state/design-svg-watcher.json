@@ -1,0 +1,72 @@
+{
+  "pid": 13924,
+  "status": "controller-tick",
+  "launched_by_session_id": "0646e086-f2ba-4f33-8793-fff970d5dda7",
+  "started_at": "2026-06-22T08:49:35.010Z",
+  "last_scan_at": "2026-06-22T09:49:03.609Z",
+  "last_change_at": "2026-06-22T09:16:49.557Z",
+  "html_signature": "[{\"name\":\"page-check-in.html\",\"mtime_ms\":1782119721102,\"size\":5069},{\"name\":\"page-course-detail.html\",\"mtime_ms\":1782119463223,\"size\":7387},{\"name\":\"page-courses.html\",\"mtime_ms\":1782119369503,\"size\":10427},{\"name\":\"page-home.html\",\"mtime_ms\":1782118897856,\"size\":12057},{\"name\":\"page-inventory.html\",\"mtime_ms\":1782119578033,\"size\":9215},{\"name\":\"page-member-detail.html\",\"mtime_ms\":1782119125796,\"size\":8608},{\"name\":\"page-members.html\",\"mtime_ms\":1782119021342,\"size\":9035},{\"name\":\"page-points.html\",\"mtime_ms\":1782119226263,\"size\":7533},{\"name\":\"page-profile.html\",\"mtime_ms\":1782119808339,\"size\":7432},{\"name\":\"page-sleeping-members.html\",\"mtime_ms\":1782119660861,\"size\":7077}]",
+  "html_files": [
+    {
+      "name": "page-check-in.html",
+      "mtime_ms": 1782119721102,
+      "size": 5069
+    },
+    {
+      "name": "page-course-detail.html",
+      "mtime_ms": 1782119463223,
+      "size": 7387
+    },
+    {
+      "name": "page-courses.html",
+      "mtime_ms": 1782119369503,
+      "size": 10427
+    },
+    {
+      "name": "page-home.html",
+      "mtime_ms": 1782118897856,
+      "size": 12057
+    },
+    {
+      "name": "page-inventory.html",
+      "mtime_ms": 1782119578033,
+      "size": 9215
+    },
+    {
+      "name": "page-member-detail.html",
+      "mtime_ms": 1782119125796,
+      "size": 8608
+    },
+    {
+      "name": "page-members.html",
+      "mtime_ms": 1782119021342,
+      "size": 9035
+    },
+    {
+      "name": "page-points.html",
+      "mtime_ms": 1782119226263,
+      "size": 7533
+    },
+    {
+      "name": "page-profile.html",
+      "mtime_ms": 1782119808339,
+      "size": 7432
+    },
+    {
+      "name": "page-sleeping-members.html",
+      "mtime_ms": 1782119660861,
+      "size": 7077
+    }
+  ],
+  "last_result": {
+    "extracted": false,
+    "export_count": 33,
+    "style_manifest_ready": true,
+    "svg_style_map_ready": true,
+    "synced": true,
+    "synced_count": 33,
+    "synced_style_manifest": true,
+    "synced_svg_style_map": true
+  },
+  "updated_at": "2026-06-22T09:49:03.609Z"
+}

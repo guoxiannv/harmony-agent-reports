@@ -1,0 +1,114 @@
+{
+  "module": "02-layout.md",
+  "group": "02 — Layout & Scroll Containers",
+  "apiCount": 16,
+  "apis": [
+    {
+      "name": "Column",
+      "purpose": "沿垂直方向布局的容器，支持 space/alignItems/justifyContent/reverse",
+      "anchor": "#column",
+      "status": "found"
+    },
+    {
+      "name": "Row",
+      "purpose": "沿水平方向布局的容器，支持 space/alignItems/justifyContent/reverse",
+      "anchor": "#row",
+      "status": "found"
+    },
+    {
+      "name": "Stack",
+      "purpose": "堆叠容器，后一子组件覆盖前一子组件，支持 alignContent/syncLoad",
+      "anchor": "#stack",
+      "status": "found"
+    },
+    {
+      "name": "Flex",
+      "purpose": "弹性布局容器，支持 direction/wrap/justifyContent/alignItems/space",
+      "anchor": "#flex",
+      "status": "found"
+    },
+    {
+      "name": "Scroll",
+      "purpose": "可滚动容器组件，支持 scrollable/scrollBar/edgeEffect/nestedScroll/friction/缩放",
+      "anchor": "#scroll",
+      "status": "found"
+    },
+    {
+      "name": "List",
+      "purpose": "列表容器，支持懒加载、lanes/divider/sticky/scrollSnapAlign/nestedScroll",
+      "anchor": "#list",
+      "status": "found"
+    },
+    {
+      "name": "ListItem",
+      "purpose": "列表具体 item，必须配合 List/ListItemGroup 使用，支持 swipeAction/selected",
+      "anchor": "#listitem",
+      "status": "found"
+    },
+    {
+      "name": "Swiper",
+      "purpose": "滑块视图容器，支持 loop/autoPlay/indicator/displayCount/nestedScroll",
+      "anchor": "#swiper",
+      "status": "found"
+    },
+    {
+      "name": "width",
+      "purpose": "设置组件自身宽度，支持 Length/LayoutPolicy/calc",
+      "anchor": "#width",
+      "status": "found"
+    },
+    {
+      "name": "height",
+      "purpose": "设置组件自身高度，支持 Length/LayoutPolicy/calc",
+      "anchor": "#height",
+      "status": "found"
+    },
+    {
+      "name": "maxWidth",
+      "purpose": "无独立属性，通过 constraintSize({ maxWidth: value }) 设置",
+      "anchor": "#constraintsize",
+      "status": "found"
+    },
+    {
+      "name": "padding",
+      "purpose": "设置组件内边距，支持 Padding/Length/LocalizedPadding",
+      "anchor": "#padding",
+      "status": "found"
+    },
+    {
+      "name": "margin",
+      "purpose": "设置组件外边距，支持 Margin/Length/LocalizedMargin",
+      "anchor": "#margin",
+      "status": "found"
+    },
+    {
+      "name": "layoutWeight",
+      "purpose": "设置布局权重，在 Row/Column/Flex 父容器主轴按权重分配尺寸",
+      "anchor": "#layoutweight",
+      "status": "found"
+    },
+    {
+      "name": "constraintSize",
+      "purpose": "设置约束尺寸，限制组件 minWidth/maxWidth/minHeight/maxHeight，优先级高于 width/height",
+      "anchor": "#constraintsize",
+      "status": "found"
+    },
+    {
+      "name": "vp units",
+      "purpose": "屏幕密度相关像素单位，ArkUI 默认尺寸单位；fp 为字体像素，lpx 为视窗逻辑像素",
+      "anchor": "#像素单位",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "maxWidth is not a standalone API; it is set via constraintSize({ maxWidth: value })",
+    "Column/Row 性能优于 Flex（Flex 存在二次布局过程），性能敏感场景推荐使用 Column/Row",
+    "layoutWeight 仅在 Row/Column/Flex 父容器下生效，会覆盖 flexShrink/flexGrow",
+    "constraintSize 优先级高于 width/height",
+    "Scroll 未设主轴大小时默认撑满父容器，与 Column/Row 自适应子组件的行为不同",
+    "List 嵌套 Scroll（同方向）且未设主轴尺寸时会导致懒加载失效",
+    "Swiper 的导航点指示器支持 DotIndicator（圆点）和 DigitIndicator（数字）两种样式",
+    "vp2px/px2vp 等像素转换接口从 API 18 起废弃，推荐使用 getUIContext().vp2px()"
+  ],
+  "missingApis": []
+}

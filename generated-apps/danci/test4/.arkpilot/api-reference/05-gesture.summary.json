@@ -1,0 +1,51 @@
+{
+  "module": "05-gesture.md",
+  "group": "05 — Gesture & Touch Events",
+  "apiCount": 7,
+  "apis": [
+    {
+      "name": "TapGesture",
+      "purpose": "支持单击、双击和多次点击的手势识别",
+      "anchor": "tapgesture",
+      "status": "found"
+    },
+    {
+      "name": "gesture修饰符",
+      "purpose": "为组件绑定手势识别，支持普通手势(gesture)、优先识别(priorityGesture)、并行触发(parallelGesture)三种绑定方式",
+      "anchor": "gesture",
+      "status": "found"
+    },
+    {
+      "name": "GestureGroup",
+      "purpose": "组合手势识别，支持顺序识别、并发识别和互斥识别三种模式",
+      "anchor": "gesturegroup",
+      "status": "found"
+    },
+    {
+      "name": "onTouch",
+      "purpose": "触摸事件回调，支持Down/Move/Up/Cancel四种触摸类型",
+      "anchor": "ontouch",
+      "status": "found"
+    },
+    {
+      "name": "gestureMask",
+      "purpose": "定义是否屏蔽子组件手势，Normal不屏蔽，IgnoreInternal屏蔽子组件手势",
+      "anchor": "gesturemask枚举说明",
+      "status": "found"
+    },
+    {
+      "name": "点击事件（onClick）",
+      "purpose": "组件点击事件回调，支持普通onClick和带distanceThreshold参数的onClick重载",
+      "anchor": "onclick",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "所有手势 API 从 API version 7 开始支持，元服务从 API version 11 开始支持",
+    "onClick 从 API version 12 开始新增带 distanceThreshold 参数的重载",
+    "当组件同时绑定双击和单击手势（双击先绑定）时，单击手势有 300ms 延时",
+    "GestureGroup 支持 Sequence、Parallel、Exclusive 三种识别模式",
+    "gesture/priorityGesture/parallelGesture 不支持在 attributeModifier 中使用"
+  ],
+  "missingApis": []
+}

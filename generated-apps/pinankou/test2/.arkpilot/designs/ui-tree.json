@@ -1,0 +1,516 @@
+{
+  "version": "arkpilot-a2ui/v2",
+  "kind": "semantic-ui-protocol",
+  "appName": "平安扣 Pinankou",
+  "targetDevice": {
+    "widthVp": 1272,
+    "heightVp": 2756,
+    "contentMaxWidthVp": 420
+  },
+  "surfaces": [
+    {
+      "id": "home-page",
+      "surfaceId": "home",
+      "pageId": "home-page",
+      "name": "工作台",
+      "route": "pages/Home",
+      "tabId": "tab-home",
+      "semanticTargets": [
+        {
+          "id": "home-add-hazard-button",
+          "role": "action",
+          "event": "navigate-to-hazard-edit"
+        },
+        {
+          "id": "home-start-patrol-button",
+          "role": "action",
+          "event": "navigate-to-patrol"
+        },
+        {
+          "id": "home-emergency-call-button",
+          "role": "action",
+          "event": "call-primary-emergency-contact"
+        },
+        {
+          "id": "home-summary-pending-count",
+          "role": "assertion",
+          "binding": "/summary/pendingHazards"
+        },
+        {
+          "id": "home-summary-today-patrol-count",
+          "role": "assertion",
+          "binding": "/summary/todayPatrols"
+        },
+        {
+          "id": "home-summary-completion-rate",
+          "role": "assertion",
+          "binding": "/summary/completionRate"
+        },
+        {
+          "id": "home-todo-list",
+          "role": "list",
+          "binding": "/todos",
+          "itemIdPattern": "home-todo-{id}",
+          "emptyStateId": "home-todo-empty-state"
+        },
+        {
+          "id": "home-notification-button",
+          "role": "action",
+          "event": "open-notifications"
+        }
+      ]
+    },
+    {
+      "id": "hazard-page",
+      "surfaceId": "hazard",
+      "pageId": "hazard-page",
+      "name": "隐患管理",
+      "route": "pages/Hazard",
+      "tabId": "tab-hazard",
+      "semanticTargets": [
+        {
+          "id": "hazard-create-button",
+          "role": "action",
+          "event": "navigate-to-hazard-edit"
+        },
+        {
+          "id": "hazard-search-input",
+          "role": "input",
+          "binding": "/hazards/filter/keyword"
+        },
+        {
+          "id": "hazard-status-filter",
+          "role": "input",
+          "binding": "/hazards/filter/status"
+        },
+        {
+          "id": "hazard-list",
+          "role": "list",
+          "binding": "/hazards",
+          "itemIdPattern": "hazard-item-{id}",
+          "emptyStateId": "hazard-empty-state"
+        },
+        {
+          "id": "hazard-empty-state",
+          "role": "assertion"
+        }
+      ]
+    },
+    {
+      "id": "hazard-detail-page",
+      "surfaceId": "hazard-detail",
+      "pageId": "hazard-detail-page",
+      "name": "隐患详情",
+      "route": "pages/HazardDetail",
+      "semanticTargets": [
+        {
+          "id": "hazard-detail-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "hazard-detail-edit-button",
+          "role": "action",
+          "event": "navigate-to-hazard-edit"
+        },
+        {
+          "id": "hazard-detail-title",
+          "role": "assertion",
+          "binding": "/hazard/title"
+        },
+        {
+          "id": "hazard-detail-status",
+          "role": "assertion",
+          "binding": "/hazard/status"
+        },
+        {
+          "id": "hazard-detail-urge-button",
+          "role": "action",
+          "event": "urge-rectification"
+        },
+        {
+          "id": "hazard-detail-accept-button",
+          "role": "action",
+          "event": "accept-rectification"
+        },
+        {
+          "id": "hazard-detail-progress-list",
+          "role": "list",
+          "binding": "/hazard/progress",
+          "itemIdPattern": "hazard-progress-{id}",
+          "emptyStateId": "hazard-detail-progress-empty"
+        }
+      ]
+    },
+    {
+      "id": "hazard-edit-page",
+      "surfaceId": "hazard-edit",
+      "pageId": "hazard-edit-page",
+      "name": "隐患编辑",
+      "route": "pages/HazardEdit",
+      "semanticTargets": [
+        {
+          "id": "hazard-edit-back-button",
+          "role": "action",
+          "event": "navigate-back"
+        },
+        {
+          "id": "hazard-edit-title-input",
+          "role": "input",
+          "binding": "/hazardForm/title"
+        },
+        {
+          "id": "hazard-edit-location-input",
+          "role": "input",
+          "binding": "/hazardForm/location"
+        },
+        {
+          "id": "hazard-edit-level-picker",
+          "role": "input",
+          "binding": "/hazardForm/level"
+        },
+        {
+          "id": "hazard-edit-description-input",
+          "role": "input",
+          "binding": "/hazardForm/description"
+        },
+        {
+          "id": "hazard-edit-photo-button",
+          "role": "action",
+          "event": "take-photo"
+        },
+        {
+          "id": "hazard-edit-assignee-picker",
+          "role": "input",
+          "binding": "/hazardForm/assignee"
+        },
+        {
+          "id": "hazard-edit-deadline-picker",
+          "role": "input",
+          "binding": "/hazardForm/deadline"
+        },
+        {
+          "id": "hazard-edit-save-button",
+          "role": "action",
+          "event": "save-hazard"
+        }
+      ]
+    },
+    {
+      "id": "patrol-page",
+      "surfaceId": "patrol",
+      "pageId": "patrol-page",
+      "name": "巡检打卡",
+      "route": "pages/Patrol",
+      "tabId": "tab-patrol",
+      "semanticTargets": [
+        {
+          "id": "patrol-route-list",
+          "role": "list",
+          "binding": "/patrol/routes",
+          "itemIdPattern": "patrol-route-{id}",
+          "emptyStateId": "patrol-empty-state"
+        },
+        {
+          "id": "patrol-start-button",
+          "role": "action",
+          "event": "start-patrol"
+        },
+        {
+          "id": "patrol-checkpoint-list",
+          "role": "list",
+          "binding": "/patrol/checkpoints",
+          "itemIdPattern": "patrol-checkpoint-{id}",
+          "emptyStateId": "patrol-checkpoint-empty"
+        },
+        {
+          "id": "patrol-checkin-button",
+          "role": "action",
+          "event": "checkin-patrol-point"
+        },
+        {
+          "id": "patrol-report-abnormal-button",
+          "role": "action",
+          "event": "report-abnormal-at-checkpoint"
+        },
+        {
+          "id": "patrol-complete-button",
+          "role": "action",
+          "event": "complete-patrol"
+        }
+      ]
+    },
+    {
+      "id": "contacts-page",
+      "surfaceId": "contacts",
+      "pageId": "contacts-page",
+      "name": "应急联系人",
+      "route": "pages/Contacts",
+      "tabId": "tab-contacts",
+      "semanticTargets": [
+        {
+          "id": "contacts-search-input",
+          "role": "input",
+          "binding": "/contacts/filter/keyword"
+        },
+        {
+          "id": "contacts-group-filter",
+          "role": "input",
+          "binding": "/contacts/filter/group"
+        },
+        {
+          "id": "contacts-list",
+          "role": "list",
+          "binding": "/contacts",
+          "itemIdPattern": "contact-item-{id}",
+          "emptyStateId": "contacts-empty-state"
+        },
+        {
+          "id": "contacts-call-button",
+          "role": "action",
+          "event": "call-contact"
+        },
+        {
+          "id": "contacts-add-button",
+          "role": "action",
+          "event": "add-contact"
+        }
+      ]
+    },
+    {
+      "id": "stats-page",
+      "surfaceId": "stats",
+      "pageId": "stats-page",
+      "name": "统计看板",
+      "route": "pages/Stats",
+      "tabId": "tab-stats",
+      "semanticTargets": [
+        {
+          "id": "stats-time-filter",
+          "role": "input",
+          "binding": "/stats/filter/timeRange"
+        },
+        {
+          "id": "stats-hazard-total",
+          "role": "assertion",
+          "binding": "/stats/hazardTotal"
+        },
+        {
+          "id": "stats-completion-rate",
+          "role": "assertion",
+          "binding": "/stats/completionRate"
+        },
+        {
+          "id": "stats-patrol-coverage",
+          "role": "assertion",
+          "binding": "/stats/patrolCoverage"
+        },
+        {
+          "id": "stats-trend-chart",
+          "role": "assertion",
+          "binding": "/stats/trend"
+        },
+        {
+          "id": "stats-rank-list",
+          "role": "list",
+          "binding": "/stats/rank",
+          "itemIdPattern": "stats-rank-{id}",
+          "emptyStateId": "stats-rank-empty"
+        }
+      ]
+    },
+    {
+      "id": "profile-page",
+      "surfaceId": "profile",
+      "pageId": "profile-page",
+      "name": "我的",
+      "route": "pages/Profile",
+      "tabId": "tab-profile",
+      "semanticTargets": [
+        {
+          "id": "profile-avatar",
+          "role": "assertion",
+          "binding": "/profile/avatar"
+        },
+        {
+          "id": "profile-name",
+          "role": "assertion",
+          "binding": "/profile/name"
+        },
+        {
+          "id": "profile-settings-button",
+          "role": "action",
+          "event": "open-settings"
+        },
+        {
+          "id": "profile-sync-button",
+          "role": "action",
+          "event": "sync-data"
+        },
+        {
+          "id": "profile-about-button",
+          "role": "action",
+          "event": "open-about"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "navigate-to-hazard-edit",
+      "context": ["hazardId?"]
+    },
+    {
+      "name": "navigate-to-patrol",
+      "context": []
+    },
+    {
+      "name": "call-primary-emergency-contact",
+      "context": []
+    },
+    {
+      "name": "open-notifications",
+      "context": []
+    },
+    {
+      "name": "navigate-back",
+      "context": []
+    },
+    {
+      "name": "save-hazard",
+      "context": []
+    },
+    {
+      "name": "take-photo",
+      "context": []
+    },
+    {
+      "name": "urge-rectification",
+      "context": ["hazardId"]
+    },
+    {
+      "name": "accept-rectification",
+      "context": ["hazardId"]
+    },
+    {
+      "name": "start-patrol",
+      "context": ["routeId"]
+    },
+    {
+      "name": "checkin-patrol-point",
+      "context": ["checkpointId"]
+    },
+    {
+      "name": "report-abnormal-at-checkpoint",
+      "context": ["checkpointId"]
+    },
+    {
+      "name": "complete-patrol",
+      "context": ["routeId"]
+    },
+    {
+      "name": "call-contact",
+      "context": ["contactId"]
+    },
+    {
+      "name": "add-contact",
+      "context": []
+    },
+    {
+      "name": "open-settings",
+      "context": []
+    },
+    {
+      "name": "sync-data",
+      "context": []
+    },
+    {
+      "name": "open-about",
+      "context": []
+    }
+  ],
+  "bindings": [
+    "/summary/pendingHazards",
+    "/summary/todayPatrols",
+    "/summary/completionRate",
+    "/todos",
+    "/hazards",
+    "/hazards/filter/keyword",
+    "/hazards/filter/status",
+    "/hazard/title",
+    "/hazard/status",
+    "/hazard/progress",
+    "/hazardForm/title",
+    "/hazardForm/location",
+    "/hazardForm/level",
+    "/hazardForm/description",
+    "/hazardForm/assignee",
+    "/hazardForm/deadline",
+    "/patrol/routes",
+    "/patrol/checkpoints",
+    "/contacts",
+    "/contacts/filter/keyword",
+    "/contacts/filter/group",
+    "/stats/filter/timeRange",
+    "/stats/hazardTotal",
+    "/stats/completionRate",
+    "/stats/patrolCoverage",
+    "/stats/trend",
+    "/stats/rank",
+    "/profile/avatar",
+    "/profile/name"
+  ],
+  "testTargets": [
+    "home-add-hazard-button",
+    "home-start-patrol-button",
+    "home-emergency-call-button",
+    "home-summary-pending-count",
+    "home-summary-today-patrol-count",
+    "home-summary-completion-rate",
+    "home-todo-list",
+    "home-notification-button",
+    "hazard-create-button",
+    "hazard-search-input",
+    "hazard-status-filter",
+    "hazard-list",
+    "hazard-empty-state",
+    "hazard-detail-back-button",
+    "hazard-detail-edit-button",
+    "hazard-detail-title",
+    "hazard-detail-status",
+    "hazard-detail-urge-button",
+    "hazard-detail-accept-button",
+    "hazard-detail-progress-list",
+    "hazard-edit-back-button",
+    "hazard-edit-title-input",
+    "hazard-edit-location-input",
+    "hazard-edit-level-picker",
+    "hazard-edit-description-input",
+    "hazard-edit-photo-button",
+    "hazard-edit-assignee-picker",
+    "hazard-edit-deadline-picker",
+    "hazard-edit-save-button",
+    "patrol-route-list",
+    "patrol-start-button",
+    "patrol-checkpoint-list",
+    "patrol-checkin-button",
+    "patrol-report-abnormal-button",
+    "patrol-complete-button",
+    "contacts-search-input",
+    "contacts-group-filter",
+    "contacts-list",
+    "contacts-call-button",
+    "contacts-add-button",
+    "stats-time-filter",
+    "stats-hazard-total",
+    "stats-completion-rate",
+    "stats-patrol-coverage",
+    "stats-trend-chart",
+    "stats-rank-list",
+    "profile-avatar",
+    "profile-name",
+    "profile-settings-button",
+    "profile-sync-button",
+    "profile-about-button"
+  ]
+}

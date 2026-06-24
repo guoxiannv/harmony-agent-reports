@@ -1,0 +1,83 @@
+{
+  "module": "01-relational-store.md",
+  "group": "01 — RelationalStore 关系型数据持久化",
+  "apiCount": 11,
+  "apis": [
+    {
+      "name": "data.relationalStore",
+      "purpose": "关系型数据库模块命名空间，提供RDB管理能力",
+      "anchor": "datarelationalstore-模块",
+      "status": "found"
+    },
+    {
+      "name": "relationalStore.getRdbStore",
+      "purpose": "创建或打开关系型数据库，返回RdbStore实例",
+      "anchor": "relationalstoregetrdbstore",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.insert",
+      "purpose": "向目标表插入一行数据，返回行ID",
+      "anchor": "rdbstoreinsert",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.update",
+      "purpose": "根据RdbPredicates条件更新数据，返回受影响行数",
+      "anchor": "rdbstoreupdate",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.delete",
+      "purpose": "根据RdbPredicates条件删除数据，返回受影响行数",
+      "anchor": "rdbstoredelete",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.query",
+      "purpose": "根据RdbPredicates条件查询数据，返回ResultSet",
+      "anchor": "rdbstorequery",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.querySql",
+      "purpose": "执行原始SQL查询语句，支持参数绑定",
+      "anchor": "rdbstorequerysql",
+      "status": "found"
+    },
+    {
+      "name": "RdbStore.executeSql",
+      "purpose": "执行非查询SQL语句（不支持查询/事务/ATTACH）",
+      "anchor": "rdbstoreexecutesql",
+      "status": "found"
+    },
+    {
+      "name": "ValuesBucket",
+      "purpose": "键值对类型，表示数据行用于插入/更新操作",
+      "anchor": "valuesbucket",
+      "status": "found"
+    },
+    {
+      "name": "ResultSet",
+      "purpose": "查询结果集游标接口，提供行/列遍历和数据读取",
+      "anchor": "resultset",
+      "status": "found"
+    },
+    {
+      "name": "ValueType",
+      "purpose": "允许的数据字段类型联合（null/number/string/boolean/Uint8Array/Asset/Assets/Float32Array/bigint）",
+      "anchor": "valuetype",
+      "status": "found"
+    }
+  ],
+  "notableFindings": [
+    "单条数据建议不超过2MB（共享内存限制），字符串字段最大8MB（超出截断）",
+    "大数据量查询建议不超过5000条或在TaskPool中执行以避免卡死",
+    "ResultSet使用后必须调用close()释放资源，否则可能导致FD和内存泄漏",
+    "executeSql不支持执行查询、事务（BEGIN/COMMIT/ROLLBACK）及ATTACH操作",
+    "ValuesBucket在relationalStore模块中定义为Record<string, ValueType>，在独立@ohos.data.ValuesBucket模块中定义为Record<string, ValueType | Uint8Array | null>，注意区分",
+    "RdbStore.deleteRdbStore有按名称删除和按StoreConfig删除两种重载，前者不能用于自定义路径的数据库",
+    "系统能力：SystemCapability.DistributedDataManager.RelationalStore.Core"
+  ],
+  "missingApis": []
+}
