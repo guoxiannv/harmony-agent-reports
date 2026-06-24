@@ -367,7 +367,7 @@ function readTranscriptContent(path) {
       outputTokens,
       cacheReadTokens,
       cacheCreationTokens,
-      totalTokens: inputTokens + outputTokens + cacheReadTokens + cacheCreationTokens,
+      totalTokens: inputTokens + outputTokens,
     },
   };
 }
