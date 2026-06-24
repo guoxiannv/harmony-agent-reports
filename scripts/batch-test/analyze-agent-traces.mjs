@@ -311,10 +311,24 @@ function avgRatings(runs, ratingsMap) {
   };
 }
 
-function readTranscriptMeta(path) {
-  if (!path || !existsSync(path)) {
-    return { exists: false, lineCount: 0, firstTimestamp: "", lastTimestamp: "", tokens: null };
+function readTranscriptMeta(path, cwd, sessionId) {
+  // 优先尝试原始路径（绝对路径）
+  if (path && existsSync(path)) {
+    return readTranscriptContent(path);
   }
+
+  // 原始路径不存在，尝试相对路径 .arkpilot/transcripts/{sessionId}.jsonl
+  if (cwd && sessionId) {
+    const relativePath = join(cwd, ".arkpilot", "transcripts", `${sessionId}.jsonl`);
+    if (existsSync(relativePath)) {
+      return readTranscriptContent(relativePath);
+    }
+  }
+
+  return { exists: false, lineCount: 0, firstTimestamp: "", lastTimestamp: "", tokens: null };
+}
+
+function readTranscriptContent(path) {
 
   const text = readFileSync(path, "utf8");
   const lines = text.split(/\r?\n/).filter(Boolean);
@@ -519,7 +533,8 @@ function analyzeRun(file, options) {
   const parts = pathPartsForRun(options.appsDir, cwd);
   const lanes = Object.entries(run.lanes || {}).map(([laneName, lane]) => {
     const transcriptPath = lane.transcript_path || lane.agent_transcript_path || "";
-    const transcriptMeta = readTranscriptMeta(transcriptPath);
+    const sessionId = lane.agent_session_id || lane.claude_session_id || lane.codex_session_id || "";
+    const transcriptMeta = readTranscriptMeta(transcriptPath, cwd, sessionId);
     const end = laneEndTime(lane, run, transcriptMeta, options);
     const launchedMs = msBetween(lane.launched_at || lane.started_marker_seen_at || lane.prompt_sent_at, end.value);
     const promptMs = msBetween(lane.prompt_sent_at || lane.started_marker_seen_at || lane.launched_at, end.value);
