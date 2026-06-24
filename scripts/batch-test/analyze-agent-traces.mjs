@@ -107,6 +107,29 @@ function formatTokens(value) {
   return String(value);
 }
 
+// Claude 定价 (每百万 tokens，美元)
+const CLAUDE_PRICES = {
+  sonnet: { input: 3, output: 15 },
+  opus: { input: 15, output: 75 },
+  haiku: { input: 0.25, output: 1.25 },
+};
+
+// 默认用 Sonnet 价格计算
+const DEFAULT_PRICE = CLAUDE_PRICES.sonnet;
+
+function calculateCost(inputTokens, outputTokens) {
+  const inputCost = (inputTokens / 1_000_000) * DEFAULT_PRICE.input;
+  const outputCost = (outputTokens / 1_000_000) * DEFAULT_PRICE.output;
+  return inputCost + outputCost;
+}
+
+function formatCost(value) {
+  if (!Number.isFinite(value) || value === 0) return "$0";
+  if (value >= 100) return `$${value.toFixed(0)}`;
+  if (value >= 10) return `$${value.toFixed(1)}`;
+  return `$${value.toFixed(2)}`;
+}
+
 function htmlEscape(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -368,6 +391,7 @@ function readTranscriptContent(path) {
       cacheReadTokens,
       cacheCreationTokens,
       totalTokens: inputTokens + outputTokens,
+      cost: calculateCost(inputTokens, outputTokens),
     },
   };
 }
@@ -601,8 +625,9 @@ function analyzeRun(file, options) {
     acc.cacheReadTokens += t.cacheReadTokens;
     acc.cacheCreationTokens += t.cacheCreationTokens;
     acc.totalTokens += t.totalTokens;
+    acc.cost += t.cost || 0;
     return acc;
-  }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0 });
+  }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0 });
 
   const hapPath = join(cwd, "entry", "build", "default", "outputs", "default", "entry-default-unsigned.hap");
   const hapExists = existsSync(hapPath);
@@ -652,7 +677,7 @@ function buildSummary(runs) {
       failed: 0,
       chainMs: [],
       pauseMs: 0,
-      tokens: { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0 },
+      tokens: { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0 },
     };
     item.runs += 1;
     if (run.status === "complete") item.complete += 1;
@@ -668,6 +693,7 @@ function buildSummary(runs) {
       item.tokens.cacheReadTokens += run.tokenUsage.cacheReadTokens;
       item.tokens.cacheCreationTokens += run.tokenUsage.cacheCreationTokens;
       item.tokens.totalTokens += run.tokenUsage.totalTokens;
+      item.tokens.cost += run.tokenUsage.cost || 0;
     }
     byApp.set(run.app, item);
   }
@@ -695,8 +721,9 @@ function buildSummary(runs) {
     acc.cacheReadTokens += run.tokenUsage.cacheReadTokens;
     acc.cacheCreationTokens += run.tokenUsage.cacheCreationTokens;
     acc.totalTokens += run.tokenUsage.totalTokens;
+    acc.cost += run.tokenUsage.cost || 0;
     return acc;
-  }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0 });
+  }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0 });
 
   return {
     runs: runs.length,
@@ -1017,11 +1044,11 @@ function renderHtml(report) {
       ${renderMetric("Run 数", report.summary.runs)}
       ${renderMetric("Complete", report.summary.complete)}
       ${renderMetric("Chain 平均", formatDuration(report.summary.avgChainMs) || "n/a")}
+      ${renderMetric("Total Cost", formatCost(report.summary.totalTokens?.cost || 0))}
+      ${renderMetric("Avg Cost/App", formatCost(report.summary.complete ? (report.summary.totalTokens?.cost || 0) / report.summary.complete : 0))}
       ${renderMetric("Total Tokens", formatTokens(report.summary.totalTokens?.totalTokens || 0))}
-      ${renderMetric("Avg Tokens/App", formatTokens(report.summary.complete ? (report.summary.totalTokens?.totalTokens || 0) / report.summary.complete : 0))}
       ${renderMetric("Input Tokens", formatTokens(report.summary.totalTokens?.inputTokens || 0))}
       ${renderMetric("Output Tokens", formatTokens(report.summary.totalTokens?.outputTokens || 0))}
-      ${renderMetric("Cache Read", formatTokens(report.summary.totalTokens?.cacheReadTokens || 0))}
     </section>
 
     <h2>最长 Chain Time</h2>
@@ -1042,10 +1069,8 @@ function renderHtml(report) {
           <tr>
             <th>App / Test</th>
             <th>Runs</th>
+            <th>Cost</th>
             <th>Chain Avg</th>
-            <th>Chain Min</th>
-            <th>Chain Max</th>
-            <th>Pause</th>
             <th>Total Tokens</th>
             <th>Input</th>
             <th>Output</th>
@@ -1076,10 +1101,8 @@ function renderHtml(report) {
                 <tr class="tree-parent" data-app="${safeApp}">
                   <td><span class="tree-toggle">▶</span> <strong>${safeApp}</strong></td>
                   <td>${item.runs}</td>
+                  <td>${htmlEscape(formatCost(item.tokens?.cost || 0))}</td>
                   <td class="nowrap">${htmlEscape(formatDuration(item.avgChainMs) || "n/a")}</td>
-                  <td class="nowrap">${htmlEscape(formatDuration(item.minChainMs) || "n/a")}</td>
-                  <td class="nowrap">${htmlEscape(formatDuration(item.maxChainMs) || "n/a")}</td>
-                  <td class="nowrap">${htmlEscape(formatDuration(item.pauseMs) || "0s")}</td>
                   <td>${htmlEscape(formatTokens(item.tokens?.totalTokens || 0))}</td>
                   <td>${htmlEscape(formatTokens(item.tokens?.inputTokens || 0))}</td>
                   <td>${htmlEscape(formatTokens(item.tokens?.outputTokens || 0))}</td>
@@ -1105,10 +1128,8 @@ function renderHtml(report) {
                   <tr class="tree-child" data-parent="${safeApp}">
                     <td>${htmlEscape(run.test)} <span class="muted">${htmlEscape(run.runName)}</span></td>
                     <td>1</td>
+                    <td>${htmlEscape(formatCost(t.cost || 0))}</td>
                     <td class="nowrap">${htmlEscape(formatDuration(run.netChainDurationMs) || "n/a")}</td>
-                    <td class="nowrap">${htmlEscape(formatDuration(run.netChainDurationMs) || "n/a")}</td>
-                    <td class="nowrap">${htmlEscape(formatDuration(run.netChainDurationMs) || "n/a")}</td>
-                    <td class="nowrap">${htmlEscape(formatDuration(run.pauseDurationMs) || "0s")}</td>
                     <td>${htmlEscape(formatTokens(t.totalTokens || 0))}</td>
                     <td>${htmlEscape(formatTokens(t.inputTokens || 0))}</td>
                     <td>${htmlEscape(formatTokens(t.outputTokens || 0))}</td>

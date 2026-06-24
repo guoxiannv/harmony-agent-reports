@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T08:56:29.985Z",
+  "generatedAt": "2026-06-24T09:06:20.633Z",
   "appsDir": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps",
   "latestOnly": true,
   "includeOpenNow": false,
@@ -18,7 +18,8 @@
       "outputTokens": 5207351,
       "cacheReadTokens": 516027618,
       "cacheCreationTokens": 0,
-      "totalTokens": 21418708
+      "totalTokens": 21418708,
+      "cost": 126.74433599999999
     },
     "appSummaries": [
       {
@@ -36,7 +37,8 @@
           "outputTokens": 713582,
           "cacheReadTokens": 92090146,
           "cacheCreationTokens": 0,
-          "totalTokens": 3019580
+          "totalTokens": 3019580,
+          "cost": 17.621724
         }
       },
       {
@@ -54,7 +56,8 @@
           "outputTokens": 1318626,
           "cacheReadTokens": 121082624,
           "cacheCreationTokens": 0,
-          "totalTokens": 5436233
+          "totalTokens": 5436233,
+          "cost": 32.132211
         }
       },
       {
@@ -72,7 +75,8 @@
           "outputTokens": 1759073,
           "cacheReadTokens": 139313408,
           "cacheCreationTokens": 0,
-          "totalTokens": 7375516
+          "totalTokens": 7375516,
+          "cost": 43.235423999999995
         }
       },
       {
@@ -90,7 +94,8 @@
           "outputTokens": 534428,
           "cacheReadTokens": 61593088,
           "cacheCreationTokens": 0,
-          "totalTokens": 2226883
+          "totalTokens": 2226883,
+          "cost": 13.093784999999999
         }
       },
       {
@@ -108,7 +113,8 @@
           "outputTokens": 881642,
           "cacheReadTokens": 101948352,
           "cacheCreationTokens": 0,
-          "totalTokens": 3360496
+          "totalTokens": 3360496,
+          "cost": 20.661192
         }
       }
     ]
@@ -145,7 +151,8 @@
           "outputTokens": 148528,
           "cacheReadTokens": 52580002,
           "cacheCreationTokens": 0,
-          "totalTokens": 577218
+          "totalTokens": 577218,
+          "cost": 3.51399
         },
         "launchedAt": "2026-06-20T03:34:37.085Z",
         "startedAt": "2026-06-20T03:34:38.213Z",
@@ -176,7 +183,8 @@
           "outputTokens": 182791,
           "cacheReadTokens": 12869376,
           "cacheCreationTokens": 0,
-          "totalTokens": 851312
+          "totalTokens": 851312,
+          "cost": 4.747428
         },
         "launchedAt": "2026-06-20T03:34:38.661Z",
         "startedAt": "2026-06-20T03:34:40.059Z",
@@ -218,7 +226,8 @@
         "outputTokens": 374337,
         "cacheReadTokens": 67441058,
         "cacheCreationTokens": 0,
-        "totalTokens": 1666020
+        "totalTokens": 1666020,
+        "cost": 9.490104
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/danci/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -239,7 +248,8 @@
             "outputTokens": 148528,
             "cacheReadTokens": 52580002,
             "cacheCreationTokens": 0,
-            "totalTokens": 577218
+            "totalTokens": 577218,
+            "cost": 3.51399
           },
           "launchedAt": "2026-06-20T03:34:37.085Z",
           "startedAt": "2026-06-20T03:34:38.213Z",
@@ -270,7 +280,8 @@
             "outputTokens": 182791,
             "cacheReadTokens": 12869376,
             "cacheCreationTokens": 0,
-            "totalTokens": 851312
+            "totalTokens": 851312,
+            "cost": 4.747428
           },
           "launchedAt": "2026-06-20T03:34:38.661Z",
           "startedAt": "2026-06-20T03:34:40.059Z",
@@ -301,7 +312,8 @@
             "outputTokens": 43018,
             "cacheReadTokens": 1991680,
             "cacheCreationTokens": 0,
-            "totalTokens": 237490
+            "totalTokens": 237490,
+            "cost": 1.2286860000000002
           },
           "launchedAt": "2026-06-20T03:35:22.457Z",
           "startedAt": "2026-06-20T03:35:23.164Z",
@@ -349,7 +361,8 @@
           "outputTokens": 28052,
           "cacheReadTokens": 1258752,
           "cacheCreationTokens": 0,
-          "totalTokens": 133247
+          "totalTokens": 133247,
+          "cost": 0.7363649999999999
         },
         "launchedAt": "2026-06-20T03:34:37.062Z",
         "startedAt": "2026-06-20T03:34:38.138Z",
@@ -380,7 +393,8 @@
           "outputTokens": 71999,
           "cacheReadTokens": 6554624,
           "cacheCreationTokens": 0,
-          "totalTokens": 290366
+          "totalTokens": 290366,
+          "cost": 1.735086
         },
         "launchedAt": "2026-06-20T03:34:38.628Z",
         "startedAt": "2026-06-20T03:34:39.928Z",
@@ -415,7 +429,8 @@
         "outputTokens": 149542,
         "cacheReadTokens": 9543296,
         "cacheCreationTokens": 0,
-        "totalTokens": 607969
+        "totalTokens": 607969,
+        "cost": 3.618411
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/danci/test3/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -436,7 +451,8 @@
             "outputTokens": 28052,
             "cacheReadTokens": 1258752,
             "cacheCreationTokens": 0,
-            "totalTokens": 133247
+            "totalTokens": 133247,
+            "cost": 0.7363649999999999
           },
           "launchedAt": "2026-06-20T03:34:37.062Z",
           "startedAt": "2026-06-20T03:34:38.138Z",
@@ -467,7 +483,8 @@
             "outputTokens": 71999,
             "cacheReadTokens": 6554624,
             "cacheCreationTokens": 0,
-            "totalTokens": 290366
+            "totalTokens": 290366,
+            "cost": 1.735086
           },
           "launchedAt": "2026-06-20T03:34:38.628Z",
           "startedAt": "2026-06-20T03:34:39.928Z",
@@ -498,7 +515,8 @@
             "outputTokens": 49491,
             "cacheReadTokens": 1729920,
             "cacheCreationTokens": 0,
-            "totalTokens": 184356
+            "totalTokens": 184356,
+            "cost": 1.14696
           },
           "launchedAt": "2026-06-20T03:35:24.419Z",
           "startedAt": "2026-06-20T03:35:25.065Z",
@@ -546,7 +564,8 @@
           "outputTokens": 47651,
           "cacheReadTokens": 1880832,
           "cacheCreationTokens": 0,
-          "totalTokens": 168772
+          "totalTokens": 168772,
+          "cost": 1.078128
         },
         "launchedAt": "2026-06-20T03:34:37.234Z",
         "startedAt": "2026-06-20T03:34:38.520Z",
@@ -577,7 +596,8 @@
           "outputTokens": 104891,
           "cacheReadTokens": 10695808,
           "cacheCreationTokens": 0,
-          "totalTokens": 399262
+          "totalTokens": 399262,
+          "cost": 2.4564779999999997
         },
         "launchedAt": "2026-06-20T03:34:38.992Z",
         "startedAt": "2026-06-20T03:34:40.294Z",
@@ -633,7 +653,8 @@
         "outputTokens": 189703,
         "cacheReadTokens": 15105792,
         "cacheCreationTokens": 0,
-        "totalTokens": 745591
+        "totalTokens": 745591,
+        "cost": 4.513209
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/danci/test5/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -654,7 +675,8 @@
             "outputTokens": 47651,
             "cacheReadTokens": 1880832,
             "cacheCreationTokens": 0,
-            "totalTokens": 168772
+            "totalTokens": 168772,
+            "cost": 1.078128
           },
           "launchedAt": "2026-06-20T03:34:37.234Z",
           "startedAt": "2026-06-20T03:34:38.520Z",
@@ -685,7 +707,8 @@
             "outputTokens": 104891,
             "cacheReadTokens": 10695808,
             "cacheCreationTokens": 0,
-            "totalTokens": 399262
+            "totalTokens": 399262,
+            "cost": 2.4564779999999997
           },
           "launchedAt": "2026-06-20T03:34:38.992Z",
           "startedAt": "2026-06-20T03:34:40.294Z",
@@ -716,7 +739,8 @@
             "outputTokens": 37161,
             "cacheReadTokens": 2529152,
             "cacheCreationTokens": 0,
-            "totalTokens": 177557
+            "totalTokens": 177557,
+            "cost": 0.978603
           },
           "launchedAt": "2026-06-20T03:36:34.879Z",
           "startedAt": "2026-06-20T03:36:35.521Z",
@@ -764,7 +788,8 @@
           "outputTokens": 75267,
           "cacheReadTokens": 2389504,
           "cacheCreationTokens": 0,
-          "totalTokens": 235564
+          "totalTokens": 235564,
+          "cost": 1.609896
         },
         "launchedAt": "2026-06-22T08:49:32.700Z",
         "startedAt": "2026-06-22T08:49:33.467Z",
@@ -795,7 +820,8 @@
           "outputTokens": 76265,
           "cacheReadTokens": 12907264,
           "cacheCreationTokens": 0,
-          "totalTokens": 369345
+          "totalTokens": 369345,
+          "cost": 2.023215
         },
         "launchedAt": "2026-06-22T08:49:33.851Z",
         "startedAt": "2026-06-22T08:49:34.672Z",
@@ -830,7 +856,8 @@
         "outputTokens": 180893,
         "cacheReadTokens": 16519552,
         "cacheCreationTokens": 0,
-        "totalTokens": 907556
+        "totalTokens": 907556,
+        "cost": 4.893384
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test1/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -851,7 +878,8 @@
             "outputTokens": 75267,
             "cacheReadTokens": 2389504,
             "cacheCreationTokens": 0,
-            "totalTokens": 235564
+            "totalTokens": 235564,
+            "cost": 1.609896
           },
           "launchedAt": "2026-06-22T08:49:32.700Z",
           "startedAt": "2026-06-22T08:49:33.467Z",
@@ -882,7 +910,8 @@
             "outputTokens": 76265,
             "cacheReadTokens": 12907264,
             "cacheCreationTokens": 0,
-            "totalTokens": 369345
+            "totalTokens": 369345,
+            "cost": 2.023215
           },
           "launchedAt": "2026-06-22T08:49:33.851Z",
           "startedAt": "2026-06-22T08:49:34.672Z",
@@ -913,7 +942,8 @@
             "outputTokens": 29361,
             "cacheReadTokens": 1222784,
             "cacheCreationTokens": 0,
-            "totalTokens": 302647
+            "totalTokens": 302647,
+            "cost": 1.260273
           },
           "launchedAt": "2026-06-22T08:51:13.307Z",
           "startedAt": "2026-06-22T08:51:13.761Z",
@@ -961,7 +991,8 @@
           "outputTokens": 75930,
           "cacheReadTokens": 2894592,
           "cacheCreationTokens": 0,
-          "totalTokens": 185823
+          "totalTokens": 185823,
+          "cost": 1.468629
         },
         "launchedAt": "2026-06-22T08:49:32.690Z",
         "startedAt": "2026-06-22T08:49:33.496Z",
@@ -992,7 +1023,8 @@
           "outputTokens": 51873,
           "cacheReadTokens": 8203776,
           "cacheCreationTokens": 0,
-          "totalTokens": 807086
+          "totalTokens": 807086,
+          "cost": 3.043734
         },
         "launchedAt": "2026-06-22T08:49:33.848Z",
         "startedAt": "2026-06-22T08:49:34.599Z",
@@ -1027,7 +1059,8 @@
         "outputTokens": 193860,
         "cacheReadTokens": 13195776,
         "cacheCreationTokens": 0,
-        "totalTokens": 1201855
+        "totalTokens": 1201855,
+        "cost": 5.931885
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -1048,7 +1081,8 @@
             "outputTokens": 75930,
             "cacheReadTokens": 2894592,
             "cacheCreationTokens": 0,
-            "totalTokens": 185823
+            "totalTokens": 185823,
+            "cost": 1.468629
           },
           "launchedAt": "2026-06-22T08:49:32.690Z",
           "startedAt": "2026-06-22T08:49:33.496Z",
@@ -1079,7 +1113,8 @@
             "outputTokens": 51873,
             "cacheReadTokens": 8203776,
             "cacheCreationTokens": 0,
-            "totalTokens": 807086
+            "totalTokens": 807086,
+            "cost": 3.043734
           },
           "launchedAt": "2026-06-22T08:49:33.848Z",
           "startedAt": "2026-06-22T08:49:34.599Z",
@@ -1110,7 +1145,8 @@
             "outputTokens": 66057,
             "cacheReadTokens": 2097408,
             "cacheCreationTokens": 0,
-            "totalTokens": 208946
+            "totalTokens": 208946,
+            "cost": 1.419522
           },
           "launchedAt": "2026-06-22T08:52:15.173Z",
           "startedAt": "2026-06-22T08:52:15.708Z",
@@ -1158,7 +1194,8 @@
           "outputTokens": 57252,
           "cacheReadTokens": 2252800,
           "cacheCreationTokens": 0,
-          "totalTokens": 188923
+          "totalTokens": 188923,
+          "cost": 1.253793
         },
         "launchedAt": "2026-06-20T07:29:12.922Z",
         "startedAt": "2026-06-20T07:29:13.872Z",
@@ -1189,7 +1226,8 @@
           "outputTokens": 149275,
           "cacheReadTokens": 20508672,
           "cacheCreationTokens": 0,
-          "totalTokens": 452479
+          "totalTokens": 452479,
+          "cost": 3.1487369999999997
         },
         "launchedAt": "2026-06-20T07:29:14.513Z",
         "startedAt": "2026-06-20T07:29:16.191Z",
@@ -1224,7 +1262,8 @@
         "outputTokens": 270580,
         "cacheReadTokens": 24964352,
         "cacheCreationTokens": 0,
-        "totalTokens": 844863
+        "totalTokens": 844863,
+        "cost": 5.781549
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test3/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -1245,7 +1284,8 @@
             "outputTokens": 57252,
             "cacheReadTokens": 2252800,
             "cacheCreationTokens": 0,
-            "totalTokens": 188923
+            "totalTokens": 188923,
+            "cost": 1.253793
           },
           "launchedAt": "2026-06-20T07:29:12.922Z",
           "startedAt": "2026-06-20T07:29:13.872Z",
@@ -1276,7 +1316,8 @@
             "outputTokens": 149275,
             "cacheReadTokens": 20508672,
             "cacheCreationTokens": 0,
-            "totalTokens": 452479
+            "totalTokens": 452479,
+            "cost": 3.1487369999999997
           },
           "launchedAt": "2026-06-20T07:29:14.513Z",
           "startedAt": "2026-06-20T07:29:16.191Z",
@@ -1307,7 +1348,8 @@
             "outputTokens": 64053,
             "cacheReadTokens": 2202880,
             "cacheCreationTokens": 0,
-            "totalTokens": 203461
+            "totalTokens": 203461,
+            "cost": 1.379019
           },
           "launchedAt": "2026-06-20T07:30:04.740Z",
           "startedAt": "2026-06-20T07:30:05.751Z",
@@ -1355,7 +1397,8 @@
           "outputTokens": 75224,
           "cacheReadTokens": 2358528,
           "cacheCreationTokens": 0,
-          "totalTokens": 190372
+          "totalTokens": 190372,
+          "cost": 1.473804
         },
         "launchedAt": "2026-06-22T08:49:32.717Z",
         "startedAt": "2026-06-22T08:49:33.572Z",
@@ -1386,7 +1429,8 @@
           "outputTokens": 130260,
           "cacheReadTokens": 21955840,
           "cacheCreationTokens": 0,
-          "totalTokens": 452869
+          "totalTokens": 452869,
+          "cost": 2.9217269999999997
         },
         "launchedAt": "2026-06-22T08:49:34.064Z",
         "startedAt": "2026-06-22T08:49:34.941Z",
@@ -1421,7 +1465,8 @@
         "outputTokens": 312038,
         "cacheReadTokens": 28292608,
         "cacheCreationTokens": 0,
-        "totalTokens": 1196509
+        "totalTokens": 1196509,
+        "cost": 7.333983000000001
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test4/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -1442,7 +1487,8 @@
             "outputTokens": 75224,
             "cacheReadTokens": 2358528,
             "cacheCreationTokens": 0,
-            "totalTokens": 190372
+            "totalTokens": 190372,
+            "cost": 1.473804
           },
           "launchedAt": "2026-06-22T08:49:32.717Z",
           "startedAt": "2026-06-22T08:49:33.572Z",
@@ -1473,7 +1519,8 @@
             "outputTokens": 130260,
             "cacheReadTokens": 21955840,
             "cacheCreationTokens": 0,
-            "totalTokens": 452869
+            "totalTokens": 452869,
+            "cost": 2.9217269999999997
           },
           "launchedAt": "2026-06-22T08:49:34.064Z",
           "startedAt": "2026-06-22T08:49:34.941Z",
@@ -1504,7 +1551,8 @@
             "outputTokens": 30588,
             "cacheReadTokens": 1991424,
             "cacheCreationTokens": 0,
-            "totalTokens": 170078
+            "totalTokens": 170078,
+            "cost": 0.87729
           },
           "launchedAt": "2026-06-22T08:51:47.545Z",
           "startedAt": "2026-06-22T08:51:47.995Z",
@@ -1535,7 +1583,8 @@
             "outputTokens": 75966,
             "cacheReadTokens": 1986816,
             "cacheCreationTokens": 0,
-            "totalTokens": 383190
+            "totalTokens": 383190,
+            "cost": 2.0611620000000004
           },
           "launchedAt": "2026-06-22T09:34:43.207Z",
           "startedAt": "2026-06-22T09:34:43.645Z",
@@ -1583,7 +1632,8 @@
           "outputTokens": 58732,
           "cacheReadTokens": 1723648,
           "cacheCreationTokens": 0,
-          "totalTokens": 156920
+          "totalTokens": 156920,
+          "cost": 1.175544
         },
         "launchedAt": "2026-06-20T08:31:55.674Z",
         "startedAt": "2026-06-20T08:31:56.242Z",
@@ -1614,7 +1664,8 @@
           "outputTokens": 221085,
           "cacheReadTokens": 32382848,
           "cacheCreationTokens": 0,
-          "totalTokens": 762201
+          "totalTokens": 762201,
+          "cost": 4.939623
         },
         "launchedAt": "2026-06-20T08:31:56.613Z",
         "startedAt": "2026-06-20T08:31:57.449Z",
@@ -1698,7 +1749,8 @@
         "outputTokens": 361255,
         "cacheReadTokens": 38110336,
         "cacheCreationTokens": 0,
-        "totalTokens": 1285450
+        "totalTokens": 1285450,
+        "cost": 8.19141
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/diy/test6/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -1719,7 +1771,8 @@
             "outputTokens": 58732,
             "cacheReadTokens": 1723648,
             "cacheCreationTokens": 0,
-            "totalTokens": 156920
+            "totalTokens": 156920,
+            "cost": 1.175544
           },
           "launchedAt": "2026-06-20T08:31:55.674Z",
           "startedAt": "2026-06-20T08:31:56.242Z",
@@ -1750,7 +1803,8 @@
             "outputTokens": 221085,
             "cacheReadTokens": 32382848,
             "cacheCreationTokens": 0,
-            "totalTokens": 762201
+            "totalTokens": 762201,
+            "cost": 4.939623
           },
           "launchedAt": "2026-06-20T08:31:56.613Z",
           "startedAt": "2026-06-20T08:31:57.449Z",
@@ -1781,7 +1835,8 @@
             "outputTokens": 81438,
             "cacheReadTokens": 4003840,
             "cacheCreationTokens": 0,
-            "totalTokens": 366329
+            "totalTokens": 366329,
+            "cost": 2.076243
           },
           "launchedAt": "2026-06-20T08:32:54.044Z",
           "startedAt": "2026-06-20T08:32:54.477Z",
@@ -1829,7 +1884,8 @@
           "outputTokens": 68802,
           "cacheReadTokens": 3038720,
           "cacheCreationTokens": 0,
-          "totalTokens": 253134
+          "totalTokens": 253134,
+          "cost": 1.585026
         },
         "launchedAt": "2026-06-23T06:13:19.922Z",
         "startedAt": "2026-06-23T06:13:20.500Z",
@@ -1860,7 +1916,8 @@
           "outputTokens": 269690,
           "cacheReadTokens": 24876992,
           "cacheCreationTokens": 0,
-          "totalTokens": 1553659
+          "totalTokens": 1553659,
+          "cost": 7.897257
         },
         "launchedAt": "2026-06-23T06:13:20.859Z",
         "startedAt": "2026-06-23T06:13:21.499Z",
@@ -1902,7 +1959,8 @@
         "outputTokens": 382713,
         "cacheReadTokens": 31830080,
         "cacheCreationTokens": 0,
-        "totalTokens": 2116452
+        "totalTokens": 2116452,
+        "cost": 10.941911999999999
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test1/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -1923,7 +1981,8 @@
             "outputTokens": 68802,
             "cacheReadTokens": 3038720,
             "cacheCreationTokens": 0,
-            "totalTokens": 253134
+            "totalTokens": 253134,
+            "cost": 1.585026
           },
           "launchedAt": "2026-06-23T06:13:19.922Z",
           "startedAt": "2026-06-23T06:13:20.500Z",
@@ -1954,7 +2013,8 @@
             "outputTokens": 269690,
             "cacheReadTokens": 24876992,
             "cacheCreationTokens": 0,
-            "totalTokens": 1553659
+            "totalTokens": 1553659,
+            "cost": 7.897257
           },
           "launchedAt": "2026-06-23T06:13:20.859Z",
           "startedAt": "2026-06-23T06:13:21.499Z",
@@ -1985,7 +2045,8 @@
             "outputTokens": 31717,
             "cacheReadTokens": 2075136,
             "cacheCreationTokens": 0,
-            "totalTokens": 166846
+            "totalTokens": 166846,
+            "cost": 0.8811420000000001
           },
           "launchedAt": "2026-06-23T06:14:50.088Z",
           "startedAt": "2026-06-23T06:14:50.502Z",
@@ -2016,7 +2077,8 @@
             "outputTokens": 12504,
             "cacheReadTokens": 1839232,
             "cacheCreationTokens": 0,
-            "totalTokens": 142813
+            "totalTokens": 142813,
+            "cost": 0.578487
           },
           "launchedAt": "2026-06-23T07:03:50.646Z",
           "startedAt": "2026-06-23T07:03:51.113Z",
@@ -2064,7 +2126,8 @@
           "outputTokens": 60888,
           "cacheReadTokens": 2782464,
           "cacheCreationTokens": 0,
-          "totalTokens": 162632
+          "totalTokens": 162632,
+          "cost": 1.2185519999999999
         },
         "launchedAt": "2026-06-20T02:21:51.886Z",
         "startedAt": "2026-06-20T02:21:52.846Z",
@@ -2095,7 +2158,8 @@
           "outputTokens": 227475,
           "cacheReadTokens": 21234624,
           "cacheCreationTokens": 0,
-          "totalTokens": 723622
+          "totalTokens": 723622,
+          "cost": 4.9005659999999995
         },
         "launchedAt": "2026-06-20T02:21:53.233Z",
         "startedAt": "2026-06-20T02:21:54.358Z",
@@ -2130,7 +2194,8 @@
         "outputTokens": 387191,
         "cacheReadTokens": 30128320,
         "cacheCreationTokens": 0,
-        "totalTokens": 1275697
+        "totalTokens": 1275697,
+        "cost": 8.473382999999998
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -2151,7 +2216,8 @@
             "outputTokens": 60888,
             "cacheReadTokens": 2782464,
             "cacheCreationTokens": 0,
-            "totalTokens": 162632
+            "totalTokens": 162632,
+            "cost": 1.2185519999999999
           },
           "launchedAt": "2026-06-20T02:21:51.886Z",
           "startedAt": "2026-06-20T02:21:52.846Z",
@@ -2182,7 +2248,8 @@
             "outputTokens": 227475,
             "cacheReadTokens": 21234624,
             "cacheCreationTokens": 0,
-            "totalTokens": 723622
+            "totalTokens": 723622,
+            "cost": 4.9005659999999995
           },
           "launchedAt": "2026-06-20T02:21:53.233Z",
           "startedAt": "2026-06-20T02:21:54.358Z",
@@ -2213,7 +2280,8 @@
             "outputTokens": 98828,
             "cacheReadTokens": 6111232,
             "cacheCreationTokens": 0,
-            "totalTokens": 389443
+            "totalTokens": 389443,
+            "cost": 2.354265
           },
           "launchedAt": "2026-06-20T02:23:08.880Z",
           "startedAt": "2026-06-20T02:23:09.328Z",
@@ -2261,7 +2329,8 @@
           "outputTokens": 141782,
           "cacheReadTokens": 2772736,
           "cacheCreationTokens": 0,
-          "totalTokens": 387465
+          "totalTokens": 387465,
+          "cost": 2.863779
         },
         "launchedAt": "2026-06-23T06:13:20.103Z",
         "startedAt": "2026-06-23T06:13:20.690Z",
@@ -2292,7 +2361,8 @@
           "outputTokens": 174874,
           "cacheReadTokens": 16958784,
           "cacheCreationTokens": 0,
-          "totalTokens": 857700
+          "totalTokens": 857700,
+          "cost": 4.671588
         },
         "launchedAt": "2026-06-23T06:13:21.058Z",
         "startedAt": "2026-06-23T06:13:21.677Z",
@@ -2334,7 +2404,8 @@
         "outputTokens": 364075,
         "cacheReadTokens": 22797376,
         "cacheCreationTokens": 0,
-        "totalTokens": 1568973
+        "totalTokens": 1568973,
+        "cost": 9.075819
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test3/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -2355,7 +2426,8 @@
             "outputTokens": 141782,
             "cacheReadTokens": 2772736,
             "cacheCreationTokens": 0,
-            "totalTokens": 387465
+            "totalTokens": 387465,
+            "cost": 2.863779
           },
           "launchedAt": "2026-06-23T06:13:20.103Z",
           "startedAt": "2026-06-23T06:13:20.690Z",
@@ -2386,7 +2458,8 @@
             "outputTokens": 174874,
             "cacheReadTokens": 16958784,
             "cacheCreationTokens": 0,
-            "totalTokens": 857700
+            "totalTokens": 857700,
+            "cost": 4.671588
           },
           "launchedAt": "2026-06-23T06:13:21.058Z",
           "startedAt": "2026-06-23T06:13:21.677Z",
@@ -2417,7 +2490,8 @@
             "outputTokens": 47419,
             "cacheReadTokens": 3065856,
             "cacheCreationTokens": 0,
-            "totalTokens": 323808
+            "totalTokens": 323808,
+            "cost": 1.5404520000000002
           },
           "launchedAt": "2026-06-23T06:15:10.298Z",
           "startedAt": "2026-06-23T06:15:10.722Z",
@@ -2465,7 +2539,8 @@
           "outputTokens": 45789,
           "cacheReadTokens": 2937088,
           "cacheCreationTokens": 0,
-          "totalTokens": 196652
+          "totalTokens": 196652,
+          "cost": 1.139424
         },
         "launchedAt": "2026-06-20T02:21:51.900Z",
         "startedAt": "2026-06-20T02:21:52.805Z",
@@ -2496,7 +2571,8 @@
           "outputTokens": 160219,
           "cacheReadTokens": 15714432,
           "cacheCreationTokens": 0,
-          "totalTokens": 538352
+          "totalTokens": 538352,
+          "cost": 3.5376839999999996
         },
         "launchedAt": "2026-06-20T02:21:53.254Z",
         "startedAt": "2026-06-20T02:21:54.490Z",
@@ -2573,7 +2649,8 @@
         "outputTokens": 255925,
         "cacheReadTokens": 20766080,
         "cacheCreationTokens": 0,
-        "totalTokens": 960616
+        "totalTokens": 960616,
+        "cost": 5.952947999999999
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test4/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -2594,7 +2671,8 @@
             "outputTokens": 45789,
             "cacheReadTokens": 2937088,
             "cacheCreationTokens": 0,
-            "totalTokens": 196652
+            "totalTokens": 196652,
+            "cost": 1.139424
           },
           "launchedAt": "2026-06-20T02:21:51.900Z",
           "startedAt": "2026-06-20T02:21:52.805Z",
@@ -2625,7 +2703,8 @@
             "outputTokens": 160219,
             "cacheReadTokens": 15714432,
             "cacheCreationTokens": 0,
-            "totalTokens": 538352
+            "totalTokens": 538352,
+            "cost": 3.5376839999999996
           },
           "launchedAt": "2026-06-20T02:21:53.254Z",
           "startedAt": "2026-06-20T02:21:54.490Z",
@@ -2656,7 +2735,8 @@
             "outputTokens": 49917,
             "cacheReadTokens": 2114560,
             "cacheCreationTokens": 0,
-            "totalTokens": 225612
+            "totalTokens": 225612,
+            "cost": 1.27584
           },
           "launchedAt": "2026-06-20T02:22:43.061Z",
           "startedAt": "2026-06-20T02:22:43.802Z",
@@ -2704,7 +2784,8 @@
           "outputTokens": 100170,
           "cacheReadTokens": 5256704,
           "cacheCreationTokens": 0,
-          "totalTokens": 414712
+          "totalTokens": 414712,
+          "cost": 2.446176
         },
         "launchedAt": "2026-06-23T06:13:19.809Z",
         "startedAt": "2026-06-23T06:13:20.295Z",
@@ -2735,7 +2816,8 @@
           "outputTokens": 226940,
           "cacheReadTokens": 24939840,
           "cacheCreationTokens": 0,
-          "totalTokens": 867803
+          "totalTokens": 867803,
+          "cost": 5.326689
         },
         "launchedAt": "2026-06-23T06:13:20.741Z",
         "startedAt": "2026-06-23T06:13:21.258Z",
@@ -2770,7 +2852,8 @@
         "outputTokens": 369169,
         "cacheReadTokens": 33791552,
         "cacheCreationTokens": 0,
-        "totalTokens": 1453778
+        "totalTokens": 1453778,
+        "cost": 8.791362
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/eat-what/test5/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -2791,7 +2874,8 @@
             "outputTokens": 100170,
             "cacheReadTokens": 5256704,
             "cacheCreationTokens": 0,
-            "totalTokens": 414712
+            "totalTokens": 414712,
+            "cost": 2.446176
           },
           "launchedAt": "2026-06-23T06:13:19.809Z",
           "startedAt": "2026-06-23T06:13:20.295Z",
@@ -2822,7 +2906,8 @@
             "outputTokens": 226940,
             "cacheReadTokens": 24939840,
             "cacheCreationTokens": 0,
-            "totalTokens": 867803
+            "totalTokens": 867803,
+            "cost": 5.326689
           },
           "launchedAt": "2026-06-23T06:13:20.741Z",
           "startedAt": "2026-06-23T06:13:21.258Z",
@@ -2853,7 +2938,8 @@
             "outputTokens": 42059,
             "cacheReadTokens": 3595008,
             "cacheCreationTokens": 0,
-            "totalTokens": 171263
+            "totalTokens": 171263,
+            "cost": 1.018497
           },
           "launchedAt": "2026-06-23T06:14:51.770Z",
           "startedAt": "2026-06-23T06:14:52.171Z",
@@ -2901,7 +2987,8 @@
           "outputTokens": 84787,
           "cacheReadTokens": 3349248,
           "cacheCreationTokens": 0,
-          "totalTokens": 339357
+          "totalTokens": 339357,
+          "cost": 2.035515
         },
         "launchedAt": "2026-06-22T11:20:06.595Z",
         "startedAt": "2026-06-22T11:20:07.856Z",
@@ -2932,7 +3019,8 @@
           "outputTokens": 134028,
           "cacheReadTokens": 32533504,
           "cacheCreationTokens": 0,
-          "totalTokens": 561022
+          "totalTokens": 561022,
+          "cost": 3.291402
         },
         "launchedAt": "2026-06-22T11:20:08.371Z",
         "startedAt": "2026-06-22T11:20:10.324Z",
@@ -2967,7 +3055,8 @@
         "outputTokens": 290659,
         "cacheReadTokens": 38011648,
         "cacheCreationTokens": 0,
-        "totalTokens": 1151623
+        "totalTokens": 1151623,
+        "cost": 6.9427769999999995
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/paw-log/test1/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -2988,7 +3077,8 @@
             "outputTokens": 84787,
             "cacheReadTokens": 3349248,
             "cacheCreationTokens": 0,
-            "totalTokens": 339357
+            "totalTokens": 339357,
+            "cost": 2.035515
           },
           "launchedAt": "2026-06-22T11:20:06.595Z",
           "startedAt": "2026-06-22T11:20:07.856Z",
@@ -3019,7 +3109,8 @@
             "outputTokens": 134028,
             "cacheReadTokens": 32533504,
             "cacheCreationTokens": 0,
-            "totalTokens": 561022
+            "totalTokens": 561022,
+            "cost": 3.291402
           },
           "launchedAt": "2026-06-22T11:20:08.371Z",
           "startedAt": "2026-06-22T11:20:10.324Z",
@@ -3050,7 +3141,8 @@
             "outputTokens": 71844,
             "cacheReadTokens": 2128896,
             "cacheCreationTokens": 0,
-            "totalTokens": 251244
+            "totalTokens": 251244,
+            "cost": 1.61586
           },
           "launchedAt": "2026-06-22T11:22:00.866Z",
           "startedAt": "2026-06-22T11:22:01.403Z",
@@ -3098,7 +3190,8 @@
           "outputTokens": 111418,
           "cacheReadTokens": 4016640,
           "cacheCreationTokens": 0,
-          "totalTokens": 314298
+          "totalTokens": 314298,
+          "cost": 2.27991
         },
         "launchedAt": "2026-06-22T11:20:06.597Z",
         "startedAt": "2026-06-22T11:20:07.632Z",
@@ -3129,7 +3222,8 @@
           "outputTokens": 57865,
           "cacheReadTokens": 16412160,
           "cacheCreationTokens": 0,
-          "totalTokens": 404337
+          "totalTokens": 404337,
+          "cost": 1.907391
         },
         "launchedAt": "2026-06-22T11:20:08.173Z",
         "startedAt": "2026-06-22T11:20:09.927Z",
@@ -3164,7 +3258,8 @@
         "outputTokens": 243769,
         "cacheReadTokens": 23581440,
         "cacheCreationTokens": 0,
-        "totalTokens": 1075260
+        "totalTokens": 1075260,
+        "cost": 6.151007999999999
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/paw-log/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -3185,7 +3280,8 @@
             "outputTokens": 111418,
             "cacheReadTokens": 4016640,
             "cacheCreationTokens": 0,
-            "totalTokens": 314298
+            "totalTokens": 314298,
+            "cost": 2.27991
           },
           "launchedAt": "2026-06-22T11:20:06.597Z",
           "startedAt": "2026-06-22T11:20:07.632Z",
@@ -3216,7 +3312,8 @@
             "outputTokens": 57865,
             "cacheReadTokens": 16412160,
             "cacheCreationTokens": 0,
-            "totalTokens": 404337
+            "totalTokens": 404337,
+            "cost": 1.907391
           },
           "launchedAt": "2026-06-22T11:20:08.173Z",
           "startedAt": "2026-06-22T11:20:09.927Z",
@@ -3247,7 +3344,8 @@
             "outputTokens": 67616,
             "cacheReadTokens": 2897408,
             "cacheCreationTokens": 0,
-            "totalTokens": 328172
+            "totalTokens": 328172,
+            "cost": 1.795908
           },
           "launchedAt": "2026-06-22T11:23:40.597Z",
           "startedAt": "2026-06-22T11:23:41.277Z",
@@ -3278,7 +3376,8 @@
             "outputTokens": 6870,
             "cacheReadTokens": 255232,
             "cacheCreationTokens": 0,
-            "totalTokens": 28453
+            "totalTokens": 28453,
+            "cost": 0.167799
           },
           "launchedAt": "2026-06-22T11:52:49.440Z",
           "startedAt": "2026-06-22T11:52:50.086Z",
@@ -3326,7 +3425,8 @@
           "outputTokens": 66531,
           "cacheReadTokens": 4030976,
           "cacheCreationTokens": 0,
-          "totalTokens": 219032
+          "totalTokens": 219032,
+          "cost": 1.4554680000000002
         },
         "launchedAt": "2026-06-20T04:45:01.404Z",
         "startedAt": "2026-06-20T04:45:02.272Z",
@@ -3357,7 +3457,8 @@
           "outputTokens": 261633,
           "cacheReadTokens": 27476160,
           "cacheCreationTokens": 0,
-          "totalTokens": 659527
+          "totalTokens": 659527,
+          "cost": 5.118177
         },
         "launchedAt": "2026-06-20T04:45:02.819Z",
         "startedAt": "2026-06-20T04:45:06.062Z",
@@ -3392,7 +3493,8 @@
         "outputTokens": 403620,
         "cacheReadTokens": 33377344,
         "cacheCreationTokens": 0,
-        "totalTokens": 1197809
+        "totalTokens": 1197809,
+        "cost": 8.436867000000001
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test2/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -3413,7 +3515,8 @@
             "outputTokens": 66531,
             "cacheReadTokens": 4030976,
             "cacheCreationTokens": 0,
-            "totalTokens": 219032
+            "totalTokens": 219032,
+            "cost": 1.4554680000000002
           },
           "launchedAt": "2026-06-20T04:45:01.404Z",
           "startedAt": "2026-06-20T04:45:02.272Z",
@@ -3444,7 +3547,8 @@
             "outputTokens": 261633,
             "cacheReadTokens": 27476160,
             "cacheCreationTokens": 0,
-            "totalTokens": 659527
+            "totalTokens": 659527,
+            "cost": 5.118177
           },
           "launchedAt": "2026-06-20T04:45:02.819Z",
           "startedAt": "2026-06-20T04:45:06.062Z",
@@ -3475,7 +3579,8 @@
             "outputTokens": 75456,
             "cacheReadTokens": 1870208,
             "cacheCreationTokens": 0,
-            "totalTokens": 319250
+            "totalTokens": 319250,
+            "cost": 1.863222
           },
           "launchedAt": "2026-06-20T04:46:10.526Z",
           "startedAt": "2026-06-20T04:46:11.427Z",
@@ -3523,7 +3628,8 @@
           "outputTokens": 73757,
           "cacheReadTokens": 2119680,
           "cacheCreationTokens": 0,
-          "totalTokens": 225826
+          "totalTokens": 225826,
+          "cost": 1.562562
         },
         "launchedAt": "2026-06-22T07:34:39.525Z",
         "startedAt": "2026-06-22T07:34:40.181Z",
@@ -3554,7 +3660,8 @@
           "outputTokens": 67890,
           "cacheReadTokens": 22938368,
           "cacheCreationTokens": 0,
-          "totalTokens": 327170
+          "totalTokens": 327170,
+          "cost": 1.7961900000000002
         },
         "launchedAt": "2026-06-22T07:34:40.679Z",
         "startedAt": "2026-06-22T07:34:41.260Z",
@@ -3597,7 +3704,8 @@
         "outputTokens": 194192,
         "cacheReadTokens": 29671040,
         "cacheCreationTokens": 0,
-        "totalTokens": 968643
+        "totalTokens": 968643,
+        "cost": 5.236233
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test4/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -3618,7 +3726,8 @@
             "outputTokens": 73757,
             "cacheReadTokens": 2119680,
             "cacheCreationTokens": 0,
-            "totalTokens": 225826
+            "totalTokens": 225826,
+            "cost": 1.562562
           },
           "launchedAt": "2026-06-22T07:34:39.525Z",
           "startedAt": "2026-06-22T07:34:40.181Z",
@@ -3649,7 +3758,8 @@
             "outputTokens": 67890,
             "cacheReadTokens": 22938368,
             "cacheCreationTokens": 0,
-            "totalTokens": 327170
+            "totalTokens": 327170,
+            "cost": 1.7961900000000002
           },
           "launchedAt": "2026-06-22T07:34:40.679Z",
           "startedAt": "2026-06-22T07:34:41.260Z",
@@ -3680,7 +3790,8 @@
             "outputTokens": 52545,
             "cacheReadTokens": 4612992,
             "cacheCreationTokens": 0,
-            "totalTokens": 415647
+            "totalTokens": 415647,
+            "cost": 1.877481
           },
           "launchedAt": "2026-06-22T07:36:33.736Z",
           "startedAt": "2026-06-22T07:36:34.140Z",
@@ -3728,7 +3839,8 @@
           "outputTokens": 76897,
           "cacheReadTokens": 2949120,
           "cacheCreationTokens": 0,
-          "totalTokens": 191240
+          "totalTokens": 191240,
+          "cost": 1.496484
         },
         "launchedAt": "2026-06-22T07:34:39.264Z",
         "startedAt": "2026-06-22T07:34:39.851Z",
@@ -3759,7 +3871,8 @@
           "outputTokens": 135056,
           "cacheReadTokens": 32047104,
           "cacheCreationTokens": 0,
-          "totalTokens": 752201
+          "totalTokens": 752201,
+          "cost": 3.877275
         },
         "launchedAt": "2026-06-22T07:34:40.203Z",
         "startedAt": "2026-06-22T07:34:40.750Z",
@@ -3794,7 +3907,8 @@
         "outputTokens": 283830,
         "cacheReadTokens": 38899968,
         "cacheCreationTokens": 0,
-        "totalTokens": 1194044
+        "totalTokens": 1194044,
+        "cost": 6.988092
       },
       "hapExists": true,
       "hapPath": "/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps/pinankou/test5/entry/build/default/outputs/default/entry-default-unsigned.hap",
@@ -3815,7 +3929,8 @@
             "outputTokens": 76897,
             "cacheReadTokens": 2949120,
             "cacheCreationTokens": 0,
-            "totalTokens": 191240
+            "totalTokens": 191240,
+            "cost": 1.496484
           },
           "launchedAt": "2026-06-22T07:34:39.264Z",
           "startedAt": "2026-06-22T07:34:39.851Z",
@@ -3846,7 +3961,8 @@
             "outputTokens": 135056,
             "cacheReadTokens": 32047104,
             "cacheCreationTokens": 0,
-            "totalTokens": 752201
+            "totalTokens": 752201,
+            "cost": 3.877275
           },
           "launchedAt": "2026-06-22T07:34:40.203Z",
           "startedAt": "2026-06-22T07:34:40.750Z",
@@ -3877,7 +3993,8 @@
             "outputTokens": 71877,
             "cacheReadTokens": 3903744,
             "cacheCreationTokens": 0,
-            "totalTokens": 250603
+            "totalTokens": 250603,
+            "cost": 1.614333
           },
           "launchedAt": "2026-06-22T07:36:21.274Z",
           "startedAt": "2026-06-22T07:36:21.705Z",

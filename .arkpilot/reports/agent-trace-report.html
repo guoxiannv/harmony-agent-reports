@@ -274,18 +274,18 @@
 <body>
   <header>
     <h1>Agent Trace Chain Time Report</h1>
-    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = sum of transcript usage · 仅显示含 HAP 产物的 run · 生成时间：2026-06-24 08:56:29Z · 扫描目录：<code>/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps</code></div>
+    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = sum of transcript usage · 仅显示含 HAP 产物的 run · 生成时间：2026-06-24 09:06:20Z · 扫描目录：<code>/Users/huaweiide/Desktop/fe/code/harmony-agent-reports/generated-apps</code></div>
   </header>
   <main>
     <section class="metrics">
       <div class="metric"><div class="metric-label">Run 数</div><div class="metric-value">18</div></div>
       <div class="metric"><div class="metric-label">Complete</div><div class="metric-value">16</div></div>
       <div class="metric"><div class="metric-label">Chain 平均</div><div class="metric-value">35m 10s</div></div>
+      <div class="metric"><div class="metric-label">Total Cost</div><div class="metric-value">$127</div></div>
+      <div class="metric"><div class="metric-label">Avg Cost/App</div><div class="metric-value">$7.92</div></div>
       <div class="metric"><div class="metric-label">Total Tokens</div><div class="metric-value">21.4M</div></div>
-      <div class="metric"><div class="metric-label">Avg Tokens/App</div><div class="metric-value">1.3M</div></div>
       <div class="metric"><div class="metric-label">Input Tokens</div><div class="metric-value">16.2M</div></div>
       <div class="metric"><div class="metric-label">Output Tokens</div><div class="metric-value">5.2M</div></div>
-      <div class="metric"><div class="metric-label">Cache Read</div><div class="metric-value">516.0M</div></div>
     </section>
 
     <h2>最长 Chain Time</h2>
@@ -360,10 +360,8 @@
           <tr>
             <th>App / Test</th>
             <th>Runs</th>
+            <th>Cost</th>
             <th>Chain Avg</th>
-            <th>Chain Min</th>
-            <th>Chain Max</th>
-            <th>Pause</th>
             <th>Total Tokens</th>
             <th>Input</th>
             <th>Output</th>
@@ -378,10 +376,8 @@
                 <tr class="tree-parent" data-app="danci">
                   <td><span class="tree-toggle">▶</span> <strong>danci</strong></td>
                   <td>3</td>
+                  <td>$17.6</td>
                   <td class="nowrap">22m 51s</td>
-                  <td class="nowrap">12m 7s</td>
-                  <td class="nowrap">43m 45s</td>
-                  <td class="nowrap">1m 48s</td>
                   <td>3.0M</td>
                   <td>2.3M</td>
                   <td>713.6K</td>
@@ -394,10 +390,8 @@
                   <tr class="tree-child" data-parent="danci">
                     <td>test2 <span class="muted">danci-test2-20260620-113433-run</span></td>
                     <td>1</td>
+                    <td>$9.49</td>
                     <td class="nowrap">43m 45s</td>
-                    <td class="nowrap">43m 45s</td>
-                    <td class="nowrap">43m 45s</td>
-                    <td class="nowrap">0s</td>
                     <td>1.7M</td>
                     <td>1.3M</td>
                     <td>374.3K</td>
@@ -410,10 +404,8 @@
                   <tr class="tree-child" data-parent="danci">
                     <td>test3 <span class="muted">danci-test3-20260620-113433-run</span></td>
                     <td>1</td>
+                    <td>$3.62</td>
                     <td class="nowrap">12m 7s</td>
-                    <td class="nowrap">12m 7s</td>
-                    <td class="nowrap">12m 7s</td>
-                    <td class="nowrap">1s</td>
                     <td>608.0K</td>
                     <td>458.4K</td>
                     <td>149.5K</td>
@@ -426,10 +418,8 @@
                   <tr class="tree-child" data-parent="danci">
                     <td>test5 <span class="muted">danci-test5-20260620-113433-run</span></td>
                     <td>1</td>
+                    <td>$4.51</td>
                     <td class="nowrap">12m 41s</td>
-                    <td class="nowrap">12m 41s</td>
-                    <td class="nowrap">12m 41s</td>
-                    <td class="nowrap">1m 46s</td>
                     <td>745.6K</td>
                     <td>555.9K</td>
                     <td>189.7K</td>
@@ -442,10 +432,8 @@
                 <tr class="tree-parent" data-app="diy">
                   <td><span class="tree-toggle">▶</span> <strong>diy</strong></td>
                   <td>5</td>
+                  <td>$32.1</td>
                   <td class="nowrap">41m 0s</td>
-                  <td class="nowrap">23m 36s</td>
-                  <td class="nowrap">58m 59s</td>
-                  <td class="nowrap">10m 21s</td>
                   <td>5.4M</td>
                   <td>4.1M</td>
                   <td>1.3M</td>
@@ -458,10 +446,8 @@
                   <tr class="tree-child" data-parent="diy">
                     <td>test1 <span class="muted">diy-test1-20260622-164932-run</span></td>
                     <td>1</td>
+                    <td>$4.89</td>
                     <td class="nowrap">33m 22s</td>
-                    <td class="nowrap">33m 22s</td>
-                    <td class="nowrap">33m 22s</td>
-                    <td class="nowrap">2m 37s</td>
                     <td>907.6K</td>
                     <td>726.7K</td>
                     <td>180.9K</td>
@@ -474,10 +460,8 @@
                   <tr class="tree-child" data-parent="diy">
                     <td>test2 <span class="muted">diy-test2-20260622-164932-run</span></td>
                     <td>1</td>
+                    <td>$5.93</td>
                     <td class="nowrap">55m 42s</td>
-                    <td class="nowrap">55m 42s</td>
-                    <td class="nowrap">55m 42s</td>
-                    <td class="nowrap">3m 46s</td>
                     <td>1.2M</td>
                     <td>1.0M</td>
                     <td>193.9K</td>
@@ -490,10 +474,8 @@
                   <tr class="tree-child" data-parent="diy">
                     <td>test3 <span class="muted">diy-test3-20260620-152912-run</span></td>
                     <td>1</td>
+                    <td>$5.78</td>
                     <td class="nowrap">23m 36s</td>
-                    <td class="nowrap">23m 36s</td>
-                    <td class="nowrap">23m 36s</td>
-                    <td class="nowrap">25s</td>
                     <td>844.9K</td>
                     <td>574.3K</td>
                     <td>270.6K</td>
@@ -506,10 +488,8 @@
                   <tr class="tree-child" data-parent="diy">
                     <td>test4 <span class="muted">diy-test4-20260622-164932-run</span></td>
                     <td>1</td>
+                    <td>$7.33</td>
                     <td class="nowrap">58m 59s</td>
-                    <td class="nowrap">58m 59s</td>
-                    <td class="nowrap">58m 59s</td>
-                    <td class="nowrap">2m 53s</td>
                     <td>1.2M</td>
                     <td>884.5K</td>
                     <td>312.0K</td>
@@ -522,10 +502,8 @@
                   <tr class="tree-child" data-parent="diy">
                     <td>test6 <span class="muted">diy-test6-20260620-163155-run</span></td>
                     <td>1</td>
+                    <td>$8.19</td>
                     <td class="nowrap">33m 23s</td>
-                    <td class="nowrap">33m 23s</td>
-                    <td class="nowrap">33m 23s</td>
-                    <td class="nowrap">39s</td>
                     <td>1.3M</td>
                     <td>924.2K</td>
                     <td>361.3K</td>
@@ -538,10 +516,8 @@
                 <tr class="tree-parent" data-app="eat-what">
                   <td><span class="tree-toggle">▶</span> <strong>eat-what</strong></td>
                   <td>5</td>
+                  <td>$43.2</td>
                   <td class="nowrap">37m 9s</td>
-                  <td class="nowrap">21m 49s</td>
-                  <td class="nowrap">53m 43s</td>
-                  <td class="nowrap">8m 35s</td>
                   <td>7.4M</td>
                   <td>5.6M</td>
                   <td>1.8M</td>
@@ -554,10 +530,8 @@
                   <tr class="tree-child" data-parent="eat-what">
                     <td>test1 <span class="muted">eat-what-test1-20260623-141316-run</span></td>
                     <td>1</td>
+                    <td>$10.9</td>
                     <td class="nowrap">53m 43s</td>
-                    <td class="nowrap">53m 43s</td>
-                    <td class="nowrap">53m 43s</td>
-                    <td class="nowrap">3m 29s</td>
                     <td>2.1M</td>
                     <td>1.7M</td>
                     <td>382.7K</td>
@@ -570,10 +544,8 @@
                   <tr class="tree-child" data-parent="eat-what">
                     <td>test2 <span class="muted">eat-what-test2-20260620-102151-run</span></td>
                     <td>1</td>
+                    <td>$8.47</td>
                     <td class="nowrap">30m 1s</td>
-                    <td class="nowrap">30m 1s</td>
-                    <td class="nowrap">30m 1s</td>
-                    <td class="nowrap">56s</td>
                     <td>1.3M</td>
                     <td>888.5K</td>
                     <td>387.2K</td>
@@ -586,10 +558,8 @@
                   <tr class="tree-child" data-parent="eat-what">
                     <td>test3 <span class="muted">eat-what-test3-20260623-141316-run</span></td>
                     <td>1</td>
+                    <td>$9.08</td>
                     <td class="nowrap">32m 32s</td>
-                    <td class="nowrap">32m 32s</td>
-                    <td class="nowrap">32m 32s</td>
-                    <td class="nowrap">2m 12s</td>
                     <td>1.6M</td>
                     <td>1.2M</td>
                     <td>364.1K</td>
@@ -602,10 +572,8 @@
                   <tr class="tree-child" data-parent="eat-what">
                     <td>test4 <span class="muted">eat-what-test4-20260620-102151-run</span></td>
                     <td>1</td>
+                    <td>$5.95</td>
                     <td class="nowrap">21m 49s</td>
-                    <td class="nowrap">21m 49s</td>
-                    <td class="nowrap">21m 49s</td>
-                    <td class="nowrap">37s</td>
                     <td>960.6K</td>
                     <td>704.7K</td>
                     <td>255.9K</td>
@@ -618,10 +586,8 @@
                   <tr class="tree-child" data-parent="eat-what">
                     <td>test5 <span class="muted">eat-what-test5-20260623-141316-run</span></td>
                     <td>1</td>
+                    <td>$8.79</td>
                     <td class="nowrap">47m 38s</td>
-                    <td class="nowrap">47m 38s</td>
-                    <td class="nowrap">47m 38s</td>
-                    <td class="nowrap">1m 21s</td>
                     <td>1.5M</td>
                     <td>1.1M</td>
                     <td>369.2K</td>
@@ -634,10 +600,8 @@
                 <tr class="tree-parent" data-app="paw-log">
                   <td><span class="tree-toggle">▶</span> <strong>paw-log</strong></td>
                   <td>2</td>
+                  <td>$13.1</td>
                   <td class="nowrap">37m 21s</td>
-                  <td class="nowrap">29m 21s</td>
-                  <td class="nowrap">45m 21s</td>
-                  <td class="nowrap">7m 33s</td>
                   <td>2.2M</td>
                   <td>1.7M</td>
                   <td>534.4K</td>
@@ -650,10 +614,8 @@
                   <tr class="tree-child" data-parent="paw-log">
                     <td>test1 <span class="muted">paw-log-test1-20260622-192006-run</span></td>
                     <td>1</td>
+                    <td>$6.94</td>
                     <td class="nowrap">45m 21s</td>
-                    <td class="nowrap">45m 21s</td>
-                    <td class="nowrap">45m 21s</td>
-                    <td class="nowrap">2m 56s</td>
                     <td>1.2M</td>
                     <td>861.0K</td>
                     <td>290.7K</td>
@@ -666,10 +628,8 @@
                   <tr class="tree-child" data-parent="paw-log">
                     <td>test2 <span class="muted">paw-log-test2-20260622-192006-run</span></td>
                     <td>1</td>
+                    <td>$6.15</td>
                     <td class="nowrap">29m 21s</td>
-                    <td class="nowrap">29m 21s</td>
-                    <td class="nowrap">29m 21s</td>
-                    <td class="nowrap">4m 37s</td>
                     <td>1.1M</td>
                     <td>831.5K</td>
                     <td>243.8K</td>
@@ -682,10 +642,8 @@
                 <tr class="tree-parent" data-app="pinankou">
                   <td><span class="tree-toggle">▶</span> <strong>pinankou</strong></td>
                   <td>3</td>
+                  <td>$20.7</td>
                   <td class="nowrap">32m 58s</td>
-                  <td class="nowrap">28m 28s</td>
-                  <td class="nowrap">36m 20s</td>
-                  <td class="nowrap">6m 26s</td>
                   <td>3.4M</td>
                   <td>2.5M</td>
                   <td>881.6K</td>
@@ -698,10 +656,8 @@
                   <tr class="tree-child" data-parent="pinankou">
                     <td>test2 <span class="muted">pinankou-test2-20260620-124501-run</span></td>
                     <td>1</td>
+                    <td>$8.44</td>
                     <td class="nowrap">28m 28s</td>
-                    <td class="nowrap">28m 28s</td>
-                    <td class="nowrap">28m 28s</td>
-                    <td class="nowrap">1m 25s</td>
                     <td>1.2M</td>
                     <td>794.2K</td>
                     <td>403.6K</td>
@@ -714,10 +670,8 @@
                   <tr class="tree-child" data-parent="pinankou">
                     <td>test4 <span class="muted">pinankou-test4-20260622-153435-run</span></td>
                     <td>1</td>
+                    <td>$5.24</td>
                     <td class="nowrap">34m 7s</td>
-                    <td class="nowrap">34m 7s</td>
-                    <td class="nowrap">34m 7s</td>
-                    <td class="nowrap">2m 25s</td>
                     <td>968.6K</td>
                     <td>774.5K</td>
                     <td>194.2K</td>
@@ -730,10 +684,8 @@
                   <tr class="tree-child" data-parent="pinankou">
                     <td>test5 <span class="muted">pinankou-test5-20260622-153435-run</span></td>
                     <td>1</td>
+                    <td>$6.99</td>
                     <td class="nowrap">36m 20s</td>
-                    <td class="nowrap">36m 20s</td>
-                    <td class="nowrap">36m 20s</td>
-                    <td class="nowrap">2m 36s</td>
                     <td>1.2M</td>
                     <td>910.2K</td>
                     <td>283.8K</td>
