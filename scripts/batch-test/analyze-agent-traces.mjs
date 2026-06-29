@@ -107,20 +107,41 @@ function formatTokens(value) {
   return String(value);
 }
 
-// Claude 定价 (每百万 tokens，美元)
-const CLAUDE_PRICES = {
-  sonnet: { input: 3, output: 15 },
-  opus: { input: 15, output: 75 },
-  haiku: { input: 0.25, output: 1.25 },
+// 各模型实际定价 (每百万 tokens，美元)
+// 来源: 各平台官方定价页 (2026-06)
+const MODEL_PRICES = {
+  "kimi-for-coding":  { input: 0.95,  output: 4.00,  cacheRead: 0.19,  cacheWrite: 0.95  },
+  "glm-5.2":          { input: 1.40,  output: 4.40,  cacheRead: 0.26,  cacheWrite: 1.40  },
+  "glm-5.1":          { input: 0.83,  output: 3.31,  cacheRead: 0.18,  cacheWrite: 0.83  }, // ¥6/¥24/¥1.30 @ 7.2
+  "deepseek-v4-flash":{ input: 0.14,  output: 0.28,  cacheRead: 0.0028,cacheWrite: 0.14  },
 };
 
-// 默认用 Sonnet 价格计算
-const DEFAULT_PRICE = CLAUDE_PRICES.sonnet;
+// 模型显示名映射 (transcript 中的名称 → 报告中的显示名)
+const MODEL_DISPLAY_NAMES = {
+  "kimi-for-coding": "kimi2.7-code",
+  "glm-5.2": "glm-5.2",
+  "glm-5.1": "glm-5.1",
+  "deepseek-v4-flash": "deepseek-v4-flash",
+};
 
-function calculateCost(inputTokens, outputTokens) {
-  const inputCost = (inputTokens / 1_000_000) * DEFAULT_PRICE.input;
-  const outputCost = (outputTokens / 1_000_000) * DEFAULT_PRICE.output;
-  return inputCost + outputCost;
+// 未知模型回退价格
+const FALLBACK_PRICE = MODEL_PRICES["kimi-for-coding"];
+
+function getPriceForModel(model) {
+  return MODEL_PRICES[model] || FALLBACK_PRICE;
+}
+
+function getDisplayName(model) {
+  return MODEL_DISPLAY_NAMES[model] || model;
+}
+
+function calculateCost(inputTokens, outputTokens, cacheReadTokens, cacheCreationTokens, model) {
+  const price = getPriceForModel(model);
+  const inputCost = (inputTokens / 1_000_000) * price.input;
+  const outputCost = (outputTokens / 1_000_000) * price.output;
+  const cacheReadCost = (cacheReadTokens / 1_000_000) * (price.cacheRead || 0);
+  const cacheWriteCost = (cacheCreationTokens / 1_000_000) * (price.cacheWrite || price.input);
+  return inputCost + outputCost + cacheReadCost + cacheWriteCost;
 }
 
 function formatCost(value) {
@@ -361,6 +382,7 @@ function readTranscriptContent(path) {
   let outputTokens = 0;
   let cacheReadTokens = 0;
   let cacheCreationTokens = 0;
+  let detectedModel = "";
 
   for (const line of lines) {
     try {
@@ -368,30 +390,38 @@ function readTranscriptContent(path) {
       const timestamp = item.timestamp || item.created_at || item.createdAt || "";
       if (timestamp && !firstTimestamp) firstTimestamp = timestamp;
       if (timestamp) lastTimestamp = timestamp;
-      const usage = item?.message?.usage || item?.usage;
+      const msg = item.message || item;
+      const usage = msg.usage;
       if (usage) {
         inputTokens += Number(usage.input_tokens) || 0;
         outputTokens += Number(usage.output_tokens) || 0;
         cacheReadTokens += Number(usage.cache_read_input_tokens) || 0;
         cacheCreationTokens += Number(usage.cache_creation_input_tokens) || 0;
       }
+      // 提取实际模型名称（取第一个非 synthetic 的 model 值）
+      if (!detectedModel && msg.model && msg.model !== "<synthetic>") {
+        detectedModel = msg.model;
+      }
     } catch {
       // Transcript sidecars may contain non-message metadata; ignore malformed lines.
     }
   }
+
+  const cost = calculateCost(inputTokens, outputTokens, cacheReadTokens, cacheCreationTokens, detectedModel);
 
   return {
     exists: true,
     lineCount: lines.length,
     firstTimestamp,
     lastTimestamp,
+    model: detectedModel,
     tokens: {
       inputTokens,
       outputTokens,
       cacheReadTokens,
       cacheCreationTokens,
       totalTokens: inputTokens + outputTokens,
-      cost: calculateCost(inputTokens, outputTokens),
+      cost,
     },
   };
 }
@@ -569,6 +599,7 @@ function analyzeRun(file, options) {
       status: lane.status || "",
       stage: lane.current_stage || lane.current_prompt_stage || "",
       model: lane.model || "",
+      detectedModel: transcriptMeta.model || "",
       effort: lane.effort || "",
       runtime: lane.agent_runtime || run.agent_runtime || "",
       sessionId: lane.agent_session_id || lane.claude_session_id || lane.codex_session_id || "",
@@ -626,8 +657,12 @@ function analyzeRun(file, options) {
     acc.cacheCreationTokens += t.cacheCreationTokens;
     acc.totalTokens += t.totalTokens;
     acc.cost += t.cost || 0;
+    // 按模型分组统计 cost（使用显示名）
+    const model = getDisplayName(lane.detectedModel || "unknown");
+    if (!acc.costByModel[model]) acc.costByModel[model] = 0;
+    acc.costByModel[model] += t.cost || 0;
     return acc;
-  }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0 });
+  }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0, costByModel: {} });
 
   const hapPath = join(cwd, "entry", "build", "default", "outputs", "default", "entry-default-unsigned.hap");
   const hapExists = existsSync(hapPath);
@@ -677,7 +712,7 @@ function buildSummary(runs) {
       failed: 0,
       chainMs: [],
       pauseMs: 0,
-      tokens: { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0 },
+      tokens: { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0, costByModel: {} },
     };
     item.runs += 1;
     if (run.status === "complete") item.complete += 1;
@@ -694,6 +729,9 @@ function buildSummary(runs) {
       item.tokens.cacheCreationTokens += run.tokenUsage.cacheCreationTokens;
       item.tokens.totalTokens += run.tokenUsage.totalTokens;
       item.tokens.cost += run.tokenUsage.cost || 0;
+      for (const [model, cost] of Object.entries(run.tokenUsage.costByModel || {})) {
+        item.tokens.costByModel[model] = (item.tokens.costByModel[model] || 0) + cost;
+      }
     }
     byApp.set(run.app, item);
   }
@@ -722,8 +760,11 @@ function buildSummary(runs) {
     acc.cacheCreationTokens += run.tokenUsage.cacheCreationTokens;
     acc.totalTokens += run.tokenUsage.totalTokens;
     acc.cost += run.tokenUsage.cost || 0;
+    for (const [model, cost] of Object.entries(run.tokenUsage.costByModel || {})) {
+      acc.costByModel[model] = (acc.costByModel[model] || 0) + cost;
+    }
     return acc;
-  }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0 });
+  }, { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheCreationTokens: 0, totalTokens: 0, cost: 0, costByModel: {} });
 
   return {
     runs: runs.length,
@@ -1037,7 +1078,7 @@ function renderHtml(report) {
 <body>
   <header>
     <h1>Agent Trace Chain Time Report</h1>
-    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = input + output（实际消耗）· Cost = input×$3/M + output×$15/M（Claude Sonnet定价）· 仅显示含 HAP 产物的 run · 生成时间：${htmlEscape(shortIso(report.generatedAt))}</div>
+    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = input + output（实际消耗）· Cost = input×$0.95/M + output×$4/M（kimi2.7-code）/ input×$1.4/M + output×$4.4/M（glm-5.2）/ input×$0.14/M + output×$0.28/M（deepseek-v4-flash）· 仅显示含 HAP 产物的 run · 生成时间：${htmlEscape(shortIso(report.generatedAt))}</div>
   </header>
   <main>
     <section class="metrics">

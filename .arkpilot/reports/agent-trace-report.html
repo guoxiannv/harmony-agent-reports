@@ -274,15 +274,15 @@
 <body>
   <header>
     <h1>Agent Trace Chain Time Report</h1>
-    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = input + output（实际消耗）· Cost = input×$3/M + output×$15/M（Claude Sonnet定价）· 仅显示含 HAP 产物的 run · 生成时间：2026-06-24 09:13:46Z</div>
+    <div class="subtle">Time = max(all lane endAt) - planning.started_marker_seen_at - pause gaps · Token = input + output（实际消耗）· Cost = input×$0.95/M + output×$4/M（kimi2.7-code）/ input×$1.4/M + output×$4.4/M（glm-5.2）/ input×$0.14/M + output×$0.28/M（deepseek-v4-flash）· 仅显示含 HAP 产物的 run · 生成时间：2026-06-29 03:27:05Z</div>
   </header>
   <main>
     <section class="metrics">
       <div class="metric"><div class="metric-label">Run 数</div><div class="metric-value">18</div></div>
       <div class="metric"><div class="metric-label">Complete</div><div class="metric-value">16</div></div>
       <div class="metric"><div class="metric-label">Chain 平均</div><div class="metric-value">35m 10s</div></div>
-      <div class="metric"><div class="metric-label">Total Cost</div><div class="metric-value">$127</div></div>
-      <div class="metric"><div class="metric-label">Avg Cost/App</div><div class="metric-value">$7.92</div></div>
+      <div class="metric"><div class="metric-label">Total Cost</div><div class="metric-value">$137</div></div>
+      <div class="metric"><div class="metric-label">Avg Cost/App</div><div class="metric-value">$8.55</div></div>
       <div class="metric"><div class="metric-label">Total Tokens</div><div class="metric-value">21.4M</div></div>
       <div class="metric"><div class="metric-label">Input Tokens</div><div class="metric-value">16.2M</div></div>
       <div class="metric"><div class="metric-label">Output Tokens</div><div class="metric-value">5.2M</div></div>
@@ -380,7 +380,7 @@
                   <td>3.0M</td>
                   <td>2.3M</td>
                   <td>713.6K</td>
-                  <td>$17.6</td>
+                  <td>$23.3</td>
                   <td>100%</td>
                   <td>100%</td>
                   <td>87%</td>
@@ -394,7 +394,7 @@
                     <td>1.7M</td>
                     <td>1.3M</td>
                     <td>374.3K</td>
-                    <td>$9.49</td>
+                    <td>$16.1</td>
                     <td>100%</td>
                     <td>是</td>
                     <td>80%</td>
@@ -408,7 +408,7 @@
                     <td>608.0K</td>
                     <td>458.4K</td>
                     <td>149.5K</td>
-                    <td>$3.62</td>
+                    <td>$2.82</td>
                     <td>100%</td>
                     <td>是</td>
                     <td>100%</td>
@@ -422,7 +422,7 @@
                     <td>745.6K</td>
                     <td>555.9K</td>
                     <td>189.7K</td>
-                    <td>$4.51</td>
+                    <td>$4.35</td>
                     <td>100%</td>
                     <td>是</td>
                     <td>80%</td>
@@ -436,7 +436,7 @@
                   <td>5.4M</td>
                   <td>4.1M</td>
                   <td>1.3M</td>
-                  <td>$32.1</td>
+                  <td>$32.5</td>
                   <td>72%</td>
                   <td>100%</td>
                   <td>72%</td>
@@ -450,7 +450,7 @@
                     <td>907.6K</td>
                     <td>726.7K</td>
                     <td>180.9K</td>
-                    <td>$4.89</td>
+                    <td>$3.99</td>
                     <td>80%</td>
                     <td>是</td>
                     <td>80%</td>
@@ -464,7 +464,7 @@
                     <td>1.2M</td>
                     <td>1.0M</td>
                     <td>193.9K</td>
-                    <td>$5.93</td>
+                    <td>$3.49</td>
                     <td>100%</td>
                     <td>是</td>
                     <td>95%</td>
@@ -478,7 +478,7 @@
                     <td>844.9K</td>
                     <td>574.3K</td>
                     <td>270.6K</td>
-                    <td>$5.78</td>
+                    <td>$7.24</td>
                     <td>90%</td>
                     <td>是</td>
                     <td>95%</td>
@@ -492,7 +492,7 @@
                     <td>1.2M</td>
                     <td>884.5K</td>
                     <td>312.0K</td>
-                    <td>$7.33</td>
+                    <td>$6.86</td>
                     <td>90%</td>
                     <td>是</td>
                     <td>90%</td>
@@ -506,7 +506,7 @@
                     <td>1.3M</td>
                     <td>924.2K</td>
                     <td>361.3K</td>
-                    <td>$8.19</td>
+                    <td>$10.9</td>
                     <td>0%</td>
                     <td>—</td>
                     <td>0%</td>
@@ -520,7 +520,7 @@
                   <td>7.4M</td>
                   <td>5.6M</td>
                   <td>1.8M</td>
-                  <td>$43.2</td>
+                  <td>$43.3</td>
                   <td>38%</td>
                   <td>100%</td>
                   <td>35%</td>
@@ -534,7 +534,7 @@
                     <td>2.1M</td>
                     <td>1.7M</td>
                     <td>382.7K</td>
-                    <td>$10.9</td>
+                    <td>$11.2</td>
                     <td>100%</td>
                     <td>是</td>
                     <td>80%</td>
@@ -548,7 +548,7 @@
                     <td>1.3M</td>
                     <td>888.5K</td>
                     <td>387.2K</td>
-                    <td>$8.47</td>
+                    <td>$8.17</td>
                     <td>90%</td>
                     <td>是</td>
                     <td>95%</td>
@@ -562,7 +562,7 @@
                     <td>1.6M</td>
                     <td>1.2M</td>
                     <td>364.1K</td>
-                    <td>$9.08</td>
+                    <td>$7.52</td>
                     <td>0%</td>
                     <td>—</td>
                     <td>0%</td>
@@ -576,7 +576,7 @@
                     <td>960.6K</td>
                     <td>704.7K</td>
                     <td>255.9K</td>
-                    <td>$5.95</td>
+                    <td>$6.25</td>
                     <td>0%</td>
                     <td>—</td>
                     <td>0%</td>
@@ -590,7 +590,7 @@
                     <td>1.5M</td>
                     <td>1.1M</td>
                     <td>369.2K</td>
-                    <td>$8.79</td>
+                    <td>$10.1</td>
                     <td>0%</td>
                     <td>—</td>
                     <td>0%</td>
@@ -604,7 +604,7 @@
                   <td>2.2M</td>
                   <td>1.7M</td>
                   <td>534.4K</td>
-                  <td>$13.1</td>
+                  <td>$13.6</td>
                   <td>35%</td>
                   <td>100%</td>
                   <td>35%</td>
@@ -618,7 +618,7 @@
                     <td>1.2M</td>
                     <td>861.0K</td>
                     <td>290.7K</td>
-                    <td>$6.94</td>
+                    <td>$8.39</td>
                     <td>70%</td>
                     <td>是</td>
                     <td>70%</td>
@@ -632,7 +632,7 @@
                     <td>1.1M</td>
                     <td>831.5K</td>
                     <td>243.8K</td>
-                    <td>$6.15</td>
+                    <td>$5.24</td>
                     <td>0%</td>
                     <td>—</td>
                     <td>0%</td>
@@ -646,7 +646,7 @@
                   <td>3.4M</td>
                   <td>2.5M</td>
                   <td>881.6K</td>
-                  <td>$20.7</td>
+                  <td>$24.1</td>
                   <td>45%</td>
                   <td>67%</td>
                   <td>35%</td>
@@ -660,7 +660,7 @@
                     <td>1.2M</td>
                     <td>794.2K</td>
                     <td>403.6K</td>
-                    <td>$8.44</td>
+                    <td>$10.1</td>
                     <td>90%</td>
                     <td>是</td>
                     <td>70%</td>
@@ -674,7 +674,7 @@
                     <td>968.6K</td>
                     <td>774.5K</td>
                     <td>194.2K</td>
-                    <td>$5.24</td>
+                    <td>$5.80</td>
                     <td>0%</td>
                     <td>否</td>
                     <td>0%</td>
@@ -688,7 +688,7 @@
                     <td>1.2M</td>
                     <td>910.2K</td>
                     <td>283.8K</td>
-                    <td>$6.99</td>
+                    <td>$8.25</td>
                     <td>—</td>
                     <td>是</td>
                     <td>—</td>
